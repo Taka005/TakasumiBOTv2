@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const isUrl = require("../lib/isUrl");
+  const isUrl = require("../../lib/isUrl");
   const fetch = require("node-fetch");
   const { MessageAttachment } = require("discord.js");
   if(!interaction.isCommand()) return;

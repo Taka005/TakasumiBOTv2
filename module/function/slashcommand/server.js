@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const { MessageButton, MessageActionRow } = require("discord.js");
-  const boost = require("../lib/boost");
+  const boost = require("../../lib/boost");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "server"){
 

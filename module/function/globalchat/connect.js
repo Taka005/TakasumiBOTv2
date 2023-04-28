@@ -252,7 +252,7 @@ module.exports = async(msg,client)=>{
 }
 
 function err(channel,client,error){
-  const db = require("../../../modules/lib/db");
+  const db = require("../../lib/db");
   const { MessageButton, MessageActionRow } = require("discord.js");
 
   db(`DELETE FROM global WHERE channel = ${channel} LIMIT 1;`);

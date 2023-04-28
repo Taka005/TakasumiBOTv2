@@ -12,10 +12,9 @@ console.log("\x1b[32m          TakasumiBOT v2       \x1b[39m");
 console.log("\x1b[32m    Created By Taka005#6668    \x1b[39m");
 console.log("\x1b[32m*******************************\x1b[39m");
 
-require("./module/events")(client);
-require("./module/api/server")(client);
-require("./module/global/gateway")(client);
-require("./module/events/load")(client);
+require("./module/event")(client);
+require("./module/function/global/gateway")(client);
+require("./module/event/ready/load")(client);
 
 client.login(process.env.BOT_TOKEN)
   .then(()=>{

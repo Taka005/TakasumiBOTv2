@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const permission = require("../lib/permission");
+  const permission = require("../../lib/permission");
   const { MessageButton, MessageActionRow } = require("discord.js");
   if(!interaction.isContextMenu()) return;
   if(interaction.commandName === "権限を表示"){

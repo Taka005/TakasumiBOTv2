@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { MessageActionRow, MessageSelectMenu, MessageAttachment } = require("discord.js");
-  const random = require("../lib/random");
+  const random = require("../../lib/random");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("image_")){
     const role = interaction.customId.split("_");

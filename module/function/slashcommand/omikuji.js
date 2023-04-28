@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { MessageAttachment } = require("discord.js");
-  const random = require("../lib/random");
+  const random = require("../../lib/random");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "omikuji"){
     

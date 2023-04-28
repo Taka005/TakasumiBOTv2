@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const isUrl = require("../lib/isUrl");
+  const isUrl = require("../../lib/isUrl");
   require("dotenv").config();
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "short"){
