@@ -40,7 +40,6 @@
     "ws": "^8.13.0"
   },
   "devDependencies": {
-    "esbuild": "^0.17.15",
     "eslint": "^8.37.0",
     "eslint-plugin-node": "^11.1.0"
   },

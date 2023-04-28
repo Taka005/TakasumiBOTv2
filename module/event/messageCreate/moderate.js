@@ -1,7 +1,6 @@
 const time = [];
 
 module.exports = async(message)=>{
-  const ngword = require("../../../file/moderate/ngword.json");
   const mysql = require("../../lib/mysql");
 
   if(
@@ -29,22 +28,6 @@ module.exports = async(message)=>{
               icon_url: "https://cdn.taka.ml/images/system/warn.png"
               },
               description: "メッセージの文字数が多すぎたため、メッセージを削除しました",
-              timestamp: new Date(),
-              color: "YELLOW"
-            }]
-        }).catch(()=>{})
-      }
-      //NGワード検知
-      if(ngword.high.find(e=>message.content.match(e))){
-        message.delete().catch(()=>{});
-        return message.channel.send({
-          content: `<@${message.author.id}>`,
-          embeds:[{
-            author:{
-              name: "自動モデレート",
-              icon_url: "https://cdn.taka.ml/images/system/warn.png"
-              },
-              description: "NGワードを検知したため、メッセージを削除しました",
               timestamp: new Date(),
               color: "YELLOW"
             }]
@@ -85,22 +68,6 @@ module.exports = async(message)=>{
               timestamp: new Date(),
               color: "YELLOW"
             }]
-        }).catch(()=>{})
-      }
-      //NGワード検知
-      if(ngword.high.find(e=>message.content.match(e))){
-        message.delete().catch(()=>{});
-        return message.channel.send({
-          content: `<@${message.author.id}>`,
-          embeds:[{
-            author:{
-              name: "自動モデレート",
-              icon_url: "https://cdn.taka.ml/images/system/warn.png"
-            },
-            description: "NGワードを検知したため、メッセージを削除しました",
-            timestamp: new Date(),
-            color: "YELLOW"
-          }]
         }).catch(()=>{})
       }
       //スパム検知

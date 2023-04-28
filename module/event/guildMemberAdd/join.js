@@ -1,6 +1,6 @@
 module.exports = async(member,client)=>{
   const { WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
-  const mysql = require("../lib/mysql");
+  const mysql = require("../../../modules/lib/mysql");
 
   const data = await mysql(`SELECT * FROM \`join\` WHERE server = ${member.guild.id} LIMIT 1;`);
   if(data[0]){

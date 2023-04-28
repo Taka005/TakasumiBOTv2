@@ -1,6 +1,6 @@
 module.exports = async(client)=>{
   const api = require("../../data/api.json");
-  const mysql = require("../lib/mysql");
+  const mysql = require("../../../modules/lib/mysql");
   const fs = require("fs");
   const os = require("os");
   const fetch = require("node-fetch");
@@ -23,9 +23,9 @@ module.exports = async(client)=>{
     }else if(api.ram.length > 100){
       api.ram.shift();
     }else{
-      const cpuusage = await new Promise((resolve) =>
-        require("os-utils").cpuUsage(resolve)
-      );
+      const cpuusage = await new Promise((resolve)=>{
+        require("os-utils").cpuUsage(resolve);
+      });
 
       const start = performance.now(); 
       await fetch("https://api.taka.ml/v1/status")

@@ -7,4 +7,4 @@
 
 ## チェックリスト
 - **mainブランチには送らない**
-- `npm run build`と`npm run lint`を実行する
+- `npm run lint`を実行しておく

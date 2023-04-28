@@ -1,6 +1,6 @@
 module.exports = async(msg,client)=>{
-  const mysql = require("../lib/mysql");
-  const convert = require("../lib/convert");
+  const mysql = require("../../../modules/lib/mysql");
+  const convert = require("../../../modules/lib/convert");
   const { WebhookClient } = require("discord.js");
   const async = require("async");
 
@@ -252,7 +252,7 @@ module.exports = async(msg,client)=>{
 }
 
 function err(channel,client,error){
-  const mysql = require("../lib/mysql");
+  const mysql = require("../../../modules/lib/mysql");
   const { MessageButton, MessageActionRow } = require("discord.js");
 
   mysql(`DELETE FROM global WHERE channel = ${channel} LIMIT 1;`);

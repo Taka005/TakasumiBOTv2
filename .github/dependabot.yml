@@ -6,7 +6,7 @@ updates:
       interval: "daily"
       time: "18:00"
       timezone: "Asia/Tokyo"
-    target-branch: "development"
+    target-branch: "dev"
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]

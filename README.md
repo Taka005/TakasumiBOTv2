@@ -1,9 +1,9 @@
-[![Build](https://github.com/Taka005/TakasumiBOT/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Taka005/TakasumiBOT/actions/workflows/build.yml)
-[![Lint](https://github.com/Taka005/TakasumiBOT/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/Taka005/TakasumiBOT/actions/workflows/lint.yml)
+[![Build](https://github.com/Taka005/TakasumiBOTv2/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Taka005/TakasumiBOTv2/actions/workflows/build.yml)
+[![Lint](https://github.com/Taka005/TakasumiBOTv2/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/Taka005/TakasumiBOTv2/actions/workflows/lint.yml)
 [![License: GPL](https://img.shields.io/badge/License-GPL-yellow.svg)](https://opensource.org/licenses/GPL-3.0)
 [![Support](https://img.shields.io/discord/987698915820335124?color=5865f2&label=Discord&logo=Discord&logoColor=ffffff)](https://discord.gg/NEesRdGQwD)
 [![Email](https://img.shields.io/badge/email-takasumibot@gmail.com-blue.svg?style=flat)](mailto:takasumibot@gmail.com)
-# TakasumiBOT
+# TakasumiBOT v2
 - とても便利な万能BOTです
 - https://takasumibot.taka.ml/
 - **このレポジトリはGPL-3.0ライセンスの元で公開されています**
@@ -15,15 +15,14 @@
 - .envの中に各設定を記述する
 - npm install を実行
 - npm start を実行
-# Configについて
-- admin:管理者のユーザーID
-- prefix:コマンドの先頭になる文字(一部のみに有効)
-- log:ログを送るチャンネルID
-- error:エラーメッセージを送るチャンネルID
+# Config
+- admin: 管理者のユーザーID
+- prefix: コマンドの先頭になる文字(一部のみに有効)
+- log: ログを送るチャンネルID
+- error: エラーメッセージを送るチャンネルID
 # Developer
-- 開発 Taka005#6668
-- JavaScript(Node.js)により作成
--  サポートサーバーにも是非参加してください
+- 開発: Taka005#6668
+- サポートサーバーにも是非参加してください
 - https://discord.gg/NEesRdGQwD
 # 開発ルール
 ## コミットメッセージ
@@ -31,16 +30,10 @@
 ### 種類一覧
 - feat 新機能
 - fix 修正
-- perf パフォーマンスに関わる変更
-- refactor 整理
 - style コードの形の変更
 - test テスト
 - build ビルドシステム等の変更
 - docs ドキュメントの変更
-- add パッケージの追加
-- delete パッケージの削除
-- update パッケージの更新
+- change: あらゆる変更
 ## ブランチ戦略
 - mainブランチには直接コミットしない
-- development ブランチにコミットしチェックに合格したら自動的にマージされる
-

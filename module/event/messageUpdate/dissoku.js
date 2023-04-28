@@ -1,5 +1,5 @@
 module.exports = async(message)=>{
-  const mysql = require("../lib/mysql");
+  const mysql = require("../../../modules/lib/mysql");
 
   if(
     !message.guild.members.me.permissionsIn(message.channel).has("VIEW_CHANNEL")||
