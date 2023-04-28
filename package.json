@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "lint": "./node_modules/.bin/eslint module",
-    "build": "esbuild --bundle --minify --sourcemap=external --format=cjs --platform=node --target=es2020,node16 --outfile=./dist/build.js --keep-names=true ./index.js",
-    "test": "node ./dist/build.js"
+    "lint": "./node_modules/.bin/eslint module"
   },
   "engines": {
     "node": "16.x"
