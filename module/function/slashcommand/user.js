@@ -1,12 +1,12 @@
 module.exports = async(interaction,client)=>{
-  const mysql = require("../lib/mysql");
+  const db = require("../../lib/db");
   const { MessageButton, MessageActionRow } = require("discord.js");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "user"){
     const id = interaction.options.getString("id");
 
     if(!id){
-      const members = await mysql(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
+      const members = await db(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
 
       return await interaction.reply({
         embeds:[{
@@ -102,7 +102,7 @@ module.exports = async(interaction,client)=>{
 
     const member = await interaction.guild.members.cache.get(ID[0]);
     if(member){
-      const members = await mysql(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
+      const members = await db(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
 
       await interaction.reply({
         embeds:[{
@@ -184,7 +184,7 @@ module.exports = async(interaction,client)=>{
     }else{
       try{
         const user = await client.users.fetch(ID[0]);
-        const members = await mysql(`SELECT * FROM account WHERE id = ${user.id} LIMIT 1;`);
+        const members = await db(`SELECT * FROM account WHERE id = ${user.id} LIMIT 1;`);
 
         await interaction.reply({
           embeds:[{

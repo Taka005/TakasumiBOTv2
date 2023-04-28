@@ -1,5 +1,5 @@
 module.exports = async(message)=>{
-  const mysql = require("../../lib/mysql");
+  const db = require("../../lib/db");
   if(
     !message.guild.members.me.permissionsIn(message.channel).has("VIEW_CHANNEL")||
     !message.guild.members.me.permissionsIn(message.channel).has("SEND_MESSAGES")
@@ -10,10 +10,10 @@ module.exports = async(message)=>{
       message.embeds[0]?.description.match(/表示順をアップしたよ/)||
       message.embeds[0]?.description.match(/Bump done/)
     ){
-      const ignore = await mysql(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id} LIMIT 1;`);
+      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id} LIMIT 1;`);
       if(ignore[0]) return;
 
-      const data = await mysql(`SELECT * FROM bump WHERE server = ${message.guild.id} LIMIT 1;`);
+      const data = await db(`SELECT * FROM bump WHERE server = ${message.guild.id} LIMIT 1;`);
       await message.channel.send({
         embeds:[{
           color: "WHITE",

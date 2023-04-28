@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-    const mysql = require("../lib/mysql");
+    const db = require("../../lib/db");
     const { WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
     if(!interaction.isCommand()) return;
     if(interaction.commandName === "hiroyuki"){
@@ -45,12 +45,12 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
   
-      const data = await mysql(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      const data = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
 
       if(data[0]){//登録済み
         const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
 
-        await mysql(`DELETE FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
         await webhook.delete()
           .then(async()=>{
             await interaction.reply({
@@ -82,7 +82,7 @@ module.exports = async(interaction)=>{
           avatar: "https://cdn.taka.ml/images/hiroyuki.png",
         })
           .then(async(webhook)=>{
-            await mysql(`INSERT INTO hiroyuki (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE channel = VALUES (channel),server = VALUES (server),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
+            await db(`INSERT INTO hiroyuki (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE channel = VALUES (channel),server = VALUES (server),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
 
             await interaction.editReply({
               embeds:[{

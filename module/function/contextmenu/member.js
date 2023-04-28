@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const mysql = require("../lib/mysql");
+  const db = require("../../lib/db");
   const { MessageButton, MessageActionRow } = require("discord.js");
   if(!interaction.isContextMenu()) return;
   if(interaction.commandName === "メンバー情報を表示"){
@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const members = await mysql(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
+    const members = await db(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
 
     await interaction.reply({
       embeds:[{

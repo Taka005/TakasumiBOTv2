@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const mysql = require("../lib/mysql");
+  const db = require("../../lib/db");
   if(!interaction.isContextMenu()) return;
   if(interaction.commandName === "メッセージをピン留め"){
     const message = interaction.options.getMessage("message");
@@ -48,8 +48,8 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
       
-    const channel = await mysql(`SELECT * FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
-    const server = await mysql(`SELECT * FROM pin WHERE server = ${message.guild.id};`);
+    const channel = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
+    const server = await db(`SELECT * FROM pin WHERE server = ${message.guild.id};`);
     if(channel[0]) return await interaction.reply({
       embeds:[{
         author:{
@@ -88,9 +88,9 @@ module.exports = async(interaction)=>{
       }]
     });
 
-    await mysql(`INSERT INTO pin (channel, server, message, count, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}","1", NOW());`);
+    await db(`INSERT INTO pin (channel, server, message, count, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}","1", NOW());`);
     server.forEach(data=>{
-      mysql(`UPDATE pin SET count=${Number(data.count)+1} WHERE server=${message.guild.id};`);
+      db(`UPDATE pin SET count=${Number(data.count)+1} WHERE server=${message.guild.id};`);
     });
 
     await interaction.deferReply()

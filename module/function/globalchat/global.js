@@ -1,20 +1,20 @@
 module.exports = async(message,client)=>{
-  const mysql = require("../lib/mysql");
-  const spam = require("../lib/spam");
+  const db = require("../../lib/db");
+  const spam = require("../../lib/spam");
   const { WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
   const async = require("async");
 
-  const data = await mysql(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
+  const data = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
   
   if(
     message.reference?.messageId||
     !data[0]
   ) return;
 
-  const mute_server = await mysql(`SELECT * FROM mute_server WHERE id = ${message.guild.id} LIMIT 1;`);
-  const mute_user = await mysql(`SELECT * FROM mute_user WHERE id = ${message.author.id} LIMIT 1;`);
+  const mute_server = await db(`SELECT * FROM mute_server WHERE id = ${message.guild.id} LIMIT 1;`);
+  const mute_user = await db(`SELECT * FROM mute_user WHERE id = ${message.author.id} LIMIT 1;`);
 
-  const account = await mysql(`SELECT * FROM account WHERE id = ${message.author.id} LIMIT 1;`);
+  const account = await db(`SELECT * FROM account WHERE id = ${message.author.id} LIMIT 1;`);
   if(!account[0]){
     return await message.reply({ 
       embeds:[{
@@ -57,11 +57,11 @@ module.exports = async(message,client)=>{
   await message.react("🔄")
     .catch(()=>{});
 
-  const global = await mysql("SELECT * FROM global;");
+  const global = await db("SELECT * FROM global;");
 
   if(!message.attachments.first()){//添付ファイルなし
     async.each(global,async(data)=>{
-      const mute = await mysql(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
+      const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
       if(data.server === message.guild.id||mute[0]) return;
 
       const webhooks = new WebhookClient({id: data.id, token: data.token});
@@ -96,7 +96,7 @@ module.exports = async(message,client)=>{
   }else if(message.attachments.first().height && message.attachments.first().width){//添付ファイルあり(画像)
     const attachment = message.attachments.map(attachment => attachment);
     async.each(global,async(data)=>{
-      const mute = await mysql(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
+      const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
       if(data.server === message.guild.id||mute[0]) return;
 
       const webhooks = new WebhookClient({id: data.id, token: data.token});
@@ -138,7 +138,7 @@ module.exports = async(message,client)=>{
   }else{//添付ファイルあり(画像以外)
     const attachment = message.attachments.map(attachment => attachment);
     async.each(global,async(data)=>{
-      const mute = await mysql(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
+      const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
       if(data.server === message.guild.id||mute[0]) return;
 
       const webhooks = new WebhookClient({id: data.id, token: data.token});
@@ -180,10 +180,10 @@ module.exports = async(message,client)=>{
 }
 
 function err(channel,client,error){
-  const mysql = require("../lib/mysql");
+  const db = require("../lib/db");
   const { MessageButton, MessageActionRow } = require("discord.js");
 
-  mysql(`DELETE FROM global WHERE channel = ${channel} LIMIT 1;`);
+  db(`DELETE FROM global WHERE channel = ${channel} LIMIT 1;`);
   client.channels.cache.get(channel).send({
     embeds:[{
       author:{

@@ -1,8 +1,8 @@
 module.exports = async(member,client)=>{
   const { WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
-  const mysql = require("../../../modules/lib/mysql");
+  const db = require("../../lib/db");
 
-  const data = await mysql(`SELECT * FROM \`leave\` WHERE server = ${member.guild.id} LIMIT 1;`);
+  const data = await db(`SELECT * FROM \`leave\` WHERE server = ${member.guild.id} LIMIT 1;`);
   if(data[0]){
     const msg = data[0].message
       .replace("[User]",`<@${member.user.id}>`)
@@ -21,7 +21,7 @@ module.exports = async(member,client)=>{
         avatarURL: "https://cdn.taka.ml/images/icon.png"
       })
         .catch(async(error)=>{
-          await mysql(`DELETE FROM \`leave\` WHERE channel = ${data[0].channel} LIMIT 1;`);
+          await db(`DELETE FROM \`leave\` WHERE channel = ${data[0].channel} LIMIT 1;`);
           await client.channels.cache.get(data[0].channel).send({
             embeds:[{
               author:{

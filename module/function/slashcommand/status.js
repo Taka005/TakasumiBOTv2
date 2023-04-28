@@ -1,7 +1,7 @@
 module.exports = async(interaction,client)=>{
   const os = require("os");
   const fetch = require("node-fetch");
-  const mysql = require("../lib/mysql");
+  const db = require("../../lib/db");
   const { MessageButton, MessageActionRow } = require("discord.js");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "status"){
@@ -19,9 +19,9 @@ module.exports = async(interaction,client)=>{
       require("os-utils").cpuUsage(resolve)
     );
 
-    const account = await mysql("SELECT * FROM account;");
-    const hiroyuki = await mysql("SELECT * FROM hiroyuki;");
-    const global = await mysql("SELECT * FROM global;");
+    const account = await db("SELECT * FROM account;");
+    const hiroyuki = await db("SELECT * FROM hiroyuki;");
+    const global = await db("SELECT * FROM global;");
 
     const chat = global.length/client.guilds.cache.size*100
 

@@ -1,7 +1,7 @@
 module.exports = async(client)=>{
   const { MessageButton, MessageActionRow } = require("discord.js");
   const fs = require("fs");
-  const mysql = require("./lib/mysql");
+  const db = require("./lib/db");
 
   client.once("ready",async(client)=>{
     require("./events/status")(client);
@@ -69,8 +69,8 @@ module.exports = async(client)=>{
       ]
     });
 
-    const mute_server = await mysql(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id} LIMIT 1;`);
-    const mute_user = await mysql(`SELECT * FROM mute_user WHERE id = ${interaction.user.id} LIMIT 1;`);
+    const mute_server = await db(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id} LIMIT 1;`);
+    const mute_user = await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id} LIMIT 1;`);
 
     if(mute_server[0]||mute_user[0]) return await interaction.reply({ 
       embeds:[{

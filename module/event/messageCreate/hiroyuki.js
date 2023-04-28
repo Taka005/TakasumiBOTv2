@@ -1,10 +1,10 @@
 module.exports = async(message)=>{
-  const mysql = require("../../lib/mysql");
+  const db = require("../../lib/db");
   const random = require("../../lib/random");
   const rate = require("../../lib/rate");
   const { WebhookClient } = require("discord.js");
 
-  const data = await mysql(`SELECT * FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
+  const data = await db(`SELECT * FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
 
   if(
     message.channel.type !== "GUILD_TEXT"||
@@ -158,10 +158,10 @@ module.exports = async(message)=>{
 }
 
 function err(message,error){
-  const mysql = require("../../lib/mysql");
+  const db = require("../../lib/db");
   const { MessageButton, MessageActionRow } = require("discord.js");
 
-  mysql(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
+  db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
   message.channel.send({
     embeds:[{
       author:{

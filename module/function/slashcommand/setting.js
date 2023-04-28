@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const { WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
-  const mysql = require("../lib/mysql");
+  const db = require("../../lib/db");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "setting"){
 
@@ -85,7 +85,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!role){
-        const data = await mysql(`SELECT * FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             author:{
@@ -98,7 +98,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        await mysql(`DELETE FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
             author:{
@@ -122,7 +122,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
   
-        await mysql(`INSERT INTO bump (server, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),role = VALUES (role),time = VALUES (time);`);
+        await db(`INSERT INTO bump (server, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
             author:{
@@ -178,7 +178,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!role){
-        const data = await mysql(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             author:{
@@ -191,7 +191,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        await mysql(`DELETE FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
             author:{
@@ -215,7 +215,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
   
-        await mysql(`INSERT INTO dissoku (server, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),role = VALUES (role),time = VALUES (time);`);
+        await db(`INSERT INTO dissoku (server, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
             author:{
@@ -271,7 +271,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!message){
-        const data = await mysql(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             author:{
@@ -288,7 +288,7 @@ module.exports = async(interaction)=>{
         await webhook.delete()
           .catch(()=>{});
 
-        await mysql(`DELETE FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
             author:{
@@ -328,7 +328,7 @@ module.exports = async(interaction)=>{
           avatar: "https://cdn.taka.ml/images/icon.png",
         })
           .then(async(webhook)=>{
-            await mysql(`INSERT INTO \`join\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${message}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
+            await db(`INSERT INTO \`join\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${message}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
             await interaction.editReply({
               embeds:[{
                 author:{
@@ -411,7 +411,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!message){
-        const data = await mysql(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             author:{
@@ -428,7 +428,7 @@ module.exports = async(interaction)=>{
         await webhook.delete()
           .catch(()=>{});
 
-        await mysql(`DELETE FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
             author:{
@@ -468,7 +468,7 @@ module.exports = async(interaction)=>{
           avatar: "https://cdn.taka.ml/images/icon.png",
         })
           .then(async(webhook)=>{
-            await mysql(`INSERT INTO \`leave\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${message}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
+            await db(`INSERT INTO \`leave\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${message}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
             await interaction.editReply({
               embeds:[{
                 author:{
@@ -527,11 +527,11 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      const data = await mysql(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      const data = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
       if(!data[0]){
-        await mysql(`INSERT INTO \`ignore\` (id, time) VALUES("${interaction.guild.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),time = VALUES (time);`);
-        await mysql(`DELETE FROM bump WHERE server = ${interaction.guild.id};`);
-        await mysql(`DELETE FROM dissoku WHERE server = ${interaction.guild.id};`);
+        await db(`INSERT INTO \`ignore\` (id, time) VALUES("${interaction.guild.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),time = VALUES (time);`);
+        await db(`DELETE FROM bump WHERE server = ${interaction.guild.id};`);
+        await db(`DELETE FROM dissoku WHERE server = ${interaction.guild.id};`);
 
         await interaction.reply({
           embeds:[{
@@ -543,7 +543,7 @@ module.exports = async(interaction)=>{
           }]
         });
       }else{
-        await mysql(`DELETE FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
+        await db(`DELETE FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
 
         await interaction.reply({
           embeds:[{
@@ -556,15 +556,15 @@ module.exports = async(interaction)=>{
         });
       }
     }else if(interaction.options.getSubcommand() === "info"){//info
-      const bump = await mysql(`SELECT * FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const dissoku = await mysql(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const global = await mysql(`SELECT * FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const hiroyuki = await mysql(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const ignore = await mysql(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      const join = await mysql(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const leave = await mysql(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const moderate = await mysql(`SELECT * FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      const pin = await mysql(`SELECT * FROM pin WHERE server = ${interaction.guild.id};`);
+      const bump = await db(`SELECT * FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      const dissoku = await db(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      const global = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      const hiroyuki = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      const join = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      const leave = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      const moderate = await db(`SELECT * FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      const pin = await db(`SELECT * FROM pin WHERE server = ${interaction.guild.id};`);
 
       await interaction.reply({
         embeds:[{
@@ -642,15 +642,15 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await mysql(`DELETE FROM moderate WHERE id = ${interaction.guild.id};`);
-      await mysql(`DELETE FROM pin WHERE server = ${interaction.guild.id};`);
-      await mysql(`DELETE FROM bump WHERE server = ${interaction.guild.id};`);
-      await mysql(`DELETE FROM dissoku WHERE server = ${interaction.guild.id};`);
-      await mysql(`DELETE FROM hiroyuki WHERE server = ${interaction.guild.id};`);
-      await mysql(`DELETE FROM global WHERE server = ${interaction.guild.id};`);
-      await mysql(`DELETE FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
-      await mysql(`DELETE FROM \`join\` WHERE server = ${interaction.guild.id};`);
-      await mysql(`DELETE FROM \`leave\` WHERE server = ${interaction.guild.id};`);
+      await db(`DELETE FROM moderate WHERE id = ${interaction.guild.id};`);
+      await db(`DELETE FROM pin WHERE server = ${interaction.guild.id};`);
+      await db(`DELETE FROM bump WHERE server = ${interaction.guild.id};`);
+      await db(`DELETE FROM dissoku WHERE server = ${interaction.guild.id};`);
+      await db(`DELETE FROM hiroyuki WHERE server = ${interaction.guild.id};`);
+      await db(`DELETE FROM global WHERE server = ${interaction.guild.id};`);
+      await db(`DELETE FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
+      await db(`DELETE FROM \`join\` WHERE server = ${interaction.guild.id};`);
+      await db(`DELETE FROM \`leave\` WHERE server = ${interaction.guild.id};`);
 
       await interaction.reply({
         content: `<@${interaction.user.id}>`,

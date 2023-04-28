@@ -1,5 +1,5 @@
 module.exports = async(client)=>{
-  const config = require("../../config.json"); 
+  const config = require("../../../config.json"); 
 
   client.user.setStatus("online");
 

@@ -1,5 +1,5 @@
 module.exports = async(message)=>{
-  const mysql = require("../../lib/mysql");
+  const db = require("../../lib/db");
   const time = require("../../lib/time");
   const limit = require("../../lib/limit");
 
@@ -9,9 +9,9 @@ module.exports = async(message)=>{
     !message.guild.members.me.permissionsIn(message.channel).has("SEND_MESSAGES")
   ) return;
 
-  let data = await mysql(`SELECT * FROM afk WHERE user = ${message.author.id} LIMIT 1;`);
+  let data = await db(`SELECT * FROM afk WHERE user = ${message.author.id} LIMIT 1;`);
   if(data[0]){
-    await mysql(`DELETE FROM afk WHERE user = ${message.author.id} LIMIT 1;`);
+    await db(`DELETE FROM afk WHERE user = ${message.author.id} LIMIT 1;`);
     message.channel.send({
       embeds:[{
         author:{
@@ -26,10 +26,10 @@ module.exports = async(message)=>{
     const mention = message.content.match(/<@\d{18,19}>/g);
     if(mention){
       const id = mention[0].match(/\d{18,19}/g);
-      data = await mysql(`SELECT * FROM afk WHERE user = ${id[0]} LIMIT 1;`);
+      data = await db(`SELECT * FROM afk WHERE user = ${id[0]} LIMIT 1;`);
       if(data[0]){
         if(limit(message)) return;
-        await mysql(`UPDATE afk SET mention = ${Number(data[0].mention)+1} WHERE user = ${id[0]}`);
+        await db(`UPDATE afk SET mention = ${Number(data[0].mention)+1} WHERE user = ${id[0]}`);
         message.channel.send({
           embeds:[{
             author:{

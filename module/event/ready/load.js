@@ -1,6 +1,5 @@
 module.exports = async(client)=>{
-  const api = require("../../data/api.json");
-  const mysql = require("../../../modules/lib/mysql");
+  const db = require("../../lib/db");
   const fs = require("fs");
   const os = require("os");
   const fetch = require("node-fetch");
@@ -41,7 +40,7 @@ module.exports = async(client)=>{
         web = 500;
       }
 
-      const global = await mysql(`SELECT * FROM global;`);
+      const global = await db(`SELECT * FROM global;`);
 
       api.time.push(`${time.getMonth()+1}/${time.getDate()} ${time.getHours()}:${time.getMinutes()}`)
       api.ping.push(`${ping}`)
@@ -52,8 +51,5 @@ module.exports = async(client)=>{
       api.cpu.push(`${(cpuusage * 100).toFixed(2)}`)
       api.ram.push(`${100 - Math.floor((os.freemem() / os.totalmem()) * 100)}`)
     }
-    
-    fs.writeFileSync("./data/api.json", JSON.stringify(api), "utf8");
-    delete require.cache[require.resolve("../../data/api.json")];
   },900000)
 }

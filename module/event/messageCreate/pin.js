@@ -1,5 +1,5 @@
 module.exports = async(message,client)=>{
-    const mysql = require("../../lib/mysql");
+    const db = require("../../lib/db");
     const limit = require("../../lib/limit");
     
     if(
@@ -9,7 +9,7 @@ module.exports = async(message,client)=>{
       !message.guild.members.me.permissionsIn(message.channel).has("MANAGE_MESSAGES")
     ) return;
     
-    const channel = await mysql(`SELECT * FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
+    const channel = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
     if(channel[0]){
       if(limit(message)) return;
       try{
@@ -28,13 +28,13 @@ module.exports = async(message,client)=>{
             }
           }]
         });
-        await mysql(`UPDATE pin SET message="${after.id}" WHERE channel=${message.channel.id};`);
+        await db(`UPDATE pin SET message="${after.id}" WHERE channel=${message.channel.id};`);
       }catch{
-        const server = await mysql(`SELECT * FROM pin WHERE server = ${message.guild.id};`);
+        const server = await db(`SELECT * FROM pin WHERE server = ${message.guild.id};`);
         server.forEach(data=>{
-          mysql(`UPDATE pin SET count=${Number(data.count)-1} WHERE server=${message.guild.id};`);
+          db(`UPDATE pin SET count=${Number(data.count)-1} WHERE server=${message.guild.id};`);
         });
-        await mysql(`DELETE FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
+        await db(`DELETE FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
       }
     }
 }  
