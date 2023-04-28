@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "18:00"
+      timezone: "Asia/Tokyo"
+    target-branch: "development"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]

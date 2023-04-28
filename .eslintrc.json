@@ -1,0 +1,35 @@
+{
+    "extends": ["eslint:recommended","plugin:node/recommended"],
+    "plugins": ["node"],
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "env": {
+      "commonjs": true,
+      "node": true,
+      "es6": true,
+      "browser": true
+    },
+    "globals": {},
+    "rules": {
+      "no-var":"error",
+      "no-undef":"error",
+      "eqeqeq":"error",
+      "no-loss-of-precision":"error",
+      "no-const-assign":"error",
+      "no-dupe-else-if":"off",
+      "no-unreachable":"error",
+      "no-useless-return":"error",
+      "no-implicit-coercion":"error",
+      "no-self-compare":"error",
+      "no-extra-semi":"error",
+      "no-unused-vars":"error",
+      "no-irregular-whitespace":"error",
+      "no-constant-binary-expression":"error",
+      "node/no-unsupported-features":"error",
+      "node/no-missing-require":"error",
+      "node/no-deprecated-api":"warn",
+      "node/no-unpublished-require":"error",
+      "node/exports-style": ["error", "module.exports"]
+    }
+}
