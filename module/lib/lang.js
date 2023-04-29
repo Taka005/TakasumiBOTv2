@@ -1,4 +1,4 @@
-module.exports = (guildId,text)=>{
+module.exports = async(guildId,text)=>{
   const db = require("./db");
   const ja = require("../../lang/ja.json");
   const en = require("../../lang/en.json");
