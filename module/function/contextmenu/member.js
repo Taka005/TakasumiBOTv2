@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
   const db = require("../../lib/db");
-  const { MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isContextMenu()) return;
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "メンバー情報を表示"){
     const member = interaction.options.getMember("user");
 
@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
           text: "TakasumiBOT"
         },
         thumbnail:{
-          url: member.user.avatarURL({format:"png",dynamic:true,size:1024})||member.user.defaultAvatarURL
+          url: member.user.avatarURL({extension:"png",forceStatic:false,size:1024})||member.user.defaultAvatarURL
         },
         fields:[
           {
@@ -87,9 +87,9 @@ module.exports = async(interaction)=>{
           ]
         }],
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents( 
-              new MessageButton()
+              new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle("LINK"))

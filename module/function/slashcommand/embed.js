@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const { MessageActionRow, Modal, TextInputComponent } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ActionRowBuilder, ModalBuilder, TextInputBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "embed"){
 
     if(!interaction.member.permissions.has("MANAGE_MESSAGES")) return await interaction.reply({
@@ -21,25 +21,25 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const embed = new Modal()
+    const embed = new ModalBuilder()
       .setCustomId("embed")
       .setTitle("埋め込み作成");
 
-    const title = new TextInputComponent()
+    const title = new TextInputBuilder()
       .setCustomId("title")
       .setLabel("タイトル")
       .setPlaceholder("埋め込みに表示されるタイトル")
       .setMaxLength(200)
       .setStyle("SHORT");
 
-    const description = new TextInputComponent()
+    const description = new TextInputBuilder()
       .setCustomId("description")
       .setLabel("説明")
       .setMaxLength(3000)
       .setPlaceholder("埋め込みに表示される説明欄")
       .setStyle("PARAGRAPH");
       
-    const image = new TextInputComponent()
+    const image = new TextInputBuilder()
       .setCustomId("image")
       .setLabel("画像")
       .setPlaceholder("埋め込みに表示される画像のURL")
@@ -47,11 +47,11 @@ module.exports = async(interaction)=>{
       .setStyle("SHORT");
       
     embed.addComponents(
-      new MessageActionRow()
+      new ActionRowBuilder()
         .addComponents(title),
-      new MessageActionRow()
+      new ActionRowBuilder()
         .addComponents(description),
-      new MessageActionRow()
+      new ActionRowBuilder()
         .addComponents(image)
     );
     

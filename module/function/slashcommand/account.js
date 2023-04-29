@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   const db = require("../../lib/db");
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "account"){
     const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
 
@@ -16,9 +16,9 @@ module.exports = async(interaction)=>{
           description: "以下のリンクから登録を行うことができます\n登録が完了すると[グローバルチャット利用規約](https://gc.taka.ml/)にも同意したものとみなします",
         }], 
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents( 
-              new MessageButton()
+              new ButtonBuilder()
                 .setLabel("サイトへ飛ぶ")
                 .setURL("https://auth.taka.ml/")
                 .setStyle("LINK"))

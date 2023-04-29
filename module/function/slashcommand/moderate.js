@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const db = require("../../lib/db");
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "moderate"){
     const type = interaction.options.getString("type");
 

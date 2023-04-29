@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const { MessageAttachment ,MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { AttachmentBuilder ,ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "export"){
 
     if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         content:"サーバーのデータをJSON形式に出力しました",
         files:[
-          new MessageAttachment()
+          new AttachmentBuilder()
             .setDescription("データは慎重に扱ってください") 
             .setFile(data) 
             .setName("SERVER_JSON_FILE.json")
@@ -83,9 +83,9 @@ module.exports = async(interaction)=>{
           ]
         }], 
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents( 
-              new MessageButton()
+              new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle("LINK"))

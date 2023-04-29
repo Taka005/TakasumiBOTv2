@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const { MessageActionRow, Modal, TextInputComponent } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ActionRowBuilder, ModalBuilder, TextInputBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "guideline"){ 
     const role =  interaction.options.getRole("role");
 
@@ -22,11 +22,11 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const guide = new Modal()
+    const guide = new ModalBuilder()
       .setCustomId(`guideline_${role.id}`)
       .setTitle("ガイドライン作成");
 
-    const temp = new TextInputComponent()
+    const temp = new TextInputBuilder()
       .setCustomId("temp")
       .setLabel("テンプレートを編集してガイドラインを作成してください")
       .setMaxLength(3000)
@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
       .setValue("` 1 ` **１つ目のガイドライン**\n\n` 2 ` **２つ目のガイドライン**\n\n` 3 ` **３つ目のガイドライン**\n\n` 4 ` **４つ目のガイドライン**\n")
       .setStyle("PARAGRAPH");
       
-    guide.addComponents(new MessageActionRow().addComponents(temp));
+    guide.addComponents(new ActionRowBuilder().addComponents(temp));
   
     await interaction.showModal(guide);
   }

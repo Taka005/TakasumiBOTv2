@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("normal_")){
     const role = interaction.customId.split("_");
@@ -45,9 +45,9 @@ module.exports = async(interaction)=>{
             ]
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))

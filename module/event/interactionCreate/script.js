@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { MessageAttachment } = require("discord.js");
+  const { AttachmentBuilder } = require("discord.js");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("script_")){
     const lang = interaction.customId.split("_");
@@ -84,7 +84,7 @@ module.exports = async(interaction)=>{
             }
           }],
           files:[
-            new MessageAttachment() 
+            new AttachmentBuilder() 
               .setFile(new Buffer.from(res.program_output,"UTF-8")) 
               .setName("data.txt")
           ] 
@@ -117,7 +117,7 @@ module.exports = async(interaction)=>{
             }
           }],
           files: [
-            new MessageAttachment() 
+            new AttachmentBuilder() 
               .setFile(new Buffer.from(res.program_error,"UTF-8")) 
               .setName("error.txt")
           ] 

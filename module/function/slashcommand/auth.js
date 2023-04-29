@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "auth"){
     const type = interaction.options.getString("type");
     const role = interaction.options.getRole("role");
@@ -58,11 +58,11 @@ module.exports = async(interaction)=>{
         description: `<@&${role.id}>を貰うには、認証ボタンを押してください`
       }],
       components:[
-        new MessageActionRow()
+        new ActionRowBuilder()
           .addComponents(
-            new MessageButton()
+            new ButtonBuilder()
               .setCustomId(`${type}_${role.id}`)
-              .setStyle("PRIMARY")
+              .setStyle(ButtonStyle.Primary)
               .setLabel("認証"))
         ]
     })
@@ -87,9 +87,9 @@ module.exports = async(interaction)=>{
             ]
           }], 
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))

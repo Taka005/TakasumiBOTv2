@@ -2,12 +2,12 @@ module.exports = async(message)=>{
   const db = require("../../lib/db");
   const random = require("../../lib/random");
   const rate = require("../../lib/rate");
-  const { WebhookClient } = require("discord.js");
+  const { ChannelType, WebhookClient } = require("discord.js");
 
   const data = await db(`SELECT * FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
 
   if(
-    message.channel.type !== "GUILD_TEXT"||
+    message.channel.type !== ChannelType.GuildText||
     message.author.bot||
     !data[0]
   ) return;
@@ -159,7 +159,7 @@ module.exports = async(message)=>{
 
 function err(message,error){
   const db = require("../../lib/db");
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
 
   db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
   message.channel.send({
@@ -178,9 +178,9 @@ function err(message,error){
       ]
     }],
     components:[
-      new MessageActionRow()
+      new ActionRowBuilder()
         .addComponents( 
-          new MessageButton()
+          new ButtonBuilder()
             .setLabel("サポートサーバー")
             .setURL("https://discord.gg/NEesRdGQwD")
             .setStyle("LINK"))

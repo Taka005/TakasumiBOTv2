@@ -1,14 +1,14 @@
 module.exports = async(interaction)=>{
-  const { MessageActionRow, Modal, TextInputComponent } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ActionRowBuilder, ModalBuilder, TextInputBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "script"){
     const lang = interaction.options.getString("lang");
 
-    const modal = new Modal()
+    const modal = new ModalBuilder()
       .setCustomId(`script_${lang}`)
       .setTitle("コードを実行");
 
-    const code = new TextInputComponent()
+    const code = new TextInputBuilder()
       .setCustomId("code")
       .setLabel(`${lang}を実行`)
       .setPlaceholder("実行するコードを入力")
@@ -16,7 +16,7 @@ module.exports = async(interaction)=>{
       .setRequired(true)
       .setStyle("PARAGRAPH");
       
-    modal.addComponents(new MessageActionRow().addComponents(code));
+    modal.addComponents(new ActionRowBuilder().addComponents(code));
   
     await interaction.showModal(modal);
   }

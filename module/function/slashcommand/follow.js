@@ -1,6 +1,6 @@
 module.exports = async(interaction,client)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "follow"){
 
     if(!interaction.member.permissions.has("MANAGE_CHANNELS")) return await interaction.reply({
@@ -68,9 +68,9 @@ module.exports = async(interaction,client)=>{
             ]
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))

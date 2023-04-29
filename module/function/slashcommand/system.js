@@ -2,7 +2,7 @@ module.exports = async(interaction,client)=>{
   const { admin } = require("../../../config.json");
   const db = require("../../lib/db");
   const { WebhookClient } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "system"){
     const id = interaction.options.getString("id");
     const type = interaction.options.getString("type");

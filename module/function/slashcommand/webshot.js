@@ -1,8 +1,8 @@
 module.exports = async(interaction)=>{
   const isUrl = require("../../lib/isUrl");
   const fetch = require("node-fetch");
-  const { MessageAttachment } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { AttachmentBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "webshot"){
     const url = interaction.options.getString("url");
 
@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
             url: "attachment://screenshot.png"
           },
         }],
-        files: [new MessageAttachment(data.stream(),"screenshot.png")]
+        files: [new AttachmentBuilder(data.stream(),"screenshot.png")]
       });
     }catch(error){
       await interaction.editReply({

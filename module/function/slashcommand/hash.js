@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   const crypto = require("crypto");
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "hash"){
     const text = interaction.options.getString("text");
     const type = interaction.options.getString("type");
@@ -37,9 +37,9 @@ module.exports = async(interaction)=>{
         }], 
         ephemeral: true,   
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents( 
-              new MessageButton()
+              new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle("LINK"))

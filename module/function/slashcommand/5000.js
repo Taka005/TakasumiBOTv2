@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { MessageAttachment } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { AttachmentBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "5000"){
     const top = interaction.options.getString("top");
     const bottom = interaction.options.getString("bottom");
@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
             url: "attachment://5000.png"
           },
         }],
-        files: [new MessageAttachment(image.stream(),"5000.png")]
+        files: [new AttachmentBuilder(image.stream(),"5000.png")]
       });
     }catch{
       await interaction.editReply({

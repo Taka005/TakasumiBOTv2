@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
   const db = require("../../lib/db");
-  const { WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "global"){
 
     if(!interaction.member.permissions.has("MANAGE_CHANNELS")) return await interaction.reply({
@@ -103,7 +103,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      if(interaction.channel.type !== "GUILD_TEXT") return await interaction.reply({
+      if(interaction.channel.type !== ChannelType.GuildText) return await interaction.reply({
         embeds:[{
           author:{
             name: "グローバルチャットに参加できませんでした",
@@ -144,7 +144,7 @@ module.exports = async(interaction)=>{
                 color: "GREEN",
                 title: `${interaction.guild.name}<${interaction.guild.id}>`,
                 thumbnail:{
-                  url: interaction.guild.iconURL({format:"png",dynamic:true,size:1024})||"https://cdn.discordapp.com/embed/avatars/0.png"
+                  url: interaction.guild.iconURL({extension:"png",forceStatic:false,size:1024})||"https://cdn.discordapp.com/embed/avatars/0.png"
                 },
                 description: "グローバルチャットに新しいサーバーが参加しました！\nみんなで挨拶してみましょう!",
                 footer:{
@@ -188,9 +188,9 @@ module.exports = async(interaction)=>{
             ]
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))

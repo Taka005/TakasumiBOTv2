@@ -1,6 +1,6 @@
 module.exports = async(interaction,client)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "avatar"){
     const id = interaction.options.getString("id");
 
@@ -13,10 +13,10 @@ module.exports = async(interaction,client)=>{
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           thumbnail:{
-            url: interaction.member.avatarURL({format:"png",dynamic:true,size:1024})
+            url: interaction.member.avatarURL({extension:"png",forceStatic:false,size:1024})
           },
           image:{
-            url: interaction.user.avatarURL({format:"png",dynamic:true,size:1024})||interaction.user.defaultAvatarURL
+            url: interaction.user.avatarURL({extension:"png",forceStatic:false,size:1024})||interaction.user.defaultAvatarURL
           },
           timestamp: new Date(),
           footer:{
@@ -39,9 +39,9 @@ module.exports = async(interaction,client)=>{
             ]
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))
@@ -76,10 +76,10 @@ module.exports = async(interaction,client)=>{
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           thumbnail:{
-            url: member.avatarURL({format:"png",dynamic:true,size:1024})
+            url: member.avatarURL({extension:"png",forceStatic:false,size:1024})
           },
           image:{
-            url: user.avatarURL({format:"png",dynamic:true,size:1024})||user.defaultAvatarURL
+            url: user.avatarURL({extension:"png",forceStatic:false,size:1024})||user.defaultAvatarURL
           },
           timestamp: new Date(),
           footer:{

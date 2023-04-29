@@ -1,7 +1,7 @@
 module.exports = async(interaction,client)=>{
   const fs = require("fs");
   const { admin } = require("../../../config.json");
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "reload"){
     
     if(interaction.user.id !== admin) return await interaction.reply({

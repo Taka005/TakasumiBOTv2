@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
-    if(!interaction.isCommand()) return;
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+    if(!interaction.isChatInputCommand()) return;
     if(interaction.commandName === "timeout"){
       const user = interaction.options.getUser("user");
       const time = interaction.options.getInteger("time")||30
@@ -97,9 +97,9 @@ module.exports = async(interaction)=>{
               ]
             }],
             components:[
-              new MessageActionRow()
+              new ActionRowBuilder()
                 .addComponents( 
-                  new MessageButton()
+                  new ButtonBuilder()
                     .setLabel("サポートサーバー")
                     .setURL("https://discord.gg/NEesRdGQwD")
                     .setStyle("LINK"))

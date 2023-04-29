@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "faq"){
     await interaction.reply({
       embeds:[{

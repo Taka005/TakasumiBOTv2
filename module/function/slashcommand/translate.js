@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "translate"){
     const text = interaction.options.getString("text");
     const lang = interaction.options.getString("lang");

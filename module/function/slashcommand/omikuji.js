@@ -1,8 +1,8 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { MessageAttachment } = require("discord.js");
+  const { AttachmentBuilder } = require("discord.js");
   const random = require("../../lib/random");
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "omikuji"){
     
     const draws = [
@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
           url: "attachment://omikuji.png"
         }
       }],
-      files: [new MessageAttachment(image.stream(),"omikuji.png")]
+      files: [new AttachmentBuilder(image.stream(),"omikuji.png")]
     });
   }
 }

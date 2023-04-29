@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const { SnowflakeUtil, MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { SnowflakeUtil, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "snowflake"){
     const id = interaction.options.getString("id");
 
@@ -45,9 +45,9 @@ module.exports = async(interaction)=>{
           ]
         }],
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents( 
-              new MessageButton()
+              new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle("LINK"))

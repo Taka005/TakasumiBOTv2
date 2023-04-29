@@ -1,10 +1,10 @@
 module.exports = async(guild,client)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ChannelType, ButtonBuilder, ActionRowBuilder } = require("discord.js");
   let find = 0;
   guild.channels.cache.map((channel)=>{
     if(find === 0){
       if(
-        channel.type === "GUILD_TEXT"&&
+        channel.type === ChannelType.GuildText&&
         guild.members.me.permissionsIn(channel).has("VIEW_CHANNEL")&&
         guild.members.me.permissionsIn(channel).has("SEND_MESSAGES")
       ){
@@ -22,9 +22,9 @@ module.exports = async(guild,client)=>{
             timestamp: new Date()
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))

@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "top"){
 
     if(
@@ -42,9 +42,9 @@ module.exports = async(interaction)=>{
         description: "下のリンクから飛べます"
       }],
       components:[
-        new MessageActionRow()
+        new ActionRowBuilder()
           .addComponents(
-            new MessageButton()
+            new ButtonBuilder()
               .setLabel("メッセージへ飛ぶ")
               .setURL(msg.url)
               .setStyle("LINK"))

@@ -2,8 +2,8 @@ module.exports = async(interaction,client)=>{
   const os = require("os");
   const fetch = require("node-fetch");
   const db = require("../../lib/db");
-  const { MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "status"){
 
     await interaction.deferReply();
@@ -50,9 +50,9 @@ module.exports = async(interaction,client)=>{
         ]
       }],
       components:[
-        new MessageActionRow()
+        new ActionRowBuilder()
           .addComponents( 
-            new MessageButton()
+            new ButtonBuilder()
               .setLabel("サポートサーバー")
               .setURL("https://discord.gg/NEesRdGQwD")
               .setStyle("LINK"))
@@ -73,9 +73,9 @@ module.exports = async(interaction,client)=>{
           ]
         }],     
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents( 
-              new MessageButton()
+              new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle("LINK"))
