@@ -424,7 +424,7 @@ async function check(interaction,id){
 }
 
 async function err(interaction,error){
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   
   await interaction.reply({
     embeds:[{

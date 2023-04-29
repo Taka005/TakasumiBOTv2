@@ -182,7 +182,7 @@ module.exports = async(message,client)=>{
 
 function err(channel,client,error){
   const db = require("../../lib/db");
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
 
   db(`DELETE FROM global WHERE channel = ${channel} LIMIT 1;`);
   client.channels.cache.get(channel).send({
