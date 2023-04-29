@@ -1,5 +1,4 @@
-[![Build](https://github.com/Taka005/TakasumiBOTv2/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Taka005/TakasumiBOTv2/actions/workflows/build.yml)
-[![Lint](https://github.com/Taka005/TakasumiBOTv2/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/Taka005/TakasumiBOTv2/actions/workflows/lint.yml)
+[![Check](https://github.com/Taka005/TakasumiBOTv2/actions/workflows/check.yml/badge.svg?branch=dev)](https://github.com/Taka005/TakasumiBOTv2/actions/workflows/check.yml)
 [![License: GPL](https://img.shields.io/badge/License-GPL-yellow.svg)](https://opensource.org/licenses/GPL-3.0)
 [![Support](https://img.shields.io/discord/987698915820335124?color=5865f2&label=Discord&logo=Discord&logoColor=ffffff)](https://discord.gg/NEesRdGQwD)
 [![Email](https://img.shields.io/badge/email-takasumibot@gmail.com-blue.svg?style=flat)](mailto:takasumibot@gmail.com)

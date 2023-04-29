@@ -1,19 +1,19 @@
 module.exports = async(msg,client)=>{
-  const mysql = require("../../../modules/lib/mysql");
-  const convert = require("../../../modules/lib/convert");
+  const db = require("../../lib/db");
+  const convert = require("../../lib/convert");
   const { WebhookClient } = require("discord.js");
   const async = require("async");
 
-  const data = await mysql(`SELECT * FROM global WHERE channel = ${msg.channel.id} LIMIT 1;`);
+  const data = await db(`SELECT * FROM global WHERE channel = ${msg.channel.id} LIMIT 1;`);
   if(!data[0]) return;
   const message = await convert(msg);
 
-  const global = await mysql("SELECT * FROM global;");
+  const global = await db("SELECT * FROM global;");
 
   if(!message.reply.isReply){
     if(!message.attachments.isAttachments){
       async.each(global,async(data)=>{
-        const mute = await mysql(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
+        const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
         if(data.server === message.guild.id||mute[0]) return;
   
         const webhooks = new WebhookClient({id: data.id, token: data.token});
@@ -45,7 +45,7 @@ module.exports = async(msg,client)=>{
       });
     }else if(!message.attachments.attachment[0].isFile){//添付ファイルあり(画像)
       async.each(global,async(data)=>{
-        const mute = await mysql(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
+        const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
         if(data.server === message.guild.id||mute[0]) return;
   
         const webhooks = new WebhookClient({id: data.id, token: data.token});
@@ -84,7 +84,7 @@ module.exports = async(msg,client)=>{
       });
     }else{//添付ファイルあり(画像以外)
       async.each(global,async(data)=>{
-        const mute = await mysql(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
+        const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
         if(data.server === message.guild.id||mute[0]) return;
   
         const webhooks = new WebhookClient({id: data.id, token: data.token});
@@ -124,7 +124,7 @@ module.exports = async(msg,client)=>{
   }else{
     if(!message.attachments.isAttachments){
       async.each(global,async(data)=>{
-        const mute = await mysql(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
+        const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
         if(data.server === message.guild.id||mute[0]) return;
   
         const webhooks = new WebhookClient({id: data.id, token: data.token});
@@ -162,7 +162,7 @@ module.exports = async(msg,client)=>{
       });
     }else if(!message.attachments[0].isFile){//添付ファイルあり(画像)
       async.each(global,async(data)=>{
-        const mute = await mysql(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
+        const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
         if(data.server === message.guild.id||mute[0]) return;
   
         const webhooks = new WebhookClient({id: data.id, token: data.token});
@@ -207,7 +207,7 @@ module.exports = async(msg,client)=>{
       });
     }else{//添付ファイルあり(画像以外)
       async.each(global,async(data)=>{
-        const mute = await mysql(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
+        const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
         if(data.server === message.guild.id||mute[0]) return;
   
         const webhooks = new WebhookClient({id: data.id, token: data.token});
@@ -252,10 +252,10 @@ module.exports = async(msg,client)=>{
 }
 
 function err(channel,client,error){
-  const mysql = require("../../../modules/lib/mysql");
+  const db = require("../../lib/db");
   const { MessageButton, MessageActionRow } = require("discord.js");
 
-  mysql(`DELETE FROM global WHERE channel = ${channel} LIMIT 1;`);
+  db(`DELETE FROM global WHERE channel = ${channel} LIMIT 1;`);
   client.channels.cache.get(channel).send({
     embeds:[{
       author:{

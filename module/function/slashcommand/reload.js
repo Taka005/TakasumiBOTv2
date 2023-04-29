@@ -1,6 +1,6 @@
 module.exports = async(interaction,client)=>{
   const fs = require("fs");
-  const { admin } = require("../../config.json");
+  const { admin } = require("../../../config.json");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "reload"){
     
@@ -17,15 +17,15 @@ module.exports = async(interaction,client)=>{
     });
     
     //commands
-    fs.readdir("./module/commands/",(err,files)=>{ 
+    fs.readdir("./module/function/command/",(err,files)=>{ 
       files.forEach((file) =>{
         if(!file.endsWith(".js")) return;
-        require(`../commands/${file}`);
-        delete require.cache[require.resolve(`../commands/${file}`)];
+        require(`../command/${file}`);
+        delete require.cache[require.resolve(`../command/${file}`)];
       });
     });
     //ContextMenu
-    fs.readdir("./module/contextmenu/",(err,files)=>{ 
+    fs.readdir("./module/function/contextmenu/",(err,files)=>{ 
       files.forEach((file) =>{
         if(!file.endsWith(".js")) return;
         require(`../contextmenu/${file}`);
@@ -33,27 +33,27 @@ module.exports = async(interaction,client)=>{
       });
     });
     //events
-    fs.readdir("./module/events/",(err,files)=>{ 
+    fs.readdir("./module/event/",(err,files)=>{ 
       files.forEach((file) =>{
         if(!file.endsWith(".js")) return;
-        require(`../events/${file}`);
-        delete require.cache[require.resolve(`../events/${file}`)];
+        require(`../event/${file}`);
+        delete require.cache[require.resolve(`../event/${file}`)];
       });
     });
     //events/interaction
-    fs.readdir("./module/events/interaction/",(err,files)=>{ 
+    fs.readdir("./module/event/interactionCreate/",(err,files)=>{ 
       files.forEach((file) =>{
         if(!file.endsWith(".js")) return;
-        require(`../events/interaction/${file}`);
-        delete require.cache[require.resolve(`../events/interaction/${file}`)];
+        require(`../event/interactionCreate/${file}`);
+        delete require.cache[require.resolve(`../event/interactionCreate/${file}`)];
       });
     });
     //events/message
-    fs.readdir("./module/events/message/",(err,files)=>{ 
+    fs.readdir("./module/event/messageCreate/",(err,files)=>{ 
       files.forEach((file) =>{
         if(!file.endsWith(".js")) return;
         require(`../events/message/${file}`);
-        delete require.cache[require.resolve(`../events/message/${file}`)];
+        delete require.cache[require.resolve(`../event/messageCreate/${file}`)];
       });
     });
     //lib
@@ -65,50 +65,37 @@ module.exports = async(interaction,client)=>{
       });
     });
     //global
-    fs.readdir("./module/global/",(err,files)=>{ 
+    fs.readdir("./module/function/globalchat",(err,files)=>{ 
       files.forEach((file) =>{
         if(!file.endsWith(".js")) return;
-        require(`../global/${file}`);
-        delete require.cache[require.resolve(`../global/${file}`)];
+        require(`../globalchat/${file}`);
+        delete require.cache[require.resolve(`../globalchat/${file}`)];
       });
     });
     //slashcommands
-    fs.readdir("./module/slashcommands/",(err,files)=>{ 
+    fs.readdir("./module/function/slashcommand/",(err,files)=>{ 
       files.forEach((file) =>{
         if(!file.endsWith(".js")) return;
-        require(`../slashcommands/${file}`);
-        delete require.cache[require.resolve(`../slashcommands/${file}`)];
+        require(`../slashcommand/${file}`);
+        delete require.cache[require.resolve(`../slashcommand/${file}`)];
       });
     });
     //slashcommands
-    fs.readdir("./module/auth/",(err,files)=>{ 
+    fs.readdir("./module/function/auth/",(err,files)=>{ 
       files.forEach((file) =>{
         if(!file.endsWith(".js")) return;
         require(`../auth/${file}`);
         delete require.cache[require.resolve(`../auth/${file}`)];
       });
     });
-    //api
-    fs.readdir("./module/api/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../api/${file}`);
-        delete require.cache[require.resolve(`../api/${file}`)];
-      });
-    });
     
     //その他
-    delete require.cache[require.resolve("../events.js")];
+    delete require.cache[require.resolve("../../../config.json")];
+    delete require.cache[require.resolve("../../../package.json")];
+    delete require.cache[require.resolve("../../../package-lock.json")];
+    delete require.cache[require.resolve("../../../file/commandlist.json")];
 
-    delete require.cache[require.resolve("../../config.json")];
-    delete require.cache[require.resolve("../../package.json")];
-    delete require.cache[require.resolve("../../package-lock.json")];
-    delete require.cache[require.resolve("../../file/command/list.json")];
-
-    delete require.cache[require.resolve("../../data/api.json")];
-
-    const command = require("../events/command");
-    command(client);
+    require("../../event/ready/command")(client);
 
     await interaction.reply({
       embeds:[{

@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const mysql = require("../lib/mysql");
-  const time = require("../lib/time");
+  const db = require("../../lib/db");
+  const time = require("../../lib/time");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "afk"){
     const message = interaction.options.getString("message")||"メッセージはありません";
@@ -17,9 +17,9 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const data = await mysql(`SELECT * FROM afk WHERE user = ${interaction.user.id} LIMIT 1;`);
+    const data = await db(`SELECT * FROM afk WHERE user = ${interaction.user.id} LIMIT 1;`);
     if(data[0]){
-      await mysql(`DELETE FROM afk WHERE user = ${interaction.user.id} LIMIT 1;`);
+      await db(`DELETE FROM afk WHERE user = ${interaction.user.id} LIMIT 1;`);
       await interaction.reply({
         embeds:[{
           author:{
@@ -31,7 +31,7 @@ module.exports = async(interaction)=>{
         }]
       }); 
     }else{
-      await mysql(`INSERT INTO afk (user, message, mention, time) VALUES("${interaction.user.id}","${message}","0",NOW());`);
+      await db(`INSERT INTO afk (user, message, mention, time) VALUES("${interaction.user.id}","${message}","0",NOW());`);
       await interaction.reply({
         embeds:[{
           author:{

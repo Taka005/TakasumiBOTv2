@@ -1,6 +1,6 @@
 module.exports = async(interaction,client)=>{
-  const { admin } = require("../../config.json");
-  const mysql = require("../lib/mysql");
+  const { admin } = require("../../../config.json");
+  const db = require("../../lib/db");
   const { WebhookClient } = require("discord.js");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "system"){
@@ -87,7 +87,7 @@ module.exports = async(interaction,client)=>{
         ephemeral: true
       });
 
-      const data = await mysql(`SELECT * FROM global WHERE server = ${guild.id} LIMIT 1;`);
+      const data = await db(`SELECT * FROM global WHERE server = ${guild.id} LIMIT 1;`);
   
       if(!data[0]) return await interaction.reply({
         embeds:[{
@@ -139,9 +139,9 @@ module.exports = async(interaction,client)=>{
       }).catch(()=>{});
 
     }else if(type === "mute_server"){//ミュートサーバーを追加する
-      const data = await mysql(`SELECT * FROM mute_server WHERE id = ${ID[0]} LIMIT 1;`);
+      const data = await db(`SELECT * FROM mute_server WHERE id = ${ID[0]} LIMIT 1;`);
       if(data[0]){//登録済み
-        await mysql(`DELETE FROM mute_server WHERE id = ${ID[0]} LIMIT 1;`);
+        await db(`DELETE FROM mute_server WHERE id = ${ID[0]} LIMIT 1;`);
   
         await interaction.reply({
           embeds:[{
@@ -153,7 +153,7 @@ module.exports = async(interaction,client)=>{
           }]
         });
       }else{//登録なし
-        await mysql(`INSERT INTO mute_server (id, reason, time) VALUES("${ID[0]}","${message||"なし"}",NOW())`);
+        await db(`INSERT INTO mute_server (id, reason, time) VALUES("${ID[0]}","${message||"なし"}",NOW())`);
 
         await interaction.reply({
           embeds:[{
@@ -183,9 +183,9 @@ module.exports = async(interaction,client)=>{
         });
       }
   
-      const data = await mysql(`SELECT * FROM mute_user WHERE id = ${ID[0]} LIMIT 1;`);
+      const data = await db(`SELECT * FROM mute_user WHERE id = ${ID[0]} LIMIT 1;`);
       if(data[0]){//登録済み
-        await mysql(`DELETE FROM mute_user WHERE id = ${ID[0]} LIMIT 1;`);
+        await db(`DELETE FROM mute_user WHERE id = ${ID[0]} LIMIT 1;`);
   
         await interaction.reply({
           embeds:[{
@@ -197,7 +197,7 @@ module.exports = async(interaction,client)=>{
           }]
         });
       }else{//登録なし
-        await mysql(`INSERT INTO mute_user (id, reason, time) VALUES("${ID[0]}","${message||"なし"}",NOW())`);
+        await db(`INSERT INTO mute_user (id, reason, time) VALUES("${ID[0]}","${message||"なし"}",NOW())`);
 
         await interaction.reply({
           embeds:[{

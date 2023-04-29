@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const list = require("../../file/commandlist.json");
+  const list = require("../../../file/commandlist.json");
   const { MessageButton, MessageActionRow } = require("discord.js");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "help"){

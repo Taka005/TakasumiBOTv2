@@ -1,9 +1,9 @@
 module.exports = async(interaction)=>{
   const { MessageButton, MessageActionRow } = require("discord.js");
-  const mysql = require("../lib/mysql");
+  const db = require("../../lib/db");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "account"){
-    const account = await mysql(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
+    const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
 
     if(!account[0]){
       await interaction.reply({ 

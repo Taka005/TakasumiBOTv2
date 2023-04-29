@@ -1,14 +1,14 @@
 module.exports = async(message)=>{
-  const mysql = require("../lib/mysql");
+  const db = require("../../lib/db");
   const fetch = require("node-fetch");
   const { WebhookClient } = require("discord.js");
   require("dotenv").config();
   
-  const mute_server = await mysql(`SELECT * FROM mute_server WHERE id = ${message.guild.id} LIMIT 1;`);
-  const mute_user = await mysql(`SELECT * FROM mute_user WHERE id = ${message.author.id} LIMIT 1;`);
+  const mute_server = await db(`SELECT * FROM mute_server WHERE id = ${message.guild.id} LIMIT 1;`);
+  const mute_user = await db(`SELECT * FROM mute_user WHERE id = ${message.author.id} LIMIT 1;`);
 
-  const data = await mysql(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
-  const account = await mysql(`SELECT * FROM account WHERE id = ${message.author.id} LIMIT 1;`);
+  const data = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
+  const account = await db(`SELECT * FROM account WHERE id = ${message.author.id} LIMIT 1;`);
 
   if(
     message.channel.type !== "GUILD_TEXT"||
@@ -27,7 +27,7 @@ module.exports = async(message)=>{
 
   if(message.reference.messageId&&message.reference.channelId){
     try{
-      const ref = await mysql(`SELECT * FROM global WHERE channel = ${message.reference.channelId} LIMIT 1;`);
+      const ref = await db(`SELECT * FROM global WHERE channel = ${message.reference.channelId} LIMIT 1;`);
 
       const reply_webhook = new WebhookClient({id: ref[0].id, token: ref[0].token});
       const msg = await reply_webhook.fetchMessage(message.reference.messageId);

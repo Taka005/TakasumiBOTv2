@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const mysql = require("../lib/mysql");
+  const db = require("../../lib/db");
   const { MessageButton, MessageActionRow } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("web_")){
@@ -16,7 +16,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const account = await mysql(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
+    const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
     if(!account[0]) return await interaction.reply({
       embeds:[{
         author:{

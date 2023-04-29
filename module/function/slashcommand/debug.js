@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { admin } = require("../../config.json");
+  const { admin } = require("../../../config.json");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "debug"){
     const type = interaction.options.getString("type");

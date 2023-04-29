@@ -1,7 +1,7 @@
 const time = [];
 
 module.exports = async(message)=>{
-  const mysql = require("../../lib/mysql");
+  const db = require("../../lib/db");
 
   if(
     message.author.bot||
@@ -10,7 +10,7 @@ module.exports = async(message)=>{
     !message.guild.members.me.permissionsIn(message.channel).has("MANAGE_MESSAGES")
   ) return;
 
-  const data = await mysql(`SELECT * FROM moderate WHERE id = ${message.guild.id} LIMIT 1;`);
+  const data = await db(`SELECT * FROM moderate WHERE id = ${message.guild.id} LIMIT 1;`);
   if(data[0]){
     if(!time[message.author.id]){
       time[message.author.id] = [0,true];

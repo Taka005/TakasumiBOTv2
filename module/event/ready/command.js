@@ -1,7 +1,7 @@
 module.exports = async(client)=>{
-  const config = require("../../config.json"); 
+  const config = require("../../../config.json"); 
   require("dotenv").config();
-  const { SlashCommandBuilder, ContextMenuCommandBuilder } = require("@discordjs/builders");
+  const { SlashCommandBuilder, ContextMenuCommandBuilder } = require("discord.js");
   const { REST } = require("@discordjs/rest");
   const { Routes, ApplicationCommandType } = require("discord-api-types/v10");
     

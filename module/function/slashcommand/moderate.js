@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const mysql = require("../lib/mysql");
+  const db = require("../../lib/db");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "moderate"){
     const type = interaction.options.getString("type");
@@ -51,7 +51,7 @@ module.exports = async(interaction)=>{
     });
 
     if(type === "off"){
-      const data = await mysql(`SELECT * FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      const data = await db(`SELECT * FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
       if(!data[0]) return await interaction.reply({
         embeds:[{
           author:{
@@ -64,7 +64,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
       
-      await mysql(`DELETE FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      await db(`DELETE FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
       return await interaction.reply({
         embeds:[{
           author:{
@@ -76,7 +76,7 @@ module.exports = async(interaction)=>{
       });
     }
 
-    await mysql(`INSERT INTO moderate (id, type, time) VALUES("${interaction.guild.id}","${type}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),type = VALUES (type),time = VALUES (time);`);
+    await db(`INSERT INTO moderate (id, type, time) VALUES("${interaction.guild.id}","${type}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),type = VALUES (type),time = VALUES (time);`);
     await interaction.reply({
       embeds:[{
         author:{
