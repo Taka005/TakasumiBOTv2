@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const { MessageActionRow, MessageSelectMenu, MessageButton } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ActionRowBuilder, SelectMenuBuilder, ButtonBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "panel"){
     const title = interaction.options.getString("title")||"役職パネル";
     const role_1 = interaction.options.getRole("role_1");
@@ -64,9 +64,9 @@ module.exports = async(interaction)=>{
           description: selects.map((c,i)=>`${emojis[i]}<@&${c.id}>`).join("\n")
         }],
         components:[     
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents(
-              new MessageSelectMenu()
+              new SelectMenuBuilder()
                 .setCustomId("role")
                 .setPlaceholder("ロールが選択されていません")
                 .setMinValues(0)
@@ -102,9 +102,9 @@ module.exports = async(interaction)=>{
           ]
         }],
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents( 
-              new MessageButton()
+              new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle("LINK"))

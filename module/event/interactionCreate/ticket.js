@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId === "ticket"){
 
@@ -43,11 +43,11 @@ module.exports = async(interaction)=>{
             title: "チケットへようこそ"
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                   .setCustomId("close")
-                  .setStyle("PRIMARY")
+                  .setStyle(ButtonStyle.Primary)
                   .setLabel("閉じる"))
           ]
         });
@@ -80,9 +80,9 @@ module.exports = async(interaction)=>{
             ]
           }], 
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))
@@ -108,9 +108,9 @@ module.exports = async(interaction)=>{
             ]
           }], 
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))

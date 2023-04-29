@@ -61,13 +61,13 @@ module.exports = async(message)=>{
           "username": message.author.username,
           "discriminator": message.author.discriminator,
           "id": message.author.id,
-          "avatarURL": message.author.avatarURL({"dynamic":true,"format":"png","size": 512}),
+          "avatarURL": message.author.avatarURL({"dynamic":true,"extension":"png","size": 512}),
           "bot": message.author.bot
         },
         "guild":{
           "name": message.guild.name,
           "id": message.guild.id,
-          "iconURL": message.guild.iconURL({"dynamic":true,"format":"png","size":256})
+          "iconURL": message.guild.iconURL({"dynamic":true,"extension":"png","size":256})
         },
         "message":{
           "content": content,

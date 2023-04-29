@@ -1,5 +1,5 @@
 module.exports = async(interaction,client)=>{
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ad"){
     const type = interaction.options.getString("type");
     const server = Math.floor(client.guilds.cache.size/10)*10;

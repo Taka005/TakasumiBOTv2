@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
-  const { ChannelType, WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
+  const { ChannelType, WebhookClient, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
   const db = require("../../lib/db");
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "setting"){
 
     if(interaction.options.getSubcommand() === "help"){//Help画面
@@ -357,9 +357,9 @@ module.exports = async(interaction)=>{
                 ]
               }],
               components:[
-                new MessageActionRow()
+                new ActionRowBuilder()
                   .addComponents( 
-                    new MessageButton()
+                    new ButtonBuilder()
                       .setLabel("サポートサーバー")
                       .setURL("https://discord.gg/NEesRdGQwD")
                       .setStyle("LINK"))
@@ -497,9 +497,9 @@ module.exports = async(interaction)=>{
                 ]
               }],
               components:[
-                new MessageActionRow()
+                new ActionRowBuilder()
                   .addComponents( 
-                    new MessageButton()
+                    new ButtonBuilder()
                       .setLabel("サポートサーバー")
                       .setURL("https://discord.gg/NEesRdGQwD")
                       .setStyle("LINK"))

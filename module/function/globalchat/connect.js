@@ -253,7 +253,7 @@ module.exports = async(msg,client)=>{
 
 function err(channel,client,error){
   const db = require("../../lib/db");
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 
   db(`DELETE FROM global WHERE channel = ${channel} LIMIT 1;`);
   client.channels.cache.get(channel).send({
@@ -272,9 +272,9 @@ function err(channel,client,error){
       ]
     }],
     components:[
-      new MessageActionRow()
+      new ActionRowBuilder()
         .addComponents( 
-          new MessageButton()
+          new ButtonBuilder()
             .setLabel("サポートサーバー")
             .setURL("https://discord.gg/NEesRdGQwD")
             .setStyle("LINK"))

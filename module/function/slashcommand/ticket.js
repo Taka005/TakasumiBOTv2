@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ticket"){
     
     if(
@@ -53,11 +53,11 @@ module.exports = async(interaction)=>{
         description: "チケットの発行は下のボタンを押してください"
       }],
       components:[
-        new MessageActionRow()
+        new ActionRowBuilder()
           .addComponents(
-            new MessageButton()
+            new ButtonBuilder()
               .setCustomId("ticket")
-              .setStyle("PRIMARY")
+              .setStyle(ButtonStyle.Primary)
               .setLabel("作成"))
       ]
       }).catch(async(error)=>{
@@ -76,9 +76,9 @@ module.exports = async(interaction)=>{
             ]
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))

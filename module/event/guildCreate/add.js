@@ -1,5 +1,5 @@
 module.exports = async(guild,client)=>{
-  const { ChannelType, MessageButton, MessageActionRow } = require("discord.js");
+  const { ChannelType, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
   let find = 0;
   guild.channels.cache.map((channel)=>{
     if(find === 0){
@@ -22,9 +22,9 @@ module.exports = async(guild,client)=>{
             timestamp: new Date()
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))

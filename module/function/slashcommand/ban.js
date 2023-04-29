@@ -1,6 +1,6 @@
 module.exports = async(interaction,client)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ban"){
     const id = interaction.options.getString("id");
     const reason = interaction.options.getString("reason")||`${interaction.user.tag}によってBAN`;
@@ -115,9 +115,9 @@ module.exports = async(interaction,client)=>{
               ]
             }],
             components:[
-              new MessageActionRow()
+              new ActionRowBuilder()
                 .addComponents( 
-                  new MessageButton()
+                  new ButtonBuilder()
                     .setLabel("サポートサーバー")
                     .setURL("https://discord.gg/NEesRdGQwD")
                     .setStyle("LINK"))
@@ -156,9 +156,9 @@ module.exports = async(interaction,client)=>{
               ]
             }],
             components:[
-              new MessageActionRow()
+              new ActionRowBuilder()
                 .addComponents( 
-                  new MessageButton()
+                  new ButtonBuilder()
                     .setLabel("サポートサーバー")
                     .setURL("https://discord.gg/NEesRdGQwD")
                     .setStyle("LINK"))

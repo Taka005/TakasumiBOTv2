@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  if(!interaction.isContextMenu()) return;
+  if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "英語に翻訳"){
     const message = interaction.options.getMessage("message");
 

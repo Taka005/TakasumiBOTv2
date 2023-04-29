@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("page")){
 
@@ -44,21 +44,21 @@ module.exports = async(interaction)=>{
           ]
         }],
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("前")
                 .setCustomId(`page_5_${id[2]}`))
             .addComponents(
-              new MessageButton()
+              new ButtonBuilder()
                 .setStyle("SECONDARY")
                 .setLabel("1ページ")
                 .setCustomId("page")
                 .setDisabled(true))
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("次")
                 .setCustomId(`page_2_${id[2]}`))
         ]
@@ -120,21 +120,21 @@ module.exports = async(interaction)=>{
           ]
         }],
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("前")
                 .setCustomId(`page_1_${id[2]}`))
             .addComponents(
-              new MessageButton()
+              new ButtonBuilder()
                 .setStyle("SECONDARY")
                 .setLabel("2ページ")
                 .setCustomId("page")
                 .setDisabled(true))
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("次")
                 .setCustomId(`page_3_${id[2]}`))
         ]
@@ -212,21 +212,21 @@ module.exports = async(interaction)=>{
           ]
         }],
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("前")
                 .setCustomId(`page_2_${id[2]}`))
             .addComponents(
-              new MessageButton()
+              new ButtonBuilder()
                 .setStyle("SECONDARY")
                 .setLabel("3ページ")
                 .setCustomId("page")
                 .setDisabled(true))
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("次")
                 .setCustomId(`page_4_${id[2]}`))
         ]
@@ -304,21 +304,21 @@ module.exports = async(interaction)=>{
           ]
         }],
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("前")
                 .setCustomId(`page_3_${id[2]}`))
             .addComponents(
-              new MessageButton()
+              new ButtonBuilder()
                 .setStyle("SECONDARY")
                 .setLabel("4ページ")
                 .setCustomId("page")
                 .setDisabled(true))
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("次")
                 .setCustomId(`page_5_${id[2]}`))
         ]
@@ -376,21 +376,21 @@ module.exports = async(interaction)=>{
           ]
         }],
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("前")
                 .setCustomId(`page_4_${id[2]}`))
             .addComponents(
-              new MessageButton()
+              new ButtonBuilder()
                 .setStyle("SECONDARY")
                 .setLabel("5ページ")
                 .setCustomId("page")
                 .setDisabled(true))
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("次")
                 .setCustomId(`page_1_${id[2]}`))
         ]
@@ -424,7 +424,7 @@ async function check(interaction,id){
 }
 
 async function err(interaction,error){
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
   
   await interaction.reply({
     embeds:[{
@@ -442,9 +442,9 @@ async function err(interaction,error){
       ]
     }],
     components:[
-      new MessageActionRow()
+      new ActionRowBuilder()
         .addComponents( 
-          new MessageButton()
+          new ButtonBuilder()
             .setLabel("サポートサーバー")
             .setURL("https://discord.gg/NEesRdGQwD")
             .setStyle("LINK"))

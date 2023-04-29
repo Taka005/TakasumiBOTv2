@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const db = require("../../lib/db");
-  if(!interaction.isContextMenu()) return;
+  if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "メッセージをピン留め"){
     const message = interaction.options.getMessage("message");
 

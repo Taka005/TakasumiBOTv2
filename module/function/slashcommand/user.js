@@ -1,7 +1,7 @@
 module.exports = async(interaction,client)=>{
   const db = require("../../lib/db");
-  const { MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "user"){
     const id = interaction.options.getString("id");
 
@@ -21,7 +21,7 @@ module.exports = async(interaction,client)=>{
             text: "TakasumiBOT"
           },
           thumbnail:{
-            url: interaction.user.avatarURL({format:"png",dynamic:true,size:1024})|| interaction.user.defaultAvatarURL
+            url: interaction.user.avatarURL({extension:"png",forceStatic:false,size:1024})|| interaction.user.defaultAvatarURL
           },
           fields:[
             {
@@ -75,9 +75,9 @@ module.exports = async(interaction,client)=>{
             ]
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))
@@ -117,7 +117,7 @@ module.exports = async(interaction,client)=>{
             text: "TakasumiBOT"
           },
           thumbnail:{
-            url: member.user.avatarURL({format:"png",dynamic:true,size:1024})||member.user.defaultAvatarURL
+            url: member.user.avatarURL({extension:"png",forceStatic:false,size:1024})||member.user.defaultAvatarURL
           },
           fields:[
             {
@@ -171,9 +171,9 @@ module.exports = async(interaction,client)=>{
             ]
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))
@@ -199,7 +199,7 @@ module.exports = async(interaction,client)=>{
               text: "TakasumiBOT"
             },
             thumbnail:{
-              url: user.avatarURL({format:"png",dynamic:true,size:1024})||user.defaultAvatarURL
+              url: user.avatarURL({extension:"png",forceStatic:false,size:1024})||user.defaultAvatarURL
             },
             fields:[
               {
@@ -241,9 +241,9 @@ module.exports = async(interaction,client)=>{
             ]
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))

@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "poll"){
     const title = interaction.options.getString("title");
     const select_1 = interaction.options.getString("select_1");

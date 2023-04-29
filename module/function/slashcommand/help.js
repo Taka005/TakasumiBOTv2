@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
   const list = require("../../../file/commandlist.json");
-  const { MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isCommand()) return;
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "help"){
     const command = interaction.options.getString("command");
 
@@ -42,21 +42,21 @@ module.exports = async(interaction)=>{
           ]
         }],
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("前")
                 .setCustomId(`page_5_${interaction.user.id}`))
             .addComponents(
-              new MessageButton()
+              new ButtonBuilder()
                 .setStyle("SECONDARY")
                 .setLabel("1ページ")
                 .setCustomId("page")
                 .setDisabled(true))
             .addComponents(
-              new MessageButton()
-                .setStyle("PRIMARY")
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
                 .setLabel("次")
                 .setCustomId(`page_2_${interaction.user.id}`))
         ]

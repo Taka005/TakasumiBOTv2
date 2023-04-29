@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
   const permission = require("../../lib/permission");
-  const { MessageButton, MessageActionRow } = require("discord.js");
-  if(!interaction.isContextMenu()) return;
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "権限を表示"){
     const member = interaction.options.getMember("user");
 
@@ -49,9 +49,9 @@ module.exports = async(interaction)=>{
           ]
         }],     
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents( 
-              new MessageButton()
+              new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle("LINK"))

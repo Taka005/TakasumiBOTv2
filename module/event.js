@@ -1,5 +1,5 @@
 module.exports = async(client)=>{
-  const { Events, ChannelType, MessageButton, MessageActionRow } = require("discord.js");
+  const { Events, ChannelType, ButtonBuilder, ActionRowBuilder } = require("discord.js");
   const fs = require("fs");
   const db = require("./lib/db");
 
@@ -60,9 +60,9 @@ module.exports = async(client)=>{
         description: "BOTの操作はDMで実行することができません\nサーバー内で実行してください"
       }],      
       components:[
-        new MessageActionRow()
+        new ActionRowBuilder()
           .addComponents( 
-            new MessageButton()
+            new ButtonBuilder()
               .setLabel("サポートサーバー")
               .setURL("https://discord.gg/NEesRdGQwD")
               .setStyle("LINK"))
@@ -82,9 +82,9 @@ module.exports = async(client)=>{
         description: "あなた又はこのサーバーはブラックリストに登録されているため実行できません"
       }],      
       components:[
-        new MessageActionRow()
+        new ActionRowBuilder()
           .addComponents( 
-            new MessageButton()
+            new ButtonBuilder()
               .setLabel("サポートサーバー")
               .setURL("https://discord.gg/NEesRdGQwD")
               .setStyle("LINK"))

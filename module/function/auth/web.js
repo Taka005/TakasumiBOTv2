@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const db = require("../../lib/db");
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("web_")){
     const role = interaction.customId.split("_");
@@ -27,9 +27,9 @@ module.exports = async(interaction)=>{
         description: "以下のリンクから認証を行い、再度認証ボタンを押してください\n認証してから3分を超えるとタイムアウトになります"
       }],
       components:[
-        new MessageActionRow()
+        new ActionRowBuilder()
           .addComponents( 
-            new MessageButton()
+            new ButtonBuilder()
               .setLabel("サイトへ飛ぶ")
               .setURL("https://auth.taka.ml/")
               .setStyle("LINK")
@@ -48,9 +48,9 @@ module.exports = async(interaction)=>{
         description: `前回の認証から3分以上が経過しているため、再度認証を行なってください\n前回の認証日時: ${new Date(account[0].time).toLocaleString()}`
       }],
       components:[
-        new MessageActionRow()
+        new ActionRowBuilder()
           .addComponents( 
-            new MessageButton()
+            new ButtonBuilder()
               .setLabel("サイトへ飛ぶ")
               .setURL("https://auth.taka.ml/")
               .setStyle("LINK")
@@ -89,9 +89,9 @@ module.exports = async(interaction)=>{
             ]
           }],
           components:[
-            new MessageActionRow()
+            new ActionRowBuilder()
               .addComponents( 
-                new MessageButton()
+                new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle("LINK"))

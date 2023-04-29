@@ -2,7 +2,7 @@ module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const isUrl = require("../../lib/isUrl");
   require("dotenv").config();
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "short"){
     const url = interaction.options.getString("url");
 
@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const data = await fetch(`https://is.gd/create.php?format=simple&url=${encodeURI(url)}`)
+    const data = await fetch(`https://is.gd/create.php?extension=simple&url=${encodeURI(url)}`)
       .then(res=>res.text())
       
     await interaction.reply(data);

@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const time = require("../../lib/time");
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "afk"){
     const message = interaction.options.getString("message")||"メッセージはありません";
     

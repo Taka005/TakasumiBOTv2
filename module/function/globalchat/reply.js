@@ -1,7 +1,7 @@
 module.exports = async(message,client)=>{
   const db = require("../../lib/db");
   const spam = require("../../lib/spam");
-  const { WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
+  const { WebhookClient, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
   const async = require("async");
   
   const data = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
@@ -26,14 +26,14 @@ module.exports = async(message,client)=>{
         description: "以下のリンクから認証を行うことでグローバルチャットを利用できます\n認証が完了すると[利用規約](https://gc.taka.ml/)に同意したものとみなします",
       }], 
       components:[
-        new MessageActionRow()
+        new ActionRowBuilder()
           .addComponents( 
-            new MessageButton()
+            new ButtonBuilder()
               .setLabel("サイトへ飛ぶ")
               .setURL("https://auth.taka.ml/")
               .setStyle("LINK"))
           .addComponents( 
-            new MessageButton()
+            new ButtonBuilder()
               .setLabel("サポートサーバー")
               .setURL("https://discord.gg/NEesRdGQwD")
               .setStyle("LINK"))
@@ -347,7 +347,7 @@ module.exports = async(message,client)=>{
 
 function err(channel,client,error){
   const db = require("../../lib/db");
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 
   db(`DELETE FROM global WHERE channel = ${channel} LIMIT 1;`);
   client.channels.cache.get(channel).send({
@@ -366,9 +366,9 @@ function err(channel,client,error){
       ]
     }],
     components:[
-      new MessageActionRow()
+      new ActionRowBuilder()
         .addComponents( 
-          new MessageButton()
+          new ButtonBuilder()
             .setLabel("サポートサーバー")
             .setURL("https://discord.gg/NEesRdGQwD")
             .setStyle("LINK"))

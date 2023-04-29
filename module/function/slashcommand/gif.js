@@ -1,8 +1,8 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { MessageAttachment } = require("discord.js");
+  const { AttachmentBuilder } = require("discord.js");
   require("dotenv").config();
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "gif"){
     const name = interaction.options.getString("name");
 
@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
             url: "attachment://result.gif"
           },
         }],
-        files: [new MessageAttachment(image.stream(),"result.gif")]
+        files: [new AttachmentBuilder(image.stream(),"result.gif")]
       });
     }catch{
       await interaction.editReply({

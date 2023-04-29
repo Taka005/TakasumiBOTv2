@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
   require("dotenv").config();
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("news_")){
@@ -9,17 +9,17 @@ module.exports = async(interaction)=>{
     const data = await fetch(`https://newsapi.org/v2/top-headlines?country=jp&apiKey=${process.env.NEWS_KEY}`)
       .then(res=>res.json())
   
-    const before = new MessageButton()
-      .setStyle("PRIMARY")
+    const before = new ButtonBuilder()
+      .setStyle(ButtonStyle.Primary)
       .setLabel("前")
       .setCustomId(`news_${Number(pages[1])-1}`)
   
-    const next = new MessageButton()
-      .setStyle("PRIMARY")
+    const next = new ButtonBuilder()
+      .setStyle(ButtonStyle.Primary)
       .setLabel("次")
       .setCustomId(`news_${Number(pages[1])+1}`)
   
-    const page = new MessageButton()
+    const page = new ButtonBuilder()
       .setStyle("SECONDARY")
       .setLabel(`${Number(pages[1])+1}ページ`)
       .setCustomId("news")
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
           }
         }],
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents(before)
             .addComponents(page)
             .addComponents(next)
@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
           description: "前のページに戻ってください"
         }],
         components:[
-          new MessageActionRow()
+          new ActionRowBuilder()
             .addComponents(before)
             .addComponents(page)
             .addComponents(next)

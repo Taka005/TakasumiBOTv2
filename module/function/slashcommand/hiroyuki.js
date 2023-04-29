@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
     const db = require("../../lib/db");
-    const { WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
-    if(!interaction.isCommand()) return;
+    const { WebhookClient, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+    if(!interaction.isChatInputCommand()) return;
     if(interaction.commandName === "hiroyuki"){
   
       if(!interaction.member.permissions.has("MANAGE_CHANNELS")) return await interaction.reply({
@@ -111,9 +111,9 @@ module.exports = async(interaction)=>{
                 ]
               }],
               components:[
-                new MessageActionRow()
+                new ActionRowBuilder()
                   .addComponents( 
-                    new MessageButton()
+                    new ButtonBuilder()
                       .setLabel("サポートサーバー")
                       .setURL("https://discord.gg/NEesRdGQwD")
                       .setStyle("LINK"))

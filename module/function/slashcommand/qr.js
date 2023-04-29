@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
-  const { MessageAttachment } = require("discord.js");
+  const { AttachmentBuilder } = require("discord.js");
   const fetch = require("node-fetch");
-  if(!interaction.isCommand()) return;
+  if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "qr"){
     const text = interaction.options.getString("text");
     const type = interaction.options.getString("type");
@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
         }]
       });
 
-      const data = await fetch(`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURI(text)}&size=256x256&format=png`)
+      const data = await fetch(`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURI(text)}&size=256x256&extension=png`)
         .then(res=>res.blob()) 
 
       await interaction.editReply({
@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
           },
           color: "GREEN"
         }],
-        files:[new MessageAttachment(data.stream(),"QRCode.png")]
+        files:[new AttachmentBuilder(data.stream(),"QRCode.png")]
       });
     }else{
       if(!text.match(/^(http(s?):\/\/)([^\s/]+\/)([^\s]+\.(jpg|jpeg|png|gif))$/i)) return await interaction.reply({

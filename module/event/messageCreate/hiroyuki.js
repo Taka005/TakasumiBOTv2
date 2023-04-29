@@ -159,7 +159,7 @@ module.exports = async(message)=>{
 
 function err(message,error){
   const db = require("../../lib/db");
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 
   db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
   message.channel.send({
@@ -178,9 +178,9 @@ function err(message,error){
       ]
     }],
     components:[
-      new MessageActionRow()
+      new ActionRowBuilder()
         .addComponents( 
-          new MessageButton()
+          new ButtonBuilder()
             .setLabel("サポートサーバー")
             .setURL("https://discord.gg/NEesRdGQwD")
             .setStyle("LINK"))
