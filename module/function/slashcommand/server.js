@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   const boost = require("../../lib/boost");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "server"){

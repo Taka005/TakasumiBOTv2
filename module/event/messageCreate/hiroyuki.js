@@ -159,7 +159,7 @@ module.exports = async(message)=>{
 
 function err(message,error){
   const db = require("../../lib/db");
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
 
   db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
   message.channel.send({

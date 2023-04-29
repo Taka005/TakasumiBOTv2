@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
     const db = require("../../lib/db");
-    const { WebhookClient, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+    const { WebhookClient, ButtonBuilder, ActionRowBuilder } = require("discord.js");
     if(!interaction.isChatInputCommand()) return;
     if(interaction.commandName === "hiroyuki"){
   

@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const permission = require("../../lib/permission");
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "role"){
     const role = interaction.options.getRole("name");

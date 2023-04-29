@@ -1,6 +1,6 @@
 module.exports = async(interaction,client)=>{
   const db = require("../../lib/db");
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "user"){
     const id = interaction.options.getString("id");

@@ -1,5 +1,5 @@
 module.exports = async(member,client)=>{
-  const { WebhookClient, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { WebhookClient, ButtonBuilder, ActionRowBuilder } = require("discord.js");
   const db = require("../../lib/db");
 
   const data = await db(`SELECT * FROM \`join\` WHERE server = ${member.guild.id} LIMIT 1;`);

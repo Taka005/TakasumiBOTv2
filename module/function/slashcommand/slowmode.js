@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "slowmode"){
     const time = interaction.options.getInteger("time");

@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const permission = require("../../lib/permission");
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "権限を表示"){
     const member = interaction.options.getMember("user");

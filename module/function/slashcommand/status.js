@@ -2,7 +2,7 @@ module.exports = async(interaction,client)=>{
   const os = require("os");
   const fetch = require("node-fetch");
   const db = require("../../lib/db");
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "status"){
 

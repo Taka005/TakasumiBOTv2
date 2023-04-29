@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { SnowflakeUtil, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { SnowflakeUtil, ButtonBuilder, ActionRowBuilder } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "snowflake"){
     const id = interaction.options.getString("id");

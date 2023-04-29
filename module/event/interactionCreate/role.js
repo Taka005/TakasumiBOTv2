@@ -1,6 +1,6 @@
 const time = [];
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   if(!interaction.isSelectMenu()) return;
   if(interaction.customId === "role"){
     

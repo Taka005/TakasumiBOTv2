@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ChannelType, WebhookClient, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "setting"){

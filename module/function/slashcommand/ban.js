@@ -1,5 +1,5 @@
 module.exports = async(interaction,client)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ban"){
     const id = interaction.options.getString("id");

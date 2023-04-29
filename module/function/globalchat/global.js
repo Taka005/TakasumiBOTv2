@@ -1,7 +1,7 @@
 module.exports = async(message,client)=>{
   const db = require("../../lib/db");
   const spam = require("../../lib/spam");
-  const { WebhookClient, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { WebhookClient, ButtonBuilder, ActionRowBuilder } = require("discord.js");
   const async = require("async");
 
   const data = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
