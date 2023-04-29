@@ -1,10 +1,10 @@
 module.exports = async(guild,client)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { ChannelType, MessageButton, MessageActionRow } = require("discord.js");
   let find = 0;
   guild.channels.cache.map((channel)=>{
     if(find === 0){
       if(
-        channel.type === "GUILD_TEXT"&&
+        channel.type === ChannelType.GuildText&&
         guild.members.me.permissionsIn(channel).has("VIEW_CHANNEL")&&
         guild.members.me.permissionsIn(channel).has("SEND_MESSAGES")
       ){

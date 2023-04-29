@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
+  const { ChannelType, WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "setting"){
@@ -311,7 +311,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        if(interaction.channel.type !== "GUILD_TEXT") return await interaction.reply({
+        if(interaction.channel.type !== ChannelType.GuildText) return await interaction.reply({
           embeds:[{
             author:{
               name: "参加メッセージを設定できませんでした",
@@ -451,7 +451,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        if(interaction.channel.type !== "GUILD_TEXT") return await interaction.reply({
+        if(interaction.channel.type !== ChannelType.GuildText) return await interaction.reply({
           embeds:[{
             author:{
               name: "退出メッセージを設定できませんでした",

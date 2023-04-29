@@ -1,14 +1,14 @@
 module.exports = async(client)=>{
-  const { MessageButton, MessageActionRow } = require("discord.js");
+  const { Events, ChannelType, MessageButton, MessageActionRow } = require("discord.js");
   const fs = require("fs");
   const db = require("./lib/db");
 
-  client.once("ready",async(client)=>{
+  client.once(Events.ClientReady,async(client)=>{
     require("./event/ready/status")(client);
     require("./event/ready/command")(client);
   });
 
-  client.on("messageCreate",async(message)=>{
+  client.on(Events.MessageCreate,async(message)=>{
     if(!message.guild.members.me) return;
     //event/message
     fs.readdir("./module/event/messageCreate/",(err,files)=>{ 
@@ -18,7 +18,7 @@ module.exports = async(client)=>{
       });
     });
     
-    if(message.channel.type !== "GUILD_TEXT"||message.author.bot) return;  
+    if(message.channel.type !== ChannelType.GuildText||message.author.bot) return;  
 
     console.log(`\x1b[37mLOG:(${message.author.tag}[${message.guild.id}])${message.content} PING[${client.ws.ping}ms]\x1b[39m`);
 
@@ -36,19 +36,19 @@ module.exports = async(client)=>{
     });
   });
 
-  client.on("messageUpdate",async(oldMessage,newMessage)=>{
+  client.on(Events.MessageUpdate,async(oldMessage,newMessage)=>{
     require("./event/messageUpdate/dissoku")(newMessage);
   });
 
-  client.on("guildCreate",async(guild)=>{
+  client.on(Events.GuildCreate,async(guild)=>{
     require("./event/guildCreate/add")(guild,client);
   });
   
-  client.on("guildDelete",async(guild)=>{
+  client.on(Events.GuildDelete,async(guild)=>{
     require("./event/guildDelete/remove")(guild,client);
   });
 
-  client.on("interactionCreate",async(interaction)=>{
+  client.on(Events.InteractionCreate,async(interaction)=>{
 
     if(!interaction.guild) return await interaction.reply({ 
       embeds:[{
@@ -122,11 +122,11 @@ module.exports = async(client)=>{
     });
   });
 
-  client.on("guildMemberAdd",async(member)=>{
+  client.on(Events.GuildMemberAdd,async(member)=>{
     require("./event/guildMemberAdd/join")(member,client);
   });
 
-  client.on("guildMemberRemove",async(member)=>{
+  client.on(Events.GuildMemberRemove,async(member)=>{
     require("./event/guildMemberRemove/leave")(member,client);
   });
 }

@@ -2,12 +2,12 @@ module.exports = async(message)=>{
   const db = require("../../lib/db");
   const random = require("../../lib/random");
   const rate = require("../../lib/rate");
-  const { WebhookClient } = require("discord.js");
+  const { ChannelType, WebhookClient } = require("discord.js");
 
   const data = await db(`SELECT * FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
 
   if(
-    message.channel.type !== "GUILD_TEXT"||
+    message.channel.type !== ChannelType.GuildText||
     message.author.bot||
     !data[0]
   ) return;

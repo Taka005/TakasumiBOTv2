@@ -1,7 +1,7 @@
 module.exports = async(message)=>{
   const db = require("../../lib/db");
   const fetch = require("node-fetch");
-  const { WebhookClient } = require("discord.js");
+  const { ChannelType, WebhookClient } = require("discord.js");
   require("dotenv").config();
   
   const mute_server = await db(`SELECT * FROM mute_server WHERE id = ${message.guild.id} LIMIT 1;`);
@@ -11,7 +11,7 @@ module.exports = async(message)=>{
   const account = await db(`SELECT * FROM account WHERE id = ${message.author.id} LIMIT 1;`);
 
   if(
-    message.channel.type !== "GUILD_TEXT"||
+    message.channel.type !== ChannelType.GuildText||
     message.content.length > 300||
     !data[0]||
     mute_server[0]||

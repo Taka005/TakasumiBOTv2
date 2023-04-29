@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const db = require("../../lib/db");
-  const { WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
+  const { ChannelType, WebhookClient, MessageButton, MessageActionRow } = require("discord.js");
   if(!interaction.isCommand()) return;
   if(interaction.commandName === "global"){
 
@@ -103,7 +103,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      if(interaction.channel.type !== "GUILD_TEXT") return await interaction.reply({
+      if(interaction.channel.type !== ChannelType.GuildText) return await interaction.reply({
         embeds:[{
           author:{
             name: "グローバルチャットに参加できませんでした",
