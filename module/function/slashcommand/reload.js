@@ -95,7 +95,7 @@ module.exports = async(interaction,client)=>{
     delete require.cache[require.resolve("../../../package-lock.json")];
     delete require.cache[require.resolve("../../../file/commandlist.json")];
 
-    require("../event/ready/command")(client);
+    require("../../event/ready/command")(client);
 
     await interaction.reply({
       embeds:[{

@@ -41,11 +41,13 @@ module.exports = async(message,client)=>{
     }).catch(()=>{});
   }
   
+  const Spam = new spam(800);
+
   if(
     mute_server[0]||
     mute_user[0]||
     message.content.length > 300||
-    spam(message)
+    spam.count(message.guild.id)
   ){
     return message.react("❌")
       .catch(()=>{}) 

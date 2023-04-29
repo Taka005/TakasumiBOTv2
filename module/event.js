@@ -23,9 +23,9 @@ module.exports = async(client)=>{
     console.log(`\x1b[37mLOG:(${message.author.tag}[${message.guild.id}])${message.content} PING[${client.ws.ping}ms]\x1b[39m`);
 
    //Globalchat
-    require("./globalchat/global")(message,client).catch(()=>{});
-    require("./globalchat/reply")(message,client).catch(()=>{});
-    require("./globalchat/send")(message,client).catch(()=>{});
+    require("./function/globalchat/global")(message,client).catch(()=>{});
+    require("./function/globalchat/reply")(message,client).catch(()=>{});
+    require("./function/globalchat/send")(message,client).catch(()=>{});
 
     //コマンド
     fs.readdir("./module/function/command/",(err,files)=>{ 
