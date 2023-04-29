@@ -14,7 +14,7 @@ module.exports = async(interaction)=>{
     const code = new TextInputBuilder()
       .setCustomId("code")
       .setLabel(`${count_1}+${count_2}の答えを入力してください`)
-      .setMaxLength(6)
+      .setMaxLength(5)
       .setPlaceholder("半角で入力してください")
       .setRequired(true)
       .setStyle("SHORT");
