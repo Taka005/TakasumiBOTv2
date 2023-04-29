@@ -3,7 +3,16 @@ require("dotenv").config();
 const config = require("./config.json"); 
 
 const client = new Client({
-  intents: Object.values(GatewayIntentBits).filter(Number.isInteger),
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildInvites,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildWebhooks,
+    GatewayIntentBits.GuildEmojisAndStickers
+  ],
   shards: "auto"
 });
 
@@ -13,8 +22,7 @@ console.log("\x1b[32m    Created By Taka005#6668    \x1b[39m");
 console.log("\x1b[32m*******************************\x1b[39m");
 
 require("./module/event")(client);
-require("./module/function/global/gateway")(client);
-require("./module/event/ready/load")(client);
+require("./module/function/globalchat/gateway")(client);
 
 client.login(process.env.BOT_TOKEN)
   .then(()=>{
