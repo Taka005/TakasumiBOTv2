@@ -6,7 +6,7 @@ module.exports = async(client)=>{
   const { Routes, ApplicationCommandType } = require("discord-api-types/v10");
     
   const rest = new REST({version:"10"})
-    .setToken(process.env.DISCORD_BOT_TOKEN);
+    .setToken(process.env.BOT_TOKEN);
             
   await rest.put(
     Routes.applicationCommands(client.application.id),
