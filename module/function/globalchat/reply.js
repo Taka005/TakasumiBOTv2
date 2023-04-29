@@ -47,7 +47,7 @@ module.exports = async(message,client)=>{
     mute_server[0]||
     mute_user[0]||
     message.content.length > 300||
-    spam.count(message.guild.id)
+    Spam.count(message.guild.id)
   ){
     return message.react("❌")
       .catch(()=>{}) 
