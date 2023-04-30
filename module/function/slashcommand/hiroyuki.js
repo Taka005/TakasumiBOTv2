@@ -78,7 +78,8 @@ module.exports = async(interaction)=>{
       }else{//登録なし
         await interaction.deferReply();
 
-        await interaction.channel.createWebhook("ひろゆき",{
+        await interaction.channel.createWebhook({
+          name: "ひろゆき",
           avatar: "https://cdn.taka.ml/images/hiroyuki.png",
         })
           .then(async(webhook)=>{
