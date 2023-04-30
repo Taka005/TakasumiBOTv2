@@ -1,4 +1,5 @@
 module.exports = async(client)=>{
+  const { ActivityType } = require("discord.js");
   const config = require("../../../config.json"); 
 
   client.user.setStatus("online");
@@ -7,12 +8,12 @@ module.exports = async(client)=>{
   setInterval(()=>{
     if(stats === 0){
       client.user.setActivity(`/help || ping:${client.ws.ping}ms`,{
-        type: "PLAYING"
+        type: ActivityType.Playing
       });
       stats = 1;
     }else if(stats === 1){
       client.user.setActivity(`${client.guilds.cache.size}server || ${client.guilds.cache.map((g)=>g.memberCount).reduce((a,c)=>a+c)}user`,{
-        type: "PLAYING"
+        type: ActivityType.Playing
       });
       stats = 0;
     }
