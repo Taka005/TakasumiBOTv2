@@ -1,11 +1,11 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "warn"){
     const user = interaction.options.getUser("user");
     const reason = interaction.options.getString("reason");
       
-    if(!interaction.member.permissions.has("MANAGE_GUILD")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",

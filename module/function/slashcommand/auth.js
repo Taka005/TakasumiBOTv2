@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "auth"){
     const type = interaction.options.getString("type");
@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
       "web": "YELLOW"
     };
 
-    if(!interaction.member.permissions.has("MANAGE_ROLES")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
@@ -31,9 +31,9 @@ module.exports = async(interaction)=>{
     });
 
     if(
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_ROLES")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageRoles)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)
     ) return await interaction.reply({
       embeds:[{
         author:{

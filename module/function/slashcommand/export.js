@@ -1,9 +1,9 @@
 module.exports = async(interaction)=>{
-  const { AttachmentBuilder ,ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { AttachmentBuilder ,ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "export"){
 
-    if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",

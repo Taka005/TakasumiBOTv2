@@ -1,8 +1,10 @@
 module.exports = async(message)=>{
+  const { PermissionFlagsBits } = require("discord.js");
   const db = require("../../lib/db");
+
   if(
-    !message.guild.members.me.permissionsIn(message.channel).has("VIEW_CHANNEL")||
-    !message.guild.members.me.permissionsIn(message.channel).has("SEND_MESSAGES")
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.ViewChannel)||
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.SendMessages)
   ) return;
 
   if(message.author.id === "302050872383242240"){

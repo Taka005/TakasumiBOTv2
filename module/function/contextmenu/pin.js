@@ -1,4 +1,5 @@
 module.exports = async(interaction)=>{
+  const { PermissionFlagsBits } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "メッセージをピン留め"){
@@ -17,8 +18,8 @@ module.exports = async(interaction)=>{
     });
 
     if(
-      !interaction.member.permissions.has("MANAGE_CHANNELS")||
-      !interaction.member.permissions.has("MANAGE_MESSAGES")
+      !interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)||
+      !interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)
     ) return await interaction.reply({
       embeds:[{
         author:{
@@ -32,10 +33,10 @@ module.exports = async(interaction)=>{
     });
 
     if(
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_MESSAGES")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_CHANNELS")
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageMessages)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageChannels)
     ) return await interaction.reply({
       embeds:[{
         author:{

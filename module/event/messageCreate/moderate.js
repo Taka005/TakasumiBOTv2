@@ -1,13 +1,14 @@
 const time = [];
 
 module.exports = async(message)=>{
+  const { PermissionFlagsBits } = require("discord.js");
   const db = require("../../lib/db");
 
   if(
     message.author.bot||
-    !message.guild.members.me.permissionsIn(message.channel).has("VIEW_CHANNEL")||
-    !message.guild.members.me.permissionsIn(message.channel).has("SEND_MESSAGES")||
-    !message.guild.members.me.permissionsIn(message.channel).has("MANAGE_MESSAGES")
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.ViewChannel)||
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.SendMessages)||
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.ManageMessages)
   ) return;
 
   const data = await db(`SELECT * FROM moderate WHERE id = ${message.guild.id} LIMIT 1;`);

@@ -1,12 +1,12 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
     if(!interaction.isChatInputCommand()) return;
     if(interaction.commandName === "timeout"){
       const user = interaction.options.getUser("user");
       const time = interaction.options.getInteger("time")||30
       const reason = interaction.options.getString("reason")||`${interaction.user.tag}によってタイムアウト`;
       
-      if(!interaction.member.permissions.has("MODERATE_MEMBERS")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.ModerateMembers)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
   
-      if(!interaction.guild.members.me.permissionsIn(interaction.channel).has("MODERATE_MEMBERS")) return await interaction.reply({
+      if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ModerateMembers)) return await interaction.reply({
         embeds:[{
           author:{
             name: "BOTに権限がありません",

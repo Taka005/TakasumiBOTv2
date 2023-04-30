@@ -1,12 +1,12 @@
 module.exports = async(interaction,client)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ban"){
     const id = interaction.options.getString("id");
     const reason = interaction.options.getString("reason")||`${interaction.user.tag}によってBAN`;
     const days = interaction.options.getInteger("days");
     
-    if(!interaction.member.permissions.has("BAN_MEMBERS")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.BanMembers)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
@@ -24,7 +24,7 @@ module.exports = async(interaction,client)=>{
       ephemeral: true
     });
 
-    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has("BAN_MEMBERS")) return await interaction.reply({
+    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.BanMembers)) return await interaction.reply({
       embeds:[{
         author:{
           name: "BOTに権限がありません",

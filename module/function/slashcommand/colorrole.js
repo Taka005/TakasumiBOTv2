@@ -1,11 +1,11 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "colorrole"){
     const name = interaction.options.getString("name");
     const color = interaction.options.getString("color");
 
-    if(!interaction.member.permissions.has("MANAGE_ROLES")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_ROLES")) return await interaction.reply({
+    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageRoles)) return await interaction.reply({
       embeds:[{
         author:{
           name: "BOTに権限がありません",

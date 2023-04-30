@@ -1,11 +1,11 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "del"){
     const number = interaction.options.getInteger("number");
     const user = interaction.options.getUser("user");
 
-    if(!interaction.member.permissions.has("MANAGE_MESSAGES")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
@@ -24,8 +24,8 @@ module.exports = async(interaction)=>{
     });
 
     if(
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_MESSAGES")
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageMessages)
     ) return await interaction.reply({
       embeds:[{
         author:{

@@ -1,12 +1,13 @@
 module.exports = async(message)=>{
   const db = require("../../lib/db");
+  const { PermissionFlagsBits } = require("discord.js");
   const time = require("../../lib/time");
   const limit = require("../../lib/limit");
 
   if(
     message.author.bot||
-    !message.guild.members.me.permissionsIn(message.channel).has("VIEW_CHANNEL")||
-    !message.guild.members.me.permissionsIn(message.channel).has("SEND_MESSAGES")
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.ViewChannel)||
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.SendMessages)
   ) return;
 
   let data = await db(`SELECT * FROM afk WHERE user = ${message.author.id} LIMIT 1;`);

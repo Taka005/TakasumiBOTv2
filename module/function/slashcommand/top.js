@@ -1,11 +1,11 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "top"){
 
     if(
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("READ_MESSAGE_HISTORY")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ReadMessageHistory)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)
     ) return await interaction.reply({
       embeds:[{
         author:{

@@ -1,10 +1,10 @@
 module.exports = async(interaction)=>{
   const db = require("../../lib/db");
-  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "global"){
 
-    if(!interaction.member.permissions.has("MANAGE_CHANNELS")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
@@ -23,11 +23,11 @@ module.exports = async(interaction)=>{
     });
 
     if(
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_WEBHOOKS")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("ADD_REACTIONS")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_CHANNELS")
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageWebhooks)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.AddReactions)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageChannels)
     ) return await interaction.reply({
       embeds:[{
         author:{

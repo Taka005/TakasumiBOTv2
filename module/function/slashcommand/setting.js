@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "setting"){
@@ -45,7 +45,7 @@ module.exports = async(interaction)=>{
     }else if(interaction.options.getSubcommand() === "bump"){//BUMPロール設定
       const role = interaction.options.getRole("role");
 
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
@@ -64,8 +64,8 @@ module.exports = async(interaction)=>{
       });
 
       if(
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)
       ) return await interaction.reply({
         embeds:[{
           author:{
@@ -138,7 +138,7 @@ module.exports = async(interaction)=>{
     }else if(interaction.options.getSubcommand() === "dissoku"){//Dissokuロール設定
       const role = interaction.options.getRole("role");
 
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
@@ -157,8 +157,8 @@ module.exports = async(interaction)=>{
       });
 
       if(
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)
       ) return await interaction.reply({
         embeds:[{
           author:{
@@ -230,7 +230,7 @@ module.exports = async(interaction)=>{
     }else if(interaction.options.getSubcommand() === "join"){//join
       const message = interaction.options.getString("message");
 
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
@@ -249,9 +249,9 @@ module.exports = async(interaction)=>{
       });
 
       if(
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_WEBHOOKS")
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageWebhooks)
       ) return await interaction.reply({
         embeds:[{
           author:{
@@ -370,7 +370,7 @@ module.exports = async(interaction)=>{
     }else if(interaction.options.getSubcommand() === "leave"){//leave
       const message = interaction.options.getString("message");
 
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
@@ -389,9 +389,9 @@ module.exports = async(interaction)=>{
       });
 
       if(
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_WEBHOOKS")
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageWebhooks)
       ) return await interaction.reply({
         embeds:[{
           author:{
@@ -509,7 +509,7 @@ module.exports = async(interaction)=>{
       }
     }else if(interaction.options.getSubcommand() === "ignore"){//ignore
     
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
@@ -624,7 +624,7 @@ module.exports = async(interaction)=>{
       });
     }else if(interaction.options.getSubcommand() === "delete"){//delete
 
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
