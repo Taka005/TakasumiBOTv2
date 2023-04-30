@@ -32,6 +32,10 @@ module.exports = async(interaction)=>{
               value: "メッセージ展開、Bump通知、Dissoku通知の無効化と有効化を切り替えます\n有効にするとBump通知、Dissoku通知の設定情報は削除されます"
             },
             {
+              name: "/setting lang",
+              value: "BOTの表示言語を日本語と英語で切り替えます"
+            },
+            {
               name: "/setting info",
               value: "データベースの設定状況を表示します"
             },
@@ -324,7 +328,8 @@ module.exports = async(interaction)=>{
         });
 
         await interaction.deferReply();
-        await interaction.channel.createWebhook("TakasumiBOT Join",{
+        await interaction.channel.createWebhook({
+          name: "TakasumiBOT Join",
           avatar: "https://cdn.taka.ml/images/icon.png",
         })
           .then(async(webhook)=>{
@@ -464,7 +469,8 @@ module.exports = async(interaction)=>{
         });
 
         await interaction.deferReply();
-        await interaction.channel.createWebhook("TakasumiBOT Leave",{
+        await interaction.channel.createWebhook({
+          name: "TakasumiBOT Leave",
           avatar: "https://cdn.taka.ml/images/icon.png",
         })
           .then(async(webhook)=>{
@@ -549,6 +555,49 @@ module.exports = async(interaction)=>{
           embeds:[{
             author:{
               name: "無効にしました",
+              icon_url: "https://cdn.taka.ml/images/system/success.png"
+            },
+            color: Colors.Green
+          }]
+        });
+      }
+    }else if(interaction.options.getSubcommand() === "lang"){//lang
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
+        embeds:[{
+          author:{
+            name: "権限がありません",
+            icon_url: "https://cdn.taka.ml/images/system/error.png"
+          },
+          color: Colors.Red,
+          description: "このコマンドを実行するには以下の権限を持っている必要があります",
+          fields:[
+            {
+              name: "必要な権限",
+              value: "```管理者```"
+            }
+          ]
+        }],
+        ephemeral: true
+      });
+
+      const data = await db(`SELECT * FROM lang WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      if(data[0]){
+        await db(`DELETE FROM lang WHERE id = ${interaction.guild.id};`);
+        await interaction.reply({
+          embeds:[{
+            author:{
+              name: "言語を日本語に切り替えました",
+              icon_url: "https://cdn.taka.ml/images/system/success.png"
+            },
+            color: Colors.Green
+          }]
+        });
+      }else{
+        await db(`INSERT INTO lang (id, time) VALUES("${interaction.guild.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),time = VALUES (time);`);
+        await interaction.reply({
+          embeds:[{
+            author:{
+              name: "言語を英語に切り替えました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
             color: Colors.Green

@@ -580,6 +580,10 @@ module.exports = async(client)=>{
                 .setDescription("Bump通知、Dissoku通知、メッセージ展開の無効化と有効化を切り替えます"))
             .addSubcommand(subcommand =>
               subcommand
+                .setName("lang")
+                .setDescription("BOTの表示言語を英語と日本語で切り替えます"))
+            .addSubcommand(subcommand =>
+              subcommand
                 .setName("info")
                 .setDescription("データベースの設定状況を表示します"))
             .addSubcommand(subcommand =>

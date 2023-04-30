@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { AttachmentBuilder, Colors } = require("discord.js");
+  const lang = require("../../lib/lang");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "5000"){
     const top = interaction.options.getString("top");
@@ -20,7 +21,7 @@ module.exports = async(interaction)=>{
       await interaction.editReply({
         embeds:[{
           author:{
-            name: "生成しました",
+            name: await lang(interaction.guild.id,"command.5000.generated"),
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           color: Colors.Green,

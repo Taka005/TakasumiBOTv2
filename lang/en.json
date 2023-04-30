@@ -1,3 +1,9 @@
 {
-    
+    "ErrorCode":"Error Code",
+    "SupportServer":"Support Server",
+    "command":{
+        "5000":{
+            "generated":"Generated"
+        }
+    }
 }
