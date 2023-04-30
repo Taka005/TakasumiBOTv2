@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
   const isUrl = require("../../lib/isUrl");
   const fetch = require("node-fetch");
-  const { AttachmentBuilder } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "webshot"){
     const url = interaction.options.getString("url");
@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
           name: "スクリーンショットできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "URLを指定する必要があります"
       }],
       ephemeral: true
@@ -29,12 +29,16 @@ module.exports = async(interaction)=>{
             name: "スクリーンショットを撮りました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: "GREEN",
+          color: Colors.Green,
           image:{
             url: "attachment://screenshot.png"
           },
         }],
-        files: [new AttachmentBuilder(data.stream(),"screenshot.png")]
+        files: [
+          new AttachmentBuilder()
+            .setFile(data.stream())
+            .setName("screenshot.png")
+        ]
       });
     }catch(error){
       await interaction.editReply({
@@ -43,7 +47,7 @@ module.exports = async(interaction)=>{
             name: "スクリーンショットできませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "URLを変えてやり直してください"
         }],
         ephemeral: true

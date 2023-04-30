@@ -1,9 +1,10 @@
 module.exports = async(message)=>{
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
 
   if(
-    !message.guild.members.me.permissionsIn(message.channel).has("VIEW_CHANNEL")||
-    !message.guild.members.me.permissionsIn(message.channel).has("SEND_MESSAGES")
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.ViewChannel)||
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.SendMessages)
   ) return;
 
   if(message.author.id === "761562078095867916"){
@@ -17,7 +18,7 @@ module.exports = async(message)=>{
       const data = await db(`SELECT * FROM dissoku WHERE server = ${message.guild.id} LIMIT 1;`);
       await message.channel.send({
         embeds:[{
-          color: "BLUE",
+          color: Colors.Blue,
           title: "UP通知",
           description: "UPを受信しました\n1時間後に通知します"
         }]  
@@ -28,7 +29,7 @@ module.exports = async(message)=>{
           await message.channel.send({
             content: `<@&${data[0].role}>`,
             embeds:[{
-              color: "BLUE",
+              color: Colors.Blue,
               title: "UP通知",
               description: "DISSOKUの時間です\n`/dissoku up`でサーバーの表示順位を上げよう！"
             }]  
@@ -38,7 +39,7 @@ module.exports = async(message)=>{
         setTimeout(async()=>{
           await message.channel.send({
             embeds:[{
-              color: "BLUE",
+              color: Colors.Blue,
               title: "UP通知",
               description: "DISSOKUの時間です\n`/dissoku up`でサーバーの表示順位を上げよう！"
             }]  

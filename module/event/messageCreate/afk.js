@@ -1,12 +1,13 @@
 module.exports = async(message)=>{
   const db = require("../../lib/db");
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const time = require("../../lib/time");
   const limit = require("../../lib/limit");
 
   if(
     message.author.bot||
-    !message.guild.members.me.permissionsIn(message.channel).has("VIEW_CHANNEL")||
-    !message.guild.members.me.permissionsIn(message.channel).has("SEND_MESSAGES")
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.ViewChannel)||
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.SendMessages)
   ) return;
 
   let data = await db(`SELECT * FROM afk WHERE user = ${message.author.id} LIMIT 1;`);
@@ -18,7 +19,7 @@ module.exports = async(message)=>{
           name: "AFKを無効にしました",
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
-        color: "GREEN",
+        color: Colors.Green,
         description: `メンションは${data[0].mention}件ありました\n${time(new Date()-new Date(data[0].time))}間AFKでした`
       }]
     }).catch(()=>{})
@@ -36,7 +37,7 @@ module.exports = async(message)=>{
               name: "AFK中です",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN",
+            color: Colors.Green,
             description: data[0].message
           }]
         }).catch(()=>{})

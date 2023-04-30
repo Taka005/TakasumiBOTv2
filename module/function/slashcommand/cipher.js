@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const crypto = require("crypto");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "cipher"){
@@ -19,7 +19,7 @@ module.exports = async(interaction)=>{
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
           description: `暗号: \`\`\`${cipher.final("hex")}\`\`\`\n復号鍵: ||\`${key}\`||`,
-            color: "GREEN"
+            color: Colors.Green
           }]
         });
       }catch(error){
@@ -29,7 +29,7 @@ module.exports = async(interaction)=>{
               name: "暗号が生成できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",
@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
           description: `復号: \`\`\`${decipher.final("utf8")}\`\`\`\n復号鍵: ||\`${key}\`||`,
-            color: "GREEN"
+            color: Colors.Green
           }]
         });
       }catch(error){
@@ -69,7 +69,7 @@ module.exports = async(interaction)=>{
               name: "暗号が復号できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "復号鍵が間違っている可能性があります",
             fields:[
               {

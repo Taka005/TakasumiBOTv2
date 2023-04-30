@@ -1,15 +1,15 @@
 module.exports = async(interaction)=>{
-  const { AttachmentBuilder ,ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { AttachmentBuilder ,ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "export"){
 
-    if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -61,7 +61,6 @@ module.exports = async(interaction)=>{
         content:"サーバーのデータをJSON形式に出力しました",
         files:[
           new AttachmentBuilder()
-            .setDescription("データは慎重に扱ってください") 
             .setFile(data) 
             .setName("SERVER_JSON_FILE.json")
         ] 
@@ -73,7 +72,7 @@ module.exports = async(interaction)=>{
             name: "出力に失敗しました",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "BOTの権限が不足しているため正しく出力できません",
           fields:[
             {

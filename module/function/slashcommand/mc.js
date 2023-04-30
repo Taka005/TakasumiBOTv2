@@ -1,4 +1,5 @@
 module.exports = async(interaction)=>{
+  const { Colors } = require("discord.js");
   const fetch = require("node-fetch");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "mc"){
@@ -16,7 +17,7 @@ module.exports = async(interaction)=>{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "無効なホスト名です"
         }]
       });
@@ -27,7 +28,7 @@ module.exports = async(interaction)=>{
             embeds:[{
               title: ip,
               url: `https://mcsrvstat.us/server/${ip}`,
-              color: "GREEN",
+              color: Colors.Green,
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
@@ -65,7 +66,7 @@ module.exports = async(interaction)=>{
             embeds:[{
               title: ip,
               url: `https://mcsrvstat.us/server/${ip}`,
-              color: "GREEN",
+              color: Colors.Green,
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
@@ -84,7 +85,7 @@ module.exports = async(interaction)=>{
               name: "検索内容を取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "指定したアドレスが間違っている可能性があります"
           }]
         });
@@ -99,7 +100,7 @@ module.exports = async(interaction)=>{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "無効なホスト名です"
         }]
       });
@@ -110,7 +111,7 @@ module.exports = async(interaction)=>{
             embeds:[{
               title: ip,
               url: `https://mcsrvstat.us/bedrock/${ip}`,
-              color: "GREEN",
+              color: Colors.Green,
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
@@ -153,7 +154,7 @@ module.exports = async(interaction)=>{
             embeds:[{
               title: ip,
               url: `https://mcsrvstat.us/server/${ip}`,
-              color: "GREEN",
+              color: Colors.Green,
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
@@ -172,7 +173,7 @@ module.exports = async(interaction)=>{
               name: "検索内容を取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "指定したアドレスが間違っている可能性があります"
           }]
         });

@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("guide_")){
     const role = interaction.customId.split("_");
@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
           name: "既に同意済みです",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このサーバーのガイドラインに既に同意しているようです"
       }],
       ephemeral: true
@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
             description: "このサーバーのガイドラインに同意しました\nこれでロールが付与され、晴れてサーバーの一員となりました",
-            color: "GREEN"
+            color: Colors.Green
           }],
           ephemeral: true
         });
@@ -37,7 +37,7 @@ module.exports = async(interaction)=>{
               name: "同意に失敗しました",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
             fields:[
               {

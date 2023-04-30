@@ -1,5 +1,5 @@
 module.exports = async(guild,client)=>{
-  const { ChannelType, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ChannelType, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   let find = 0;
   guild.channels.cache.map((channel)=>{
     if(find === 0){
@@ -10,7 +10,7 @@ module.exports = async(guild,client)=>{
       ){
         channel.send({
           embeds:[{
-            color: "GREEN",
+            color: Colors.Green,
             thumbnail:{
               url: "https://cdn.taka.ml/images/bot.png"
             },

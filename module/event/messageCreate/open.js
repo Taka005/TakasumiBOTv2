@@ -1,11 +1,12 @@
 module.exports = async(message,client)=>{
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const limit = require("../../lib/limit");
 
   if(
     message.author.bot||
-    !message.guild.members.me.permissionsIn(message.channel).has("VIEW_CHANNEL")||
-    !message.guild.members.me.permissionsIn(message.channel).has("SEND_MESSAGES")
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.ViewChannel)||
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.SendMessages)
   ) return;
   
   if(message.content.match(/https?:\/\/(?:ptb\.|canary\.)?(?:discord|discordapp)\.com\/channels\/\d{18,19}\/\d{18,19}\/\d{18,19}/g)){
@@ -17,13 +18,13 @@ module.exports = async(message,client)=>{
     const id = url[2].split("/");
     const channel = client.channels.cache.get(id[1]);
     if(!channel) return;
-    const msg = await channel.messages.fetch(id[2])
+    const msg = await channel.messages.fetch({"message":id[2]})
       .catch(()=>{})
 
     if(!msg.attachments?.first()){
       message.channel.send({//添付ファイルなし
         embeds:[{
-          color: msg.member?.displayHexColor||"WHITE",
+          color: msg.member?.displayHexColor||Colors.White,
           author:{
             name: msg.author.tag,
             icon_url: msg.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
@@ -39,7 +40,7 @@ module.exports = async(message,client)=>{
       const attachment = msg.attachments.map(attachment=>attachment.url)
       message.channel.send({//添付ファイルあり(画像)
         embeds:[{
-          color: msg.member?.displayHexColor||"WHITE",
+          color: msg.member?.displayHexColor||Colors.White,
           author:{
             name: msg.author.tag,
             icon_url: msg.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
@@ -58,7 +59,7 @@ module.exports = async(message,client)=>{
       const attachment = msg.attachments.map(attachment=>attachment?.url)
       message.channel.send({//添付ファイルあり(画像以外)
         embeds:[{
-          color: msg.member?.displayHexColor||"WHITE",
+          color: msg.member?.displayHexColor||Colors.White,
           author:{
             name: msg.author.tag,
             icon_url: msg.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",

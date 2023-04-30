@@ -33,7 +33,7 @@ module.exports = async(message)=>{
       const msg = await reply_webhook.fetchMessage(message.reference.messageId);
       reference["message_id"] = msg.embeds[0].image.url.match(/\d{18,19}/g)[0];
     }catch{
-      const msg = await message.channel.messages.fetch(message.reference.messageId)
+      const msg = await message.channel.messages.fetch({"message":message.reference.messageId})
         .catch(()=>{});
       reference["message_id"] = msg.id;
     }

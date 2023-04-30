@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "setting"){
@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         embeds:[{
           title: "HELP 設定",
-          color: "GREEN",
+          color: Colors.Green,
           description: "設定の変更には`管理者`の権限が必要です",
           fields:[
             {
@@ -45,13 +45,13 @@ module.exports = async(interaction)=>{
     }else if(interaction.options.getSubcommand() === "bump"){//BUMPロール設定
       const role = interaction.options.getRole("role");
 
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -64,15 +64,15 @@ module.exports = async(interaction)=>{
       });
 
       if(
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)
       ) return await interaction.reply({
         embeds:[{
           author:{
             name: "BOTに権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドはBOTに以下の権限が必要です",
           fields:[
             {
@@ -92,7 +92,7 @@ module.exports = async(interaction)=>{
               name: "通知ロールを無効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "通知ロールが設定されていません"
           }],
           ephemeral: true
@@ -105,7 +105,7 @@ module.exports = async(interaction)=>{
               name: "通知ロールを無効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN"
+            color: Colors.Green
           }]
         });
       }else{
@@ -116,7 +116,7 @@ module.exports = async(interaction)=>{
               name: "通知ロールを有効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "このサーバーにDisboardが参加していません\nもし参加している場合はDisboardを操作してみてください"
           }],
           ephemeral: true
@@ -129,7 +129,7 @@ module.exports = async(interaction)=>{
               name: "通知ロールを有効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN",
+            color: Colors.Green,
             description: `Bump通知に<@&${role.id}>に設定しました`
           }]
         });
@@ -138,13 +138,13 @@ module.exports = async(interaction)=>{
     }else if(interaction.options.getSubcommand() === "dissoku"){//Dissokuロール設定
       const role = interaction.options.getRole("role");
 
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -157,15 +157,15 @@ module.exports = async(interaction)=>{
       });
 
       if(
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)
       ) return await interaction.reply({
         embeds:[{
           author:{
             name: "BOTに権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドはBOTに以下の権限が必要です\n```チャンネルの閲覧\nメッセージの送信```",
           fields:[
             {
@@ -185,7 +185,7 @@ module.exports = async(interaction)=>{
               name: "通知ロールを無効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "通知ロールが設定されていません"
           }],
           ephemeral: true
@@ -198,7 +198,7 @@ module.exports = async(interaction)=>{
               name: "通知ロールを無効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN"
+            color: Colors.Green
           }]
         });
       }else{
@@ -209,7 +209,7 @@ module.exports = async(interaction)=>{
               name: "通知ロールを有効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "このサーバーにDissokuが参加していません\nもし参加している場合はDissokuを操作してみてください"
           }],
           ephemeral: true
@@ -222,7 +222,7 @@ module.exports = async(interaction)=>{
               name: "通知ロールを有効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN",
+            color: Colors.Green,
             description: `Dissoku通知に<@&${role.id}>に設定しました`
           }]
         });
@@ -230,13 +230,13 @@ module.exports = async(interaction)=>{
     }else if(interaction.options.getSubcommand() === "join"){//join
       const message = interaction.options.getString("message");
 
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -249,16 +249,16 @@ module.exports = async(interaction)=>{
       });
 
       if(
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_WEBHOOKS")
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageWebhooks)
       ) return await interaction.reply({
         embeds:[{
           author:{
             name: "BOTに権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドはBOTに以下の権限が必要です",
           fields:[
             {
@@ -278,7 +278,7 @@ module.exports = async(interaction)=>{
               name: "参加メッセージを無効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "参加メッセージが設定されていません"
           }],
           ephemeral: true
@@ -295,7 +295,7 @@ module.exports = async(interaction)=>{
               name: "参加メッセージを無効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN"
+            color: Colors.Green
           }]
         });
       }else{
@@ -305,7 +305,7 @@ module.exports = async(interaction)=>{
               name: "参加メッセージを設定できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "メッセージは100文字以内にしてください"
           }],
           ephemeral: true
@@ -317,7 +317,7 @@ module.exports = async(interaction)=>{
               name: "参加メッセージを設定できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "メッセージを送信するチャンネルはテキストチャンネルにしてください"
           }],
           ephemeral: true
@@ -335,7 +335,7 @@ module.exports = async(interaction)=>{
                   name: "参加メッセージを設定しました",
                   icon_url: "https://cdn.taka.ml/images/system/success.png"
                 },
-                color: "GREEN",
+                color: Colors.Green,
                 description: `送信メッセージ: ${message}`
               }]
             });
@@ -347,7 +347,7 @@ module.exports = async(interaction)=>{
                   name: "参加メッセージを設定できませんでした",
                   icon_url: "https://cdn.taka.ml/images/system/error.png"
                 },
-                color: "RED",
+                color: Colors.Red,
                 description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
                 fields:[
                   {
@@ -370,13 +370,13 @@ module.exports = async(interaction)=>{
     }else if(interaction.options.getSubcommand() === "leave"){//leave
       const message = interaction.options.getString("message");
 
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -389,16 +389,16 @@ module.exports = async(interaction)=>{
       });
 
       if(
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")||
-        !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_WEBHOOKS")
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageWebhooks)
       ) return await interaction.reply({
         embeds:[{
           author:{
             name: "BOTに権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドはBOTに以下の権限が必要です",
           fields:[
             {
@@ -418,7 +418,7 @@ module.exports = async(interaction)=>{
               name: "退出メッセージを無効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "退出メッセージが設定されていません"
           }],
           ephemeral: true
@@ -435,7 +435,7 @@ module.exports = async(interaction)=>{
               name: "退出メッセージを無効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN"
+            color: Colors.Green
           }]
         });
       }else{
@@ -445,7 +445,7 @@ module.exports = async(interaction)=>{
               name: "退出メッセージを設定できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "メッセージは100文字以内にしてください"
           }],
           ephemeral: true
@@ -457,7 +457,7 @@ module.exports = async(interaction)=>{
               name: "退出メッセージを設定できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "メッセージを送信するチャンネルはテキストチャンネルにしてください"
           }],
           ephemeral: true
@@ -475,7 +475,7 @@ module.exports = async(interaction)=>{
                   name: "退出メッセージを設定しました",
                   icon_url: "https://cdn.taka.ml/images/system/success.png"
                 },
-                color: "GREEN",
+                color: Colors.Green,
                 description: `送信メッセージ: ${message}`
               }]
             });
@@ -487,7 +487,7 @@ module.exports = async(interaction)=>{
                   name: "退出メッセージを設定できませんでした",
                   icon_url: "https://cdn.taka.ml/images/system/error.png"
                 },
-                color: "RED",
+                color: Colors.Red,
                 description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
                 fields:[
                   {
@@ -509,13 +509,13 @@ module.exports = async(interaction)=>{
       }
     }else if(interaction.options.getSubcommand() === "ignore"){//ignore
     
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -539,7 +539,7 @@ module.exports = async(interaction)=>{
               name: "有効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN"
+            color: Colors.Green
           }]
         });
       }else{
@@ -551,7 +551,7 @@ module.exports = async(interaction)=>{
               name: "無効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN"
+            color: Colors.Green
           }]
         });
       }
@@ -572,7 +572,7 @@ module.exports = async(interaction)=>{
             name: "データベース設定状況",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: "GREEN",
+          color: Colors.Green,
           fields:[
             {
               name: "Bump通知",
@@ -624,13 +624,13 @@ module.exports = async(interaction)=>{
       });
     }else if(interaction.options.getSubcommand() === "delete"){//delete
 
-      if(!interaction.member.permissions.has("ADMINISTRATOR")) return await interaction.reply({
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -659,7 +659,7 @@ module.exports = async(interaction)=>{
             name: "全ての設定情報を削除しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: "GREEN"
+          color: Colors.Green
         }]
       });
     }

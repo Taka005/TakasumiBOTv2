@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
+  const { Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "wiki"){
     const word = interaction.options.getString("word");
@@ -12,7 +13,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           title: data.title,
           url: data.content_urls.desktop.page,
-          color: "GREEN",
+          color: Colors.Green,
           description: data.extract,
           footer:{
             text: "TakasumiBOT"
@@ -26,7 +27,7 @@ module.exports = async(interaction)=>{
             name: "検索内容を取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "検索ワードを変えて、もう一度実行してください"
         }],
         ephemeral: true

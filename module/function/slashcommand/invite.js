@@ -1,17 +1,17 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "invite"){
     const time = interaction.options.getInteger("time");
     const use = interaction.options.getInteger("use");
 
-    if(!interaction.member.permissions.has("CREATE_INSTANT_INVITE")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.CreateInstantInvite)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -23,13 +23,13 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
   
-    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has("CREATE_INSTANT_INVITE")) return await interaction.reply({
+    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.CreateInstantInvite)) return await interaction.reply({
       embeds:[{
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
               name: "招待リンクを作成できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",

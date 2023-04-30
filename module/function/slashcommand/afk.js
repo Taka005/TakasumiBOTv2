@@ -1,4 +1,5 @@
 module.exports = async(interaction)=>{
+  const { Colors } = require("discord.js");
   const db = require("../../lib/db");
   const time = require("../../lib/time");
   if(!interaction.isChatInputCommand()) return;
@@ -11,7 +12,7 @@ module.exports = async(interaction)=>{
           name: "メッセージが長すぎます",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "300文字未満になるように調整してください"
       }],
       ephemeral: true
@@ -26,7 +27,7 @@ module.exports = async(interaction)=>{
             name: "AFKを無効にしました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: "GREEN",
+          color: Colors.Green,
           description: `メンションは${data[0].mention}件ありました\n${time(new Date()-new Date(data[0].time))}秒間AFKでした`
         }]
       }); 
@@ -38,7 +39,7 @@ module.exports = async(interaction)=>{
             name: "AFKを有効にしました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: "GREEN"
+          color: Colors.Green
         }]
       });
     }

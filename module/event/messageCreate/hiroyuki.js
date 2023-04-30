@@ -159,7 +159,7 @@ module.exports = async(message)=>{
 
 function err(message,error){
   const db = require("../../lib/db");
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
 
   db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
   message.channel.send({
@@ -168,7 +168,7 @@ function err(message,error){
         name: "ひろゆき機能でエラーが発生しました",
         icon_url: "https://cdn.taka.ml/images/system/error.png"
       },
-      color: "RED",
+      color: Colors.Red,
       description: "エラーが発生したため、強制的に退出されました\n再度登録するには`/hiroyuki`を使用してください",
       fields:[
         {

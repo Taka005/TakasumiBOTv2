@@ -1,15 +1,15 @@
 module.exports = async(interaction,client)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "follow"){
 
-    if(!interaction.member.permissions.has("MANAGE_CHANNELS")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -21,13 +21,13 @@ module.exports = async(interaction,client)=>{
       ephemeral: true
     });
  
-    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_CHANNELS")) return await interaction.reply({
+    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "この機能はBOTに以下の権限が必要です",
         fields:[
           {
@@ -48,7 +48,7 @@ module.exports = async(interaction,client)=>{
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
             description: "このチャンネルでBOTをお知らせを受け取ることができます",
-            color: "GREEN"
+            color: Colors.Green
           }]
         });
       })
@@ -59,7 +59,7 @@ module.exports = async(interaction,client)=>{
               name: "フォローチャンネルを追加できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",

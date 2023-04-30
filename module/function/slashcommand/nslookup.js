@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
+  const { Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "nslookup"){
     const name = interaction.options.getString("name");
@@ -14,7 +15,7 @@ module.exports = async(interaction)=>{
             name: "DNS情報が取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "違うアドレスで試してください"
         }],
         ephemeral: true
@@ -26,7 +27,7 @@ module.exports = async(interaction)=>{
             name: `${name}の結果`,
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: "GREEN",
+          color: Colors.Green,
           description: `\`${data.Answer.map(address=>address.data).join("\n")}\``,
           footer:{
             text: "TakasumiBOT"
@@ -40,7 +41,7 @@ module.exports = async(interaction)=>{
             name: "DNS情報が取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "違うアドレスを試してください"
         }],
         ephemeral: true

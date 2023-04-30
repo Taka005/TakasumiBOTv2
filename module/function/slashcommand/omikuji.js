@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { AttachmentBuilder } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   const random = require("../../lib/random");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "omikuji"){
@@ -44,12 +44,16 @@ module.exports = async(interaction)=>{
 
     await interaction.editReply({
       embeds:[{
-        color: "RANDOM",
+        color: Colors.Green,
         image:{
           url: "attachment://omikuji.png"
         }
       }],
-      files: [new AttachmentBuilder(image.stream(),"omikuji.png")]
+      files: [
+        new AttachmentBuilder()
+          .setFile(image.stream())
+          .setName("omikuji.png")
+      ]
     });
   }
 }

@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
+  const { Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "translate"){
     const text = interaction.options.getString("text");
@@ -11,7 +12,7 @@ module.exports = async(interaction)=>{
           name: "翻訳できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "翻訳文字数は、2000文字以下です",
         footer:{
           text: "Google Translate",
@@ -32,7 +33,7 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         embeds:[{
           title: "翻訳結果",
-          color: "BLUE",
+          color: Colors.Blue,
           description: translate.join(""),
           footer:{
             text: `Google Translate [${data.src}]->[${lang}]`,
@@ -47,7 +48,7 @@ module.exports = async(interaction)=>{
             name: "翻訳できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "翻訳文字を変えて、もう一度実行してください",
           footer:{
             text: "Google Translate",

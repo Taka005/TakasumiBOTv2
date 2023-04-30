@@ -1,4 +1,5 @@
 module.exports = async(interaction)=>{
+  const { Colors } = require("discord.js");
   const { admin } = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "debug"){
@@ -13,7 +14,7 @@ module.exports = async(interaction)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドは関係者以外実行できません"
       }],
       ephemeral: true
@@ -22,26 +23,26 @@ module.exports = async(interaction)=>{
     if(type === "content"){
       try{
         if(channel){
-          const msg = await channel.messages.fetch(id);
+          const msg = await channel.messages.fetch({"message":id});
           await interaction.reply({
             embeds:[{
               author:{
                 name: "取得しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: "GREEN",
+              color: Colors.Green,
               description: `\`\`\`json\n${JSON.stringify(msg,null,"  ")}\`\`\``
             }]
           });
         }else{
-          const msg = await interaction.channel.messages.fetch(id);
+          const msg = await interaction.channel.messages.fetch({"message":id});
           await interaction.reply({
             embeds:[{
               author:{
                 name: "取得しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: "GREEN",
+              color: Colors.Green,
               description: `\`\`\`json\n${JSON.stringify(msg,null,"  ")}\`\`\``
             }]
           });
@@ -53,7 +54,7 @@ module.exports = async(interaction)=>{
               name: "取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "メッセージが存在しません",
             fields:[
               {
@@ -75,7 +76,7 @@ module.exports = async(interaction)=>{
               name: "送信できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "メッセージオブジェクトが無効です",
             fields:[
               {
@@ -90,7 +91,7 @@ module.exports = async(interaction)=>{
     }else if(type === "edit"){
       try{
         if(channel){
-          const msg = await channel.messages.fetch(id);
+          const msg = await channel.messages.fetch({"message":id});
           await msg.edit(JSON.parse(json));
           await interaction.reply({
             embeds:[{
@@ -98,11 +99,11 @@ module.exports = async(interaction)=>{
                 name: "編集しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: "GREEN"
+              color: Colors.Green
             }]
           });
         }else{
-          const msg = await interaction.channel.messages.fetch(id);
+          const msg = await interaction.channel.messages.fetch({"message":id});
           await msg.edit(JSON.parse(json));
           await interaction.reply({
             embeds:[{
@@ -110,7 +111,7 @@ module.exports = async(interaction)=>{
                 name: "編集しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: "GREEN"
+              color: Colors.Green
             }]
           });
         }
@@ -121,7 +122,7 @@ module.exports = async(interaction)=>{
               name: "編集できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "メッセージオブジェクトまたは、メッセージが取得できません",
             fields:[
               {
@@ -136,7 +137,7 @@ module.exports = async(interaction)=>{
     }else if(type === "delete"){
       try{
         if(channel){
-          const msg = await channel.messages.fetch(id);
+          const msg = await channel.messages.fetch({"message":id});
           msg.delete();
           await interaction.reply({
             embeds:[{
@@ -144,11 +145,11 @@ module.exports = async(interaction)=>{
                 name: "削除しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: "GREEN"
+              color: Colors.Green
             }]
           });
         }else{
-          const msg = await interaction.channel.messages.fetch(id);
+          const msg = await interaction.channel.messages.fetch({"message":id});
           msg.delete();
           await interaction.reply({
             embeds:[{
@@ -156,7 +157,7 @@ module.exports = async(interaction)=>{
                 name: "削除しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: "GREEN"
+              color: Colors.Green
             }]
           });
         }
@@ -167,7 +168,7 @@ module.exports = async(interaction)=>{
               name: "取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "メッセージが存在しません",
             fields:[
               {

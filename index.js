@@ -38,7 +38,7 @@ process.on("uncaughtException",async(error)=>{
 
   await client.channels.cache.get(config.error).send({
     embeds:[{
-      color: "RED",
+      color: Colors.Red,
       description: `\`\`\`js\n${error.stack}\`\`\``,
       timestamp: new Date()
     }]

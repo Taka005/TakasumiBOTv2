@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { AttachmentBuilder } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "5000"){
     const top = interaction.options.getString("top");
@@ -23,12 +23,16 @@ module.exports = async(interaction)=>{
             name: "生成しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: "GREEN",
+          color: Colors.Green,
           image:{
             url: "attachment://5000.png"
           },
         }],
-        files: [new AttachmentBuilder(image.stream(),"5000.png")]
+        files: [
+          new AttachmentBuilder()
+            .setFile(image.stream())
+            .setName("5000.png")
+        ]
       });
     }catch{
       await interaction.editReply({
@@ -37,7 +41,7 @@ module.exports = async(interaction)=>{
             name: "生成出来ませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "もう一度やり直してください"
         }]
       });

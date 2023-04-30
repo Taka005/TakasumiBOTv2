@@ -1,12 +1,12 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const boost = require("../../lib/boost");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "server"){
 
     await interaction.reply({
       embeds:[{
-        color: "GREEN",
+        color: Colors.Green,
         author:{
           name: `${interaction.guild.name}の情報`,
           icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

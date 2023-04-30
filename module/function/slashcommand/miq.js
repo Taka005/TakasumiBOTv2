@@ -1,4 +1,5 @@
 module.exports = async(interaction)=>{
+  const { Colors } = require("discord.js");
   const fetch = require("node-fetch");
   const { AttachmentBuilder } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
@@ -11,7 +12,11 @@ module.exports = async(interaction)=>{
         .then(res=>res.blob())
   
       await interaction.editReply({
-        files: [new AttachmentBuilder(image.stream(),"miq.png")]
+        files: [
+          new AttachmentBuilder()
+            .setFile(image.stream())
+            .setName("miq.png")
+        ]
       });
     }catch{
       await interaction.editReply({
@@ -20,7 +25,7 @@ module.exports = async(interaction)=>{
             name: "生成できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "テキストを変えてやり直してください"
         }]
       });

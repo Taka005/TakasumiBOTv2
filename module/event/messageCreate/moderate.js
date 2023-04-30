@@ -1,13 +1,14 @@
 const time = [];
 
 module.exports = async(message)=>{
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
 
   if(
     message.author.bot||
-    !message.guild.members.me.permissionsIn(message.channel).has("VIEW_CHANNEL")||
-    !message.guild.members.me.permissionsIn(message.channel).has("SEND_MESSAGES")||
-    !message.guild.members.me.permissionsIn(message.channel).has("MANAGE_MESSAGES")
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.ViewChannel)||
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.SendMessages)||
+    !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.ManageMessages)
   ) return;
 
   const data = await db(`SELECT * FROM moderate WHERE id = ${message.guild.id} LIMIT 1;`);
@@ -29,7 +30,7 @@ module.exports = async(message)=>{
               },
               description: "メッセージの文字数が多すぎたため、メッセージを削除しました",
               timestamp: new Date(),
-              color: "YELLOW"
+              color: Colors.Yellow
             }]
         }).catch(()=>{})
       }
@@ -46,7 +47,7 @@ module.exports = async(message)=>{
             },
             description: "スパムを検知したため、メッセージを削除しました",
             timestamp: new Date(),
-            color: "YELLOW"
+            color: Colors.Yellow
           }]
         }).catch(()=>{})
         return time[message.author.id] = [new Date(),false];
@@ -66,7 +67,7 @@ module.exports = async(message)=>{
               },
               description: "メッセージの文字数が多すぎたため、メッセージを削除しました",
               timestamp: new Date(),
-              color: "YELLOW"
+              color: Colors.Yellow
             }]
         }).catch(()=>{})
       }
@@ -83,7 +84,7 @@ module.exports = async(message)=>{
             },
             description: "スパムを検知したため、メッセージを削除しました",
             timestamp: new Date(),
-            color: "YELLOW"
+            color: Colors.Yellow
           }]
         }).catch(()=>{})
         return time[message.author.id] = [new Date(),false];
@@ -103,7 +104,7 @@ module.exports = async(message)=>{
               },
               description: "メッセージの文字数が多すぎたため、メッセージを削除しました",
               timestamp: new Date(),
-              color: "YELLOW"
+              color: Colors.Yellow
             }]
         }).catch(()=>{})
       }
@@ -120,7 +121,7 @@ module.exports = async(message)=>{
             },
             description: "スパムを検知したため、メッセージを削除しました",
             timestamp: new Date(),
-            color: "YELLOW"
+            color: Colors.Yellow
           }]
         }).catch(()=>{})
         return time[message.author.id] = [new Date(),false];
@@ -143,7 +144,7 @@ module.exports = async(message)=>{
           },
           description: "メッセージにトークンが含まれていたため、メッセージを削除しました",
           timestamp: new Date(),
-          color: "YELLOW"
+          color: Colors.Yellow
         }]
       }).catch(()=>{})
     }

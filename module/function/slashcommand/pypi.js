@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
+  const { Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "pypi"){
     const name = interaction.options.getString("name");
@@ -13,7 +14,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           title: pkg.info.name,
           url: pkg.info.package_url,
-          color: "GREEN",
+          color: Colors.Green,
           description: pkg.info.summary,
           thumbnail:{
             url: "https://cdn.taka.ml/images/pypi.png",
@@ -57,7 +58,7 @@ module.exports = async(interaction)=>{
             name: "パッケージが取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "検索ワードを変えて、もう一度実行してください"
         }]
       });

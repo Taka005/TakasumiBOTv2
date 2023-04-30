@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("guideline_")){
     const role = interaction.customId.split("_");
@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
     await interaction.channel.send({
       embeds:[
         {
-          color: "GREEN",
+          color: Colors.Green,
           title: "このサーバーのガイドライン",
           description: temp,
           thumbnail:{
@@ -16,7 +16,7 @@ module.exports = async(interaction)=>{
           }
         },
         {
-          color: "GREEN",
+          color: Colors.Green,
           description: "続行するにはこのサーバーのガイドラインを守る必要があります。\n[Discord コミュニティガイドライン](https://discord.com/guidelines) も忘れないようにして下さい。"
         }
       ],
@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
           .addComponents(
             new ButtonBuilder()
               .setCustomId(`guide_${role[1]}`)
-              .setStyle("SECONDARY")
+              .setStyle(ButtonStyle.Secondary)
               .setLabel("同意します")
           )
       ]
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
             name: "ガイドライン機能の作成に失敗しました",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "BOTの権限等を確認し、もう一度実行してください",
           fields:[
             {

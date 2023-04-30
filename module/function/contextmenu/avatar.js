@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "アバターを表示"){
     const member = interaction.options.getMember("user");
@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
           name: "メンバーを取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "指定したユーザーが存在していないか、サーバーから退出しています"
       }],
       ephemeral: true
@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
 
     await interaction.reply({
       embeds:[{
-        color: "GREEN",
+        color: Colors.Green,
         author:{
           name: `${member.user.tag}のアバター`,
           icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

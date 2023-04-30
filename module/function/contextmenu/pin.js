@@ -1,4 +1,5 @@
 module.exports = async(interaction)=>{
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "メッセージをピン留め"){
@@ -10,39 +11,39 @@ module.exports = async(interaction)=>{
           name: "メッセージをピン留めできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "メッセージの内容が存在しません"
       }],
       ephemeral: true
     });
 
     if(
-      !interaction.member.permissions.has("MANAGE_CHANNELS")||
-      !interaction.member.permissions.has("MANAGE_MESSAGES")
+      !interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)||
+      !interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)
     ) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります\n```メッセージの管理\nチャンネルの管理```"
       }],
       ephemeral: true
     });
 
     if(
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_MESSAGES")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_CHANNELS")
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageMessages)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageChannels)
     ) return await interaction.reply({
       embeds:[{
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "この機能はBOTに以下の権限が必要です\n```チャンネルの閲覧\nメッセージを送信\nメッセージの管理\nチャンネルの管理```"
       }],
       ephemeral: true
@@ -56,7 +57,7 @@ module.exports = async(interaction)=>{
           name: "メッセージをピン留めできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "既にこのチャンネルにはピン留めされたメッセージが存在します\nピン留めの解除は送信された埋め込みを削除してください"
       }],
       ephemeral: true
@@ -68,7 +69,7 @@ module.exports = async(interaction)=>{
           name: "メッセージをピン留めできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "サーバーには最大5個までしかPINは使えません\nピン留めの解除は送信された埋め込みを削除してください"
       }],
       ephemeral: true
@@ -76,7 +77,7 @@ module.exports = async(interaction)=>{
 
     const msg = await interaction.channel.send({
       embeds:[{
-        color: "GREEN",
+        color: Colors.Green,
         author:{
           name: message.author.tag,
           icon_url: message.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",

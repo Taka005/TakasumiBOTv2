@@ -1,16 +1,16 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "slowmode"){
     const time = interaction.options.getInteger("time");
   
-    if(!interaction.member.permissions.has("MANAGE_CHANNELS")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -22,13 +22,13 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
    
-    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_CHANNELS")) return await interaction.reply({
+    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
           name: "引数が無効です",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "低速モードは0秒以上、21600秒以下にする必要があります"
       }],
       ephemeral: true
@@ -61,7 +61,7 @@ module.exports = async(interaction)=>{
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
             description: `低速モードは現在${time}秒です`,
-            color: "GREEN"
+            color: Colors.Green
           }]
         })
       })
@@ -72,7 +72,7 @@ module.exports = async(interaction)=>{
               name: "低速モードが設定できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",

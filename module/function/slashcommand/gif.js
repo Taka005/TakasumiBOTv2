@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { AttachmentBuilder } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   require("dotenv").config();
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "gif"){
@@ -20,12 +20,16 @@ module.exports = async(interaction)=>{
             name: "GIFを取得しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: "GREEN",
+          color: Colors.Green,
           image:{
             url: "attachment://result.gif"
           },
         }],
-        files: [new AttachmentBuilder(image.stream(),"result.gif")]
+        files: [
+          new AttachmentBuilder()
+            .setFile(image.stream())
+            .setName("result.png")
+        ]
       });
     }catch{
       await interaction.editReply({
@@ -34,7 +38,7 @@ module.exports = async(interaction)=>{
             name: "GIFが取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "違うワードで試してください"
         }]
       });

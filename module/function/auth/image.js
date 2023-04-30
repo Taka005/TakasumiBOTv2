@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { ActionRowBuilder, SelectMenuBuilder, AttachmentBuilder } = require("discord.js");
+  const { ActionRowBuilder, StringSelectMenuBuilder, AttachmentBuilder, Colors } = require("discord.js");
   const random = require("../../lib/random");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("image_")){
@@ -25,19 +25,21 @@ module.exports = async(interaction)=>{
     await interaction.editReply({
       embeds:[{
         title: "画像認証",          
-        color: "GREEN",
+        color: Colors.Green,
         description: "画像にある文字を選択してください\n※画像が表示されるまで時間がかかる場合があります",
         image:{
           url: "attachment://code.png"
         }
       }],
       files:[
-        new AttachmentBuilder(image.stream(),"code.png")
+        new AttachmentBuilder()
+          .setFile(image.stream())
+          .setName("code.png")
       ],
       components:[     
         new ActionRowBuilder()
           .addComponents(
-            new SelectMenuBuilder()
+            new StringSelectMenuBuilder()
               .setCustomId(`imagerole_${role[1]}_${auth.text}`)
               .setPlaceholder("正しいものを選択")
               .setMinValues(1)

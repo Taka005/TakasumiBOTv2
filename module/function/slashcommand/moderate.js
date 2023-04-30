@@ -1,4 +1,5 @@
 module.exports = async(interaction)=>{
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "moderate"){
@@ -10,13 +11,13 @@ module.exports = async(interaction)=>{
       low:"低い"
     };
 
-    if(!interaction.member.permissions.has("MANAGE_GUILD")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -29,16 +30,16 @@ module.exports = async(interaction)=>{
     });
 
     if(
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("VIEW_CHANNEL")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("SEND_MESSAGES")||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has("MANAGE_MESSAGES")
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)||
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageMessages)
     ) return await interaction.reply({
       embeds:[{
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "この機能はBOTに以下の権限が必要です",
         fields:[
           {
@@ -58,7 +59,7 @@ module.exports = async(interaction)=>{
             name: "自動モデレートを無効にできませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "自動モデレートが設定されていません"
         }],
         ephemeral: true
@@ -71,7 +72,7 @@ module.exports = async(interaction)=>{
             name: "自動モデレート機能を無効にしました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: "GREEN"
+          color: Colors.Green
         }]
       });
     }
@@ -83,7 +84,7 @@ module.exports = async(interaction)=>{
           name: "自動モデレート機能を有効にしました",
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
-        color: "GREEN",
+        color: Colors.Green,
         description: `${level[type]}に設定しました`
       }]
     });

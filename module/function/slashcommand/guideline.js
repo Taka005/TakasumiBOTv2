@@ -1,16 +1,16 @@
 module.exports = async(interaction)=>{
-  const { ActionRowBuilder, ModalBuilder, TextInputBuilder } = require("discord.js");
+  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "guideline"){ 
     const role =  interaction.options.getRole("role");
 
-    if(!interaction.member.permissions.has("MANAGE_ROLES")) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) return await interaction.reply({
       embeds:[{
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {

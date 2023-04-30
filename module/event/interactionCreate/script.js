@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { AttachmentBuilder } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("script_")){
     const lang = interaction.customId.split("_");
@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
             name: "正常に実行できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "実行がタイムアウトしました",
           footer:{
             text: `${lang[1]} || TakasumiBOT`
@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
     if(res.status === "0"){
       await interaction.editReply({
         embeds:[{
-          color: "GREEN",
+          color: Colors.Green,
           author:{
             name: "実行しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -77,7 +77,7 @@ module.exports = async(interaction)=>{
               name: "実行しました",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "GREEN",
+            color: Colors.Green,
             description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
             footer:{
               text: `${lang[1]} || TakasumiBOT`
@@ -97,7 +97,7 @@ module.exports = async(interaction)=>{
             name: "実行できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
           footer:{
             text: `${lang[1]} || TakasumiBOT`
@@ -110,7 +110,7 @@ module.exports = async(interaction)=>{
               name: "実行できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,
             footer:{
               text: `${lang[1]} || TakasumiBOT`

@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
+  const { Colors } = require("discord.js");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "英語に翻訳"){
     const message = interaction.options.getMessage("message");
@@ -11,7 +12,7 @@ module.exports = async(interaction)=>{
           name: "翻訳できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "メッセージの内容が存在しません",
         footer:{
           text: "Google Translate",
@@ -28,7 +29,7 @@ module.exports = async(interaction)=>{
           name: "翻訳できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "翻訳文字数は、2000文字以下です",
         footer:{
           text: "Google Translate",
@@ -53,7 +54,7 @@ module.exports = async(interaction)=>{
             name: `${message.author.tag}`,
             icon_url: message.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
           },
-          color: "BLUE",    
+          color: Colors.Blue,    
           description: translated.join(""),
           footer:{
             text: `Google Translate [${data.src}]->[en]`,
@@ -69,7 +70,7 @@ module.exports = async(interaction)=>{
             name: "翻訳できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "翻訳文字を変えて、もう一度実行してください",
           footer:{
             text: "Google Translate",
