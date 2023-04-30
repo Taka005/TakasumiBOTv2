@@ -1,4 +1,9 @@
 {
     "ErrorCode":"エラーコード",
-    "SupportServer":"サポートサーバー"
+    "SupportServer":"サポートサーバー",
+    "command":{
+        "5000":{
+            "generated":"生成しました"
+        }
+    }
 }
