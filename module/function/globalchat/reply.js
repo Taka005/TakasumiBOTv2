@@ -205,7 +205,7 @@ module.exports = async(message,client)=>{
       return;
     }
   }catch{//同じサーバーでの返信
-    const msg = await message.channel.messages.fetch(message.reference.messageId)
+    const msg = await message.channel.messages.fetch({"message":message.reference.messageId})
       .catch(()=>{});
 
     if(!message.attachments.first()){//添付ファイルなし

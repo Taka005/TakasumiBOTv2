@@ -49,7 +49,11 @@ module.exports = async(interaction)=>{
           url: "attachment://omikuji.png"
         }
       }],
-      files: [new AttachmentBuilder(image.stream(),"omikuji.png")]
+      files: [
+        new AttachmentBuilder()
+          .setFile(image.stream())
+          .setName("omikuji.png")
+      ]
     });
   }
 }

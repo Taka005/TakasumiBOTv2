@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { ActionRowBuilder, SelectMenuBuilder, AttachmentBuilder } = require("discord.js");
+  const { ActionRowBuilder, StringSelectMenuBuilder, AttachmentBuilder } = require("discord.js");
   const random = require("../../lib/random");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("image_")){
@@ -32,12 +32,14 @@ module.exports = async(interaction)=>{
         }
       }],
       files:[
-        new AttachmentBuilder(image.stream(),"code.png")
+        new AttachmentBuilder()
+          .setFile(image.stream())
+          .setName("code.png")
       ],
       components:[     
         new ActionRowBuilder()
           .addComponents(
-            new SelectMenuBuilder()
+            new StringSelectMenuBuilder()
               .setCustomId(`imagerole_${role[1]}_${auth.text}`)
               .setPlaceholder("正しいものを選択")
               .setMinValues(1)

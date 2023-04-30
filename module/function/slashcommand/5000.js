@@ -28,7 +28,11 @@ module.exports = async(interaction)=>{
             url: "attachment://5000.png"
           },
         }],
-        files: [new AttachmentBuilder(image.stream(),"5000.png")]
+        files: [
+          new AttachmentBuilder()
+            .setFile(image.stream())
+            .setName("5000.png")
+        ]
       });
     }catch{
       await interaction.editReply({

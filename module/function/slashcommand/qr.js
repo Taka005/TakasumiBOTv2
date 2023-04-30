@@ -30,7 +30,11 @@ module.exports = async(interaction)=>{
           },
           color: "GREEN"
         }],
-        files:[new AttachmentBuilder(data.stream(),"QRCode.png")]
+        files:[
+          new AttachmentBuilder()
+            .setFile(data.stream())
+            .setName("QRcode.png")
+        ]
       });
     }else{
       if(!text.match(/^(http(s?):\/\/)([^\s/]+\/)([^\s]+\.(jpg|jpeg|png|gif))$/i)) return await interaction.reply({

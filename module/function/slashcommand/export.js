@@ -61,7 +61,6 @@ module.exports = async(interaction)=>{
         content:"サーバーのデータをJSON形式に出力しました",
         files:[
           new AttachmentBuilder()
-            .setDescription("データは慎重に扱ってください") 
             .setFile(data) 
             .setName("SERVER_JSON_FILE.json")
         ] 

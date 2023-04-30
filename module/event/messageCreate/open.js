@@ -17,7 +17,7 @@ module.exports = async(message,client)=>{
     const id = url[2].split("/");
     const channel = client.channels.cache.get(id[1]);
     if(!channel) return;
-    const msg = await channel.messages.fetch(id[2])
+    const msg = await channel.messages.fetch({"message":id[2]})
       .catch(()=>{})
 
     if(!msg.attachments?.first()){

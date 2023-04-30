@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
     if(type === "content"){
       try{
         if(channel){
-          const msg = await channel.messages.fetch(id);
+          const msg = await channel.messages.fetch({"message":id});
           await interaction.reply({
             embeds:[{
               author:{
@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
             }]
           });
         }else{
-          const msg = await interaction.channel.messages.fetch(id);
+          const msg = await interaction.channel.messages.fetch({"message":id});
           await interaction.reply({
             embeds:[{
               author:{
@@ -90,7 +90,7 @@ module.exports = async(interaction)=>{
     }else if(type === "edit"){
       try{
         if(channel){
-          const msg = await channel.messages.fetch(id);
+          const msg = await channel.messages.fetch({"message":id});
           await msg.edit(JSON.parse(json));
           await interaction.reply({
             embeds:[{
@@ -102,7 +102,7 @@ module.exports = async(interaction)=>{
             }]
           });
         }else{
-          const msg = await interaction.channel.messages.fetch(id);
+          const msg = await interaction.channel.messages.fetch({"message":id});
           await msg.edit(JSON.parse(json));
           await interaction.reply({
             embeds:[{
@@ -136,7 +136,7 @@ module.exports = async(interaction)=>{
     }else if(type === "delete"){
       try{
         if(channel){
-          const msg = await channel.messages.fetch(id);
+          const msg = await channel.messages.fetch({"message":id});
           msg.delete();
           await interaction.reply({
             embeds:[{
@@ -148,7 +148,7 @@ module.exports = async(interaction)=>{
             }]
           });
         }else{
-          const msg = await interaction.channel.messages.fetch(id);
+          const msg = await interaction.channel.messages.fetch({"message":id});
           msg.delete();
           await interaction.reply({
             embeds:[{

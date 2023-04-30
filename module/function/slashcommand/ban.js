@@ -85,7 +85,10 @@ module.exports = async(interaction,client)=>{
     }
     
     if(days){
-      await interaction.guild.bans.create(ID[0],{reason: reason,days: days})
+      await interaction.guild.bans.create(ID[0],{
+        "reason": reason,
+        "deleteMessageSeconds": days*86400
+      })
         .then(async()=>{
           await interaction.reply({
             content: `<@${interaction.user.id}>`,
@@ -126,7 +129,9 @@ module.exports = async(interaction,client)=>{
           })
         })
     }else{
-      await interaction.guild.bans.create(ID[0],{ reason: reason })
+      await interaction.guild.bans.create(ID[0],{
+        "reason": reason 
+      })
         .then(async()=>{
           await interaction.reply({
             content: `<@${interaction.user.id}>`,

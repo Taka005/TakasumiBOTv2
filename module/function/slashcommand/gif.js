@@ -25,7 +25,11 @@ module.exports = async(interaction)=>{
             url: "attachment://result.gif"
           },
         }],
-        files: [new AttachmentBuilder(image.stream(),"result.gif")]
+        files: [
+          new AttachmentBuilder()
+            .setFile(image.stream())
+            .setName("result.png")
+        ]
       });
     }catch{
       await interaction.editReply({
