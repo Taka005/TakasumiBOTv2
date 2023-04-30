@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors, Colors } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("page")){
 

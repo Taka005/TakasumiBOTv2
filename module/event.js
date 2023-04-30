@@ -1,5 +1,5 @@
 module.exports = async(client)=>{
-  const { Events, ChannelType, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { Events, ChannelType, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const fs = require("fs");
   const db = require("./lib/db");
 
