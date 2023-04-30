@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
+  const { Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "npm"){
     const name = interaction.options.getString("name");
@@ -14,7 +15,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           title: pkg.name,
           url: pkg.links.npm,
-          color: "GREEN",
+          color: Colors.Green,
           description: pkg.description,
           thumbnail:{
             url: "https://cdn.taka.ml/images/npm.png",
@@ -58,7 +59,7 @@ module.exports = async(interaction)=>{
             name: "パッケージが取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "検索ワードを変えて、もう一度実行してください"
         }]
       });

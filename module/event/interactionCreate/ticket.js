@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId === "ticket"){
 
@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
           name: "作成できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "既にチケットが発行済みです"
       }],
       ephemeral: true
@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
           name: "作成できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "ticketカテゴリーが存在していないため、作成できません"
       }],
       ephemeral: true
@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
         await channels.permissionOverwrites.edit(interaction.user.id,{VIEW_CHANNEL: true});
         await channels.send({
           embeds:[{
-            color: "GREEN",
+            color: Colors.Green,
             title: "チケットへようこそ"
           }],
           components:[
@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
             description: `${channels}を作成しました`,
-            color: "GREEN"
+            color: Colors.Green
           }],
           ephemeral: true
         });
@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
               name: "チケットを作成できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",
@@ -99,7 +99,7 @@ module.exports = async(interaction)=>{
               name: "チケットを削除できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",

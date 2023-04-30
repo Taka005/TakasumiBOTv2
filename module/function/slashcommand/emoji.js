@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "emoji"){
     const name = interaction.options.getString("name");
@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
           name: "取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "サーバー上のカスタム絵文字を指定してください"
       }],
       ephemeral: true
@@ -21,7 +21,7 @@ module.exports = async(interaction)=>{
 
       await interaction.reply({
         embeds:[{
-          color: "GREEN",
+          color: Colors.Green,
           author:{
             name: `${emoji.name}の情報`,
             icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

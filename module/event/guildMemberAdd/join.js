@@ -1,5 +1,5 @@
 module.exports = async(member,client)=>{
-  const { WebhookClient, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { WebhookClient, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const db = require("../../lib/db");
 
   const data = await db(`SELECT * FROM \`join\` WHERE server = ${member.guild.id} LIMIT 1;`);
@@ -28,7 +28,7 @@ module.exports = async(member,client)=>{
               name: "参加メッセージでエラーが発生しました",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "エラーが発生したため、強制的に無効にされました",
             fields:[
               {

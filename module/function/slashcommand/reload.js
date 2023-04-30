@@ -1,5 +1,6 @@
 module.exports = async(interaction,client)=>{
   const fs = require("fs");
+  const { Colors } = require("discord.js");
   const { admin } = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "reload"){
@@ -10,7 +11,7 @@ module.exports = async(interaction,client)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドは関係者以外実行できません"
       }],
       ephemeral: true
@@ -99,7 +100,7 @@ module.exports = async(interaction,client)=>{
 
     await interaction.reply({
       embeds:[{
-        color: "GREEN",
+        color: Colors.Green,
         description: "リロードが完了しました",
       }]
     });

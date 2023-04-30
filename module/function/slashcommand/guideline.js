@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, PermissionFlagsBits } = require("discord.js");
+  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "guideline"){ 
     const role =  interaction.options.getRole("role");
@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {

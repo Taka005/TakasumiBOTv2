@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { AttachmentBuilder } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "Make it a Quote"){
     const message = interaction.options.getMessage("message");
@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
           name: "生成できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "メッセージの内容が存在しません"
       }],
       ephemeral: true

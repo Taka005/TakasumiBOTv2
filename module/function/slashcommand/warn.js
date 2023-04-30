@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "warn"){
     const user = interaction.options.getUser("user");
@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
           name: "警告できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "指定したユーザーが取得できません"
       }],
       ephemeral: true
@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
           name: "警告できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "自分自身を警告することはできません"
       }],
       ephemeral: true
@@ -72,7 +72,7 @@ module.exports = async(interaction)=>{
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
             description: `理由: ${reason}`,
-            color: "GREEN"
+            color: Colors.Green
           }]
         });
       })
@@ -83,7 +83,7 @@ module.exports = async(interaction)=>{
               name: "警告できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "ユーザーがDMを拒否しているか、メンバーが正しく指定されていません",
             fields:[
               {

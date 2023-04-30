@@ -1,7 +1,7 @@
 const time = [];
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
-  if(!interaction.isSelectMenu()) return;
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId === "role"){
     
     if(new Date() - time[interaction.guild.id] <= 5000){
@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
             name: "ロールの付与に失敗しました",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "ロールの付与速度が速すぎるため5秒間待ってください"
         }],
         ephemeral: true
@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
             name: "ロールを変更しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: "GREEN",
+          color: Colors.Green,
           fields:[
             {
               name: "付与したロール",
@@ -63,7 +63,7 @@ module.exports = async(interaction)=>{
             name: "ロールの付与に失敗しました",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
           fields:[
             {

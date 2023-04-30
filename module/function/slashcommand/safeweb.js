@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
+  const { Colors } = require("discord.js");
   const isUrl = require("../../lib/isUrl");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "safeweb"){
@@ -11,7 +12,7 @@ module.exports = async(interaction)=>{
           name: "安全性を評価できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "URLを指定する必要があります"
       }],
       ephemeral: true
@@ -34,7 +35,7 @@ module.exports = async(interaction)=>{
             footer:{
               text: "Powered by Norton Safeweb"
             },
-            color: "YELLOW"
+            color: Colors.Yellow
           }]
         });
       }else if(res.indexOf("警告") !== -1){
@@ -49,7 +50,7 @@ module.exports = async(interaction)=>{
             footer:{
               text: "Powered by Norton Safeweb"
             },
-            color: "RED"
+            color: Colors.Red
           }]
         })
       }else if(res.indexOf("未評価") !== -1){
@@ -64,7 +65,7 @@ module.exports = async(interaction)=>{
             footer:{
               text: "Powered by Norton Safeweb"
             },
-            color: "GREY"
+            color: Colors.Gray
           }]
         })
       }else{
@@ -79,7 +80,7 @@ module.exports = async(interaction)=>{
             footer:{
               text: "Powered by Norton Safeweb"
             },
-            color: "GREEN"
+            color: Colors.Green
           }]
         })
       }
@@ -90,7 +91,7 @@ module.exports = async(interaction)=>{
             name: "安全性を評価できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "サイトの取得に失敗しました"
         }]
       });

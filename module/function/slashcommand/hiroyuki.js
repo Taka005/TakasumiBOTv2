@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
     const db = require("../../lib/db");
-    const { WebhookClient, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
+    const { WebhookClient, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
     if(!interaction.isChatInputCommand()) return;
     if(interaction.commandName === "hiroyuki"){
   
@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -33,7 +33,7 @@ module.exports = async(interaction)=>{
             name: "BOTに権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "このコマンドはBOTに以下の権限が必要です",
           fields:[
             {
@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
                   name: "ひろゆきの退出が完了しました",
                   icon_url: "https://cdn.taka.ml/images/system/success.png"
                 },
-                color: "GREEN"
+                color: Colors.Green
               }]
             });
           })
@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
                   icon_url: "https://cdn.taka.ml/images/system/success.png"
                 },
                 description: "※webhookは既に削除済みのため、\n登録情報のみ削除しました",
-                color: "GREEN"
+                color: Colors.Green
               }]
             });
           })
@@ -86,7 +86,7 @@ module.exports = async(interaction)=>{
 
             await interaction.editReply({
               embeds:[{
-                color: "GREEN",
+                color: Colors.Green,
                 author:{
                   name: "ひろゆきの召喚に成功しました",
                   icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -101,7 +101,7 @@ module.exports = async(interaction)=>{
                   name: "ひろゆきの召喚に失敗しました",
                   icon_url: "https://cdn.taka.ml/images/system/error.png"
                 },
-                color: "RED",
+                color: Colors.Red,
                 description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
                 fields:[
                   {

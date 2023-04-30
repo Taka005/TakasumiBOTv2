@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors, Colors } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("page")){
 
@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
       await interaction.message.edit({
         embeds:[{
           title: "HELP 基本コマンド",
-          color: "GREEN",
+          color: Colors.Green,
           fields:[
             {
               name: "/poll",
@@ -52,7 +52,7 @@ module.exports = async(interaction)=>{
                 .setCustomId(`page_5_${id[2]}`))
             .addComponents(
               new ButtonBuilder()
-                .setStyle("SECONDARY")
+                .setStyle(ButtonStyle.Secondary)
                 .setLabel("1ページ")
                 .setCustomId("page")
                 .setDisabled(true))
@@ -75,7 +75,7 @@ module.exports = async(interaction)=>{
       await interaction.message.edit({
         embeds:[{
           title: "HELP 認証・情報コマンド",
-          color: "GREEN",
+          color: Colors.Green,
           fields:[
             {
               name: "/auth",
@@ -128,7 +128,7 @@ module.exports = async(interaction)=>{
                 .setCustomId(`page_1_${id[2]}`))
             .addComponents(
               new ButtonBuilder()
-                .setStyle("SECONDARY")
+                .setStyle(ButtonStyle.Secondary)
                 .setLabel("2ページ")
                 .setCustomId("page")
                 .setDisabled(true))
@@ -151,7 +151,7 @@ module.exports = async(interaction)=>{
       await interaction.message.edit({
         embeds:[{
           title: "HELP サーバー管理コマンド",
-          color: "GREEN",
+          color: Colors.Green,
           fields:[
             {
               name: "/ban",
@@ -220,7 +220,7 @@ module.exports = async(interaction)=>{
                 .setCustomId(`page_2_${id[2]}`))
             .addComponents(
               new ButtonBuilder()
-                .setStyle("SECONDARY")
+                .setStyle(ButtonStyle.Secondary)
                 .setLabel("3ページ")
                 .setCustomId("page")
                 .setDisabled(true))
@@ -243,7 +243,7 @@ module.exports = async(interaction)=>{
       await interaction.message.edit({
         embeds:[{
           title: "HELP ツールコマンド",
-          color: "GREEN",
+          color: Colors.Green,
           fields:[
             {
               name: "/wiki",
@@ -312,7 +312,7 @@ module.exports = async(interaction)=>{
                 .setCustomId(`page_3_${id[2]}`))
             .addComponents(
               new ButtonBuilder()
-                .setStyle("SECONDARY")
+                .setStyle(ButtonStyle.Secondary)
                 .setLabel("4ページ")
                 .setCustomId("page")
                 .setDisabled(true))
@@ -335,7 +335,7 @@ module.exports = async(interaction)=>{
       await interaction.message.edit({
         embeds:[{
           title: "HELP ネタ・その他のコマンド",
-          color: "GREEN",
+          color: Colors.Green,
           fields:[ 
             {
               name: "/miq",
@@ -384,7 +384,7 @@ module.exports = async(interaction)=>{
                 .setCustomId(`page_4_${id[2]}`))
             .addComponents(
               new ButtonBuilder()
-                .setStyle("SECONDARY")
+                .setStyle(ButtonStyle.Secondary)
                 .setLabel("5ページ")
                 .setCustomId("page")
                 .setDisabled(true))
@@ -406,6 +406,7 @@ module.exports = async(interaction)=>{
 }
 
 async function check(interaction,id){
+  const { Colors } = require("discord.js");
   if(id !== interaction.user.id){
     await interaction.reply({
       embeds:[{
@@ -413,7 +414,7 @@ async function check(interaction,id){
           name: "ページを更新できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドは別の人が操作しています"
       }],
       ephemeral: true
@@ -424,7 +425,7 @@ async function check(interaction,id){
 }
 
 async function err(interaction,error){
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   
   await interaction.reply({
     embeds:[{
@@ -432,7 +433,7 @@ async function err(interaction,error){
         name: "ページを更新できませんでした",
         icon_url: "https://cdn.taka.ml/images/system/error.png"
       },
-      color: "RED",
+      color: Colors.Red,
       description: "BOTの権限が不足しています",
       fields:[
         {

@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { AttachmentBuilder ,ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
+  const { AttachmentBuilder ,ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "export"){
 
@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -72,7 +72,7 @@ module.exports = async(interaction)=>{
             name: "出力に失敗しました",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "BOTの権限が不足しているため正しく出力できません",
           fields:[
             {

@@ -1,7 +1,7 @@
 module.exports = async(message,client)=>{
   const db = require("../../lib/db");
   const spam = require("../../lib/spam");
-  const { WebhookClient, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { WebhookClient, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const async = require("async");
 
   const data = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
@@ -22,7 +22,7 @@ module.exports = async(message,client)=>{
           name: "利用規約に同意してください",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "以下のリンクから認証を行うことでグローバルチャットを利用できます\n認証が完了すると[利用規約](https://gc.taka.ml/)に同意したものとみなします",
       }], 
       components:[
@@ -69,7 +69,7 @@ module.exports = async(message,client)=>{
       await webhooks.send({
         embeds:[
           {
-            color: (await message.author.fetch()).hexAccentColor||"RANDOM",
+            color: (await message.author.fetch()).hexAccentColor||Colors.Green,
             author:{
               name: `${message.author.tag}`,
               url: `https://discord.com/users/${message.author.id}`,
@@ -104,7 +104,7 @@ module.exports = async(message,client)=>{
       await webhooks.send({
         embeds:[
           {
-            color: (await message.author.fetch()).hexAccentColor||"RANDOM",
+            color: (await message.author.fetch()).hexAccentColor||Colors.Green,
             author:{
               name: `${message.author.tag}`,
               url: `https://discord.com/users/${message.author.id}`,
@@ -146,7 +146,7 @@ module.exports = async(message,client)=>{
       await webhooks.send({
         embeds:[
           {
-            color: (await message.author.fetch()).hexAccentColor||"RANDOM",
+            color: (await message.author.fetch()).hexAccentColor||Colors.Green,
             author:{
               name: `${message.author.tag}`,
               url: `https://discord.com/users/${message.author.id}`,
@@ -191,7 +191,7 @@ function err(channel,client,error){
         name: "グローバルチャットでエラーが発生しました",
         icon_url: "https://cdn.taka.ml/images/system/error.png"
       },
-      color: "RED",
+      color: Colors.Red,
       description: "エラーが発生したため、強制的に切断されました\n再度登録するには`/global`を使用してください",
       fields:[
         {

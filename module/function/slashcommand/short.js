@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
+  const { Colors } = require("discord.js");
   const isUrl = require("../../lib/isUrl");
   require("dotenv").config();
   if(!interaction.isChatInputCommand()) return;
@@ -12,7 +13,7 @@ module.exports = async(interaction)=>{
           name: "短縮URLにできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "URLを指定する必要があります"
       }],
       ephemeral: true

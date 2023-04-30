@@ -1,5 +1,5 @@
 module.exports = async(interaction,client)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "avatar"){
     const id = interaction.options.getString("id");
@@ -7,7 +7,7 @@ module.exports = async(interaction,client)=>{
     if(!id){
       return await interaction.reply({
         embeds:[{
-          color: "GREEN",
+          color: Colors.Green,
           author:{
             name: `${interaction.user.tag}のアバター`,
             icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -30,7 +30,7 @@ module.exports = async(interaction,client)=>{
               name: "取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",
@@ -58,7 +58,7 @@ module.exports = async(interaction,client)=>{
           name: "取得に失敗しました",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "正確にIDまたは、メンションをしてください"
       }],
       ephemeral: true
@@ -70,7 +70,7 @@ module.exports = async(interaction,client)=>{
       
       await interaction.reply({
         embeds:[{
-          color: "GREEN",
+          color: Colors.Green,
           author:{
             name: `${user.tag}のアバター`,
             icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -94,7 +94,7 @@ module.exports = async(interaction,client)=>{
             name: "取得に失敗しました",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "指定されたユーザーは存在しないか、間違っています"
         }],
         ephemeral: true

@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { AttachmentBuilder } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   const fetch = require("node-fetch");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "qr"){
@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
       await interaction.deferReply();
       await interaction.editReply({
         embeds:[{
-          color: "GREEN",
+          color: Colors.Green,
           title: "生成中..."
         }]
       });
@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
           image:{
             url: "attachment://QRCode.png"
           },
-          color: "GREEN"
+          color: Colors.Green
         }],
         files:[
           new AttachmentBuilder()
@@ -43,7 +43,7 @@ module.exports = async(interaction)=>{
             name: "入力された画像が無効です",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "QRコードは画像のURLで指定する必要があります"
         }],
         ephemeral: true
@@ -52,7 +52,7 @@ module.exports = async(interaction)=>{
       await interaction.deferReply();
       await interaction.editReply({
         embeds:[{
-          color: "GREEN",
+          color: Colors.Green,
           title: "読み取り中..."
         }]
       });
@@ -66,7 +66,7 @@ module.exports = async(interaction)=>{
             name: "QRコードが読み取れません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "QRコードはURLかつ、読み取れる必要があります"
         }]
       });
@@ -78,7 +78,7 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           description: `内容\n\`\`\`${data[0].symbol[0].data}\`\`\``,
-          color: "GREEN"
+          color: Colors.Green
         }]
       });
     }

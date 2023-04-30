@@ -1,6 +1,6 @@
 module.exports = async(message)=>{
   const db = require("../../lib/db");
-  const { PermissionFlagsBits } = require("discord.js");
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const time = require("../../lib/time");
   const limit = require("../../lib/limit");
 
@@ -19,7 +19,7 @@ module.exports = async(message)=>{
           name: "AFKを無効にしました",
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
-        color: "GREEN",
+        color: Colors.Green,
         description: `メンションは${data[0].mention}件ありました\n${time(new Date()-new Date(data[0].time))}間AFKでした`
       }]
     }).catch(()=>{})
@@ -37,7 +37,7 @@ module.exports = async(message)=>{
               name: "AFK中です",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN",
+            color: Colors.Green,
             description: data[0].message
           }]
         }).catch(()=>{})

@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "top"){
 
@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     await interaction.editReply({
       embeds:[{
-        color: "GREEN",
+        color: Colors.Green,
         description: "取得中..."
       }]
     });
@@ -37,7 +37,7 @@ module.exports = async(interaction)=>{
 
     await interaction.editReply({
       embeds:[{
-        color: "GREEN",
+        color: Colors.Green,
         title: "最初のメッセージ",
         description: "下のリンクから飛べます"
       }],

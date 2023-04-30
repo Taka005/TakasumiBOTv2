@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const list = require("../../../file/commandlist.json");
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "help"){
     const command = interaction.options.getString("command");
@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         embeds:[{
           title: "HELP 便利系",
-          color: "GREEN",
+          color: Colors.Green,
           fields:[
             {
               name: "/poll",
@@ -50,7 +50,7 @@ module.exports = async(interaction)=>{
                 .setCustomId(`page_5_${interaction.user.id}`))
             .addComponents(
               new ButtonBuilder()
-                .setStyle("SECONDARY")
+                .setStyle(ButtonStyle.Secondary)
                 .setLabel("1ページ")
                 .setCustomId("page")
                 .setDisabled(true))
@@ -68,7 +68,7 @@ module.exports = async(interaction)=>{
             name: "コマンドが存在しません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "`/help`を実行してコマンド一覧を確認してください"
         }],
         ephemeral: true
@@ -77,7 +77,7 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         embeds:[{
           title: `/${command}の使用方法`,
-          color: "GREEN",
+          color: Colors.Green,
           description: list[command].description,
           fields:[
             {

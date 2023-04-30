@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const db = require("../../lib/db");
-  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
+  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "global"){
 
@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -61,7 +61,7 @@ module.exports = async(interaction)=>{
                 name: "登録の削除が完了しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: "GREEN"
+              color: Colors.Green
             }]
           });
         })
@@ -74,7 +74,7 @@ module.exports = async(interaction)=>{
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
               description: "※webhookは既に削除済みのため、\n登録情報のみ削除しました",
-              color: "GREEN"
+              color: Colors.Green
             }]
           })
         });
@@ -91,7 +91,7 @@ module.exports = async(interaction)=>{
             name: "参加条件を満たしていません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "グローバルチャットを利用するには以下の条件を満たしている必要があります",
           fields:[
             {
@@ -109,7 +109,7 @@ module.exports = async(interaction)=>{
             name: "グローバルチャットに参加できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "設定するチャンネルはテキストチャンネルにしてください"
         }],
         ephemeral: true
@@ -141,7 +141,7 @@ module.exports = async(interaction)=>{
             const webhooks = new WebhookClient({id: data.id, token: data.token});
             await webhooks.send({
               embeds:[{
-                color: "GREEN",
+                color: Colors.Green,
                 title: `${interaction.guild.name}<${interaction.guild.id}>`,
                 thumbnail:{
                   url: interaction.guild.iconURL({extension:"png",forceStatic:false,size:1024})||"https://cdn.discordapp.com/embed/avatars/0.png"
@@ -161,7 +161,7 @@ module.exports = async(interaction)=>{
 
           await interaction.editReply({
             embeds:[{
-              color: "GREEN",
+              color: Colors.Green,
               author:{
                 name: interaction.guild.name,
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -178,7 +178,7 @@ module.exports = async(interaction)=>{
               name: "Webhookの作成に失敗しました",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
             fields:[
               {

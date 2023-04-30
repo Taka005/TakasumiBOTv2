@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors } = require("discord.js");
   require("dotenv").config();
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("news_")){
@@ -20,7 +20,7 @@ module.exports = async(interaction)=>{
       .setCustomId(`news_${Number(pages[1])+1}`)
   
     const page = new ButtonBuilder()
-      .setStyle("SECONDARY")
+      .setStyle(ButtonStyle.Secondary)
       .setLabel(`${Number(pages[1])+1}ページ`)
       .setCustomId("news")
       .setDisabled(true)
@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           title: data.articles[pages[1]].title,
           url: data.articles[pages[1]].url,
-          color: "GREEN",
+          color: Colors.Green,
           description: data.articles[pages[1]].description,
           image:{
             url: data.articles[pages[1]].urlToImage
@@ -53,7 +53,7 @@ module.exports = async(interaction)=>{
             name: "ページが存在しません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "前のページに戻ってください"
         }],
         components:[

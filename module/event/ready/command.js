@@ -1,7 +1,7 @@
 module.exports = async(client)=>{
   const config = require("../../../config.json"); 
   require("dotenv").config();
-  const { SlashCommandBuilder, ContextMenuCommandBuilder } = require("discord.js");
+  const { SlashCommandBuilder, ContextMenuCommandBuilder, Colors } = require("discord.js");
   const { REST } = require("@discordjs/rest");
   const { Routes, ApplicationCommandType } = require("discord-api-types/v10");
     
@@ -138,17 +138,16 @@ module.exports = async(client)=>{
                 .setDescription("作成するロールの色")
                 .setRequired(true)
                 .addChoices(
-                  { name: "デフォルト", value: "DEFAULT" },
-                  { name: "ランダム", value: "RANDOM" },
-                  { name: "白", value: "WHITE" },
-                  { name: "緑", value: "GREEN" },
-                  { name: "青", value: "BLUE" },
-                  { name: "黄", value: "YELLOW" },
-                  { name: "紫", value: "PURPLE" },
-                  { name: "金", value: "GOLD" },
-                  { name: "橙", value: "ORANGE" },
-                  { name: "赤", value: "RED" },
-                  { name: "水", value: "AQUA" },
+                  { name: "デフォルト", value: Colors.Default },
+                  { name: "白", value: Colors.White },
+                  { name: "緑", value: Colors.Green },
+                  { name: "青", value: Colors.Blue },
+                  { name: "黄", value: Colors.Yellow },
+                  { name: "紫", value: Colors.Purple },
+                  { name: "金", value: Colors.Gold },
+                  { name: "橙", value: Colors.Orange },
+                  { name: "赤", value: Colors.Red },
+                  { name: "水", value: Colors.Aqua },
                 )),
           //debug
           new SlashCommandBuilder()

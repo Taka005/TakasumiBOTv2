@@ -11,7 +11,7 @@ module.exports = async(client)=>{
   client.on(Events.MessageCreate,async(message)=>{
     if(!message.guild.members.me) return;
     //event/message
-    fs.readdir("./module/event/messageCreate/",(err,files)=>{ 
+    fs.readdir("./module/event/messageCreate/",(err,files)=>{
       files.forEach((file)=>{
         if(!file.endsWith(".js")) return;
         require(`./event/messageCreate/${file}`)(message,client);
@@ -31,7 +31,7 @@ module.exports = async(client)=>{
     fs.readdir("./module/function/command/",(err,files)=>{ 
       files.forEach((file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./command/${file}`)(message,client);
+        require(`./function/commmand/${file}`)(message,client);
       });
     });
   });
@@ -56,7 +56,7 @@ module.exports = async(client)=>{
           name: "コマンドが実行できません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "BOTの操作はDMで実行することができません\nサーバー内で実行してください"
       }],      
       components:[
@@ -78,7 +78,7 @@ module.exports = async(client)=>{
           name: "コマンドが実行できません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "あなた又はこのサーバーはブラックリストに登録されているため実行できません"
       }],      
       components:[
@@ -103,21 +103,21 @@ module.exports = async(client)=>{
     fs.readdir("./module/function/auth/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./auth/${file}`)(interaction,client);
+        require(`./function/auth/${file}`)(interaction,client);
       });
     });
     //slashcommands
     fs.readdir("./module/function/slashcommand/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./slashcommand/${file}`)(interaction,client);
+        require(`./function/slashcommand/${file}`)(interaction,client);
       });
     });
     //contextmenu
     fs.readdir("./module/function/contextmenu/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./contextmenu/${file}`)(interaction,client);
+        require(`./function/contextmenu/${file}`)(interaction,client);
       });
     });
   });

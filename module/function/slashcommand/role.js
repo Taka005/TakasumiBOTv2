@@ -1,13 +1,13 @@
 module.exports = async(interaction)=>{
   const permission = require("../../lib/permission");
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "role"){
     const role = interaction.options.getRole("name");
 
     await interaction.reply({
       embeds:[{
-        color: "GREEN",
+        color: Colors.Green,
         author:{
           name: `${role.name}の情報`,
           icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

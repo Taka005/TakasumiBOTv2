@@ -1,14 +1,14 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "auth"){
     const type = interaction.options.getString("type");
     const role = interaction.options.getRole("role");
 
     const color = {
-      "normal": "WHITE",
-      "panel": "BLUE",
-      "image": "GREEN",
+      "normal": Colors.White,
+      "panel": Colors.Blue,
+      "image": Colors.Green,
       "web": "YELLOW"
     };
 
@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -77,7 +77,7 @@ module.exports = async(interaction)=>{
               name: "認証機能の作成に失敗しました",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "BOTの権限等を確認し、もう一度実行してください",
             fields:[
               {

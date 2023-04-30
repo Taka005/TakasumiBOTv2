@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { PermissionFlagsBits } = require("discord.js");
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "moderate"){
@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "この機能はBOTに以下の権限が必要です",
         fields:[
           {
@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
             name: "自動モデレートを無効にできませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "自動モデレートが設定されていません"
         }],
         ephemeral: true
@@ -72,7 +72,7 @@ module.exports = async(interaction)=>{
             name: "自動モデレート機能を無効にしました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: "GREEN"
+          color: Colors.Green
         }]
       });
     }
@@ -84,7 +84,7 @@ module.exports = async(interaction)=>{
           name: "自動モデレート機能を有効にしました",
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
-        color: "GREEN",
+        color: Colors.Green,
         description: `${level[type]}に設定しました`
       }]
     });

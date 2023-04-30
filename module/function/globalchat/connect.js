@@ -1,7 +1,7 @@
 module.exports = async(msg,client)=>{
   const db = require("../../lib/db");
   const convert = require("../../lib/convert");
-  const { WebhookClient } = require("discord.js");
+  const { WebhookClient, Colors } = require("discord.js");
   const async = require("async");
 
   const data = await db(`SELECT * FROM global WHERE channel = ${msg.channel.id} LIMIT 1;`);
@@ -20,7 +20,7 @@ module.exports = async(msg,client)=>{
         await webhooks.send({
           embeds:[
             {
-              color: "RANDOM",
+              color: Colors.Green,
               author:{
                 name: `${message.author.tag}[UGC]`,
                 url: `https://discord.com/users/${message.author.id}`,
@@ -52,7 +52,7 @@ module.exports = async(msg,client)=>{
         await webhooks.send({
           embeds:[
             {
-              color: "RANDOM",
+              color: Colors.Green,
               author:{
                 name: `${message.author.tag}[UGC]`,
                 url: `https://discord.com/users/${message.author.id}`,
@@ -91,7 +91,7 @@ module.exports = async(msg,client)=>{
         await webhooks.send({
           embeds:[
             {
-              color: "RANDOM",
+              color: Colors.Green,
               author:{
                 name: `${message.author.tag}[UGC]`,
                 url: `https://discord.com/users/${message.author.id}`,
@@ -131,7 +131,7 @@ module.exports = async(msg,client)=>{
         await webhooks.send({
           embeds:[
             {
-              color: "RANDOM",
+              color: Colors.Green,
               author:{
                 name: `${message.author.tag}[UGC]`,
                 url: `https://discord.com/users/${message.author.id}`,
@@ -169,7 +169,7 @@ module.exports = async(msg,client)=>{
         await webhooks.send({
           embeds:[
             {
-              color: "RANDOM",
+              color: Colors.Green,
               author:{
                 name: `${message.author.tag}[UGC]`,
                 url: `https://discord.com/users/${message.author.id}`,
@@ -214,7 +214,7 @@ module.exports = async(msg,client)=>{
         await webhooks.send({
           embeds:[
             {
-              color: "RANDOM",
+              color: Colors.Green,
               author:{
                 name: `${message.author.tag}[UGC]`,
                 url: `https://discord.com/users/${message.author.id}`,
@@ -262,7 +262,7 @@ function err(channel,client,error){
         name: "グローバルチャットでエラーが発生しました",
         icon_url: "https://cdn.taka.ml/images/system/error.png"
       },
-      color: "RED",
+      color: Colors.Red,
       description: "エラーが発生したため、強制的に切断されました\n再度登録するには`/global`を使用してください",
       fields:[
         {

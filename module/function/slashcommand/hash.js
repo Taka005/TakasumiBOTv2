@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const crypto = require("crypto");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "hash"){
@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           description: `${hash.digest("hex")}`,
-          color: "GREEN"
+          color: Colors.Green
         }]
       });
     }catch(error){
@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
             name: "ハッシュを生成できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

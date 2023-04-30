@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { SnowflakeUtil, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { SnowflakeUtil, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "snowflake"){
     const id = interaction.options.getString("id");
@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
           name: "解析できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "Snowflakeは数字で指定する必要があります"
       }],
       ephemeral: true
@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           description: `タイムスタンプ: ${snowflake.timestamp}\n日付: ${snowflake.date}\nワーカーID: ${snowflake.workerId}\nプロセスID: ${snowflake.processId}\nインクリメント: ${snowflake.increment}\nバイナリー: ${snowflake.binary}`,
-          color: "GREEN"
+          color: Colors.Green
         }]
       })
     }catch(error){
@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
             name: "解析できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

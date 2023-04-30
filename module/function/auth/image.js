@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { ActionRowBuilder, StringSelectMenuBuilder, AttachmentBuilder } = require("discord.js");
+  const { ActionRowBuilder, StringSelectMenuBuilder, AttachmentBuilder, Colors } = require("discord.js");
   const random = require("../../lib/random");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("image_")){
@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
     await interaction.editReply({
       embeds:[{
         title: "画像認証",          
-        color: "GREEN",
+        color: Colors.Green,
         description: "画像にある文字を選択してください\n※画像が表示されるまで時間がかかる場合があります",
         image:{
           url: "attachment://code.png"

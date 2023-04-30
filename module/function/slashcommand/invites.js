@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "invites"){
     const user = interaction.options.getUser("user");
@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -33,7 +33,7 @@ module.exports = async(interaction)=>{
               name: "招待を取得できません",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             description: "指定したユーザーの招待が見つかりませんでした"
           }],
           ephemeral: true
@@ -45,7 +45,7 @@ module.exports = async(interaction)=>{
               name: `${user.tag}の招待一覧`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN",
+            color: Colors.Green,
             description: invites.map((invite)=>`\`${invite.code}\` ${invite.uses}回`).join("\n")
           }]
         });
@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
               name: "サーバーの招待一覧",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: "GREEN",
+            color: Colors.Green,
             description: invites.map((invite)=>`\`${invite.code}\` ${invite.uses}回(<@${invite.inviterId}>)`).join("\n")
           }]
         });
@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
             name: "招待を取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

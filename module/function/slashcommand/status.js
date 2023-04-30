@@ -1,15 +1,15 @@
 module.exports = async(interaction,client)=>{
   const os = require("os");
   const fetch = require("node-fetch");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const db = require("../../lib/db");
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "status"){
 
     await interaction.deferReply();
     await interaction.editReply({
       embeds:[{
-        color: "BLUE",
+        color: Colors.Blue,
         description: "計測中...",
         timestamp: new Date()
       }]
@@ -31,7 +31,7 @@ module.exports = async(interaction,client)=>{
 
     await interaction.editReply({
       embeds:[{
-        color: "BLUE",
+        color: Colors.Blue,
         title: "ステータス",
         timestamp: new Date(),
         fields:[
@@ -64,7 +64,7 @@ module.exports = async(interaction,client)=>{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

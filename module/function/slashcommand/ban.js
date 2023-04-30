@@ -1,5 +1,5 @@
 module.exports = async(interaction,client)=>{
-  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ban"){
     const id = interaction.options.getString("id");
@@ -12,7 +12,7 @@ module.exports = async(interaction,client)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持ってる必要があります",
         fields:[
           {
@@ -30,7 +30,7 @@ module.exports = async(interaction,client)=>{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です\n```メンバーをBAN```",
         fields:[
           {
@@ -49,7 +49,7 @@ module.exports = async(interaction,client)=>{
           name: "BANできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "正確にID又は、メンションをしてください"
       }],
       ephemeral: true
@@ -61,7 +61,7 @@ module.exports = async(interaction,client)=>{
           name: "BANできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "自分自身をBANすることはできません"
       }],
       ephemeral: true
@@ -77,7 +77,7 @@ module.exports = async(interaction,client)=>{
             name: "BANできませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "指定したユーザーが存在しません"
         }],
         ephemeral: true
@@ -97,7 +97,7 @@ module.exports = async(interaction,client)=>{
                 name: `${user.tag} をサーバーからBANしました`,
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: "GREEN"
+              color: Colors.Green
             }]
           });
         })
@@ -108,7 +108,7 @@ module.exports = async(interaction,client)=>{
                 name: "BANできませんでした",
                 icon_url: "https://cdn.taka.ml/images/system/error.png"
               },
-              color: "RED",
+              color: Colors.Red,
               description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
               fields:[
                 {
@@ -140,7 +140,7 @@ module.exports = async(interaction,client)=>{
                 name: `${user.tag} をサーバーからBANしました`,
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: "GREEN"
+              color: Colors.Green
             }]
           });
         })
@@ -151,7 +151,7 @@ module.exports = async(interaction,client)=>{
                 name: "BANできませんでした",
                 icon_url: "https://cdn.taka.ml/images/system/error.png"
               },
-              color: "RED",
+              color: Colors.Red,
               description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
               fields:[
                 {

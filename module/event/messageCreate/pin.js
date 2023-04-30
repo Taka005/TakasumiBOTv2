@@ -1,5 +1,5 @@
 module.exports = async(message,client)=>{
-  const { PermissionFlagsBits } = require("discord.js");
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const limit = require("../../lib/limit");
     
@@ -18,7 +18,7 @@ module.exports = async(message,client)=>{
       before.delete();
       const after = await message.channel.send({
         embeds:[{
-          color: "GREEN",
+          color: Colors.Green,
           author:{
             name: before.embeds[0].author.name,
             icon_url: before.embeds[0].author.iconURL,

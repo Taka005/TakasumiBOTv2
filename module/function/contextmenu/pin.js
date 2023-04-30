@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { PermissionFlagsBits } = require("discord.js");
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "メッセージをピン留め"){
@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
           name: "メッセージをピン留めできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "メッセージの内容が存在しません"
       }],
       ephemeral: true
@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります\n```メッセージの管理\nチャンネルの管理```"
       }],
       ephemeral: true
@@ -43,7 +43,7 @@ module.exports = async(interaction)=>{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "この機能はBOTに以下の権限が必要です\n```チャンネルの閲覧\nメッセージを送信\nメッセージの管理\nチャンネルの管理```"
       }],
       ephemeral: true
@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
           name: "メッセージをピン留めできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "既にこのチャンネルにはピン留めされたメッセージが存在します\nピン留めの解除は送信された埋め込みを削除してください"
       }],
       ephemeral: true
@@ -69,7 +69,7 @@ module.exports = async(interaction)=>{
           name: "メッセージをピン留めできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "サーバーには最大5個までしかPINは使えません\nピン留めの解除は送信された埋め込みを削除してください"
       }],
       ephemeral: true
@@ -77,7 +77,7 @@ module.exports = async(interaction)=>{
 
     const msg = await interaction.channel.send({
       embeds:[{
-        color: "GREEN",
+        color: Colors.Green,
         author:{
           name: message.author.tag,
           icon_url: message.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",

@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
-  if(!interaction.isSelectMenu()) return;
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId.startsWith("imagerole_")){
     const list = interaction.customId.split("_");
     const key = interaction.values[0];
@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
           name: "既に認証済みです",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
       }],
       ephemeral: true
     });
@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
                 name: "認証しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: "GREEN"
+              color: Colors.Green
             }],
             ephemeral: true
           });
@@ -37,7 +37,7 @@ module.exports = async(interaction)=>{
                 name: "認証に失敗しました",
                 icon_url: "https://cdn.taka.ml/images/system/error.png"
               },
-              color: "RED",
+              color: Colors.Red,
               description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
               fields:[
                 {
@@ -64,7 +64,7 @@ module.exports = async(interaction)=>{
             name: "選択した値が間違っています",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "画像に表示される文字を選択してください"
         }],
         ephemeral: true

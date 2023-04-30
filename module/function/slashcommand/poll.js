@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { PermissionFlagsBits } = require("discord.js");
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "poll"){
     const title = interaction.options.getString("title");
@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {

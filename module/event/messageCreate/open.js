@@ -1,5 +1,5 @@
 module.exports = async(message,client)=>{
-  const { PermissionFlagsBits } = require("discord.js");
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const limit = require("../../lib/limit");
 
@@ -24,7 +24,7 @@ module.exports = async(message,client)=>{
     if(!msg.attachments?.first()){
       message.channel.send({//添付ファイルなし
         embeds:[{
-          color: msg.member?.displayHexColor||"WHITE",
+          color: msg.member?.displayHexColor||Colors.White,
           author:{
             name: msg.author.tag,
             icon_url: msg.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
@@ -40,7 +40,7 @@ module.exports = async(message,client)=>{
       const attachment = msg.attachments.map(attachment=>attachment.url)
       message.channel.send({//添付ファイルあり(画像)
         embeds:[{
-          color: msg.member?.displayHexColor||"WHITE",
+          color: msg.member?.displayHexColor||Colors.White,
           author:{
             name: msg.author.tag,
             icon_url: msg.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
@@ -59,7 +59,7 @@ module.exports = async(message,client)=>{
       const attachment = msg.attachments.map(attachment=>attachment?.url)
       message.channel.send({//添付ファイルあり(画像以外)
         embeds:[{
-          color: msg.member?.displayHexColor||"WHITE",
+          color: msg.member?.displayHexColor||Colors.White,
           author:{
             name: msg.author.tag,
             icon_url: msg.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",

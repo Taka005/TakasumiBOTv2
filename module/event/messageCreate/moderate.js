@@ -1,7 +1,7 @@
 const time = [];
 
 module.exports = async(message)=>{
-  const { PermissionFlagsBits } = require("discord.js");
+  const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
 
   if(
@@ -30,7 +30,7 @@ module.exports = async(message)=>{
               },
               description: "メッセージの文字数が多すぎたため、メッセージを削除しました",
               timestamp: new Date(),
-              color: "YELLOW"
+              color: Colors.Yellow
             }]
         }).catch(()=>{})
       }
@@ -47,7 +47,7 @@ module.exports = async(message)=>{
             },
             description: "スパムを検知したため、メッセージを削除しました",
             timestamp: new Date(),
-            color: "YELLOW"
+            color: Colors.Yellow
           }]
         }).catch(()=>{})
         return time[message.author.id] = [new Date(),false];
@@ -67,7 +67,7 @@ module.exports = async(message)=>{
               },
               description: "メッセージの文字数が多すぎたため、メッセージを削除しました",
               timestamp: new Date(),
-              color: "YELLOW"
+              color: Colors.Yellow
             }]
         }).catch(()=>{})
       }
@@ -84,7 +84,7 @@ module.exports = async(message)=>{
             },
             description: "スパムを検知したため、メッセージを削除しました",
             timestamp: new Date(),
-            color: "YELLOW"
+            color: Colors.Yellow
           }]
         }).catch(()=>{})
         return time[message.author.id] = [new Date(),false];
@@ -104,7 +104,7 @@ module.exports = async(message)=>{
               },
               description: "メッセージの文字数が多すぎたため、メッセージを削除しました",
               timestamp: new Date(),
-              color: "YELLOW"
+              color: Colors.Yellow
             }]
         }).catch(()=>{})
       }
@@ -121,7 +121,7 @@ module.exports = async(message)=>{
             },
             description: "スパムを検知したため、メッセージを削除しました",
             timestamp: new Date(),
-            color: "YELLOW"
+            color: Colors.Yellow
           }]
         }).catch(()=>{})
         return time[message.author.id] = [new Date(),false];
@@ -144,7 +144,7 @@ module.exports = async(message)=>{
           },
           description: "メッセージにトークンが含まれていたため、メッセージを削除しました",
           timestamp: new Date(),
-          color: "YELLOW"
+          color: Colors.Yellow
         }]
       }).catch(()=>{})
     }

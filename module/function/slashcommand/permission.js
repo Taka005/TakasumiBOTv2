@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const permission = require("../../lib/permission");
-  const { ButtonBuilder, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "permission"){
     const user = interaction.options.getUser("user");
@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
     if(!user){
       await interaction.reply({
         embeds:[{
-          color: "GREEN",
+          color: Colors.Green,
           author:{
             name: `${interaction.user.tag}の権限`,
             icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
               name: "権限を取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: "RED",
+            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",
@@ -53,7 +53,7 @@ module.exports = async(interaction)=>{
       
       await interaction.reply({
         embeds:[{
-          color: "GREEN",
+          color: Colors.Green,
           author:{
             name: `${member.user.tag}の権限`,
             icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -72,7 +72,7 @@ module.exports = async(interaction)=>{
             name: "権限を取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "ユーザーが存在しないか、時間を置いてから実行してくださ"
         }],
         ephemeral: true

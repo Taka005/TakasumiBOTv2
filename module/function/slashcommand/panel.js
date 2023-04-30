@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ActionRowBuilder, StringSelectMenuBuilder, ButtonBuilder, PermissionFlagsBits } = require("discord.js");
+  const { ActionRowBuilder, StringSelectMenuBuilder, ButtonBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "panel"){
     const title = interaction.options.getString("title")||"役職パネル";
@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -44,7 +44,7 @@ module.exports = async(interaction)=>{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: "RED",
+        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
       await interaction.channel.send({
         embeds:[{
           title: title,          
-          color: "GREEN",
+          color: Colors.Green,
           description: selects.map((c,i)=>`${emojis[i]}<@&${c.id}>`).join("\n")
         }],
         components:[     
@@ -92,7 +92,7 @@ module.exports = async(interaction)=>{
             name: "作成できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "同じロールが選択されているか、BOTの権限が不足しています",
           fields:[
             {

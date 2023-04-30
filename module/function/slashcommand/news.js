@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors } = require("discord.js");
   require("dotenv").config();
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "news"){
@@ -19,7 +19,7 @@ module.exports = async(interaction)=>{
       .setCustomId("news_1")
 
     const page = new ButtonBuilder()
-      .setStyle("SECONDARY")
+      .setStyle(ButtonStyle.Secondary)
       .setLabel("1ページ")
       .setCustomId("news")
       .setDisabled(true)
@@ -29,7 +29,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           title: data.articles[0].title,
           url: data.articles[0].url,
-          color: "GREEN",
+          color: Colors.Green,
           description: data.articles[0].description,
           image:{
             url: data.articles[0].urlToImage
@@ -52,7 +52,7 @@ module.exports = async(interaction)=>{
             name: "ページが存在しません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: "RED",
+          color: Colors.Red,
           description: "前のページに戻ってください"
         }],
         components:[
