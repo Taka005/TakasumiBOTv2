@@ -1,7 +1,6 @@
-module.exports = async(interaction)=>{
+module.exports = async(interaction,Lang)=>{
   const fetch = require("node-fetch");
   const { AttachmentBuilder, Colors } = require("discord.js");
-  const lang = require("../../lib/lang");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "5000"){
     const top = interaction.options.getString("top");
@@ -12,17 +11,17 @@ module.exports = async(interaction)=>{
       let image;
       if(bottom){
         image = await fetch(`https://gsapi.cbrx.io/image?top=${top}&bottom=${bottom}&type=png`)
-          .then(res=>res.blob())
+          .then(res=>res.blob());
       }else{
         image = await fetch(`https://gsapi.cbrx.io/image?top=${top}&bottom=欲しい!&hoshii=true&type=png`)
-          .then(res=>res.blob())
+          .then(res=>res.blob());
       }    
 
       await interaction.editReply({
         embeds:[{
           color: Colors.Green,
           author:{
-            name: await lang(interaction.guild.id,"command.5000.generated"),
+            name: Lang.get("command.5000.generated"),
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           image:{
@@ -35,7 +34,7 @@ module.exports = async(interaction)=>{
             .setName("5000.png")
         ]
       });
-    }catch{
+    }catch(error){
       await interaction.editReply({
         embeds:[{
           color: Colors.Red,

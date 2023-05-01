@@ -2,6 +2,7 @@ module.exports = async(client)=>{
   const { Events, ChannelType, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const fs = require("fs");
   const db = require("./lib/db");
+  const lang = require("./lib/lang");
 
   client.once(Events.ClientReady,async(client)=>{
     require("./event/ready/status")(client);
@@ -10,11 +11,15 @@ module.exports = async(client)=>{
 
   client.on(Events.MessageCreate,async(message)=>{
     if(!message.guild.members.me) return;
+
+    const Lang = new lang();
+    Lang.set(message.guild.id);
+
     //event/message
     fs.readdir("./module/event/messageCreate/",(err,files)=>{
       files.forEach((file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./event/messageCreate/${file}`)(message);
+        require(`./event/messageCreate/${file}`)(message,Lang);
       });
     });
     
@@ -31,7 +36,7 @@ module.exports = async(client)=>{
     fs.readdir("./module/function/command/",(err,files)=>{ 
       files.forEach((file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/commmand/${file}`)(message);
+        require(`./function/command/${file}`)(message);
       });
     });
   });
@@ -68,7 +73,7 @@ module.exports = async(client)=>{
               .setStyle("LINK"))
       ]
     });
-
+    
     const mute_server = await db(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id} LIMIT 1;`);
     const mute_user = await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id} LIMIT 1;`);
 
@@ -92,32 +97,35 @@ module.exports = async(client)=>{
       ephemeral: true
     });
 
+    const Lang = new lang();
+    Lang.set(interaction.guild.id);
+
     //event/interaction
     fs.readdir("./module/event/interactionCreate/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./event/interactionCreate/${file}`)(interaction);
+        require(`./event/interactionCreate/${file}`)(interaction,Lang);
       });
     });
     //auth
     fs.readdir("./module/function/auth/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/auth/${file}`)(interaction);
+        require(`./function/auth/${file}`)(interaction,Lang);
       });
     });
     //slashcommands
     fs.readdir("./module/function/slashcommand/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/slashcommand/${file}`)(interaction);
+        require(`./function/slashcommand/${file}`)(interaction,Lang);
       });
     });
     //contextmenu
     fs.readdir("./module/function/contextmenu/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/contextmenu/${file}`)(interaction);
+        require(`./function/contextmenu/${file}`)(interaction,Lang);
       });
     });
   });
