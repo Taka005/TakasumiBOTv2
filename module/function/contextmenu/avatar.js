@@ -6,11 +6,11 @@ module.exports = async(interaction)=>{
 
     if(!member) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "メンバーを取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "指定したユーザーが存在していないか、サーバーから退出しています"
       }],
       ephemeral: true
@@ -29,20 +29,20 @@ module.exports = async(interaction)=>{
         image:{
           url: member.user.avatarURL({extension:"png",forceStatic:false,size:1024})||member.user.defaultAvatarURL
         },
-        timestamp: new Date(),
         footer:{
           text: "TakasumiBOT"
-        }
+        },
+        timestamp: new Date()
       }]
     })
     .catch(async(error)=>{
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

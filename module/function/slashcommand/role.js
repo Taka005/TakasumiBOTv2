@@ -12,10 +12,6 @@ module.exports = async(interaction)=>{
           name: `${role.name}の情報`,
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
-        timestamp: new Date(),
-        footer:{
-          text: "TakasumiBOT"
-        },
         fields:[
           {
             name: "ID",
@@ -51,16 +47,20 @@ module.exports = async(interaction)=>{
             name: "権限",
             value: `\`${permission(role.permissions.toArray()).join("`,`")}\``
           }
-        ]
+        ],
+        footer:{
+          text: "TakasumiBOT"
+        },
+        timestamp: new Date()
       }]
     }).catch(async(error)=>{
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

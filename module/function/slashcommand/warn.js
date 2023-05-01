@@ -7,11 +7,11 @@ module.exports = async(interaction)=>{
       
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -26,11 +26,11 @@ module.exports = async(interaction)=>{
     const member = await interaction.guild.members.cache.get(user.id);
     if(!member) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "警告できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "指定したユーザーが取得できません"
       }],
       ephemeral: true
@@ -38,11 +38,11 @@ module.exports = async(interaction)=>{
   
     if(member.user.id === interaction.user.id) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "警告できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "自分自身を警告することはできません"
       }],
       ephemeral: true
@@ -50,6 +50,7 @@ module.exports = async(interaction)=>{
   
     await member.user.send({
       embeds:[{
+        color: Colors.Yellow,
         author:{
           name: "警告されました",
           icon_url: "https://cdn.taka.ml/images/system/warn.png"
@@ -59,31 +60,30 @@ module.exports = async(interaction)=>{
           text: `${interaction.guild.name}(${interaction.guild.id})`,
           icon_url: interaction.guild.iconURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
         },
-        timestamp: new Date(),
-        color: "YELLOW"
+        timestamp: new Date()
       }]
     })
       .then(async()=>{
         await interaction.reply({
           content: `<@${interaction.user.id}>`,
           embeds:[{
+            color: Colors.Green,
             author:{
               name: `${member.user.tag}を警告しました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            description: `理由: ${reason}`,
-            color: Colors.Green
+            description: `理由: ${reason}`
           }]
         });
       })
       .catch(async(error)=>{
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "警告できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "ユーザーがDMを拒否しているか、メンバーが正しく指定されていません",
             fields:[
               {

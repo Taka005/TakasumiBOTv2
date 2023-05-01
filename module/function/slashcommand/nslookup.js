@@ -11,11 +11,11 @@ module.exports = async(interaction)=>{
 
       if(!data.Answer) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "DNS情報が取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "違うアドレスで試してください"
         }],
         ephemeral: true
@@ -23,11 +23,11 @@ module.exports = async(interaction)=>{
 
       await interaction.reply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: `${name}の結果`,
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: Colors.Green,
           description: `\`${data.Answer.map(address=>address.data).join("\n")}\``,
           footer:{
             text: "TakasumiBOT"
@@ -37,11 +37,11 @@ module.exports = async(interaction)=>{
     }catch{
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "DNS情報が取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "違うアドレスを試してください"
         }],
         ephemeral: true

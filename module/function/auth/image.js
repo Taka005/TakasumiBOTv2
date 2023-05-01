@@ -20,12 +20,12 @@ module.exports = async(interaction)=>{
 
     const auth = random(keys);
     const image = await fetch(auth.url)
-      .then(res=>res.blob())
+      .then(res=>res.blob());
 
     await interaction.editReply({
       embeds:[{
-        title: "画像認証",          
         color: Colors.Green,
+        title: "画像認証",
         description: "画像にある文字を選択してください\n※画像が表示されるまで時間がかかる場合があります",
         image:{
           url: "attachment://code.png"

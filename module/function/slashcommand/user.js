@@ -1,12 +1,14 @@
-module.exports = async(interaction,client)=>{
-  const db = require("../../lib/db");
+module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const db = require("../../lib/db");
+  const fetchUser = require("../../lib/fetchUser");
+  const fetchMember = require("../../lib/fetchMember");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "user"){
     const id = interaction.options.getString("id");
 
     if(!id){
-      const members = await db(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
+      const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
 
       return await interaction.reply({
         embeds:[{
@@ -51,7 +53,7 @@ module.exports = async(interaction,client)=>{
             },
             {
               name: "TakasumiBOT Accountへの登録",
-              value: members[0] ? "登録済み" : "未登録"
+              value: account[0] ? "登録済み" : "未登録"
             },
             {
               name: "ロール",
@@ -62,11 +64,11 @@ module.exports = async(interaction,client)=>{
       }).catch(async(error)=>{
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",
@@ -87,22 +89,22 @@ module.exports = async(interaction,client)=>{
       });
     }
   
-    const ID = id.match(/\d{18,19}/g);
-    if(!ID) return await interaction.reply({
+    const userId = id.match(/\d{18,19}/g);
+    if(!userId) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "正確にIDまたは、メンションをしてください"
       }],
       ephemeral: true
     });
 
-    const member = await interaction.guild.members.cache.get(ID[0]);
+    const member = await fetchMember(interaction.guild,userId[0]);
     if(member){
-      const members = await db(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
+      const account = await db(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
 
       await interaction.reply({
         embeds:[{
@@ -111,10 +113,6 @@ module.exports = async(interaction,client)=>{
             name: `${member.user.tag}の検索結果`,
             url: `https://discord.com/users/${member.user.id}`,
             icon_url: "https://cdn.taka.ml/images/system/success.png"
-          },
-          timestamp: new Date(),
-          footer:{
-            text: "TakasumiBOT"
           },
           thumbnail:{
             url: member.user.avatarURL({extension:"png",forceStatic:false,size:1024})||member.user.defaultAvatarURL
@@ -146,23 +144,27 @@ module.exports = async(interaction,client)=>{
             },
             {
               name: "TakasumiBOT Accountへの登録",
-              value: members[0] ? "登録済み" : "未登録",
+              value: account[0] ? "登録済み" : "未登録",
               inline: true
             },
             {
               name: "ロール",
               value: member.roles.cache.map(r=>r).join("")
             }
-          ]
+          ],
+          footer:{
+            text: "TakasumiBOT"
+          },
+          timestamp: new Date()
         }]
       }).catch(async(error)=>{
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",
@@ -183,8 +185,8 @@ module.exports = async(interaction,client)=>{
       });   
     }else{
       try{
-        const user = await client.users.fetch(ID[0]);
-        const members = await db(`SELECT * FROM account WHERE id = ${user.id} LIMIT 1;`);
+        const user = await fetchUser(interaction.client,userId[0]);
+        const account = await db(`SELECT * FROM account WHERE id = ${user.id} LIMIT 1;`);
 
         await interaction.reply({
           embeds:[{
@@ -193,10 +195,6 @@ module.exports = async(interaction,client)=>{
               name: `${user.tag}の検索結果`,
               url: `https://discord.com/users/${user.id}`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            timestamp: new Date(),
-            footer:{
-              text: "TakasumiBOT"
             },
             thumbnail:{
               url: user.avatarURL({extension:"png",forceStatic:false,size:1024})||user.defaultAvatarURL
@@ -219,20 +217,24 @@ module.exports = async(interaction,client)=>{
               },
               {
                 name: "TakasumiBOT Accountへの登録",
-                value: members[0] ? "登録済み" : "未登録"
+                value: account[0] ? "登録済み" : "未登録"
               }
-            ]
+            ],
+            footer:{
+              text: "TakasumiBOT"
+            },
+            timestamp: new Date()
           }]
         });
       }catch(error){
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
-            description: "指定されたユーザーは存在しないか、\n間違っています",
+            description: "指定されたユーザーは存在しないか間違っています",
             fields:[
               {
                 name: "エラーコード",

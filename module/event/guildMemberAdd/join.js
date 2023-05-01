@@ -1,4 +1,4 @@
-module.exports = async(member,client)=>{
+module.exports = async(member)=>{
   const { WebhookClient, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const db = require("../../lib/db");
 
@@ -22,7 +22,7 @@ module.exports = async(member,client)=>{
     })
       .catch(async(error)=>{
         await db(`DELETE FROM \`join\` WHERE channel = ${data[0].channel} LIMIT 1;`);
-        await client.channels.cache.get(data[0].channel).send({
+        await member.client.channels.cache.get(data[0].channel).send({
           embeds:[{
             author:{
               name: "参加メッセージでエラーが発生しました",

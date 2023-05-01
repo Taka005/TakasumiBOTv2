@@ -8,11 +8,11 @@ module.exports = async(interaction)=>{
     if(!message.content) return await interaction.reply({
       content: `[翻訳元](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)`,
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "翻訳できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "メッセージの内容が存在しません",
         footer:{
           text: "Google Translate",
@@ -25,12 +25,12 @@ module.exports = async(interaction)=>{
     if(message.content > 2000) return await interaction.reply({
       content: `[翻訳元](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)`,
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "翻訳できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
-        description: "翻訳文字数は、2000文字以下です",
+        description: "翻訳文字数は2000文字以下です",
         footer:{
           text: "Google Translate",
           icon_url: "https://cdn.taka.ml/images/translate.png"
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
     });
       
     const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&dj=1&q=${encodeURIComponent(message.content)}`)
-      .then(res=>res.json())
+      .then(res=>res.json());
     
     try{
       const translated = data.sentences.map((sentence)=>{
@@ -50,11 +50,11 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         content: `[翻訳元](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)`,
         embeds:[{
+          color: Colors.Blue,
           author:{
             name: `${message.author.tag}`,
             icon_url: message.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
           },
-          color: Colors.Blue,    
           description: translated.join(""),
           footer:{
             text: `Google Translate [${data.src}]->[en]`,
@@ -66,11 +66,11 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         content: `[翻訳元](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)`,
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "翻訳できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "翻訳文字を変えて、もう一度実行してください",
           footer:{
             text: "Google Translate",

@@ -8,11 +8,11 @@ module.exports = async(interaction)=>{
     
     if(text > 2000) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "翻訳できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "翻訳文字数は、2000文字以下です",
         footer:{
           text: "Google Translate",
@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
     });
     
     const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&dj=1&q=${encodeURIComponent(text)}`)
-      .then(res=>res.json())
+      .then(res=>res.json());
   
     try{
       const translate = data.sentences.map((sentence)=>{
@@ -32,8 +32,8 @@ module.exports = async(interaction)=>{
 
       await interaction.reply({
         embeds:[{
-          title: "翻訳結果",
           color: Colors.Blue,
+          title: "翻訳結果",
           description: translate.join(""),
           footer:{
             text: `Google Translate [${data.src}]->[${lang}]`,
@@ -44,11 +44,11 @@ module.exports = async(interaction)=>{
     }catch{
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "翻訳できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "翻訳文字を変えて、もう一度実行してください",
           footer:{
             text: "Google Translate",

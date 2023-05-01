@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits } = require("discord.js");
+const { Client, GatewayIntentBits, Colors } = require("discord.js");
 require("dotenv").config();
 const config = require("./config.json"); 
 
@@ -50,7 +50,7 @@ process.on("unhandledRejection",async(error)=>{
 
   await client.channels.cache.get(config.error).send({
     embeds:[{
-      color: "ORANGE",
+      color: Colors.Orange,
       description: `\`\`\`js\n${error.stack}\`\`\``,
       timestamp: new Date()
     }]

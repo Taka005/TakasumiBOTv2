@@ -16,10 +16,11 @@ module.exports = async(interaction)=>{
       });
 
       const data = await fetch(`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURI(text)}&size=256x256&extension=png`)
-        .then(res=>res.blob()) 
+        .then(res=>res.blob());
 
       await interaction.editReply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "QRコードを作成しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
@@ -27,8 +28,7 @@ module.exports = async(interaction)=>{
           description: `内容\n\`\`\`${text}\`\`\``,
           image:{
             url: "attachment://QRCode.png"
-          },
-          color: Colors.Green
+          }
         }],
         files:[
           new AttachmentBuilder()
@@ -39,11 +39,11 @@ module.exports = async(interaction)=>{
     }else{
       if(!text.match(/^(http(s?):\/\/)([^\s/]+\/)([^\s]+\.(jpg|jpeg|png|gif))$/i)) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "入力された画像が無効です",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "QRコードは画像のURLで指定する必要があります"
         }],
         ephemeral: true
@@ -58,27 +58,27 @@ module.exports = async(interaction)=>{
       });
       
       const data = await fetch(`https://api.qrserver.com/v1/read-qr-code/?fileurl=${encodeURI(text)}`)
-        .then(res =>res.json()) 
+        .then(res =>res.json());
 
       if(data[0].symbol[0].error) return await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "QRコードが読み取れません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "QRコードはURLかつ、読み取れる必要があります"
         }]
       });
 
       await interaction.editReply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "QRコードを読み取りました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           description: `内容\n\`\`\`${data[0].symbol[0].data}\`\`\``,
-          color: Colors.Green
         }]
       });
     }

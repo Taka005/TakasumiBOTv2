@@ -1,4 +1,4 @@
-module.exports = async(message,client)=>{
+module.exports = async(message)=>{
   const db = require("../../lib/db");
   const spam = require("../../lib/spam");
   const { WebhookClient, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
@@ -89,7 +89,7 @@ module.exports = async(message,client)=>{
         username: "TakasumiBOT Global",
         avatarURL: "https://cdn.taka.ml/images/icon.png"
       }).catch((error)=>{
-        err(data.channel,client,error);
+        err(data.channel,message.client,error);
       });
     });
     await message.react("✅")
@@ -131,7 +131,7 @@ module.exports = async(message,client)=>{
         username: "TakasumiBOT Global",
         avatarURL: "https://cdn.taka.ml/images/icon.png"
       }).catch((error)=>{
-        err(data.channel,client,error);
+        err(data.channel,message.client,error);
       });
     });
     await message.react("✅")
@@ -172,7 +172,7 @@ module.exports = async(message,client)=>{
         username: "TakasumiBOT Global",
         avatarURL: "https://cdn.taka.ml/images/icon.png"
       }).catch((error)=>{
-        err(data.channel,client,error);
+        err(data.channel,message.client,error);
       });
     });
     await message.react("✅")

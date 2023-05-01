@@ -10,11 +10,11 @@ module.exports = async(interaction)=>{
 
     if(interaction.user.id !== admin) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドは関係者以外実行できません"
       }],
       ephemeral: true
@@ -26,11 +26,11 @@ module.exports = async(interaction)=>{
           const msg = await channel.messages.fetch({"message":id});
           await interaction.reply({
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: "取得しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: Colors.Green,
               description: `\`\`\`json\n${JSON.stringify(msg,null,"  ")}\`\`\``
             }]
           });
@@ -38,11 +38,11 @@ module.exports = async(interaction)=>{
           const msg = await interaction.channel.messages.fetch({"message":id});
           await interaction.reply({
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: "取得しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: Colors.Green,
               description: `\`\`\`json\n${JSON.stringify(msg,null,"  ")}\`\`\``
             }]
           });
@@ -50,11 +50,11 @@ module.exports = async(interaction)=>{
       }catch(error){
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "メッセージが存在しません",
             fields:[
               {
@@ -72,11 +72,11 @@ module.exports = async(interaction)=>{
       }catch(error){
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "送信できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "メッセージオブジェクトが無効です",
             fields:[
               {
@@ -95,11 +95,11 @@ module.exports = async(interaction)=>{
           await msg.edit(JSON.parse(json));
           await interaction.reply({
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: "編集しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
-              },
-              color: Colors.Green
+              }
             }]
           });
         }else{
@@ -107,22 +107,22 @@ module.exports = async(interaction)=>{
           await msg.edit(JSON.parse(json));
           await interaction.reply({
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: "編集しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
-              },
-              color: Colors.Green
+              }
             }]
           });
         }
       }catch(error){
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "編集できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "メッセージオブジェクトまたは、メッセージが取得できません",
             fields:[
               {
@@ -138,37 +138,37 @@ module.exports = async(interaction)=>{
       try{
         if(channel){
           const msg = await channel.messages.fetch({"message":id});
-          msg.delete();
+          await msg.delete();
           await interaction.reply({
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: "削除しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
-              },
-              color: Colors.Green
+              }
             }]
           });
         }else{
           const msg = await interaction.channel.messages.fetch({"message":id});
-          msg.delete();
+          await msg.delete();
           await interaction.reply({
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: "削除しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
-              },
-              color: Colors.Green
+              }
             }]
           });
         }
       }catch(error){
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "メッセージが存在しません",
             fields:[
               {

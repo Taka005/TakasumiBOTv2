@@ -1,104 +1,127 @@
-module.exports = async(interaction,client)=>{
+module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const fetchMember = require("../../lib/fetchMember");
+  const fetchUser = require("../../lib/fetchUser");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "avatar"){
     const id = interaction.options.getString("id");
 
-    if(!id){
-      return await interaction.reply({
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: `${interaction.user.tag}のアバター`,
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
-          },
-          thumbnail:{
-            url: interaction.member.avatarURL({extension:"png",forceStatic:false,size:1024})
-          },
-          image:{
-            url: interaction.user.avatarURL({extension:"png",forceStatic:false,size:1024})||interaction.user.defaultAvatarURL
-          },
-          timestamp: new Date(),
-          footer:{
-            text: "TakasumiBOT"
-          }
-        }]
-      }).catch(async(error)=>{
-        await interaction.reply({
-          embeds:[{
-            author:{
-              name: "取得できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
-            },
-            color: Colors.Red,
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }],
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle("LINK"))
-          ],
-          ephemeral: true
-        })
-      });
-    }
-  
-    const ID = id.match(/\d{18,19}/g);
-    if(!ID) return await interaction.reply({
+    if(!id) return await interaction.reply({
       embeds:[{
+        color: Colors.Green,
+        author:{
+          name: `${interaction.user.tag}のアバター`,
+          icon_url: "https://cdn.taka.ml/images/system/success.png"
+        },
+        thumbnail:{
+          url: interaction.member.avatarURL({extension:"png",forceStatic:false,size:1024})
+        },
+        image:{
+          url: interaction.user.avatarURL({extension:"png",forceStatic:false,size:1024})||interaction.user.defaultAvatarURL
+        },
+        footer:{
+          text: "TakasumiBOT"
+        },
+        timestamp: new Date(),
+      }]
+    }).catch(async(error)=>{
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "取得できませんでした",
+            icon_url: "https://cdn.taka.ml/images/system/error.png"
+          },
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle("LINK"))
+        ],
+        ephemeral: true
+      })
+    });
+  
+    const userId = id.match(/\d{18,19}/g);
+    if(!userId) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
         author:{
           name: "取得に失敗しました",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
-        description: "正確にIDまたは、メンションをしてください"
+        description: "IDまたは、メンションを入力してください"
       }],
       ephemeral: true
     });
 
-    try{
-      const member = await interaction.guild.members.cache.get(ID[0]);
-      const user = await client.users.fetch(ID[0]);
-      
+    const member = await fetchUser(interaction.guild,userId[0]);
+    const user = await fetchMember(interaction.client,userId[0]);
+    
+    if(!user) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "取得に失敗しました",
+          icon_url: "https://cdn.taka.ml/images/system/error.png"
+        },
+        description: "指定されたユーザーは存在しないか、間違っています"
+      }],
+      ephemeral: true
+    });
+
+    await interaction.reply({
+      embeds:[{
+        color: Colors.Green,
+        author:{
+          name: `${user.tag}のアバター`,
+          icon_url: "https://cdn.taka.ml/images/system/success.png"
+        },
+        thumbnail:{
+          url: member?.avatarURL({extension:"png",forceStatic:false,size:1024})
+        },
+        image:{
+          url: user.avatarURL({extension:"png",forceStatic:false,size:1024})||user.defaultAvatarURL
+        },
+        footer:{
+          text: "TakasumiBOT"
+        },
+        timestamp: new Date(),
+      }]
+    }).catch(async(error)=>{
       await interaction.reply({
         embeds:[{
-          color: Colors.Green,
+          color: Colors.Red,
           author:{
-            name: `${user.tag}のアバター`,
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
-          },
-          thumbnail:{
-            url: member.avatarURL({extension:"png",forceStatic:false,size:1024})
-          },
-          image:{
-            url: user.avatarURL({extension:"png",forceStatic:false,size:1024})||user.defaultAvatarURL
-          },
-          timestamp: new Date(),
-          footer:{
-            text: "TakasumiBOT"
-          }
-        }]
-      });
-    }catch{
-      await interaction.reply({
-        embeds:[{
-          author:{
-            name: "取得に失敗しました",
+            name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
-          description: "指定されたユーザーは存在しないか、間違っています"
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
         }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle("LINK"))
+        ],
         ephemeral: true
-      });
-    }
+      })
+    });
   }
 }

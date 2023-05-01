@@ -7,11 +7,11 @@ module.exports = async(interaction)=>{
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドを実行するには以下のの権限を持っている必要があります",
         fields:[
           {
@@ -25,11 +25,11 @@ module.exports = async(interaction)=>{
 
     if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageRoles)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -51,23 +51,23 @@ module.exports = async(interaction)=>{
     .then(async(role)=>{
       await interaction.reply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "ロールを作成しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          description: `作成したロール:${role}`,
-          color: Colors.Green
+          description: `作成したロール:${role}`
         }]
       });
     })
     .catch(async(error)=>{
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "ロールを作成できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

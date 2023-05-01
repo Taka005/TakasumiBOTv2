@@ -6,11 +6,11 @@ module.exports = async(interaction)=>{
 
     if(interaction.member.roles.cache.has(role[1])) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "既に認証済みです",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
-        },
-        color: Colors.Red,
+        }
       }],
       ephemeral: true
     });
@@ -19,11 +19,11 @@ module.exports = async(interaction)=>{
       .then(async()=>{
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "認証しました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }],
           ephemeral: true
         });
@@ -31,11 +31,11 @@ module.exports = async(interaction)=>{
       .catch(async(error)=>{
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "認証に失敗しました",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
             fields:[
               {

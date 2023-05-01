@@ -1,6 +1,5 @@
-module.exports = async(interaction,client)=>{
+module.exports = async(interaction)=>{
   const os = require("os");
-  const fetch = require("node-fetch");
   const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
@@ -23,11 +22,7 @@ module.exports = async(interaction,client)=>{
     const hiroyuki = await db("SELECT * FROM hiroyuki;");
     const global = await db("SELECT * FROM global;");
 
-    const chat = global.length/client.guilds.cache.size*100
-
-    const start = performance.now(); 
-    await fetch("https://api.taka.ml/v1/status");
-    const end = performance.now(); 
+    const chat = global.length/interaction.client.guilds.cache.size*100;
 
     await interaction.editReply({
       embeds:[{
@@ -36,16 +31,12 @@ module.exports = async(interaction,client)=>{
         timestamp: new Date(),
         fields:[
           {
-            name: "API",
-            value: `Ping: ${Math.floor(end - start)}㍉秒`
-          },
-          {
             name: "システム",
             value: `OS: ${os.version()}(${os.type()}) ${os.arch()}\nCPU: ${(cpuusage * 100).toFixed(2)}%\nMemory: ${100 - Math.floor((os.freemem() / os.totalmem()) * 100)}%`
           },
           {
             name: "Discord",
-            value: `Ping: ${client.ws.ping}㍉秒\nGC登録数: ${global.length} / ${client.guilds.cache.size} (${Math.round(chat)}%)\nひろゆき登録数: ${hiroyuki.length}\nTakasumiBOT Account: ${account.length}人\nServer Uptime: ${Math.round(os.uptime() / 60)}分(BOT: ${Math.round(process.uptime() / 60)}分)`
+            value: `Ping: ${interaction.client.ws.ping}㍉秒\nGC登録数: ${global.length} / ${interaction.client.guilds.cache.size} (${Math.round(chat)}%)\nひろゆき登録数: ${hiroyuki.length}\nTakasumiBOT Account: ${account.length}人\nServer Uptime: ${Math.round(os.uptime() / 60)}分(BOT: ${Math.round(process.uptime() / 60)}分)`
           }
         ]
       }],
@@ -60,11 +51,11 @@ module.exports = async(interaction,client)=>{
     }).catch((error)=>{
       interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

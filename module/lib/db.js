@@ -13,8 +13,7 @@ module.exports = async(query)=>{
   connection.query = util.promisify(connection.query);
 
   try{
-    const res = await connection.query(query);
-    return res;
+    return await connection.query(query);
   }catch{
     return [];
   }

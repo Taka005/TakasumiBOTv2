@@ -8,12 +8,12 @@ module.exports = async(interaction)=>{
     if(!account[0]){
       await interaction.reply({ 
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "登録されていません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
-          description: "以下のリンクから登録を行うことができます\n登録が完了すると[グローバルチャット利用規約](https://gc.taka.ml/)にも同意したものとみなします",
+          description: "以下のリンクから登録を行うことができます\n登録が完了すると[グローバルチャット利用規約](https://gc.taka.ml/)にも同意したものとみなします"
         }], 
         components:[
           new ActionRowBuilder()
@@ -28,12 +28,12 @@ module.exports = async(interaction)=>{
     }else{
       await interaction.reply({ 
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "登録情報",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: Colors.Green,
-          description: `ID\n\`${account[0].id}\`\nIPアドレス\n\`${account[0].ip}\`\n登録日時/更新日時\n\`${new Date(account[0].time).toLocaleString()}\``,
+          description: `ID\n\`${account[0].id}\`\nIPアドレス\n\`${account[0].ip}\`\n登録日時/更新日時\n\`${new Date(account[0].time).toLocaleString()}\``
         }],
         ephemeral: true
       });

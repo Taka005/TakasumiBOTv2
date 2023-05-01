@@ -7,11 +7,11 @@ module.exports = async(interaction)=>{
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -28,11 +28,11 @@ module.exports = async(interaction)=>{
       !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageMessages)
     ) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です\n```チャンネルの閲覧\nメッセージの管理```",
         fields:[
           {
@@ -46,11 +46,11 @@ module.exports = async(interaction)=>{
 
     if(number < 2||number > 99) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "引数が無効です",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "削除するメッセージの数は`2`以上`99`以下にする必要があります"
       }],
       ephemeral: true
@@ -63,11 +63,11 @@ module.exports = async(interaction)=>{
         const msg = await messages.filter(msg => user.id === msg.author.id);
         if(!msg) return await interaction.editReply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "削除できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "メッセージに指定したユーザーが含まれていませんでした",
           }],
           ephemeral: true
@@ -78,11 +78,11 @@ module.exports = async(interaction)=>{
             await interaction.editReply({
               content: `<@${interaction.user.id}>`,
               embeds:[{
+                color: Colors.Green,
                 author:{
                   name: `${user.tag} のメッセージを${number}個削除しました`,
                   icon_url: "https://cdn.taka.ml/images/system/success.png"
-                },
-                color: Colors.Green
+                }
               }]
             })
           });
@@ -93,11 +93,11 @@ module.exports = async(interaction)=>{
             await interaction.editReply({
               content: `<@${interaction.user.id}>`,
               embeds:[{
+                color: Colors.Green,
                 author:{
                   name: `${number}個のメッセージを削除しました`,
                   icon_url: "https://cdn.taka.ml/images/system/success.png"
-                },
-                color: Colors.Green
+                }
               }]
             });
           })
@@ -105,11 +105,11 @@ module.exports = async(interaction)=>{
     }catch(error){
       await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "削除できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "二週間より前のメッセージが含まれていたか、\nBOTの権限が不足しています",
           fields:[
             {

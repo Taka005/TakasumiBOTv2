@@ -21,7 +21,7 @@ module.exports = async(interaction)=>{
     await interaction.editReply("生成中...");
 
     const image = await fetch(`https://miq-api.tuna2134.jp/?name=${message.author.username}&tag=${message.author.discriminator}&id=${message.author.id}&content=${message.cleanContent}&icon=${message.author.avatarURL({extension:"png",size:1024})}`)
-      .then(res=>res.blob())
+      .then(res=>res.blob());
     
     await interaction.editReply({ 
       content: `[生成元](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`,

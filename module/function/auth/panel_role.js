@@ -7,22 +7,22 @@ module.exports = async(interaction)=>{
 
     if(interaction.member.roles.cache.has(list[1])) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "既に認証済みです",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
-        },
-        color: Colors.Red,
+        }
       }],
       ephemeral: true
     });
 
     if(isNaN(code)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "認証コードが間違っています",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "答えの数字を半角で入力してください"
       }],
       ephemeral: true
@@ -33,11 +33,11 @@ module.exports = async(interaction)=>{
         .then(async()=>{
           await interaction.reply({
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: "認証しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
-              },
-              color: Colors.Green
+              }
             }],
             ephemeral: true
           });
@@ -45,11 +45,11 @@ module.exports = async(interaction)=>{
         .catch(async(error)=>{
           await interaction.reply({
             embeds:[{
+              color: Colors.Red,
               author:{
                 name: "認証に失敗しました",
                 icon_url: "https://cdn.taka.ml/images/system/error.png"
               },
-              color: Colors.Red,
               description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
               fields:[
                 {
@@ -72,11 +72,11 @@ module.exports = async(interaction)=>{
     }else{
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "入力コードが間違っています",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "認証時に表示される画面のテキストボックスの\n上に表記されている通りに認証してください"
         }],
         ephemeral: true

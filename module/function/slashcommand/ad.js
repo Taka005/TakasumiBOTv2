@@ -1,9 +1,9 @@
-module.exports = async(interaction,client)=>{
+module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ad"){
     const type = interaction.options.getString("type");
-    const server = Math.floor(client.guilds.cache.size/10)*10;
+    const server = Math.floor(interaction.client.guilds.cache.size/10)*10;
     
     if(type === "normal"){
       await interaction.reply({

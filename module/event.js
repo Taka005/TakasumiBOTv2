@@ -2,6 +2,7 @@ module.exports = async(client)=>{
   const { Events, ChannelType, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const fs = require("fs");
   const db = require("./lib/db");
+  const lang = require("./lib/lang");
 
   client.once(Events.ClientReady,async(client)=>{
     require("./event/ready/status")(client);
@@ -10,11 +11,15 @@ module.exports = async(client)=>{
 
   client.on(Events.MessageCreate,async(message)=>{
     if(!message.guild.members.me) return;
+
+    const Lang = new lang();
+    Lang.set(message.guild.id);
+
     //event/message
     fs.readdir("./module/event/messageCreate/",(err,files)=>{
       files.forEach((file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./event/messageCreate/${file}`)(message,client);
+        require(`./event/messageCreate/${file}`)(message,Lang);
       });
     });
     
@@ -23,15 +28,15 @@ module.exports = async(client)=>{
     console.log(`\x1b[37mLOG:(${message.author.tag}[${message.guild.id}])${message.content} PING[${client.ws.ping}ms]\x1b[39m`);
 
    //Globalchat
-    require("./function/globalchat/global")(message,client).catch(()=>{});
-    require("./function/globalchat/reply")(message,client).catch(()=>{});
-    require("./function/globalchat/send")(message,client).catch(()=>{});
+    require("./function/globalchat/global")(message).catch(()=>{});
+    require("./function/globalchat/reply")(message).catch(()=>{});
+    require("./function/globalchat/send")(message).catch(()=>{});
 
     //コマンド
     fs.readdir("./module/function/command/",(err,files)=>{ 
       files.forEach((file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/commmand/${file}`)(message,client);
+        require(`./function/command/${file}`)(message);
       });
     });
   });
@@ -41,11 +46,11 @@ module.exports = async(client)=>{
   });
 
   client.on(Events.GuildCreate,async(guild)=>{
-    require("./event/guildCreate/add")(guild,client);
+    require("./event/guildCreate/add")(guild);
   });
   
   client.on(Events.GuildDelete,async(guild)=>{
-    require("./event/guildDelete/remove")(guild,client);
+    require("./event/guildDelete/remove")(guild);
   });
 
   client.on(Events.InteractionCreate,async(interaction)=>{
@@ -68,7 +73,7 @@ module.exports = async(client)=>{
               .setStyle("LINK"))
       ]
     });
-
+    
     const mute_server = await db(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id} LIMIT 1;`);
     const mute_user = await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id} LIMIT 1;`);
 
@@ -92,41 +97,44 @@ module.exports = async(client)=>{
       ephemeral: true
     });
 
+    const Lang = new lang();
+    Lang.set(interaction.guild.id);
+
     //event/interaction
     fs.readdir("./module/event/interactionCreate/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./event/interactionCreate/${file}`)(interaction,client);
+        require(`./event/interactionCreate/${file}`)(interaction,Lang);
       });
     });
     //auth
     fs.readdir("./module/function/auth/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/auth/${file}`)(interaction,client);
+        require(`./function/auth/${file}`)(interaction,Lang);
       });
     });
     //slashcommands
     fs.readdir("./module/function/slashcommand/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/slashcommand/${file}`)(interaction,client);
+        require(`./function/slashcommand/${file}`)(interaction,Lang);
       });
     });
     //contextmenu
     fs.readdir("./module/function/contextmenu/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/contextmenu/${file}`)(interaction,client);
+        require(`./function/contextmenu/${file}`)(interaction,Lang);
       });
     });
   });
 
   client.on(Events.GuildMemberAdd,async(member)=>{
-    require("./event/guildMemberAdd/join")(member,client);
+    require("./event/guildMemberAdd/join")(member);
   });
 
   client.on(Events.GuildMemberRemove,async(member)=>{
-    require("./event/guildMemberRemove/leave")(member,client);
+    require("./event/guildMemberRemove/leave")(member);
   });
 }

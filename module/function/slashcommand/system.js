@@ -1,7 +1,9 @@
-module.exports = async(interaction,client)=>{
+module.exports = async(interaction)=>{
+  const { WebhookClient, Colors } = require("discord.js");
   const { admin } = require("../../../config.json");
   const db = require("../../lib/db");
-  const { WebhookClient, Colors } = require("discord.js");
+  const fetchGuild = require("../../lib/fetchGuild");
+  const fetchUser = require("../../lib/fetchUser");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "system"){
     const id = interaction.options.getString("id");
@@ -10,11 +12,11 @@ module.exports = async(interaction,client)=>{
 
     if(interaction.user.id !== admin) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドは関係者以外実行できません"
       }],
       ephemeral: true
@@ -23,25 +25,25 @@ module.exports = async(interaction,client)=>{
     const ID = id.match(/\d{18,19}/g);
     if(!ID) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "引数が無効です",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "ユーザー又はサーバーIDを指定する必要があります"
       }],
       ephemeral: true
     });
 
     if(type === "leave"){//サーバーから脱退する
-      const guild = client.guilds.cache.get(ID[0]);
+      const guild = await fetchGuild(interaction.client,ID[0]);
       if(!guild) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "サーバーから脱退できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "指定したサーバーが存在しません"
         }],
         ephemeral: true
@@ -51,22 +53,22 @@ module.exports = async(interaction,client)=>{
         .then(async(g)=>{
           await interaction.reply({
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: `${g.name} から脱退しました`,
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
-              },
-              color: Colors.Green
+              }
             }]
           })
         })
         .catch(async(error)=>{
           await interaction.reply({
             embeds:[{
+              color: Colors.Red,
               author:{
                 name: "サーバーから脱退できませんでした",
                 icon_url: "https://cdn.taka.ml/images/system/error.png"
               },
-              color: Colors.Red,
               description: `\`\`\`${error}\`\`\``
             }],
             ephemeral: true
@@ -74,14 +76,14 @@ module.exports = async(interaction,client)=>{
         });
 
     }else if(type === "delete"){//グローバルチャットの登録情報を削除
-      const guild = client.guilds.cache.get(ID[0]);
+      const guild = await fetchGuild(interaction.client,ID[0]);
       if(!guild) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "登録情報を削除できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "指定したサーバーが存在しません"
         }],
         ephemeral: true
@@ -91,11 +93,11 @@ module.exports = async(interaction,client)=>{
   
       if(!data[0]) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "登録情報を削除できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "指定されたサーバーは登録されていません"
         }],
         ephemeral: true
@@ -106,34 +108,34 @@ module.exports = async(interaction,client)=>{
         .then(async()=>{
           await interaction.reply({
             embeds:[{
-                author:{
-                  name: `${guild.name} の登録の削除が完了しました`,
-                  icon_url: "https://cdn.taka.ml/images/system/success.png"
-                },
-                color: Colors.Green
-              }]
-            });
-          })
+              color: Colors.Green,
+              author:{
+                name: `${guild.name} の登録の削除が完了しました`,
+                icon_url: "https://cdn.taka.ml/images/system/success.png"
+              }
+            }]
+          });
+        })
         .catch(async()=>{
           await interaction.reply({
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: `${guild.name} の登録の削除が完了しました`,
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              description: "※webhookは既に削除済みのため、\n登録情報のみ削除しました",
-              color: Colors.Green
+              description: "※webhookは既に削除済みのため、\n登録情報のみ削除しました"
             }]
           })
         });
 
-      await client.channels.cache.get(data.channel).send({
+      await interaction.client.channels.cache.get(data.channel).send({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "登録情報が削除されました",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "グローバルチャットは、管理者によって強制的に切断されました\n再度登録するには`/global`を使用してください"
         }]
       }).catch(()=>{});
@@ -145,11 +147,11 @@ module.exports = async(interaction,client)=>{
   
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: `${ID[0]} のミュートを解除しました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }else{//登録なし
@@ -157,31 +159,27 @@ module.exports = async(interaction,client)=>{
 
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: `${ID[0]} をミュートしました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }
     }else if(type === "mute_user"){//ミュートユーザーを追加する
-      let user
-      try{
-        user = await client.users.fetch(ID[0]);
-      }catch{
-        return await interaction.reply({
-          embeds:[{
-            author:{
-              name: "ユーザーをミュートできませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
-            },
-            color: Colors.Red,
-            description: "指定したユーザーが存在しません"
-          }],
-          ephemeral: true
-        });
-      }
+      const user = await fetchUser(interaction.client,ID[0]);
+      if(!user) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "ユーザーをミュートできませんでした",
+            icon_url: "https://cdn.taka.ml/images/system/error.png"
+          },
+          description: "指定したユーザーが存在しません"
+        }],
+        ephemeral: true
+      });
   
       const data = await db(`SELECT * FROM mute_user WHERE id = ${ID[0]} LIMIT 1;`);
       if(data[0]){//登録済み
@@ -189,11 +187,11 @@ module.exports = async(interaction,client)=>{
   
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: `${user.tag} のミュートを解除しました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }else{//登録なし
@@ -201,41 +199,37 @@ module.exports = async(interaction,client)=>{
 
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: `${user.tag} をミュートしました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }
     }else if(type === "dm"){//DMを送信する
-      let user
-      try{
-        user = await client.users.fetch(ID[0]);
-      }catch{
-        return await interaction.reply({
-          embeds:[{
-            author:{
-              name: "ユーザーにDMを送信できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
-            },
-            color: Colors.Red,
-            description: "指定したユーザーが存在しません"
-          }],
-          ephemeral: true
-        });
-      }
+      const user = await fetchUser(interaction.client,ID[0]);
+      if(!user) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "ユーザーにDMを送信できませんでした",
+            icon_url: "https://cdn.taka.ml/images/system/error.png"
+          },
+          description: "指定したユーザーが存在しません"
+        }],
+        ephemeral: true
+      });
 
       await user.send(`${message}`)
         .then(async()=>{
           await interaction.reply({
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: `${user.tag} にDMを送信しました`,
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              color: Colors.Green,
               description: `内容:${message}`
             }],
             ephemeral: true
@@ -244,11 +238,11 @@ module.exports = async(interaction,client)=>{
         .catch(async()=>{
           await interaction.reply({
             embeds:[{
+              color: Colors.Red,
               author:{
                 name: "送信に失敗しました",
                 icon_url: "https://cdn.taka.ml/images/system/error.png"
               },
-              color: Colors.Red,
               description: "ユーザーがDMを有効にしていません"
             }],
             ephemeral: true

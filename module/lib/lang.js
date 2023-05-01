@@ -1,19 +1,17 @@
-module.exports = async(guildId,text,option)=>{
-  const format = require("string-template");
-  const db = require("./db");
-  const ja = require("../../lang/ja.json");
-  const en = require("../../lang/en.json");
+module.exports = class Lang{
 
-  const path = text.split(".");
+  async set(guildId){
+    const db = require("./db");
+    this.setting = await db(`SELECT * FROM lang WHERE id = ${guildId} LIMIT 1;`);
+  }
 
-  const lang = await db(`SELECT * FROM lang WHERE id = ${guildId} LIMIT 1;`);
-  if(lang[0]){
-    return format(path.reduce((obj,name)=>{
+  get(path,option){
+    const format = require("string-template");
+    const ja = require("../../lang/ja.json");
+    const en = require("../../lang/en.json");
+
+    return format(path.split(".").reduce((obj,name)=>{
       return obj ? obj[name] : null
-    },en),option);
-  }else{
-    return format(path.reduce((obj,name)=>{
-      return obj ? obj[name] : null
-    },ja),option);
+    },this.setting[0]?en:ja),option);
   }
 }

@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
 
     const image = await fetch(random(draws))
-      .then(res=>res.blob())
+      .then(res=>res.blob());
 
     await interaction.editReply({
       embeds:[{

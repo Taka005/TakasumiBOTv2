@@ -8,11 +8,11 @@ module.exports = async(interaction)=>{
 
     if(!isUrl(url)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "スクリーンショットできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "URLを指定する必要があります"
       }],
       ephemeral: true
@@ -21,18 +21,18 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     try{
       const data = await fetch(`https://api.popcat.xyz/screenshot?url=${url}`)
-        .then(res=>res.blob())
+        .then(res=>res.blob());
 
       await interaction.editReply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "スクリーンショットを撮りました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: Colors.Green,
           image:{
             url: "attachment://screenshot.png"
-          },
+          }
         }],
         files: [
           new AttachmentBuilder()
@@ -43,11 +43,11 @@ module.exports = async(interaction)=>{
     }catch(error){
       await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "スクリーンショットできませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "URLを変えてやり直してください"
         }],
         ephemeral: true

@@ -6,11 +6,11 @@ module.exports = async(interaction)=>{
 
     if(!name.match(/<(a)?:\w+:\d+>/g)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "サーバー上のカスタム絵文字を指定してください"
       }],
       ephemeral: true
@@ -25,10 +25,6 @@ module.exports = async(interaction)=>{
           author:{
             name: `${emoji.name}の情報`,
             icon_url: "https://cdn.taka.ml/images/system/success.png"
-          },
-          timestamp: new Date(),
-          footer:{
-            text: "TakasumiBOT"
           },
           thumbnail:{
             url: emoji.url
@@ -50,17 +46,21 @@ module.exports = async(interaction)=>{
               name: "作成日時",
               value: `${new Date(emoji.createdTimestamp).toLocaleString()}\n(${Math.round((Date.now() - emoji.createdAt) / 86400000)}日前)`
             }
-          ]
+          ],
+          footer:{
+            text: "TakasumiBOT"
+          },
+          timestamp: new Date()
         }]
       });
     }catch(error){
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

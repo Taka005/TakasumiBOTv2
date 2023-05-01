@@ -6,11 +6,11 @@ module.exports = async(interaction)=>{
 
     if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -29,11 +29,11 @@ module.exports = async(interaction)=>{
 
         if(!invites[0]) return await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "招待を取得できません",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "指定したユーザーの招待が見つかりませんでした"
           }],
           ephemeral: true
@@ -41,11 +41,11 @@ module.exports = async(interaction)=>{
 
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: `${user.tag}の招待一覧`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: Colors.Green,
             description: invites.map((invite)=>`\`${invite.code}\` ${invite.uses}回`).join("\n")
           }]
         });
@@ -55,11 +55,11 @@ module.exports = async(interaction)=>{
 
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "サーバーの招待一覧",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: Colors.Green,
             description: invites.map((invite)=>`\`${invite.code}\` ${invite.uses}回(<@${invite.inviterId}>)`).join("\n")
           }]
         });
@@ -67,11 +67,11 @@ module.exports = async(interaction)=>{
     }catch(error){
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "招待を取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

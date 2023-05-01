@@ -7,11 +7,11 @@ module.exports = async(interaction)=>{
 
     if(!message.content) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "メッセージをピン留めできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "メッセージの内容が存在しません"
       }],
       ephemeral: true
@@ -22,11 +22,11 @@ module.exports = async(interaction)=>{
       !interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)
     ) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります\n```メッセージの管理\nチャンネルの管理```"
       }],
       ephemeral: true
@@ -39,11 +39,11 @@ module.exports = async(interaction)=>{
       !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageChannels)
     ) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "この機能はBOTに以下の権限が必要です\n```チャンネルの閲覧\nメッセージを送信\nメッセージの管理\nチャンネルの管理```"
       }],
       ephemeral: true
@@ -53,11 +53,11 @@ module.exports = async(interaction)=>{
     const server = await db(`SELECT * FROM pin WHERE server = ${message.guild.id};`);
     if(channel[0]) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "メッセージをピン留めできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "既にこのチャンネルにはピン留めされたメッセージが存在します\nピン留めの解除は送信された埋め込みを削除してください"
       }],
       ephemeral: true
@@ -65,11 +65,11 @@ module.exports = async(interaction)=>{
 
     if(server[0]?.count > 5) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "メッセージをピン留めできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "サーバーには最大5個までしかPINは使えません\nピン留めの解除は送信された埋め込みを削除してください"
       }],
       ephemeral: true
