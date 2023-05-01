@@ -1,4 +1,4 @@
-module.exports = async(message,client)=>{
+module.exports = async(message)=>{
   const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const limit = require("../../lib/limit");
@@ -14,7 +14,7 @@ module.exports = async(message,client)=>{
   if(channel[0]){
     if(limit(message)) return;
     try{
-      const before = await client.channels.cache.get(channel[0].channel).messages.fetch({"message":channel[0].message})
+      const before = await message.client.channels.cache.get(channel[0].channel).messages.fetch({"message":channel[0].message})
       before.delete();
       const after = await message.channel.send({
         embeds:[{

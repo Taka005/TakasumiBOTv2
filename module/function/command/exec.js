@@ -1,4 +1,4 @@
-module.exports = async(message,client)=>{
+module.exports = async(message)=>{
   const fs = require("fs");
   const config = require("../../../config.json");
   if(message.content.startsWith(`${config.prefix}exec`)){
@@ -9,7 +9,7 @@ module.exports = async(message,client)=>{
     try{
       fs.writeFileSync("./tmp/script.js",script,"utf8");
       const run = require("../../../tmp/script");
-      await run(message,client);
+      await run(message,message.client);
     }catch(error){
       message.reply(`実行中にエラーが発生しました\n\`\`\`js\n${error.stack}\`\`\``).catch(()=>{});
     }

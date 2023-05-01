@@ -14,7 +14,7 @@ module.exports = async(client)=>{
     fs.readdir("./module/event/messageCreate/",(err,files)=>{
       files.forEach((file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./event/messageCreate/${file}`)(message,client);
+        require(`./event/messageCreate/${file}`)(message);
       });
     });
     
@@ -23,15 +23,15 @@ module.exports = async(client)=>{
     console.log(`\x1b[37mLOG:(${message.author.tag}[${message.guild.id}])${message.content} PING[${client.ws.ping}ms]\x1b[39m`);
 
    //Globalchat
-    require("./function/globalchat/global")(message,client).catch(()=>{});
-    require("./function/globalchat/reply")(message,client).catch(()=>{});
-    require("./function/globalchat/send")(message,client).catch(()=>{});
+    require("./function/globalchat/global")(message).catch(()=>{});
+    require("./function/globalchat/reply")(message).catch(()=>{});
+    require("./function/globalchat/send")(message).catch(()=>{});
 
     //コマンド
     fs.readdir("./module/function/command/",(err,files)=>{ 
       files.forEach((file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/commmand/${file}`)(message,client);
+        require(`./function/commmand/${file}`)(message);
       });
     });
   });
@@ -41,11 +41,11 @@ module.exports = async(client)=>{
   });
 
   client.on(Events.GuildCreate,async(guild)=>{
-    require("./event/guildCreate/add")(guild,client);
+    require("./event/guildCreate/add")(guild);
   });
   
   client.on(Events.GuildDelete,async(guild)=>{
-    require("./event/guildDelete/remove")(guild,client);
+    require("./event/guildDelete/remove")(guild);
   });
 
   client.on(Events.InteractionCreate,async(interaction)=>{
@@ -96,37 +96,37 @@ module.exports = async(client)=>{
     fs.readdir("./module/event/interactionCreate/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./event/interactionCreate/${file}`)(interaction,client);
+        require(`./event/interactionCreate/${file}`)(interaction);
       });
     });
     //auth
     fs.readdir("./module/function/auth/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/auth/${file}`)(interaction,client);
+        require(`./function/auth/${file}`)(interaction);
       });
     });
     //slashcommands
     fs.readdir("./module/function/slashcommand/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/slashcommand/${file}`)(interaction,client);
+        require(`./function/slashcommand/${file}`)(interaction);
       });
     });
     //contextmenu
     fs.readdir("./module/function/contextmenu/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/contextmenu/${file}`)(interaction,client);
+        require(`./function/contextmenu/${file}`)(interaction);
       });
     });
   });
 
   client.on(Events.GuildMemberAdd,async(member)=>{
-    require("./event/guildMemberAdd/join")(member,client);
+    require("./event/guildMemberAdd/join")(member);
   });
 
   client.on(Events.GuildMemberRemove,async(member)=>{
-    require("./event/guildMemberRemove/leave")(member,client);
+    require("./event/guildMemberRemove/leave")(member);
   });
 }

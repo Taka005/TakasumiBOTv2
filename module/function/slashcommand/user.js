@@ -1,4 +1,4 @@
-module.exports = async(interaction,client)=>{
+module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
@@ -183,7 +183,7 @@ module.exports = async(interaction,client)=>{
       });   
     }else{
       try{
-        const user = await client.users.fetch(ID[0]);
+        const user = await interaction.client.users.fetch(ID[0]);
         const members = await db(`SELECT * FROM account WHERE id = ${user.id} LIMIT 1;`);
 
         await interaction.reply({

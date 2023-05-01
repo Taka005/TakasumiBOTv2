@@ -1,4 +1,4 @@
-module.exports = async(interaction,client)=>{
+module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "avatar"){
@@ -65,8 +65,8 @@ module.exports = async(interaction,client)=>{
     });
 
     try{
-      const member = await interaction.guild.members.cache.get(ID[0]);
-      const user = await client.users.fetch(ID[0]);
+      const member = await interaction.guild.members.fetch(ID[0]);
+      const user = await interaction.client.users.fetch(ID[0]);
       
       await interaction.reply({
         embeds:[{

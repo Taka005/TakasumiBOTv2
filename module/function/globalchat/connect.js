@@ -1,4 +1,4 @@
-module.exports = async(msg,client)=>{
+module.exports = async(msg)=>{
   const db = require("../../lib/db");
   const convert = require("../../lib/convert");
   const { WebhookClient, Colors } = require("discord.js");
@@ -40,7 +40,7 @@ module.exports = async(msg,client)=>{
           username: "TakasumiBOT Global",
           avatarURL: "https://cdn.taka.ml/images/icon.png"
         }).catch((error)=>{
-          err(data.channel,client,error);
+          err(data.channel,message.client,error);
         });
       });
     }else if(!message.attachments.attachment[0].isFile){//添付ファイルあり(画像)
@@ -79,7 +79,7 @@ module.exports = async(msg,client)=>{
           username: "TakasumiBOT Global",
           avatarURL: "https://cdn.taka.ml/images/icon.png"
         }).catch((error)=>{
-          err(data.channel,client,error);
+          err(data.channel,message.client,error);
         });
       });
     }else{//添付ファイルあり(画像以外)
@@ -117,7 +117,7 @@ module.exports = async(msg,client)=>{
           username: "TakasumiBOT Global",
           avatarURL: "https://cdn.taka.ml/images/icon.png"
         }).catch((error)=>{
-          err(data.channel,client,error);
+          err(data.channel,message.client,error);
         });
       });
     }
@@ -157,7 +157,7 @@ module.exports = async(msg,client)=>{
           username: "TakasumiBOT Global",
           avatarURL: "https://cdn.taka.ml/images/icon.png"
         }).catch((error)=>{
-          err(data.channel,client,error);
+          err(data.channel,message.client,error);
         });
       });
     }else if(!message.attachments[0].isFile){//添付ファイルあり(画像)
@@ -202,7 +202,7 @@ module.exports = async(msg,client)=>{
           username: "TakasumiBOT Global",
           avatarURL: "https://cdn.taka.ml/images/icon.png"
         }).catch((error)=>{
-          err(data.channel,client,error);
+          err(data.channel,message.client,error);
         });
       });
     }else{//添付ファイルあり(画像以外)
@@ -244,7 +244,7 @@ module.exports = async(msg,client)=>{
           username: "TakasumiBOT Global",
           avatarURL: "https://cdn.taka.ml/images/icon.png"
         }).catch((error)=>{
-          err(data.channel,client,error);
+          err(data.channel,message.client,error);
         });
       });
     }

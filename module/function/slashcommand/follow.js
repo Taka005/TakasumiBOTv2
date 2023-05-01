@@ -1,4 +1,4 @@
-module.exports = async(interaction,client)=>{
+module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "follow"){
@@ -39,7 +39,7 @@ module.exports = async(interaction,client)=>{
       ephemeral: true
     });
 
-    await client.channels.cache.get("1049155527214628954").addFollower(interaction.channel,"TakasumiBOTアナウンス")
+    await interaction.client.channels.cache.get("1049155527214628954").addFollower(interaction.channel,"TakasumiBOTアナウンス")
       .then(async()=>{
         await interaction.reply({
           embeds:[{

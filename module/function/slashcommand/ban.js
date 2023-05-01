@@ -1,4 +1,4 @@
-module.exports = async(interaction,client)=>{
+module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ban"){
@@ -69,7 +69,7 @@ module.exports = async(interaction,client)=>{
 
     let user;
     try{
-      user = await client.users.fetch(ID[0]);
+      user = await interaction.client.users.fetch(ID[0]);
     }catch{
       return await interaction.reply({
         embeds:[{

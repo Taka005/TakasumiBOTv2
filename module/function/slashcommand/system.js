@@ -1,4 +1,4 @@
-module.exports = async(interaction,client)=>{
+module.exports = async(interaction)=>{
   const { admin } = require("../../../config.json");
   const db = require("../../lib/db");
   const { WebhookClient, Colors } = require("discord.js");
@@ -34,7 +34,7 @@ module.exports = async(interaction,client)=>{
     });
 
     if(type === "leave"){//サーバーから脱退する
-      const guild = client.guilds.cache.get(ID[0]);
+      const guild = interaction.client.guilds.cache.get(ID[0]);
       if(!guild) return await interaction.reply({
         embeds:[{
           author:{
@@ -74,7 +74,7 @@ module.exports = async(interaction,client)=>{
         });
 
     }else if(type === "delete"){//グローバルチャットの登録情報を削除
-      const guild = client.guilds.cache.get(ID[0]);
+      const guild = interaction.client.guilds.cache.get(ID[0]);
       if(!guild) return await interaction.reply({
         embeds:[{
           author:{
@@ -127,7 +127,7 @@ module.exports = async(interaction,client)=>{
           })
         });
 
-      await client.channels.cache.get(data.channel).send({
+      await interaction.client.channels.cache.get(data.channel).send({
         embeds:[{
           author:{
             name: "登録情報が削除されました",
@@ -168,7 +168,7 @@ module.exports = async(interaction,client)=>{
     }else if(type === "mute_user"){//ミュートユーザーを追加する
       let user
       try{
-        user = await client.users.fetch(ID[0]);
+        user = await interaction.client.users.fetch(ID[0]);
       }catch{
         return await interaction.reply({
           embeds:[{
@@ -212,7 +212,7 @@ module.exports = async(interaction,client)=>{
     }else if(type === "dm"){//DMを送信する
       let user
       try{
-        user = await client.users.fetch(ID[0]);
+        user = await interaction.client.users.fetch(ID[0]);
       }catch{
         return await interaction.reply({
           embeds:[{

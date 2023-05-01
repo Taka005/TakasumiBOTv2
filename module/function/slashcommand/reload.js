@@ -1,4 +1,4 @@
-module.exports = async(interaction,client)=>{
+module.exports = async(interaction)=>{
   const fs = require("fs");
   const { Colors } = require("discord.js");
   const { admin } = require("../../../config.json");
@@ -96,7 +96,7 @@ module.exports = async(interaction,client)=>{
     delete require.cache[require.resolve("../../../package-lock.json")];
     delete require.cache[require.resolve("../../../file/commandlist.json")];
 
-    require("../../event/ready/command")(client);
+    require("../../event/ready/command")(interaction.client);
 
     await interaction.reply({
       embeds:[{

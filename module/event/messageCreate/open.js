@@ -1,4 +1,4 @@
-module.exports = async(message,client)=>{
+module.exports = async(message)=>{
   const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const limit = require("../../lib/limit");
@@ -16,7 +16,7 @@ module.exports = async(message,client)=>{
     if(ignore[0]||limit(message)) return;
 
     const id = url[2].split("/");
-    const channel = client.channels.cache.get(id[1]);
+    const channel = message.clinet.channels.cache.get(id[1]);
     if(!channel) return;
     const msg = await channel.messages.fetch({"message":id[2]})
       .catch(()=>{})
