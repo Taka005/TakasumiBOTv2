@@ -1,6 +1,5 @@
 module.exports = async(interaction)=>{
   const os = require("os");
-  const fetch = require("node-fetch");
   const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
