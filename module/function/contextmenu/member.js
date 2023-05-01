@@ -7,11 +7,11 @@ module.exports = async(interaction)=>{
 
     if(!member) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "メンバーを取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "指定したユーザーが存在していないか、サーバーから退出しています"
       }],
       ephemeral: true
@@ -26,10 +26,6 @@ module.exports = async(interaction)=>{
           name: `${member.user.tag}の検索結果`,
           url: `https://discord.com/users/${member.user.id}`,
           icon_url: "https://cdn.taka.ml/images/system/success.png"
-        },
-        timestamp: new Date(),
-        footer:{
-          text: "TakasumiBOT"
         },
         thumbnail:{
           url: member.user.avatarURL({extension:"png",forceStatic:false,size:1024})||member.user.defaultAvatarURL
@@ -68,17 +64,21 @@ module.exports = async(interaction)=>{
             name: "ロール",
             value: member.roles.cache.map(r=>r).join("")
           }
-        ]
+        ],
+        footer:{
+          text: "TakasumiBOT"
+        },
+        timestamp: new Date()
       }]
     })
     .catch(async(error)=>{
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

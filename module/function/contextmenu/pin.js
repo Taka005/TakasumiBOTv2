@@ -7,11 +7,11 @@ module.exports = async(interaction)=>{
 
     if(!message.content) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "メッセージをピン留めできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "メッセージの内容が存在しません"
       }],
       ephemeral: true
