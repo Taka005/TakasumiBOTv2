@@ -5,11 +5,11 @@ module.exports = async(interaction)=>{
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {

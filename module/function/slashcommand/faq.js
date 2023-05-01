@@ -2,10 +2,11 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "faq"){
+
     await interaction.reply({
       embeds:[{
-        title: "FAQ",
         color: Colors.Green,
+        title: "FAQ",
         description: "よくある質問一覧です。他の質問がある場合は[サポートサーバー](https://discord.gg/NEesRdGQwD)にてよろしくお願いします",
         fields:[
           {

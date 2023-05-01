@@ -1,5 +1,6 @@
 const time = {};
 module.exports = (message)=>{
+  const { Colors } = require("discord.js");
   if(!time[message.guild.id]){
     time[message.guild.id] = {
         time1: 0,
@@ -20,7 +21,7 @@ module.exports = (message)=>{
           },
           description: "メッセージを送信する速度が早すぎます\n3分間はメッセージを応答しなくなります",
           timestamp: new Date(),
-          color: "YELLOW"
+          color: Colors.Yellow
         }]
       }).catch(()=>{});
       time[message.guild.id].last = new Date();

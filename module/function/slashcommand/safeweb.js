@@ -8,11 +8,11 @@ module.exports = async(interaction)=>{
 
     if(!isUrl(url)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "安全性を評価できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "URLを指定する必要があります"
       }],
       ephemeral: true
@@ -26,6 +26,7 @@ module.exports = async(interaction)=>{
       if(res.indexOf("［注意］") !== -1){
         await interaction.editReply({
           embeds:[{
+            color: Colors.Yellow,
             author:{
               name: "このサイトは注意が必要です",
               icon_url: "https://cdn.taka.ml/images/system/warn.png",
@@ -34,13 +35,13 @@ module.exports = async(interaction)=>{
             description: `注意の評価を受けた Web サイトは少数の脅威または迷惑を伴いますが、\n警告に相当するほど危険とは見なされません。サイトにアクセスする場合には注意が必要です。\n\n※注意の評価は、誤判定の可能性があります`,
             footer:{
               text: "Powered by Norton Safeweb"
-            },
-            color: Colors.Yellow
+            }
           }]
         });
       }else if(res.indexOf("警告") !== -1){
         await interaction.editReply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "このサイトは危険です",
               icon_url: "https://cdn.taka.ml/images/system/error.png",
@@ -49,13 +50,13 @@ module.exports = async(interaction)=>{
             description: "これは既知の危険な Web サイトです。\nこのページを表示**しない**ことを推奨します。",
             footer:{
               text: "Powered by Norton Safeweb"
-            },
-            color: Colors.Red
+            }
           }]
         })
       }else if(res.indexOf("未評価") !== -1){
         await interaction.editReply({
           embeds:[{
+            color: Colors.Gray,
             author:{
               name: "このサイトは評価されていません",
               icon_url: "https://cdn.taka.ml/images/system/config.png",
@@ -64,13 +65,13 @@ module.exports = async(interaction)=>{
             description: "サイトは未評価のため、接続には注意が必要な可能性があります",
             footer:{
               text: "Powered by Norton Safeweb"
-            },
-            color: Colors.Gray
+            }
           }]
         })
       }else{
         await interaction.editReply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "このサイトは安全です",
               icon_url: "https://cdn.taka.ml/images/system/success.png",
@@ -79,19 +80,18 @@ module.exports = async(interaction)=>{
             description: "サイトからは脅威が確認されませんでした。\n安全に接続が可能です",
             footer:{
               text: "Powered by Norton Safeweb"
-            },
-            color: Colors.Green
+            }
           }]
         })
       }
     }catch{
       await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "安全性を評価できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "サイトの取得に失敗しました"
         }]
       });

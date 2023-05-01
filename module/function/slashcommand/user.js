@@ -64,11 +64,11 @@ module.exports = async(interaction)=>{
       }).catch(async(error)=>{
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",
@@ -92,11 +92,11 @@ module.exports = async(interaction)=>{
     const userId = id.match(/\d{18,19}/g);
     if(!userId) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "正確にIDまたは、メンションをしてください"
       }],
       ephemeral: true

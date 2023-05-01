@@ -6,11 +6,11 @@ module.exports = async(interaction)=>{
   
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -24,11 +24,11 @@ module.exports = async(interaction)=>{
    
     if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -42,11 +42,11 @@ module.exports = async(interaction)=>{
 
     if(time < 0 || time > 21600) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "引数が無効です",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "低速モードは0秒以上、21600秒以下にする必要があります"
       }],
       ephemeral: true
@@ -56,23 +56,23 @@ module.exports = async(interaction)=>{
       .then(async()=>{
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "低速モードを設定しました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            description: `低速モードは現在${time}秒です`,
-            color: Colors.Green
+            description: `低速モードは現在${time}秒です`
           }]
         })
       })
       .catch(async(error)=>{
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "低速モードが設定できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",

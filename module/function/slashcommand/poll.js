@@ -18,11 +18,11 @@ module.exports = async(interaction)=>{
 
     if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.AddReactions)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -44,10 +44,9 @@ module.exports = async(interaction)=>{
       fetchReply: true
     });
 
-    emojis.slice(0,selects.length)
-      .forEach(emoji=>{
-        msg.react(emoji)
-          .catch(()=>{})
-      });
+    emojis.slice(0,selects.length).forEach(emoji=>{
+      msg.react(emoji)
+        .catch(()=>{})
+    });
   }
 }

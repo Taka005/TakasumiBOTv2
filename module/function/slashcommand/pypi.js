@@ -8,13 +8,13 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     try{
       const pkg = await fetch(`https://pypi.org/pypi/${name}/json`)
-        .then(res=>res.json())
+        .then(res=>res.json());
 
       await interaction.editReply({
         embeds:[{
+          color: Colors.Green,
           title: pkg.info.name,
           url: pkg.info.package_url,
-          color: Colors.Green,
           description: pkg.info.summary,
           thumbnail:{
             url: "https://cdn.taka.ml/images/pypi.png",
@@ -54,11 +54,11 @@ module.exports = async(interaction)=>{
     }catch{
       await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "パッケージが取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "検索ワードを変えて、もう一度実行してください"
         }]
       });

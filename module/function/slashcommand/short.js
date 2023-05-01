@@ -9,18 +9,18 @@ module.exports = async(interaction)=>{
 
     if(!isUrl(url)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "短縮URLにできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "URLを指定する必要があります"
       }],
       ephemeral: true
     });
 
     const data = await fetch(`https://is.gd/create.php?extension=simple&url=${encodeURI(url)}`)
-      .then(res=>res.text())
+      .then(res=>res.text());
       
     await interaction.reply(data);
   }

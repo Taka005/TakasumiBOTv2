@@ -20,14 +20,14 @@ module.exports = async(interaction)=>{
 
       await interaction.editReply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: await lang(interaction.guild.id,"command.5000.generated"),
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: Colors.Green,
           image:{
             url: "attachment://5000.png"
-          },
+          }
         }],
         files: [
           new AttachmentBuilder()
@@ -38,11 +38,11 @@ module.exports = async(interaction)=>{
     }catch{
       await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "生成出来ませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "もう一度やり直してください"
         }]
       });

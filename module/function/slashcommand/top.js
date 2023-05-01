@@ -8,11 +8,11 @@ module.exports = async(interaction)=>{
       !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)
     ) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -33,7 +33,7 @@ module.exports = async(interaction)=>{
     });
 
     const msg = await interaction.channel.messages.fetch({after:"0",limit:1})
-      .then(msg=>msg.first())
+      .then(msg=>msg.first());
 
     await interaction.editReply({
       embeds:[{

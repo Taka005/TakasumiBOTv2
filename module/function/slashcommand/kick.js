@@ -7,11 +7,11 @@ module.exports = async(interaction)=>{
     
     if(!interaction.member.permissions.has(PermissionFlagsBits.KickMembers)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -25,11 +25,11 @@ module.exports = async(interaction)=>{
 
     if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.KickMembers)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -44,11 +44,11 @@ module.exports = async(interaction)=>{
     const member = await interaction.guild.members.cache.get(user.id);
     if(!member) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "KICKできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "指定したユーザーが取得できません"
       }],
       ephemeral: true
@@ -56,11 +56,11 @@ module.exports = async(interaction)=>{
 
     if(member.user.id === interaction.user.id) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "KICKできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "自分自身をKICKすることはできません"
       }],
       ephemeral: true
@@ -71,22 +71,22 @@ module.exports = async(interaction)=>{
         await interaction.reply({
           content: `<@${interaction.user.id}>`,
           embeds:[{
+            color: Colors.Green,
             author:{
               name: `${member.user.tag}をサーバーからKICKしました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         })
       })
       .catch(async(error)=>{
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "KICKできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
             fields:[
               {

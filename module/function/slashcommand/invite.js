@@ -7,11 +7,11 @@ module.exports = async(interaction)=>{
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.CreateInstantInvite)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -25,11 +25,11 @@ module.exports = async(interaction)=>{
   
     if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.CreateInstantInvite)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -53,11 +53,11 @@ module.exports = async(interaction)=>{
       .catch(async(error)=>{
         await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "招待リンクを作成できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",

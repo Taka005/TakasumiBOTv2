@@ -13,11 +13,11 @@ module.exports = async(interaction)=>{
 
       if(!server.debug.ping&&!server.online) return await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "無効なホスト名です"
         }]
       });
@@ -26,9 +26,9 @@ module.exports = async(interaction)=>{
         if(server.online){
           await interaction.editReply({
             embeds:[{
+              color: Colors.Green,
               title: ip,
               url: `https://mcsrvstat.us/server/${ip}`,
-              color: Colors.Green,
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
@@ -55,52 +55,52 @@ module.exports = async(interaction)=>{
                   inline: true
                 }
               ],
-              timestamp: new Date(),
               footer:{
                 text: "TakasumiBOT"
-              }
+              },
+              timestamp: new Date()
             }]
           });
         }else{
           await interaction.editReply({
             embeds:[{
+              color: Colors.Green,
               title: ip,
               url: `https://mcsrvstat.us/server/${ip}`,
-              color: Colors.Green,
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
               description: "red_circle: オフライン",
-              timestamp: new Date(),
               footer:{
                 text: "TakasumiBOT"
-              }
+              },
+              timestamp: new Date()
             }]
           });
         }
       }catch{
         await interaction.editReply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "検索内容を取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "指定したアドレスが間違っている可能性があります"
           }]
         });
       }
     }else{
       const server = await fetch(`https://api.mcsrvstat.us/bedrock/2/${encodeURIComponent(ip)}`)
-        .then(res=>res.json())
+        .then(res=>res.json());
 
       if(!server.debug.ping&&!server.online) return await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "無効なホスト名です"
         }]
       });
@@ -109,9 +109,9 @@ module.exports = async(interaction)=>{
         if(server.online){
           await interaction.editReply({
             embeds:[{
+              color: Colors.Green,
               title: ip,
               url: `https://mcsrvstat.us/bedrock/${ip}`,
-              color: Colors.Green,
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
@@ -143,37 +143,37 @@ module.exports = async(interaction)=>{
                   inline: true
                 }
               ],
-              timestamp: new Date(),
               footer:{
                 text: "TakasumiBOT"
-              }
+              },
+              timestamp: new Date()
             }]
           });
         }else{
           await interaction.editReply({
             embeds:[{
+              color: Colors.Green,
               title: ip,
               url: `https://mcsrvstat.us/server/${ip}`,
-              color: Colors.Green,
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
               description: "red_circle: オフライン",
-              timestamp: new Date(),
               footer:{
                 text: "TakasumiBOT"
-              }
+              },
+              timestamp: new Date()
             }]
           });
         }
       }catch{
         await interaction.editReply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "検索内容を取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "指定したアドレスが間違っている可能性があります"
           }]
         });

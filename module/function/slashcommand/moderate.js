@@ -13,11 +13,11 @@ module.exports = async(interaction)=>{
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -35,11 +35,11 @@ module.exports = async(interaction)=>{
       !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageMessages)
     ) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "この機能はBOTに以下の権限が必要です",
         fields:[
           {
@@ -55,11 +55,11 @@ module.exports = async(interaction)=>{
       const data = await db(`SELECT * FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
       if(!data[0]) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "自動モデレートを無効にできませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "自動モデレートが設定されていません"
         }],
         ephemeral: true
@@ -68,11 +68,11 @@ module.exports = async(interaction)=>{
       await db(`DELETE FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
       return await interaction.reply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "自動モデレート機能を無効にしました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
-          },
-          color: Colors.Green
+          }
         }]
       });
     }
@@ -80,11 +80,11 @@ module.exports = async(interaction)=>{
     await db(`INSERT INTO moderate (id, type, time) VALUES("${interaction.guild.id}","${type}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),type = VALUES (type),time = VALUES (time);`);
     await interaction.reply({
       embeds:[{
+        color: Colors.Green,
         author:{
           name: "自動モデレート機能を有効にしました",
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
-        color: Colors.Green,
         description: `${level[type]}に設定しました`
       }]
     });

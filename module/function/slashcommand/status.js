@@ -23,11 +23,7 @@ module.exports = async(interaction)=>{
     const hiroyuki = await db("SELECT * FROM hiroyuki;");
     const global = await db("SELECT * FROM global;");
 
-    const chat = global.length/interaction.client.guilds.cache.size*100
-
-    const start = performance.now(); 
-    await fetch("https://api.taka.ml/v1/status");
-    const end = performance.now(); 
+    const chat = global.length/interaction.client.guilds.cache.size*100;
 
     await interaction.editReply({
       embeds:[{
@@ -35,10 +31,6 @@ module.exports = async(interaction)=>{
         title: "ステータス",
         timestamp: new Date(),
         fields:[
-          {
-            name: "API",
-            value: `Ping: ${Math.floor(end - start)}㍉秒`
-          },
           {
             name: "システム",
             value: `OS: ${os.version()}(${os.type()}) ${os.arch()}\nCPU: ${(cpuusage * 100).toFixed(2)}%\nMemory: ${100 - Math.floor((os.freemem() / os.totalmem()) * 100)}%`
@@ -60,11 +52,11 @@ module.exports = async(interaction)=>{
     }).catch((error)=>{
       interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

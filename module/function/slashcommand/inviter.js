@@ -5,11 +5,11 @@ module.exports = async(interaction)=>{
 
     if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -46,22 +46,22 @@ module.exports = async(interaction)=>{
 
       await interaction.reply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "招待ランキング",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: Colors.Green,
           description: count.map((invite,i)=>`${i+1}位 <@${invite.inviterId}>(${invite.uses}回)`).join("\n")
         }]
       });
     }catch(error){
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "招待リンクを取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

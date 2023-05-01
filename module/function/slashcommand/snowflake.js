@@ -6,11 +6,11 @@ module.exports = async(interaction)=>{
 
     if(isNaN(id)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "解析できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "Snowflakeは数字で指定する必要があります"
       }],
       ephemeral: true
@@ -21,22 +21,22 @@ module.exports = async(interaction)=>{
 
       await interaction.reply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "解析しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          description: `タイムスタンプ: ${snowflake.timestamp}\n日付: ${snowflake.date}\nワーカーID: ${snowflake.workerId}\nプロセスID: ${snowflake.processId}\nインクリメント: ${snowflake.increment}\nバイナリー: ${snowflake.binary}`,
-          color: Colors.Green
+          description: `タイムスタンプ: ${snowflake.timestamp}\n日付: ${snowflake.date}\nワーカーID: ${snowflake.workerId}\nプロセスID: ${snowflake.processId}\nインクリメント: ${snowflake.increment}\nバイナリー: ${snowflake.binary}`
         }]
       })
     }catch(error){
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "解析できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

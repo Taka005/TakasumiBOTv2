@@ -8,14 +8,14 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     try{
       const res = await fetch(`https://api.npms.io/v2/search?q=${name}`)
-        .then(res=>res.json())
+        .then(res=>res.json());
 
       const pkg = res.results[0].package;
       await interaction.editReply({
         embeds:[{
+          color: Colors.Green,
           title: pkg.name,
           url: pkg.links.npm,
-          color: Colors.Green,
           description: pkg.description,
           thumbnail:{
             url: "https://cdn.taka.ml/images/npm.png",
@@ -55,11 +55,11 @@ module.exports = async(interaction)=>{
     }catch{
       await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "パッケージが取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "検索ワードを変えて、もう一度実行してください"
         }]
       });

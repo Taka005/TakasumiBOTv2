@@ -6,11 +6,11 @@ module.exports = async(interaction)=>{
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
           {
@@ -30,11 +30,11 @@ module.exports = async(interaction)=>{
       !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageChannels)
     ) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
@@ -57,11 +57,11 @@ module.exports = async(interaction)=>{
           await interaction.reply({
             content: `<@${interaction.user.id}>`,
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: "登録の削除が完了しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
-              },
-              color: Colors.Green
+              }
             }]
           });
         })
@@ -69,12 +69,12 @@ module.exports = async(interaction)=>{
           await interaction.reply({
             content: `<@${interaction.user.id}>`,
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: "登録の削除が完了しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               },
-              description: "※webhookは既に削除済みのため、\n登録情報のみ削除しました",
-              color: Colors.Green
+              description: "※webhookは既に削除済みのため、\n登録情報のみ削除しました"
             }]
           })
         });
@@ -87,11 +87,11 @@ module.exports = async(interaction)=>{
         (await interaction.guild.members.fetch()).filter(m => !m.user.bot).size < 8
       ) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "参加条件を満たしていません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "グローバルチャットを利用するには以下の条件を満たしている必要があります",
           fields:[
             {
@@ -105,11 +105,11 @@ module.exports = async(interaction)=>{
 
       if(interaction.channel.type !== ChannelType.GuildText) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "グローバルチャットに参加できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "設定するチャンネルはテキストチャンネルにしてください"
         }],
         ephemeral: true
@@ -118,7 +118,7 @@ module.exports = async(interaction)=>{
       await interaction.deferReply();
       await interaction.editReply({
         embeds:[{
-          color: "GREY",
+          color: Colors.Gray,
           description: "登録情報を確認、登録中....",
         }]
       });

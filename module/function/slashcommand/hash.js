@@ -12,22 +12,22 @@ module.exports = async(interaction)=>{
 
       await interaction.reply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "ハッシュを生成しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          description: `${hash.digest("hex")}`,
-          color: Colors.Green
+          description: `${hash.digest("hex")}`
         }]
       });
     }catch(error){
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "ハッシュを生成できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

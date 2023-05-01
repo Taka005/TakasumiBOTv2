@@ -93,11 +93,11 @@ module.exports = async(interaction)=>{
         const data = await db(`SELECT * FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "通知ロールを無効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "通知ロールが設定されていません"
           }],
           ephemeral: true
@@ -106,11 +106,11 @@ module.exports = async(interaction)=>{
         await db(`DELETE FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "通知ロールを無効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }else{
@@ -237,11 +237,11 @@ module.exports = async(interaction)=>{
 
       if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -259,11 +259,11 @@ module.exports = async(interaction)=>{
         !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageWebhooks)
       ) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "BOTに権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "このコマンドはBOTに以下の権限が必要です",
           fields:[
             {
@@ -279,11 +279,11 @@ module.exports = async(interaction)=>{
         const data = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "参加メッセージを無効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "参加メッセージが設定されていません"
           }],
           ephemeral: true
@@ -296,21 +296,21 @@ module.exports = async(interaction)=>{
         await db(`DELETE FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "参加メッセージを無効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }else{
         if(message.length > 100) return await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "参加メッセージを設定できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "メッセージは100文字以内にしてください"
           }],
           ephemeral: true
@@ -318,11 +318,11 @@ module.exports = async(interaction)=>{
 
         if(interaction.channel.type !== ChannelType.GuildText) return await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "参加メッセージを設定できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "メッセージを送信するチャンネルはテキストチャンネルにしてください"
           }],
           ephemeral: true
@@ -337,11 +337,11 @@ module.exports = async(interaction)=>{
             await db(`INSERT INTO \`join\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${message}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
             await interaction.editReply({
               embeds:[{
+                color: Colors.Green,
                 author:{
                   name: "参加メッセージを設定しました",
                   icon_url: "https://cdn.taka.ml/images/system/success.png"
                 },
-                color: Colors.Green,
                 description: `送信メッセージ: ${message}`
               }]
             });
@@ -349,11 +349,11 @@ module.exports = async(interaction)=>{
           .catch(async(error)=>{
             await interaction.editReply({
               embeds:[{
+                color: Colors.Red,
                 author:{
                   name: "参加メッセージを設定できませんでした",
                   icon_url: "https://cdn.taka.ml/images/system/error.png"
                 },
-                color: Colors.Red,
                 description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
                 fields:[
                   {
@@ -378,11 +378,11 @@ module.exports = async(interaction)=>{
 
       if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -400,11 +400,11 @@ module.exports = async(interaction)=>{
         !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageWebhooks)
       ) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "BOTに権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "このコマンドはBOTに以下の権限が必要です",
           fields:[
             {
@@ -420,11 +420,11 @@ module.exports = async(interaction)=>{
         const data = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "退出メッセージを無効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "退出メッセージが設定されていません"
           }],
           ephemeral: true
@@ -437,21 +437,21 @@ module.exports = async(interaction)=>{
         await db(`DELETE FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "退出メッセージを無効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }else{
         if(message.length > 100) return await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "退出メッセージを設定できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "メッセージは100文字以内にしてください"
           }],
           ephemeral: true
@@ -459,11 +459,11 @@ module.exports = async(interaction)=>{
 
         if(interaction.channel.type !== ChannelType.GuildText) return await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "退出メッセージを設定できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "メッセージを送信するチャンネルはテキストチャンネルにしてください"
           }],
           ephemeral: true
@@ -478,11 +478,11 @@ module.exports = async(interaction)=>{
             await db(`INSERT INTO \`leave\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${message}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
             await interaction.editReply({
               embeds:[{
+                color: Colors.Green,
                 author:{
                   name: "退出メッセージを設定しました",
                   icon_url: "https://cdn.taka.ml/images/system/success.png"
                 },
-                color: Colors.Green,
                 description: `送信メッセージ: ${message}`
               }]
             });
@@ -490,11 +490,11 @@ module.exports = async(interaction)=>{
           .catch(async(error)=>{
             await interaction.editReply({
               embeds:[{
+                color: Colors.Red,
                 author:{
                   name: "退出メッセージを設定できませんでした",
                   icon_url: "https://cdn.taka.ml/images/system/error.png"
                 },
-                color: Colors.Red,
                 description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
                 fields:[
                   {
@@ -515,14 +515,13 @@ module.exports = async(interaction)=>{
           })
       }
     }else if(interaction.options.getSubcommand() === "ignore"){//ignore
-    
       if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -542,11 +541,11 @@ module.exports = async(interaction)=>{
 
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "有効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }else{
@@ -554,22 +553,22 @@ module.exports = async(interaction)=>{
 
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "無効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }
     }else if(interaction.options.getSubcommand() === "lang"){//lang
       if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -586,22 +585,22 @@ module.exports = async(interaction)=>{
         await db(`DELETE FROM lang WHERE id = ${interaction.guild.id};`);
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "言語を日本語に切り替えました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }else{
         await db(`INSERT INTO lang (id, time) VALUES("${interaction.guild.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "言語を英語に切り替えました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }
@@ -610,19 +609,20 @@ module.exports = async(interaction)=>{
       const dissoku = await db(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const global = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const hiroyuki = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`); 
       const join = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      const lang = await db(`SELECT * FROM lang WHERE id = ${interaction.guild.id} LIMIT 1;`);
       const leave = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const moderate = await db(`SELECT * FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
       const pin = await db(`SELECT * FROM pin WHERE server = ${interaction.guild.id};`);
 
       await interaction.reply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "データベース設定状況",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: Colors.Green,
           fields:[
             {
               name: "Bump通知",
@@ -660,6 +660,11 @@ module.exports = async(interaction)=>{
               inline: true
             },    
             {
+              name: "言語",
+              value: lang[0] ? "英語":"日本語",
+              inline: true
+            },  
+            {
               name: "モデレート",
               value: moderate[0] ? "設定済み":"未設定",
               inline: true
@@ -673,14 +678,13 @@ module.exports = async(interaction)=>{
         }]
       });
     }else if(interaction.options.getSubcommand() === "delete"){//delete
-
       if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -705,11 +709,11 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         content: `<@${interaction.user.id}>`,
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "全ての設定情報を削除しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
-          },
-          color: Colors.Green
+          }
         }]
       });
     }

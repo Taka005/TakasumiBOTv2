@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "news"){
     
     const data = await fetch(`https://newsapi.org/v2/top-headlines?country=jp&apiKey=${process.env.NEWS_KEY}`)
-      .then(res=>res.json())
+      .then(res=>res.json());
 
     const before = new ButtonBuilder()
       .setStyle(ButtonStyle.Primary)
@@ -27,9 +27,9 @@ module.exports = async(interaction)=>{
     try{
       await interaction.reply({
         embeds:[{
+          color: Colors.Green,
           title: data.articles[0].title,
           url: data.articles[0].url,
-          color: Colors.Green,
           description: data.articles[0].description,
           image:{
             url: data.articles[0].urlToImage
@@ -48,11 +48,11 @@ module.exports = async(interaction)=>{
     }catch{
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "ページが存在しません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "前のページに戻ってください"
         }],
         components:[

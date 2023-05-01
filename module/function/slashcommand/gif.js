@@ -9,21 +9,21 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     try{
       const data = await fetch(`https://g.tenor.com/v1/search?q=${name}&key=${process.env.GIF_KEY}&limit=1&media_filter=minimal`)
-        .then(res=>res.json())
+        .then(res=>res.json());
 
       const image = await fetch(data.results[0].media[0].gif.url)
-        .then(res=>res.blob())
+        .then(res=>res.blob());
 
       await interaction.editReply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "GIFを取得しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          color: Colors.Green,
           image:{
             url: "attachment://result.gif"
-          },
+          }
         }],
         files: [
           new AttachmentBuilder()
@@ -34,11 +34,11 @@ module.exports = async(interaction)=>{
     }catch{
       await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "GIFが取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "違うワードで試してください"
         }]
       });
