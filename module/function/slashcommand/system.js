@@ -1,7 +1,9 @@
 module.exports = async(interaction)=>{
+  const { WebhookClient, Colors } = require("discord.js");
   const { admin } = require("../../../config.json");
   const db = require("../../lib/db");
-  const { WebhookClient, Colors } = require("discord.js");
+  const fetchGuild = require("../../lib/fetchGuild");
+  const fetchUser = rrequire("../../lib/fetchUser");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "system"){
     const id = interaction.options.getString("id");
@@ -34,14 +36,14 @@ module.exports = async(interaction)=>{
     });
 
     if(type === "leave"){//サーバーから脱退する
-      const guild = interaction.client.guilds.cache.get(ID[0]);
+      const guild = await fetchGuild(interaction.client,ID[0]);
       if(!guild) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "サーバーから脱退できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "指定したサーバーが存在しません"
         }],
         ephemeral: true
@@ -51,22 +53,22 @@ module.exports = async(interaction)=>{
         .then(async(g)=>{
           await interaction.reply({
             embeds:[{
+              color: Colors.Green,
               author:{
                 name: `${g.name} から脱退しました`,
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
-              },
-              color: Colors.Green
+              }
             }]
           })
         })
         .catch(async(error)=>{
           await interaction.reply({
             embeds:[{
+              color: Colors.Red,
               author:{
                 name: "サーバーから脱退できませんでした",
                 icon_url: "https://cdn.taka.ml/images/system/error.png"
               },
-              color: Colors.Red,
               description: `\`\`\`${error}\`\`\``
             }],
             ephemeral: true
@@ -74,7 +76,7 @@ module.exports = async(interaction)=>{
         });
 
     }else if(type === "delete"){//グローバルチャットの登録情報を削除
-      const guild = interaction.client.guilds.cache.get(ID[0]);
+      const guild = await fetchGuild(interaction.client,ID[0]);
       if(!guild) return await interaction.reply({
         embeds:[{
           author:{
@@ -166,22 +168,18 @@ module.exports = async(interaction)=>{
         });
       }
     }else if(type === "mute_user"){//ミュートユーザーを追加する
-      let user
-      try{
-        user = await interaction.client.users.fetch(ID[0]);
-      }catch{
-        return await interaction.reply({
-          embeds:[{
-            author:{
-              name: "ユーザーをミュートできませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
-            },
-            color: Colors.Red,
-            description: "指定したユーザーが存在しません"
-          }],
-          ephemeral: true
-        });
-      }
+      const user = await fetchUser(interaction.client,ID[0]);
+      if(!user) return await interaction.reply({
+        embeds:[{
+          author:{
+            name: "ユーザーをミュートできませんでした",
+            icon_url: "https://cdn.taka.ml/images/system/error.png"
+          },
+          color: Colors.Red,
+          description: "指定したユーザーが存在しません"
+        }],
+        ephemeral: true
+      });
   
       const data = await db(`SELECT * FROM mute_user WHERE id = ${ID[0]} LIMIT 1;`);
       if(data[0]){//登録済み
@@ -210,22 +208,18 @@ module.exports = async(interaction)=>{
         });
       }
     }else if(type === "dm"){//DMを送信する
-      let user
-      try{
-        user = await interaction.client.users.fetch(ID[0]);
-      }catch{
-        return await interaction.reply({
-          embeds:[{
-            author:{
-              name: "ユーザーにDMを送信できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
-            },
-            color: Colors.Red,
-            description: "指定したユーザーが存在しません"
-          }],
-          ephemeral: true
-        });
-      }
+      const user = await fetchUser(interaction.client,ID[0]);
+      if(!user) return await interaction.reply({
+        embeds:[{
+          author:{
+            name: "ユーザーにDMを送信できませんでした",
+            icon_url: "https://cdn.taka.ml/images/system/error.png"
+          },
+          color: Colors.Red,
+          description: "指定したユーザーが存在しません"
+        }],
+        ephemeral: true
+      });
 
       await user.send(`${message}`)
         .then(async()=>{

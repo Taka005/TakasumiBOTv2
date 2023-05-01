@@ -12,10 +12,6 @@ module.exports = async(interaction)=>{
           name: `${role.name}の情報`,
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
-        timestamp: new Date(),
-        footer:{
-          text: "TakasumiBOT"
-        },
         fields:[
           {
             name: "ID",
@@ -51,7 +47,11 @@ module.exports = async(interaction)=>{
             name: "権限",
             value: `\`${permission(role.permissions.toArray()).join("`,`")}\``
           }
-        ]
+        ],
+        timestamp: new Date(),
+        footer:{
+          text: "TakasumiBOT"
+        },
       }]
     }).catch(async(error)=>{
       await interaction.reply({

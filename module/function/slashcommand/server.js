@@ -11,10 +11,6 @@ module.exports = async(interaction)=>{
           name: `${interaction.guild.name}の情報`,
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
-        timestamp: new Date(),
-        footer:{
-          text: "TakasumiBOT"
-        },
         thumbnail:{
           url: interaction.guild.iconURL()
         },
@@ -39,16 +35,20 @@ module.exports = async(interaction)=>{
             name: "統計情報",
             value: `チャンネル:${interaction.guild.channels.cache.size}個(💬:${interaction.guild.channels.cache.filter(ch=>ch.type==="GUILD_TEXT").size} 🔊:${interaction.guild.channels.cache.filter(ch=>ch.type==="GUILD_VOICE").size} 📁:${interaction.guild.channels.cache.filter(ch=>ch.type==="GUILD_CATEGORY").size})\nロール:${(await interaction.guild.roles.fetch()).size}個\n絵文字:${(await interaction.guild.emojis.fetch()).size}個\nステッカー:${(await interaction.guild.stickers.fetch()).size}個\nNitro:${interaction.guild.premiumSubscriptionCount}ブースト(${boost(interaction.guild.premiumSubscriptionCount)}レベル)`
           }
-        ]
+        ],
+        footer:{
+          text: "TakasumiBOT"
+        },
+        timestamp: new Date()
       }]
     }).catch(async(error)=>{
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           fields:[
             {
               name: "エラーコード",

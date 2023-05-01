@@ -1,14 +1,15 @@
 module.exports = async(interaction)=>{
   const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
+  const fetchMember = require("../../lib/fetchMember");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "setting"){
 
     if(interaction.options.getSubcommand() === "help"){//Help画面
       await interaction.reply({
         embeds:[{
-          title: "HELP 設定",
           color: Colors.Green,
+          title: "HELP 設定",
           description: "設定の変更には`管理者`の権限が必要です",
           fields:[
             {
@@ -51,11 +52,11 @@ module.exports = async(interaction)=>{
 
       if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -72,11 +73,11 @@ module.exports = async(interaction)=>{
         !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)
       ) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "BOTに権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "このコマンドはBOTに以下の権限が必要です",
           fields:[
             {
@@ -113,15 +114,15 @@ module.exports = async(interaction)=>{
           }]
         });
       }else{
-        const bot = interaction.guild.members.cache.get("302050872383242240");
+        const bot = await fetchMember(interaction.guild,"302050872383242240");
         if(!bot) return await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "通知ロールを有効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
-            description: "このサーバーにDisboardが参加していません\nもし参加している場合はDisboardを操作してみてください"
+            description: "このサーバーにDisboardが参加していません"
           }],
           ephemeral: true
         });
@@ -129,11 +130,11 @@ module.exports = async(interaction)=>{
         await db(`INSERT INTO bump (server, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "通知ロールを有効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: Colors.Green,
             description: `Bump通知に<@&${role.id}>に設定しました`
           }]
         });
@@ -144,11 +145,11 @@ module.exports = async(interaction)=>{
 
       if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
             {
@@ -165,11 +166,11 @@ module.exports = async(interaction)=>{
         !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)
       ) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "BOTに権限がありません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          color: Colors.Red,
           description: "このコマンドはBOTに以下の権限が必要です\n```チャンネルの閲覧\nメッセージの送信```",
           fields:[
             {
@@ -185,11 +186,11 @@ module.exports = async(interaction)=>{
         const data = await db(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "通知ロールを無効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
             description: "通知ロールが設定されていません"
           }],
           ephemeral: true
@@ -198,23 +199,23 @@ module.exports = async(interaction)=>{
         await db(`DELETE FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "通知ロールを無効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            color: Colors.Green
+            }
           }]
         });
       }else{
-        const bot = interaction.guild.members.cache.get("761562078095867916");
+        const bot = await fetchMember(interaction.guild,"761562078095867916");
         if(!bot) return await interaction.reply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "通知ロールを有効にできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            color: Colors.Red,
-            description: "このサーバーにDissokuが参加していません\nもし参加している場合はDissokuを操作してみてください"
+            description: "このサーバーにDissokuが参加していません"
           }],
           ephemeral: true
         });
@@ -222,11 +223,11 @@ module.exports = async(interaction)=>{
         await db(`INSERT INTO dissoku (server, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "通知ロールを有効にしました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            color: Colors.Green,
             description: `Dissoku通知に<@&${role.id}>に設定しました`
           }]
         });

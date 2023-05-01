@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
       "normal": Colors.White,
       "panel": Colors.Blue,
       "image": Colors.Green,
-      "web": "YELLOW"
+      "web": Colors.Yellow
     };
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) return await interaction.reply({
