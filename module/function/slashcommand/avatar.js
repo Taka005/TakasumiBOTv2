@@ -24,6 +24,31 @@ module.exports = async(interaction)=>{
         },
         timestamp: new Date(),
       }]
+    }).catch(async(error)=>{
+      await interaction.reply({
+        embeds:[{
+          author:{
+            name: "取得できませんでした",
+            icon_url: "https://cdn.taka.ml/images/system/error.png"
+          },
+          color: Colors.Red,
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle("LINK"))
+        ],
+        ephemeral: true
+      })
     });
   
     const userId = id.match(/\d{18,19}/g);
@@ -72,6 +97,31 @@ module.exports = async(interaction)=>{
         },
         timestamp: new Date(),
       }]
+    }).catch(async(error)=>{
+      await interaction.reply({
+        embeds:[{
+          author:{
+            name: "取得できませんでした",
+            icon_url: "https://cdn.taka.ml/images/system/error.png"
+          },
+          color: Colors.Red,
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle("LINK"))
+        ],
+        ephemeral: true
+      })
     });
   }
 }

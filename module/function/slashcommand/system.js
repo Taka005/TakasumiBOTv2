@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   const { admin } = require("../../../config.json");
   const db = require("../../lib/db");
   const fetchGuild = require("../../lib/fetchGuild");
-  const fetchUser = rrequire("../../lib/fetchUser");
+  const fetchUser = require("../../lib/fetchUser");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "system"){
     const id = interaction.options.getString("id");
