@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
               .setLabel("認証"))
         ]
     })
-    .then(()=>{
+    .then(async()=>{
       await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -31,7 +31,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
     })
-    .catch(()=>{
+    .catch(async()=>{
       await interaction.reply({
         embeds:[{
           color: Colors.Red,
