@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
 
     const color = {
       "normal": Colors.White,
-      "panel": Colors.Blue,
+      "math": Colors.Blue,
       "image": Colors.Green,
       "web": Colors.Yellow
     };

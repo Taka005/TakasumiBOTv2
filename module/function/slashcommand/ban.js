@@ -51,7 +51,7 @@ module.exports = async(interaction)=>{
           name: "BANできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "正確にID又は、メンションを入力してください"
+        description: "正確にユーザーID・メンションを入力してください"
       }],
       ephemeral: true
     });
