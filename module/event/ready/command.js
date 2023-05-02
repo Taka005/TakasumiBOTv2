@@ -121,8 +121,8 @@ module.exports = async(client)=>{
                 .setDescriptionLocalization("ja","処理方式")
                 .setRequired(true)
                 .addChoices(
-                  { name: "暗号化", value: "cipher" },
-                  { name: "復号化", value: "decipher" }
+                  { name: "暗号化(CIPHER)", value: "cipher" },
+                  { name: "復号化(DECIPHER)", value: "decipher" }
                 ))
             .addStringOption(option =>
               option
@@ -831,7 +831,7 @@ module.exports = async(client)=>{
           //warn
           new SlashCommandBuilder()
             .setName("warn")
-            .setDescription("メンバーに警告します")
+            .setDescription("Warn member")
             .setDescriptionLocalization("ja","メンバーを警告します")
             .addUserOption(option =>
               option
@@ -870,22 +870,22 @@ module.exports = async(client)=>{
           //ContextMenu
           //avatar
           new ContextMenuCommandBuilder()
-            .setName("アバターを表示")
+            .setName("View Avatar")
             .setNameLocalization("ja","アバターを表示")
             .setType(ApplicationCommandType.User),
           //member
           new ContextMenuCommandBuilder()
-            .setName("メンバー情報を表示")
+            .setName("View Member Information")
             .setNameLocalization("ja","メンバー情報を表示")
             .setType(ApplicationCommandType.User),
           //permission
           new ContextMenuCommandBuilder()
-            .setName("権限を表示")
+            .setName("View Permissions")
             .setNameLocalization("ja","権限を表示")
             .setType(ApplicationCommandType.User),
           //pin
           new ContextMenuCommandBuilder()
-            .setName("メッセージをピン留め")
+            .setName("Pin The Message")
             .setNameLocalization("ja","メッセージをピン留め")
             .setType(ApplicationCommandType.Message),
           //quote
@@ -894,12 +894,12 @@ module.exports = async(client)=>{
             .setType(ApplicationCommandType.Message),
           //to_en
           new ContextMenuCommandBuilder()
-            .setName("英語に翻訳")
+            .setName("Translate To English")
             .setNameLocalization("ja","英語に翻訳")
             .setType(ApplicationCommandType.Message),
           //to_ja
           new ContextMenuCommandBuilder()
-            .setName("日本語に翻訳")
+            .setName("Translate To Japanese")
             .setNameLocalization("ja","日本語に翻訳")
             .setType(ApplicationCommandType.Message)
         ]
