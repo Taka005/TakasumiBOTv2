@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, Colors, ButtonStyle } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("panel_")){
     const role = interaction.customId.split("_")[1];
