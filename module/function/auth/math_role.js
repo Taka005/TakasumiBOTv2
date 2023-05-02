@@ -1,9 +1,9 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
-  if(!interaction.isStringSelectMenu()) return;
-  if(interaction.customId.startsWith("imagerole_")){
+  if(!interaction.isModalSubmit()) return;
+  if(interaction.customId.startsWith("mathrole_")){
     const list = interaction.customId.split("_");
-    const key = interaction.values[0];
+    const code = interaction.fields.getTextInputValue("code");
 
     if(interaction.member.roles.cache.has(list[1])) return await interaction.reply({
       embeds:[{
@@ -16,14 +16,26 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(key !== list[2]) return await interaction.reply({
+    if(isNaN(code)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
-          name: "選択した値が間違っています",
+          name: "認証コードが間違っています",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "画像に表示される文字を選択してください"
+        description: "答えの数字を半角で入力してください"
+      }],
+      ephemeral: true
+    });
+
+    if(code !== list[2]) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "入力コードが間違っています",
+          icon_url: "https://cdn.taka.ml/images/system/error.png"
+        },
+        description: "認証時に表示される画面のテキストボックスの\n上に表記されている通りに認証してください"
       }],
       ephemeral: true
     });
@@ -66,7 +78,7 @@ module.exports = async(interaction)=>{
                   .setStyle("LINK"))
           ],
           ephemeral: true
-        });
+        })
       });
   }
 }
