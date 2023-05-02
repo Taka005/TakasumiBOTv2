@@ -566,55 +566,55 @@ module.exports = async(client)=>{
             .addStringOption(option =>
               option
                 .setName("type")
-                .setDescription("")
+                .setDescription("Type of operation")
                 .setDescriptionLocalization("ja","実行する操作")
                 .setRequired(true)
                 .addChoices(
-                  { name: "READ", value: "read" },
-                  { name: "GENERATE", value: "gen" }
+                  { name: "読み取り(READ)", value: "read" },
+                  { name: "生成(GENERATE)", value: "gen" }
                 ))
             .addStringOption(option =>
               option
                 .setName("text")
-                .setDescription("")
-                .setDescriptionLocalization("ja","文字列・URL")
+                .setDescription("Text or URL")
+                .setDescriptionLocalization("ja","テキスト・URL")
                 .setRequired(true)),
           //reload
           new SlashCommandBuilder()
             .setName("reload")
-            .setDescription("")
+            .setDescription("Reload the BOT")
             .setDescriptionLocalization("ja","BOTのリロードをします"),
           //role
           new SlashCommandBuilder()
             .setName("role")
-            .setDescription("")
+            .setDescription("View role information")
             .setDescriptionLocalization("ja","役職の内容を表示します")
             .addRoleOption(option =>
               option
                 .setName("name")
-                .setDescription("")
+                .setDescription("Role to view")
                 .setDescriptionLocalization("ja","表示するロール")
                 .setRequired(true)),
           //safeweb
           new SlashCommandBuilder()
             .setName("safeweb")
-            .setDescription("")
+            .setDescription("View Web site safety")
             .setDescriptionLocalization("ja","Webサイトの安全性を評価します")
             .addStringOption(option =>
               option
                 .setName("url")
-                .setDescription("")
+                .setDescription("Target URL")
                 .setDescriptionLocalization("ja","対象のURL")
                 .setRequired(true)),
           //script
           new SlashCommandBuilder()
             .setName("script")
-            .setDescription("")
+            .setDescription("Execute the program")
             .setDescriptionLocalization("ja","プログラムを実行します")
             .addStringOption(option =>
               option
                 .setName("lang")
-                .setDescription("")
+                .setDescription("Languages to execute")
                 .setDescriptionLocalization("ja","実行する言語")
                 .setRequired(true)
                 .addChoices(
@@ -625,120 +625,120 @@ module.exports = async(client)=>{
           //server
           new SlashCommandBuilder()
             .setName("server")
-            .setDescription("")
+            .setDescription("View guild information")
             .setDescriptionLocalization("ja","サーバーの情報を表示します"),
           //setting
           new SlashCommandBuilder()
             .setName("setting")
-            .setDescription("")
+            .setDescription("Change the server settings")
             .setDescriptionLocalization("ja","サーバーの設定を変更します")
             .addSubcommand(subcommand =>
               subcommand
                 .setName("help")
-                .setDescription("")
+                .setDescription("View help for settings")
                 .setDescriptionLocalization("ja","設定のヘルプを表示します"))
             .addSubcommand(subcommand =>
               subcommand
                 .setName("bump")
-                .setDescription("")
+                .setDescription("Set role to be notified when BUMP")
                 .setDescriptionLocalization("ja","BUMP時に通知するロールを設定します")
                 .addRoleOption(option =>
                   option
                     .setName("role")
-                    .setDescription("")
+                    .setDescription("Roles to notify(do not enter if disabled)")
                     .setDescriptionLocalization("ja","通知するロール(無効にする場合は入力しないでください")))
             .addSubcommand(subcommand =>
               subcommand
                 .setName("dissoku")
-                .setDescription("")
+                .setDescription("Set role to be notified when Dissoku UP")
                 .setDescriptionLocalization("ja","Dissoku UP時に通知するロールを設定します")
                 .addRoleOption(option =>
                   option
                     .setName("role")
-                    .setDescription("")
+                    .setDescription("Roles to notify(do not enter if disabled)")
                     .setDescriptionLocalization("ja","通知するロール(無効にする場合は入力しないでください)")))
             .addSubcommand(subcommand =>
               subcommand
                 .setName("join")
-                .setDescription("")
+                .setDescription("Set a message when you join")
                 .setDescriptionLocalization("ja","参加メッセージを設定します")
                 .addStringOption(option =>
                     option
                       .setName("message")
-                      .setDescription("")
+                      .setDescription("Message to send")
                       .setDescriptionLocalization("ja","送信するメッセージ")))
             .addSubcommand(subcommand =>
               subcommand
                 .setName("leave")
-                .setDescription("")
+                .setDescription("Set a message when you leave")
                 .setDescriptionLocalization("ja","退出メッセージを設定します")
                 .addStringOption(option =>
                     option
                       .setName("message")
-                      .setDescription("")
+                      .setDescription("Message to send")
                       .setDescriptionLocalization("ja","送信するメッセージ")))
             .addSubcommand(subcommand =>
               subcommand
                 .setName("ignore")
-                .setDescription("")
+                .setDescription("Disables any message-related functionality")
                 .setDescriptionLocalization("ja","Bump通知・Dissoku通知・メッセージ展開の有効・無効を切り替えます"))
             .addSubcommand(subcommand =>
               subcommand
                 .setName("lang")
-                .setDescription("")
+                .setDescription("Switch Bot view language(Japanese/English)")
                 .setDescriptionLocalization("ja","BOTの表示言語を英語・日本語で切り替えます"))
             .addSubcommand(subcommand =>
               subcommand
                 .setName("info")
-                .setDescription("")
+                .setDescription("View database configuration status")
                 .setDescriptionLocalization("ja","データベースの設定状況を表示します"))
             .addSubcommand(subcommand =>
               subcommand
                 .setName("delete")
-                .setDescription("")
+                .setDescription("Delete configuration information registered in the database")
                 .setDescriptionLocalization("ja","データベースに登録されてるサーバーの情報を全て削除します")),
           //short
           new SlashCommandBuilder()
             .setName("short")
-            .setDescription("")
+            .setDescription("Create a short URL")
             .setDescriptionLocalization("ja","短縮URLを作成します")
             .addStringOption(option =>
               option
                 .setName("url")
-                .setDescription("")
+                .setDescription("Target URL")
                 .setDescriptionLocalization("ja","短縮するURL")
                 .setRequired(true)),
           //slowmode
           new SlashCommandBuilder()
             .setName("slowmode")
-            .setDescription("")
+            .setDescription("Set the channel to low-speed mode")
             .setDescriptionLocalization("ja","チャンネルに低速モードを設定します")
             .addIntegerOption(option =>
               option
                 .setName("time")
-                .setDescription("")
+                .setDescription("Seconds to set")
                 .setDescriptionLocalization("ja","設定する秒数")
                 .setRequired(true)),
           //snowflake
           new SlashCommandBuilder()
             .setName("snowflake")
-            .setDescription("")
+            .setDescription("Analyze Snowflake")
             .setDescriptionLocalization("ja","Snowflakeを解析します")
             .addStringOption(option =>
               option
                 .setName("id")
-                .setDescription("")
+                .setDescription("Target ID")
                 .setDescriptionLocalization("ja","解析するID")
                 .setRequired(true)),
           //status
           new SlashCommandBuilder()
             .setName("status")
-            .setDescription("")
+            .setDescription("View the status of the BOT")
             .setDescriptionLocalization("ja","BOTのステータスを表示します"),
           //system
           new SlashCommandBuilder()
             .setName("system")
-            .setDescription("")
+            .setDescription("Manage BOT")
             .setDescriptionLocalization("ja","BOTの管理をします")
             .addStringOption(option =>
               option
@@ -764,107 +764,107 @@ module.exports = async(client)=>{
           //ticket
           new SlashCommandBuilder()
             .setName("ticket")
-            .setDescription("")
+            .setDescription("Create an inquiry function")
             .setDescriptionLocalization("ja","お問い合わせ機能を作成します"),
           //timeout
           new SlashCommandBuilder()
             .setName("timeout")
-            .setDescription("")
-            .setDescriptionLocalization("ja","ユーザーをタイムアウトします")
+            .setDescription("Time out a member")
+            .setDescriptionLocalization("ja","メンバーをタイムアウトします")
             .addUserOption(option =>
               option
                 .setName("user")
-                .setDescription("")
+                .setDescription("User ID or Mention")
                 .setDescriptionLocalization("ja","ユーザーID・メンション")
                 .setRequired(true))
             .addIntegerOption(option =>
               option
                 .setName("time")
-                .setDescription("")
+                .setDescription("Time (seconds)")
                 .setDescriptionLocalization("ja","時間(秒)"))
             .addStringOption(option =>
               option
                 .setName("reason")
-                .setDescription("")
+                .setDescription("Reason")
                 .setDescriptionLocalization("ja","理由")),
           //top
           new SlashCommandBuilder()
             .setName("top")
-            .setDescription("")
+            .setDescription("View a link to the first message of the channel")
             .setDescriptionLocalization("ja","チャンネルの最初のメッセージのリンクを表示します"),
           //translate
           new SlashCommandBuilder()
             .setName("translate")
-            .setDescription("")
+            .setDescription("Translate the text")
             .setDescriptionLocalization("ja","テキストを翻訳します")
             .addStringOption(option =>
               option
                 .setName("text")
-                .setDescription("")
+                .setDescription("Text to translate")
                 .setDescriptionLocalization("ja","翻訳するテキスト")
                 .setRequired(true))
             .addStringOption(option =>
               option
                 .setName("lang")
-                .setDescription("")
+                .setDescription("Target language")
                 .setDescriptionLocalization("ja","翻訳先の言語")
                 .setRequired(true)
                 .addChoices(
-                  { name: "日本語", value: "ja" },
-                  { name: "英語", value: "en" },
-                  { name: "韓国語", value: "ko" },
-                  { name: "中国語", value: "zh" },
-                  { name: "ロシア語", value: "ru" },
-                  { name: "フランス語", value: "fr" },
-                  { name: "ドイツ語", value: "de" }
+                  { name: "日本語(JA)", value: "ja" },
+                  { name: "英語(EN)", value: "en" },
+                  { name: "韓国語(KO)", value: "ko" },
+                  { name: "中国語(ZH)", value: "zh" },
+                  { name: "ロシア語(RU)", value: "ru" },
+                  { name: "フランス語(FR)", value: "fr" },
+                  { name: "ドイツ語(DE)", value: "de" }
                 )),
           //user
           new SlashCommandBuilder()
             .setName("user")
-            .setDescription("")
+            .setDescription("View user information")
             .setDescriptionLocalization("ja","ユーザーの情報を表示します")
             .addStringOption(option =>
               option
                 .setName("id")
-                .setDescription("")
+                .setDescription("User ID or Mention")
                 .setDescriptionLocalization("ja","ユーザーID・メンション")),
           //warn
           new SlashCommandBuilder()
             .setName("warn")
-            .setDescription("")
+            .setDescription("メンバーに警告します")
             .setDescriptionLocalization("ja","メンバーを警告します")
             .addUserOption(option =>
               option
                 .setName("user")
-                .setDescription("")
-                .setDescriptionLocalization("ja","警告対象のメンバー")
+                .setDescription("Target Member")
+                .setDescriptionLocalization("ja","対象のメンバー")
                 .setRequired(true))
             .addStringOption(option =>
               option
                 .setName("reason")
-                .setDescription("")
+                .setDescription("Reason")
                 .setDescriptionLocalization("ja","理由")
                 .setRequired(true)),
           //webshot
           new SlashCommandBuilder()
             .setName("webshot")
-            .setDescription("")
+            .setDescription("Take a screenshot of the website")
             .setDescriptionLocalization("ja","Webサイトのスクリーンショットを撮影します")
             .addStringOption(option =>
               option
                 .setName("url")
-                .setDescription("")
+                .setDescription("Target URL")
                 .setDescriptionLocalization("ja","対象のURL")
                 .setRequired(true)),
           //wiki
           new SlashCommandBuilder()
             .setName("wiki")
-            .setDescription("")
+            .setDescription("Search and view on Wikipedia")
             .setDescriptionLocalization("ja","wikipediaで検索し表示します")
             .addStringOption(option =>
               option
                 .setName("word")
-                .setDescription("")
+                .setDescription("Search word")
                 .setDescriptionLocalization("ja","検索ワード")
                 .setRequired(true)),
           //ContextMenu
