@@ -4,7 +4,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "TakasumiBOT",
+            "name": "TakasumiBOTv2",
             "skipFiles": [
                 "<node_internals>/**"
             ],
