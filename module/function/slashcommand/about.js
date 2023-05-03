@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "about"){
     
@@ -15,12 +15,12 @@ module.exports = async(interaction)=>{
             new ButtonBuilder()
               .setLabel("BOT招待")
               .setURL("https://discord.com/api/oauth2/authorize?client_id=981314695543783484&permissions=8796093022199&scope=bot%20applications.commands")
-              .setStyle("LINK"))
+              .setStyle(ButtonStyle.Link))
           .addComponents(
             new ButtonBuilder()
               .setLabel("サポートサーバー")
               .setURL("https://discord.gg/NEesRdGQwD")
-              .setStyle("LINK"))
+              .setStyle(ButtonStyle.Link))
       ]
     });
   }

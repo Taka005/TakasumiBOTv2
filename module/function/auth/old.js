@@ -1,12 +1,12 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, Colors, ButtonStyle } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("panel_")){
     const role = interaction.customId.split("_")[1];
 
     await interaction.message.edit({
       embeds:[{
-        color: Colors.blue,
+        color: Colors.Blue,
         description: `<@&${role}>を貰うには、認証ボタンを押してください`
       }],
       components:[
@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "もう一度認証してください",
+            name: "認証に失敗しました",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
           description: "この認証は古いバージョンを使用しているため認証できません\n`/auth`を使用して作り直してください"
@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
-                .setStyle("LINK"))
+                .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
       });

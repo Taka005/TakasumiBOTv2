@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const fetchMember = require("../../lib/fetchMember");
   const fetchUser = require("../../lib/fetchUser");
   if(!interaction.isChatInputCommand()) return;
@@ -45,7 +45,7 @@ module.exports = async(interaction)=>{
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
-                .setStyle("LINK"))
+                .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
       })
@@ -118,7 +118,7 @@ module.exports = async(interaction)=>{
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
-                .setStyle("LINK"))
+                .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
       })

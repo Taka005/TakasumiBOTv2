@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "emoji"){
     const name = interaction.options.getString("name");
@@ -23,13 +23,17 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${emoji.name}の情報`,
+            name: "絵文字の情報",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           thumbnail:{
             url: emoji.url
           },
           fields:[
+            {
+              name: "名前",
+              value: emoji.name
+            },
             {
               name: "ID",
               value: emoji.id
@@ -74,7 +78,7 @@ module.exports = async(interaction)=>{
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
-                .setStyle("LINK"))
+                .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
       });

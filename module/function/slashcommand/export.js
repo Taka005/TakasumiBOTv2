@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { AttachmentBuilder ,ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
+  const { AttachmentBuilder ,ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "export"){
 
@@ -87,7 +87,7 @@ module.exports = async(interaction)=>{
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
-                .setStyle("LINK"))
+                .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true 
       });

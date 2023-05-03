@@ -448,7 +448,7 @@ async function err(interaction,error){
           new ButtonBuilder()
             .setLabel("サポートサーバー")
             .setURL("https://discord.gg/NEesRdGQwD")
-            .setStyle("LINK"))
+            .setStyle(ButtonStyle.Link))
     ],
     ephemeral: true
   });

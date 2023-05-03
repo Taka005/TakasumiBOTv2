@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "account"){
@@ -21,7 +21,7 @@ module.exports = async(interaction)=>{
               new ButtonBuilder()
                 .setLabel("サイトへ飛ぶ")
                 .setURL("https://auth.taka.ml/")
-                .setStyle("LINK"))
+                .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
       });

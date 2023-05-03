@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const os = require("os");
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "status"){
@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
             new ButtonBuilder()
               .setLabel("サポートサーバー")
               .setURL("https://discord.gg/NEesRdGQwD")
-              .setStyle("LINK"))
+              .setStyle(ButtonStyle.Link))
       ]
     }).catch((error)=>{
       interaction.editReply({
@@ -69,7 +69,7 @@ module.exports = async(interaction)=>{
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
-                .setStyle("LINK"))
+                .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
       })

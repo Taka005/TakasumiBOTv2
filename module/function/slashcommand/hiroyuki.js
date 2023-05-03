@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
     const db = require("../../lib/db");
-    const { WebhookClient, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
+    const { WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
     if(!interaction.isChatInputCommand()) return;
     if(interaction.commandName === "hiroyuki"){
   
@@ -117,7 +117,7 @@ module.exports = async(interaction)=>{
                     new ButtonBuilder()
                       .setLabel("サポートサーバー")
                       .setURL("https://discord.gg/NEesRdGQwD")
-                      .setStyle("LINK"))
+                      .setStyle(ButtonStyle.Link))
               ]
             });
           })

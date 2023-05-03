@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ActionRowBuilder, StringSelectMenuBuilder, ButtonBuilder, PermissionFlagsBits, Colors } = require("discord.js");
+  const { ActionRowBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "panel"){
     const title = interaction.options.getString("title")||"役職パネル";
@@ -107,7 +107,7 @@ module.exports = async(interaction)=>{
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
-                .setStyle("LINK"))
+                .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
       });

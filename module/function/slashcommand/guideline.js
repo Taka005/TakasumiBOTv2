@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, PermissionFlagsBits, Colors } = require("discord.js");
+  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "guideline"){ 
     const role =  interaction.options.getRole("role");
@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
       .setMaxLength(3000)
       .setRequired(true)
       .setValue("` 1 ` **１つ目のガイドライン**\n\n` 2 ` **２つ目のガイドライン**\n\n` 3 ` **３つ目のガイドライン**\n\n` 4 ` **４つ目のガイドライン**\n")
-      .setStyle("PARAGRAPH");
+      .setStyle(TextInputStyle.Paragraph);
       
     guide.addComponents(new ActionRowBuilder().addComponents(temp));
   

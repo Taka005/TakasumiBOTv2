@@ -1,5 +1,5 @@
 module.exports = async(member)=>{
-  const { WebhookClient, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
 
   const data = await db(`SELECT * FROM \`join\` WHERE server = ${member.guild.id} LIMIT 1;`);
@@ -43,7 +43,7 @@ module.exports = async(member)=>{
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle("LINK"))
+                  .setStyle(ButtonStyle.Link))
           ]
         }).catch(()=>{});
       });

@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const fetchUser = require("../../lib/fetchUser");
   const fetchMember = require("../../lib/fetchMember");
@@ -82,7 +82,7 @@ module.exports = async(interaction)=>{
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle("LINK"))
+                  .setStyle(ButtonStyle.Link))
           ],
           ephemeral: true
         })
@@ -178,7 +178,7 @@ module.exports = async(interaction)=>{
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle("LINK"))
+                  .setStyle(ButtonStyle.Link))
           ],
           ephemeral: true
         })
@@ -248,7 +248,7 @@ module.exports = async(interaction)=>{
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle("LINK"))
+                  .setStyle(ButtonStyle.Link))
           ],
           ephemeral: true
         });

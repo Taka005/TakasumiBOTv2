@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const db = require("../../lib/db");
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("web_")){
     const role = interaction.customId.split("_");
@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
             new ButtonBuilder()
               .setLabel("サイトへ飛ぶ")
               .setURL("https://auth.taka.ml/")
-              .setStyle("LINK")
+              .setStyle(ButtonStyle.Link)
           )
       ],
       ephemeral: true
@@ -53,7 +53,7 @@ module.exports = async(interaction)=>{
             new ButtonBuilder()
               .setLabel("サイトへ飛ぶ")
               .setURL("https://auth.taka.ml/")
-              .setStyle("LINK")
+              .setStyle(ButtonStyle.Link)
           )
       ],
       ephemeral: true
@@ -94,7 +94,7 @@ module.exports = async(interaction)=>{
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle("LINK"))
+                  .setStyle(ButtonStyle.Link))
           ],
           ephemeral: true
         })
