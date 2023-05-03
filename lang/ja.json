@@ -3,7 +3,9 @@
     "SupportServer": "サポートサーバー",
     "command":{
         "5000":{
-            "generated": "生成しました"
+            "generated": "生成しました",
+            "generation_failed": "生成できませんでした",
+            "retry": "もう一度やり直してください"
         }
     }
 }
