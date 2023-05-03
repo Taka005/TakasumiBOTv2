@@ -1,12 +1,12 @@
 module.exports = async(guild)=>{
-  const { ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const { ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   let find = 0;
   guild.channels.cache.map((channel)=>{
     if(find === 0){
       if(
         channel.type === ChannelType.GuildText&&
-        guild.members.me.permissionsIn(channel).has("VIEW_CHANNEL")&&
-        guild.members.me.permissionsIn(channel).has("SEND_MESSAGES")
+        guild.members.me.permissionsIn(channel).has(PermissionFlagsBits.ViewChannel)&&
+        guild.members.me.permissionsIn(channel).has(PermissionFlagsBits.SendMessages)
       ){
         channel.send({
           embeds:[{
@@ -28,6 +28,11 @@ module.exports = async(guild)=>{
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle(ButtonStyle.Link))
+              .addComponents(
+                new ButtonBuilder()
+                  .setLabel("For English")
+                  .setCustomId("english")
+                  .setStyle(ButtonStyle.Primary))
           ]
         });
         return find = 1;
