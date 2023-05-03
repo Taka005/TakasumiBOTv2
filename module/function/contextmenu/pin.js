@@ -2,7 +2,7 @@ module.exports = async(interaction)=>{
   const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isContextMenuCommand()) return;
-  if(interaction.commandName === "メッセージをピン留め"){
+  if(interaction.commandName === "Pin The Message"){
     const message = interaction.options.getMessage("message");
 
     if(!message.content) return await interaction.reply({

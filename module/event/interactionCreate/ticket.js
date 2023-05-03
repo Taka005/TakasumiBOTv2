@@ -85,7 +85,7 @@ module.exports = async(interaction)=>{
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle("LINK"))
+                  .setStyle(ButtonStyle.Link))
           ],
           ephemeral: true 
         });
@@ -113,7 +113,7 @@ module.exports = async(interaction)=>{
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle("LINK"))
+                  .setStyle(ButtonStyle.Link))
           ],
           ephemeral: true 
         });

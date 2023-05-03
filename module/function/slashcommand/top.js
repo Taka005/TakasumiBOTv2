@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "top"){
 
@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
             new ButtonBuilder()
               .setLabel("メッセージへ飛ぶ")
               .setURL(msg.url)
-              .setStyle("LINK"))
+              .setStyle(ButtonStyle.Link))
       ]
     })
   }

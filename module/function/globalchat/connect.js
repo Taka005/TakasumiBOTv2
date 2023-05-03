@@ -253,7 +253,7 @@ module.exports = async(msg)=>{
 
 function err(channel,client,error){
   const db = require("../../lib/db");
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
 
   db(`DELETE FROM global WHERE channel = ${channel} LIMIT 1;`);
   client.channels.cache.get(channel).send({
@@ -277,7 +277,7 @@ function err(channel,client,error){
           new ButtonBuilder()
             .setLabel("サポートサーバー")
             .setURL("https://discord.gg/NEesRdGQwD")
-            .setStyle("LINK"))
+            .setStyle(ButtonStyle.Link))
     ]
   })
   .catch(()=>{});

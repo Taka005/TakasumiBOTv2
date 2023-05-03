@@ -1,9 +1,9 @@
 {
     "5000":{
         "description":"5000兆円ジェネレーター",
-        "example":"`/5000 上部文字列 下部文字列`",
+        "example":"`/5000 上の文字 下の文字`",
         "permission":["必要なし"],
-        "note":"下部文字列を指定しない場合「欲しい!」に変換されます"
+        "note":"なし"
     },
     "about":{
         "description":"BOTについての情報や、関連リンクを表示します",
@@ -42,13 +42,13 @@
         "note":"サーバーで違うアイコンを設定してる場合は両方表示されます"
     },
     "ban":{
-        "description":"メンバー又はユーザーをサーバーからBANすることができます",
+        "description":"メンバー・ユーザーをサーバーからBANすることができます",
         "example":"`/ban @Arashi`\n`/ban 1066168542669590599`",
         "permission":["メンバーをBAN"],
         "note":"サーバーにいないユーザーでもIDを使用してBANすることができます"
     },
     "cipher":{
-        "description":"文字列を暗号化又は復号化します",
+        "description":"文字列を暗号・復号します",
         "example":"`/cipher 暗号化 moji key`\n`/cipher 復号化 d1faf7e95c key`",
         "permission":["必要なし"],
         "note":"aes-128-cbcを使用して暗号化しています"
@@ -69,7 +69,7 @@
         "description":"指定された数だけメッセージを一括で削除します",
         "example":"`/del 30`\n`/del 30 @Arashi`",
         "permission":["メッセージの管理"],
-        "note":"2週間前又は100個までメッセージを削除できます"
+        "note":"2週間前かつ100個までメッセージを削除できます"
     },
     "embed":{
         "description":"埋め込みを簡単に作成し表示できます",
@@ -150,7 +150,7 @@
         "note":"なし"
     },
     "invites":{
-        "description":"サーバー又は指定したユーザーの招待一覧を表示します",
+        "description":"サーバー又はユーザーの招待一覧を表示します",
         "example":"`/invites`\n`/invites @TakasumiBOT`",
         "permission":["なし"],
         "note":"なし"
@@ -228,7 +228,7 @@
         "note":"なし"
     },
     "qr":{
-        "description":"QRコードを生成、又は読み取ります",
+        "description":"QRコードを生成・読み取ります",
         "example":"`/qr 生成 text`\n`/qr 読み込む https://example.com/qr.png`",
         "permission":["必要なし"],
         "note":"読み込むURLは有効なものである必要があります"

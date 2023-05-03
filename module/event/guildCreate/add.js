@@ -1,5 +1,5 @@
 module.exports = async(guild)=>{
-  const { ChannelType, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   let find = 0;
   guild.channels.cache.map((channel)=>{
     if(find === 0){
@@ -27,7 +27,7 @@ module.exports = async(guild)=>{
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle("LINK"))
+                  .setStyle(ButtonStyle.Link))
           ]
         });
         return find = 1;

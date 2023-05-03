@@ -8,14 +8,8 @@ module.exports = async(interaction,Lang)=>{
 
     await interaction.deferReply();
     try{
-      let image;
-      if(bottom){
-        image = await fetch(`https://gsapi.cbrx.io/image?top=${top}&bottom=${bottom}&type=png`)
+      const image = await fetch(`https://gsapi.cbrx.io/image?top=${top}&bottom=${bottom}&type=png`)
           .then(res=>res.blob());
-      }else{
-        image = await fetch(`https://gsapi.cbrx.io/image?top=${top}&bottom=欲しい!&hoshii=true&type=png`)
-          .then(res=>res.blob());
-      }    
 
       await interaction.editReply({
         embeds:[{

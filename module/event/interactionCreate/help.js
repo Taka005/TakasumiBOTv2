@@ -425,7 +425,7 @@ async function check(interaction,id){
 }
 
 async function err(interaction,error){
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   
   await interaction.reply({
     embeds:[{
@@ -448,7 +448,7 @@ async function err(interaction,error){
           new ButtonBuilder()
             .setLabel("サポートサーバー")
             .setURL("https://discord.gg/NEesRdGQwD")
-            .setStyle("LINK"))
+            .setStyle(ButtonStyle.Link))
     ],
     ephemeral: true
   });

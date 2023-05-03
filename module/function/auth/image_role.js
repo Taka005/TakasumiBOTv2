@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId.startsWith("imagerole_")){
     const list = interaction.customId.split("_");
@@ -16,59 +16,57 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(key === list[2]){
-      await interaction.member.roles.add(list[1])
-        .then(async()=>{
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: "認証しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+    if(key !== list[2]) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "選択した値が間違っています",
+          icon_url: "https://cdn.taka.ml/images/system/error.png"
+        },
+        description: "画像に表示される文字を選択してください"
+      }],
+      ephemeral: true
+    });
+
+    await interaction.member.roles.add(list[1])
+      .then(async()=>{
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "認証しました",
+              icon_url: "https://cdn.taka.ml/images/system/success.png"
+            }
+          }],
+          ephemeral: true
+        });
+      })
+      .catch(async(error)=>{
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "認証に失敗しました",
+              icon_url: "https://cdn.taka.ml/images/system/error.png"
+            },
+            description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
+            fields:[
+              {
+                name: "エラーコード",
+                value: `\`\`\`${error}\`\`\``
               }
-            }],
-            ephemeral: true
-          });
-        })
-        .catch(async(error)=>{
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Red,
-              author:{
-                name: "認証に失敗しました",
-                icon_url: "https://cdn.taka.ml/images/system/error.png"
-              },
-              description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            components:[
-              new ActionRowBuilder()
-                .addComponents( 
-                  new ButtonBuilder()
-                    .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
-                    .setStyle("LINK"))
-            ],
-            ephemeral: true
-          });
-        })
-    }else{
-      await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "選択した値が間違っています",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
-          },
-          description: "画像に表示される文字を選択してください"
-        }],
-        ephemeral: true
+            ]
+          }],
+          components:[
+            new ActionRowBuilder()
+              .addComponents( 
+                new ButtonBuilder()
+                  .setLabel("サポートサーバー")
+                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setStyle(ButtonStyle.Link))
+          ],
+          ephemeral: true
+        });
       });
-    }
   }
 }

@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ActionRowBuilder, ModalBuilder, TextInputBuilder } = require("discord.js");
+  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "script"){
     const lang = interaction.options.getString("lang");
@@ -14,7 +14,7 @@ module.exports = async(interaction)=>{
       .setPlaceholder("実行するコードを入力")
       .setMaxLength(500)
       .setRequired(true)
-      .setStyle("PARAGRAPH");
+      .setStyle(TextInputStyle.Paragraph);
       
     modal.addComponents(new ActionRowBuilder().addComponents(code));
   

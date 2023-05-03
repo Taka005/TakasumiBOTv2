@@ -1,8 +1,8 @@
 module.exports = async(interaction)=>{
   const db = require("../../lib/db");
-  const { ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isContextMenuCommand()) return;
-  if(interaction.commandName === "メンバー情報を表示"){
+  if(interaction.commandName === "View Member Information"){
     const member = interaction.options.getMember("user");
 
     if(!member) return await interaction.reply({
@@ -92,7 +92,7 @@ module.exports = async(interaction)=>{
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
-                .setStyle("LINK"))
+                .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
       })

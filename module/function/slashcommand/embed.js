@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, PermissionFlagsBits, Colors } = require("discord.js");
+  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "embed"){
 
@@ -30,21 +30,24 @@ module.exports = async(interaction)=>{
       .setLabel("タイトル")
       .setPlaceholder("埋め込みに表示されるタイトル")
       .setMaxLength(200)
-      .setStyle("SHORT");
+      .setRequired(false)
+      .setStyle(TextInputStyle.Short);
 
     const description = new TextInputBuilder()
       .setCustomId("description")
       .setLabel("説明")
-      .setMaxLength(3000)
       .setPlaceholder("埋め込みに表示される説明欄")
-      .setStyle("PARAGRAPH");
+      .setMaxLength(3000)
+      .setRequired(false)
+      .setStyle(TextInputStyle.Paragraph);
       
     const image = new TextInputBuilder()
       .setCustomId("image")
       .setLabel("画像")
       .setPlaceholder("埋め込みに表示される画像のURL")
       .setMaxLength(120)
-      .setStyle("SHORT");
+      .setRequired(false)
+      .setStyle(TextInputStyle.Short);
       
     embed.addComponents(
       new ActionRowBuilder()

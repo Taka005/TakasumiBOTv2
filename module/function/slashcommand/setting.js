@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
+  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const fetchMember = require("../../lib/fetchMember");
   if(!interaction.isChatInputCommand()) return;
@@ -368,7 +368,7 @@ module.exports = async(interaction)=>{
                     new ButtonBuilder()
                       .setLabel("サポートサーバー")
                       .setURL("https://discord.gg/NEesRdGQwD")
-                      .setStyle("LINK"))
+                      .setStyle(ButtonStyle.Link))
               ]
             });
           })
@@ -509,7 +509,7 @@ module.exports = async(interaction)=>{
                     new ButtonBuilder()
                       .setLabel("サポートサーバー")
                       .setURL("https://discord.gg/NEesRdGQwD")
-                      .setStyle("LINK"))
+                      .setStyle(ButtonStyle.Link))
               ]
             });
           })

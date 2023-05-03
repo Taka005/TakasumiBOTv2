@@ -1,5 +1,5 @@
 module.exports = async(client)=>{
-  const { Events, ChannelType, ButtonBuilder, ActionRowBuilder, Colors } = require("discord.js");
+  const { Events, ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const fs = require("fs");
   const db = require("./lib/db");
   const lang = require("./lib/lang");
@@ -70,7 +70,7 @@ module.exports = async(client)=>{
             new ButtonBuilder()
               .setLabel("サポートサーバー")
               .setURL("https://discord.gg/NEesRdGQwD")
-              .setStyle("LINK"))
+              .setStyle(ButtonStyle.Link))
       ]
     });
     
@@ -92,7 +92,7 @@ module.exports = async(client)=>{
             new ButtonBuilder()
               .setLabel("サポートサーバー")
               .setURL("https://discord.gg/NEesRdGQwD")
-              .setStyle("LINK"))
+              .setStyle(ButtonStyle.Link))
       ],
       ephemeral: true
     });
