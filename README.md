@@ -17,6 +17,7 @@
 # Config
 - admin: 管理者のユーザーID
 - prefix: コマンドの先頭になる文字(一部のみに有効)
+- id: データベース上のBOT識別ID
 - log: ログを送るチャンネルID
 - error: エラーメッセージを送るチャンネルID
 # Developer
