@@ -3,7 +3,8 @@ module.exports = async(client)=>{
   const os = require("os");
   require("dotenv");
   const db = require("../../lib/db");
-  cron.schedule("0 * * * * *",async()=>{
+
+  cron.schedule("0 * * * *",async()=>{
     const log = await db("SELECT * FROM log");
 
     let ping = client.ws.ping;
@@ -18,12 +19,13 @@ module.exports = async(client)=>{
     )*100).toFixed(2);
     const ram = 100 - Math.floor((os.freemem()/os.totalmem())*100);
 
-    if(log.length > 168){
-      log.map(data=>{
-
-      });
+    let logCount = log.length;
+    while(logCount >= 168){
+      await db("DELETE FROM log ORDER BY time LIMIT 1;");
+      logCount--;
+      if(logCount <= 167) break;
     }
     await db(`INSERT INTO log (time, ping, user, guild, message, command, cpu, ram) VALUES(NOW(),"${ping}","${user}","${guild}","${count[0].message}","${count[0].command}","${cpu}","${ram}");`);
-    await db(`INSERT INTO count (id, message, command) VALUES("${process.env.ID}","0","0") ON DUPLICATE KEY UPDATE id = VALUES (id), message = VALUES (message), command = VALUES (command);`);
+    await db(`UPDATE count SET message=0, command=0 WHERE id=${process.env.ID};`);
   });
 }
