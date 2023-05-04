@@ -7,6 +7,7 @@ module.exports = async(client)=>{
 
   client.once(Events.ClientReady,async(client)=>{
     require("./event/ready/status")(client);
+    require("./event/ready/load")(client);
     require("./event/ready/command")(client);
   });
 
