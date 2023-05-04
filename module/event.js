@@ -3,14 +3,18 @@ module.exports = async(client)=>{
   const fs = require("fs");
   const db = require("./lib/db");
   const lang = require("./lib/lang");
+  const count = require("./lib/count");
 
   client.once(Events.ClientReady,async(client)=>{
     require("./event/ready/status")(client);
+    require("./event/ready/load")(client);
     require("./event/ready/command")(client);
   });
 
   client.on(Events.MessageCreate,async(message)=>{
     if(!message.guild.members.me) return;
+
+    count.message();
 
     const Lang = new lang();
     Lang.set(message.guild.id);
@@ -96,6 +100,8 @@ module.exports = async(client)=>{
       ],
       ephemeral: true
     });
+
+    count.command();
 
     const Lang = new lang();
     Lang.set(interaction.guild.id);

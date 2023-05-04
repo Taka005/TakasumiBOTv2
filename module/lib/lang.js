@@ -1,5 +1,4 @@
 module.exports = class Lang{
-
   async set(guildId){
     const db = require("./db");
     this.setting = await db(`SELECT * FROM lang WHERE id = ${guildId} LIMIT 1;`);
