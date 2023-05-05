@@ -173,7 +173,8 @@ module.exports = async(client)=>{
               option
                 .setName("query")
                 .setDescription("Query")
-                .setDescriptionLocalization("ja","クエリ")),
+                .setDescriptionLocalization("ja","クエリ")
+                .setRequired(true)),
           //debug
           new SlashCommandBuilder()
             .setName("debug")
