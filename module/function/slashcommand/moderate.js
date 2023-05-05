@@ -75,18 +75,18 @@ module.exports = async(interaction)=>{
           }
         }]
       });
+    }else{
+      await db(`INSERT INTO moderate (id, type, time) VALUES("${interaction.guild.id}","${type}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),type = VALUES (type),time = VALUES (time);`);
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: "自動モデレート機能を有効にしました",
+            icon_url: "https://cdn.taka.ml/images/system/success.png"
+          },
+          description: `${level[type]}に設定しました`
+        }]
+      });
     }
-
-    await db(`INSERT INTO moderate (id, type, time) VALUES("${interaction.guild.id}","${type}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),type = VALUES (type),time = VALUES (time);`);
-    await interaction.reply({
-      embeds:[{
-        color: Colors.Green,
-        author:{
-          name: "自動モデレート機能を有効にしました",
-          icon_url: "https://cdn.taka.ml/images/system/success.png"
-        },
-        description: `${level[type]}に設定しました`
-      }]
-    });
   }
 }

@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
           name: "取得に失敗しました",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "IDまたは、メンションを入力してください"
+        description: "ユーザーID、メンションを入力してください"
       }],
       ephemeral: true
     });
@@ -74,7 +74,7 @@ module.exports = async(interaction)=>{
           name: "取得に失敗しました",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "指定されたユーザーは存在しないか、間違っています"
+        description: "指定されたユーザー存在しません"
       }],
       ephemeral: true
     });

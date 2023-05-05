@@ -12,12 +12,12 @@ module.exports = async(interaction)=>{
           name: "メンバーを取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "指定したユーザーが存在していないか、サーバーから退出しています"
+        description: "指定したメンバーはサーバーに存在していません"
       }],
       ephemeral: true
     });
 
-    const members = await db(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
+    const account = await db(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
 
     await interaction.reply({
       embeds:[{
@@ -58,7 +58,7 @@ module.exports = async(interaction)=>{
           },
           {
             name: "TakasumiBOT Accountへの登録",
-            value: members[0] ? "登録済み" : "未登録"
+            value: account[0] ? "登録済み" : "未登録"
           },
           {
             name: "ロール",

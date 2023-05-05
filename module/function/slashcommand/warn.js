@@ -84,7 +84,7 @@ module.exports = async(interaction)=>{
               name: "警告できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            description: "ユーザーがDMを拒否しているか、メンバーが正しく指定されていません",
+            description: "ユーザーがDMを拒否している可能性があります",
             fields:[
               {
                 name: "エラーコード",

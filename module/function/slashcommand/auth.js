@@ -78,7 +78,7 @@ module.exports = async(interaction)=>{
               name: "認証機能の作成に失敗しました",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
-            description: "BOTの権限等を確認し、もう一度実行してください",
+            description: "BOTの権限等を確認してもう一度実行してください",
             fields:[
               {
                 name: "エラーコード",

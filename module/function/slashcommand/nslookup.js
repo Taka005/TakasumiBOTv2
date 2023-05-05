@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "DNS情報が取得できませんでした",
+            name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
           description: "違うアドレスで試してください"
@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "DNS情報が取得できませんでした",
+            name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
           description: "違うアドレスを試してください"

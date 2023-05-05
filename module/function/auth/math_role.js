@@ -35,7 +35,7 @@ module.exports = async(interaction)=>{
           name: "入力コードが間違っています",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "認証時に表示される画面のテキストボックスの\n上に表記されている通りに認証してください"
+        description: "認証時に表示される画面に書かれている通りに認証してください"
       }],
       ephemeral: true
     });

@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
     try{
       if(user){
         const messages = await interaction.channel.messages.fetch({ limit: number });
-        const msg = await messages.filter(msg => user.id === msg.author.id);
+        const msg = messages.filter(msg => user.id === msg.author.id);
         if(!msg) return await interaction.editReply({
           embeds:[{
             color: Colors.Red,
@@ -100,7 +100,7 @@ module.exports = async(interaction)=>{
                 }
               }]
             });
-          })
+          });
       }
     }catch(error){
       await interaction.editReply({
@@ -110,7 +110,7 @@ module.exports = async(interaction)=>{
             name: "削除できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          description: "二週間より前のメッセージが含まれていたか、\nBOTの権限が不足しています",
+          description: "二週間より前のメッセージが含まれていたか、BOTの権限が不足しています",
           fields:[
             {
               name: "エラーコード",

@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Red,
         author:{
-          name: "KICKできませんでした",
+          name: "キックできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
         description: "指定したユーザーが取得できません"
@@ -58,10 +58,10 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Red,
         author:{
-          name: "KICKできませんでした",
+          name: "キックできませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "自分自身をKICKすることはできません"
+        description: "自分自身をキックすることはできません"
       }],
       ephemeral: true
     });
@@ -73,7 +73,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: `${member.user.tag}をサーバーからKICKしました`,
+              name: `${member.user.tag}をサーバーからキックしました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             }
           }]
@@ -84,7 +84,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Red,
             author:{
-              name: "KICKできませんでした",
+              name: "キックできませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
             description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",

@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
           name: "取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "サーバー上のカスタム絵文字を指定してください"
+        description: "サーバーのカスタム絵文字を指定してください"
       }],
       ephemeral: true
     });
