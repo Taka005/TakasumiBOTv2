@@ -40,10 +40,10 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-
+		
     await interaction.guild.roles.create({
       name: name,
-      color: color,
+      color: Colors[color],
       position: interaction.guild.members.me.roles.highest.position,
       mentionable: false,
       reason: "色付きロールの作成",
