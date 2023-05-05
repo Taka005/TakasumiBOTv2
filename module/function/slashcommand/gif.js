@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
         files: [
           new AttachmentBuilder()
             .setFile(image.stream())
-            .setName("result.png")
+            .setName("result.gif")
         ]
       });
     }catch{

@@ -43,7 +43,7 @@ module.exports = async(interaction)=>{
 
     await interaction.guild.roles.create({
       name: name,
-      color: color,
+      color: Number(color),
       position: interaction.guild.members.me.roles.highest.position,
       mentionable: false,
       reason: "色付きロールの作成",

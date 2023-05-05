@@ -2,6 +2,8 @@ module.exports = async(message)=>{
   const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const limit = require("../../lib/limit");
+  const fetchChannel = require("../../lib/fetchChannel");
+  const fetchMessage = require("../../lib/fetchMessage");
 
   if(
     message.author.bot||
@@ -9,25 +11,22 @@ module.exports = async(message)=>{
     !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.SendMessages)
   ) return;
   
-  if(message.content.match(/https?:\/\/(?:ptb\.|canary\.)?(?:discord|discordapp)\.com\/channels\/\d{18,19}\/\d{18,19}\/\d{18,19}/g)){
-    const url = message.content.match(/(https?:\/\/(?:ptb\.|canary\.)?(?:discord|discordapp)\.com\/channels\/)(\d{18,19}\/\d{18,19}\/\d{18,19})/);
-
+  const link = message.content.match(/^https?:\/\/(?:ptb\.|canary\.)?(?:discord|discordapp)\.com\/channels\/(\d+)\/(\d+)\/(\d+)$/);
+  if(link){
     const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id} LIMIT 1;`);
     if(ignore[0]||limit(message)) return;
 
-    const id = url[2].split("/");
-    const channel = message.clinet.channels.cache.get(id[1]);
-    if(!channel) return;
-    const msg = await channel.messages.fetch({"message":id[2]})
-      .catch(()=>{})
+    const channel = await fetchChannel(message.client,link[2]);
+    const msg = await fetchMessage(channel,link[3]);
+    if(!channel||!msg) return;
 
-    if(!msg.attachments?.first()){
-      message.channel.send({//添付ファイルなし
+    if(!msg.attachments.first()){
+      await message.channel.send({//添付ファイルなし
         embeds:[{
-          color: msg.member?.displayHexColor||Colors.White,
+          color: Colors.Green,
           author:{
             name: msg.author.tag,
-            icon_url: msg.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
+            icon_url: msg.author.avatarURL()||msg.author.defaultAvatarURL,
           },
           description: msg.content || "メッセージ内容がありません",
           footer:{
@@ -36,14 +35,14 @@ module.exports = async(message)=>{
           timestamp: msg.createdAt
         }]
       });
-    }else if(msg.attachments?.first().height && msg.attachments?.first().width){
+    }else if(msg.attachments.first().height && msg.attachments.first().width){
       const attachment = msg.attachments.map(attachment=>attachment.url)
-      message.channel.send({//添付ファイルあり(画像)
+      await message.channel.send({//添付ファイルあり(画像)
         embeds:[{
-          color: msg.member?.displayHexColor||Colors.White,
+          color: Colors.Green,
           author:{
             name: msg.author.tag,
-            icon_url: msg.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
+            icon_url: msg.author.avatarURL()||msg.author.defaultAvatarURL,
           },
           description: msg.content || "メッセージ内容がありません",
           image:{
@@ -56,13 +55,13 @@ module.exports = async(message)=>{
         }]
       });
     }else{
-      const attachment = msg.attachments.map(attachment=>attachment?.url)
-      message.channel.send({//添付ファイルあり(画像以外)
+      const attachment = msg.attachments.map(attachment=>attachment.url)
+      await message.channel.send({//添付ファイルあり(画像以外)
         embeds:[{
-          color: msg.member?.displayHexColor||Colors.White,
+          color: Colors.Green,
           author:{
             name: msg.author.tag,
-            icon_url: msg.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
+            icon_url: msg.author.avatarURL()||msg.author.defaultAvatarURL,
           },
           description: msg.content || "メッセージ内容がありません",
           footer:{

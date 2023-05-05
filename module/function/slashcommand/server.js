@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, ChannelType, Colors } = require("discord.js");
   const boost = require("../../lib/boost");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "server"){
@@ -33,7 +33,7 @@ module.exports = async(interaction)=>{
           },
           {
             name: "統計情報",
-            value: `チャンネル:${interaction.guild.channels.cache.size}個(💬:${interaction.guild.channels.cache.filter(ch=>ch.type==="GUILD_TEXT").size} 🔊:${interaction.guild.channels.cache.filter(ch=>ch.type==="GUILD_VOICE").size} 📁:${interaction.guild.channels.cache.filter(ch=>ch.type==="GUILD_CATEGORY").size})\nロール:${(await interaction.guild.roles.fetch()).size}個\n絵文字:${(await interaction.guild.emojis.fetch()).size}個\nステッカー:${(await interaction.guild.stickers.fetch()).size}個\nNitro:${interaction.guild.premiumSubscriptionCount}ブースト(${boost(interaction.guild.premiumSubscriptionCount)}レベル)`
+            value: `チャンネル:${interaction.guild.channels.cache.size}個(💬:${interaction.guild.channels.cache.filter(ch=>ch.type===ChannelType.GuildText).size} 🔊:${interaction.guild.channels.cache.filter(ch=>ch.type===ChannelType.GuildVoice).size} 📁:${interaction.guild.channels.cache.filter(ch=>ch.type===ChannelType.GuildCategory).size})\nロール:${(await interaction.guild.roles.fetch()).size}個\n絵文字:${(await interaction.guild.emojis.fetch()).size}個\nステッカー:${(await interaction.guild.stickers.fetch()).size}個\nNitro:${interaction.guild.premiumSubscriptionCount}ブースト(${boost(interaction.guild.premiumSubscriptionCount)}レベル)`
           }
         ],
         footer:{
