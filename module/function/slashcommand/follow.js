@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
               name: "アナウンスチャンネルを追加しました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            description: "このチャンネルでBOTをお知らせを受け取ることができます"
+            description: "このチャンネルでBOTのお知らせを受け取ることができます"
           }]
         });
       })

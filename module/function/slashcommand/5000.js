@@ -9,7 +9,7 @@ module.exports = async(interaction,Lang)=>{
     await interaction.deferReply();
     try{
       const image = await fetch(`https://gsapi.cbrx.io/image?top=${top}&bottom=${bottom}&type=png`)
-          .then(res=>res.blob());
+        .then(res=>res.blob());
 
       await interaction.editReply({
         embeds:[{

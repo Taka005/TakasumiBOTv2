@@ -40,11 +40,11 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(time < 0 || time > 21600) return await interaction.reply({
+    if(time < 0||time > 21600) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
-          name: "引数が無効です",
+          name: "低速モードに設定できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
         description: "低速モードは0秒以上、21600秒以下にする必要があります"

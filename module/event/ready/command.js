@@ -164,6 +164,16 @@ module.exports = async(client)=>{
                   { name: "RED", value: `${Colors.Red}` },
                   { name: "AQUA", value: `${Colors.Aqua}` }
                 )),
+          //db
+          new SlashCommandBuilder()
+            .setName("db")
+            .setDescription("Send a query to the database")
+            .setDescriptionLocalization("ja","データベースにクエリを送信します")
+            .addStringOption(option =>
+              option
+                .setName("query")
+                .setDescription("Query")
+                .setDescriptionLocalization("ja","クエリ")),
           //debug
           new SlashCommandBuilder()
             .setName("debug")
@@ -707,6 +717,17 @@ module.exports = async(client)=>{
                 .setName("url")
                 .setDescription("Target URL")
                 .setDescriptionLocalization("ja","短縮するURL")
+                .setRequired(true)),
+          //skin
+          new SlashCommandBuilder()
+            .setName("skin")
+            .setDescription("Search for a Minecraft skin")
+            .setDescriptionLocalization("ja","マインクラフトのスキンを検索します")
+            .addStringOption(option =>
+              option
+                .setName("name")
+                .setDescription("User Name")
+                .setDescriptionLocalization("ja","ユーザー名")
                 .setRequired(true)),
           //slowmode
           new SlashCommandBuilder()

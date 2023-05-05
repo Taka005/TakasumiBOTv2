@@ -10,10 +10,10 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Red,
         author:{
-          name: "メッセージが長すぎます",
+          name: "AFKを設定できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "300文字未満になるように調整してください"
+        description: "メッセージは300文字未満にしてください"
       }],
       ephemeral: true
     });

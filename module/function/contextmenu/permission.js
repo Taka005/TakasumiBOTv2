@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
           name: "メンバーを取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "指定したユーザーが存在していないか、サーバーから退出しています"
+        description: "指定したメンバーはサーバーに存在していません"
       }],
       ephemeral: true
     });
@@ -38,7 +38,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "権限を表示できませんでした",
+            name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
           fields:[

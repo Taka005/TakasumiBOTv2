@@ -58,7 +58,6 @@ module.exports = async(interaction)=>{
       },null,"  "),"UTF-8");
 
       await interaction.reply({
-        content:"サーバーのデータをJSON形式に出力しました",
         files:[
           new AttachmentBuilder()
             .setFile(data) 

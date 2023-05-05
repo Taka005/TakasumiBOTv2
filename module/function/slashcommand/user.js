@@ -97,7 +97,7 @@ module.exports = async(interaction)=>{
           name: "取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "正確にIDまたは、メンションをしてください"
+        description: "ユーザーID、メンションを入力してください"
       }],
       ephemeral: true
     });

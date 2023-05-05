@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "検索内容を取得できませんでした",
+            name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
           description: "検索ワードを変えて、もう一度実行してください"

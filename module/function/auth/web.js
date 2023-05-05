@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
           name: "認証してください",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "以下のリンクから認証を行い、再度認証ボタンを押してください\n認証してから3分を超えるとタイムアウトになります"
+        description: "以下のリンクからWeb認証を行い、再度認証ボタンを押してください\n認証してから3分を超えるとタイムアウトになります"
       }],
       components:[
         new ActionRowBuilder()
@@ -45,7 +45,7 @@ module.exports = async(interaction)=>{
           name: "認証してください",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: `前回の認証から3分以上が経過しているため、再度認証を行なってください\n前回の認証日時: ${new Date(account[0].time).toLocaleString()}`
+        description: `前回の認証から3分以上が経過しているため再度認証を行なってください\n前回の認証日時: ${new Date(account[0].time).toLocaleString()}`
       }],
       components:[
         new ActionRowBuilder()

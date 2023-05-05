@@ -59,6 +59,12 @@
         "permission":["ロールの管理"],
         "note":"なし"
     },
+    "db":{
+        "description":"関係者以外実行できません",
+        "example":"なし",
+        "permission":["関係者"],
+        "note":"なし"
+    },
     "debug":{
         "description":"関係者以外実行できません",
         "example":"なし",
@@ -274,6 +280,12 @@
         "example":"`/short https://google.com/`",
         "permission":["必要なし"],
         "note":"指定するURLは有効なものである必要があります"
+    },
+    "skin":{
+        "description":"マインクラフトのスキンを検索します",
+        "example":"`/skin User`",
+        "permission":["必要なし"],
+        "note":"Java版専用です"
     },
     "slowmode":{
         "description":"チャンネルに低速モードを設定します",
