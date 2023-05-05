@@ -258,6 +258,10 @@ module.exports = async(interaction)=>{
               value: "テキストを翻訳します"
             },
             {
+              name: "/skin",
+              value: "マインクラフトのスキンを検索します"
+            },
+            {
               name: "/mc",
               value: "指定したアドレスのMinecarftサーバーの情報を表示します"
             },

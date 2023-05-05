@@ -708,6 +708,17 @@ module.exports = async(client)=>{
                 .setDescription("Target URL")
                 .setDescriptionLocalization("ja","短縮するURL")
                 .setRequired(true)),
+          //skin
+          new SlashCommandBuilder()
+            .setName("skin")
+            .setDescription("Search for a Minecraft skin")
+            .setDescriptionLocalization("ja","マインクラフトのスキンを検索します")
+            .addStringOption(option =>
+              option
+                .setName("name")
+                .setDescription("User Name")
+                .setDescriptionLocalization("ja","ユーザー名")
+                .setRequired(true)),
           //slowmode
           new SlashCommandBuilder()
             .setName("slowmode")
