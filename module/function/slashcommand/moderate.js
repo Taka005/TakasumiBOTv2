@@ -5,12 +5,6 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "moderate"){
     const type = interaction.options.getString("type");
 
-    const level = {
-      high:"高い",
-      normal:"標準",
-      low:"低い"
-    };
-
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -84,7 +78,7 @@ module.exports = async(interaction)=>{
             name: "自動モデレート機能を有効にしました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          description: `${level[type]}に設定しました`
+          description: `${type}に設定しました`
         }]
       });
     }
