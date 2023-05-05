@@ -1,6 +1,7 @@
 module.exports = async(client)=>{
   const { Events, ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const fs = require("fs");
+  require("dotenv");
   const db = require("./lib/db");
   const lang = require("./lib/lang");
   const count = require("./lib/count");
@@ -143,4 +144,18 @@ module.exports = async(client)=>{
   client.on(Events.GuildMemberRemove,async(member)=>{
     require("./event/guildMemberRemove/leave")(member);
   });
+
+  if(process.env.DEBUG==="true"){
+    client.on(Events.Debug,(message)=>{
+      console.log(`Debug: ${message}`);
+    });
+
+    client.on(Events.Warn,(message)=>{
+      console.log(`Warn: ${message}`);
+    });
+
+    client.on(Events.Error,(error)=>{
+      console.log(`Error: ${error}`);
+    });
+  }
 }
