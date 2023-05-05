@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
             name: "AFKを無効にしました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          description: `メンションは${data[0].mention}件ありました\n${time(new Date()-new Date(data[0].time))}秒間AFKでした`
+          description: `メンションは${data[0].mention}件ありました\n${time(new Date()-new Date(data[0].time))}間AFKでした`
         }]
       }); 
     }else{
