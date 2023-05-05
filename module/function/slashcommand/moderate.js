@@ -6,9 +6,9 @@ module.exports = async(interaction)=>{
     const type = interaction.options.getString("type");
 
     const level = {
-      high:"高い",
-      normal:"標準",
-      low:"低い"
+      high: "HIGT",
+      normal: "NORMAL",
+      low: "LOW"
     };
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({

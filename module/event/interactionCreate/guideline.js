@@ -10,10 +10,10 @@ module.exports = async(interaction)=>{
         {
           color: Colors.Green,
           title: "このサーバーのガイドライン",
-          description: temp,
           thumbnail:{
             url: "https://cdn.taka.ml/images/system/guideline.png"
-          }
+          },
+          description: temp
         },
         {
           color: Colors.Green,
