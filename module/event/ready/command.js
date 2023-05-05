@@ -164,6 +164,16 @@ module.exports = async(client)=>{
                   { name: "RED", value: `${Colors.Red}` },
                   { name: "AQUA", value: `${Colors.Aqua}` }
                 )),
+          //db
+          new SlashCommandBuilder()
+            .setName("db")
+            .setDescription("Send a query to the database")
+            .setDescriptionLocalization("ja","データベースにクエリを送信します")
+            .addStringOption(option =>
+              option
+                .setName("query")
+                .setDescription("Query")
+                .setDescriptionLocalization("ja","クエリ")),
           //debug
           new SlashCommandBuilder()
             .setName("debug")

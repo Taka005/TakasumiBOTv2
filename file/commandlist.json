@@ -59,6 +59,12 @@
         "permission":["ロールの管理"],
         "note":"なし"
     },
+    "db":{
+        "description":"関係者以外実行できません",
+        "example":"なし",
+        "permission":["関係者"],
+        "note":"なし"
+    },
     "debug":{
         "description":"関係者以外実行できません",
         "example":"なし",
