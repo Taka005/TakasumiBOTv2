@@ -61,7 +61,7 @@ module.exports = async(interaction)=>{
       if(user){
         const messages = await interaction.channel.messages.fetch({ limit: number });
         const msg = messages.filter(msg => user.id === msg.author.id);
-        if(!msg) return await interaction.editReply({
+        if(!msg[0]) return await interaction.editReply({
           embeds:[{
             color: Colors.Red,
             author:{
@@ -69,8 +69,7 @@ module.exports = async(interaction)=>{
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
             description: "メッセージに指定したユーザーが含まれていませんでした",
-          }],
-          ephemeral: true
+          }]
         });
 
         await interaction.channel.bulkDelete(msg)
@@ -125,8 +124,7 @@ module.exports = async(interaction)=>{
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle(ButtonStyle.Link))
-        ],
-        ephemeral: true
+        ]
       });
     }
   }
