@@ -51,7 +51,7 @@ module.exports = async(interaction)=>{
           },
           {
             name: "統計データ",
-            value: `サーバー数: ${interaction.client.guilds.cache.size}サーバー\nユーザー数: ${interaction.client.guilds.cache.map((g)=>g.memberCount).reduce((a,c)=>a+c)}人\nサーバー増減数: ${sign(guild)}サーバー\nユーザー増減数: ${sign(user)}回\n\n今日のメッセージ数: ${message[0].total}回\n今日のコマンド実行数: ${command[0].total}回\n前日とのメッセージ増減数: ${sign(messageSign)}回\n前日とのコマンド増減数: ${sign(commandSign)}回`
+            value: `サーバー数: ${interaction.client.guilds.cache.size}サーバー\nユーザー数: ${interaction.client.guilds.cache.map((g)=>g.memberCount).reduce((a,c)=>a+c)}人\nサーバー増減数: ${sign(guild)}サーバー\nユーザー増減数: ${sign(user)}人\n\n今日のメッセージ数: ${message[0].total}回\n今日のコマンド実行数: ${command[0].total}回\n前日とのメッセージ増減数: ${sign(messageSign)}回\n前日とのコマンド増減数: ${sign(commandSign)}回`
           }
         ]
       }],
