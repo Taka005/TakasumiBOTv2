@@ -22,6 +22,10 @@ module.exports = async(interaction)=>{
     const hiroyuki = await db("SELECT * FROM hiroyuki;");
     const global = await db("SELECT * FROM global;");
 
+    const date = new Date();
+    const message = await db(`SELECT SUM(message) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`);
+    const command = await db(`SELECT SUM(command) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`);
+
     const chat = global.length/interaction.client.guilds.cache.size*100;
 
     await interaction.editReply({
@@ -37,6 +41,10 @@ module.exports = async(interaction)=>{
           {
             name: "Discord",
             value: `Ping: ${interaction.client.ws.ping}㍉秒\nGC登録数: ${global.length} / ${interaction.client.guilds.cache.size} (${Math.round(chat)}%)\nひろゆき登録数: ${hiroyuki.length}\nTakasumiBOT Account: ${account.length}人\nServer Uptime: ${Math.round(os.uptime() / 60)}分(BOT: ${Math.round(process.uptime() / 60)}分)`
+          },
+          {
+            name: "統計データ",
+            value: `今日のメッセージ数: ${message[0].total}回\n今日のコマンド実行数: ${command[0].total}回`
           }
         ]
       }],
