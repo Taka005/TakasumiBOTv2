@@ -7,8 +7,8 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     try{
-      const res = await fetch(`https://minotar.net/armor/body/${name}/100.png`);
-      if(!res.headers.get("Content-Type").startsWith("image/")) return await interaction.editReply({
+      const image = await fetch(`https://minotar.net/armor/body/${name}/100.png`);
+      if(!image.headers.get("Content-Type").startsWith("image/")) return await interaction.editReply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -19,7 +19,10 @@ module.exports = async(interaction)=>{
         }]
       });
 
-      const image = await res.blob();
+      const link = (await fetch(`https://minotar.net/download/${name}`))
+        .headers.get("Content-Disposition")
+        .match(/filename="([^"]+)"/)[1]
+        .replace(/\.png$/,"");
 
       await interaction.editReply({
         embeds:[{
@@ -34,7 +37,7 @@ module.exports = async(interaction)=>{
         }],
         files: [
           new AttachmentBuilder()
-            .setFile(image.stream())
+            .setFile((await image.blob()).stream())
             .setName("skin.png")
         ],
         components:[
@@ -42,7 +45,7 @@ module.exports = async(interaction)=>{
             .addComponents( 
               new ButtonBuilder()
                 .setLabel("スキンをダウンロード")
-                .setURL(`https://minotar.net/download/${name}`)
+                .setURL(`https://textures.minecraft.net/texture/${link}`)
                 .setStyle(ButtonStyle.Link))
         ]
       });
@@ -54,7 +57,7 @@ module.exports = async(interaction)=>{
             name: "取得出来ませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          description: "違うユーザー名で試してください"
+          description: "違うユーザー名で試してください"+error
         }]
       });
     }
