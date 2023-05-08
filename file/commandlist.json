@@ -19,7 +19,7 @@
     },
     "ad":{
         "description":"BOTの宣伝を表示します",
-        "example":"`/ad normal`",
+        "example":"`/ad`",
         "permission":["必要なし"],
         "note":"なし"
     },
