@@ -23,11 +23,9 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
 
-    let timeout = false;
-    let returned = false;
-    setTimeout(async()=>{
-      timeout = true;
-      if(returned) return;
+    let timeouted = false;
+    const timeout = setTimeout(async()=>{
+      timeouted = true;
       await interaction.editReply({
         embeds:[{
           author:{
@@ -52,10 +50,10 @@ module.exports = async(interaction)=>{
         "code": code,
         "compiler": language[lang[1]].compiler
       })
-    }).then(res=>res.json())
+    }).then(res=>res.json());
 
-    if(timeout) return;
-    returned = true;
+    if(timeouted) return;
+    clearTimeout(timeout);
     
     if(res.status === "0"){
       await interaction.editReply({

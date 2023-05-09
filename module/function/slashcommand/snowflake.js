@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
             name: "解析しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          description: `タイムスタンプ: ${snowflake.timestamp}\n日付: ${snowflake.date}\nワーカーID: ${snowflake.workerId}\nプロセスID: ${snowflake.processId}\nインクリメント: ${snowflake.increment}\nバイナリー: ${snowflake.binary}`
+          description: `Date: ${new Date(Number(snowflake.timestamp)).toLocaleString()}\nWorkerID: ${snowflake.workerId}\nProcessID: ${snowflake.processId}\nIncrement: ${snowflake.increment}`
         }]
       })
     }catch(error){
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
           fields:[
             {
               name: "エラーコード",
-              value: `\`\`\`${error}\`\`\``
+              value: `\`\`\`${error.stack}\`\`\``
             }
           ]
         }],
