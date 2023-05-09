@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
+  const fetchMember = require("../../lib/fetchMember");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "warn"){
     const user = interaction.options.getUser("user");
@@ -23,7 +24,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
   
-    const member = await interaction.guild.members.cache.get(user.id);
+    const member = await fetchMember(interaction.guild,user.id);
     if(!member) return await interaction.reply({
       embeds:[{
         color: Colors.Red,

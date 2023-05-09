@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
                 .setStyle(ButtonStyle.Link))
         ]
       });
-    }catch(error){
+    }catch{
       await interaction.editReply({
         embeds:[{
           color: Colors.Red,
@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
             name: "取得出来ませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          description: "違うユーザー名で試してください"+error
+          description: "違うユーザー名で試してください"
         }]
       });
     }
