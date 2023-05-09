@@ -6,7 +6,8 @@
             "info":{
                 "description": "5000兆円ジェネレーター",
                 "example": "`/5000 上の文字 下の文字`",
-                "permission": ["必要なし"]
+                "user_permission": ["必要なし"],
+                "bot_permission":["必要なし"]
             },
             "generated": "生成しました",
             "generation_failed": "生成できませんでした",
@@ -16,7 +17,8 @@
             "info":{
                 "description":"BOTについての情報や、関連リンクを表示します",
                 "example":"`/about`",
-                "permission":["必要なし"]
+                "user_permission":["必要なし"],
+                "bot_permission":["必要なし"]
             },
             "about_bot": "TakasumiBOTとは",
             "description": "便利な多機能BOTを目指して開発されています\nサポートサーバーへの参加もよろしくお願いします\n開発:[Taka005#6668](https://discord.com/users/790489873957781536)\n\n関連リンク\n[公式サイト](https://takasumibot.taka.ml/)\n[ステータス](https://status.taka.ml/)\n[グローバルチャット利用規約](https://gc.taka.ml/)\n[TakasumiBOT Auth](https://auth.taka.ml/)\n[個人サイト](https://taka.ml/)"
@@ -25,7 +27,8 @@
             "info":{
                 "description":"登録されているアカウント情報を表示します",
                 "example":"`/account`",
-                "permission":["必要なし"]
+                "user_permission":["必要なし"],
+                "bot_permission":["必要なし"]
             },
             "not_registered": "登録されていません",
             "registration": "以下のリンクから登録を行うことができます\n登録が完了すると[グローバルチャット利用規約](https://gc.taka.ml/)にも同意したものとみなします",
@@ -38,7 +41,8 @@
             "info":{
                 "description":"BOTの宣伝を表示します",
                 "example":"`/ad normal`",
-                "permission":["必要なし"]
+                "user_permission":["必要なし"],
+                "bot_permission":["必要なし"]
             },
             "description": "**◢◤◢◤◢◤ TakasumiBOT ◢◤◢◤◢◤**\nとても便利なBOTです\nグローバルチャット、認証機能などさまざまな便利機能があります\n導入数 {server}サーバー超え!\n\n・招待\nhttps://bot.taka.ml/\n・ 公式サイト\nhttps://takasumibot.taka.ml/\n・ステータス\nhttps://status.taka.ml/\n・TakasumiBOT Auth\nhttps://auth.taka.ml/\n・グローバルチャットのガイド\nhttps://gc.taka.ml/\n・サポートサーバー\nhttps://discord.gg/NEesRdGQwD\n・Email\ntakasumibot@gmail.com\n\nよければプロジェクトに貢献してください\nhttps://github.com/Taka005/TakasumiBOTv2\n**◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤**"
         }
