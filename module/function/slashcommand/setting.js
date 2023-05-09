@@ -587,7 +587,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: "言語を日本語に切り替えました",
+              name: "日本語に切り替えました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             }
           }]
@@ -598,7 +598,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: "言語を英語に切り替えました",
+              name: "Switched to English",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             }
           }]
