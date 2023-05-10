@@ -74,7 +74,18 @@
             "AuthButton": "認証",
             "SetupFailed": "認証機能の作成に失敗しました",
             "SetupFailedDescription": "BOTの権限等を確認してもう一度実行してください"
+        },
+        "avatar":{
+            "info":{
+                "Description":"指定されたユーザーのアイコンを表示します",
+                "Example":"`/avatar @TakasumiBOT`\n`/avatar 981314695543783484`",
+                "UserPermission":["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "OfAvatar": "{user}のアバター",
+            "GetFailed": "取得できませんでした",
+            "GetFailedDescription1": "ユーザー名、メンションを入力してください",
+            "GetFailedDescription2": "指定したユーザーが存在しません"
         }
-
     }
 }
