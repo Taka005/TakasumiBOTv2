@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
     try{
       const math = mathjs.create(mathjs.all);
       math.config({
-        number: "BigNumber"
+        "number": "BigNumber"
       });
       const res = math.evaluate(format).toString();
       
@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
             name: "計算しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          description: `**式**\n\`\`\`${code}\`\`\`\n**結果**\n\`\`\`${Number(res)}\`\`\``
+          description: `**式**\n\`\`\`${format}\`\`\`\n**結果**\n\`\`\`${Number(res)}\`\`\``
         }]
       });
     }catch{
