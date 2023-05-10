@@ -59,8 +59,8 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     try{
       if(user){
-        const messages = await interaction.channel.messages.fetch({ limit: number });
-        const msg = messages.filter(msg => user.id === msg.author.id);
+        const messages = await interaction.channel.messages.fetch({ limit: 100 });
+        const msg = messages.filter(msg => user.id === msg.author.id).first(number);
         if(!msg[0]) return await interaction.editReply({
           embeds:[{
             color: Colors.Red,
