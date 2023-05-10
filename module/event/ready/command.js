@@ -363,6 +363,17 @@ module.exports = async(client)=>{
                 .setName("reason")
                 .setDescription("Reason")
                 .setDescriptionLocalization("ja","理由")),
+          //math
+          new SlashCommandBuilder()
+            .setName("math")
+            .setDescription("Calculate the formula")
+            .setDescriptionLocalization("ja","式を計算します")  
+            .addStringOption(option =>
+              option
+                .setName("code")
+                .setDescription("Formula")
+                .setDescriptionLocalization("ja","計算式")
+                .setRequired(true)),
           //mc
           new SlashCommandBuilder()
             .setName("mc")
@@ -399,7 +410,7 @@ module.exports = async(client)=>{
           new SlashCommandBuilder()
             .setName("moderate")
             .setDescription("Set the moderating function")
-            .setDescriptionLocalization("ja"," モデレート機能を設定します")  
+            .setDescriptionLocalization("ja","モデレート機能を設定します")  
             .addStringOption(option =>
               option
                 .setName("type")

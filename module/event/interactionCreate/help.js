@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
           fields:[
             {
               name: "/poll",
-              value: "アンケートを作成することができます\n最大で選択肢は8個までです"
+              value: "アンケートを作成することができます"
             },
             {
               name: "/global",
@@ -292,6 +292,10 @@ module.exports = async(interaction)=>{
             {
               name: "/script",
               value: "プログラムを実行します"
+            },
+            {
+              name: "/math",
+              value: "式を計算します"
             },
             {
               name: "/qr",
