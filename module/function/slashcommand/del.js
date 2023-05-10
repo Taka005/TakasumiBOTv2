@@ -59,9 +59,9 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     try{
       if(user){
-        const messages = await interaction.channel.messages.fetch({ limit: 100 });
-        const msg = messages.filter(msg => user.id === msg.author.id).first(number);
-        if(!msg[0]) return await interaction.editReply({
+        const messages = (await interaction.channel.messages.fetch({ limit: 100 }))
+          .filter(msg => user.id === msg.author.id&&interaction.client.user.id !== msg.author.id).first(number);
+        if(!messages[0]) return await interaction.editReply({
           embeds:[{
             color: Colors.Red,
             author:{
@@ -72,7 +72,7 @@ module.exports = async(interaction)=>{
           }]
         });
 
-        await interaction.channel.bulkDelete(msg)
+        await interaction.channel.bulkDelete(messages)
           .then(async()=>{
             await interaction.editReply({
               content: `<@${interaction.user.id}>`,
@@ -86,7 +86,9 @@ module.exports = async(interaction)=>{
             })
           });
       }else{
-        const messages = await interaction.channel.messages.fetch({ limit: number })         
+        const messages = (await interaction.channel.messages.fetch({ limit: number }))
+          .filter(msg => msg.author.id !== interaction.client.user.id);
+
         await interaction.channel.bulkDelete(messages)
           .then(async()=>{
             await interaction.editReply({
