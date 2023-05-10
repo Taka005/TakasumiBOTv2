@@ -61,8 +61,8 @@ module.exports = async(interaction)=>{
               .setURL("https://discord.gg/NEesRdGQwD")
               .setStyle(ButtonStyle.Link))
       ]
-    }).catch((error)=>{
-      interaction.editReply({
+    }).catch(async(error)=>{
+      await interaction.editReply({
         embeds:[{
           color: Colors.Red,
           author:{
