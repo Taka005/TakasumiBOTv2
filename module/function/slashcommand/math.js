@@ -7,15 +7,12 @@ module.exports = async(interaction)=>{
 
     const format = code
       .replace((/[０-９]/gu),(str)=>String.fromCharCode(str.charCodeAt(0) - 65248))
-      .replace((/＋/gu), "+")
-      .replace((/ー/gu), "-")
-      .replace((/[x×]/gu), "*")
-      .replace((/÷/gu), "/")
-      .replace((/（/gu), "(")
-      .replace((/）/gu), ")")
-      .replace((/．/gu), ".")
-      .replace((/[\n　]/gu), " ")
-      .replace((/[,，]/gu), "");
+      .replace((/＋/gu),"+")
+      .replace((/ー/gu),"-")
+      .replace((/[x×]/gu),"*")
+      .replace((/÷/gu),"/")
+      .replace((/（/gu),"(")
+      .replace((/）/gu),")");
       
     try{
       const math = mathjs.create(mathjs.all);
