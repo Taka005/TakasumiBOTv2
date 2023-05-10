@@ -15,7 +15,7 @@ module.exports = async(interaction,Lang)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: Lang.get("command.5000.generated"),
+            name: Lang.get("command.5000.Generated"),
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           image:{
