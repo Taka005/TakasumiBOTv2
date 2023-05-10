@@ -56,7 +56,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Red,
         author:{
-          name: "取得に失敗しました",
+          name: "取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
         description: "ユーザーID、メンションを入力してください"
@@ -71,10 +71,10 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Red,
         author:{
-          name: "取得に失敗しました",
+          name: "取得できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "指定されたユーザー存在しません"
+        description: "指定されたユーザーが存在しません"
       }],
       ephemeral: true
     });

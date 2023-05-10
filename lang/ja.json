@@ -1,6 +1,7 @@
 {
     "ErrorCode": "エラーコード",
     "SupportServer": "サポートサーバー",
+    "RequirePermission": "必要な顕現",
     "NoUserPermission": "権限がありません",
     "NoUserPermissionDescription": "このコマンドを実行するには以下の権限を持っている必要があります",
     "NoBotPermission": "BOTに権限がありません",
@@ -13,9 +14,9 @@
                 "UserPermission": ["必要なし"],
                 "BotPermission": ["必要なし"]
             },
-            "Generated": "生成しました",
-            "GenerationFailed": "生成できませんでした",
-            "GenerationFailedDescription": "もう一度やり直してください"
+            "Generate": "生成しました",
+            "GenerateFailed": "生成できませんでした",
+            "GenerateFailedDescription": "もう一度やり直してください"
         },
         "about":{
             "info":{
@@ -34,10 +35,10 @@
                 "UserPermission": ["必要なし"],
                 "BotPermission": ["必要なし"]
             },
-            "NotRegistered": "登録されていません",
-            "NotRegisteredDescription": "以下のリンクから登録を行うことができます\n登録が完了すると[グローバルチャット利用規約](https://gc.taka.ml/)にも同意したものとみなします",
+            "NoRegister": "登録されていません",
+            "NoRegisterDescription": "以下のリンクから登録を行うことができます\n登録が完了すると[グローバルチャット利用規約](https://gc.taka.ml/)にも同意したものとみなします",
             "GoSite": "サイトへ飛ぶ",
-            "RegisteredInfo": "登録情報",
+            "RegisterInfo": "登録情報",
             "Address": "IPアドレス",
             "Date": "登録日時/更新日時"
         },
@@ -74,7 +75,47 @@
             "AuthButton": "認証",
             "SetupFailed": "認証機能の作成に失敗しました",
             "SetupFailedDescription": "BOTの権限等を確認してもう一度実行してください"
+        },
+        "avatar":{
+            "info":{
+                "Description":"指定されたユーザーのアイコンを表示します",
+                "Example":"`/avatar @TakasumiBOT`\n`/avatar 981314695543783484`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "OfAvatar": "{user}のアバター",
+            "GetFailed": "取得できませんでした",
+            "GetFailedDescription1": "ユーザー名、メンションを入力してください",
+            "GetFailedDescription2": "指定したユーザーが存在しません"
+        },
+        "ban":{
+            "info":{
+                "Description":"メンバー・ユーザーをサーバーからBANすることができます",
+                "Example":"`/ban @Arashi`\n`/ban 1066168542669590599`",
+                "UserPermission": ["メンバーをBAN"],
+                "BotPermission": ["メンバーをBAN"]
+            },
+            "BanFailed": "BANできませんでした",
+            "BanFailedDescription1": "ユーザーID、メンションを入力してください",
+            "BanFailedDescription2": "指定したユーザー存在しません",
+            "BanFailedDescription3": "自分自身をBANすることはできません",
+            "BanFailedDescription4": "BOTに権限が不足しているか、ユーザーが正しく指定されていません",
+            "BanSuccess": "{user}({id}) をサーバーからBANしました"
+        },
+        "cipher":{
+            "info":{
+                "Description":"文字列を暗号・復号します",
+                "Example":"`/cipher 暗号化 moji key`\n`/cipher 復号化 d1faf7e95c key`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "CipherSuccess": "暗号を生成しました",
+            "CipherFailed": "暗号が生成できませんでした",
+            "Cipher": "暗号: ```{cipher}```\n復号鍵: ||`{key}`||",
+            "DecipherSuccess": "暗号を復号しました",
+            "DecipherFailed": "暗号が復号出来ませんでした",
+            "DecipherFailedDescription": "復号鍵が間違ってる可能性がります",
+            "Decipher": "復号: ```{decipher}```\n復号鍵: ||`{key}`||"
         }
-
     }
 }
