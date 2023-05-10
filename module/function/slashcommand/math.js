@@ -40,7 +40,8 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
           description: "計算式を変えてやり直してください"
-        }]
+        }],
+        ephemeral: true
       });
     }
   }
