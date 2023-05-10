@@ -167,6 +167,12 @@
         "permission":["メンバーをKICK"],
         "note":"サーバーに存在してるメンバーしかKICKできません"
     },
+    "math":{
+        "description":"式を計算します",
+        "example":"`/math 4 * 25`",
+        "permission":["なし"],
+        "note":"なし"
+    },
     "mc":{
         "description":"指定したアドレスのMinecraftサーバーの情報を表示します",
         "example":"`/mc Java版 2b2t.jp`",
