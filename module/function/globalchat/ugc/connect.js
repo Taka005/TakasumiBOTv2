@@ -1,6 +1,6 @@
 module.exports = async(msg)=>{
-  const db = require("../../lib/db");
-  const convert = require("../../lib/convert");
+  const db = require("../../../lib/db");
+  const convert = require("../../../lib/convert");
   const { WebhookClient, Colors } = require("discord.js");
   const async = require("async");
 
@@ -252,7 +252,7 @@ module.exports = async(msg)=>{
 }
 
 function err(channel,client,error){
-  const db = require("../../lib/db");
+  const db = require("../../../lib/db");
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
 
   db(`DELETE FROM global WHERE channel = ${channel} LIMIT 1;`);

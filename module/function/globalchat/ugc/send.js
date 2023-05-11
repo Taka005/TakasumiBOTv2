@@ -1,5 +1,5 @@
 module.exports = async(message)=>{
-  const db = require("../../lib/db");
+  const db = require("../../../lib/db");
   const fetch = require("node-fetch");
   const { ChannelType, WebhookClient } = require("discord.js");
   require("dotenv").config();
