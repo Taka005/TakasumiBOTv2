@@ -45,8 +45,7 @@ module.exports = async(interaction)=>{
       name: name,
       color: Number(color),
       position: interaction.guild.members.me.roles.highest.position,
-      mentionable: false,
-      reason: "色付きロールの作成",
+      mentionable: false
     })
     .then(async(role)=>{
       await interaction.reply({

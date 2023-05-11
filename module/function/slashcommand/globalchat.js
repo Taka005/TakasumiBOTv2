@@ -2,7 +2,7 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
-  if(interaction.commandName === "global"){
+  if(interaction.commandName === "globalchat"){
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{

@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Red,
         author:{
-          name: "引数が無効です",
+          name: "削除できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
         description: "削除するメッセージの数は`2`以上`99`以下にする必要があります"
