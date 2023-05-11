@@ -261,9 +261,9 @@ module.exports = async(client)=>{
                 .setDescription("Search word")
                 .setDescriptionLocalization("ja","検索ワード")
                 .setRequired(true)),
-          //global
+          //globalchat
           new SlashCommandBuilder()
-            .setName("global")
+            .setName("globalchat")
             .setDescription("Unavailable")
             .setDescriptionLocalization("ja","グローバルチャットを利用します"),
           //guideline
