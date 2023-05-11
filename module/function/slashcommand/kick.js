@@ -74,7 +74,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: `${member.user.tag}をサーバーからキックしました`,
+              name: `${member.user.tag}(${member.user.id})をサーバーからキックしました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             }
           }]

@@ -61,7 +61,7 @@ module.exports = async(interaction)=>{
         files:[
           new AttachmentBuilder()
             .setFile(data) 
-            .setName("SERVER_JSON_FILE.json")
+            .setName("SERVER_FILE.json")
         ] 
       });
     }catch(error){
@@ -72,7 +72,6 @@ module.exports = async(interaction)=>{
             name: "出力に失敗しました",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          description: "BOTの権限が不足しているため正しく出力できません",
           fields:[
             {
               name: "エラーコード",

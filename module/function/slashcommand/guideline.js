@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
 
     const guide = new ModalBuilder()
       .setCustomId(`guideline_${role.id}`)
-      .setTitle("ガイドライン作成");
+      .setTitle("ガイドラインの作成");
 
     const temp = new TextInputBuilder()
       .setCustomId("temp")
