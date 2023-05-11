@@ -80,7 +80,7 @@
     "embed":{
         "description":"埋め込みを簡単に作成し表示できます",
         "example":"`/embed`",
-        "permission":["メッセージの管理"],
+        "permission":["なし"],
         "note":"モーダルを使用し埋め込みの内容を設定します"
     },
     "emoji":{

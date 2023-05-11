@@ -6,6 +6,7 @@
     "NoUserPermissionDescription": "このコマンドを実行するには以下の権限を持っている必要があります",
     "NoBotPermission": "BOTに権限がありません",
     "NoBotPermissionDescription": "このコマンドはBOTに以下の権限が必要です",
+    "NoAdmin": "このコマンドは関係者以外実行できません",
     "command":{
         "5000":{
             "info":{
@@ -31,7 +32,7 @@
         "account":{
             "info":{
                 "Description": "登録されているアカウント情報を表示します",
-                "Example":"`/account`",
+                "Example": "`/account`",
                 "UserPermission": ["必要なし"],
                 "BotPermission": ["必要なし"]
             },
@@ -66,8 +67,8 @@
         },
         "auth":{
             "info":{
-                "Description":"メンバー認証を設定します\n4種類の認証方式を選択できます",
-                "Example":"`/auth 標準`",
+                "Description": "メンバー認証を設定します\n4種類の認証方式を選択できます",
+                "Example": "`/auth 標準`",
                 "UserPermission": ["ロールの管理"],
                 "BotPermission": ["必要なし"]
             },
@@ -78,8 +79,8 @@
         },
         "avatar":{
             "info":{
-                "Description":"指定されたユーザーのアイコンを表示します",
-                "Example":"`/avatar @TakasumiBOT`\n`/avatar 981314695543783484`",
+                "Description": "指定されたユーザーのアイコンを表示します",
+                "Example": "`/avatar @TakasumiBOT`\n`/avatar 981314695543783484`",
                 "UserPermission": ["必要なし"],
                 "BotPermission": ["必要なし"]
             },
@@ -90,8 +91,8 @@
         },
         "ban":{
             "info":{
-                "Description":"メンバー・ユーザーをサーバーからBANすることができます",
-                "Example":"`/ban @Arashi`\n`/ban 1066168542669590599`",
+                "Description": "メンバー・ユーザーをサーバーからBANすることができます",
+                "Example": "`/ban @Arashi`\n`/ban 1066168542669590599`",
                 "UserPermission": ["メンバーをBAN"],
                 "BotPermission": ["メンバーをBAN"]
             },
@@ -104,8 +105,8 @@
         },
         "cipher":{
             "info":{
-                "Description":"文字列を暗号・復号します",
-                "Example":"`/cipher 暗号化 moji key`\n`/cipher 復号化 d1faf7e95c key`",
+                "Description": "文字列を暗号・復号します",
+                "Example": "`/cipher 暗号化 moji key`\n`/cipher 復号化 d1faf7e95c key`",
                 "UserPermission": ["必要なし"],
                 "BotPermission": ["必要なし"]
             },
@@ -116,6 +117,63 @@
             "DecipherFailed": "暗号が復号出来ませんでした",
             "DecipherFailedDescription": "復号鍵が間違ってる可能性がります",
             "Decipher": "復号: ```{decipher}```\n復号鍵: ||`{key}`||"
+        },
+        "colorrole":{
+            "info":{
+                "Description": "色付きロールを簡単に作成できます",
+                "Example": "`/colorrole 白`",
+                "UserPermission": ["ロールの管理"],
+                "BotPermission": ["ロールの管理"]
+            },
+            "CreateSuccess": "ロールを作成しました",
+            "CreateSuccessDescription": "作成したロール:{role}",
+            "CreateFailed": "ロールを作成できませんでした"
+        },
+        "del":{
+            "info":{
+                "Description": "指定された数だけメッセージを一括で削除します",
+                "Example": "`/del 30`\n`/del 30 @Arashi`",
+                "UserPermission": ["メッセージの管理"],
+                "BotPermission": ["メッセージの管理"]
+            },
+            "DeleteFailed": "削除できませんでした",
+            "DeleteFailedDescription1": "削除するメッセージは`2`以上`100`未満にする必要があります",
+            "DeleteFailedDescription2": "メッセージに指定したユーザーが含まれていません",
+            "DeleteFailedDescription3": "2週間より前のメッセージが含まれているか、BOTの権限が不足しています",
+            "DeleteSuccess1": "{user} のメッセージを{number}個削除しました",
+            "DeleteSuccess2": "{number}個のメッセージを削除しました"
+        },
+        "embed":{
+            "info":{
+                "Description": "埋め込みを簡単に作成し表示できます",
+                "Example": "`/embed`",
+                "UserPermission": ["なし"],
+                "BotPermission": ["なし"]
+            },
+            "CreaateEmbed": "埋め込み作成",
+            "Title": "タイトル",
+            "TitleDescription": "埋め込みに票辞されるタイトル",
+            "Description": "説明",
+            "DescriptionDescription": "埋め込みに表示される説明蘭",
+            "Image": "画像",
+            "ImageDescription": "埋め込みに表示される画像のURL"
+        },
+        "emoji":{
+            "info":{
+                "Description": "指定した絵文字の情報を表示します",
+                "Example": "`/emoji 🤔`",
+                "UserPermission": ["なし"],
+                "BotPermission": ["なし"]
+            },
+            "GetFailed": "取得できませんでした",
+            "GetFailedDescription1": "サーバーのカスタム絵文字を指定してください",
+            "EmojiInfo": "絵文字の情報",
+            "Name": "名前",
+            "Creater": "作成者",
+            "Type": "種類",
+            "Animate": "アニメーション画像",
+            "Static": "静止画像",
+            "Date": "作成日時"
         }
     }
 }
