@@ -150,7 +150,7 @@
                 "UserPermission": ["必要なし"],
                 "BotPermission": ["必要なし"]
             },
-            "CreaateEmbed": "埋め込み作成",
+            "CreateEmbed": "埋め込み作成",
             "Title": "タイトル",
             "TitleDescription": "埋め込みに票辞されるタイトル",
             "Description": "説明",
@@ -375,6 +375,123 @@
             },
             "GenerateFailed": "生成できませんでした",
             "GenerateFailedDescription": "テキストを変えてやり直してください"
+        },
+        "moderate":{
+            "info":{
+                "Description": "モデレート機能を設定します",
+                "Example": "`/moderate high`",
+                "UserPermission": ["サーバーの管理"],
+                "BotPermission": ["メッセージの削除","チャンネルの閲覧","メッセージの送信"]
+            },
+            "DisabledFailed": "モデレートを無効にできませんでした",
+            "DisabledFailedDescription": "モデレートが設定されていません",
+            "DisabledSuccess": "モデレート機能を無効にしました",
+            "EnabledSuccess": "モデレート機能を有効にしました",
+            "EnabledSuccessDescription": "{level}に設定しました"
+        },
+        "news":{
+            "info":{
+                "Description": "最近のニュースを表示します",
+                "Example": "`/news`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "GetFailed": "取得できませんでした",
+            "GetFailedDescription": "もう一度やり直してください"
+        },
+        "npm":{
+            "info":{
+                "Description": "NPMパッケージを検索して表示します",
+                "Example": "`/npm discord.js`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "Creater": "作者",
+            "Version": "バージョン",
+            "Repository": "レポジトリ",
+            "Keyword": "キーワード",
+            "GetFailed": "取得できませんでした",
+            "GetFailedDescription": "検索ワードを変えてやり直してください"
+        },
+        "nsloookup":{
+            "info":{
+                "Description": "DNS情報を取得します",
+                "Example": "`/nslookup google.com`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "GetFailed": "取得できませんでした",
+            "GetFailedDescription": "違うアドレスで試してください",
+            "Result": "{name}の結果"
+        },
+        "omikuji":{
+            "info":{
+                "Description":"おみくじを引きます",
+                "Example":"`/omikuji`",
+                "UserPermission":["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "panel":{
+            "info":{
+                "Description": "役職パネルを作成します",
+                "Example": "`/panel title @Role1 @Role2`",
+                "UserPermission": ["ロールの管理"],
+                "BotPermission": ["ロールの管理","チャンネルの閲覧","メッセージの送信"]
+            },
+            "NoSelect": "ロールが選択されていません",
+            "CreateFailed": "作成できませんでした",
+            "CreateFailedDescription": "同じロールが選択されているか、BOTの権限が不足しています"
+        },
+        "permission":{
+            "info":{
+                "Description": "指定されたユーザーの権限を表示します",
+                "Example": "`/permission @TakasumiBOT`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "OfPermission": "{user}の権限",
+            "GetFailed": "権限を取得できませんでした",
+            "GetFailedDescription": "指定したユーザーがサーバーに存在しません"
+        },
+        "poll":{
+            "info":{
+                "Description": "アンケートを作成することができます",
+                "Example": "`/poll title One two Three`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["リアクションの追加"]
+            }
+        },
+        "pypi":{
+            "info":{
+                "Description": "PIPパッケージを検索して表示します",
+                "Example": "`/pypi discord.py`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "Creater": "作者",
+            "Version": "バージョン",
+            "Repository": "レポジトリ",
+            "License": "ライセンス",
+            "Keyword": "キーワード",
+            "GetFailed": "取得できませんでした",
+            "GetFailedDescription": "検索ワードを変えてやり直してください"
+        },
+        "qr":{
+            "info":{
+                "Description": "QRコードを生成・読み取ります",
+                "Example": "`/qr 生成 text`\n`/qr 読み込む https://example.com/qr.png`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "Generating": "生成中...",
+            "Reading": "読み取り中...",
+            "GenerateSuccess": "QRコードを作成しました",
+            "Content": "内容\n```{text}```",
+            "GenerateFailed": "QRコードが読み取れません",
+            "GenerateFailedDescription1": "QRコードは画像のURLで指定する必要があります",
+            "GenerateFailedDescription2": "QRコードはURLかつ読み取れる必要があります",
+            "ReadSuccess": "QRコードを読み取りました"
         }
     }
 }

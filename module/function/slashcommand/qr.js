@@ -41,7 +41,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "入力された画像が無効です",
+            name: "QRコードが読み取れません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
           description: "QRコードは画像のURLで指定する必要があります"

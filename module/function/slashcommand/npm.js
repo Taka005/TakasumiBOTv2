@@ -37,11 +37,6 @@ module.exports = async(interaction)=>{
               inline: true
             },
             {
-              name: "保有者",
-              value: pkg.maintainers ? pkg.maintainers.map(e=>e.username).join(", ") : "なし",
-              inline: true
-            },
-            {
               name: "キーワード",
               value: pkg.keywords ? pkg.keywords.join(", ") : "なし",
               inline: true
@@ -60,7 +55,7 @@ module.exports = async(interaction)=>{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          description: "検索ワードを変えて、もう一度実行してください"
+          description: "検索ワードを変えてやり直してください"
         }]
       });
     }
