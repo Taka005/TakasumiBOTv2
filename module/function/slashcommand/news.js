@@ -7,22 +7,6 @@ module.exports = async(interaction)=>{
     
     const data = await fetch(`https://newsapi.org/v2/top-headlines?country=jp&apiKey=${process.env.NEWS_KEY}`)
       .then(res=>res.json());
-
-    const before = new ButtonBuilder()
-      .setStyle(ButtonStyle.Primary)
-      .setLabel("前")
-      .setCustomId("news_0")
-
-    const next = new ButtonBuilder()
-      .setStyle(ButtonStyle.Primary)
-      .setLabel("次")
-      .setCustomId("news_1")
-
-    const page = new ButtonBuilder()
-      .setStyle(ButtonStyle.Secondary)
-      .setLabel("1ページ")
-      .setCustomId("news")
-      .setDisabled(true)
     
     try{
       await interaction.reply({
@@ -40,9 +24,22 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents(before)
-            .addComponents(page)
-            .addComponents(next)
+            .addComponents(
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
+                .setLabel("前")
+                .setCustomId("news_0"))
+            .addComponents(
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Secondary)
+                .setLabel("1ページ")
+                .setCustomId("news")
+                .setDisabled(true))
+            .addComponents(
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
+                .setLabel("次")
+                .setCustomId("news_1"))
         ]
       })
     }catch{
@@ -50,17 +47,11 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "ページが存在しません",
+            name: "ページが取得できません",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          description: "前のページに戻ってください"
-        }],
-        components:[
-          new ActionRowBuilder()
-            .addComponents(before)
-            .addComponents(page)
-            .addComponents(next)
-        ]
+          description: "もう一度やり直してください"
+        }]
       })
     }
   }
