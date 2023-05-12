@@ -45,7 +45,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: "アナウンスチャンネルを追加しました",
+              name: "フォローチャンネルを追加しました",
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
             description: "このチャンネルでBOTのお知らせを受け取ることができます"

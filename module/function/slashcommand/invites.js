@@ -31,7 +31,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Red,
             author:{
-              name: "招待を取得できません",
+              name: "招待を取得できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
             description: "指定したユーザーの招待が見つかりませんでした"

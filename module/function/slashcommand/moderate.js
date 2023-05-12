@@ -57,10 +57,10 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "自動モデレートを無効にできませんでした",
+            name: "モデレートを無効にできませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          description: "自動モデレートが設定されていません"
+          description: "モデレートが設定されていません"
         }],
         ephemeral: true
       });
@@ -70,7 +70,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: "自動モデレート機能を無効にしました",
+            name: "モデレート機能を無効にしました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           }
         }]
@@ -81,7 +81,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: "自動モデレート機能を有効にしました",
+            name: "モデレート機能を有効にしました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           description: `${level[type]}に設定しました`

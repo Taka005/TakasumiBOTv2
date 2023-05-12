@@ -113,9 +113,9 @@
         "permission":["必要なし"],
         "note":"なし"
     },
-    "global":{
+    "globalchat":{
         "description":"色々なサーバーと繋がるグローバルチャットを有効化、無効化します",
-        "example":"`/global`",
+        "example":"`/globalchat`",
         "permission":["チャンネルの管理"],
         "note":"会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.ml/)に同意する必要があります"
     },
