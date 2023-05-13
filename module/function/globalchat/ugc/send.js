@@ -1,3 +1,6 @@
+const spam = require("../../../lib/spam");
+const Spam = new spam(800);
+
 module.exports = async(message)=>{
   const db = require("../../../lib/db");
   const fetch = require("node-fetch");
@@ -16,7 +19,8 @@ module.exports = async(message)=>{
     !data[0]||
     mute_server[0]||
     mute_user[0]||
-    !account[0]
+    !account[0]||
+    Spam.count(message.guild.id)
   ) return;
 
   let reference = {
