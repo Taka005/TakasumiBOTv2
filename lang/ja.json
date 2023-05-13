@@ -492,6 +492,162 @@
             "GenerateFailedDescription1": "QRコードは画像のURLで指定する必要があります",
             "GenerateFailedDescription2": "QRコードはURLかつ読み取れる必要があります",
             "ReadSuccess": "QRコードを読み取りました"
+        },
+        "role":{
+            "info":{   
+                "Description": "指定した役職の情報を表示します",
+                "Example": "`/role @Role`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "OfInfo": "の情報",
+            "Mention": "メンション",
+            "Possible": "可能",
+            "Impossible": "不可能",
+            "Hoist": "表示形式",
+            "Separate":"別々",
+            "Mix": "混合",
+            "Color": "色",
+            "Date": "作成日時",
+            "Count": "メンバー数",
+            "Permission": "権限",
+            "GetFailed": "取得できませんでした"
+        },
+        "safeweb":{
+            "info":{
+                "Description": "Webサイトの安全性を評価します",
+                "Example": "`/safeweb https://google.com/`",
+                "UserPermission": ["必要なし"], 
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "script":{
+            "info":{
+                "Description": "プログラムを実行します",
+                "Example": "`/script`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "server":{
+            "info":{
+                "Description": "サーバーの情報を表示します",
+                "Example": "`/server`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "setting":{
+            "info":{
+                "Description":"サーバーの各種設定を変更します",
+                "Example":"`/setting bump @Role`\n`/setting help`",
+                "Permission":["管理者"],
+                "BotPermission": ["チャンネルの閲覧","メッセージの送信","ウェブフックの管理"]
+            }
+        },
+        "short":{
+            "info":{
+                "Description": "短縮URLを作成します",
+                "Example": "`/short https://google.com/`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "skin":{
+            "info":{
+                "Description": "マインクラフトのスキンを検索します",
+                "Example": "`/skin User`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "slowmode":{
+            "info":{
+                "Description": "チャンネルに低速モードを設定します",
+                "Example": "`/slowmode 100`",
+                "UserPermission": ["チャンネルの管理"],
+                "BotPermission": ["チャンネルの管理"]
+            }
+        },
+        "snowflake":{
+            "info":{
+                "Description":"Snowflakeを解析します",
+                "Example":"`/snowflake 987698915820335124`",
+                "UserPermission":["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "status":{
+            "info":{
+                "Description": "BOTの情報やサーバーの状態を表示します",
+                "Example": "`/status`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "ticket":{
+            "info":{
+                "Description": "簡易的なチケット機能を作成します",
+                "Example": "`/ticket`",
+                "UserPermission": ["チャンネルの管理","メッセージの管理"],
+                "BotPermission": ["チャンネルの閲覧","メッセージの送信","チャンネルの管理"]
+            }
+        },
+        "timeout":{
+            "info":{
+                "Description": "指定したメンバーをタイムアウトします",
+                "Example": "`/timeout @Arashi 1000 荒らし`\n`/timeout @Arashi`",
+                "UserPermission": ["メンバーをモデレート"],
+                "BotPermission": ["メンバーをモデレート"]
+            }
+        },
+        "top":{
+            "info":{
+                "Description": "実行したチャンネルの1番最初のメッセージリンクを表示します",
+                "Example": "`/top`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["チャンネルの閲覧"]
+            }
+        },
+        "translate":{
+            "info":{
+                "Description": "テキストを翻訳します",
+                "Example": "`/translate hello 日本語`\n`/translate こんにちは 英語`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "user":{
+            "info":{
+                "Description": "指定されたユーザーを検索して表示します",
+                "Example": "`/user @TakasumiBOT`\n`/user 981314695543783484`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "warn":{
+            "info":{
+                "Description": "指定されたユーザーを警告します",
+                "Example": "`/warn @Arashi`",
+                "UserPermission": ["サーバーの管理"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "webshot":{
+            "info":{
+                "Description": "Webサイトのスクリーンショットを撮影します",
+                "Example": "`/webshot https://google.com/`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "wiki":{
+            "info":{
+                "Description": "Wikipediaの検索をします",
+                "Example": "`/wiki Discord`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
         }
     }
 }
