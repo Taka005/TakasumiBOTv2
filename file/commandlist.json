@@ -302,7 +302,7 @@
     "snowflake":{
         "description":"Snowflakeを解析します",
         "example":"`/snowflake 987698915820335124`",
-        "permission":["なし"],
+        "permission":["必要なし"],
         "note":"有効な[Snowflake](https://discord.com/developers/docs/reference#snowflakes)である必要があります"
     },
     "status":{

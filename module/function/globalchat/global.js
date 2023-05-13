@@ -1,6 +1,8 @@
+const spam = require("../../lib/spam");
+const Spam = new spam(800);
+
 module.exports = async(message)=>{
   const db = require("../../lib/db");
-  const spam = require("../../lib/spam");
   const { WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const async = require("async");
 
@@ -41,7 +43,6 @@ module.exports = async(message)=>{
     }).catch(()=>{});
   }
   
-  const Spam = new spam(800);
   if(
     mute_server[0]||
     mute_user[0]||

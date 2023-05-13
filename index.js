@@ -22,7 +22,7 @@ console.log("\x1b[32m    Created By Taka005#6668    \x1b[39m");
 console.log("\x1b[32m*******************************\x1b[39m");
 
 require("./module/event")(client);
-require("./module/function/globalchat/ugc/gateway")(client);
+require("./module/function/globalchat/ugc/ws")(client);
 
 client.login(process.env.BOT_TOKEN)
   .then(()=>{

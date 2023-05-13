@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Red,
         author:{
-          name: "スクリーンショットを撮れませんでした",
+          name: "撮影できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
         description: "URLを指定する必要があります"
@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: "スクリーンショットを撮りました",
+            name: "撮影しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           image:{

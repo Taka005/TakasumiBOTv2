@@ -492,6 +492,240 @@
             "GenerateFailedDescription1": "QRコードは画像のURLで指定する必要があります",
             "GenerateFailedDescription2": "QRコードはURLかつ読み取れる必要があります",
             "ReadSuccess": "QRコードを読み取りました"
+        },
+        "role":{
+            "info":{   
+                "Description": "指定した役職の情報を表示します",
+                "Example": "`/role @Role`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "OfInfo": "の情報",
+            "Mention": "メンション",
+            "Possible": "可能",
+            "Impossible": "不可能",
+            "Hoist": "表示形式",
+            "Separate":"別々",
+            "Mix": "混合",
+            "Color": "色",
+            "Date": "作成日時",
+            "Count": "メンバー数",
+            "Permission": "権限",
+            "GetFailed": "取得できませんでした"
+        },
+        "safeweb":{
+            "info":{
+                "Description": "Webサイトの安全性を評価します",
+                "Example": "`/safeweb https://google.com/`",
+                "UserPermission": ["必要なし"], 
+                "BotPermission": ["必要なし"]
+            },
+            "Failed": "評価できませんでした",
+            "FailedDescription1": "URLを指定する必要があります",
+            "FailedDescription2": "サイトの取得に失敗しました",
+            "Warn": "このサイトは注意が必要です",
+            "WarnDescription": "注意の評価を受けたWebサイトは少数の脅威または迷惑を伴う可能性がありますが、危険に相当するほど危険とは見なされていません",
+            "Error": "このサイトは危険です",
+            "ErrorDescription": "これは既知の危険なWeb使徒です。このページを表示しないことを推奨します",
+            "NoData": "このサイトは評価されていません",
+            "NoDataDescription": "このサイトは未評価のため、アクセスには注意が必要な可能性があります",
+            "Success": "このサイトは安全です",
+            "SuccessDescription": "このサイトからは脅威が確認されませんでした"
+        },
+        "script":{
+            "info":{
+                "Description": "プログラムを実行します",
+                "Example": "`/script`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "RunCode": "コードを実行",
+            "RunLang": "{lang}を実行",
+            "Description": "実行するコードを入力"
+        },
+        "server":{
+            "info":{
+                "Description": "サーバーの情報を表示します",
+                "Example": "`/server`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            }
+        },
+        "setting":{
+            "info":{
+                "Description":"サーバーの各種設定を変更します",
+                "Example":"`/setting bump @Role`\n`/setting help`",
+                "Permission":["管理者"],
+                "BotPermission": ["チャンネルの閲覧","メッセージの送信","ウェブフックの管理"]
+            },
+            "Owner": "所有者",
+            "Count": "人数",
+            "Date": "作成日時",
+            "stats": "統計情報",
+            "GetFailed": "取得できませんでした"
+        },
+        "short":{
+            "info":{
+                "Description": "短縮URLを作成します",
+                "Example": "`/short https://google.com/`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "Failed": "短縮URLにできませんでした",
+            "FailedDescription": "URLを指定する必要があります"
+        },
+        "skin":{
+            "info":{
+                "Description": "マインクラフトのスキンを検索します",
+                "Example": "`/skin User`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "GetFailed": "取得できませんでした",
+            "GetFailedDescription1": "指定したユーザーは存在しません",
+            "GetFailedDescription2": "違うユーザー名で試してください",
+            "OfSkin": "{name}のスキン",
+            "Donwload": "スキンをダウンロード"
+        },
+        "slowmode":{
+            "info":{
+                "Description": "チャンネルに低速モードを設定します",
+                "Example": "`/slowmode 100`",
+                "UserPermission": ["チャンネルの管理"],
+                "BotPermission": ["チャンネルの管理"]
+            },
+            "SetupFailed": "低速モードを設定できませんでした",
+            "SetupFailedDescription": "低速モードは0秒以上、21600秒以下にする必要あります",
+            "SetupSuccess": "低速モードを設定しました",
+            "SetupSuccessDescription": "低速モードは現在{time}秒です"
+        },
+        "snowflake":{
+            "info":{
+                "Description":"Snowflakeを解析します",
+                "Example":"`/snowflake 987698915820335124`",
+                "UserPermission":["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "Failed": "解析できませんでした",
+            "FailedDescription": "Snowflakeは数字で指定する必要があります",
+            "Success": "解析しました"
+        },
+        "status":{
+            "info":{
+                "Description": "BOTの情報やサーバーの状態を表示します",
+                "Example": "`/status`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "Status": "ステータス",
+            "System": "システム",
+            "data": "統計データ",
+            "GetFailed": "取得できませんでした"
+        },
+        "ticket":{
+            "info":{
+                "Description": "簡易的なチケット機能を作成します",
+                "Example": "`/ticket`",
+                "UserPermission": ["チャンネルの管理","メッセージの管理"],
+                "BotPermission": ["チャンネルの閲覧","メッセージの送信","チャンネルの管理"]
+            },
+            "Ticket": "チケット",
+            "TicketDescription": "チケットの発行は下のボタンを押してください",
+            "Create": "作成",
+            "CreateFailed": "チケットが作成出来ませんでした"
+        },
+        "timeout":{
+            "info":{
+                "Description": "指定したメンバーをタイムアウトします",
+                "Example": "`/timeout @Arashi 1000 荒らし`\n`/timeout @Arashi`",
+                "UserPermission": ["メンバーをモデレート"],
+                "BotPermission": ["メンバーをモデレート"]
+            },
+            "TimeoutFailed": "タイムアウト出来ませんでした",
+            "TimeoutFailedDescription1": "メンバーが取得できません",
+            "TimeoutFailedDescription2": "自分自身をタイムアウトすることはできません",
+            "TimeoutFailedDescription3": "BOTに権限が不足しているか、メンバーが正しく指定されていません",
+            "TimeoutSuccess": "{member}を{time}秒タイムアウトしました"
+        },
+        "top":{
+            "info":{
+                "Description": "実行したチャンネルの1番最初のメッセージリンクを表示します",
+                "Example": "`/top`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["チャンネルの閲覧"]
+            },
+            "Getting": "取得中...",
+            "FirstMessage": "最初のメッセージ",
+            "Description": "下のリンクから飛べます",
+            "GoMessage": "メッセージへ飛ぶ"
+        },
+        "translate":{
+            "info":{
+                "Description": "テキストを翻訳します",
+                "Example": "`/translate hello 日本語`\n`/translate こんにちは 英語`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "Failed": "翻訳できませんでした",
+            "FailedDescription1": "翻訳文字数は、2000文字以下です",
+            "FailedDescription2": "翻訳文字を変えて、もう一度実行してください",
+            "Result": "翻訳結果"
+        },
+        "user":{
+            "info":{
+                "Description": "指定されたユーザーを検索して表示します",
+                "Example": "`/user @TakasumiBOT`\n`/user 981314695543783484`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "OfResult": "の検索結果",
+            "Nickname": "ニックネーム",
+            "NoSet": "未設定",
+            "CreateDate": "作成日時",
+            "JoinDate": "参加日時",
+            "Type": "アカウントの種類",
+            "Register": "TakasumiBOT Accountへの登録",
+            "Registered": "登録済み",
+            "NoRegister": "未登録",
+            "Role": "ロール",
+            "GetFailed": "取得できませんでした"
+        },
+        "warn":{
+            "info":{
+                "Description": "指定されたユーザーを警告します",
+                "Example": "`/warn @Arashi`",
+                "UserPermission": ["サーバーの管理"],
+                "BotPermission": ["必要なし"]
+            },
+            "WarnFailed": "警告できませんでした",
+            "WarnFailedDescription1": "指定したユーザーが取得できません",
+            "WarnFailedDescription2": "自分自身を警告することはできません",
+            "WarnFailedDescription3": "ユーザーがDMを拒否している可能性があります",
+            "Warned": "警告されました",
+            "WarnSuccess": "{user}を警告しました",
+            "Reason": "理由: {text}"
+        },
+        "webshot":{
+            "info":{
+                "Description": "Webサイトのスクリーンショットを撮影します",
+                "Example": "`/webshot https://google.com/`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "GetFailed": "撮影できませんでした",
+            "GetFailedDescription1": "URLを指定する必要があります",
+            "GetFailedDescription2": "URLを変えてやり直してください",
+            "GetSuccess": "撮影しました"
+        },
+        "wiki":{
+            "info":{
+                "Description": "Wikipediaの検索をします",
+                "Example": "`/wiki Discord`",
+                "UserPermission": ["必要なし"],
+                "BotPermission": ["必要なし"]
+            },
+            "GetFailed": "取得できませんでした",
+            "GetFailedDescription": "検索ワードを変えてやり直してください"
         }
     }
 }
