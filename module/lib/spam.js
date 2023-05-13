@@ -1,16 +1,16 @@
 module.exports = class Spam{
-  constructor(rate){
-    this.rate = rate;
+  constructor(){
     this.time = [];
+    this.send = [];
   }
 
   count(id){
     if(new Date() - this.time[id] <= this.rate){
       this.time[id] = new Date();
-      return true
+      return true;
     }else{
       this.time[id] = new Date();
-      return false
+      return false;
     }
   }
 }
