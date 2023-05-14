@@ -791,6 +791,26 @@
             "Close": "閉じる",
             "GeneratedTicket": "チケットを生成しました",
             "GeneratedTicketdescription": "{channel}を作成しました"
+        },
+        "afk":{
+            "Disable": "AFKを無効にしました",
+            "Now": "AFK中です"
+        },
+        "bump":{
+            "BumpNotification": "BUMP通知",
+            "BumpNotificationDescription": "UPを受信しました\n2時間後に通知します",
+            "BumpTime": "BUMPの時間です\n`/bump`でサーバーの表示順位をあげよう!"
+        },
+        "moderate":{
+            "AutoModerate": "自動モデレート",
+            "Length": "メッセージの文字数が多すぎたため、メッセージを削除しました",
+            "Spam": "スパムを検知したためメッセージを削除しました",
+            "Token": "メッセージにトークンが含まれていたため、メッセージを削除しました"
+        },
+        "dissoku":{
+            "BumpNotification": "UP通知",
+            "BumpNotificationDescription": "UPを受信しました\n1時間後に通知します",
+            "BumpTime": "DISSOKUの時間です\n`/dissoku up`でサーバーの表示順位をあげよう!"
         }
     }
 }
