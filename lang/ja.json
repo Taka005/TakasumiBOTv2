@@ -727,5 +727,90 @@
             "GetFailed": "取得できませんでした",
             "GetFailedDescription": "検索ワードを変えてやり直してください"
         }
+    },
+    "event":{
+        "join":{
+            "Error": "参加メッセージでエラーが発生しました",
+            "ErrorDescription": "エラーが発生したため、強制的に無効にしました"
+        },
+        "leave":{
+            "Error": "退出メッセージでエラーが発生しました",
+            "ErrorDescription": "エラーが発生したため、強制的に無効にしました"
+        },
+        "embed":{
+            "InputInvalid": "入力箇所が不足しています",
+            "InputInvalidDescription": "記入欄を全て空にはできません",
+            "ImageInvalid": "入力された画像が無効です",
+            "ImageInvalidDescription": "画像はURLで指定する必要があります"
+        },
+        "guideline_role":{
+            "Agreed": "既に同意済みです",
+            "AgreedDescription": "このサーバーのガイドラインに既に同意しているようです",
+            "AgreeSuccess": "同意しました",
+            "AgreeSuccessDescription": "このサーバーのガイドラインに同意しました\nこれでロールが付与され、晴れてサーバーの一員となりました",
+            "AgreeFailed": "同意に失敗しました",
+            "AgreeFailedDescription": "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります"
+        },
+        "guideline":{
+            "Guideline": "このサーバーのガイドライン",
+            "GuidelineDescription": "続行するにはこのサーバーのガイドラインを守る必要があります\n[Discord コミュニティガイドライン](https://discord.com/guidelines) も忘れないようにして下さい",
+            "Agree": "同意します",
+            "SetupFailed": "ガイドラインの作成に失敗しました",
+            "SetupFailedDescription": "BOTの権限等を確認してもう一度実行してください"
+        },
+        "help":{
+            "Before": "前",
+            "Next": "次"
+        },
+        "news":{
+            "Before": "前",
+            "Next": "次",
+            "NoPage": "ページが存在しません",
+            "NoPageDescription": "前のページに戻ってください"
+        },
+        "role":{
+            "ChangeFailed": "ロールの変更に失敗しました",
+            "ChangeFailedDescription1": "ロールの付与速度が速すぎるため5秒間待ってください",
+            "ChangeFailedDescription2": "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
+            "ChangeSuccess": "ロールを変更しました",
+            "GiveRole": "付与したロール",
+            "DeleteRole": "削除したロール",
+            "None": "なし"
+        },
+        "script":{
+            "RunFailed": "実行できませんでした",
+            "RunFaileddescription": "実行がタイムアウトしました",
+            "RunSuccess": "実行しました"
+        },
+        "ticket":{
+            "CreateFailed": "作成出来ませんでした",
+            "DeleteFailed": "削除できませんでした",
+            "CreateFailedDescription1": "既にチケットが発行済みです",
+            "CreateFailedDescription2": "ticketカテゴリーが存在していないため作成出来ません",
+            "Ticket": "チケットへようこそ",
+            "Close": "閉じる",
+            "GeneratedTicket": "チケットを生成しました",
+            "GeneratedTicketdescription": "{channel}を作成しました"
+        },
+        "afk":{
+            "Disable": "AFKを無効にしました",
+            "Now": "AFK中です"
+        },
+        "bump":{
+            "BumpNotification": "BUMP通知",
+            "BumpNotificationDescription": "UPを受信しました\n2時間後に通知します",
+            "BumpTime": "BUMPの時間です\n`/bump`でサーバーの表示順位をあげよう!"
+        },
+        "moderate":{
+            "AutoModerate": "自動モデレート",
+            "Length": "メッセージの文字数が多すぎたため、メッセージを削除しました",
+            "Spam": "スパムを検知したためメッセージを削除しました",
+            "Token": "メッセージにトークンが含まれていたため、メッセージを削除しました"
+        },
+        "dissoku":{
+            "BumpNotification": "UP通知",
+            "BumpNotificationDescription": "UPを受信しました\n1時間後に通知します",
+            "BumpTime": "DISSOKUの時間です\n`/dissoku up`でサーバーの表示順位をあげよう!"
+        }
     }
 }

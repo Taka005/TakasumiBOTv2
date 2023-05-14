@@ -68,7 +68,7 @@ module.exports = async(interaction)=>{
         await interaction.reply({ 
           embeds:[{
             author:{
-              name: "チケットを作成できませんでした",
+              name: "作成できませんでした",
               icon_url: "https://cdn.taka.ml/images/system/error.png"
             },
             color: Colors.Red,

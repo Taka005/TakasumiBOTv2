@@ -1,25 +1,23 @@
-const time = [];
+const spam = require("../../lib/spam");
+const Spam = new spam();
+Spam.rate = 5000;
+
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId === "role"){
     
-    if(new Date() - time[interaction.guild.id] <= 5000){
-      time[interaction.guild.id] = new Date();
-      return await interaction.reply({
-        embeds:[{
-          author:{
-            name: "ロールの付与に失敗しました",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
-          },
-          color: Colors.Red,
-          description: "ロールの付与速度が速すぎるため5秒間待ってください"
-        }],
-        ephemeral: true
-      });
-    }else{
-      time[interaction.guild.id] = new Date();
-    }
+    if(Spam.count(interaction.guild.id)) return await interaction.reply({
+      embeds:[{
+        author:{
+          name: "ロールの付与に失敗しました",
+          icon_url: "https://cdn.taka.ml/images/system/error.png"
+        },
+        color: Colors.Red,
+        description: "ロールの付与速度が速すぎるため5秒間待ってください"
+      }],
+      ephemeral: true
+    });
 
     await interaction.deferReply({ephemeral: true});
     try{
@@ -60,7 +58,7 @@ module.exports = async(interaction)=>{
       await interaction.editReply({
         embeds:[{
           author:{
-            name: "ロールの付与に失敗しました",
+            name: "ロールの変更に失敗しました",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
           color: Colors.Red,
