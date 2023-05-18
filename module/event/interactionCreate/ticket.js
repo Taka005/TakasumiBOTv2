@@ -28,16 +28,17 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.guild.channels.create(interaction.user.id,{
+    await interaction.guild.channels.create({
+      name: interaction.user.id,
       permissionOverwrites:[{
         id: interaction.guild.roles.everyone,
         deny: ["VIEW_CHANNEL"]
       }],
       parent: channel.id
     })
-      .then(async(channels)=>{
-        await channels.permissionOverwrites.edit(interaction.user.id,{VIEW_CHANNEL: true});
-        await channels.send({
+      .then(async(channel)=>{
+        await channel.permissionOverwrites.edit(interaction.user.id,{VIEW_CHANNEL: true});
+        await channel.send({
           embeds:[{
             color: Colors.Green,
             title: "チケットへようこそ"
@@ -58,7 +59,7 @@ module.exports = async(interaction)=>{
               name: `チケットを生成しました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            description: `${channels}を作成しました`,
+            description: `<#${channel.id}>を作成しました`,
             color: Colors.Green
           }],
           ephemeral: true
