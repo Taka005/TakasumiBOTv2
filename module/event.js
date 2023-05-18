@@ -33,8 +33,7 @@ module.exports = async(client)=>{
     console.log(`\x1b[37mLOG:(${message.author.tag}[${message.guild.id}])${message.content} PING[${client.ws.ping}ms]\x1b[39m`);
 
    //グローバルチャット
-    require("./function/globalchat/global")(message).catch(()=>{});
-    require("./function/globalchat/reply")(message).catch(()=>{});
+    require("./function/globalchat/gc")(message).catch(()=>{});
     require("./function/globalchat/ugc/send")(message).catch(()=>{});
 
     //コマンド

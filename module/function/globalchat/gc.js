@@ -2,10 +2,12 @@ const spam = require("../../lib/spam");
 const Spam = new spam(800);
 
 module.exports = async(message)=>{
-  const db = require("../../lib/db");
   const { WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const db = require("../../lib/db");
+  const fetchMessage = require("../../lib/fetchMessage");
 
-  if(!(await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`))[0]) return;
+  const global = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
+  if(!global[0]) return;
 
   if(
     (await db(`SELECT * FROM mute_server WHERE id = ${message.guild.id} LIMIT 1;`))[0]||
@@ -38,47 +40,67 @@ module.exports = async(message)=>{
     ]
   }).catch(()=>{});
 
-  const embed = [];
   const content = message.content
     .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,"[[招待リンク]](https://discord.gg/NEesRdGQwD)")
 
-  if(!message.reference.messageId){
-    embed.push({
-      color: Colors.Green,
-      author:{
-        name: message.author.tag,
-        url: `https://discord.com/users/${message.author.id}`,
-        icon_url: message.author.avatarURL()||message.author.defaultAvatarURL,
-      },
-      description: content,
-      footer:{
-        text: `${message.guild.name}<${message.guild.id}>`,
-        icon_url: message.guild.iconURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
-      },
-      image:{
-        url: `https://${message.id}.ugc`
-      },
-      timestamp: new Date()
-    });
-  }else{
+  const embed = [{
+    color: Colors.Green,
+    author:{
+      name: message.author.tag,
+      url: `https://discord.com/users/${message.author.id}`,
+      icon_url: message.author.avatarURL()||message.author.defaultAvatarURL,
+    },
+    description: content,
+    footer:{
+      text: `${message.guild.name}(${message.guild.id})`,
+      icon_url: message.guild.iconURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
+    },
+    image:{
+      url: `https://${message.id}.ugc`
+    },
+    timestamp: new Date()
+  }];
 
+  if(message.reference.messageId){
+    const replyMessage = await fetchMessage(message.channel,message.reference.messageId);
+    if(replyMessage){
+      embed[0].fields = [
+        {
+          name: "\u200b",
+          value: `**${replyMessage.author.tag}>>** ${replyMessage.content||"なし"}`
+        }
+      ];
+    }else{
+      const replyWebhook = new WebhookClient({id: global[0].id, token: global[0].token});
+      const replyWebhookMessage = await replyWebhook.fetchMessage(message.reference.messageId);
+
+      embed[0].fields = [
+        {
+          name: "\u200b",
+          value: `**${replyWebhookMessage.embeds[0].author.name}>>** ${replyWebhookMessage.embeds[0].description||"なし"}`
+        }
+      ];
+    }
   }
+
   const attachment = message.attachments.first();
-  if(attachment.content_type.startsWith("image/")){
-    embed.push({
-      color: Colors.Green,
-      title: attachment.name,
-      description: `[元ファイルを開く](${attachment.url})`,
-      image:{
-        url: attachment.url
-      }
-    });
-  }else{
-    embed.push({
-      color: Colors.Green,
-      title: attachment.name,
-      description: `[元ファイルを開く](${attachment.url})`
-    });
+  if(attachment){
+    if(attachment.content_type.startsWith("image/")){
+      embed.push({
+        color: Colors.Green,
+        title: attachment.name,
+        description: `[元ファイルを開く](${attachment.url})`,
+        image:{
+          url: attachment.url
+        }
+      });
+    }else{
+      embed.push({
+        color: Colors.Green,
+        title: attachment.name,
+        description: `[元ファイルを開く](${attachment.url})`
+      });
+    }
   }
 
   (await db("SELECT * FROM global;")).forEach(async(data)=>{
@@ -118,4 +140,6 @@ module.exports = async(message)=>{
       }).catch(()=>{});
     });
   });
+
+  await message.react("✅").catch(()=>{});
 }
