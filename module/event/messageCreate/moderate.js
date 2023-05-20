@@ -39,7 +39,7 @@ module.exports = async(message)=>{
         await message.delete()
           .catch(()=>{});
 
-        if(!Spam.check(message.author.id)) return await message.channel.send({
+        if(Spam.check(message.author.id)) return await message.channel.send({
           content: `<@${message.author.id}>`,
           embeds:[{
             color: Colors.Yellow,
@@ -76,7 +76,7 @@ module.exports = async(message)=>{
         await message.delete()
           .catch(()=>{});
 
-        if(!Spam.check(message.author.id)) return await message.channel.send({
+        if(Spam.check(message.author.id)) return await message.channel.send({
           content: `<@${message.author.id}>`,
           embeds:[{
             color: Colors.Yellow,
@@ -113,7 +113,7 @@ module.exports = async(message)=>{
         await message.delete()
           .catch(()=>{});
 
-        if(!Spam.check(message.author.id)) return await message.channel.send({
+        if(Spam.check(message.author.id)) return await message.channel.send({
           content: `<@${message.author.id}>`,
           embeds:[{
             color: Colors.Yellow,
