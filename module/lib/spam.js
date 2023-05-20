@@ -17,7 +17,7 @@ module.exports = class Spam{
   }
 
   check(id){
-    if(this.send([id])) return false;
+    if(this.send[id]) return false;
 
     this.send[id] = true;
     return true;
