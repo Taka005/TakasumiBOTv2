@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
     const pages = interaction.customId.split("_");
 
     const data = await fetch(`https://newsapi.org/v2/top-headlines?country=jp&apiKey=${process.env.NEWS_KEY}`)
-      .then(res=>res.json())
+      .then(res=>res.json());
   
     const before = new ButtonBuilder()
       .setStyle(ButtonStyle.Primary)
@@ -62,7 +62,7 @@ module.exports = async(interaction)=>{
             .addComponents(page)
             .addComponents(next)
         ]
-      }).catch(()=>{})
+      }).catch(()=>{});
       
       await interaction.deferUpdate({});
     }

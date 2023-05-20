@@ -39,8 +39,7 @@ module.exports = async(message)=>{
         await message.delete()
           .catch(()=>{});
 
-        if(!Spam.send[message.author.id]){
-          Spam.send[message.author.id] = true;
+        if(!Spam.check(message.author.id)){
           return await message.channel.send({
             content: `<@${message.author.id}>`,
             embeds:[{
@@ -79,8 +78,7 @@ module.exports = async(message)=>{
         await message.delete()
           .catch(()=>{});
 
-        if(!Spam.send[message.author.id]){
-          Spam.send[message.author.id] = true;
+        if(!Spam.check(message.author.id)){
           return await message.channel.send({
             content: `<@${message.author.id}>`,
             embeds:[{
@@ -119,8 +117,7 @@ module.exports = async(message)=>{
         await message.delete()
           .catch(()=>{});
 
-        if(!Spam.send[message.author.id]){
-          Spam.send[message.author.id] = true;
+        if(!Spam.check(message.author.id)){
           return await message.channel.send({
             content: `<@${message.author.id}>`,
             embeds:[{
