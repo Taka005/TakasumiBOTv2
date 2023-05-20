@@ -1035,8 +1035,8 @@
             "CreateFailedDescription2": "ticketカテゴリーが存在していないため作成出来ません",
             "Ticket": "チケットへようこそ",
             "Close": "閉じる",
-            "GeneratedTicket": "チケットを生成しました",
-            "GeneratedTicketdescription": "{channel}を作成しました"
+            "CreateTicket": "チケットを作成しました",
+            "CreateTicketdescription": "{channel}を作成しました"
         },
         "afk": {
             "Disable": "AFKを無効にしました",
