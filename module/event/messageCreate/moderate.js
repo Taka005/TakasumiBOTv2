@@ -39,20 +39,18 @@ module.exports = async(message)=>{
         await message.delete()
           .catch(()=>{});
 
-        if(!Spam.check(message.author.id)){
-          return await message.channel.send({
-            content: `<@${message.author.id}>`,
-            embeds:[{
-              color: Colors.Yellow,
-              author:{
-                name: "自動モデレート",
-                icon_url: "https://cdn.taka.ml/images/system/warn.png"
-              },
-              description: "スパムを検知したため、メッセージを削除しました",
-              timestamp: new Date()
-            }]
-          }).catch(()=>{});
-        }
+        if(!Spam.check(message.author.id)) return await message.channel.send({
+          content: `<@${message.author.id}>`,
+          embeds:[{
+            color: Colors.Yellow,
+            author:{
+              name: "自動モデレート",
+              icon_url: "https://cdn.taka.ml/images/system/warn.png"
+            },
+            description: "スパムを検知したため、メッセージを削除しました",
+            timestamp: new Date()
+          }]
+        }).catch(()=>{});
       }
     }else if(data[0].type === "normal"){
       Spam.rate = 600;
@@ -78,20 +76,18 @@ module.exports = async(message)=>{
         await message.delete()
           .catch(()=>{});
 
-        if(!Spam.check(message.author.id)){
-          return await message.channel.send({
-            content: `<@${message.author.id}>`,
-            embeds:[{
-              color: Colors.Yellow,
-              author:{
-                name: "自動モデレート",
-                icon_url: "https://cdn.taka.ml/images/system/warn.png"
-              },
-              description: "スパムを検知したため、メッセージを削除しました",
-              timestamp: new Date()
-            }]
-          }).catch(()=>{});
-        }
+        if(!Spam.check(message.author.id)) return await message.channel.send({
+          content: `<@${message.author.id}>`,
+          embeds:[{
+            color: Colors.Yellow,
+            author:{
+              name: "自動モデレート",
+              icon_url: "https://cdn.taka.ml/images/system/warn.png"
+            },
+            description: "スパムを検知したため、メッセージを削除しました",
+            timestamp: new Date()
+          }]
+        }).catch(()=>{});
       }
     }else if(data[0].type === "low"){
       Spam.rate = 400;
@@ -117,20 +113,18 @@ module.exports = async(message)=>{
         await message.delete()
           .catch(()=>{});
 
-        if(!Spam.check(message.author.id)){
-          return await message.channel.send({
-            content: `<@${message.author.id}>`,
-            embeds:[{
-              color: Colors.Yellow,
-              author:{
-                name: "自動モデレート",
-                icon_url: "https://cdn.taka.ml/images/system/warn.png"
-              },
-              description: "スパムを検知したため、メッセージを削除しました",
-              timestamp: new Date()
-            }]
-          }).catch(()=>{});
-        }
+        if(!Spam.check(message.author.id)) return await message.channel.send({
+          content: `<@${message.author.id}>`,
+          embeds:[{
+            color: Colors.Yellow,
+            author:{
+              name: "自動モデレート",
+              icon_url: "https://cdn.taka.ml/images/system/warn.png"
+            },
+            description: "スパムを検知したため、メッセージを削除しました",
+            timestamp: new Date()
+          }]
+        }).catch(()=>{});
       }
     }
     //Token削除

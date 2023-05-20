@@ -20,6 +20,6 @@ module.exports = class Spam{
     if(this.send[id]) return true;
 
     this.send[id] = false;
-    return true;
+    return false;
   }
 }
