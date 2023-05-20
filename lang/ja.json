@@ -7,34 +7,46 @@
     "NoBotPermission": "BOTに権限がありません",
     "NoBotPermissionDescription": "このコマンドはBOTに以下の権限が必要です",
     "NoAdmin": "このコマンドは関係者以外実行できません",
-    "command":{
-        "5000":{
-            "info":{
+    "command": {
+        "5000": {
+            "info": {
                 "Description": "5000兆円ジェネレーター",
                 "Example": "`/5000 上の文字 下の文字`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Generate": "生成しました",
             "GenerateFailed": "生成できませんでした",
             "GenerateFailedDescription": "もう一度やり直してください"
         },
-        "about":{
-            "info":{
+        "about": {
+            "info": {
                 "Description": "BOTについての情報や、関連リンクを表示します",
                 "Example": "`/about`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "AboutBot": "TakasumiBOTとは",
             "Description": "便利な多機能BOTを目指して開発されています\nサポートサーバーへの参加もよろしくお願いします\n開発:[Taka005#6668](https://discord.com/users/790489873957781536)\n\n関連リンク\n[公式サイト](https://takasumibot.taka.ml/)\n[ステータス](https://status.taka.ml/)\n[グローバルチャット利用規約](https://gc.taka.ml/)\n[TakasumiBOT Auth](https://auth.taka.ml/)\n[個人サイト](https://taka.ml/)"
         },
-        "account":{
-            "info":{
+        "account": {
+            "info": {
                 "Description": "登録されているアカウント情報を表示します",
                 "Example": "`/account`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "NoRegister": "登録されていません",
             "NoRegisterDescription": "以下のリンクから登録を行うことができます\n登録が完了すると[グローバルチャット利用規約](https://gc.taka.ml/)にも同意したものとみなします",
@@ -43,21 +55,29 @@
             "Address": "IPアドレス",
             "Date": "登録日時/更新日時"
         },
-        "ad":{
-            "info":{
+        "ad": {
+            "info": {
                 "Description": "BOTの宣伝を表示します",
                 "Example": "`/ad normal`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Description": "**◢◤◢◤◢◤ TakasumiBOT ◢◤◢◤◢◤**\nとても便利なBOTです\nグローバルチャット、認証機能などさまざまな便利機能があります\n導入数 {server}サーバー超え!\n\n・招待\nhttps://bot.taka.ml/\n・ 公式サイト\nhttps://takasumibot.taka.ml/\n・ステータス\nhttps://status.taka.ml/\n・TakasumiBOT Auth\nhttps://auth.taka.ml/\n・グローバルチャットのガイド\nhttps://gc.taka.ml/\n・サポートサーバー\nhttps://discord.gg/NEesRdGQwD\n・Email\ntakasumibot@gmail.com\n\nよければプロジェクトに貢献してください\nhttps://github.com/Taka005/TakasumiBOTv2\n**◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤**"
         },
-        "afk":{
-            "info":{
+        "afk": {
+            "info": {
                 "Description": "AFK(留守電)を設定できます",
                 "Example": "`/afk お出かけ中`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "NoMessage": "メッセージはありません",
             "SetupFailed": "AFKを設定できませんでした",
@@ -65,36 +85,48 @@
             "Disabled": "AFKを無効にしました",
             "Enabled": "AFKを有効にしました"
         },
-        "auth":{
-            "info":{
+        "auth": {
+            "info": {
                 "Description": "メンバー認証を設定します\n4種類の認証方式を選択できます",
                 "Example": "`/auth 標準`",
-                "UserPermission": ["ロールの管理"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "ロールの管理"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Description": "{role}を貰うには、認証ボタンを押してください",
             "AuthButton": "認証",
             "SetupFailed": "認証機能の作成に失敗しました",
             "SetupFailedDescription": "BOTの権限等を確認してもう一度実行してください"
         },
-        "avatar":{
-            "info":{
+        "avatar": {
+            "info": {
                 "Description": "指定されたユーザーのアイコンを表示します",
                 "Example": "`/avatar @TakasumiBOT`\n`/avatar 981314695543783484`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "OfAvatar": "{user}のアバター",
             "GetFailed": "取得できませんでした",
             "GetFailedDescription1": "ユーザー名、メンションを入力してください",
             "GetFailedDescription2": "指定したユーザーが存在しません"
         },
-        "ban":{
-            "info":{
+        "ban": {
+            "info": {
                 "Description": "メンバー・ユーザーをサーバーからBANすることができます",
                 "Example": "`/ban @Arashi`\n`/ban 1066168542669590599`",
-                "UserPermission": ["メンバーをBAN"],
-                "BotPermission": ["メンバーをBAN"]
+                "UserPermission": [
+                    "メンバーをBAN"
+                ],
+                "BotPermission": [
+                    "メンバーをBAN"
+                ]
             },
             "BanFailed": "BANできませんでした",
             "BanFailedDescription1": "ユーザーID、メンションを入力してください",
@@ -103,12 +135,16 @@
             "BanFailedDescription4": "BOTに権限が不足しているか、ユーザーが正しく指定されていません",
             "BanSuccess": "{user}({id}) をサーバーからBANしました"
         },
-        "cipher":{
-            "info":{
+        "cipher": {
+            "info": {
                 "Description": "文字列を暗号・復号します",
                 "Example": "`/cipher 暗号化 moji key`\n`/cipher 復号化 d1faf7e95c key`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "CipherSuccess": "暗号を生成しました",
             "CipherFailed": "暗号が生成できませんでした",
@@ -118,23 +154,31 @@
             "DecipherFailedDescription": "復号鍵が間違ってる可能性がります",
             "Decipher": "復号: ```{decipher}```\n復号鍵: ||`{key}`||"
         },
-        "colorrole":{
-            "info":{
+        "colorrole": {
+            "info": {
                 "Description": "色付きロールを簡単に作成できます",
                 "Example": "`/colorrole 白`",
-                "UserPermission": ["ロールの管理"],
-                "BotPermission": ["ロールの管理"]
+                "UserPermission": [
+                    "ロールの管理"
+                ],
+                "BotPermission": [
+                    "ロールの管理"
+                ]
             },
             "CreateSuccess": "ロールを作成しました",
             "CreateSuccessDescription": "作成したロール:{role}",
             "CreateFailed": "ロールを作成できませんでした"
         },
-        "del":{
-            "info":{
+        "del": {
+            "info": {
                 "Description": "指定された数だけメッセージを一括で削除します",
                 "Example": "`/del 30`\n`/del 30 @Arashi`",
-                "UserPermission": ["メッセージの管理"],
-                "BotPermission": ["メッセージの管理"]
+                "UserPermission": [
+                    "メッセージの管理"
+                ],
+                "BotPermission": [
+                    "メッセージの管理"
+                ]
             },
             "DeleteFailed": "削除できませんでした",
             "DeleteFailedDescription1": "削除するメッセージは`2`以上`100`未満にする必要があります",
@@ -143,12 +187,16 @@
             "DeleteSuccess1": "{user} のメッセージを{number}個削除しました",
             "DeleteSuccess2": "{number}個のメッセージを削除しました"
         },
-        "embed":{
-            "info":{
+        "embed": {
+            "info": {
                 "Description": "埋め込みを簡単に作成し表示できます",
                 "Example": "`/embed`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "CreateEmbed": "埋め込み作成",
             "Title": "タイトル",
@@ -158,12 +206,16 @@
             "Image": "画像",
             "ImageDescription": "埋め込みに表示される画像のURL"
         },
-        "emoji":{
-            "info":{
+        "emoji": {
+            "info": {
                 "Description": "指定した絵文字の情報を表示します",
                 "Example": "`/emoji 🤔`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "GetFailed": "取得できませんでした",
             "GetFailedDescription1": "サーバーのカスタム絵文字を指定してください",
@@ -175,24 +227,32 @@
             "Static": "静止画像",
             "Date": "作成日時"
         },
-        "export":{
-            "info":{
+        "export": {
+            "info": {
                 "Description": "サーバーのデータをJSON形式に出力します",
                 "Example": "`/export`",
-                "UserPermission": ["管理者"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "管理者"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "ExportFailed": "出力に失敗しました"
         },
-        "faq":{
-            "info":{
+        "faq": {
+            "info": {
                 "description": "よくある質問一覧を表示します",
                 "example": "`/faq`",
-                "permission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "permission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Description": "よくある質問一覧です。他の質問がある場合はサポートサーバーにてよろしくお願いします",
-            "content":[
+            "content": [
                 {
                     "name": "何で開発しているの？",
                     "value": "Node.js(JavaScript)で構築しています。開発環境はVScodeです"
@@ -223,113 +283,166 @@
                 }
             ]
         },
-        "follow":{
-            "info":{
+        "follow": {
+            "info": {
                 "Description": "BOTのアナウンスチャンネルを追加します",
                 "Example": "`/follow`",
-                "UserPermission": ["チャンネルの管理"],
-                "BotPermission": ["チャンネルの管理"]
+                "UserPermission": [
+                    "チャンネルの管理"
+                ],
+                "BotPermission": [
+                    "チャンネルの管理"
+                ]
             },
             "AddSuccess": "フォローチャンネルを追加しました",
             "AddSuccessDescription": "このチャンネルでBOTのお知らせを受け取れるようになりました",
             "AddFailed": "フォローチャンネルを追加できませんでした"
         },
-        "gif":{
-            "info":{
+        "gif": {
+            "info": {
                 "Description": "GIF画像を検索します",
                 "Example": "`/gif Happy`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "GetSuccess": "GIFを取得しました",
             "GetFailed": "取得できませんでした",
             "GetFailedDescription": "違うワードで試してください"
         },
-        "globalchat":{
-            "info":{
+        "globalchat": {
+            "info": {
                 "Description": "グローバルチャットに参加、退出します",
                 "Example": "`/globalchat`",
-                "UserPermission": ["チャンネルの管理"],
-                "BotPermission": ["リアクションの追加","チャンネルの閲覧","メッセージの送信","ウェブフックの管理","チャンネルの管理"]
+                "UserPermission": [
+                    "チャンネルの管理"
+                ],
+                "BotPermission": [
+                    "リアクションの追加",
+                    "チャンネルの閲覧",
+                    "メッセージの送信",
+                    "ウェブフックの管理",
+                    "チャンネルの管理"
+                ]
             }
         },
-        "guideline":{
-            "info":{
+        "guideline": {
+            "info": {
                 "Description": "サーバーのガイドラインを作成し、同意するとロールが付与されます",
                 "Example": "`/guideline @Role`",
-                "UserPermission": ["ロールの管理"],
-                "BotPermission": ["ロールの管理","チャンネルの閲覧","メッセージの送信"]
+                "UserPermission": [
+                    "ロールの管理"
+                ],
+                "BotPermission": [
+                    "ロールの管理",
+                    "チャンネルの閲覧",
+                    "メッセージの送信"
+                ]
             },
             "CreateGuideline": "ガイドラインの作成",
             "Description": "テンプレートを編集してガイドラインを作成してください",
             "Temp": "` 1 ` **１つ目のガイドライン**\n\n` 2 ` **２つ目のガイドライン**\n\n` 3 ` **３つ目のガイドライン**\n\n` 4 ` **４つ目のガイドライン**\n"
         },
-        "hash":{
-            "info":{
+        "hash": {
+            "info": {
                 "Description": "指定した方式でテキストをハッシュ化します",
                 "Example": "`/hash テキスト SHA256`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "GenerateSuccess": "ハッシュを生成しました",
             "GenerateFailed": "ハッシュを生成できませんでした"
         },
-        "help":{
-            "info":{
+        "help": {
+            "info": {
                 "Description": "使い方を表示します",
                 "Example": "`/help`\n`/help auth`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "NoCommand": "コマンドが存在しません",
             "NoCommandDescription": "`/help`を実行してコマンド一覧を確認してください"
         },
-        "hiroyuki":{
-            "info":{
+        "hiroyuki": {
+            "info": {
                 "Description": "ひろゆきを召喚、退出します",
                 "Example": "`/hiroyuki`",
-                "UserPermission": ["チャンネルの管理"],
-                "BotPermission": ["チャンネルの閲覧","メッセージの送信","ウェブフックの管理","チャンネルの管理"]
+                "UserPermission": [
+                    "チャンネルの管理"
+                ],
+                "BotPermission": [
+                    "チャンネルの閲覧",
+                    "メッセージの送信",
+                    "ウェブフックの管理",
+                    "チャンネルの管理"
+                ]
             }
         },
-        "invite":{
-            "info":{
+        "invite": {
+            "info": {
                 "Description": "カスタマイズされた招待リンクを作成します",
                 "Example": "`/invite 100 1`\n`/invite 500`",
-                "UserPermission": ["招待リンクの作成"],
-                "BotPermission": ["招待リンクの作成"]
+                "UserPermission": [
+                    "招待リンクの作成"
+                ],
+                "BotPermission": [
+                    "招待リンクの作成"
+                ]
             },
             "Reason": "{user}により作成",
             "CreateFailed": "招待リンクを作成できませんでした"
         },
-        "inviter":{
-            "info":{
+        "inviter": {
+            "info": {
                 "Description": "招待ランキングを表示します",
                 "Example": "`/inviter`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Ranking": "招待ランキング",
             "GetFailed": "招待リンクを取得できませんでした"
         },
-        "invites":{
-            "info":{
+        "invites": {
+            "info": {
                 "Description": "サーバー又はユーザーの招待一覧を表示します",
                 "Example": "`/invites`\n`/invites @TakasumiBOT`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "GetFailed": "招待リンクを取得できませんでした",
             "GetFailedDescription": "指定したユーザーの招待が見つかりませんでした",
             "UserList": "{user}の招待一覧",
             "ServerList": "サーバーの招待一覧"
         },
-        "kick":{
-            "info":{
+        "kick": {
+            "info": {
                 "Description": "指定されたメンバーをサーバーからKICKします",
                 "Example": "`/kick @Arashi`",
-                "UserPermission": ["メンバーをKICK"],
-                "BotPermission": ["メンバーをKICK"]
+                "UserPermission": [
+                    "メンバーをKICK"
+                ],
+                "BotPermission": [
+                    "メンバーをKICK"
+                ]
             },
             "KickFailed": "キックできませんでした",
             "KickFailedDescription1": "指定したユーザーが取得できません",
@@ -337,24 +450,32 @@
             "KickFailedDescription3": "BOTの権限が不足しているか、メンバーが正しく指定されていません",
             "KickSuccess": "{user}({id})をサーバーからキックしました"
         },
-        "math":{
-            "info":{
+        "math": {
+            "info": {
                 "Description": "式を計算します",
                 "Example": "`/math 4 * 25`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Success": "計算しました",
             "Failed": "計算できませんでした",
             "FailedDescription": "計算式を変えてやり直してください",
             "Result": "**式**\n```{code}```\n**結果**\n```{result}```"
         },
-        "mc":{
-            "info":{
+        "mc": {
+            "info": {
                 "Description": "指定したアドレスのMinecraftサーバーの情報を表示します",
                 "Example": "`/mc JavaEdition 2b2t.jp`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "GetFailed": "取得できませんでした",
             "GetFailedDescription1": "無効なホスト名です",
@@ -366,22 +487,32 @@
             "Address": "IPアドレス",
             "Software": "ソフトウェア"
         },
-        "miq":{
-            "info":{
+        "miq": {
+            "info": {
                 "Description": "Make it a Quoteを生成します",
                 "Example": "`/miq これはテストです`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "GenerateFailed": "生成できませんでした",
             "GenerateFailedDescription": "テキストを変えてやり直してください"
         },
-        "moderate":{
-            "info":{
+        "moderate": {
+            "info": {
                 "Description": "モデレート機能を設定します",
                 "Example": "`/moderate high`",
-                "UserPermission": ["サーバーの管理"],
-                "BotPermission": ["メッセージの削除","チャンネルの閲覧","メッセージの送信"]
+                "UserPermission": [
+                    "サーバーの管理"
+                ],
+                "BotPermission": [
+                    "メッセージの削除",
+                    "チャンネルの閲覧",
+                    "メッセージの送信"
+                ]
             },
             "DisabledFailed": "モデレートを無効にできませんでした",
             "DisabledFailedDescription": "モデレートが設定されていません",
@@ -389,22 +520,30 @@
             "EnabledSuccess": "モデレート機能を有効にしました",
             "EnabledSuccessDescription": "{level}に設定しました"
         },
-        "news":{
-            "info":{
+        "news": {
+            "info": {
                 "Description": "最近のニュースを表示します",
                 "Example": "`/news`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "GetFailed": "取得できませんでした",
             "GetFailedDescription": "もう一度やり直してください"
         },
-        "npm":{
-            "info":{
+        "npm": {
+            "info": {
                 "Description": "NPMパッケージを検索して表示します",
                 "Example": "`/npm discord.js`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Creater": "作者",
             "Version": "バージョン",
@@ -413,61 +552,87 @@
             "GetFailed": "取得できませんでした",
             "GetFailedDescription": "検索ワードを変えてやり直してください"
         },
-        "nsloookup":{
-            "info":{
+        "nsloookup": {
+            "info": {
                 "Description": "DNS情報を取得します",
                 "Example": "`/nslookup google.com`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "GetFailed": "取得できませんでした",
             "GetFailedDescription": "違うアドレスで試してください",
             "Result": "{name}の結果"
         },
-        "omikuji":{
-            "info":{
-                "Description":"おみくじを引きます",
-                "Example":"`/omikuji`",
-                "UserPermission":["必要なし"],
-                "BotPermission": ["必要なし"]
+        "omikuji": {
+            "info": {
+                "Description": "おみくじを引きます",
+                "Example": "`/omikuji`",
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             }
         },
-        "panel":{
-            "info":{
+        "panel": {
+            "info": {
                 "Description": "役職パネルを作成します",
                 "Example": "`/panel title @Role1 @Role2`",
-                "UserPermission": ["ロールの管理"],
-                "BotPermission": ["ロールの管理","チャンネルの閲覧","メッセージの送信"]
+                "UserPermission": [
+                    "ロールの管理"
+                ],
+                "BotPermission": [
+                    "ロールの管理",
+                    "チャンネルの閲覧",
+                    "メッセージの送信"
+                ]
             },
             "NoSelect": "ロールが選択されていません",
             "CreateFailed": "作成できませんでした",
             "CreateFailedDescription": "同じロールが選択されているか、BOTの権限が不足しています"
         },
-        "permission":{
-            "info":{
+        "permission": {
+            "info": {
                 "Description": "指定されたユーザーの権限を表示します",
                 "Example": "`/permission @TakasumiBOT`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "OfPermission": "{user}の権限",
             "GetFailed": "権限を取得できませんでした",
             "GetFailedDescription": "指定したユーザーがサーバーに存在しません"
         },
-        "poll":{
-            "info":{
+        "poll": {
+            "info": {
                 "Description": "アンケートを作成することができます",
                 "Example": "`/poll title One two Three`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["リアクションの追加"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "リアクションの追加"
+                ]
             }
         },
-        "pypi":{
-            "info":{
+        "pypi": {
+            "info": {
                 "Description": "PIPパッケージを検索して表示します",
                 "Example": "`/pypi discord.py`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Creater": "作者",
             "Version": "バージョン",
@@ -477,12 +642,16 @@
             "GetFailed": "取得できませんでした",
             "GetFailedDescription": "検索ワードを変えてやり直してください"
         },
-        "qr":{
-            "info":{
+        "qr": {
+            "info": {
                 "Description": "QRコードを生成・読み取ります",
                 "Example": "`/qr 生成 text`\n`/qr 読み込む https://example.com/qr.png`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Generating": "生成中...",
             "Reading": "読み取り中...",
@@ -493,19 +662,23 @@
             "GenerateFailedDescription2": "QRコードはURLかつ読み取れる必要があります",
             "ReadSuccess": "QRコードを読み取りました"
         },
-        "role":{
-            "info":{   
+        "role": {
+            "info": {
                 "Description": "指定した役職の情報を表示します",
                 "Example": "`/role @Role`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "OfInfo": "の情報",
             "Mention": "メンション",
             "Possible": "可能",
             "Impossible": "不可能",
             "Hoist": "表示形式",
-            "Separate":"別々",
+            "Separate": "別々",
             "Mix": "混合",
             "Color": "色",
             "Date": "作成日時",
@@ -513,12 +686,16 @@
             "Permission": "権限",
             "GetFailed": "取得できませんでした"
         },
-        "safeweb":{
-            "info":{
+        "safeweb": {
+            "info": {
                 "Description": "Webサイトの安全性を評価します",
                 "Example": "`/safeweb https://google.com/`",
-                "UserPermission": ["必要なし"], 
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Failed": "評価できませんでした",
             "FailedDescription1": "URLを指定する必要があります",
@@ -532,31 +709,45 @@
             "Success": "このサイトは安全です",
             "SuccessDescription": "このサイトからは脅威が確認されませんでした"
         },
-        "script":{
-            "info":{
+        "script": {
+            "info": {
                 "Description": "プログラムを実行します",
                 "Example": "`/script`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "RunCode": "コードを実行",
             "RunLang": "{lang}を実行",
             "Description": "実行するコードを入力"
         },
-        "server":{
-            "info":{
+        "server": {
+            "info": {
                 "Description": "サーバーの情報を表示します",
                 "Example": "`/server`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             }
         },
-        "setting":{
-            "info":{
-                "Description":"サーバーの各種設定を変更します",
-                "Example":"`/setting bump @Role`\n`/setting help`",
-                "Permission":["管理者"],
-                "BotPermission": ["チャンネルの閲覧","メッセージの送信","ウェブフックの管理"]
+        "setting": {
+            "info": {
+                "Description": "サーバーの各種設定を変更します",
+                "Example": "`/setting bump @Role`\n`/setting help`",
+                "Permission": [
+                    "管理者"
+                ],
+                "BotPermission": [
+                    "チャンネルの閲覧",
+                    "メッセージの送信",
+                    "ウェブフックの管理"
+                ]
             },
             "Owner": "所有者",
             "Count": "人数",
@@ -564,22 +755,30 @@
             "stats": "統計情報",
             "GetFailed": "取得できませんでした"
         },
-        "short":{
-            "info":{
+        "short": {
+            "info": {
                 "Description": "短縮URLを作成します",
                 "Example": "`/short https://google.com/`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Failed": "短縮URLにできませんでした",
             "FailedDescription": "URLを指定する必要があります"
         },
-        "skin":{
-            "info":{
+        "skin": {
+            "info": {
                 "Description": "マインクラフトのスキンを検索します",
                 "Example": "`/skin User`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "GetFailed": "取得できませんでした",
             "GetFailedDescription1": "指定したユーザーは存在しません",
@@ -587,59 +786,82 @@
             "OfSkin": "{name}のスキン",
             "Donwload": "スキンをダウンロード"
         },
-        "slowmode":{
-            "info":{
+        "slowmode": {
+            "info": {
                 "Description": "チャンネルに低速モードを設定します",
                 "Example": "`/slowmode 100`",
-                "UserPermission": ["チャンネルの管理"],
-                "BotPermission": ["チャンネルの管理"]
+                "UserPermission": [
+                    "チャンネルの管理"
+                ],
+                "BotPermission": [
+                    "チャンネルの管理"
+                ]
             },
             "SetupFailed": "低速モードを設定できませんでした",
             "SetupFailedDescription": "低速モードは0秒以上、21600秒以下にする必要あります",
             "SetupSuccess": "低速モードを設定しました",
             "SetupSuccessDescription": "低速モードは現在{time}秒です"
         },
-        "snowflake":{
-            "info":{
-                "Description":"Snowflakeを解析します",
-                "Example":"`/snowflake 987698915820335124`",
-                "UserPermission":["必要なし"],
-                "BotPermission": ["必要なし"]
+        "snowflake": {
+            "info": {
+                "Description": "Snowflakeを解析します",
+                "Example": "`/snowflake 987698915820335124`",
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Failed": "解析できませんでした",
             "FailedDescription": "Snowflakeは数字で指定する必要があります",
             "Success": "解析しました"
         },
-        "status":{
-            "info":{
+        "status": {
+            "info": {
                 "Description": "BOTの情報やサーバーの状態を表示します",
                 "Example": "`/status`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Status": "ステータス",
             "System": "システム",
             "data": "統計データ",
             "GetFailed": "取得できませんでした"
         },
-        "ticket":{
-            "info":{
+        "ticket": {
+            "info": {
                 "Description": "簡易的なチケット機能を作成します",
                 "Example": "`/ticket`",
-                "UserPermission": ["チャンネルの管理","メッセージの管理"],
-                "BotPermission": ["チャンネルの閲覧","メッセージの送信","チャンネルの管理"]
+                "UserPermission": [
+                    "チャンネルの管理",
+                    "メッセージの管理"
+                ],
+                "BotPermission": [
+                    "チャンネルの閲覧",
+                    "メッセージの送信",
+                    "チャンネルの管理"
+                ]
             },
             "Ticket": "チケット",
             "TicketDescription": "チケットの発行は下のボタンを押してください",
             "Create": "作成",
             "CreateFailed": "チケットが作成出来ませんでした"
         },
-        "timeout":{
-            "info":{
+        "timeout": {
+            "info": {
                 "Description": "指定したメンバーをタイムアウトします",
                 "Example": "`/timeout @Arashi 1000 荒らし`\n`/timeout @Arashi`",
-                "UserPermission": ["メンバーをモデレート"],
-                "BotPermission": ["メンバーをモデレート"]
+                "UserPermission": [
+                    "メンバーをモデレート"
+                ],
+                "BotPermission": [
+                    "メンバーをモデレート"
+                ]
             },
             "TimeoutFailed": "タイムアウト出来ませんでした",
             "TimeoutFailedDescription1": "メンバーが取得できません",
@@ -647,36 +869,48 @@
             "TimeoutFailedDescription3": "BOTに権限が不足しているか、メンバーが正しく指定されていません",
             "TimeoutSuccess": "{member}を{time}秒タイムアウトしました"
         },
-        "top":{
-            "info":{
+        "top": {
+            "info": {
                 "Description": "実行したチャンネルの1番最初のメッセージリンクを表示します",
                 "Example": "`/top`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["チャンネルの閲覧"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "チャンネルの閲覧"
+                ]
             },
             "Getting": "取得中...",
             "FirstMessage": "最初のメッセージ",
             "Description": "下のリンクから飛べます",
             "GoMessage": "メッセージへ飛ぶ"
         },
-        "translate":{
-            "info":{
+        "translate": {
+            "info": {
                 "Description": "テキストを翻訳します",
                 "Example": "`/translate hello 日本語`\n`/translate こんにちは 英語`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "Failed": "翻訳できませんでした",
             "FailedDescription1": "翻訳文字数は、2000文字以下です",
             "FailedDescription2": "翻訳文字を変えて、もう一度実行してください",
             "Result": "翻訳結果"
         },
-        "user":{
-            "info":{
+        "user": {
+            "info": {
                 "Description": "指定されたユーザーを検索して表示します",
                 "Example": "`/user @TakasumiBOT`\n`/user 981314695543783484`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "OfResult": "の検索結果",
             "Nickname": "ニックネーム",
@@ -690,12 +924,16 @@
             "Role": "ロール",
             "GetFailed": "取得できませんでした"
         },
-        "warn":{
-            "info":{
+        "warn": {
+            "info": {
                 "Description": "指定されたユーザーを警告します",
                 "Example": "`/warn @Arashi`",
-                "UserPermission": ["サーバーの管理"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "サーバーの管理"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "WarnFailed": "警告できませんでした",
             "WarnFailedDescription1": "指定したユーザーが取得できません",
@@ -705,45 +943,53 @@
             "WarnSuccess": "{user}を警告しました",
             "Reason": "理由: {text}"
         },
-        "webshot":{
-            "info":{
+        "webshot": {
+            "info": {
                 "Description": "Webサイトのスクリーンショットを撮影します",
                 "Example": "`/webshot https://google.com/`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "GetFailed": "撮影できませんでした",
             "GetFailedDescription1": "URLを指定する必要があります",
             "GetFailedDescription2": "URLを変えてやり直してください",
             "GetSuccess": "撮影しました"
         },
-        "wiki":{
-            "info":{
+        "wiki": {
+            "info": {
                 "Description": "Wikipediaの検索をします",
                 "Example": "`/wiki Discord`",
-                "UserPermission": ["必要なし"],
-                "BotPermission": ["必要なし"]
+                "UserPermission": [
+                    "必要なし"
+                ],
+                "BotPermission": [
+                    "必要なし"
+                ]
             },
             "GetFailed": "取得できませんでした",
             "GetFailedDescription": "検索ワードを変えてやり直してください"
         }
     },
-    "event":{
-        "join":{
+    "event": {
+        "join": {
             "Error": "参加メッセージでエラーが発生しました",
             "ErrorDescription": "エラーが発生したため、強制的に無効にしました"
         },
-        "leave":{
+        "leave": {
             "Error": "退出メッセージでエラーが発生しました",
             "ErrorDescription": "エラーが発生したため、強制的に無効にしました"
         },
-        "embed":{
+        "embed": {
             "InputInvalid": "入力箇所が不足しています",
             "InputInvalidDescription": "記入欄を全て空にはできません",
             "ImageInvalid": "入力された画像が無効です",
             "ImageInvalidDescription": "画像はURLで指定する必要があります"
         },
-        "guideline_role":{
+        "guideline_role": {
             "Agreed": "既に同意済みです",
             "AgreedDescription": "このサーバーのガイドラインに既に同意しているようです",
             "AgreeSuccess": "同意しました",
@@ -751,24 +997,24 @@
             "AgreeFailed": "同意に失敗しました",
             "AgreeFailedDescription": "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります"
         },
-        "guideline":{
+        "guideline": {
             "Guideline": "このサーバーのガイドライン",
             "GuidelineDescription": "続行するにはこのサーバーのガイドラインを守る必要があります\n[Discord コミュニティガイドライン](https://discord.com/guidelines) も忘れないようにして下さい",
             "Agree": "同意します",
             "SetupFailed": "ガイドラインの作成に失敗しました",
             "SetupFailedDescription": "BOTの権限等を確認してもう一度実行してください"
         },
-        "help":{
+        "help": {
             "Before": "前",
             "Next": "次"
         },
-        "news":{
+        "news": {
             "Before": "前",
             "Next": "次",
             "NoPage": "ページが存在しません",
             "NoPageDescription": "前のページに戻ってください"
         },
-        "role":{
+        "role": {
             "ChangeFailed": "ロールの変更に失敗しました",
             "ChangeFailedDescription1": "ロールの付与速度が速すぎるため5秒間待ってください",
             "ChangeFailedDescription2": "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
@@ -777,12 +1023,12 @@
             "DeleteRole": "削除したロール",
             "None": "なし"
         },
-        "script":{
+        "script": {
             "RunFailed": "実行できませんでした",
             "RunFaileddescription": "実行がタイムアウトしました",
             "RunSuccess": "実行しました"
         },
-        "ticket":{
+        "ticket": {
             "CreateFailed": "作成出来ませんでした",
             "DeleteFailed": "削除できませんでした",
             "CreateFailedDescription1": "既にチケットが発行済みです",
@@ -792,22 +1038,22 @@
             "GeneratedTicket": "チケットを生成しました",
             "GeneratedTicketdescription": "{channel}を作成しました"
         },
-        "afk":{
+        "afk": {
             "Disable": "AFKを無効にしました",
             "Now": "AFK中です"
         },
-        "bump":{
+        "bump": {
             "BumpNotification": "BUMP通知",
             "BumpNotificationDescription": "UPを受信しました\n2時間後に通知します",
             "BumpTime": "BUMPの時間です\n`/bump`でサーバーの表示順位をあげよう!"
         },
-        "moderate":{
+        "moderate": {
             "AutoModerate": "自動モデレート",
             "Length": "メッセージの文字数が多すぎたため、メッセージを削除しました",
             "Spam": "スパムを検知したためメッセージを削除しました",
             "Token": "メッセージにトークンが含まれていたため、メッセージを削除しました"
         },
-        "dissoku":{
+        "dissoku": {
             "BumpNotification": "UP通知",
             "BumpNotificationDescription": "UPを受信しました\n1時間後に通知します",
             "BumpTime": "DISSOKUの時間です\n`/dissoku up`でサーバーの表示順位をあげよう!"
