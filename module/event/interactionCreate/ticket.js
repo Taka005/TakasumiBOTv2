@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors, PermissionFlagsBits} = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors, PermissionFlagsBits } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId === "ticket"){
 
@@ -36,9 +36,9 @@ module.exports = async(interaction)=>{
       }],
       parent: channel.id
     })
-      .then(async(channel)=>{
-        await channel.permissionOverwrites.edit(interaction.user.id,{VIEW_CHANNEL: true});
-        await channel.send({
+      .then(async(ch)=>{
+        await ch.permissionOverwrites.edit(interaction.user.id,{ViewChannel: true});
+        await ch.send({
           embeds:[{
             color: Colors.Green,
             title: "チケットへようこそ"
@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
               name: `チケットを生成しました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            description: `<#${channel.id}>を作成しました`,
+            description: `<#${ch.id}>を作成しました`,
             color: Colors.Green
           }],
           ephemeral: true
