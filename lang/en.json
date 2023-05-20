@@ -13,10 +13,10 @@
                 "Description": "5000兆円ジェネレーター",
                 "Example": "`/5000 上の文字 下の文字`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Generate": "Generated",
@@ -28,10 +28,10 @@
                 "Description": "BOTについての情報や、関連リンクを表示します",
                 "Example": "`/about`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "AboutBot": "What is TakasumiBOT?",
@@ -42,10 +42,10 @@
                 "Description": "登録されているアカウント情報を表示します",
                 "Example": "`/account`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "NoRegister": "Not registered",
@@ -60,10 +60,10 @@
                 "Description": "BOTの宣伝を表示します",
                 "Example": "`/ad normal`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Description": ""
@@ -73,10 +73,10 @@
                 "Description": "AFK(留守電)を設定できます",
                 "Example": "`/afk お出かけ中`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "NoMessage": "No messages",
@@ -90,10 +90,10 @@
                 "Description": "メンバー認証を設定します\n4種類の認証方式を選択できます",
                 "Example": "`/auth 標準`",
                 "UserPermission": [
-                    "ロールの管理"
+                    "Manage Roles"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Description": "To get the {role}, press the Authorize button",
@@ -106,10 +106,10 @@
                 "Description": "指定されたユーザーのアイコンを表示します",
                 "Example": "`/avatar @TakasumiBOT`\n`/avatar 981314695543783484`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "OfAvatar": "{user}'s Avatar",
@@ -122,10 +122,10 @@
                 "Description": "メンバー・ユーザーをサーバーからBANすることができます",
                 "Example": "`/ban @Arashi`\n`/ban 1066168542669590599`",
                 "UserPermission": [
-                    "メンバーをBAN"
+                    "Ban Members"
                 ],
                 "BotPermission": [
-                    "メンバーをBAN"
+                    "Ban Members"
                 ]
             },
             "BanFailed": "Could not ban",
@@ -140,10 +140,10 @@
                 "Description": "文字列を暗号・復号します",
                 "Example": "`/cipher 暗号化 moji key`\n`/cipher 復号化 d1faf7e95c key`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "CipherSuccess": "Generated a cipher",
@@ -159,10 +159,10 @@
                 "Description": "色付きロールを簡単に作成できます",
                 "Example": "`/colorrole 白`",
                 "UserPermission": [
-                    "ロールの管理"
+                    "Manage Roles"
                 ],
                 "BotPermission": [
-                    "ロールの管理"
+                    "Manage Roles"
                 ]
             },
             "CreateSuccess": "Created a role",
@@ -174,10 +174,10 @@
                 "Description": "指定された数だけメッセージを一括で削除します",
                 "Example": "`/del 30`\n`/del 30 @Arashi`",
                 "UserPermission": [
-                    "メッセージの管理"
+                    "Manage Message"
                 ],
                 "BotPermission": [
-                    "メッセージの管理"
+                    "Manage Message"
                 ]
             },
             "DeleteFailed": "Could not be deleted",
@@ -192,10 +192,10 @@
                 "Description": "埋め込みを簡単に作成し表示できます",
                 "Example": "`/embed`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "CreateEmbed": "Create embed",
@@ -211,10 +211,10 @@
                 "Description": "指定した絵文字の情報を表示します",
                 "Example": "`/emoji 🤔`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "GetFailed": "Could not get",
@@ -232,10 +232,10 @@
                 "Description": "サーバーのデータをJSON形式に出力します",
                 "Example": "`/export`",
                 "UserPermission": [
-                    "管理者"
+                    "Administrator"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "ExportFailed": "output failed"
@@ -245,10 +245,10 @@
                 "description": "よくある質問一覧を表示します",
                 "example": "`/faq`",
                 "permission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Description": "It is a list of frequently asked questions",
@@ -288,10 +288,10 @@
                 "Description": "BOTのアナウンスチャンネルを追加します",
                 "Example": "`/follow`",
                 "UserPermission": [
-                    "チャンネルの管理"
+                    "Manage Channels"
                 ],
                 "BotPermission": [
-                    "チャンネルの管理"
+                    "Manage Channels"
                 ]
             },
             "AddSuccess": "Added follow channel",
@@ -303,10 +303,10 @@
                 "Description": "GIF画像を検索します",
                 "Example": "`/gif Happy`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "GetSuccess": "Got a gif",
@@ -318,14 +318,14 @@
                 "Description": "グローバルチャットに参加、退出します",
                 "Example": "`/globalchat`",
                 "UserPermission": [
-                    "チャンネルの管理"
+                    "Manage Channels"
                 ],
                 "BotPermission": [
-                    "リアクションの追加",
-                    "チャンネルの閲覧",
-                    "メッセージの送信",
-                    "ウェブフックの管理",
-                    "チャンネルの管理"
+                    "Add Reactions",
+                    "View Channels",
+                    "Send Message",
+                    "Manage Webhooks",
+                    "Manage Channels"
                 ]
             }
         },
@@ -334,12 +334,12 @@
                 "Description": "サーバーのガイドラインを作成し、同意するとロールが付与されます",
                 "Example": "`/guideline @Role`",
                 "UserPermission": [
-                    "ロールの管理"
+                    "Manage Roles"
                 ],
                 "BotPermission": [
-                    "ロールの管理",
-                    "チャンネルの閲覧",
-                    "メッセージの送信"
+                    "Manage Roles",
+                    "View Channels",
+                    "Send Message"
                 ]
             },
             "CreateGuideline": "Creation of guidelines",
@@ -351,10 +351,10 @@
                 "Description": "指定した方式でテキストをハッシュ化します",
                 "Example": "`/hash テキスト SHA256`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "GenerateSuccess": "Generated a hash",
@@ -365,10 +365,10 @@
                 "Description": "使い方を表示します",
                 "Example": "`/help`\n`/help auth`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "NoCommand": "Command does not exist",
@@ -379,13 +379,13 @@
                 "Description": "ひろゆきを召喚、退出します",
                 "Example": "`/hiroyuki`",
                 "UserPermission": [
-                    "チャンネルの管理"
+                    "Manage Channels"
                 ],
                 "BotPermission": [
-                    "チャンネルの閲覧",
-                    "メッセージの送信",
-                    "ウェブフックの管理",
-                    "チャンネルの管理"
+                    "View Channels",
+                    "Send Message",
+                    "Manage Webhooks",
+                    "Manage Channels"
                 ]
             }
         },
@@ -394,10 +394,10 @@
                 "Description": "カスタマイズされた招待リンクを作成します",
                 "Example": "`/invite 100 1`\n`/invite 500`",
                 "UserPermission": [
-                    "招待リンクの作成"
+                    "Create Invite"
                 ],
                 "BotPermission": [
-                    "招待リンクの作成"
+                    "Create Invite"
                 ]
             },
             "Reason": "Created by {user}",
@@ -408,10 +408,10 @@
                 "Description": "招待ランキングを表示します",
                 "Example": "`/inviter`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Ranking": "Invitation Ranking",
@@ -422,10 +422,10 @@
                 "Description": "サーバー又はユーザーの招待一覧を表示します",
                 "Example": "`/invites`\n`/invites @TakasumiBOT`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "GetFailed": "Failed to get invite link",
@@ -438,10 +438,10 @@
                 "Description": "指定されたメンバーをサーバーからKICKします",
                 "Example": "`/kick @Arashi`",
                 "UserPermission": [
-                    "メンバーをKICK"
+                    "Kick Members"
                 ],
                 "BotPermission": [
-                    "メンバーをKICK"
+                    "Kick Members"
                 ]
             },
             "KickFailed": "Could not kick",
@@ -455,10 +455,10 @@
                 "Description": "式を計算します",
                 "Example": "`/math 4 * 25`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Success": "Calculated",
@@ -471,10 +471,10 @@
                 "Description": "指定したアドレスのMinecraftサーバーの情報を表示します",
                 "Example": "`/mc JavaEdition 2b2t.jp`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "GetFailed": "Could not get",
@@ -492,10 +492,10 @@
                 "Description": "Make it a Quoteを生成します",
                 "Example": "`/miq これはテストです`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "GenerateFailed": "Could not generate",
@@ -506,12 +506,12 @@
                 "Description": "モデレート機能を設定します",
                 "Example": "`/moderate high`",
                 "UserPermission": [
-                    "サーバーの管理"
+                    "Manage Server"
                 ],
                 "BotPermission": [
-                    "メッセージの削除",
-                    "チャンネルの閲覧",
-                    "メッセージの送信"
+                    "Manage Messages",
+                    "View Channels",
+                    "Send Message"
                 ]
             },
             "DisabledFailed": "Failed to turn off moderation",
@@ -525,10 +525,10 @@
                 "Description": "最近のニュースを表示します",
                 "Example": "`/news`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "GetFailed": "Could not get",
@@ -539,10 +539,10 @@
                 "Description": "NPMパッケージを検索して表示します",
                 "Example": "`/npm discord.js`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Creater": "Author",
@@ -557,10 +557,10 @@
                 "Description": "DNS情報を取得します",
                 "Example": "`/nslookup google.com`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "GetFailed": "Could not get",
@@ -572,10 +572,10 @@
                 "Description": "おみくじを引きます",
                 "Example": "`/omikuji`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             }
         },
@@ -584,12 +584,12 @@
                 "Description": "役職パネルを作成します",
                 "Example": "`/panel title @Role1 @Role2`",
                 "UserPermission": [
-                    "ロールの管理"
+                    "Manage Roles"
                 ],
                 "BotPermission": [
-                    "ロールの管理",
-                    "チャンネルの閲覧",
-                    "メッセージの送信"
+                    "Manage Roles",
+                    "View Channels",
+                    "Send Message"
                 ]
             },
             "NoSelect": "No role selected",
@@ -601,10 +601,10 @@
                 "Description": "指定されたユーザーの権限を表示します",
                 "Example": "`/permission @TakasumiBOT`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "OfPermission": "Permissions for {user}",
@@ -616,10 +616,10 @@
                 "Description": "アンケートを作成することができます",
                 "Example": "`/poll title One two Three`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "リアクションの追加"
+                    "Add Reactions"
                 ]
             }
         },
@@ -628,10 +628,10 @@
                 "Description": "PIPパッケージを検索して表示します",
                 "Example": "`/pypi discord.py`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Creater": "Author",
@@ -647,10 +647,10 @@
                 "Description": "QRコードを生成・読み取ります",
                 "Example": "`/qr 生成 text`\n`/qr 読み込む https://example.com/qr.png`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Generating": "Generating...",
@@ -667,10 +667,10 @@
                 "Description": "指定した役職の情報を表示します",
                 "Example": "`/role @Role`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "OfInfo": "Information on",
@@ -691,10 +691,10 @@
                 "Description": "Webサイトの安全性を評価します",
                 "Example": "`/safeweb https://google.com/`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Failed": "Could not rate",
@@ -714,10 +714,10 @@
                 "Description": "プログラムを実行します",
                 "Example": "`/script`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "RunCode": "run code",
@@ -729,10 +729,10 @@
                 "Description": "サーバーの情報を表示します",
                 "Example": "`/server`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             }
         },
@@ -741,12 +741,12 @@
                 "Description": "サーバーの各種設定を変更します",
                 "Example": "`/setting bump @Role`\n`/setting help`",
                 "Permission": [
-                    "管理者"
+                    "Administrator"
                 ],
                 "BotPermission": [
-                    "チャンネルの閲覧",
-                    "メッセージの送信",
-                    "ウェブフックの管理"
+                    "View Channels",
+                    "Send Message",
+                    "Manage Webhooks"
                 ]
             },
             "Owner": "Wwner",
@@ -760,10 +760,10 @@
                 "Description": "短縮URLを作成します",
                 "Example": "`/short https://google.com/`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Failed": "Failed to shorten URL",
@@ -774,10 +774,10 @@
                 "Description": "マインクラフトのスキンを検索します",
                 "Example": "`/skin User`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "GetFailed": "Could not get",
@@ -791,10 +791,10 @@
                 "Description": "チャンネルに低速モードを設定します",
                 "Example": "`/slowmode 100`",
                 "UserPermission": [
-                    "チャンネルの管理"
+                    "Manage Channels"
                 ],
                 "BotPermission": [
-                    "チャンネルの管理"
+                    "Manage Channels"
                 ]
             },
             "SetupFailed": "Failed to set slow mode",
@@ -807,10 +807,10 @@
                 "Description": "Snowflakeを解析します",
                 "Example": "`/snowflake 987698915820335124`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Failed": "Could not parse",
@@ -822,10 +822,10 @@
                 "Description": "BOTの情報やサーバーの状態を表示します",
                 "Example": "`/status`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Status": "Status",
@@ -838,13 +838,13 @@
                 "Description": "簡易的なチケット機能を作成します",
                 "Example": "`/ticket`",
                 "UserPermission": [
-                    "チャンネルの管理",
-                    "メッセージの管理"
+                    "Manage Channels",
+                    "Manage Message"
                 ],
                 "BotPermission": [
-                    "チャンネルの閲覧",
-                    "メッセージの送信",
-                    "チャンネルの管理"
+                    "View Channels",
+                    "Send Message",
+                    "Manage Channels"
                 ]
             },
             "Ticket": "Ticket",
@@ -854,13 +854,13 @@
         },
         "timeout": {
             "info": {
-                "Description": "指定したメンバーをタイムアウトします",
+                "Description": "指定したTimeout Membersします",
                 "Example": "`/timeout @Arashi 1000 荒らし`\n`/timeout @Arashi`",
                 "UserPermission": [
-                    "メンバーをモデレート"
+                    "Timeout Members"
                 ],
                 "BotPermission": [
-                    "メンバーをモデレート"
+                    "Timeout Members"
                 ]
             },
             "TimeoutFailed": "Could not time out",
@@ -874,10 +874,10 @@
                 "Description": "実行したチャンネルの1番最初のメッセージリンクを表示します",
                 "Example": "`/top`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "チャンネルの閲覧"
+                    "View Channels"
                 ]
             },
             "Getting": "Acquiring...",
@@ -890,10 +890,10 @@
                 "Description": "テキストを翻訳します",
                 "Example": "`/translate hello 日本語`\n`/translate こんにちは 英語`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "Failed": "Could not be translated",
@@ -906,10 +906,10 @@
                 "Description": "指定されたユーザーを検索して表示します",
                 "Example": "`/user @TakasumiBOT`\n`/user 981314695543783484`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "OfResult": "Search result of",
@@ -929,10 +929,10 @@
                 "Description": "指定されたユーザーを警告します",
                 "Example": "`/warn @Arashi`",
                 "UserPermission": [
-                    "サーバーの管理"
+                    "Manage Server"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "WarnFailed": "Could not warn",
@@ -948,10 +948,10 @@
                 "Description": "Webサイトのスクリーンショットを撮影します",
                 "Example": "`/webshot https://google.com/`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "GetFailed": "Couldn't shoot",
@@ -964,10 +964,10 @@
                 "Description": "Wikipediaの検索をします",
                 "Example": "`/wiki Discord`",
                 "UserPermission": [
-                    "必要なし"
+                    "Not Required"
                 ],
                 "BotPermission": [
-                    "必要なし"
+                    "Not Required"
                 ]
             },
             "GetFailed": "Could not get",

@@ -857,10 +857,10 @@
                 "Description": "指定したメンバーをタイムアウトします",
                 "Example": "`/timeout @Arashi 1000 荒らし`\n`/timeout @Arashi`",
                 "UserPermission": [
-                    "メンバーをモデレート"
+                    "メンバーをタイムアウト"
                 ],
                 "BotPermission": [
-                    "メンバーをモデレート"
+                    "メンバーをタイムアウト"
                 ]
             },
             "TimeoutFailed": "タイムアウト出来ませんでした",
