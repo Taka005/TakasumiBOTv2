@@ -56,7 +56,7 @@ module.exports = async(interaction)=>{
         await interaction.reply({
           embeds:[{
             author:{
-              name: `チケットを生成しました`,
+              name: `チケットを作成しました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
             description: `<#${ch.id}>を作成しました`,

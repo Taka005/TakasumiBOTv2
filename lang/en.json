@@ -1035,8 +1035,8 @@
             "CreateFailedDescription2": "Cannot create ticket category because it does not exist",
             "Ticket": "Welcome to ticket",
             "Close": "Close",
-            "GeneratedTicket": "Generated a ticket",
-            "GeneratedTicketdescription": "Created {channel}"
+            "CreateTicket": "Created a ticket",
+            "CreateTicketdescription": "Created {channel}"
         },
         "afk": {
             "Disable": "Disabled AFK",
