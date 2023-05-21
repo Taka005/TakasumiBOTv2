@@ -34,7 +34,6 @@ module.exports = async(client)=>{
 
    //グローバルチャット
     require("./function/globalchat/gc")(message).catch(()=>{});
-    require("./function/globalchat/ugc/send")(message).catch(()=>{});
 
     //コマンド
     fs.readdir("./module/function/command/",(err,files)=>{ 

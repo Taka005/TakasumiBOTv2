@@ -1,45 +1,31 @@
-const spam = require("../../../lib/spam");
-const Spam = new spam(800);
-
 module.exports = async(message)=>{
-  const db = require("../../../lib/db");
   const fetch = require("node-fetch");
-  const { ChannelType, WebhookClient } = require("discord.js");
+  const { WebhookClient } = require("discord.js");
   require("dotenv").config();
-  
-  const mute_server = await db(`SELECT * FROM mute_server WHERE id = ${message.guild.id} LIMIT 1;`);
-  const mute_user = await db(`SELECT * FROM mute_user WHERE id = ${message.author.id} LIMIT 1;`);
-
-  const data = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
-  const account = await db(`SELECT * FROM account WHERE id = ${message.author.id} LIMIT 1;`);
-
-  if(
-    message.channel.type !== ChannelType.GuildText||
-    message.content.length > 300||
-    !data[0]||
-    mute_server[0]||
-    mute_user[0]||
-    !account[0]||
-    Spam.count(message.guild.id)
-  ) return;
+  const db = require("../../../lib/db");
+  const fetchMessage = require("../../../lib/fetchMessage");
+  const fetchWebhookMessage = require("../../../lib/fetchWebhookMessage");
 
   let reference = {
-    "channel_id": (message.reference.channelId || null),
-    "guild_id": (message.reference.guildId || null),
-    "message_id": (message.reference.messageId || null)
+    "channel_id": message.reference.channelId || null,
+    "guild_id": message.reference.guildId || null,
+    "message_id": message.reference.messageId || null
   };
 
-  if(message.reference.messageId&&message.reference.channelId){
-    try{
-      const ref = await db(`SELECT * FROM global WHERE channel = ${message.reference.channelId} LIMIT 1;`);
+  if(reference.message_id&&reference.channel_id){
+    const replyMessage = await fetchMessage(message.channel,reference.message_id);
+    if(replyMessage){
+      reference["message_id"] = replyMessage.id;
+    }else{
+      const global = await db(`SELECT * FROM global WHERE channel = ${reference.channel_id} LIMIT 1;`);
 
-      const reply_webhook = new WebhookClient({id: ref[0].id, token: ref[0].token});
-      const msg = await reply_webhook.fetchMessage(message.reference.messageId);
-      reference["message_id"] = msg.embeds[0].image.url.match(/\d{18,19}/g)[0];
-    }catch{
-      const msg = await message.channel.messages.fetch({"message":message.reference.messageId})
-        .catch(()=>{});
-      reference["message_id"] = msg.id;
+      const replyWebhook = new WebhookClient({id: global[0].id, token: global[0].token});
+      const replyWebhookMessage = await fetchWebhookMessage(replyWebhook,reference.message_id);
+      if(replyWebhookMessage){
+        reference["message_id"] = replyWebhookMessage.embeds[0].image.url.match(/\d{18,19}/g)[0];
+      }else{
+        reference["message_id"] = null;
+      }
     }
   }
 
