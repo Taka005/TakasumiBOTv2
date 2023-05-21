@@ -3,9 +3,9 @@ module.exports = (message)=>{
   const { Colors } = require("discord.js");
   if(!time[message.guild.id]){
     time[message.guild.id] = {
-        time1: 0,
-        time2: 0,
-        last: 0
+      time1: 0,
+      time2: 0,
+      last: 0
     };
   }
 

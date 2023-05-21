@@ -18,7 +18,7 @@ module.exports = async(client)=>{
     count.message();
 
     const Lang = new lang();
-    Lang.set(message.guild.id);
+    await Lang.set(message.guild.id);
 
     //event/message
     fs.readdir("./module/event/messageCreate/",(err,files)=>{
@@ -104,7 +104,7 @@ module.exports = async(client)=>{
     count.command();
 
     const Lang = new lang();
-    Lang.set(interaction.guild.id);
+    await Lang.set(interaction.guild.id);
 
     //event/interaction
     fs.readdir("./module/event/interactionCreate/",(err,files)=>{ 
