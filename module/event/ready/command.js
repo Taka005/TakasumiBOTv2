@@ -107,11 +107,6 @@ module.exports = async(client)=>{
                 .setName("days")
                 .setDescription("Number of days to delete messages")
                 .setDescriptionLocalization("ja","メッセージを削除する日数")),
-          //board
-          new SlashCommandBuilder()
-            .setName("board")
-            .setDescription("None")
-            .setDescriptionLocalization("ja","なし"),
           //cipher
           new SlashCommandBuilder()
             .setName("cipher")
