@@ -5,6 +5,7 @@ module.exports = async(message)=>{
   const { WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const fetchMessage = require("../../lib/fetchMessage");
+  const fetchWebhookMessage = require("../../lib/fetchWebhookMessage");
 
   const global = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
   if(!global[0]) return;
@@ -40,6 +41,8 @@ module.exports = async(message)=>{
     ]
   }).catch(()=>{});
 
+  require("./ugc/send")(message);
+
   const content = message.content
     .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,"[[招待リンク]](https://discord.gg/NEesRdGQwD)")
 
@@ -72,14 +75,15 @@ module.exports = async(message)=>{
       ];
     }else{
       const replyWebhook = new WebhookClient({id: global[0].id, token: global[0].token});
-      const replyWebhookMessage = await replyWebhook.fetchMessage(message.reference.messageId);
-
-      embed[0].fields = [
-        {
-          name: "\u200b",
-          value: `**${replyWebhookMessage.embeds[0].author.name}>>** ${replyWebhookMessage.embeds[0].description||"なし"}`
-        }
-      ];
+      const replyWebhookMessage = await fetchWebhookMessage(replyWebhook,message.reference.messageId);
+      if(replyWebhookMessage){
+        embed[0].fields = [
+          {
+            name: "\u200b",
+            value: `**${replyWebhookMessage.embeds[0].author.name}>>** ${replyWebhookMessage.embeds[0].description||"なし"}`
+          }
+        ];
+      }
     }
   }
 
