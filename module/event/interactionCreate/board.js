@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   const random = require("../../lib/random");
   const board = require("../../lib/board");
   if(!interaction.isButton()) return;
-  if(interaction.customId.startWith("board")){
+  if(interaction.customId.startsWith("board")){
     const pos = interaction.customId.split("_")[1];
 
     if(interaction.message.content.match(/\d{18,19}/g)[0] !== interaction.user.id) return await interaction.reply({
@@ -30,25 +30,30 @@ module.exports = async(interaction)=>{
       interaction.message.components[2].components[2].label,
     ];
 
-    let newPanel = panel;
-    let stats = "";
+    let newPanel = [...panel];
     newPanel[pos] = "0";
 
     if(panel.every(label=>label === "-")){
       newPanel[random(board.near[pos])] = "x";
     }else{
-      const judge = board.win.find((array)=>{
+      const judge = board.win.map((array)=>{
         const data = array.map(pos=>newPanel[pos]);
         if(data.every(res=>res === "0")){
           return "勝利";
         }else if(data.every(res=>res === "x")){
           return "敗北";
         }
-      });
-      
-      console.log(judge)
+      }).filter(select=>select!==undefined);
+      if(judge){
+        console.log("WIN of No")
+      }
+      const reach = board.reach.map((array)=>{
+        if(array.map(pos=>newPanel[pos]).every(res=>res === "0")) return true;
+      }).filter(select=>select!==undefined);
+      if(reach){
+        console.log(reach);
+      }
     }
-
     const button = newPanel.map((data,i)=>{
       if(data === "0"){
         return new ButtonBuilder()
@@ -82,12 +87,14 @@ module.exports = async(interaction)=>{
             button[0],
             button[1],
             button[2]
-          )
+          ),
+        new ActionRowBuilder()
           .addComponents(
             button[3],
             button[4],
             button[5]
-          )
+          ),
+        new ActionRowBuilder()
           .addComponents(
             button[6],
             button[7],
@@ -95,10 +102,10 @@ module.exports = async(interaction)=>{
           )
       ]
     })
-    .then(()=>{
+    .then(async()=>{
       await interaction.deferUpdate({});
     })
-    .catch(()=>{
+    .catch(async(err)=>{
       await interaction.reply({
         embeds:[{
           author:{

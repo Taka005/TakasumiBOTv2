@@ -23,7 +23,8 @@ module.exports = async(interaction)=>{
             new ButtonBuilder()
               .setStyle(ButtonStyle.Secondary)
               .setLabel("-")
-              .setCustomId("board_2"))
+              .setCustomId("board_2")),
+        new ActionRowBuilder()
           .addComponents(
             new ButtonBuilder()
               .setStyle(ButtonStyle.Secondary)
@@ -36,7 +37,8 @@ module.exports = async(interaction)=>{
             new ButtonBuilder()
               .setStyle(ButtonStyle.Secondary)
               .setLabel("-")
-              .setCustomId("board_5"))
+              .setCustomId("board_5")),
+        new ActionRowBuilder()
           .addComponents(
             new ButtonBuilder()
               .setStyle(ButtonStyle.Secondary)
