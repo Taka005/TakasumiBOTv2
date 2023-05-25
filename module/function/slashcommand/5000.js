@@ -33,10 +33,10 @@ module.exports = async(interaction,Lang)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "生成出来ませんでした",
+            name: Lang.get("command.5000.GenerateFailed"),
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          description: "もう一度やり直してください"
+          description: Lang.get("command.5000.GenerateFailedDescription")
         }]
       });
     }

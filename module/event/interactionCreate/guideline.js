@@ -1,4 +1,4 @@
-module.exports = async(interaction)=>{
+module.exports = async(interaction,Lang)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("guideline_")){

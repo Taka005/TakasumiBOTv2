@@ -1,4 +1,4 @@
-module.exports = async(interaction)=>{
+module.exports = async(interaction,Lang)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "View Avatar"){

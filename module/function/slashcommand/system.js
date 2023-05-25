@@ -1,4 +1,4 @@
-module.exports = async(interaction)=>{
+module.exports = async(interaction,Lang)=>{
   const { WebhookClient, Colors } = require("discord.js");
   const { admin } = require("../../../config.json");
   const db = require("../../lib/db");

@@ -1,4 +1,4 @@
-module.exports = async(interaction)=>{
+module.exports = async(interaction,Lang)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const fetchMember = require("../../lib/fetchMember");
   const fetchUser = require("../../lib/fetchUser");

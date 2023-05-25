@@ -1,4 +1,4 @@
-module.exports = async(interaction)=>{
+module.exports = async(interaction,Lang)=>{
   const fetch = require("node-fetch");
   const { Colors } = require("discord.js");
   if(!interaction.isContextMenuCommand()) return;

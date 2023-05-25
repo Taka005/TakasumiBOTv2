@@ -1,7 +1,7 @@
 const spam = require("../../lib/spam");
 const Spam = new spam(5000);
 
-module.exports = async(interaction)=>{
+module.exports = async(interaction,Lang)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId === "role"){

@@ -1,4 +1,4 @@
-module.exports = async(interaction)=>{
+module.exports = async(interaction,Lang)=>{
   const { Colors } = require("discord.js");
   const db = require("../../lib/db");
   const time = require("../../lib/time");

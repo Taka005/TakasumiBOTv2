@@ -1,4 +1,4 @@
-module.exports = async(interaction)=>{
+module.exports = async(interaction,Lang)=>{
   const { Colors, AttachmentBuilder } = require("discord.js");
   const fetch = require("node-fetch");
   if(!interaction.isChatInputCommand()) return;

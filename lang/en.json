@@ -1,7 +1,7 @@
 {
     "ErrorCode": "Error Code",
     "SupportServer": "Support Server",
-    "RequirePermission": "Required manifestation",
+    "RequirePermission": "Required Permission",
     "NoUserPermission": "Not authorized",
     "NoUserPermissionDescription": "You must have the following privileges to run this command",
     "NoBotPermission": "Bot does not have permission",
@@ -35,7 +35,8 @@
                 ]
             },
             "AboutBot": "What is TakasumiBOT?",
-            "Description": ""
+            "Description": "",
+            "BotInvite": "Bot Invite"
         },
         "account": {
             "info": {

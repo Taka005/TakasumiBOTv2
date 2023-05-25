@@ -1,4 +1,4 @@
-module.exports = async(interaction)=>{
+module.exports = async(interaction,Lang)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
@@ -9,16 +9,16 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Red,
         author:{
-          name: "登録されていません",
+          name: Lang.get("command.account.NoRegister"),
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "以下のリンクから登録を行うことができます\n登録が完了すると[グローバルチャット利用規約](https://gc.taka.ml/)にも同意したものとみなします"
+        description: Lang.get("command.account.NoRegisterDescription")
       }], 
       components:[
         new ActionRowBuilder()
           .addComponents( 
             new ButtonBuilder()
-              .setLabel("サイトへ飛ぶ")
+              .setLabel(Lang.get("command.account.GoSite"))
               .setURL("https://auth.taka.ml/")
               .setStyle(ButtonStyle.Link))
       ],
@@ -29,7 +29,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Green,
         author:{
-          name: "登録情報",
+          name: Lang.get("command.account.RegisterInfo"),
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
         description: `ID\n\`${account[0].id}\`\nIPアドレス\n\`${account[0].ip}\`\n登録日時/更新日時\n\`${new Date(account[0].time).toLocaleString()}\``
