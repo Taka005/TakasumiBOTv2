@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const os = require("os");
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");

@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const fs = require("fs");
   const { Colors } = require("discord.js");
   const { admin } = require("../../../config.json");

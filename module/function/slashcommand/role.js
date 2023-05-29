@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const permission = require("../../lib/permission");
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;

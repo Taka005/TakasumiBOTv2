@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isContextMenuCommand()) return;

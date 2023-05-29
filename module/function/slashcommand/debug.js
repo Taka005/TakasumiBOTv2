@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const { admin } = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;

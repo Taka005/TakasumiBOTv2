@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const mathjs = require("mathjs");
   const { Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;

@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const fetchMember = require("../../lib/fetchMember");
@@ -31,10 +31,6 @@ module.exports = async(interaction,Lang)=>{
             {
               name: "/setting ignore",
               value: "メッセージ展開、Bump通知、Dissoku通知の無効化と有効化を切り替えます\n有効にするとBump通知、Dissoku通知の設定情報は削除されます"
-            },
-            {
-              name: "/setting lang",
-              value: "BOTの表示言語を日本語と英語で切り替えます"
             },
             {
               name: "/setting info",
@@ -561,49 +557,6 @@ module.exports = async(interaction,Lang)=>{
           }]
         });
       }
-    }else if(interaction.options.getSubcommand() === "lang"){//lang
-      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "権限がありません",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
-          },
-          description: "このコマンドを実行するには以下の権限を持っている必要があります",
-          fields:[
-            {
-              name: "必要な権限",
-              value: "```管理者```"
-            }
-          ]
-        }],
-        ephemeral: true
-      });
-
-      const data = await db(`SELECT * FROM lang WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      if(data[0]){
-        await db(`DELETE FROM lang WHERE id = ${interaction.guild.id};`);
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "日本語に切り替えました",
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
-            }
-          }]
-        });
-      }else{
-        await db(`INSERT INTO lang (id, time) VALUES("${interaction.guild.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),time = VALUES (time);`);
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "Switched to English",
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
-            }
-          }]
-        });
-      }
     }else if(interaction.options.getSubcommand() === "info"){//info
       const bump = await db(`SELECT * FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const dissoku = await db(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
@@ -611,7 +564,6 @@ module.exports = async(interaction,Lang)=>{
       const hiroyuki = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`); 
       const join = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const lang = await db(`SELECT * FROM lang WHERE id = ${interaction.guild.id} LIMIT 1;`);
       const leave = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const moderate = await db(`SELECT * FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
       const pin = await db(`SELECT * FROM pin WHERE server = ${interaction.guild.id};`);
@@ -658,12 +610,7 @@ module.exports = async(interaction,Lang)=>{
               name: "退出メッセージ",
               value: leave[0] ? "設定済み":"未設定",
               inline: true
-            },    
-            {
-              name: "言語",
-              value: lang[0] ? "英語":"日本語",
-              inline: true
-            },  
+            },
             {
               name: "モデレート",
               value: moderate[0] ? "設定済み":"未設定",

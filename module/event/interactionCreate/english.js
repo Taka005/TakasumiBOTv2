@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId === "english"){
@@ -9,7 +9,7 @@ module.exports = async(interaction,Lang)=>{
           url: "https://cdn.taka.ml/images/bot.png"
         },
         title: "Thanks for adding the Bot!",
-        description: "My name is TakasumiBOT\nIt is a powerful BOT with useful functions!\n\nRun `/help` to view the help for the command\n**First run `/setting lang` to switch the language**",
+        description: "My name is TakasumiBOT\nIt is a powerful BOT with useful functions!\n\nRun `/help` to view the help for the command",
         timestamp: new Date()
       }],
       components:[

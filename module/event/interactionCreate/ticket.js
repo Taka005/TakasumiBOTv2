@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors, PermissionFlagsBits } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId === "ticket"){

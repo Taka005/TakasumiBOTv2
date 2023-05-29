@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors } = require("discord.js");
   require("dotenv").config();

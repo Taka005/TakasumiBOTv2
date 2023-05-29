@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
     const { WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
     const db = require("../../lib/db");
     if(!interaction.isChatInputCommand()) return;
@@ -75,19 +75,6 @@ module.exports = async(interaction,Lang)=>{
             });
           })
       }else{//登録なし
-        const lang = await db(`SELECT * FROM lang WHERE id = ${interaction.guild.id} LIMIT 1;`);
-        if(lang[0]) return await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "Hiroyuki is not available",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
-            },
-            description: "Hiroyuki is available only in Japanese"
-          }],
-          ephemeral: true
-        });
-
         await interaction.deferReply();
         await interaction.channel.createWebhook({
           name: "ひろゆき",

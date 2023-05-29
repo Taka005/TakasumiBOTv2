@@ -704,11 +704,6 @@ module.exports = async(client)=>{
                 .setDescriptionLocalization("ja","Bump通知・Dissoku通知・メッセージ展開の有効・無効を切り替えます"))
             .addSubcommand(subcommand =>
               subcommand
-                .setName("lang")
-                .setDescription("Switch Bot view language(Japanese/English)")
-                .setDescriptionLocalization("ja","BOTの表示言語を英語・日本語で切り替えます"))
-            .addSubcommand(subcommand =>
-              subcommand
                 .setName("info")
                 .setDescription("View database configuration status")
                 .setDescriptionLocalization("ja","データベースの設定状況を表示します"))

@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { Colors } = require("discord.js");
   const isUrl = require("../../lib/isUrl");

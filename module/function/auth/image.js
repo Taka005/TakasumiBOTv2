@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { ActionRowBuilder, StringSelectMenuBuilder, AttachmentBuilder, Colors } = require("discord.js");
   const random = require("../../lib/random");

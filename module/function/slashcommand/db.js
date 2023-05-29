@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const { AttachmentBuilder ,Colors } = require("discord.js");
   const { admin } = require("../../../config.json");
   const db = require("../../lib/db");
