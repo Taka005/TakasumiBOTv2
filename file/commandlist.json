@@ -1,368 +1,368 @@
 {
     "5000":{
-        "description":"5000兆円ジェネレーター",
-        "example":"`/5000 上の文字 下の文字`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "5000兆円ジェネレーター",
+        "example": "`/5000 上の文字 下の文字`",
+        "userPermission": ["必要なし"],
+        "note": "なし"
     },
     "about":{
-        "description":"BOTについての情報や、関連リンクを表示します",
-        "example":"`/about`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "BOTについての情報や、関連リンクを表示します",
+        "example": "`/about`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "account":{
-        "description":"登録されているアカウント情報を表示します",
-        "example":"`/account`",
-        "permission":["必要なし"],
-        "note":"アカウント情報の削除は[サポートサーバー](https://discord.gg/NEesRdGQwD)にて連絡してください"
+        "description": "登録されているアカウント情報を表示します",
+        "example": "`/account`",
+        "UserPermission": ["必要なし"],
+        "note": "アカウント情報の削除は[サポートサーバー](https://discord.gg/NEesRdGQwD)にて連絡してください"
     },
     "ad":{
-        "description":"BOTの宣伝を表示します",
-        "example":"`/ad`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "BOTの宣伝を表示します",
+        "example": "`/ad`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "afk":{
-        "description":"AFK(留守電)を設定できます",
-        "example":"`/afk お出かけ中`",
-        "permission":["必要なし"],
-        "note":"自分が会話に戻ると、その間にされたメンションの数が表示されます"
+        "description": "AFK(留守電)を設定できます",
+        "example": "`/afk お出かけ中`",
+        "UserPermission": ["必要なし"],
+        "note": "自分が会話に戻ると、その間にされたメンションの数が表示されます"
     },
     "auth":{
-        "description":"メンバー認証を設定します\n4種類の認証方式を選択できます",
-        "example":"`/auth 標準`",
-        "permission":["ロールの管理"],
-        "note":"標準: ボタンを押して認証します\n計算: 簡単な計算を行って認証します\n画像: 画像に表示される文字列を選択して認証します\nWeb: TakasumiBOT Authを使用しWebで認証します"
+        "description": "メンバー認証を設定します\n4種類の認証方式を選択できます",
+        "example": "`/auth 標準`",
+        "UserPermission": ["ロールの管理"],
+        "note": "標準: ボタンを押して認証します\n計算: 簡単な計算を行って認証します\n画像: 画像に表示される文字列を選択して認証します\nWeb: TakasumiBOT Authを使用しWebで認証します"
     },
     "avatar":{
-        "description":"指定されたユーザーのアイコンを表示します",
-        "example":"`/avatar @TakasumiBOT`\n`/avatar 981314695543783484`",
-        "permission":["必要なし"],
-        "note":"サーバーで違うアイコンを設定してる場合は両方表示されます"
+        "description": "指定されたユーザーのアイコンを表示します",
+        "example": "`/avatar @TakasumiBOT`\n`/avatar 981314695543783484`",
+        "UserPermission": ["必要なし"],
+        "note": "サーバーで違うアイコンを設定してる場合は両方表示されます"
     },
     "ban":{
-        "description":"メンバー・ユーザーをサーバーからBANすることができます",
-        "example":"`/ban @Arashi`\n`/ban 1066168542669590599`",
-        "permission":["メンバーをBAN"],
-        "note":"サーバーにいないユーザーでもIDを使用してBANすることができます"
+        "description": "メンバー・ユーザーをサーバーからBANすることができます",
+        "example": "`/ban @Arashi`\n`/ban 1066168542669590599`",
+        "UserPermission": ["メンバーをBAN"],
+        "note": "サーバーにいないユーザーでもIDを使用してBANすることができます"
     },
     "cipher":{
-        "description":"文字列を暗号・復号します",
-        "example":"`/cipher 暗号化 moji key`\n`/cipher 復号化 d1faf7e95c key`",
-        "permission":["必要なし"],
-        "note":"aes-128-cbcを使用して暗号化しています"
+        "description": "文字列を暗号・復号します",
+        "example": "`/cipher 暗号化 moji key`\n`/cipher 復号化 d1faf7e95c key`",
+        "UserPermission": ["必要なし"],
+        "note": "aes-128-cbcを使用して暗号化しています"
     },
     "colorrole":{
-        "description":"色付きロールを簡単に作成できます",
-        "example":"`/colorrole 白`",
-        "permission":["ロールの管理"],
-        "note":"なし"
+        "description": "色付きロールを簡単に作成できます",
+        "example": "`/colorrole 白`",
+        "UserPermission": ["ロールの管理"],
+        "note": "なし"
     },
     "db":{
-        "description":"関係者以外実行できません",
-        "example":"なし",
-        "permission":["関係者"],
-        "note":"なし"
+        "description": "関係者以外実行できません",
+        "example": "なし",
+        "UserPermission": ["関係者"],
+        "note": "なし"
     },
     "debug":{
-        "description":"関係者以外実行できません",
-        "example":"なし",
-        "permission":["関係者"],
-        "note":"なし"
+        "description": "関係者以外実行できません",
+        "example": "なし",
+        "UserPermission": ["関係者"],
+        "note": "なし"
     },
     "del":{
-        "description":"指定された数だけメッセージを一括で削除します",
-        "example":"`/del 30`\n`/del 30 @Arashi`",
-        "permission":["メッセージの管理"],
-        "note":"2週間前かつ100個までメッセージを削除できます"
+        "description": "指定された数だけメッセージを一括で削除します",
+        "example": "`/del 30`\n`/del 30 @Arashi`",
+        "UserPermission": ["メッセージの管理"],
+        "note": "2週間前かつ100個までメッセージを削除できます"
     },
     "embed":{
-        "description":"埋め込みを簡単に作成し表示できます",
-        "example":"`/embed`",
-        "permission":["なし"],
-        "note":"モーダルを使用し埋め込みの内容を設定します"
+        "description": "埋め込みを簡単に作成し表示できます",
+        "example": "`/embed`",
+        "UserPermission": ["なし"],
+        "note": "モーダルを使用し埋め込みの内容を設定します"
     },
     "emoji":{
-        "description":"指定した絵文字の情報を表示します",
-        "example":"`/emoji 🤔`",
-        "permission":["なし"],
-        "note":"サーバー上のカスタム絵文字を指定する必要があります"
+        "description": "指定した絵文字の情報を表示します",
+        "example": "`/emoji 🤔`",
+        "UserPermission": ["なし"],
+        "note": "サーバー上のカスタム絵文字を指定する必要があります"
     },
     "export":{
-        "description":"サーバーのデータをJSON形式に出力します",
-        "example":"`/export`",
-        "permission":["管理者"],
-        "note":"様々なサーバーのデータが含まれるため扱いには注意してください"
+        "description": "サーバーのデータをJSON形式に出力します",
+        "example": "`/export`",
+        "UserPermission": ["管理者"],
+        "note": "様々なサーバーのデータが含まれるため扱いには注意してください"
     },
     "faq":{
-        "description":"よくある質問一覧を表示します",
-        "example":"`/faq`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "よくある質問一覧を表示します",
+        "example": "`/faq`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "follow":{
-        "description":"BOTのアナウンスチャンネルを追加します",
-        "example":"`/follow`",
-        "permission":["メッセージの管理","チャンネルの管理"],
-        "note":"なし"
+        "description": "BOTのアナウンスチャンネルを追加します",
+        "example": "`/follow`",
+        "UserPermission": ["メッセージの管理","チャンネルの管理"],
+        "note": "なし"
     },
     "gif":{
-        "description":"GIF画像を検索して表示します",
-        "example":"`/gif 楽しい`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "GIF画像を検索して表示します",
+        "example": "`/gif 楽しい`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "globalchat":{
-        "description":"色々なサーバーと繋がるグローバルチャットを有効化、無効化します",
-        "example":"`/globalchat`",
-        "permission":["チャンネルの管理"],
-        "note":"会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.ml/)に同意する必要があります"
+        "description": "色々なサーバーと繋がるグローバルチャットを有効化、無効化します",
+        "example": "`/globalchat`",
+        "UserPermission": ["チャンネルの管理"],
+        "note": "会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.ml/)に同意する必要があります"
     },
     "guideline":{
-        "description":"サーバーのガイドラインを作成し、同意するとロールが付与されます",
-        "example":"`/guideline @Role`",
-        "permission":["ロールの管理"],
-        "note":"なし"
+        "description": "サーバーのガイドラインを作成し、同意するとロールが付与されます",
+        "example": "`/guideline @Role`",
+        "UserPermission": ["ロールの管理"],
+        "note": "なし"
     },
     "hash":{
-        "description":"指定した方式でテキストをハッシュ化します",
-        "example":"`/hash テキスト SHA256`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "指定した方式でテキストをハッシュ化します",
+        "example": "`/hash テキスト SHA256`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "help":{
-        "description":"使い方を表示します",
-        "example":"`/help`\n`/help auth`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "使い方を表示します",
+        "example": "`/help`\n`/help auth`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "hiroyuki":{
-        "description":"ひろゆきを召喚、退出します",
-        "example":"`/hiroyuki`",
-        "permission":["チャンネルの管理"],
-        "note":"なし"
+        "description": "ひろゆきを召喚、退出します",
+        "example": "`/hiroyuki`",
+        "UserPermission": ["チャンネルの管理"],
+        "note": "なし"
     },
     "invite":{
-        "description":"カスタマイズされた招待リンクを作成します",
-        "example":"`/invite 100 1`\n`/invite 500`",
-        "permission":["招待リンクの作成"],
-        "note":"なし"
+        "description": "カスタマイズされた招待リンクを作成します",
+        "example": "`/invite 100 1`\n`/invite 500`",
+        "UserPermission": ["招待リンクの作成"],
+        "note": "なし"
     },
     "inviter":{
-        "description":"招待ランキングを表示します",
-        "example":"`/inviter`",
-        "permission":["なし"],
-        "note":"なし"
+        "description": "招待ランキングを表示します",
+        "example": "`/inviter`",
+        "UserPermission": ["なし"],
+        "note": "なし"
     },
     "invites":{
-        "description":"サーバー又はユーザーの招待一覧を表示します",
-        "example":"`/invites`\n`/invites @TakasumiBOT`",
-        "permission":["なし"],
-        "note":"なし"
+        "description": "サーバー又はユーザーの招待一覧を表示します",
+        "example": "`/invites`\n`/invites @TakasumiBOT`",
+        "UserPermission": ["なし"],
+        "note": "なし"
     },
     "kick":{
-        "description":"指定されたメンバーをサーバーからKICKします",
-        "example":"`/kick @Arashi`",
-        "permission":["メンバーをKICK"],
-        "note":"サーバーに存在してるメンバーしかKICKできません"
+        "description": "指定されたメンバーをサーバーからKICKします",
+        "example": "`/kick @Arashi`",
+        "UserPermission": ["メンバーをKICK"],
+        "note": "サーバーに存在してるメンバーしかKICKできません"
     },
     "math":{
-        "description":"式を計算します",
-        "example":"`/math 4 * 25`",
-        "permission":["なし"],
-        "note":"なし"
+        "description": "式を計算します",
+        "example": "`/math 4 * 25`",
+        "UserPermission": ["なし"],
+        "note": "なし"
     },
     "mc":{
-        "description":"指定したアドレスのMinecraftサーバーの情報を表示します",
-        "example":"`/mc Java版 2b2t.jp`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "指定したアドレスのMinecraftサーバーの情報を表示します",
+        "example": "`/mc Java版 2b2t.jp`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "miq":{
-        "description":"Make it a Quoteを生成します",
-        "example":"`/miq これはテストです`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "Make it a Quoteを生成します",
+        "example": "`/miq これはテストです`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "moderate":{
-        "description":"モデレート機能を設定します",
-        "example":"`/moderate`",
-        "permission":["サーバーの管理"],
-        "note":"レベルに応じて反応度が異なります"
+        "description": "モデレート機能を設定します",
+        "example": "`/moderate`",
+        "UserPermission": ["サーバーの管理"],
+        "note": "レベルに応じて反応度が異なります"
     },
     "news":{
-        "description":"最近のニュースを表示します",
-        "example":"`/news`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "最近のニュースを表示します",
+        "example": "`/news`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "npm":{
-        "description":"NPMパッケージを検索して表示します",
-        "example":"`/npm discord.js`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "NPMパッケージを検索して表示します",
+        "example": "`/npm discord.js`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "nslookup":{
-        "description":"DNS情報を取得します",
-        "example":"`/nslookup google.com`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "DNS情報を取得します",
+        "example": "`/nslookup google.com`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "omikuji":{
-        "description":"おみくじを引きます",
-        "example":"`/omikuji`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "おみくじを引きます",
+        "example": "`/omikuji`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "panel":{
-        "description":"役職パネルを作成します",
-        "example":"`/panel title @Role1 @Role2`",
-        "permission":["ロールの管理"],
-        "note":"同じロールは選択できません\n最大10個までロールを選択できます"
+        "description": "役職パネルを作成します",
+        "example": "`/panel title @Role1 @Role2`",
+        "UserPermission": ["ロールの管理"],
+        "note": "同じロールは選択できません\n最大10個までロールを選択できます"
     },
-    "permission":{
-        "description":"指定されたユーザーの権限を表示します",
-        "example":"`/permission @TakasumiBOT`",
-        "permission":["必要なし"],
-        "note":"なし"
+    "UserPermission":{
+        "description": "指定されたユーザーの権限を表示します",
+        "example": "`/UserPermission @TakasumiBOT`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "poll":{
-        "description":"アンケートを作成することができます",
-        "example":"`/poll title One two Three`",
-        "permission":["必要なし"],
-        "note":"選択肢は最大12個まで設定できます"
+        "description": "アンケートを作成することができます",
+        "example": "`/poll title One two Three`",
+        "UserPermission": ["必要なし"],
+        "note": "選択肢は最大12個まで設定できます"
     },
     "pypi":{
-        "description":"PIPパッケージを検索して表示します",
-        "example":"`/pypi discord.py`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "PIPパッケージを検索して表示します",
+        "example": "`/pypi discord.py`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "qr":{
-        "description":"QRコードを生成・読み取ります",
-        "example":"`/qr 生成 text`\n`/qr 読み込む https://example.com/qr.png`",
-        "permission":["必要なし"],
-        "note":"読み込むURLは有効なものである必要があります"
+        "description": "QRコードを生成・読み取ります",
+        "example": "`/qr 生成 text`\n`/qr 読み込む https://example.com/qr.png`",
+        "UserPermission": ["必要なし"],
+        "note": "読み込むURLは有効なものである必要があります"
     },
     "reload":{
-        "description":"関係者以外実行できません",
-        "example":"なし",
-        "permission":["関係者"],
-        "note":"なし"
+        "description": "関係者以外実行できません",
+        "example": "なし",
+        "UserPermission": ["関係者"],
+        "note": "なし"
     },
     "role":{
-        "description":"指定した役職の情報を表示します",
-        "example":"`/role @Role`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "指定した役職の情報を表示します",
+        "example": "`/role @Role`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "safeweb":{
-        "description":"Webサイトの安全性を評価します",
-        "example":"`/safeweb https://google.com/`",
-        "permission":["必要なし"],
-        "note":"指定するURLは有効なものである必要があります"
+        "description": "Webサイトの安全性を評価します",
+        "example": "`/safeweb https://google.com/`",
+        "UserPermission": ["必要なし"],
+        "note": "指定するURLは有効なものである必要があります"
     },
     "script":{
-        "description":"プログラムを実行します",
-        "example":"`/script`",
-        "permission":["必要なし"],
-        "note":"モーダルを使用しプログラムを記入することで実行ができます"
+        "description": "プログラムを実行します",
+        "example": "`/script`",
+        "UserPermission": ["必要なし"],
+        "note": "モーダルを使用しプログラムを記入することで実行ができます"
     },
     "server":{
-        "description":"サーバーの情報を表示します",
-        "example":"`/server`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "サーバーの情報を表示します",
+        "example": "`/server`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "setting":{
-        "description":"サーバーの各種設定を変更します",
-        "example":"`/setting bump @Role`\n`/setting help`",
-        "permission":["管理者"],
-        "note":"詳細は`/setting help`を実行してください"
+        "description": "サーバーの各種設定を変更します",
+        "example": "`/setting bump @Role`\n`/setting help`",
+        "UserPermission": ["管理者"],
+        "note": "詳細は`/setting help`を実行してください"
     },
     "short":{
-        "description":"短縮URLを作成します",
-        "example":"`/short https://google.com/`",
-        "permission":["必要なし"],
-        "note":"指定するURLは有効なものである必要があります"
+        "description": "短縮URLを作成します",
+        "example": "`/short https://google.com/`",
+        "UserPermission": ["必要なし"],
+        "note": "指定するURLは有効なものである必要があります"
     },
     "skin":{
-        "description":"マインクラフトのスキンを検索します",
-        "example":"`/skin User`",
-        "permission":["必要なし"],
-        "note":"Java版専用です"
+        "description": "マインクラフトのスキンを検索します",
+        "example": "`/skin User`",
+        "UserPermission": ["必要なし"],
+        "note": "Java版専用です"
     },
     "slowmode":{
-        "description":"チャンネルに低速モードを設定します",
-        "example":"`/slowmode 100`",
-        "permission":["チャンネルの管理"],
-        "note":"秒単位で低速を設定することができます"
+        "description": "チャンネルに低速モードを設定します",
+        "example": "`/slowmode 100`",
+        "UserPermission": ["チャンネルの管理"],
+        "note": "秒単位で低速を設定することができます"
     },
     "snowflake":{
-        "description":"Snowflakeを解析します",
-        "example":"`/snowflake 987698915820335124`",
-        "permission":["必要なし"],
-        "note":"有効な[Snowflake](https://discord.com/developers/docs/reference#snowflakes)である必要があります"
+        "description": "Snowflakeを解析します",
+        "example": "`/snowflake 987698915820335124`",
+        "UserPermission": ["必要なし"],
+        "note": "有効な[Snowflake](https://discord.com/developers/docs/reference#snowflakes)である必要があります"
     },
     "status":{
-        "description":"BOTの情報やサーバーの状態を表示します",
-        "example":"`/status`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "BOTの情報やサーバーの状態を表示します",
+        "example": "`/status`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "system":{
-        "description":"関係者以外実行できません",
-        "example":"なし",
-        "permission":["関係者"],
-        "note":"なし"
+        "description": "関係者以外実行できません",
+        "example": "なし",
+        "UserPermission": ["関係者"],
+        "note": "なし"
     },
     "ticket":{
-        "description":"簡易的なチケット機能を作成します",
-        "example":"`/ticket`",
-        "permission":["チャンネルの管理","メッセージの管理"],
-        "note":"この機能は未完成のため使いにくい可能性があります"
+        "description": "簡易的なチケット機能を作成します",
+        "example": "`/ticket`",
+        "UserPermission": ["チャンネルの管理","メッセージの管理"],
+        "note": "この機能は未完成のため使いにくい可能性があります"
     },
     "timeout":{
-        "description":"指定したメンバーをタイムアウトします",
-        "example":"`/timeout @Arashi 1000 荒らし`\n`/timeout @Arashi`",
-        "permission":["メンバーをモデレート"],
-        "note":"秒単位でタイムアウトすることができます\n秒が指定されない場合デフォルト(30秒)になります"
+        "description": "指定したメンバーをタイムアウトします",
+        "example": "`/timeout @Arashi 1000 荒らし`\n`/timeout @Arashi`",
+        "UserPermission": ["メンバーをモデレート"],
+        "note": "秒単位でタイムアウトすることができます\n秒が指定されない場合デフォルト(30秒)になります"
     },
     "top":{
-        "description":"実行したチャンネルの1番最初のメッセージリンクを表示します",
-        "example":"`/top`",
-        "permission":["必要なし"],
-        "note":"なし"
+        "description": "実行したチャンネルの1番最初のメッセージリンクを表示します",
+        "example": "`/top`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"
     },
     "translate":{
-        "description":"テキストを翻訳します",
-        "example":"`/translate hello 日本語`\n`/translate こんにちは 英語`",
-        "permission":["必要なし"],
-        "note":"Google翻訳を使用して翻訳されています"
+        "description": "テキストを翻訳します",
+        "example": "`/translate hello 日本語`\n`/translate こんにちは 英語`",
+        "UserPermission": ["必要なし"],
+        "note": "Google翻訳を使用して翻訳されています"
     },
     "user":{
-        "description":"指定されたユーザーを検索して表示します",
-        "example":"`/user @TakasumiBOT`\n`/user 981314695543783484`",
-        "permission":["必要なし"],
-        "note":"メンバー情報も取得できる場合は詳細情報まで表示します"
+        "description": "指定されたユーザーを検索して表示します",
+        "example": "`/user @TakasumiBOT`\n`/user 981314695543783484`",
+        "UserPermission": ["必要なし"],
+        "note": "メンバー情報も取得できる場合は詳細情報まで表示します"
     },
     "warn":{
-        "description":"指定されたユーザーを警告します",
-        "example":"`/warn @Arashi`",
-        "permission":["サーバーの管理"],
-        "note":"メンバーがDMを拒否している場合警告できません"
+        "description": "指定されたユーザーを警告します",
+        "example": "`/warn @Arashi`",
+        "UserPermission": ["サーバーの管理"],
+        "note": "メンバーがDMを拒否している場合警告できません"
     },
     "webshot":{
-        "description":"Webサイトのスクリーンショットを撮影します",
-        "example":"`/webshot https://google.com/`",
-        "permission":["必要なし"],
-        "note":"指定するURLは有効なものである必要があります\n一部のサイトはスクリーンショットが撮影できない場合があります"
+        "description": "Webサイトのスクリーンショットを撮影します",
+        "example": "`/webshot https://google.com/`",
+        "UserPermission": ["必要なし"],
+        "note": "指定するURLは有効なものである必要があります\n一部のサイトはスクリーンショットが撮影できない場合があります"
     },
     "wiki":{
-        "description":"Wikipediaの検索をします",
-        "example":"`/wiki Discord`",
-        "permission":["必要なし"],
-        "note":"なし"     
+        "description": "Wikipediaの検索をします",
+        "example": "`/wiki Discord`",
+        "UserPermission": ["必要なし"],
+        "note": "なし"     
     }  
 }
