@@ -1,4 +1,4 @@
-module.exports = async(interaction,Lang)=>{
+module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { AttachmentBuilder, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
@@ -15,7 +15,7 @@ module.exports = async(interaction,Lang)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: Lang.get("command.5000.Generate"),
+            name: "生成しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           image:{
@@ -33,7 +33,7 @@ module.exports = async(interaction,Lang)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "生成出来ませんでした",
+            name: "生成できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
           description: "もう一度やり直してください"

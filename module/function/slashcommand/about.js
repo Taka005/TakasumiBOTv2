@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
         new ActionRowBuilder()
           .addComponents(
             new ButtonBuilder()
-              .setLabel("BOT招待")
+              .setLabel("BOTを追加")
               .setURL("https://discord.com/api/oauth2/authorize?client_id=981314695543783484&permissions=8796093022199&scope=bot%20applications.commands")
               .setStyle(ButtonStyle.Link))
           .addComponents(

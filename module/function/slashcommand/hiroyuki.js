@@ -75,19 +75,6 @@ module.exports = async(interaction)=>{
             });
           })
       }else{//登録なし
-        const lang = await db(`SELECT * FROM lang WHERE id = ${interaction.guild.id} LIMIT 1;`);
-        if(lang[0]) return await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "Hiroyuki is not available",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
-            },
-            description: "Hiroyuki is available only in Japanese"
-          }],
-          ephemeral: true
-        });
-
         await interaction.deferReply();
         await interaction.channel.createWebhook({
           name: "ひろゆき",

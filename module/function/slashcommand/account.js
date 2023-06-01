@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
         new ActionRowBuilder()
           .addComponents( 
             new ButtonBuilder()
-              .setLabel("サイトへ飛ぶ")
+              .setLabel("サイトへ行く")
               .setURL("https://auth.taka.ml/")
               .setStyle(ButtonStyle.Link))
       ],

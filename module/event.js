@@ -3,7 +3,6 @@ module.exports = async(client)=>{
   const fs = require("fs");
   require("dotenv");
   const db = require("./lib/db");
-  const lang = require("./lib/lang");
   const count = require("./lib/count");
 
   client.once(Events.ClientReady,async(client)=>{
@@ -17,23 +16,17 @@ module.exports = async(client)=>{
 
     count.message();
 
-    const Lang = new lang();
-    await Lang.set(message.guild.id);
-
     //event/message
     fs.readdir("./module/event/messageCreate/",(err,files)=>{
       files.forEach((file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./event/messageCreate/${file}`)(message,Lang);
+        require(`./event/messageCreate/${file}`)(message);
       });
     });
     
     if(message.channel.type !== ChannelType.GuildText||message.author.bot) return;  
 
     console.log(`\x1b[37mLOG:(${message.author.tag}[${message.guild.id}])${message.content} PING[${client.ws.ping}ms]\x1b[39m`);
-
-   //グローバルチャット
-    require("./function/globalchat/gc")(message).catch(()=>{});
 
     //コマンド
     fs.readdir("./module/function/command/",(err,files)=>{ 
@@ -102,35 +95,32 @@ module.exports = async(client)=>{
 
     count.command();
 
-    const Lang = new lang();
-    await Lang.set(interaction.guild.id);
-
     //event/interaction
     fs.readdir("./module/event/interactionCreate/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./event/interactionCreate/${file}`)(interaction,Lang);
+        require(`./event/interactionCreate/${file}`)(interaction);
       });
     });
     //auth
     fs.readdir("./module/function/auth/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/auth/${file}`)(interaction,Lang);
+        require(`./function/auth/${file}`)(interaction);
       });
     });
     //slashcommands
     fs.readdir("./module/function/slashcommand/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/slashcommand/${file}`)(interaction,Lang);
+        require(`./function/slashcommand/${file}`)(interaction);
       });
     });
     //contextmenu
     fs.readdir("./module/function/contextmenu/",(err,files)=>{ 
       files.forEach(async(file)=>{
         if(!file.endsWith(".js")) return;
-        require(`./function/contextmenu/${file}`)(interaction,Lang);
+        require(`./function/contextmenu/${file}`)(interaction);
       });
     });
   });

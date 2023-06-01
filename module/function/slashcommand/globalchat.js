@@ -82,19 +82,6 @@ module.exports = async(interaction)=>{
       await interaction.channel.setTopic("")
         .catch(()=>{})
     }else{
-      const lang = await db(`SELECT * FROM lang WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      if(lang[0]) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "GlobalChat is not available",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
-          },
-          description: "GlobalChat is available only in Japanese"
-        }],
-        ephemeral: true
-      });
-
       if(
         interaction.guild.memberCount < 20||
         (await interaction.guild.members.fetch()).filter(m => !m.user.bot).size < 8

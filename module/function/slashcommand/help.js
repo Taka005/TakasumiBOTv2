@@ -85,8 +85,12 @@ module.exports = async(interaction)=>{
               value: list[command].example
             },
             {
-              name: "権限",
-              value: `\`${list[command].permission.join("`,`")}\``
+              name: "ユーザーの権限",
+              value: `\`${list[command].userPermission.join("`,`")}\``
+            },
+            {
+              name: "BOTの権限",
+              value:  `\`${list[command].botPermission.join("`,`")}\``
             },
             {
               name: "詳細情報",

@@ -41,8 +41,6 @@ module.exports = async(message)=>{
     ]
   }).catch(()=>{});
 
-  require("./ugc/send")(message);
-
   const content = message.content
     .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,"[[招待リンク]](https://discord.gg/NEesRdGQwD)")
 
