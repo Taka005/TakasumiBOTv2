@@ -24,10 +24,10 @@ module.exports = async(interaction)=>{
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
         thumbnail:{
-          url: member.avatarURL({extension:"png",forceStatic:false,size:1024})
+          url: member.avatarURL({extension:"png",size:1024})
         },
         image:{
-          url: member.user.avatarURL({extension:"png",forceStatic:false,size:1024})||member.user.defaultAvatarURL
+          url: member.user.avatarURL({extension:"png",size:1024})||member.user.defaultAvatarURL
         },
         footer:{
           text: "TakasumiBOT"

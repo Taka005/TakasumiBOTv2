@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
             text: "TakasumiBOT"
           },
           thumbnail:{
-            url: interaction.user.avatarURL({extension:"png",forceStatic:false,size:1024})|| interaction.user.defaultAvatarURL
+            url: interaction.user.avatarURL({extension:"png",size:1024})|| interaction.user.defaultAvatarURL
           },
           fields:[
             {
@@ -115,7 +115,7 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
           thumbnail:{
-            url: member.user.avatarURL({extension:"png",forceStatic:false,size:1024})||member.user.defaultAvatarURL
+            url: member.user.avatarURL({extension:"png",size:1024})||member.user.defaultAvatarURL
           },
           fields:[
             {
@@ -197,7 +197,7 @@ module.exports = async(interaction)=>{
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
             thumbnail:{
-              url: user.avatarURL({extension:"png",forceStatic:false,size:1024})||user.defaultAvatarURL
+              url: user.avatarURL({extension:"png",size:1024})||user.defaultAvatarURL
             },
             fields:[
               {

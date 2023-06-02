@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
         thumbnail:{
-          url: member.user.avatarURL({extension:"png",forceStatic:false,size:1024})||member.user.defaultAvatarURL
+          url: member.user.avatarURL({extension:"png",size:1024})||member.user.defaultAvatarURL
         },
         fields:[
           {
