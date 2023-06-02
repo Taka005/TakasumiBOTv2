@@ -14,7 +14,7 @@ module.exports = async(interaction)=>{
 
     const emojis = ["🇦","🇧","🇨","🇩","🇪","🇫","🇬","🇭"];
     const selects = [role_1,role_2,role_3,role_4,role_5,role_6,role_7,role_8]
-      .filter(role=>role!==null)
+      .filter(role=>role!==null);
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) return await interaction.reply({
       embeds:[{

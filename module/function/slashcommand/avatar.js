@@ -14,10 +14,10 @@ module.exports = async(interaction)=>{
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
         thumbnail:{
-          url: interaction.member.avatarURL({extension:"png",forceStatic:false,size:1024})
+          url: interaction.member.avatarURL({extension:"png",size:1024})
         },
         image:{
-          url: interaction.user.avatarURL({extension:"png",forceStatic:false,size:1024})||interaction.user.defaultAvatarURL
+          url: interaction.user.avatarURL({extension:"png",size:1024})||interaction.user.defaultAvatarURL
         },
         footer:{
           text: "TakasumiBOT"
@@ -87,10 +87,10 @@ module.exports = async(interaction)=>{
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
         thumbnail:{
-          url: member?.avatarURL({extension:"png",forceStatic:false,size:1024})
+          url: member?.avatarURL({extension:"png",size:1024})
         },
         image:{
-          url: user.avatarURL({extension:"png",forceStatic:false,size:1024})||user.defaultAvatarURL
+          url: user.avatarURL({extension:"png",size:1024})||user.defaultAvatarURL
         },
         footer:{
           text: "TakasumiBOT"

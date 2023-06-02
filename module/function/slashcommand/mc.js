@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     if(edition === "je"){
       const server = await fetch(`https://api.mcsrvstat.us/2/${encodeURIComponent(ip)}`)
-        .then(res=>res.json())
+        .then(res=>res.json());
 
       if(!server.debug.ping&&!server.online) return await interaction.editReply({
         embeds:[{

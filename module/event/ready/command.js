@@ -773,7 +773,7 @@ module.exports = async(client)=>{
                 .setRequired(true)
                 .addChoices(
                   { name: "脱退", value: "leave" },
-                  { name: "削除", value: "delete" },
+                  { name: "グローバルチャットから削除", value: "delete" },
                   { name: "ミュート/解除(サーバー)", value: "mute_server" },
                   { name: "ミュート/解除(ユーザー)", value: "mute_user" },
                   { name: "DM", value: "dm" }

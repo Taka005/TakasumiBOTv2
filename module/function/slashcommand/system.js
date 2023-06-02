@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      guild.leave()
+      await guild.leave()
         .then(async(g)=>{
           await interaction.reply({
             embeds:[{
@@ -74,7 +74,6 @@ module.exports = async(interaction)=>{
             ephemeral: true
           });
         });
-
     }else if(type === "delete"){//グローバルチャットの登録情報を削除
       const guild = await fetchGuild(interaction.client,ID[0]);
       if(!guild) return await interaction.reply({

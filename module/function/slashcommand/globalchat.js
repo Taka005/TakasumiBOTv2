@@ -47,7 +47,6 @@ module.exports = async(interaction)=>{
     });
 
     const data = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
-
     if(data[0]){//登録済み
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
 
@@ -145,7 +144,7 @@ module.exports = async(interaction)=>{
                 color: Colors.Green,
                 title: `${interaction.guild.name}<${interaction.guild.id}>`,
                 thumbnail:{
-                  url: interaction.guild.iconURL({extension:"png",forceStatic:false,size:1024})||"https://cdn.discordapp.com/embed/avatars/0.png"
+                  url: interaction.guild.iconURL({extension:"png",size:1024})||"https://cdn.discordapp.com/embed/avatars/0.png"
                 },
                 description: "グローバルチャットに新しいサーバーが参加しました！\nみんなで挨拶してみましょう!",
                 footer:{
