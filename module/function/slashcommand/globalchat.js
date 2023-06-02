@@ -47,7 +47,6 @@ module.exports = async(interaction)=>{
     });
 
     const data = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
-
     if(data[0]){//登録済み
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
 

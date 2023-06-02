@@ -2,7 +2,6 @@ module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { Colors } = require("discord.js");
   const isUrl = require("../../lib/isUrl");
-  require("dotenv").config();
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "short"){
     const url = interaction.options.getString("url");
