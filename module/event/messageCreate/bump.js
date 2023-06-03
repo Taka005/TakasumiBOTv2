@@ -22,7 +22,7 @@ module.exports = async(message)=>{
           title: "BUMP通知",
           description: "UPを受信しました\n2時間後に通知します"
         }]  
-      }).catch(()=>{})
+      }).catch(()=>{});
 
       if(data[0]){
         setTimeout(async()=>{
@@ -33,7 +33,7 @@ module.exports = async(message)=>{
               title: "BUMP通知",
               description: "BUMPの時間です\n`/bump`でサーバーの表示順位を上げよう！"
             }]  
-          }).catch(()=>{})
+          }).catch(()=>{});
         },7200000);
       }else{
         setTimeout(async()=>{
@@ -43,7 +43,7 @@ module.exports = async(message)=>{
               title: "BUMP通知",
               description: "BUMPの時間です\n`/bump`でサーバーの表示順位を上げよう！"
             }]  
-          }).catch(()=>{})
+          }).catch(()=>{});
         },7200000);
       }
     }

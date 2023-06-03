@@ -1,8 +1,8 @@
 module.exports = async(message)=>{
+  const { ChannelType, WebhookClient } = require("discord.js");
   const db = require("../../lib/db");
   const random = require("../../lib/random");
   const rate = require("../../lib/rate");
-  const { ChannelType, WebhookClient } = require("discord.js");
 
   const data = await db(`SELECT * FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
 
@@ -142,10 +142,10 @@ module.exports = async(message)=>{
   }
 
   let content;
-  if(Object.keys(reply_1).find(key=> message.content.match(key))){
-    content = reply_1[Object.keys(reply_1).find(key=> message.content.match(key))]
+  if(Object.keys(reply_1).find(key=>message.content.match(key))){
+    content = reply_1[Object.keys(reply_1).find(key=>message.content.match(key))];
   }else{
-    content = random(rate(reply_2,reply_3,0.1))
+    content = random(rate(reply_2,reply_3,0.1));
   }
 
   await webhook.send({
@@ -158,8 +158,8 @@ module.exports = async(message)=>{
 }
 
 function err(message,error){
-  const db = require("../../lib/db");
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const db = require("../../lib/db");
 
   db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
   message.channel.send({
