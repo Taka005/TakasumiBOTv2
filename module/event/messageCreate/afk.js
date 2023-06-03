@@ -1,6 +1,6 @@
 module.exports = async(message)=>{
-  const db = require("../../lib/db");
   const { PermissionFlagsBits, Colors } = require("discord.js");
+  const db = require("../../lib/db");
   const time = require("../../lib/time");
   const limit = require("../../lib/limit");
 
