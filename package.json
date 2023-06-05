@@ -33,7 +33,6 @@
     "mysql": "^2.18.1",
     "node-cron": "^3.0.2",
     "node-fetch": "^2.6.11",
-    "os-utils": "^0.0.14",
     "ws": "^8.13.0"
   },
   "devDependencies": {

@@ -3,6 +3,7 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const sign = require("../../lib/sign");
+  const cpu = require("../../lib/cpu");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "status"){
 
@@ -14,10 +15,6 @@ module.exports = async(interaction)=>{
         timestamp: new Date()
       }]
     });
-
-    const cpuusage = await new Promise((resolve) =>
-      require("os-utils").cpuUsage(resolve)
-    );
 
     const account = await db("SELECT * FROM account;");
     const hiroyuki = await db("SELECT * FROM hiroyuki;");
@@ -41,11 +38,11 @@ module.exports = async(interaction)=>{
         fields:[
           {
             name: "システム",
-            value: `OS: ${os.version()}(${os.type()}) ${os.arch()}\nCPU: ${(cpuusage * 100).toFixed(2)}%\nMemory: ${100 - Math.floor((os.freemem() / os.totalmem()) * 100)}%`
+            value: `OS: ${os.version()}(${os.type()}) ${os.arch()}\nCPU: ${await cpu()}%\nメモリ: ${100 - Math.floor((os.freemem() / os.totalmem()) * 100)}%`
           },
           {
             name: "Discord",
-            value: `Ping: ${interaction.client.ws.ping}㍉秒\nGC登録数: ${global.length} / ${interaction.client.guilds.cache.size} (${Math.round(global.length/interaction.client.guilds.cache.size*100)}%)\nひろゆき登録数: ${hiroyuki.length}\nTakasumiBOT Account: ${account.length}人\nServer Uptime: ${Math.round(os.uptime() / 60)}分(BOT: ${Math.round(process.uptime() / 60)}分)`
+            value: `Ping: ${interaction.client.ws.ping}㍉秒\nGC登録数: ${global.length} / ${interaction.client.guilds.cache.size} (${Math.round(global.length/interaction.client.guilds.cache.size*100)}%)\nひろゆき登録数: ${hiroyuki.length}\nTakasumiBOT Account: ${account.length}人\nサーバー稼働時間: ${Math.round(os.uptime() / 60)}分(BOT: ${Math.round(process.uptime() / 60)}分)`
           },
           {
             name: "統計データ",
