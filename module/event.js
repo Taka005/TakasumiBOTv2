@@ -1,5 +1,5 @@
 module.exports = async(client)=>{
-  const { Events, ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const { Events, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const fs = require("fs");
   require("dotenv");
   const db = require("./lib/db");
