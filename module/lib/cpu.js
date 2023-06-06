@@ -6,10 +6,10 @@ module.exports = async()=>{
     setTimeout(()=>{
       const end = getUsage();
 
-      const idleDifference = end.idle - start.idle;
-      const totalDifference = end.total - start.total;
+      const idleDiff = end.idle - start.idle;
+      const totalDiff = end.total - start.total;
 
-      resolve(100 - Math.floor((100 * idleDifference) / totalDifference));
+      resolve(100 - Math.floor((100 * idleDiff) / totalDiff));
     },100);
   });
 
