@@ -1,5 +1,5 @@
 module.exports = async(client)=>{
-  const { Events, ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const { Events, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const fs = require("fs");
   require("dotenv");
   const db = require("./lib/db");
@@ -24,9 +24,9 @@ module.exports = async(client)=>{
       });
     });
     
-    if(message.channel.type !== ChannelType.GuildText||message.author.bot) return;  
+    if(message.author.bot) return;  
 
-    console.log(`\x1b[37mLOG:(${message.author.tag}[${message.guild.id}])${message.content} PING[${client.ws.ping}ms]\x1b[39m`);
+    console.log(`\x1b[37mMESSAGE: ${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
     //コマンド
     fs.readdir("./module/function/command/",(err,files)=>{ 
@@ -133,7 +133,7 @@ module.exports = async(client)=>{
     require("./event/guildMemberRemove/leave")(member);
   });
 
-  if(process.env.DEBUG==="true"){
+  if(process.env.DEBUG === "true"){
     client.on(Events.Debug,(message)=>{
       console.log(`Debug: ${message}`);
     });

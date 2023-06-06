@@ -9,7 +9,7 @@ module.exports = async()=>{
       const idleDiff = end.idle - start.idle;
       const totalDiff = end.total - start.total;
 
-      resolve(100 - Math.floor((100 * idleDiff) / totalDiff));
+      resolve((100 - (100 * idleDiff) / totalDiff).toFixed(1));
     },100);
   });
 

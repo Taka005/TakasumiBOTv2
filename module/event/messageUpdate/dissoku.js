@@ -9,8 +9,8 @@ module.exports = async(message)=>{
 
   if(message.author.id === "761562078095867916"){
     if(
-      message.embeds[0]?.fields[0].name.match(/をアップしたよ/)||
-      message.embeds[0]?.fields[0].name.match(/I've bumped up/)
+      message.embeds[0]?.fields[0]?.name.match(/をアップしたよ/)||
+      message.embeds[0]?.fields[0]?.name.match(/I've bumped up/)
     ){  
       const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id} LIMIT 1;`);
       if(ignore[0]) return;
