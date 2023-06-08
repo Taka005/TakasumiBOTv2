@@ -9,8 +9,8 @@ module.exports = async(client)=>{
     const log = await db("SELECT * FROM log");
 
     let ping = client.ws.ping;
-    if(ping > 500){
-      ping = 500;
+    if(ping > 300){
+      ping = 300;
     }
     const user = client.guilds.cache.map((g)=>g.memberCount).reduce((a,c)=>a+c);
     const guild = client.guilds.cache.size;
