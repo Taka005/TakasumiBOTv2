@@ -97,14 +97,6 @@ module.exports = async(interaction)=>{
         delete require.cache[require.resolve(`../../lib/${file}`)];
       });
     });
-    //global
-    fs.readdir("./module/function/globalchat",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../globalchat/${file}`);
-        delete require.cache[require.resolve(`../globalchat/${file}`)];
-      });
-    });
     //slashcommands
     fs.readdir("./module/function/slashcommand/",(err,files)=>{ 
       files.forEach((file) =>{
