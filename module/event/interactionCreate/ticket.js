@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
         color: Colors.Red,
-        description: "既にチケットが発行済みです"
+        description: "既にチケットが作成済みです"
       }],
       ephemeral: true
     });
@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
         color: Colors.Red,
-        description: "ticketカテゴリーが存在していないため、作成できません"
+        description: "ticketカテゴリーが存在していません"
       }],
       ephemeral: true
     });
@@ -39,6 +39,7 @@ module.exports = async(interaction)=>{
       .then(async(ch)=>{
         await ch.permissionOverwrites.edit(interaction.user.id,{ViewChannel: true});
         await ch.send({
+          content: `<@${interaction.user.id}>`,
           embeds:[{
             color: Colors.Green,
             title: "チケットへようこそ"
@@ -59,7 +60,7 @@ module.exports = async(interaction)=>{
               name: `チケットを作成しました`,
               icon_url: "https://cdn.taka.ml/images/system/success.png"
             },
-            description: `<#${ch.id}>を作成しました`,
+            description: `<#${ch.id}>`,
             color: Colors.Green
           }],
           ephemeral: true

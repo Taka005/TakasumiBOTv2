@@ -25,12 +25,12 @@ module.exports = async(interaction)=>{
 
       add.forEach(role=>{
         interaction.member.roles.add(role)
-          .catch(()=>{})
+          .catch(()=>{});
       });
 
       remove.forEach(role=>{
         interaction.member.roles.remove(role)
-          .catch(()=>{})
+          .catch(()=>{});
       });
 
       await interaction.editReply({
