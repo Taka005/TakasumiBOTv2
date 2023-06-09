@@ -64,22 +64,22 @@ module.exports = async(message)=>{
   }];
 
   if(message.reference?.messageId){
-    const replyMessage = await fetchMessage(message.channel,message.reference.messageId);
-    if(replyMessage){
+    const replyWebhook = new WebhookClient({id: global[0].id, token: global[0].token});
+    const replyWebhookMessage = await fetchWebhookMessage(replyWebhook,message.reference.messageId);
+    if(replyWebhookMessage){
       embed[0].fields = [
         {
           name: "\u200b",
-          value: `**${replyMessage.author.tag}>>** ${replyMessage.content||"なし"}`
+          value: `**${replyWebhookMessage.embeds[0].author.name}>>** ${replyWebhookMessage.embeds[0].description||"なし"}`
         }
       ];
     }else{
-      const replyWebhook = new WebhookClient({id: global[0].id, token: global[0].token});
-      const replyWebhookMessage = await fetchWebhookMessage(replyWebhook,message.reference.messageId);
-      if(replyWebhookMessage){
+      const replyMessage = await fetchMessage(message.channel,message.reference.messageId);
+      if(replyMessage){
         embed[0].fields = [
           {
             name: "\u200b",
-            value: `**${replyWebhookMessage.embeds[0].author.name}>>** ${replyWebhookMessage.embeds[0].description||"なし"}`
+            value: `**${replyMessage.author.tag}>>** ${replyMessage.content||"なし"}`
           }
         ];
       }
