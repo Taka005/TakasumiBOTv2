@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits, Colors } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, ChannelType, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ticket"){
     
@@ -88,8 +88,9 @@ module.exports = async(interaction)=>{
       }); 
 
       if(!interaction.guild.channels.cache.find(name => name.name === "ticket")){
-        await interaction.guild.channels.create("ticket",{
-          type: "GUILD_CATEGORY"
+        await interaction.guild.channels.create({
+          name: "ticket",
+          type: ChannelType.GuildCategory
         });
       }
 
