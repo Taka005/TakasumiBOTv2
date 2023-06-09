@@ -92,7 +92,7 @@ module.exports = async(interaction)=>{
           name: "ticket",
           type: ChannelType.GuildCategory
         })
-        .catch(error=>{
+        .catch(async(error)=>{
           await interaction.reply({
             embeds:[{
               color: Colors.Red,
