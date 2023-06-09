@@ -7,7 +7,7 @@ module.exports = async(message)=>{
   const fetchMessage = require("../../lib/fetchMessage");
   const fetchWebhookMessage = require("../../lib/fetchWebhookMessage");
 
-  if(message.author.bot) returnl
+  if(message.author.bot) return;
   const global = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
   if(!global[0]) return;
 
