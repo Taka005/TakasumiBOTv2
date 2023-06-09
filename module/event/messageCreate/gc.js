@@ -7,6 +7,7 @@ module.exports = async(message)=>{
   const fetchMessage = require("../../lib/fetchMessage");
   const fetchWebhookMessage = require("../../lib/fetchWebhookMessage");
 
+  if(message.author.bot) returnl
   const global = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
   if(!global[0]) return;
 
@@ -62,7 +63,7 @@ module.exports = async(message)=>{
     timestamp: new Date()
   }];
 
-  if(message.reference.messageId){
+  if(message.reference?.messageId){
     const replyMessage = await fetchMessage(message.channel,message.reference.messageId);
     if(replyMessage){
       embed[0].fields = [
@@ -87,7 +88,7 @@ module.exports = async(message)=>{
 
   const attachment = message.attachments.first();
   if(attachment){
-    if(attachment.content_type.startsWith("image/")){
+    if(attachment.height&&attachment.width){
       embed.push({
         color: Colors.Green,
         title: attachment.name,
