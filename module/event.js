@@ -12,7 +12,10 @@ module.exports = async(client)=>{
   });
 
   client.on(Events.MessageCreate,async(message)=>{
-    if(!message.guild.members.me) return;
+    if(
+      !message.guild.members.me||
+      !message.channel.viewable
+    ) return;
 
     count.message();
 
