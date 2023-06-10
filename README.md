@@ -20,7 +20,7 @@
 - log: ログを送るチャンネルID
 - error: エラーメッセージを送るチャンネルID
 # Developer
-- 開発: Taka005#6668
+- 開発: Taka#1234
 - サポートサーバーにも是非参加してください
 - https://discord.gg/NEesRdGQwD
 # 開発ルール

@@ -18,9 +18,21 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const data = await fetch(`https://is.gd/create.php?extension=simple&url=${encodeURI(url)}`)
-      .then(res=>res.text());
-      
-    await interaction.reply(data);
+    const data = await fetch(`https://is.gd/create.php?format=json&url=${encodeURI(url)}`)
+      .then(res=>res.json());
+    
+    if(data.errorcode) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "短縮URLにできませんでした",
+          icon_url: "https://cdn.taka.ml/images/system/error.png"
+        },
+        description: "URLが無効です"
+      }],
+      ephemeral: true
+    });
+    
+    await interaction.reply(data.shorturl);
   }
 }
