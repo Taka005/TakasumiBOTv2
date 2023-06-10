@@ -6,6 +6,7 @@ module.exports = async(message)=>{
   const db = require("../../lib/db");
   const fetchMessage = require("../../lib/fetchMessage");
   const fetchWebhookMessage = require("../../lib/fetchWebhookMessage");
+  const { admin } = require("../../../config.json");
 
   if(message.author.bot) return;
   const global = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
@@ -45,8 +46,13 @@ module.exports = async(message)=>{
   const content = message.content
     .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,"[[招待リンク]](https://discord.gg/NEesRdGQwD)")
 
+  let color = Colors.Green;
+  if(message.author.id === admin){
+    color = Colors.Blue;
+  }
+
   const embed = [{
-    color: Colors.Green,
+    color: color,
     author:{
       name: message.author.tag,
       url: `https://discord.com/users/${message.author.id}`,
