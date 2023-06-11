@@ -642,6 +642,17 @@ module.exports = async(client)=>{
                   { name: "Python", value: "Python" },
                   { name: "Bash", value: "Bash" }
                 )),
+          //search
+          new SlashCommandBuilder()
+            .setName("search")
+            .setDescription("Search and view on Yahoo")
+            .setDescriptionLocalization("ja","Yahooで検索し表示します")
+            .addStringOption(option =>
+              option
+                .setName("word")
+                .setDescription("Search word")
+                .setDescriptionLocalization("ja","検索ワード")
+                .setRequired(true)),
           //server
           new SlashCommandBuilder()
             .setName("server")
