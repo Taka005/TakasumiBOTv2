@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
   
     await interaction.deferReply();
     try{
-      const image = await fetch(`https://miq-api.tuna2134.jp/?name=${interaction.user.username}&tag=${interaction.user.discriminator}&id=${interaction.user.id}&content=${text}&icon=${interaction.user.avatarURL({extension:"png",size:1024})}`)
+      const image = await fetch(`http://localhost:3000/?name=${interaction.user.username}&tag=${interaction.user.discriminator}&id=${interaction.user.id}&content=${text}&icon=${interaction.user.avatarURL({extension:"png",size:1024})}`)
         .then(res=>res.blob());
   
       await interaction.editReply({
