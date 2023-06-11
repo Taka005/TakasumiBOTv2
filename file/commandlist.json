@@ -509,6 +509,17 @@
         ],
         "note": "なし"
     },
+    "search":{
+        "description": "Yahooで検索します",
+        "example": "`/search discord.js`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
+        ],
+        "note": "なし"
+    },
     "server":{
         "description": "サーバーの情報を表示します",
         "example": "`/server`",

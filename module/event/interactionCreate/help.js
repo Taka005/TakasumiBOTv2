@@ -302,6 +302,10 @@ module.exports = async(interaction)=>{
               value: "QRコードを生成、または読み取ります"
             },
             {
+              name: "/search",
+              value: "Yahooで検索します"
+            },
+            {
               name: "/npm",
               value: "NPMパッケージを検索、表示します"
             },
