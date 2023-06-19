@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
 
     if(type === "cipher"){
       try{
-        const cipher = crypto.createCipher("aes-128-cbc", key);
+        const cipher = crypto.createCipher("aes-256-cfb",key);
         cipher.update(text,"utf8","hex");
 
         await interaction.reply({
@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
       }
     }else{
       try{
-        const decipher = crypto.createDecipher("aes-128-cbc", key);
+        const decipher = crypto.createDecipher("aes-256-cfb",key);
         decipher.update(text,"hex","utf8");
 
         await interaction.reply({
