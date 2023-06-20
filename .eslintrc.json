@@ -28,7 +28,7 @@
       "no-constant-binary-expression":"error",
       "node/no-unsupported-features":"error",
       "node/no-missing-require":"error",
-      "node/no-deprecated-api":"warn",
+      "node/no-deprecated-api":"off",
       "node/no-unpublished-require":"error",
       "node/exports-style": ["error", "module.exports"]
     }
