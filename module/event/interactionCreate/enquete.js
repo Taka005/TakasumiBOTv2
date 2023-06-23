@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
   const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require("discord.js");
   if(!interaction.isButton()) return;
-  if(interaction.customId.startsWith("enquete")){
+  if(interaction.customId === "enquete"){
 
     const enquete = new ModalBuilder()
       .setCustomId(`enquete_${interaction.message.id}`)
