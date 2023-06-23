@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
           .addComponents(
             new ButtonBuilder()
               .setLabel("回答する")
-              .serCustomId("enquete")
+              .setCustomId("enquete")
               .setStyle(ButtonStyle.Secondary))
       ]
     });
