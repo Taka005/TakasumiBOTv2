@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Green,
         title: message.embeds[0].title,
-        description: `${message.embeds[0].description||""}\n▷${text} -${interaction.user.tag}`,
+        description: `${message.embeds[0].description||""}\n▷${text} - ${interaction.user.tag}`,
         timestamp: new Date()
       }],
       components:[
