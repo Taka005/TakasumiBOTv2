@@ -348,7 +348,11 @@ module.exports = async(interaction)=>{
         embeds:[{
           title: "HELP ネタ・その他のコマンド",
           color: Colors.Green,
-          fields:[ 
+          fields:[
+            {
+              name: "/enquete",
+              value: "アンケートを作成します"
+            },
             {
               name: "/miq",
               value: "Make it a Quoteを生成します"

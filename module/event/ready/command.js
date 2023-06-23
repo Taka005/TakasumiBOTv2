@@ -233,6 +233,17 @@ module.exports = async(client)=>{
                 .setDescription("Emoji Name")
                 .setDescriptionLocalization("ja","絵文字名")
                 .setRequired(true)),
+          //enquete
+          new SlashCommandBuilder()
+            .setName("enquete")
+            .setDescription("Create a Questionnaire")
+            .setDescriptionLocalization("ja","アンケートを作成します")
+            .addStringOption(option =>
+              option
+                .setName("title")
+                .setDescription("Title")
+                .setDescriptionLocalization("ja","タイトル")
+                .setRequired(true)),
           //export
           new SlashCommandBuilder()
             .setName("export")
@@ -518,7 +529,7 @@ module.exports = async(client)=>{
           new SlashCommandBuilder()
             .setName("poll")
             .setDescription("Create a Poll")
-            .setDescriptionLocalization("ja","アンケートを作成します")
+            .setDescriptionLocalization("ja","投票を作成します")
             .addStringOption(option =>
               option
                 .setName("title")

@@ -1,7 +1,8 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
-  if(interaction.commandName === "top"){
+  if(interaction.commandName === "enquete"){
+    const title = interaction.options.getString("title");
 
     if(
       !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ReadMessageHistory)||
@@ -24,30 +25,19 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.deferReply();
-    await interaction.editReply({
+    await interaction.reply({
       embeds:[{
         color: Colors.Green,
-        description: "取得中..."
-      }]
-    });
-
-    const msg = await interaction.channel.messages.fetch({after:"0",limit:1})
-      .then(msg=>msg.first());
-
-    await interaction.editReply({
-      embeds:[{
-        color: Colors.Green,
-        title: "最初のメッセージ",
-        description: "下のリンクから飛べます"
+        title: title,
+        timestamp: new Date()
       }],
       components:[
         new ActionRowBuilder()
           .addComponents(
             new ButtonBuilder()
-              .setLabel("メッセージへ飛ぶ")
-              .setURL(msg.url)
-              .setStyle(ButtonStyle.Link))
+              .setLabel("回答する")
+              .serCustomId("enquete")
+              .setStyle(ButtonStyle.Secondary))
       ]
     });
   }
