@@ -5,7 +5,7 @@ module.exports = async(interaction)=>{
 
     const enquete = new ModalBuilder()
       .setCustomId(`enquete_${interaction.message.id}`)
-      .setTitle(interaction.message.embed[0].title);
+      .setTitle(interaction.message.embeds[0].title);
 
     const text = new TextInputBuilder()
       .setCustomId("text")

@@ -20,7 +20,20 @@ module.exports = async(interaction)=>{
     });
 
     await message.edit({
-
+      embeds:[{
+        color: Colors.Green,
+        title: message.embeds[0].title,
+        description: `${message.embeds[0].description||""}\n▷${text} -${interaction.user.tag}`,
+        timestamp: new Date()
+      }],
+      components:[
+        new ActionRowBuilder()
+          .addComponents(
+            new ButtonBuilder()
+              .setLabel("回答する")
+              .serCustomId("enquete")
+              .setStyle(ButtonStyle.Secondary))
+      ]
     })
       .then(async()=>{
         await interaction.reply({
