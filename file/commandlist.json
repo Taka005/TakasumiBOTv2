@@ -166,6 +166,18 @@
         ],
         "note": "サーバー上のカスタム絵文字を指定する必要があります"
     },
+    "enquete":{
+        "description": "アンケートを作成することができます",
+        "example": "`/enquete Title`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "チャンネルの閲覧",
+            "メッセージ履歴の閲覧"
+        ],
+        "note": "なし"
+    },
     "export":{
         "description": "サーバーのデータをJSON形式に出力します",
         "example": "`/export`",
@@ -433,8 +445,8 @@
         "note": "なし"
     },
     "poll":{
-        "description": "アンケートを作成することができます",
-        "example": "`/poll title One two Three`",
+        "description": "投票を作成することができます",
+        "example": "`/poll Title One two Three`",
         "userPermission": [
             "必要なし"
         ],
@@ -642,7 +654,8 @@
             "必要なし"
         ],
         "botPermission": [
-            "必要なし"
+            "チャンネルの閲覧",
+            "メッセージ履歴の閲覧"
         ],
         "note": "なし"
     },
