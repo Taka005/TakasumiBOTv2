@@ -49,6 +49,6 @@ module.exports = async(interaction)=>{
               .setURL(msg.url)
               .setStyle(ButtonStyle.Link))
       ]
-    })
+    });
   }
 }
