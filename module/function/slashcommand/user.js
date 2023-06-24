@@ -7,6 +7,13 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "user"){
     const id = interaction.options.getString("id");
 
+    const status = {
+      "online": "🟢オンライン",
+      "offline": "⚫オフライン",
+      "dnd": "⛔取り込み中",
+      "idle": "🌙退席中"
+    };
+
     if(!id){
       const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
 
@@ -34,6 +41,11 @@ module.exports = async(interaction)=>{
             {
               name: "ニックネーム",
               value: interaction.member.nickname||"未設定",
+              inline: true
+            },
+            {
+              name: "ステータス",
+              value: `${status[interaction.member.presence?.status]||"取得不可"}`,
               inline: true
             },
             {
