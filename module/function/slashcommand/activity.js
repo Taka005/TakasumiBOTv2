@@ -15,21 +15,48 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-
     try{
       const members = (await interaction.guild.members.fetch())
         .filter(member=>{
           if(!member.presence?.activities) return false;
-          const a = member.presence.activities.filter(activitiy=>interaction.member.presence.activities[0].name === activitiy.name);
+          return member.presence.activities.filter(activitiy=>interaction.member.presence.activities[0].name === activitiy.name)[0];
         });
-      console.log(members.map(member=>member.user.tag))
+
       await interaction.reply({
-content:"test"
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: `${interaction.member.presence.activities[0].name}のアクティビティ一覧`,
+            icon_url: "https://cdn.taka.ml/images/system/success.png"
+          },
+          description: members.map(member=>`<@${member.id}>`).join("\n")
+        }]
       });
-    }catch(err){
+    }catch(error){
       await interaction.reply({
-        content: `${err.stack}`
-              });
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "表示出来ませんでした",
+            icon_url: "https://cdn.taka.ml/images/system/error.png"
+          },
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle(ButtonStyle.Link))
+        ],
+        ephemeral: true
+      });
     }
   }
 }
