@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "activity"){
 
-    if(!interaction.member.presence.activities.length) return await interaction.reply({
+    if(!interaction.member.presence?.activities) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -19,17 +19,16 @@ module.exports = async(interaction)=>{
     try{
       const members = (await interaction.guild.members.fetch())
         .filter(member=>{
-          return member.presence.activities.filter(memberActivitiy=>{
-            return interaction.member.presence.activities.filter(activitiy=>activitiy.name === memberActivitiy.name);
-          });
+          if(!member.presence?.activities) return false;
+          const a = member.presence.activities.filter(activitiy=>interaction.member.presence.activities[0].name === activitiy.name);
         });
-console.log(members)
+      console.log(members.map(member=>member.user.tag))
       await interaction.reply({
 content:"test"
       });
     }catch(err){
       await interaction.reply({
-        content:err
+        content: `${err.stack}`
               });
     }
   }

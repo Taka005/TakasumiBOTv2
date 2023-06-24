@@ -11,7 +11,8 @@ const client = new Client({
     GatewayIntentBits.GuildInvites,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildWebhooks,
-    GatewayIntentBits.GuildEmojisAndStickers
+    GatewayIntentBits.GuildEmojisAndStickers,
+    GatewayIntentBits.GuildPresences
   ],
   shards: "auto"
 });

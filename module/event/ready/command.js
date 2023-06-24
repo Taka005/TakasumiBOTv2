@@ -41,7 +41,7 @@ module.exports = async(client)=>{
           //activity
           new SlashCommandBuilder()
             .setName("activity")
-            .setDescription("View registered account information")
+            .setDescription("View people whose activity is the same as you")
             .setDescriptionLocalization("ja","自分と同じアクティビティの人を表示します"),
           //ad
           new SlashCommandBuilder()
