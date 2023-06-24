@@ -185,5 +185,5 @@ function err(message,error){
             .setURL("https://discord.gg/NEesRdGQwD")
             .setStyle(ButtonStyle.Link))
     ]
-  }).catch(()=>{})
+  }).catch(()=>{});
 }

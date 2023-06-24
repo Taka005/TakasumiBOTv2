@@ -17,7 +17,7 @@ module.exports = async(message)=>{
     (await db(`SELECT * FROM mute_user WHERE id = ${message.author.id} LIMIT 1;`))[0]||
     message.content.length > 300||
     Spam.count(message.guild.id)
-  ) return message.react("❌").catch(()=>{});
+  ) return await message.react("❌").catch(()=>{});
 
   if(!(await db(`SELECT * FROM account WHERE id = ${message.author.id} LIMIT 1;`))[0]) return await message.reply({ 
     embeds:[{
