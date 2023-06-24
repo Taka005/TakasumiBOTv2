@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "このコマンドはBOTに以下の権限が必要です\n```メンバーをBAN```",
+        description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
           {
             name: "必要な権限",

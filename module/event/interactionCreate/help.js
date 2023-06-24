@@ -116,6 +116,10 @@ module.exports = async(interaction)=>{
             {
               name: "/invites",
               value: "サーバー又は指定したユーザーの招待一覧を表示します"
+            },
+            {
+              name: "/activity",
+              value: "同じアクティビティの人を表示します"
             }
           ]
         }],
