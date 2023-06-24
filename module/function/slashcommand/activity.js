@@ -23,12 +23,14 @@ module.exports = async(interaction)=>{
             return interaction.member.presence.activities.filter(activitiy=>activitiy.name === memberActivitiy.name);
           });
         });
-
+console.log(members)
       await interaction.reply({
-
+content:"test"
       });
-    }catch{
-
+    }catch(err){
+      await interaction.reply({
+        content:err
+              });
     }
   }
 }

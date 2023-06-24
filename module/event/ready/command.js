@@ -38,6 +38,11 @@ module.exports = async(client)=>{
             .setName("account")
             .setDescription("View registered account information")
             .setDescriptionLocalization("ja","登録されているアカウント情報を表示します"),
+          //activity
+          new SlashCommandBuilder()
+            .setName("activity")
+            .setDescription("View registered account information")
+            .setDescriptionLocalization("ja","自分と同じアクティビティの人を表示します"),
           //ad
           new SlashCommandBuilder()
             .setName("ad")
