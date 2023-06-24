@@ -141,6 +141,11 @@ module.exports = async(interaction)=>{
               inline: true
             },
             {
+              name: "状態",
+              value: `${status[member.presence?.status]||"取得不可"}`,
+              inline: true
+            },
+            {
               name: "作成日時",
               value: `${new Date(member.user.createdTimestamp).toLocaleString()}\n(${Math.round((Date.now() - member.user.createdAt) / 86400000)}日前)`,
               inline: true
