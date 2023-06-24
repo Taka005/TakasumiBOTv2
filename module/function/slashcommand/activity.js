@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "activity"){
 
-    if(!interaction.member.presence?.activities) return await interaction.reply({
+    if(!interaction.member.presence.activities[0]) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -18,9 +18,21 @@ module.exports = async(interaction)=>{
     try{
       const members = (await interaction.guild.members.fetch())
         .filter(member=>{
-          if(!member.presence?.activities) return false;
+          if(!member.presence.activities[0]) return false;
           return member.presence.activities.filter(activitiy=>interaction.member.presence.activities[0].name === activitiy.name)[0];
         });
+      
+      if(!members[0]) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "表示出来ませんでした",
+            icon_url: "https://cdn.taka.ml/images/system/error.png"
+          },
+          description: "同じアクティビティを持っている人がいません"
+        }],
+        ephemeral: true
+      });
 
       await interaction.reply({
         embeds:[{
