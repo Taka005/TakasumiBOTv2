@@ -1,7 +1,7 @@
 module.exports = async(client)=>{
-  const config = require("../../../config.json"); 
   require("dotenv").config();
   const { SlashCommandBuilder, ContextMenuCommandBuilder, ApplicationCommandType, REST, Colors, Routes } = require("discord.js");
+  const config = require("../../../config.json");
 
   const rest = new REST({version:"10"})
     .setToken(process.env.BOT_TOKEN);

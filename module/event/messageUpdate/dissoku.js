@@ -22,7 +22,7 @@ module.exports = async(message)=>{
           title: "UP通知",
           description: "UPを受信しました\n1時間後に通知します"
         }]  
-      }).catch(()=>{})
+      }).catch(()=>{});
 
       if(data[0]){
         setTimeout(async()=>{
@@ -33,7 +33,7 @@ module.exports = async(message)=>{
               title: "UP通知",
               description: "DISSOKUの時間です\n`/dissoku up`でサーバーの表示順位を上げよう！"
             }]  
-          }).catch(()=>{})
+          }).catch(()=>{});
         },3600000);
       }else{
         setTimeout(async()=>{
@@ -43,7 +43,7 @@ module.exports = async(message)=>{
               title: "UP通知",
               description: "DISSOKUの時間です\n`/dissoku up`でサーバーの表示順位を上げよう！"
             }]  
-          }).catch(()=>{})
+          }).catch(()=>{});
         },3600000);
       }
     }
