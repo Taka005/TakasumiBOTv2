@@ -9,9 +9,8 @@ module.exports = async(client)=>{
     const log = await db("SELECT * FROM log");
 
     let ping = client.ws.ping;
-    if(ping > 300){
-      ping = 300;
-    }
+    if(ping > 300) ping = 300;
+    
     const user = client.guilds.cache.map((g)=>g.memberCount).reduce((a,c)=>a+c);
     const guild = client.guilds.cache.size;
     const count = await db(`SELECT * FROM count WHERE id = ${process.env.ID} LIMIT 1;`);
