@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
     try{
       const members = (await interaction.guild.members.fetch())
         .filter(member=>{
-          if(!member.presence.activities[0]) return false;
+          if(!member.presence?.activities[0]) return false;
           return member.presence.activities.filter(activitiy=>interaction.member.presence.activities[0].name === activitiy.name)[0];
         });
       
