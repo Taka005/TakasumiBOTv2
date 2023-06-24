@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { Colors } = require("discord.js");
+  const { ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "activity"){
 
