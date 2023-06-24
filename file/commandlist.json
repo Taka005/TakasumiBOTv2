@@ -32,6 +32,17 @@
         ],
         "note": "アカウント情報の削除は[サポートサーバー](https://discord.gg/NEesRdGQwD)にて連絡してください"
     },
+    "activity":{
+        "description": "同じアクティビティの人を表示します",
+        "example": "`/activity`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
+        ],
+        "note": "なし"
+    },
     "ad":{
         "description": "BOTの宣伝を表示します",
         "example": "`/ad`",
@@ -46,7 +57,9 @@
     "afk":{
         "description": "AFK(留守電)を設定できます",
         "example": "`/afk お出かけ中`",
-        "userPermission": ["必要なし"],
+        "userPermission": [
+            "必要なし"
+        ],
         "botPermission": [
             "必要なし"
         ],

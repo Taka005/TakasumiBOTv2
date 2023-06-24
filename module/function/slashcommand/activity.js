@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
           name: "表示出来ませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "アクティビティがありません"
+        description: "あなたのアクティビティがありません"
       }],
       ephemeral: true
     });
