@@ -98,6 +98,7 @@ module.exports = async(message)=>{
       embed.push({
         color: Colors.Green,
         title: attachment.name,
+        description: `[ファイルを開く](${attachment.url})`,
         image:{
           url: attachment.url
         }
