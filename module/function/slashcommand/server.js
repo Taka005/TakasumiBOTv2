@@ -6,13 +6,17 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     try{
-      const members = (await interaction.guild.members.fetch());
+      const members = await interaction.guild.members.fetch();
 
       const online = members.filter(member=>member.presence?.status === "online").toJSON();
       const dnd = members.filter(member=>member.presence?.status === "dnd").toJSON();
       const idle = members.filter(member=>member.presence?.status === "idle").toJSON();
       const offline = members.filter(member=>member.presence?.status === "offline").toJSON();
       const none = members.filter(member=>!(member.presence?.status)).toJSON();
+
+      const web = members.filter(member=>member.presence?.clientStatus?.web).toJSON();
+      const mobile = members.filter(member=>member.presence?.clientStatus?.mobile).toJSON();
+      const desktop = members.filter(member=>member.presence?.clientStatus?.desktop).toJSON();
 
       await interaction.editReply({
         embeds:[{
@@ -43,7 +47,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "アクティビティ",
-              value: `オンライン: ${online.length}人\n取り込み中: ${dnd.length}人\n退席中: ${idle.length}人\nオフライン: ${offline.length+none.length}人`
+              value: `🟢: ${online.length}人 ⛔: ${dnd.length}人 🌙: ${idle.length}人 ⚫: ${offline.length+none.length}人\nブラウザ: ${web.length}人 モバイル: ${mobile.length}人 デスクトップ: ${desktop.length}人`
             },
             {
               name: "統計情報",
