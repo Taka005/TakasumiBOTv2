@@ -17,10 +17,10 @@ const client = new Client({
   shards: "auto"
 });
 
-console.log("\x1b[32m*******************************\x1b[39m");
-console.log("\x1b[32m          TakasumiBOT v2       \x1b[39m");
-console.log("\x1b[32m    Created By taka005    \x1b[39m");
-console.log("\x1b[32m*******************************\x1b[39m");
+console.log("\x1b[32m*****************************\x1b[39m");
+console.log("\x1b[32m        TakasumiBOT v2       \x1b[39m");
+console.log("\x1b[32m      Created By taka005     \x1b[39m");
+console.log("\x1b[32m*****************************\x1b[39m");
 
 require("./module/event")(client);
 

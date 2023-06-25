@@ -69,7 +69,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "ロール",
-              value: interaction.member.roles.cache.map(r=>r).join("")
+              value: interaction.member.roles.cache.toJSON().join("")
             }
           ]
         }]
@@ -166,7 +166,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "ロール",
-              value: member.roles.cache.map(r=>r).join("")
+              value: member.roles.cache.toJSON().join("")
             }
           ],
           footer:{
