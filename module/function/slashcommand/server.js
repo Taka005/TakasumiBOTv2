@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "アクティビティ",
-              value: `🟢: ${online.length}人 ⛔: ${dnd.length}人 🌙: ${idle.length}人 ⚫: ${offline.length+none.length}人\nブラウザ: ${web.length}人 モバイル: ${mobile.length}人 デスクトップ: ${desktop.length}人`
+              value: `🟢: ${online.length}人 ⛔: ${dnd.length}人 🌙: ${idle.length}人 ⚫: ${offline.length+none.length}人\n🌐: ${web.length}人 📱: ${mobile.length}人 🖥️: ${desktop.length}人`
             },
             {
               name: "統計情報",

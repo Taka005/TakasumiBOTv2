@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
-              description: ":green_circle: オンライン",
+              description: "🟢 オンライン",
               fields:[
                 {
                   name: "MOTD",
@@ -70,7 +70,7 @@ module.exports = async(interaction)=>{
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
-              description: "red_circle: オフライン",
+              description: "🔴 オフライン",
               footer:{
                 text: "TakasumiBOT"
               },
@@ -115,7 +115,7 @@ module.exports = async(interaction)=>{
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
-              description: ":green_circle: オンライン",
+              description: "🟢 オンライン",
               fields:[
                 {
                   name: "MOTD",
@@ -158,7 +158,7 @@ module.exports = async(interaction)=>{
               thumbnail:{
                 url: `https://api.mcsrvstat.us/icon/${ip}`,
               },
-              description: "red_circle: オフライン",
+              description: "🔴 オフライン",
               footer:{
                 text: "TakasumiBOT"
               },
