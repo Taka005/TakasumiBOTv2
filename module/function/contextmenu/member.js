@@ -62,7 +62,7 @@ module.exports = async(interaction)=>{
           },
           {
             name: "ロール",
-            value: member.roles.cache.map(r=>r).join("")
+            value: member.roles.cache.toJSON().join("")
           }
         ],
         footer:{
