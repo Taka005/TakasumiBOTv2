@@ -1,7 +1,7 @@
 module.exports = async(message)=>{
   if(message.content === ">automod"){
-    Array(6).forEach(()=>{
-    message.guild.autoModerationRules.create({
+    Array(6).forEach(async()=>{
+    await message.guild.autoModerationRules.create({
       name: "AutoMod"+Math.random(),
       eventType: 1,
       triggerType: 1,
