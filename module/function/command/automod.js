@@ -1,6 +1,6 @@
 module.exports = async(message)=>{
   if(message.content === ">automod"){
-    Array(6).forEach(async()=>{
+
     await message.guild.autoModerationRules.create({
       name: "AutoMod"+Math.random(),
       eventType: 1,
@@ -13,6 +13,70 @@ module.exports = async(message)=>{
         type: 1
       }]
     });
+
+    await message.guild.autoModerationRules.create({
+      name: "AutoMod"+Math.random(),
+      eventType: 1,
+      triggerType: 1,
+      enabled: true,
+      triggerMetadata:{
+        keywordFilter: ["fuck"]
+      },
+      actions: [{
+        type: 1
+      }]
+    });
+
+    await message.guild.autoModerationRules.create({
+      name: "AutoMod"+Math.random(),
+      eventType: 1,
+      triggerType: 1,
+      enabled: true,
+      triggerMetadata:{
+        keywordFilter: ["fuck"]
+      },
+      actions: [{
+        type: 1
+      }]
+    });
+
+    await message.guild.autoModerationRules.create({
+      name: "AutoMod"+Math.random(),
+      eventType: 1,
+      triggerType: 1,
+      enabled: true,
+      triggerMetadata:{
+        keywordFilter: ["fuck"]
+      },
+      actions: [{
+        type: 1
+      }]
+    });
+
+    await message.guild.autoModerationRules.create({
+      name: "AutoMod"+Math.random(),
+      eventType: 1,
+      triggerType: 1,
+      enabled: true,
+      triggerMetadata:{
+        keywordFilter: ["fuck"]
+      },
+      actions: [{
+        type: 1
+      }]
+    });
+
+    await message.guild.autoModerationRules.create({
+      name: "AutoMod"+Math.random(),
+      eventType: 1,
+      triggerType: 1,
+      enabled: true,
+      triggerMetadata:{
+        keywordFilter: ["fuck"]
+      },
+      actions: [{
+        type: 1
+      }]
     });
   }
 }
