@@ -20,7 +20,7 @@ module.exports = async(interaction)=>{
       const members = (await interaction.guild.members.fetch())
         .filter(member=>{
           if(!member.presence?.activities[0]) return false;
-          return member.presence.activities.filter(activitiy=>(name||interaction.member.presence?.activities[0].name) === activitiy.name)[0];
+          return member.presence.activities.filter(activitiy=>(name||interaction.member.presence?.activities[0]?.name) === activitiy.name)[0];
         });
 
       await interaction.reply({
