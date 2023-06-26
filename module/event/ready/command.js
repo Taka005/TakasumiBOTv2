@@ -42,7 +42,12 @@ module.exports = async(client)=>{
           new SlashCommandBuilder()
             .setName("activity")
             .setDescription("View people whose activity is the same as you")
-            .setDescriptionLocalization("ja","自分と同じアクティビティの人を表示します"),
+            .setDescriptionLocalization("ja","自分と同じアクティビティの人を表示します")
+            .addStringOption(option =>
+              option
+                .setName("name")
+                .setDescription("Activity Name")
+                .setDescriptionLocalization("ja","アクティビティの名前")),
           //ad
           new SlashCommandBuilder()
             .setName("ad")

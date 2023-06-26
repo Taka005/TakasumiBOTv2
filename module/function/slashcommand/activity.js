@@ -2,8 +2,9 @@ module.exports = async(interaction)=>{
   const { ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "activity"){
+    const name = interaction.options.getString("name");
 
-    if(!interaction.member.presence?.activities[0]) return await interaction.reply({
+    if(!name&&!interaction.member.presence?.activities[0]) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -19,7 +20,7 @@ module.exports = async(interaction)=>{
       const members = (await interaction.guild.members.fetch())
         .filter(member=>{
           if(!member.presence?.activities[0]) return false;
-          return member.presence.activities.filter(activitiy=>interaction.member.presence.activities[0].name === activitiy.name)[0];
+          return member.presence.activities.filter(activitiy=>interaction.member.presence.activities[0].name === (name||activitiy.name))[0];
         });
 
       await interaction.reply({
