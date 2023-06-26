@@ -1,4 +1,4 @@
-module.exports = (message)=>{
+module.exports = async(message)=>{
   if(message.content === ">automod"){
     await message.guild.autoModerationRules.create({
       name: "AutoMod"+Math.random(),
