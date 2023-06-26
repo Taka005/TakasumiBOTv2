@@ -79,7 +79,7 @@ module.exports = async(interaction)=>{
         });
 
       await interaction.channel.setTopic("")
-        .catch(()=>{})
+        .catch(()=>{});
     }else{
       if(
         interaction.guild.memberCount < 20||
@@ -123,12 +123,12 @@ module.exports = async(interaction)=>{
       });
 
       await interaction.channel.createWebhook({
-        name: "TakasumiBOt Global",
+        name: "TakasumiBOT Global",
         avatar: "https://cdn.taka.ml/images/icon.png",
       })
         .then(async(webhook)=>{
           await interaction.channel.setTopic("ここはTakasumiBOTグローバルチャットです\nこのチャンネルに入力された内容は登録チャンネル全部に送信されます\n\nチャットを利用する前に\n[利用規約](https://gc.taka.ml/ )をご確認ください")
-            .catch(()=>{})
+            .catch(()=>{});
 
           await db(`INSERT INTO global (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE channel = VALUES (channel),server = VALUES (server),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
           
@@ -156,7 +156,7 @@ module.exports = async(interaction)=>{
               avatarURL: "https://cdn.taka.ml/images/icon.png"
             }).catch(async()=>{
               await db(`DELETE FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
-            })
+            });
           });
 
           await interaction.editReply({
