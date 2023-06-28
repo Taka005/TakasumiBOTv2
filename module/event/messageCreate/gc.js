@@ -63,9 +63,6 @@ module.exports = async(message)=>{
       text: `${message.guild.name}(${message.guild.id})`,
       icon_url: message.guild.iconURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
     },
-    image:{
-      url: `https://${message.id}.ugc`
-    },
     timestamp: new Date()
   }];
 
