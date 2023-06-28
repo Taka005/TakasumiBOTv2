@@ -950,6 +950,11 @@ module.exports = async(client)=>{
           new ContextMenuCommandBuilder()
             .setName("Make it a Quote")
             .setType(ApplicationCommandType.Message),
+          //report
+          new ContextMenuCommandBuilder()
+            .setName("Report Message")
+            .setNameLocalization("ja","メッセージを報告")
+            .setType(ApplicationCommandType.Message),
           //to_en
           new ContextMenuCommandBuilder()
             .setName("Translate To English")
