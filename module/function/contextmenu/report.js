@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
     });
 
     await interaction.client.channels.cache.get(config.report).send({
-      embeds: [{
+      embeds:[{
         color: Colors.Green,
         author:{
           name: "メッセージレポート",
