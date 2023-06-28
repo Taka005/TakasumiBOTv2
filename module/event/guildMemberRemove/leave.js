@@ -12,7 +12,7 @@ module.exports = async(member)=>{
       .replace("[ServerID]",`${member.guild.id}`)
       .replace("[Count]",`${member.guild.memberCount}`)
       .replace("@everyone","＠everyone")
-      .replace("@here","＠here")
+      .replace("@here","＠here");
       
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
       await webhook.send({
