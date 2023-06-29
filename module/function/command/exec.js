@@ -1,8 +1,8 @@
 module.exports = async(message)=>{
   const fs = require("fs");
-  const { admin } = require("../../../config.json");
+  const config = require("../../../config.json");
   if(message.content.startsWith(`${config.prefix}exec`)){
-    if(message.author.id !== admin) return message.reply("このコマンドは関係者専用です").catch(()=>{});
+    if(message.author.id !== config.admin) return message.reply("このコマンドは関係者専用です").catch(()=>{});
     
     const script = `module.exports = async(message,client)=>{\n  ${message.content.slice(6)}\n}`;
     try{
