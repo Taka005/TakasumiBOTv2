@@ -6,12 +6,8 @@ const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.MessageContent,
-    GatewayIntentBits.DirectMessages,
     GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildInvites,
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.GuildWebhooks,
-    GatewayIntentBits.GuildEmojisAndStickers,
     GatewayIntentBits.GuildPresences
   ],
   shards: "auto"
