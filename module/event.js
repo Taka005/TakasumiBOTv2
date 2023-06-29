@@ -5,6 +5,24 @@ module.exports = async(client)=>{
   const db = require("./lib/db");
   const count = require("./lib/count");
 
+  const messageCreate = fs.readdirSync("./module/event/messageCreate")
+    .map(file=>require(`./event/messageCreate/${file}`));
+
+  const command = fs.readdirSync("./module/function/command")
+    .map(file=>require(`./function/command/${file}`));
+
+  const interactionCreate = fs.readdirSync("./module/event/interactionCreate")
+    .map(file=>require(`./event/interactionCreate/${file}`))
+
+  const auth = fs.readdirSync("./module/function/auth")
+    .map(file=>require(`./function/auth/${file}`));
+
+  const slashcommand = fs.readdirSync("./module/function/slashcommand")
+    .map(file=>require(`./function/slashcommand/${file}`));
+
+  const contextmenu = fs.readdirSync("./module/function/contextmenu")
+    .map(file=>require(`./function/contextmenu/${file}`));
+
   client.once(Events.ClientReady,async(client)=>{
     require("./event/ready/status")(client);
     require("./event/ready/load")(client);
@@ -19,25 +37,13 @@ module.exports = async(client)=>{
 
     count.message();
 
-    //event/message
-    fs.readdir("./module/event/messageCreate/",(err,files)=>{
-      files.forEach((file)=>{
-        if(!file.endsWith(".js")) return;
-        require(`./event/messageCreate/${file}`)(message);
-      });
-    });
+    messageCreate.forEach(fn=>fn());
     
     if(message.author.bot) return;  
 
     console.log(`\x1b[37mMESSAGE: ${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
-    //コマンド
-    fs.readdir("./module/function/command/",(err,files)=>{ 
-      files.forEach((file)=>{
-        if(!file.endsWith(".js")) return;
-        require(`./function/command/${file}`)(message);
-      });
-    });
+    command.forEach(fn=>fn());
   });
 
   client.on(Events.MessageUpdate,async(oldMessage,newMessage)=>{
@@ -98,34 +104,10 @@ module.exports = async(client)=>{
 
     count.command();
 
-    //event/interaction
-    fs.readdir("./module/event/interactionCreate/",(err,files)=>{ 
-      files.forEach(async(file)=>{
-        if(!file.endsWith(".js")) return;
-        require(`./event/interactionCreate/${file}`)(interaction);
-      });
-    });
-    //auth
-    fs.readdir("./module/function/auth/",(err,files)=>{ 
-      files.forEach(async(file)=>{
-        if(!file.endsWith(".js")) return;
-        require(`./function/auth/${file}`)(interaction);
-      });
-    });
-    //slashcommands
-    fs.readdir("./module/function/slashcommand/",(err,files)=>{ 
-      files.forEach(async(file)=>{
-        if(!file.endsWith(".js")) return;
-        require(`./function/slashcommand/${file}`)(interaction);
-      });
-    });
-    //contextmenu
-    fs.readdir("./module/function/contextmenu/",(err,files)=>{ 
-      files.forEach(async(file)=>{
-        if(!file.endsWith(".js")) return;
-        require(`./function/contextmenu/${file}`)(interaction);
-      });
-    });
+    interactionCreate.forEach(fn=>fn());
+    auth.forEach(fn=>fn());
+    slashcommand.forEach(fn=>fn());
+    contextmenu.forEach(fn=>fn());
   });
 
   client.on(Events.GuildMemberAdd,async(member)=>{
