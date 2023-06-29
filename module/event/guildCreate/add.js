@@ -1,14 +1,14 @@
 module.exports = async(guild)=>{
   const { ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   let find = 0;
-  guild.channels.cache.map((channel)=>{
+  guild.channels.cache.map(async(channel)=>{
     if(find === 0){
       if(
         channel.type === ChannelType.GuildText&&
         guild.members.me.permissionsIn(channel).has(PermissionFlagsBits.ViewChannel)&&
         guild.members.me.permissionsIn(channel).has(PermissionFlagsBits.SendMessages)
       ){
-        channel.send({
+        await channel.send({
           embeds:[{
             color: Colors.Green,
             thumbnail:{
@@ -34,7 +34,7 @@ module.exports = async(guild)=>{
                   .setCustomId("english")
                   .setStyle(ButtonStyle.Primary))
           ]
-        });
+        }).catch(()=>{});
         return find = 1;
       }
     }
