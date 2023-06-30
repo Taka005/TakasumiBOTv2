@@ -1,15 +1,8 @@
 module.exports = async(interaction)=>{
-  const { PermissionFlagsBits, Colors } = require("discord.js");
-  const db = require("../../lib/db");
+  const { PermissionFlagsBits, Colors, ActionRowBuilder, ButtonBuilder, ButtonStyle, AutoModerationRuleEventType, AutoModerationRuleTriggerType, AutoModerationActionType } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "moderate"){
     const type = interaction.options.getString("type");
-
-    const level = {
-      high: "HIGT",
-      normal: "NORMAL",
-      low: "LOW"
-    };
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
@@ -30,9 +23,7 @@ module.exports = async(interaction)=>{
     });
 
     if(
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageMessages)
+      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageGuild)
     ) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -44,47 +35,69 @@ module.exports = async(interaction)=>{
         fields:[
           {
             name: "必要な権限",
-            value: "```メッセージの管理\nチャンネルの閲覧\nメッセージの送信```"
+            value: "```サーバーの管理```"
           }
         ]
       }],
       ephemeral: true
     });
 
-    if(type === "off"){
-      const data = await db(`SELECT * FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      if(!data[0]) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "モデレートを無効にできませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
-          },
-          description: "モデレートが設定されていません"
+    if(type === "spam"){
+      await interaction.guild.autoModerationRules.create({
+        name: "スパムをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Spam,
+        actions: [{
+          type: AutoModerationActionType.BlockMessage
         }],
-        ephemeral: true
-      });
-      
-      await db(`DELETE FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      return await interaction.reply({
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: "モデレート機能を無効にしました",
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
-          }
-        }]
+        enabled: true
+      })
+      .then(async()=>{    
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+           author:{
+              name: "スパム検知を設定しました",
+              icon_url: "https://cdn.taka.ml/images/system/success.png"
+            }
+          }]
+        });
+      })
+      .catch(async(error)=>{
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "設定出来ませんでした",
+              icon_url: "https://cdn.taka.ml/images/system/error.png"
+            },
+            fields:[
+              {
+                name: "エラーコード",
+                value: `\`\`\`${error}\`\`\``
+              }
+            ]
+          }],
+          components:[
+            new ActionRowBuilder()
+              .addComponents( 
+                new ButtonBuilder()
+                  .setLabel("サポートサーバー")
+                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setStyle(ButtonStyle.Link))
+          ],
+          ephemeral: true
+        });
       });
     }else{
-      await db(`INSERT INTO moderate (id, type, time) VALUES("${interaction.guild.id}","${type}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),type = VALUES (type),time = VALUES (time);`);
+      
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
           author:{
-            name: "モデレート機能を有効にしました",
+            name: "モデレート機能を設定しました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
-          },
-          description: `${level[type]}に設定しました`
+          }
         }]
       });
     }

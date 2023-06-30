@@ -377,17 +377,15 @@
         "note": "なし"
     },
     "moderate":{
-        "description": "モデレート機能を設定します",
-        "example": "`/moderate`",
+        "description": "AutoModを使用したモデレート機能を設定します",
+        "example": "`/moderate spam`",
         "userPermission": [
             "サーバーの管理"
         ],
         "botPermission": [
-            "メッセージの管理",
-            "メッセージの送信",
-            "チャンネルの閲覧"
+            "サーバーの管理"
         ],
-        "note": "レベルに応じて反応度が異なります"
+        "note": "なし"
     },
     "news":{
         "description": "最近のニュースを表示します",

@@ -199,7 +199,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "/moderate",
-              value: "モデレート機能を設定します"
+              value: "AutoModを使用したモデレート機能を設定します"
             },
             {
               name: "/setting",
