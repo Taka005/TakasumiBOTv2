@@ -370,6 +370,10 @@ module.exports = async(interaction)=>{
               value: "大吉や、凶、吉などのおみくじが引けます"
             },
             {
+              name: "/random",
+              value: "ランダムで選びます"
+            },
+            {
               name: "/news",
               value: "最近のニュースを表示します"
             },
