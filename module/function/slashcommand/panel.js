@@ -73,7 +73,7 @@ module.exports = async(interaction)=>{
                 .setMinValues(0)
                 .setMaxValues(roles.length)
                 .addOptions(
-                  selects.map((c,i)=>({
+                  roles.map((c,i)=>({
                     label: `@${c.name}`,
                     value: c.id,
                     emoji:{
