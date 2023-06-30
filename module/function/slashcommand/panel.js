@@ -3,18 +3,19 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "panel"){
     const title = interaction.options.getString("title")||"役職パネル";
-    const role_1 = interaction.options.getRole("role_1");
-    const role_2 = interaction.options.getRole("role_2");
-    const role_3 = interaction.options.getRole("role_3");
-    const role_4 = interaction.options.getRole("role_4");
-    const role_5 = interaction.options.getRole("role_5");
-    const role_6 = interaction.options.getRole("role_6");
-    const role_7 = interaction.options.getRole("role_7");
-    const role_8 = interaction.options.getRole("role_8");
+
+    const roles = [
+      interaction.options.getRole("role_1"),
+      interaction.options.getRole("role_2"),
+      interaction.options.getRole("role_3"),
+      interaction.options.getRole("role_4"),
+      interaction.options.getRole("role_5"),
+      interaction.options.getRole("role_6"),
+      interaction.options.getRole("role_7"),
+      interaction.options.getRole("role_8"),
+    ].filter(role=>role!==null);
 
     const emojis = ["🇦","🇧","🇨","🇩","🇪","🇫","🇬","🇭"];
-    const selects = [role_1,role_2,role_3,role_4,role_5,role_6,role_7,role_8]
-      .filter(role=>role!==null);
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) return await interaction.reply({
       embeds:[{
@@ -61,7 +62,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           title: title,
-          description: selects.map((c,i)=>`${emojis[i]}<@&${c.id}>`).join("\n")
+          description: roles.map((c,i)=>`${emojis[i]}<@&${c.id}>`).join("\n")
         }],
         components:[     
           new ActionRowBuilder()
@@ -70,9 +71,9 @@ module.exports = async(interaction)=>{
                 .setCustomId("role")
                 .setPlaceholder("ロールが選択されていません")
                 .setMinValues(0)
-                .setMaxValues(selects.length)
+                .setMaxValues(roles.length)
                 .addOptions(
-                  selects.map((c,i)=>({
+                  roles.map((c,i)=>({
                     label: `@${c.name}`,
                     value: c.id,
                     emoji:{
@@ -84,7 +85,7 @@ module.exports = async(interaction)=>{
       });
 
       await interaction.deferReply()
-        .then(()=>interaction.deleteReply())
+        .then(()=>interaction.deleteReply());
     }catch(error){
       await interaction.reply({
         embeds:[{

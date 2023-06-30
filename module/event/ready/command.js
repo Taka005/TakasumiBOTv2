@@ -620,6 +620,53 @@ module.exports = async(client)=>{
                 .setDescription("Text or URL")
                 .setDescriptionLocalization("ja","テキスト・URL")
                 .setRequired(true)),
+          //random
+          new SlashCommandBuilder()
+            .setName("random")
+            .setDescription("Choose at random")
+            .setDescriptionLocalization("ja","ランダムで選びます")
+            .addStringOption(option =>
+              option
+                .setName("select_1")
+                .setDescription("Select1")
+                .setDescriptionLocalization("ja","選択1")
+                .setRequired(true))
+            .addStringOption(option =>
+              option
+                .setName("select_2")
+                .setDescription("Select2")
+                .setDescriptionLocalization("ja","選択2")
+                .setRequired(true))
+            .addStringOption(option =>
+              option
+                .setName("select_3")
+                .setDescription("Select3")
+                .setDescriptionLocalization("ja","選択3"))
+            .addStringOption(option =>
+              option
+                .setName("select_4")
+                .setDescription("Select4")
+                .setDescriptionLocalization("ja","選択4"))
+            .addStringOption(option =>
+              option
+                .setName("select_5")
+                .setDescription("Select5")
+                .setDescriptionLocalization("ja","選択5"))
+            .addStringOption(option =>
+              option
+                .setName("select_6")
+                .setDescription("Select6")
+                .setDescriptionLocalization("ja","選択6"))
+            .addStringOption(option =>
+              option
+                .setName("select_7")
+                .setDescription("Select7")
+                .setDescriptionLocalization("ja","選択7"))
+            .addStringOption(option =>
+              option
+                .setName("select_8")
+                .setDescription("Select8")
+                .setDescriptionLocalization("ja","選択8")),
           //reload
           new SlashCommandBuilder()
             .setName("reload")

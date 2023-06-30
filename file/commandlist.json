@@ -490,6 +490,17 @@
         ],
         "note": "読み込むURLは有効なものである必要があります"
     },
+    "random":{
+        "description": "ランダムで選びます",
+        "example": "`/random A B C`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
+        ],
+        "note": "なし"
+    },
     "reload":{
         "description": "関係者以外実行できません",
         "example": "なし",
