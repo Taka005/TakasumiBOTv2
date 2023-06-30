@@ -438,7 +438,7 @@ module.exports = async(client)=>{
                 .addChoices(
                   { name: "スパム", value: "spam" },
                   { name: "メンションスパム", value: "mention" },
-                  { name: "LOW", value: "low" },
+                  { name: "招待リンク", value: "invite" },
                   { name: "リセット", value: "reset" }
                 )),
           //news
