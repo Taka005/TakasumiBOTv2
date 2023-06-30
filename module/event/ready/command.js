@@ -627,12 +627,6 @@ module.exports = async(client)=>{
             .setDescriptionLocalization("ja","ランダムで選びます")
             .addStringOption(option =>
               option
-                .setName("title")
-                .setDescription("Title")
-                .setDescriptionLocalization("ja","タイトル")
-                .setRequired(true))
-            .addStringOption(option =>
-              option
                 .setName("select_1")
                 .setDescription("Select1")
                 .setDescriptionLocalization("ja","選択1")
