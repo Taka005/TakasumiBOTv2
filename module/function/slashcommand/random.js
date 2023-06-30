@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { PermissionFlagsBits, Colors } = require("discord.js");
+  const { Colors } = require("discord.js");
   const random = require("../../lib/random");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "random"){
