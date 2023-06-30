@@ -37,13 +37,13 @@ module.exports = async(client)=>{
 
     count.message();
 
-    messageCreate.forEach(fn=>fn(message));
+    messageCreate.map(fn=>fn(message));
     
     if(message.author.bot) return;  
 
     console.log(`\x1b[37mMESSAGE: ${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
-    command.forEach(fn=>fn(message));
+    command.map(fn=>fn(message));
   });
 
   client.on(Events.MessageUpdate,async(oldMessage,newMessage)=>{
@@ -59,7 +59,6 @@ module.exports = async(client)=>{
   });
 
   client.on(Events.InteractionCreate,async(interaction)=>{
-
     if(!interaction.guild) return await interaction.reply({ 
       embeds:[{
         author:{
@@ -104,10 +103,10 @@ module.exports = async(client)=>{
 
     count.command();
 
-    interactionCreate.forEach(fn=>fn(interaction));
-    auth.forEach(fn=>fn(interaction));
-    slashcommand.forEach(fn=>fn(interaction));
-    contextmenu.forEach(fn=>fn(interaction));
+    Promise.all(interactionCreate.map(fn=>fn(interaction)));
+    Promise.all(auth.map(fn=>fn(interaction)));
+    Promise.all(slashcommand.map(fn=>fn(interaction)));
+    Promise.all(contextmenu.map(fn=>fn(interaction)));
   });
 
   client.on(Events.GuildMemberAdd,async(member)=>{
