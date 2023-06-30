@@ -37,13 +37,13 @@ module.exports = async(client)=>{
 
     count.message();
 
-    messageCreate.map(fn=>fn(message));
+    Promise.all(messageCreate.map(fn=>fn(message)));
     
     if(message.author.bot) return;  
 
     console.log(`\x1b[37mMESSAGE: ${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
-    command.map(fn=>fn(message));
+    Promise.all(command.map(fn=>fn(message)));
   });
 
   client.on(Events.MessageUpdate,async(oldMessage,newMessage)=>{
