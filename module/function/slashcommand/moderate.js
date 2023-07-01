@@ -306,6 +306,48 @@ module.exports = async(interaction)=>{
             ephemeral: true
           });
         });
+    }else if(type === "reset"){
+      try{
+        const rules = await interaction.guild.autoModerationRules.fetch();
+        rules.filter(rule=>rule.name.startsWith("TakasumiBOT")).forEach(async(rule)=>{
+          await interaction.guild.autoModerationRules.delete(rule);
+        });
+
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "リセットしました",
+              icon_url: "https://cdn.taka.ml/images/system/success.png"
+            }
+          }]
+        });
+      }catch(error){
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "リセット出来ませんでした",
+              icon_url: "https://cdn.taka.ml/images/system/error.png"
+            },
+            fields:[
+              {
+                name: "エラーコード",
+                value: `\`\`\`${error}\`\`\``
+              }
+            ]
+          }],
+          components:[
+            new ActionRowBuilder()
+              .addComponents( 
+                new ButtonBuilder()
+                  .setLabel("サポートサーバー")
+                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setStyle(ButtonStyle.Link))
+          ],
+          ephemeral: true
+        });
+      }
     }
   }
 }
