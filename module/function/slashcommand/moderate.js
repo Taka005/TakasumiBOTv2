@@ -4,6 +4,91 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "moderate"){
     const type = interaction.options.getString("type");
 
+    const options = {
+      "spam":{
+        name: "TakasumiBOT スパムをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Spam,
+        actions:[{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      },
+      "mention":{
+        name: "TakasumiBOT メンションスパムをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.MentionSpam,
+        triggerMetadata:{
+          mentionTotalLimit: 5,
+          mentionRaidProtectionEnabled: true
+        },
+        actions:[{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      },
+      "invite":{
+        name: "TakasumiBOT 招待リンクをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Keyword,
+        triggerMetadata: {
+          regexPatterns: [
+            "discord(?:.com|app.com|.gg)[/invite/]?(?:[a-zA-Z0-9-]{2,32})"
+          ]
+        },
+        actions: [{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      },
+      "link":{
+        name: "TakasumiBOT リンクをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Keyword,
+        triggerMetadata:{
+          regexPatterns:[
+            "https?://",
+            "www."
+          ],
+          allowList:[
+            "*.gif",
+            "*.jpg",
+            "*.jpge",
+            "*.png",
+            "*.webp",
+            "http://tenor.com/*",
+            "https://tenor.com/*"
+          ]
+        },
+        actions:[{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      },
+      "capital":{
+        name: "TakasumiBOT 大文字スパムをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Keyword,
+        triggerMetadata: {
+          regexPatterns: [
+            "(?-i)^[A-Z\\s]+$"
+          ]
+        },
+        actions: [{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      }
+    };
+
+    const name = {
+      "spam": "スパムのブロック",
+      "mention": "メンションスパムのブロック",
+      "invite": "招待リンクのブロック",
+      "link": "URLのブロック",
+      "capital": "大文字スパムのブロック"
+    };
+
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -22,9 +107,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageGuild)
-    ) return await interaction.reply({
+    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -42,276 +125,14 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(type === "spam"){
-      await interaction.guild.autoModerationRules.create({
-        name: "TakasumiBOT スパムをブロック",
-        eventType: AutoModerationRuleEventType.MessageSend,
-        triggerType: AutoModerationRuleTriggerType.Spam,
-        actions: [{
-          type: AutoModerationActionType.BlockMessage
-        }],
-        enabled: true
-      })
-        .then(async()=>{    
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: "スパムのブロックを設定しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
-              }
-            }]
-          });
-        })
-        .catch(async(error)=>{
-          await interaction.reply({
-            embeds:[{
-             color: Colors.Red,
-              author:{
-                name: "設定出来ませんでした",
-                icon_url: "https://cdn.taka.ml/images/system/error.png"
-              },
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            components:[
-              new ActionRowBuilder()
-                .addComponents( 
-                  new ButtonBuilder()
-                    .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
-                    .setStyle(ButtonStyle.Link))
-            ],
-            ephemeral: true
-          });
-        });
-    }else if(type === "mention"){
-      await interaction.guild.autoModerationRules.create({
-        name: "TakasumiBOT メンションスパムをブロック",
-        eventType: AutoModerationRuleEventType.MessageSend,
-        triggerType: AutoModerationRuleTriggerType.MentionSpam,
-        triggerMetadata: {
-          mentionTotalLimit: 5,
-          mentionRaidProtectionEnabled: true
-        },
-        actions: [{
-          type: AutoModerationActionType.BlockMessage
-        }],
-        enabled: true
-      })
-        .then(async()=>{    
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: "メンションスパムのブロックを設定しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
-              }
-            }]
-          });
-        })
-        .catch(async(error)=>{
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Red,
-              author:{
-                name: "設定出来ませんでした",
-                icon_url: "https://cdn.taka.ml/images/system/error.png"
-              },
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            components:[
-              new ActionRowBuilder()
-                .addComponents( 
-                  new ButtonBuilder()
-                    .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
-                    .setStyle(ButtonStyle.Link))
-            ],
-            ephemeral: true
-          });
-        });
-    }else if(type === "invite"){
-      await interaction.guild.autoModerationRules.create({
-        name: "TakasumiBOT 招待リンクをブロック",
-        eventType: AutoModerationRuleEventType.MessageSend,
-        triggerType: AutoModerationRuleTriggerType.Keyword,
-        triggerMetadata: {
-          regexPatterns: [
-            "discord(?:.com|app.com|.gg)[/invite/]?(?:[a-zA-Z0-9-]{2,32})"
-          ]
-        },
-        actions: [{
-          type: AutoModerationActionType.BlockMessage
-        }],
-        enabled: true
-      })
-        .then(async()=>{    
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Green,
-             author:{
-                name: "招待リンクのブロックを設定しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
-              }
-            }]
-          });
-        })
-        .catch(async(error)=>{
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Red,
-              author:{
-                name: "設定出来ませんでした",
-                icon_url: "https://cdn.taka.ml/images/system/error.png"
-              },
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            components:[
-              new ActionRowBuilder()
-                .addComponents( 
-                  new ButtonBuilder()
-                    .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
-                    .setStyle(ButtonStyle.Link))
-            ],
-            ephemeral: true
-          });
-        });
-    }else if(type === "link"){
-      await interaction.guild.autoModerationRules.create({
-        name: "TakasumiBOT リンクをブロック",
-        eventType: AutoModerationRuleEventType.MessageSend,
-        triggerType: AutoModerationRuleTriggerType.Keyword,
-        triggerMetadata: {
-          regexPatterns: [
-            "https?://",
-            "www."
-          ],
-          allowList: [
-            "*.gif",
-            "*.jpg",
-            "*.jpge",
-            "*.png",
-            "*.webp",
-            "http://tenor.com/*",
-            "https://tenor.com/*"
-          ]
-        },
-        actions: [{
-          type: AutoModerationActionType.BlockMessage
-        }],
-        enabled: true
-      })
-        .then(async()=>{    
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: "リンクのブロックを設定しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
-              }
-            }]
-          });
-        })
-        .catch(async(error)=>{
-          await interaction.reply({
-            embeds:[{
-             color: Colors.Red,
-              author:{
-                name: "設定出来ませんでした",
-                icon_url: "https://cdn.taka.ml/images/system/error.png"
-              },
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            components:[
-              new ActionRowBuilder()
-                .addComponents( 
-                  new ButtonBuilder()
-                    .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
-                    .setStyle(ButtonStyle.Link))
-            ],
-            ephemeral: true
-          });
-        });
-    }else if(type === "capital"){
-      await interaction.guild.autoModerationRules.create({
-        name: "TakasumiBOT 大文字スパムをブロック",
-        eventType: AutoModerationRuleEventType.MessageSend,
-        triggerType: AutoModerationRuleTriggerType.Keyword,
-        triggerMetadata: {
-          regexPatterns: [
-            "(?-i)^[A-Z\\s]+$"
-          ]
-        },
-        actions: [{
-          type: AutoModerationActionType.BlockMessage
-        }],
-        enabled: true
-      })
-        .then(async()=>{    
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Green,
-             author:{
-                name: "大文字スパムのブロックを設定しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
-              }
-            }]
-          });
-        })
-        .catch(async(error)=>{
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Red,
-              author:{
-                name: "設定出来ませんでした",
-                icon_url: "https://cdn.taka.ml/images/system/error.png"
-              },
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            components:[
-              new ActionRowBuilder()
-                .addComponents( 
-                  new ButtonBuilder()
-                    .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
-                    .setStyle(ButtonStyle.Link))
-            ],
-            ephemeral: true
-          });
-        });
-    }else if(type === "reset"){
+    if(type === "reset"){
       try{
-        const rules = await interaction.guild.autoModerationRules.fetch();
-        rules.filter(rule=>rule.name.startsWith("TakasumiBOT")).forEach(async(rule)=>{
-          await interaction.guild.autoModerationRules.delete(rule);
-        });
+        (await interaction.guild.autoModerationRules.fetch())
+          .filter(rule=>rule.name.startsWith("TakasumiBOT"))
+          .forEach(async(rule)=>{
+            await interaction.guild.autoModerationRules.delete(rule)
+              .catch(()=>{});
+          });
 
         await interaction.reply({
           embeds:[{
@@ -348,6 +169,45 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
       }
+    }else{
+      await interaction.guild.autoModerationRules.create(options[type])
+        .then(async()=>{    
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${name[type]}を設定しました`,
+                icon_url: "https://cdn.taka.ml/images/system/success.png"
+              }
+            }]
+          });
+        })
+        .catch(async(error)=>{
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: `${name[type]}を設定できませんでした  `,
+                icon_url: "https://cdn.taka.ml/images/system/error.png"
+              },
+              fields:[
+                {
+                  name: "エラーコード",
+                  value: `\`\`\`${error}\`\`\``
+                }
+              ]
+            }],
+            components:[
+              new ActionRowBuilder()
+                .addComponents( 
+                  new ButtonBuilder()
+                    .setLabel("サポートサーバー")
+                    .setURL("https://discord.gg/NEesRdGQwD")
+                    .setStyle(ButtonStyle.Link))
+            ],
+            ephemeral: true
+          });
+      });
     }
   }
 }
