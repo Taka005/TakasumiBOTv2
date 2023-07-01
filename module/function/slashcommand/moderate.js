@@ -1,14 +1,92 @@
 module.exports = async(interaction)=>{
-  const { PermissionFlagsBits, Colors } = require("discord.js");
-  const db = require("../../lib/db");
+  const { PermissionFlagsBits, Colors, ActionRowBuilder, ButtonBuilder, ButtonStyle, AutoModerationRuleEventType, AutoModerationRuleTriggerType, AutoModerationActionType } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "moderate"){
     const type = interaction.options.getString("type");
 
-    const level = {
-      high: "HIGT",
-      normal: "NORMAL",
-      low: "LOW"
+    const options = {
+      "spam":{
+        name: "TakasumiBOT スパムをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Spam,
+        actions:[{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      },
+      "mention":{
+        name: "TakasumiBOT メンションスパムをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.MentionSpam,
+        triggerMetadata:{
+          mentionTotalLimit: 5,
+          mentionRaidProtectionEnabled: true
+        },
+        actions:[{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      },
+      "invite":{
+        name: "TakasumiBOT 招待リンクをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Keyword,
+        triggerMetadata: {
+          regexPatterns: [
+            "discord(?:.com|app.com|.gg)[/invite/]?(?:[a-zA-Z0-9-]{2,32})"
+          ]
+        },
+        actions: [{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      },
+      "link":{
+        name: "TakasumiBOT リンクをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Keyword,
+        triggerMetadata:{
+          regexPatterns:[
+            "https?://",
+            "www."
+          ],
+          allowList:[
+            "*.gif",
+            "*.jpg",
+            "*.jpge",
+            "*.png",
+            "*.webp",
+            "http://tenor.com/*",
+            "https://tenor.com/*"
+          ]
+        },
+        actions:[{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      },
+      "capital":{
+        name: "TakasumiBOT 大文字スパムをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Keyword,
+        triggerMetadata: {
+          regexPatterns: [
+            "(?-i)^[A-Z\\s]+$"
+          ]
+        },
+        actions: [{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      }
+    };
+
+    const name = {
+      "spam": "スパムのブロック",
+      "mention": "メンションスパムのブロック",
+      "invite": "招待リンクのブロック",
+      "link": "URLのブロック",
+      "capital": "大文字スパムのブロック"
     };
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
@@ -29,11 +107,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)||
-      !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageMessages)
-    ) return await interaction.reply({
+    if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -44,48 +118,95 @@ module.exports = async(interaction)=>{
         fields:[
           {
             name: "必要な権限",
-            value: "```メッセージの管理\nチャンネルの閲覧\nメッセージの送信```"
+            value: "```サーバーの管理```"
           }
         ]
       }],
       ephemeral: true
     });
 
-    if(type === "off"){
-      const data = await db(`SELECT * FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      if(!data[0]) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "モデレートを無効にできませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
-          },
-          description: "モデレートが設定されていません"
-        }],
-        ephemeral: true
-      });
-      
-      await db(`DELETE FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      return await interaction.reply({
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: "モデレート機能を無効にしました",
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
-          }
-        }]
-      });
+    if(type === "reset"){
+      try{
+        (await interaction.guild.autoModerationRules.fetch())
+          .filter(rule=>rule.name.startsWith("TakasumiBOT"))
+          .forEach(async(rule)=>{
+            await interaction.guild.autoModerationRules.delete(rule)
+              .catch(()=>{});
+          });
+
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "リセットしました",
+              icon_url: "https://cdn.taka.ml/images/system/success.png"
+            }
+          }]
+        });
+      }catch(error){
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "リセット出来ませんでした",
+              icon_url: "https://cdn.taka.ml/images/system/error.png"
+            },
+            fields:[
+              {
+                name: "エラーコード",
+                value: `\`\`\`${error}\`\`\``
+              }
+            ]
+          }],
+          components:[
+            new ActionRowBuilder()
+              .addComponents( 
+                new ButtonBuilder()
+                  .setLabel("サポートサーバー")
+                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setStyle(ButtonStyle.Link))
+          ],
+          ephemeral: true
+        });
+      }
     }else{
-      await db(`INSERT INTO moderate (id, type, time) VALUES("${interaction.guild.id}","${type}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),type = VALUES (type),time = VALUES (time);`);
-      await interaction.reply({
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: "モデレート機能を有効にしました",
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
-          },
-          description: `${level[type]}に設定しました`
-        }]
+      await interaction.guild.autoModerationRules.create(options[type])
+        .then(async()=>{    
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${name[type]}を設定しました`,
+                icon_url: "https://cdn.taka.ml/images/system/success.png"
+              }
+            }]
+          });
+        })
+        .catch(async(error)=>{
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: `${name[type]}を設定できませんでした  `,
+                icon_url: "https://cdn.taka.ml/images/system/error.png"
+              },
+              fields:[
+                {
+                  name: "エラーコード",
+                  value: `\`\`\`${error}\`\`\``
+                }
+              ]
+            }],
+            components:[
+              new ActionRowBuilder()
+                .addComponents( 
+                  new ButtonBuilder()
+                    .setLabel("サポートサーバー")
+                    .setURL("https://discord.gg/NEesRdGQwD")
+                    .setStyle(ButtonStyle.Link))
+            ],
+            ephemeral: true
+          });
       });
     }
   }

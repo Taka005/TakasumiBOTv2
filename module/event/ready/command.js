@@ -75,10 +75,10 @@ module.exports = async(client)=>{
                 .setDescriptionLocalization("ja","認証方式")
                 .setRequired(true)
                 .addChoices(
-                  { name: "標準(NORMAL)", value: "normal" },
-                  { name: "計算(MATH)", value: "math" },
-                  { name: "画像(IMAGE)", value: "image" },
-                  { name: "ウェブ(WEB)", value: "web" },
+                  { name: "標準", value: "normal" },
+                  { name: "計算", value: "math" },
+                  { name: "画像", value: "image" },
+                  { name: "ウェブ", value: "web" },
                 ))
             .addRoleOption(option =>
               option
@@ -129,8 +129,8 @@ module.exports = async(client)=>{
                 .setDescriptionLocalization("ja","処理方式")
                 .setRequired(true)
                 .addChoices(
-                  { name: "暗号化(CIPHER)", value: "cipher" },
-                  { name: "復号化(DECIPHER)", value: "decipher" }
+                  { name: "暗号化", value: "cipher" },
+                  { name: "復号化", value: "decipher" }
                 ))
             .addStringOption(option =>
               option
@@ -162,15 +162,14 @@ module.exports = async(client)=>{
                 .setDescriptionLocalization("ja","ロールの色")
                 .setRequired(true)
                 .addChoices(
-                  { name: "WHITE", value: `${Colors.White}` },
-                  { name: "GREEN", value: `${Colors.Green}` },
-                  { name: "BLUE", value: `${Colors.Blue}` },
-                  { name: "YELLOW", value: `${Colors.Yellow}` },
-                  { name: "PURPLE", value: `${Colors.Purple}` },
-                  { name: "GOLD", value: `${Colors.Gold}` },
-                  { name: "ORANGE", value: `${Colors.Orange}` },
-                  { name: "RED", value: `${Colors.Red}` },
-                  { name: "AQUA", value: `${Colors.Aqua}` }
+                  { name: "白", value: `${Colors.White}` },
+                  { name: "緑", value: `${Colors.Green}` },
+                  { name: "青", value: `${Colors.Blue}` },
+                  { name: "黄", value: `${Colors.Yellow}` },
+                  { name: "紫", value: `${Colors.Purple}` },
+                  { name: "金", value: `${Colors.Gold}` },
+                  { name: "橙", value: `${Colors.Orange}` },
+                  { name: "赤", value: `${Colors.Red}` }
                 )),
           //db
           new SlashCommandBuilder()
@@ -429,18 +428,20 @@ module.exports = async(client)=>{
           new SlashCommandBuilder()
             .setName("moderate")
             .setDescription("Set the moderating function")
-            .setDescriptionLocalization("ja","モデレート機能を設定します")  
+            .setDescriptionLocalization("ja","AutoModを使用したモデレート機能を設定します")  
             .addStringOption(option =>
               option
                 .setName("type")
                 .setDescription("Strength")
-                .setDescriptionLocalization("ja","モデレート強度")
+                .setDescriptionLocalization("ja","設定する機能")
                 .setRequired(true)
                 .addChoices(
-                  { name: "HIGH", value: "high" },
-                  { name: "NORMAL", value: "normal" },
-                  { name: "LOW", value: "low" },
-                  { name: "OFF", value: "off" }
+                  { name: "スパム", value: "spam" },
+                  { name: "メンションスパム", value: "mention" },
+                  { name: "招待リンク", value: "invite" },
+                  { name: "リンク", value: "link" },
+                  { name: "大文字スパム", value: "capital"},
+                  { name: "リセット", value: "reset" }
                 )),
           //news
           new SlashCommandBuilder()
@@ -611,8 +612,8 @@ module.exports = async(client)=>{
                 .setDescriptionLocalization("ja","実行する操作")
                 .setRequired(true)
                 .addChoices(
-                  { name: "読み取り(READ)", value: "read" },
-                  { name: "生成(GENERATE)", value: "gen" }
+                  { name: "読み取り", value: "read" },
+                  { name: "生成", value: "gen" }
                 ))
             .addStringOption(option =>
               option
@@ -915,13 +916,13 @@ module.exports = async(client)=>{
                 .setDescriptionLocalization("ja","翻訳先の言語")
                 .setRequired(true)
                 .addChoices(
-                  { name: "日本語(JA)", value: "ja" },
-                  { name: "英語(EN)", value: "en" },
-                  { name: "韓国語(KO)", value: "ko" },
-                  { name: "中国語(ZH)", value: "zh" },
-                  { name: "ロシア語(RU)", value: "ru" },
-                  { name: "フランス語(FR)", value: "fr" },
-                  { name: "ドイツ語(DE)", value: "de" }
+                  { name: "日本語", value: "ja" },
+                  { name: "英語", value: "en" },
+                  { name: "韓国語", value: "ko" },
+                  { name: "中国語", value: "zh" },
+                  { name: "ロシア語", value: "ru" },
+                  { name: "フランス語", value: "fr" },
+                  { name: "ドイツ語", value: "de" }
                 )),
           //user
           new SlashCommandBuilder()

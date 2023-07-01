@@ -37,13 +37,13 @@ module.exports = async(client)=>{
 
     count.message();
 
-    messageCreate.map(fn=>fn(message));
+    Promise.all(messageCreate.map(fn=>fn(message)));
     
     if(message.author.bot) return;  
 
     console.log(`\x1b[37mMESSAGE: ${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
-    command.map(fn=>fn(message));
+    Promise.all(command.map(fn=>fn(message)));
   });
 
   client.on(Events.MessageUpdate,async(oldMessage,newMessage)=>{
@@ -78,10 +78,10 @@ module.exports = async(client)=>{
       ]
     });
     
-    const mute_server = await db(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id} LIMIT 1;`);
-    const mute_user = await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id} LIMIT 1;`);
-
-    if(mute_server[0]||mute_user[0]) return await interaction.reply({ 
+    if(
+      (await db(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id} LIMIT 1;`))[0]||
+      (await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id} LIMIT 1;`))[0]
+    ) return await interaction.reply({ 
       embeds:[{
         author:{
           name: "コマンドが実行できません",
