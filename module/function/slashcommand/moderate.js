@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
             embeds:[{
               color: Colors.Green,
               author:{
-                name: "スパム検知を設定しました",
+                name: "スパムのブロックを設定しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               }
             }]
@@ -108,7 +108,7 @@ module.exports = async(interaction)=>{
             embeds:[{
               color: Colors.Green,
               author:{
-                name: "メンションスパム検知を設定しました",
+                name: "メンションスパムのブロックを設定しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               }
             }]
@@ -161,6 +161,120 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
              author:{
                 name: "招待リンクのブロックを設定しました",
+                icon_url: "https://cdn.taka.ml/images/system/success.png"
+              }
+            }]
+          });
+        })
+        .catch(async(error)=>{
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: "設定出来ませんでした",
+                icon_url: "https://cdn.taka.ml/images/system/error.png"
+              },
+              fields:[
+                {
+                  name: "エラーコード",
+                  value: `\`\`\`${error}\`\`\``
+                }
+              ]
+            }],
+            components:[
+              new ActionRowBuilder()
+                .addComponents( 
+                  new ButtonBuilder()
+                    .setLabel("サポートサーバー")
+                    .setURL("https://discord.gg/NEesRdGQwD")
+                    .setStyle(ButtonStyle.Link))
+            ],
+            ephemeral: true
+          });
+        });
+    }else if(type === "link"){
+      await interaction.guild.autoModerationRules.create({
+        name: "TakasumiBOT リンクをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Keyword,
+        triggerMetadata: {
+          regexPatterns: [
+            "https?://",
+            "www."
+          ],
+          allowList: [
+            "*.gif",
+            "*.jpg",
+            "*.jpge",
+            "*.png",
+            "*.webp",
+            "http://tenor.com/*",
+            "https://tenor.com/*"
+          ]
+        },
+        actions: [{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      })
+        .then(async()=>{    
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: "リンクのブロックを設定しました",
+                icon_url: "https://cdn.taka.ml/images/system/success.png"
+              }
+            }]
+          });
+        })
+        .catch(async(error)=>{
+          await interaction.reply({
+            embeds:[{
+             color: Colors.Red,
+              author:{
+                name: "設定出来ませんでした",
+                icon_url: "https://cdn.taka.ml/images/system/error.png"
+              },
+              fields:[
+                {
+                  name: "エラーコード",
+                  value: `\`\`\`${error}\`\`\``
+                }
+              ]
+            }],
+            components:[
+              new ActionRowBuilder()
+                .addComponents( 
+                  new ButtonBuilder()
+                    .setLabel("サポートサーバー")
+                    .setURL("https://discord.gg/NEesRdGQwD")
+                    .setStyle(ButtonStyle.Link))
+            ],
+            ephemeral: true
+          });
+        });
+    }else if(type === "capital"){
+      await interaction.guild.autoModerationRules.create({
+        name: "TakasumiBOT 大文字スパムをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Keyword,
+        triggerMetadata: {
+          regexPatterns: [
+            "(?-i)^[A-Z\s]+$"
+          ]
+        },
+        actions: [{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      })
+        .then(async()=>{    
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+             author:{
+                name: "大文字スパムのブロックを設定しました",
                 icon_url: "https://cdn.taka.ml/images/system/success.png"
               }
             }]
