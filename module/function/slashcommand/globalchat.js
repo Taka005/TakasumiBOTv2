@@ -134,7 +134,7 @@ module.exports = async(interaction)=>{
           
           const global = await db("SELECT * FROM global;");
   
-          global.forEach(async(data)=>{
+          Promise.all(global.map(async(data)=>{
             const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
             if(data.server === interaction.guild.id||mute[0]) return;
 
@@ -157,7 +157,7 @@ module.exports = async(interaction)=>{
             }).catch(async()=>{
               await db(`DELETE FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
             });
-          });
+          }));
 
           await interaction.editReply({
             embeds:[{
