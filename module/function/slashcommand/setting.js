@@ -565,7 +565,6 @@ module.exports = async(interaction)=>{
       const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`); 
       const join = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const leave = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const moderate = await db(`SELECT * FROM moderate WHERE id = ${interaction.guild.id} LIMIT 1;`);
       const pin = await db(`SELECT * FROM pin WHERE server = ${interaction.guild.id};`);
 
       await interaction.reply({
@@ -612,11 +611,6 @@ module.exports = async(interaction)=>{
               inline: true
             },
             {
-              name: "モデレート",
-              value: moderate[0] ? "設定済み":"未設定",
-              inline: true
-            },
-            {
               name: "ピン",
               value: `${pin.length}個設定済み`,
               inline: true
@@ -643,7 +637,6 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await db(`DELETE FROM moderate WHERE id = ${interaction.guild.id};`);
       await db(`DELETE FROM pin WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM bump WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM dissoku WHERE server = ${interaction.guild.id};`);
