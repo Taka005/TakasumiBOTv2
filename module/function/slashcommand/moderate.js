@@ -261,7 +261,7 @@ module.exports = async(interaction)=>{
         triggerType: AutoModerationRuleTriggerType.Keyword,
         triggerMetadata: {
           regexPatterns: [
-            "(?-i)^[A-Z\s]+$"
+            "(?-i)^[A-Zs]+$"
           ]
         },
         actions: [{
