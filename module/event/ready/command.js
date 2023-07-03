@@ -667,7 +667,17 @@ module.exports = async(client)=>{
               option
                 .setName("select_8")
                 .setDescription("Select8")
-                .setDescriptionLocalization("ja","選択8")),
+                .setDescriptionLocalization("ja","選択8"))
+            .addStringOption(option =>
+              option
+                .setName("select_9")
+                .setDescription("Select9")
+                .setDescriptionLocalization("ja","選択9"))
+            .addStringOption(option =>
+              option
+                .setName("select_10")
+                .setDescription("Select10")
+                .setDescriptionLocalization("ja","選択10")),
           //reload
           new SlashCommandBuilder()
             .setName("reload")

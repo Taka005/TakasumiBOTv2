@@ -11,14 +11,16 @@ module.exports = async(interaction)=>{
       interaction.options.getString("select_5"),
       interaction.options.getString("select_6"),
       interaction.options.getString("select_7"),
-      interaction.options.getString("select_8")
+      interaction.options.getString("select_8"),
+      interaction.options.getString("select_9"),
+      interaction.options.getString("select_10")
     ].filter(select=>select!==null);
 
     await interaction.reply({
       embeds:[{    
         color: Colors.Green,
         author:{
-          name: "ランダム",
+          name: "ランダムで選択しました",
           icon_url: "https://cdn.taka.ml/images/system/success.png"
         },
         description: random(selects)

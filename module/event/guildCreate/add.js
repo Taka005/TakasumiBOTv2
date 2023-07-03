@@ -1,14 +1,14 @@
 module.exports = async(guild)=>{
   const { ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   let find = 0;
-  guild.channels.cache.map(async(channel)=>{
+  guild.channels.cache.map((channel)=>{
     if(find === 0){
       if(
         channel.type === ChannelType.GuildText&&
         guild.members.me.permissionsIn(channel).has(PermissionFlagsBits.ViewChannel)&&
         guild.members.me.permissionsIn(channel).has(PermissionFlagsBits.SendMessages)
       ){
-        await channel.send({
+        channel.send({
           embeds:[{
             color: Colors.Green,
             thumbnail:{
