@@ -22,7 +22,7 @@ module.exports = async(member)=>{
       })
         .catch(async(error)=>{
           await db(`DELETE FROM \`leave\` WHERE channel = ${data[0].channel} LIMIT 1;`);
-          await member.client.channels.cache.get(data[0].channel).send({
+          await member.guild.channels.cache.get(data[0].channel).send({
             embeds:[{
               author:{
                 name: "退出メッセージでエラーが発生しました",
