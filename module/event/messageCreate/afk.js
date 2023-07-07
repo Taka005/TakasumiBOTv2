@@ -24,9 +24,9 @@ module.exports = async(message)=>{
       }]
     }).catch(()=>{});
   }else{
-    const mention = message.content.match(/<@\d{18,19}>/g);
+    const mention = message.content.match(/<@\d{17,19}>/g);
     if(mention){
-      const id = mention[0].match(/\d{18,19}/g);
+      const id = mention[0].match(/\d{17,19}/g);
       const afk = await db(`SELECT * FROM afk WHERE user = ${id[0]} LIMIT 1;`);
       if(data[0]){
         if(limit(message)) return;

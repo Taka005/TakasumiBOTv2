@@ -101,7 +101,7 @@ module.exports = async(interaction)=>{
       });
     }
   
-    const userId = id.match(/\d{18,19}/g);
+    const userId = id.match(/\d{17,19}/g);
     if(!userId) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
