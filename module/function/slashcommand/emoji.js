@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      const emoji = await interaction.guild.emojis.fetch(name.match(/\d{18,19}/g));
+      const emoji = await interaction.guild.emojis.fetch(name.match(/\d{17,19}/g));
 
       await interaction.reply({
         embeds:[{

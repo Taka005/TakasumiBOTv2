@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const ID = id.match(/\d{18,19}/g);
+    const ID = id.match(/\d{17,19}/g);
     if(!ID) return await interaction.reply({
       embeds:[{
         color: Colors.Red,

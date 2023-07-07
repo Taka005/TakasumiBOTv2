@@ -51,7 +51,7 @@ module.exports = async(interaction)=>{
       })
     });
   
-    const userId = id.match(/\d{18,19}/g);
+    const userId = id.match(/\d{17,19}/g);
     if(!userId) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -64,8 +64,8 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const member = await fetchUser(interaction.guild,userId[0]);
-    const user = await fetchMember(interaction.client,userId[0]);
+    const user = await fetchUser(interaction.client,userId[0]);
+    const member = await fetchMember(interaction.guild,userId[0]);
     
     if(!user) return await interaction.reply({
       embeds:[{
