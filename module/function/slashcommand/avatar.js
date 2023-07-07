@@ -64,8 +64,8 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const member = await fetchUser(interaction.guild,userId[0]);
-    const user = await fetchMember(interaction.client,userId[0]);
+    const user = await fetchUser(interaction.guild,userId[0]);
+    const member = await fetchMember(interaction.client,userId[0]);
     
     if(!user) return await interaction.reply({
       embeds:[{
