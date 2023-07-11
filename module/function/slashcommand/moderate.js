@@ -33,7 +33,7 @@ module.exports = async(interaction)=>{
         triggerType: AutoModerationRuleTriggerType.Keyword,
         triggerMetadata: {
           regexPatterns: [
-            "discord(?:.com|app.com|.gg)[/invite/]?(?:[a-zA-Z0-9-]{2,32})"
+            "(https?://)?(?:www\.)?(?:discord\.(?:gg|com/invite|me|io)|discordapp\.com/invite)/[a-zA-Z0-9]"
           ]
         },
         actions: [{
