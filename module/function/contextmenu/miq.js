@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
     
     await interaction.editReply({ 
       content: `[生成元](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`,
-      files: [
+      files:[
         new AttachmentBuilder()
           .setFile(image.stream())
           .setName("TakasumiBOT_Quote.png")

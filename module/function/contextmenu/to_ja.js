@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
     });
       
     const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&dj=1&q=${encodeURIComponent(message.content)}`)
-      .then(res=>res.json())
+      .then(res=>res.json());
     
     try{
       const translated = data.sentences.map((sentence)=>{
