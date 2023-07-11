@@ -117,7 +117,7 @@ module.exports = async(client)=>{
     require("./event/guildMemberRemove/leave")(member);
   });
 
-  if(process.env.DEBUG === "true"){
+  if(process.env.DEBUG){
     client.on(Events.Debug,(message)=>{
       console.log(`Debug: ${message}`);
     });
