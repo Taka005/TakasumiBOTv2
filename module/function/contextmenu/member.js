@@ -5,6 +5,13 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "View Member Information"){
     const member = interaction.options.getMember("user");
 
+    const status = {
+      "online": "🟢オンライン",
+      "offline": "⚫オフライン",
+      "dnd": "⛔取り込み中",
+      "idle": "🌙退席中"
+    };
+
     if(!member) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -39,6 +46,11 @@ module.exports = async(interaction)=>{
           {
             name: "ニックネーム",
             value: member.nickname||"未設定",
+            inline: true
+          },
+          {
+            name: "ステータス",
+            value: status[member.presence?.status]||"取得不可",
             inline: true
           },
           {
