@@ -31,12 +31,12 @@ module.exports = async(interaction)=>{
         name: "TakasumiBOT 招待リンクをブロック",
         eventType: AutoModerationRuleEventType.MessageSend,
         triggerType: AutoModerationRuleTriggerType.Keyword,
-        triggerMetadata: {
-          regexPatterns: [
+        triggerMetadata:{
+          regexPatterns:[
             "(https?://)?(?:www.)?(?:discord.(?:gg|com/invite|me|io)|discordapp.com/invite)/[a-zA-Z0-9]"
           ]
         },
-        actions: [{
+        actions:[{
           type: AutoModerationActionType.BlockMessage
         }],
         enabled: true
@@ -69,12 +69,12 @@ module.exports = async(interaction)=>{
         name: "TakasumiBOT 大文字スパムをブロック",
         eventType: AutoModerationRuleEventType.MessageSend,
         triggerType: AutoModerationRuleTriggerType.Keyword,
-        triggerMetadata: {
-          regexPatterns: [
+        triggerMetadata:{
+          regexPatterns:[
             "(?-i)^[A-Z\\s]+$"
           ]
         },
-        actions: [{
+        actions:[{
           type: AutoModerationActionType.BlockMessage
         }],
         enabled: true
