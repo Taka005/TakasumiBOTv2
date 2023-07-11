@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const db = require("../../lib/db");
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const db = require("../../lib/db");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("web_")){
     const role = interaction.customId.split("_");
@@ -98,6 +98,6 @@ module.exports = async(interaction)=>{
           ],
           ephemeral: true
         })
-      })
+      });
   }
 }

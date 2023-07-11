@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
-  const isUrl = require("../../lib/isUrl");
   const fetch = require("node-fetch");
   const { AttachmentBuilder, Colors } = require("discord.js");
+  const isUrl = require("../../lib/isUrl");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "webshot"){
     const url = interaction.options.getString("url");

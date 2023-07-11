@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
     if(!interaction.isChatInputCommand()) return;
     if(interaction.commandName === "timeout"){
       const user = interaction.options.getUser("user");
-      const time = interaction.options.getInteger("time")||30
+      const time = interaction.options.getInteger("time")||30;
       const reason = interaction.options.getString("reason")||`${interaction.user.tag}によってタイムアウト`;
       
       if(!interaction.member.permissions.has(PermissionFlagsBits.ModerateMembers)) return await interaction.reply({
@@ -107,6 +107,6 @@ module.exports = async(interaction)=>{
             ],
             ephemeral: true
           })
-        })
+        });
     }
   }

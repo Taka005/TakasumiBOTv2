@@ -60,38 +60,7 @@ module.exports = async(interaction)=>{
               .setStyle(ButtonStyle.Primary)
               .setLabel("作成"))
       ]
-      }).catch(async(error)=>{
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "チケットが作成出来ませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
-            },
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }],
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle(ButtonStyle.Link))
-          ],
-          ephemeral: true
-        });
-      }); 
-
-      if(!interaction.guild.channels.cache.find(name=>name.name === "ticket")){
-        await interaction.guild.channels.create({
-          name: "ticket",
-          type: ChannelType.GuildCategory
-        })
+      })
         .catch(async(error)=>{
           await interaction.reply({
             embeds:[{
@@ -117,7 +86,39 @@ module.exports = async(interaction)=>{
             ],
             ephemeral: true
           });
-        });
+        }); 
+
+      if(!interaction.guild.channels.cache.find(name=>name.name === "ticket")){
+        await interaction.guild.channels.create({
+          name: "ticket",
+          type: ChannelType.GuildCategory
+        })
+          .catch(async(error)=>{
+            await interaction.reply({
+              embeds:[{
+                color: Colors.Red,
+                author:{
+                  name: "チケットが作成出来ませんでした",
+                  icon_url: "https://cdn.taka.ml/images/system/error.png"
+                },
+                fields:[
+                  {
+                    name: "エラーコード",
+                    value: `\`\`\`${error}\`\`\``
+                  }
+                ]
+              }],
+              components:[
+                new ActionRowBuilder()
+                  .addComponents( 
+                    new ButtonBuilder()
+                      .setLabel("サポートサーバー")
+                      .setURL("https://discord.gg/NEesRdGQwD")
+                      .setStyle(ButtonStyle.Link))
+              ],
+              ephemeral: true
+            });
+          });
       }
 
       await interaction.deferReply()
