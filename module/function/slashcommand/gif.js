@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
             url: "attachment://result.gif"
           }
         }],
-        files: [
+        files:[
           new AttachmentBuilder()
             .setFile(image.stream())
             .setName("result.gif")

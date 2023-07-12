@@ -45,7 +45,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "ステータス",
-              value: `${status[interaction.member.presence?.status]||"取得不可"}`,
+              value: status[interaction.member.presence?.status]||"取得不可",
               inline: true
             },
             {
@@ -141,8 +141,8 @@ module.exports = async(interaction)=>{
               inline: true
             },
             {
-              name: "状態",
-              value: `${status[member.presence?.status]||"取得不可"}`,
+              name: "ステータス",
+              value: status[member.presence?.status]||"取得不可",
               inline: true
             },
             {

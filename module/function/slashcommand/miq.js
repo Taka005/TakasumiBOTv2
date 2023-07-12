@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
         .then(res=>res.blob());
   
       await interaction.editReply({
-        files: [
+        files:[
           new AttachmentBuilder()
             .setFile(image.stream())
             .setName("miq.png")

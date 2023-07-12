@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
           url: "attachment://omikuji.png"
         }
       }],
-      files: [
+      files:[
         new AttachmentBuilder()
           .setFile(image.stream())
           .setName("omikuji.png")

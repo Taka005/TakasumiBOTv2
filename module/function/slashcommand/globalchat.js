@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const db = require("../../lib/db");
   const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
+  const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "globalchat"){
 

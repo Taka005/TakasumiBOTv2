@@ -1,9 +1,16 @@
 module.exports = async(interaction)=>{
-  const db = require("../../lib/db");
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const db = require("../../lib/db");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "View Member Information"){
     const member = interaction.options.getMember("user");
+
+    const status = {
+      "online": "🟢オンライン",
+      "offline": "⚫オフライン",
+      "dnd": "⛔取り込み中",
+      "idle": "🌙退席中"
+    };
 
     if(!member) return await interaction.reply({
       embeds:[{
@@ -39,6 +46,11 @@ module.exports = async(interaction)=>{
           {
             name: "ニックネーム",
             value: member.nickname||"未設定",
+            inline: true
+          },
+          {
+            name: "ステータス",
+            value: status[member.presence?.status]||"取得不可",
             inline: true
           },
           {

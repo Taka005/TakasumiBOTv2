@@ -114,7 +114,7 @@ module.exports = async(interaction)=>{
               text: `${lang[1]} || TakasumiBOT`
             }
           }],
-          files: [
+          files:[
             new AttachmentBuilder() 
               .setFile(new Buffer.from(res.program_error,"UTF-8")) 
               .setName("error.txt")
