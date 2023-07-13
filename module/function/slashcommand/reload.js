@@ -98,10 +98,10 @@ module.exports = async(interaction)=>{
    
     //auth
     fs.readdirSync("./module/function/auth/")
-    .map(file=>{
-      require(`../auth/${file}`)
-      delete require.cache[require.resolve(`../auth/${file}`)];
-    });
+      .map(file=>{
+        require(`../auth/${file}`)
+        delete require.cache[require.resolve(`../auth/${file}`)];
+      });
     
     //その他
     delete require.cache[require.resolve("../../../config.json")];
