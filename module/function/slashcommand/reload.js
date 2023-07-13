@@ -16,103 +16,92 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
+
+    await interaction.deferReply();
     
     //commands
-    fs.readdir("./module/function/command/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../command/${file}`);
+    fs.readdirSync("./module/function/command")
+      .map(file=>{
+        require(`../command/${file}`)
         delete require.cache[require.resolve(`../command/${file}`)];
       });
-    });
+
     //ContextMenu
-    fs.readdir("./module/function/contextmenu/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../contextmenu/${file}`);
+    fs.readdirSync("./module/function/contextmenu/")
+      .map(file=>{
+        require(`../contextmenu/${file}`)
         delete require.cache[require.resolve(`../contextmenu/${file}`)];
       });
-    });
+
     //event/guildCreate
-    fs.readdir("./module/event/guildCreate/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../../event/guildCreate/${file}`);
+    fs.readdirSync("./module/event/guildCreate/")
+      .map(file=>{
+        require(`../../event/guildCreate/${file}`)
         delete require.cache[require.resolve(`../../event/guildCreate/${file}`)];
       });
-    });
+
     //event/guildDelete
-    fs.readdir("./module/event/guildDelete/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../../event/guildDelete/${file}`);
+    fs.readdirSync("./module/event/guildDelete/")
+      .map(file=>{
+        require(`../../event/guildDelete/${file}`)
         delete require.cache[require.resolve(`../../event/guildDelete/${file}`)];
       });
-    });
+
     //event/guildMemberAdd
-    fs.readdir("./module/event/guildMemberAdd/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../../event/guildMemberAdd/${file}`);
+    fs.readdirSync("./module/event/guildMemberAdd/")
+      .map(file=>{
+        require(`../../event/guildMemberAdd/${file}`)
         delete require.cache[require.resolve(`../../event/guildMemberAdd/${file}`)];
       });
-    });
+
     //event/guildMemberRemove
-    fs.readdir("./module/event/guildMemberRemove/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../../event/guildMemberRemove/${file}`);
+    fs.readdirSync("./module/event/guildMemberRemove/")
+      .map(file=>{
+        require(`../../event/guildMemberRemove/${file}`)
         delete require.cache[require.resolve(`../../event/guildMemberRemove/${file}`)];
       });
-    });
+
     //event/interactionCreate
-    fs.readdir("./module/event/interactionCreate/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../../event/interactionCreate/${file}`);
+    fs.readdirSync("./module/event/interactionCreate/")
+      .map(file=>{
+        require(`../../event/interactionCreate/${file}`)
         delete require.cache[require.resolve(`../../event/interactionCreate/${file}`)];
       });
-    });
+
     //event/messageCreate
-    fs.readdir("./module/event/messageCreate/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../../event/messageCreate/${file}`);
+    fs.readdirSync("./module/event/messageCreate/")
+      .map(file=>{
+        require(`../../event/messageCreate/${file}`)
         delete require.cache[require.resolve(`../../event/messageCreate/${file}`)];
       });
-    });
+
     //event/messageUpdate
-    fs.readdir("./module/event/messageUpdate/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../../event/messageUpdate/${file}`);
+    fs.readdirSync("./module/event/messageUpdate/")
+      .map(file=>{
+        require(`../../event/messageUpdate/${file}`)
         delete require.cache[require.resolve(`../../event/messageUpdate/${file}`)];
       });
-    });
+    
     //lib
-    fs.readdir("./module/lib/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../../lib/${file}`);
+    fs.readdirSync("./module/lib/")
+      .map(file=>{
+        require(`../../lib/${file}`)
         delete require.cache[require.resolve(`../../lib/${file}`)];
       });
-    });
+
     //slashcommands
-    fs.readdir("./module/function/slashcommand/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../slashcommand/${file}`);
+    fs.readdirSync("./module/function/slashcommand/")
+      .map(file=>{
         delete require.cache[require.resolve(`../slashcommand/${file}`)];
+        require(`../slashcommand/${file}`)
       });
-    });
+   
     //auth
-    fs.readdir("./module/function/auth/",(err,files)=>{ 
-      files.forEach((file) =>{
-        if(!file.endsWith(".js")) return;
-        require(`../auth/${file}`);
+    fs.readdirSync("./module/function/auth/")
+      .map(file=>{
+        require(`../auth/${file}`)
         delete require.cache[require.resolve(`../auth/${file}`)];
       });
-    });
     
     //その他
     delete require.cache[require.resolve("../../../config.json")];
@@ -122,7 +111,7 @@ module.exports = async(interaction)=>{
 
     require("../../event/ready/command")(interaction.client);
 
-    await interaction.reply({
+    await interaction.editReply({
       embeds:[{
         color: Colors.Green,
         description: "リロードが完了しました",
