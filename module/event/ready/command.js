@@ -420,6 +420,20 @@ module.exports = async(client)=>{
             .setDescriptionLocalization("ja","Make it a Quoteを生成します")
             .addStringOption(option =>
               option
+                .setName("type")
+                .setDescription("Type")
+                .setDescriptionLocalization("ja","生成する種類")
+                .setRequired(true)
+                .addChoices(
+                  { name: "標準", value: "normal" },
+                  { name: "カラー", value: "color" },
+                  { name: "位置反転", value: "reverse" },
+                  { name: "色反転", value: "white" },
+                  { name: "位置反転・カラー", value: "reverseColor"},
+                  { name: "位置反転・色反転", value: "reverseWhite" }
+            ))
+            .addStringOption(option =>
+              option
                 .setName("text")
                 .setDescription("Text to view")
                 .setDescriptionLocalization("ja","表示するテキスト")
