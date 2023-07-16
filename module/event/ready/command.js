@@ -117,6 +117,21 @@ module.exports = async(client)=>{
                 .setName("days")
                 .setDescription("Number of days to delete messages")
                 .setDescriptionLocalization("ja","メッセージを削除する日数")),
+          //button
+          new SlashCommandBuilder()
+            .setName("button")
+            .setDescription("Generate button for URL")
+            .setDescriptionLocalization("ja","URLのボタンを生成します")
+            .addStringOption(option =>
+              option
+                .setName("name")
+                .setDescription("Button Name")
+                .setDescriptionLocalization("ja","ボタンの名前"))
+            .addStringOption(option =>
+              option
+                .setName("url")
+                .setDescription("Button URL")
+                .setDescriptionLocalization("ja","ボタンのURL")),
           //cipher
           new SlashCommandBuilder()
             .setName("cipher")
