@@ -126,12 +126,14 @@ module.exports = async(client)=>{
               option
                 .setName("name")
                 .setDescription("Button Name")
-                .setDescriptionLocalization("ja","ボタンの名前"))
+                .setDescriptionLocalization("ja","ボタンの名前")
+                .setRequired(true))
             .addStringOption(option =>
               option
                 .setName("url")
                 .setDescription("Button URL")
-                .setDescriptionLocalization("ja","ボタンのURL")),
+                .setDescriptionLocalization("ja","ボタンのURL")
+                .setRequired(true)),
           //cipher
           new SlashCommandBuilder()
             .setName("cipher")
