@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
               .setStyle(ButtonStyle.Link))
       ]
     })
-      .catch(()=>{
+      .catch(async()=>{
         await interaction.reply({
           embeds:[{
             color: Colors.Red,
