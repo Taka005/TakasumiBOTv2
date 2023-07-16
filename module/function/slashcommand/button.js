@@ -27,6 +27,19 @@ module.exports = async(interaction)=>{
               .setURL(url)
               .setStyle(ButtonStyle.Link))
       ]
-    });
+    })
+      .catch(()=>{
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "作成できませんでした",
+              icon_url: "https://cdn.taka.ml/images/system/error.png"
+            },
+            description: "有効なURLを指定してください"
+          }],
+          ephemeral: true
+        });
+      });
   }
 }
