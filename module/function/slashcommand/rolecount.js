@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "rolecount"){
 
     try{
-      const roles = await interaction.guild.roles.fetch()
+      const roles = (await interaction.guild.roles.fetch())
         .sort((r1,r2)=>r1.position - r2.position)
         .filter(role=>!role.managed);
 
