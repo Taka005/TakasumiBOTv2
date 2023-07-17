@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
             name: "ロールの人数・割合一覧",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           },
-          description: `${roles.map(role=>`<@&${role.id}>: ${role.members.size}人 - ${Math.floor(role.members.size/interaction.guild.memberCount*100)}%`).join("\n")}`
+          description: `${roles.map(role=>`<@&${role.id}>: ${role.members.size}人 - ${(role.members.size/interaction.guild.memberCount*100).toFixed(2)}%`).join("\n")}`
         }]
       });
     }catch(error){
