@@ -5,8 +5,9 @@ module.exports = async(interaction)=>{
 
     try{
       const roles = (await interaction.guild.roles.fetch())
-        .sort((r1,r2)=>r1.position - r2.position)
-        .filter(role=>!role.managed);
+        .sort((r1,r2)=>r2.position - r1.position)
+        .filter(role=>!role.managed)
+        .filter(role=>role.name !== "@everyone");
 
       await interaction.reply({
         embeds:[{
