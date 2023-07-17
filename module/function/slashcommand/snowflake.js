@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
           },
           description: `Date: ${new Date(Number(snowflake.timestamp)).toLocaleString()}\nWorkerID: ${snowflake.workerId}\nProcessID: ${snowflake.processId}\nIncrement: ${snowflake.increment}`
         }]
-      })
+      });
     }catch(error){
       await interaction.reply({
         embeds:[{
