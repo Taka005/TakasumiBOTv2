@@ -3,13 +3,14 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "rolecount"){
 
+    await interaction.deferReply();
     try{
       const roles = (await interaction.guild.roles.fetch())
         .sort((r1,r2)=>r2.position - r1.position)
         .filter(role=>!role.managed)
         .filter(role=>role.name !== "@everyone");
 
-      await interaction.reply({
+      await interaction.editReply({
         embeds:[{
           color: Colors.Green,
           author:{
@@ -20,7 +21,7 @@ module.exports = async(interaction)=>{
         }]
       });
     }catch(error){
-      await interaction.reply({
+      await interaction.editReply({
         embeds:[{
           color: Colors.Red,
           author:{
