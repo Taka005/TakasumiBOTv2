@@ -472,6 +472,7 @@ module.exports = async(client)=>{
                   { name: "招待リンク", value: "invite" },
                   { name: "リンク", value: "link" },
                   { name: "大文字スパム", value: "capital"},
+                  { name: "トークン", value: "token" },
                   { name: "リセット", value: "reset" }
                 )),
           //news
