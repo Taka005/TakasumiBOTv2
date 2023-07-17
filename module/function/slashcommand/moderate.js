@@ -78,7 +78,22 @@ module.exports = async(interaction)=>{
           type: AutoModerationActionType.BlockMessage
         }],
         enabled: true
-      }
+      },
+      "token":{
+        name: "TakasumiBOT トークンをブロック",
+        eventType: AutoModerationRuleEventType.MessageSend,
+        triggerType: AutoModerationRuleTriggerType.Keyword,
+        triggerMetadata:{
+          regexPatterns:[
+            "/[0-9a-zA-Z_-]{24}.[0-9a-zA-Z_-]{6}.[0-9a-zA-Z_-]{38}/",
+            "/[0-9a-zA-Z_-]{24}.[0-9a-zA-Z_-]{6}.[0-9a-zA-Z_-]{27}/"
+          ]
+        },
+        actions:[{
+          type: AutoModerationActionType.BlockMessage
+        }],
+        enabled: true
+      },
     };
 
     const name = {
@@ -86,7 +101,8 @@ module.exports = async(interaction)=>{
       "mention": "メンションスパムのブロック",
       "invite": "招待リンクのブロック",
       "link": "URLのブロック",
-      "capital": "大文字スパムのブロック"
+      "capital": "大文字スパムのブロック",
+      "token": "トークンをブロック"
     };
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
