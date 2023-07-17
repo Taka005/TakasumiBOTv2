@@ -85,8 +85,8 @@ module.exports = async(interaction)=>{
         triggerType: AutoModerationRuleTriggerType.Keyword,
         triggerMetadata:{
           regexPatterns:[
-            "/[0-9a-zA-Z_-]{24}\.[0-9a-zA-Z_-]{6}\.[0-9a-zA-Z_-]{38}/",
-            "/[0-9a-zA-Z_-]{24}\.[0-9a-zA-Z_-]{6}\.[0-9a-zA-Z_-]{27}/"
+            "/[0-9a-zA-Z_-]{24}.[0-9a-zA-Z_-]{6}.[0-9a-zA-Z_-]{38}/",
+            "/[0-9a-zA-Z_-]{24}.[0-9a-zA-Z_-]{6}.[0-9a-zA-Z_-]{27}/"
           ]
         },
         actions:[{
