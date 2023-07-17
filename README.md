@@ -16,7 +16,7 @@
 - 必ず**dev**ブランチにプルリクエストを送る
 - コミットメッセージは[開発ルール](https://github.com/Taka005/TakasumiBOTv2/tree/main#開発ルール)に従う
 # 開発・貢献者
-- 開発: taka005
+- 開発: @taka005
 - サポートサーバーにも是非参加してください
 - https://discord.gg/NEesRdGQwD
 # 開発ルール
