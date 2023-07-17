@@ -725,6 +725,11 @@ module.exports = async(client)=>{
                 .setDescription("Role to view")
                 .setDescriptionLocalization("ja","表示するロール")
                 .setRequired(true)),
+          //rolecount
+            new SlashCommandBuilder()
+              .setName("rolecount")
+              .setDescription("Displays the number and percentage of people who have each role")
+              .setDescriptionLocalization("ja","それぞれのロールを持っている人数と割合を表示します"),
           //safeweb
           new SlashCommandBuilder()
             .setName("safeweb")
