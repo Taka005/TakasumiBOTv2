@@ -19,7 +19,7 @@ module.exports = async(interaction)=>{
 
     try{
       let text;
-      Array(10).map(async(e,i)=>{
+      Array(10).fill(null).map(async(e,i)=>{
         if(i%2 === 0){
           const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&dj=1&q=${encodeURIComponent(text)}`)
             .then(res=>res.json());
