@@ -12,11 +12,7 @@ module.exports = async(interaction)=>{
           name: "再翻訳できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "再翻訳文字数は、2000文字以下です",
-        footer:{
-          text: "Google Translate",
-          icon_url: "https://cdn.taka.ml/images/translate.png"
-        }
+        description: "再翻訳文字数は、2000文字以下です"
       }],
       ephemeral: true
     });
@@ -39,11 +35,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Blue,
           title: "再翻訳結果",
-          description: text,
-          footer:{
-            text: `Google Translate [${data.src}]->[${lang}]`,
-            icon_url: "https://cdn.taka.ml/images/translate.png"
-          }
+          description: text
         }]
       });
     }catch{
@@ -54,11 +46,7 @@ module.exports = async(interaction)=>{
             name: "再翻訳できませんでした",
             icon_url: "https://cdn.taka.ml/images/system/error.png"
           },
-          description: "再翻訳文字を変えて、もう一度実行してください",
-          footer:{
-            text: "Google Translate",
-            icon_url: "https://cdn.taka.ml/images/translate.png"
-          }
+          description: "再翻訳文字を変えて、もう一度実行してください"
         }],
         ephemeral: true
       });
