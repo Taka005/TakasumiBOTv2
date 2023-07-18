@@ -18,18 +18,13 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      Array(10).fill(null).map(async(e,i)=>{
-        if(i%2 === 0){
-          const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&dj=1&q=${encodeURIComponent(text)}`)
+      ["en","ko","el","zh","ru","cs","id","it","es","ja"]
+        .map(async(lang,i)=>{
+          const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&dj=1&q=${encodeURIComponent(text)}`)
             .then(res=>res.json());
           text = data.sentences.map(sentence=>sentence.trans).join("");
-        }else{
-          const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&dj=1&q=${encodeURIComponent(text)}`)
-            .then(res=>res.json());
-          text = data.sentences.map(sentence=>sentence.trans).join("");
-        }
-        console.log(text)
-      });
+          console.log(text)
+        });
 
       await interaction.reply({
         embeds:[{

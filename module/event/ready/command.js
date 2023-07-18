@@ -718,8 +718,8 @@ module.exports = async(client)=>{
           //retranslate
           new SlashCommandBuilder()
             .setName("retranslate")
-            .setDescription("Repeat the translation between Japanese and English 10 times")
-            .setDescriptionLocalization("ja","日本語と英語の翻訳を10回繰り返します")
+            .setDescription("Repeat translation 10 times in various languages")
+            .setDescriptionLocalization("ja","様々な言語で翻訳を10回繰り返します")
             .addStringOption(option =>
               option
                 .setName("text")

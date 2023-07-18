@@ -379,7 +379,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "/retranslate",
-              value: "日本語と英語の翻訳を10回繰り返します"
+              value: "様々な言語で翻訳を10回繰り返します"
             },
             {
               name: "/random",
