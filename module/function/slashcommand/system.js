@@ -69,7 +69,12 @@ module.exports = async(interaction)=>{
                 name: "サーバーから脱退できませんでした",
                 icon_url: "https://cdn.taka.ml/images/system/error.png"
               },
-              description: `\`\`\`${error}\`\`\``
+              fields:[
+                {
+                  name: "エラーコード",
+                  value: `\`\`\`${error}\`\`\``
+                }
+              ]
             }],
             ephemeral: true
           });
