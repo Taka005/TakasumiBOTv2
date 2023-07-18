@@ -378,6 +378,10 @@ module.exports = async(interaction)=>{
               value: "URLのボタンを生成します"
             },
             {
+              name: "/retranslate",
+              value: "様々な言語で翻訳を10回繰り返します"
+            },
+            {
               name: "/random",
               value: "ランダムで選びます"
             },

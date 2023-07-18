@@ -18,8 +18,8 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply({ephemeral: true});
 
-    const auth = random(keys);
-    const image = await fetch(auth.url)
+    const key = random(keys);
+    const image = await fetch(key.url)
       .then(res=>res.blob());
 
     await interaction.editReply({
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
         new ActionRowBuilder()
           .addComponents(
             new StringSelectMenuBuilder()
-              .setCustomId(`imagerole_${role[1]}_${auth.text}`)
+              .setCustomId(`imagerole_${role[1]}_${key.text}`)
               .setPlaceholder("正しいものを選択")
               .setMinValues(1)
               .setMaxValues(1)

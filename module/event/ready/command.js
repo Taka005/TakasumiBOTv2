@@ -715,6 +715,17 @@ module.exports = async(client)=>{
             .setName("reload")
             .setDescription("Reload the BOT")
             .setDescriptionLocalization("ja","BOTのリロードをします"),
+          //retranslate
+          new SlashCommandBuilder()
+            .setName("retranslate")
+            .setDescription("Repeat translation 10 times in various languages")
+            .setDescriptionLocalization("ja","様々な言語で翻訳を10回繰り返します")
+            .addStringOption(option =>
+              option
+                .setName("text")
+                .setDescription("Text")
+                .setDescriptionLocalization("ja","再翻訳するテキスト")
+                .setRequired(true)),
           //role
           new SlashCommandBuilder()
             .setName("role")

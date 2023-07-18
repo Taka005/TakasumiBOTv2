@@ -26,9 +26,7 @@ module.exports = async(interaction)=>{
       .then(res=>res.json());
   
     try{
-      const translate = data.sentences.map((sentence)=>{
-        return sentence.trans;
-      });
+      const translate = data.sentences.map(sentence=>sentence.trans);
 
       await interaction.reply({
         embeds:[{

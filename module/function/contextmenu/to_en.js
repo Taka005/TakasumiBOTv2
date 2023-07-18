@@ -43,9 +43,7 @@ module.exports = async(interaction)=>{
       .then(res=>res.json());
     
     try{
-      const translated = data.sentences.map((sentence)=>{
-        return sentence.trans;
-      });
+      const translated = data.sentences.map(sentence=>sentence.trans);
 
       await interaction.reply({
         content: `[翻訳元](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)`,
