@@ -720,7 +720,7 @@ module.exports = async(client)=>{
             .setName("retranslate")
             .setDescription("Repeat the translation between Japanese and English 10 times")
             .setDescriptionLocalization("ja","日本語と英語の翻訳を10回繰り返します")
-            .addRoleOption(option =>
+            .addStringOption(option =>
               option
                 .setName("text")
                 .setDescription("Text")
