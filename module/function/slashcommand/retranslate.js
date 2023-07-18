@@ -29,11 +29,12 @@ module.exports = async(interaction)=>{
             .then(res=>res.json());
           text = data.sentences.map(sentence=>sentence.trans).join("");
         }
+        console.log(text)
       });
 
       await interaction.reply({
         embeds:[{
-          color: Colors.Blue,
+          color: Colors.Green,
           title: "再翻訳結果",
           description: text
         }]
