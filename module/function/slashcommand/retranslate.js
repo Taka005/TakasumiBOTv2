@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "retranslate"){
-    const text = interaction.options.getString("text");
+    let text = interaction.options.getString("text");
     
     if(text > 2000) return await interaction.reply({
       embeds:[{
@@ -18,7 +18,6 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      let text;
       Array(10).fill(null).map(async(e,i)=>{
         if(i%2 === 0){
           const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&dj=1&q=${encodeURIComponent(text)}`)
