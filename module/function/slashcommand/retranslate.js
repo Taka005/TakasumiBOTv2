@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
           text = data.sentences.map(sentence=>sentence.trans).join("");
           console.log(text)
         }))
-        .then(()=>{
+        .then(async()=>{
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
