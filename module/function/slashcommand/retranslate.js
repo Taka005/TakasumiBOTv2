@@ -18,15 +18,18 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      Promise.all(["en","ko","el","zh","ru","cs","id","it","es","ja"]
+      Promise.all(["en","ko","el","zh","ru","cs","id","it","es","th"]
         .map(async(lang)=>{
-          console.log(lang)
           const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&dj=1&q=${encodeURIComponent(text)}`)
             .then(res=>res.json());
           text = data.sentences.map(sentence=>sentence.trans).join("");
           console.log(text)
         }))
         .then(async()=>{
+          const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&dj=1&q=${encodeURIComponent(text)}`)
+            .then(res=>res.json());
+          text = data.sentences.map(sentence=>sentence.trans).join("");
+
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
