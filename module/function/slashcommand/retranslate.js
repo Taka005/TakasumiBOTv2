@@ -20,6 +20,7 @@ module.exports = async(interaction)=>{
     try{
       Promise.all(["en","ko","el","zh","ru","cs","id","it","es","ja"]
         .map(async(lang)=>{
+          console.log(lang)
           const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&dj=1&q=${encodeURIComponent(text)}`)
             .then(res=>res.json());
           text = data.sentences.map(sentence=>sentence.trans).join("");
