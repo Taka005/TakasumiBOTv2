@@ -18,21 +18,22 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      ["en","ko","el","zh","ru","cs","id","it","es","ja"]
-        .map(async(lang,i)=>{
+      Promise.all(["en","ko","el","zh","ru","cs","id","it","es","ja"]
+        .map(async(lang)=>{
           const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&dj=1&q=${encodeURIComponent(text)}`)
             .then(res=>res.json());
           text = data.sentences.map(sentence=>sentence.trans).join("");
           console.log(text)
+        }))
+        .then(()=>{
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              title: "再翻訳結果",
+              description: text
+            }]
+          });
         });
-
-      await interaction.reply({
-        embeds:[{
-          color: Colors.Green,
-          title: "再翻訳結果",
-          description: text
-        }]
-      });
     }catch{
       await interaction.reply({
         embeds:[{
