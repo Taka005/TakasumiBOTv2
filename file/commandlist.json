@@ -521,9 +521,22 @@
         ],
         "note": "なし"
     },
+    "reset":{
+        "description": "実行したチャンネルを**完全**にリセットします",
+        "example": "`/reset`",
+        "userPermission": [
+            "管理者"
+        ],
+        "botPermission": [
+            "チャンネルの管理",
+            "チャンネルの閲覧",
+            "メッセージの送信"
+        ],
+        "note": "なし"
+    },
     "retranslate":{
         "description": "様々な言語で翻訳を10回繰り返します",
-        "example": "なし",
+        "example": "`/retranslate こんにちは`",
         "userPermission": [
             "必要なし"
         ],

@@ -214,6 +214,10 @@ module.exports = async(interaction)=>{
               value: "カスタマイズされた招待リンクを作成します"
             },
             {
+              name: "/reset",
+              value: "実行したチャンネルを**完全**にリセットします"
+            },
+            {
               name: "/export",
               value: "サーバーのデータをJSON形式に出力します"
             }

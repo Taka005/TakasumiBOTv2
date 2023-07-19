@@ -725,6 +725,11 @@ module.exports = async(client)=>{
             .setName("reload")
             .setDescription("Reload the BOT")
             .setDescriptionLocalization("ja","BOTのリロードをします"),
+          //reset
+          new SlashCommandBuilder()
+            .setName("reset")
+            .setDescription("Completely resets the executed channel")
+            .setDescriptionLocalization("ja","実行したチャンネルを完全にリセットします"),
           //retranslate
           new SlashCommandBuilder()
             .setName("retranslate")
