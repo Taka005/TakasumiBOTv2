@@ -44,9 +44,11 @@ module.exports = async(interaction)=>{
     });
 
     try{
+      await interaction.update({});
+
       const channel = await interaction.channel.clone();
       await channel.setPosition(interaction.channel.position+1)
-        .catch(()=>{});
+      await interaction.channel.delete()
 
       await channel.send({
         embeds:[{
@@ -57,8 +59,7 @@ module.exports = async(interaction)=>{
           }
         }]
       }).catch(()=>{});
-
-      await interaction.deferUpdate({});
+      
     }catch(error){
       await interaction.reply({ 
         embeds:[{
