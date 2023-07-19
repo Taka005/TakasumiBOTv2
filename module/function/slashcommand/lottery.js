@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
           name: "抽選できませんでした",
           icon_url: "https://cdn.taka.ml/images/system/error.png"
         },
-        description: "指定したロールを持っている人より、抽選する人数が多すぎます"
+        description: "指定したロールを持っている人より、抽選する人数が多いです"
       }],
       ephemeral: true
     });
