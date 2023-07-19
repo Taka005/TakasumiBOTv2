@@ -421,9 +421,10 @@ module.exports = async(client)=>{
                 .setRequired(true))
             .addRoleOption(option =>
               option
-                .setName("reason")
+                .setName("role")
                 .setDescription("Target Role")
-                .setDescriptionLocalization("ja","対象のロール")),
+                .setDescriptionLocalization("ja","対象のロール")
+                .setRequired(true)),
           //math
           new SlashCommandBuilder()
             .setName("math")
