@@ -89,7 +89,7 @@ module.exports = async(interaction)=>{
 
     require("../../event/ready/command")(interaction.client);
 
-    await require("../lib/fileLoader")();
+    await require("../../lib/fileLoader")();
 
     await interaction.editReply({
       embeds:[{
