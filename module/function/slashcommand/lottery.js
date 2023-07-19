@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "lottery"){
     const number = interaction.options.getInteger("number");
-    const role = interaction.options.getRole("name");
+    const role = interaction.options.getRole("role");
   
     if(number >= role.members.size) return await interaction.reply({
       embeds:[{
