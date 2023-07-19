@@ -214,6 +214,10 @@ module.exports = async(interaction)=>{
               value: "カスタマイズされた招待リンクを作成します"
             },
             {
+              name: "/reset",
+              value: "実行したチャンネルを**完全**にリセットします"
+            },
+            {
               name: "/export",
               value: "サーバーのデータをJSON形式に出力します"
             }
@@ -360,6 +364,10 @@ module.exports = async(interaction)=>{
             {
               name: "/enquete",
               value: "アンケートを作成します"
+            },
+            {
+              name: "/lottery",
+              value: "指定したロールを持っているメンバーから指定した人数を選びます"
             },
             {
               name: "/miq",

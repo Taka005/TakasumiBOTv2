@@ -354,6 +354,17 @@
         ],
         "note": "サーバーに存在してるメンバーしかKICKできません"
     },
+    "lottery":{
+        "description": "指定したロールを持っているメンバーから指定した人数を選びます",
+        "example": "`/lottery 10 @Role`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
+        ],
+        "note": "なし"
+    },
     "math":{
         "description": "式を計算します",
         "example": "`/math 4 * 25`",
@@ -521,9 +532,22 @@
         ],
         "note": "なし"
     },
+    "reset":{
+        "description": "実行したチャンネルを**完全**にリセットします",
+        "example": "`/reset`",
+        "userPermission": [
+            "管理者"
+        ],
+        "botPermission": [
+            "チャンネルの管理",
+            "チャンネルの閲覧",
+            "メッセージの送信"
+        ],
+        "note": "なし"
+    },
     "retranslate":{
         "description": "様々な言語で翻訳を10回繰り返します",
-        "example": "なし",
+        "example": "`/retranslate こんにちは`",
         "userPermission": [
             "必要なし"
         ],

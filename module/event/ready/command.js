@@ -408,6 +408,23 @@ module.exports = async(client)=>{
                 .setName("reason")
                 .setDescription("Reason")
                 .setDescriptionLocalization("ja","理由")),
+          //lottery
+          new SlashCommandBuilder()
+            .setName("lottery")
+            .setDescription("Selects the specified number of people from the members with the specified role")
+            .setDescriptionLocalization("ja","指定したロールを持っているメンバーから指定した人数を選びます")
+            .addIntegerOption(option =>
+              option
+                .setName("number")
+                .setDescription("Number of choices")
+                .setDescriptionLocalization("ja","選ぶ人数")
+                .setRequired(true))
+            .addRoleOption(option =>
+              option
+                .setName("role")
+                .setDescription("Target Role")
+                .setDescriptionLocalization("ja","対象のロール")
+                .setRequired(true)),
           //math
           new SlashCommandBuilder()
             .setName("math")
@@ -725,6 +742,11 @@ module.exports = async(client)=>{
             .setName("reload")
             .setDescription("Reload the BOT")
             .setDescriptionLocalization("ja","BOTのリロードをします"),
+          //reset
+          new SlashCommandBuilder()
+            .setName("reset")
+            .setDescription("Completely resets the executed channel")
+            .setDescriptionLocalization("ja","実行したチャンネルを完全にリセットします"),
           //retranslate
           new SlashCommandBuilder()
             .setName("retranslate")
