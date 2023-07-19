@@ -44,11 +44,12 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      await interaction.update({});
+      await interaction.deferReply()
+        .then(()=>interaction.deleteReply());
 
       const channel = await interaction.channel.clone();
       await channel.setPosition(interaction.channel.position+1)
-      await interaction.channel.delete()
+      await interaction.channel.delete();
 
       await channel.send({
         embeds:[{

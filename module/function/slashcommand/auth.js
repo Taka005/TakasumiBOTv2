@@ -68,7 +68,7 @@ module.exports = async(interaction)=>{
     })
       .then(async()=>{
         await interaction.deferReply()
-          .then(()=>interaction.deleteReply())
+          .then(()=>interaction.deleteReply());
       })
       .catch(async(error)=>{
         await interaction.reply({ 
