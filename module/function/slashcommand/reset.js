@@ -52,6 +52,7 @@ module.exports = async(interaction)=>{
       await interaction.channel.delete();
 
       await channel.send({
+        content: `<@${interaction.user.id}>`,
         embeds:[{
           color: Colors.Green,
           author:{
