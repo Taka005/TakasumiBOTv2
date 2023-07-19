@@ -366,6 +366,10 @@ module.exports = async(interaction)=>{
               value: "アンケートを作成します"
             },
             {
+              name: "/lottery",
+              value: "指定したロールを持っているメンバーから指定した人数を選びます"
+            },
+            {
               name: "/miq",
               value: "Make it a Quoteを生成します"
             },

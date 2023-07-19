@@ -408,6 +408,22 @@ module.exports = async(client)=>{
                 .setName("reason")
                 .setDescription("Reason")
                 .setDescriptionLocalization("ja","理由")),
+          //lottery
+          new SlashCommandBuilder()
+            .setName("lottery")
+            .setDescription("Selects the specified number of people from the members with the specified role")
+            .setDescriptionLocalization("ja","指定したロールを持っているメンバーから指定した人数を選びます")
+            .addIntegerOption(option =>
+              option
+                .setName("number")
+                .setDescription("Number of choices")
+                .setDescriptionLocalization("ja","選ぶ人数")
+                .setRequired(true))
+            .addRoleOption(option =>
+              option
+                .setName("reason")
+                .setDescription("Target Role")
+                .setDescriptionLocalization("ja","対象のロール")),
           //math
           new SlashCommandBuilder()
             .setName("math")

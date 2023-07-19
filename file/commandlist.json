@@ -354,6 +354,17 @@
         ],
         "note": "サーバーに存在してるメンバーしかKICKできません"
     },
+    "lottery":{
+        "description": "指定したロールを持っているメンバーから指定した人数を選びます",
+        "example": "`/lottery 10 @Role`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
+        ],
+        "note": "なし"
+    },
     "math":{
         "description": "式を計算します",
         "example": "`/math 4 * 25`",
