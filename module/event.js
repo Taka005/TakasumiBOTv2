@@ -1,27 +1,10 @@
 module.exports = async(client)=>{
   const { Events, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
-  const fs = require("fs");
   require("dotenv");
   const db = require("./lib/db");
   const count = require("./lib/count");
-
-  const messageCreate = fs.readdirSync("./module/event/messageCreate")
-    .map(file=>require(`./event/messageCreate/${file}`));
-
-  const command = fs.readdirSync("./module/function/command")
-    .map(file=>require(`./function/command/${file}`));
-
-  const interactionCreate = fs.readdirSync("./module/event/interactionCreate")
-    .map(file=>require(`./event/interactionCreate/${file}`))
-
-  const auth = fs.readdirSync("./module/function/auth")
-    .map(file=>require(`./function/auth/${file}`));
-
-  const slashcommand = fs.readdirSync("./module/function/slashcommand")
-    .map(file=>require(`./function/slashcommand/${file}`));
-
-  const contextmenu = fs.readdirSync("./module/function/contextmenu")
-    .map(file=>require(`./function/contextmenu/${file}`));
+  
+  await require("./lib/fileLoader")();
 
   client.once(Events.ClientReady,async(client)=>{
     require("./event/ready/status")(client);
@@ -37,13 +20,13 @@ module.exports = async(client)=>{
 
     count.message();
 
-    Promise.all(messageCreate.map(fn=>fn(message)));
+    Promise.all(global.messageCreate.map(fn=>fn(message)));
     
     if(message.author.bot) return;  
 
     console.log(`\x1b[37mMESSAGE: ${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
-    Promise.all(command.map(fn=>fn(message)));
+    Promise.all(global.command.map(fn=>fn(message)));
   });
 
   client.on(Events.MessageUpdate,async(oldMessage,newMessage)=>{
@@ -103,10 +86,10 @@ module.exports = async(client)=>{
 
     count.command();
 
-    Promise.all(interactionCreate.map(fn=>fn(interaction)));
-    Promise.all(auth.map(fn=>fn(interaction)));
-    Promise.all(slashcommand.map(fn=>fn(interaction)));
-    Promise.all(contextmenu.map(fn=>fn(interaction)));
+    Promise.all(global.interactionCreate.map(fn=>fn(interaction)));
+    Promise.all(global.auth.map(fn=>fn(interaction)));
+    Promise.all(global.slashcommand.map(fn=>fn(interaction)));
+    Promise.all(global.contextmenu.map(fn=>fn(interaction)));
   });
 
   client.on(Events.GuildMemberAdd,async(member)=>{
