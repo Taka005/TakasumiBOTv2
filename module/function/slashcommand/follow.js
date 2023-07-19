@@ -2,6 +2,7 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "follow"){
+    const type = interaction.options.getString("type");
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
@@ -39,44 +40,86 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.client.channels.cache.get("1049155527214628954").addFollower(interaction.channel,"TakasumiBOTアナウンス")
-      .then(async()=>{
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "フォローチャンネルを追加しました",
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
-            },
-            description: "このチャンネルでBOTのお知らせを受け取ることができます"
-          }]
+    if(type === "announce"){
+      await interaction.client.channels.cache.get("1049155527214628954").addFollower(interaction.channel)
+        .then(async()=>{
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: "フォローチャンネルを追加しました",
+                icon_url: "https://cdn.taka.ml/images/system/success.png"
+              },
+              description: "このチャンネルでBOTのお知らせを受け取ることができます"
+            }]
+          });
+        })
+        .catch(async(error)=>{
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: "フォローチャンネルを追加できませんでした",
+                icon_url: "https://cdn.taka.ml/images/system/error.png"
+              },
+              fields:[
+                {
+                  name: "エラーコード",
+                  value: `\`\`\`${error}\`\`\``
+                }
+              ]
+            }],
+            components:[
+              new ActionRowBuilder()
+                .addComponents( 
+                  new ButtonBuilder()
+                    .setLabel("サポートサーバー")
+                    .setURL("https://discord.gg/NEesRdGQwD")
+                    .setStyle(ButtonStyle.Link))
+            ],
+            ephemeral: true
+          });
         });
-      })
-      .catch(async(error)=>{
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "フォローチャンネルを追加できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
-            },
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }],
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle(ButtonStyle.Link))
-          ],
-          ephemeral: true
+    }else{
+      await interaction.client.channels.cache.get("1106533820498452500").addFollower(interaction.channel)
+        .then(async()=>{
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: "フォローチャンネルを追加しました",
+                icon_url: "https://cdn.taka.ml/images/system/success.png"
+              },
+              description: "このチャンネルでBOTの変更ログを受け取ることができます"
+            }]
+          });
+        })
+        .catch(async(error)=>{
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: "フォローチャンネルを追加できませんでした",
+                icon_url: "https://cdn.taka.ml/images/system/error.png"
+              },
+              fields:[
+                {
+                  name: "エラーコード",
+                  value: `\`\`\`${error}\`\`\``
+                }
+              ]
+            }],
+            components:[
+              new ActionRowBuilder()
+                .addComponents( 
+                  new ButtonBuilder()
+                    .setLabel("サポートサーバー")
+                    .setURL("https://discord.gg/NEesRdGQwD")
+                    .setStyle(ButtonStyle.Link))
+            ],
+            ephemeral: true
+          });
         });
-      })
+    }
   }
 }

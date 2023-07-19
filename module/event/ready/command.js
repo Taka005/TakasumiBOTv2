@@ -284,7 +284,17 @@ module.exports = async(client)=>{
           new SlashCommandBuilder()
             .setName("follow")
             .setDescription("Add Bot announcement channel")
-            .setDescriptionLocalization("ja","BOTのアナウンスチャンネルを追加します"),
+            .setDescriptionLocalization("ja","BOTのアナウンスチャンネルを追加します")
+            .addStringOption(option =>
+              option
+                .setName("type")
+                .setDescription("Type of Setting")
+                .setDescriptionLocalization("ja","設定する種類")
+                .setRequired(true)
+                .addChoices(
+                  { name: "アナウンス", value: "announce" },
+                  { name: "変更ログ", value: "update" }
+                )),
           //gif
           new SlashCommandBuilder()
             .setName("gif")
