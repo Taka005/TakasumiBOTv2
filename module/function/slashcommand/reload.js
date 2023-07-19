@@ -82,6 +82,7 @@ module.exports = async(interaction)=>{
         })
     ]);
     
+    delete require.cache[require.resolve("../../event/ready/command")];
     delete require.cache[require.resolve("../../../config.json")];
     delete require.cache[require.resolve("../../../package.json")];
     delete require.cache[require.resolve("../../../package-lock.json")];
