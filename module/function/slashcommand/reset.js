@@ -56,7 +56,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${interaction.user.tag}がチャンネルがリセットしました`,
+            name: "チャンネルをリセットしました",
             icon_url: "https://cdn.taka.ml/images/system/success.png"
           }
         }]
