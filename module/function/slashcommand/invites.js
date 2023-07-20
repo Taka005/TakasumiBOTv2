@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "招待を取得できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             description: "指定したユーザーの招待が見つかりませんでした"
           }],
@@ -44,7 +44,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: `${user.tag}の招待一覧`,
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: invites.map((invite)=>`\`${invite.code}\` ${invite.uses}回`).join("\n")
           }]
@@ -58,7 +58,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: "サーバーの招待一覧",
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: invites.map((invite)=>`\`${invite.code}\` ${invite.uses}回(<@${invite.inviterId}>)`).join("\n")
           }]
@@ -70,7 +70,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "招待を取得できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           fields:[
             {

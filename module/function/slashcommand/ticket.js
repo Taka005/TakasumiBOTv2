@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
@@ -33,7 +33,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -67,7 +67,7 @@ module.exports = async(interaction)=>{
               color: Colors.Red,
               author:{
                 name: "チケットが作成出来ませんでした",
-                icon_url: "https://cdn.taka.ml/images/system/error.png"
+                icon_url: "https://cdn.taka.cf/images/system/error.png"
               },
               fields:[
                 {
@@ -99,7 +99,7 @@ module.exports = async(interaction)=>{
                 color: Colors.Red,
                 author:{
                   name: "チケットが作成出来ませんでした",
-                  icon_url: "https://cdn.taka.ml/images/system/error.png"
+                  icon_url: "https://cdn.taka.cf/images/system/error.png"
                 },
                 fields:[
                   {

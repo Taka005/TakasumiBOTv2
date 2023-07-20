@@ -51,7 +51,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           author:{
             name: "ページが存在しません",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           color: Colors.Red,
           description: "前のページに戻ってください"

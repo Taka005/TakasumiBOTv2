@@ -17,7 +17,7 @@ module.exports = async(message)=>{
       embeds:[{
         author:{
           name: "AFKを無効にしました",
-          icon_url: "https://cdn.taka.ml/images/system/success.png"
+          icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
         color: Colors.Green,
         description: `メンションは${data[0].mention}件ありました\n${time(new Date()-new Date(data[0].time))}間AFKでした`
@@ -35,7 +35,7 @@ module.exports = async(message)=>{
           embeds:[{
             author:{
               name: "AFK中です",
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             color: Colors.Green,
             description: afk[0].message

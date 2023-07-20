@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
@@ -33,7 +33,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "登録の削除が完了しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               }
             }]
           });
@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "登録の削除が完了しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
               description: "※webhookは既に削除済みのため、\n登録情報のみ削除しました"
             }]
@@ -89,7 +89,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "参加条件を満たしていません",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "グローバルチャットを利用するには以下の条件を満たしている必要があります",
           fields:[
@@ -107,7 +107,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "グローバルチャットに参加できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "設定するチャンネルはテキストチャンネルにしてください"
         }],
@@ -124,7 +124,7 @@ module.exports = async(interaction)=>{
 
       await interaction.channel.createWebhook({
         name: "TakasumiBOT Global",
-        avatar: "https://cdn.taka.ml/images/icon.png",
+        avatar: "https://cdn.taka.cf/images/icon.png",
       })
         .then(async(webhook)=>{
           await interaction.channel.setTopic("ここはTakasumiBOTグローバルチャットです\nこのチャンネルに入力された内容は登録チャンネル全部に送信されます\n\nチャットを利用する前に\n[利用規約](https://gc.taka.ml/ )をご確認ください")
@@ -153,7 +153,7 @@ module.exports = async(interaction)=>{
                 timestamp: new Date()
               }],
               username: "TakasumiBOT Global",
-              avatarURL: "https://cdn.taka.ml/images/icon.png"
+              avatarURL: "https://cdn.taka.cf/images/icon.png"
             }).catch(async()=>{
               await db(`DELETE FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
             });
@@ -164,7 +164,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: interaction.guild.name,
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
               description: "グローバルチャットに新しいサーバーを追加しました\nみんなに挨拶してみましょう!\nこのチャンネルに入力された内容は、登録チャンネル全てに送信されます\n\n※チャットを利用した場合、[利用規約](http://gc.taka.ml/)に同意されたことになります。必ずご確認ください",
               timestamp: new Date()
@@ -176,7 +176,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             author:{
               name: "Webhookの作成に失敗しました",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             color: Colors.Red,
             description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",

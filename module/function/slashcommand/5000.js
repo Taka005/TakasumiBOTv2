@@ -16,7 +16,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "生成しました",
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           image:{
             url: "attachment://5000.png"
@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "生成できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "もう一度やり直してください"
         }]

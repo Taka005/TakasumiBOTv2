@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "権限がありません",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "このコマンドを実行するには以下の権限を持っている必要があります",
           fields:[
@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "BOTに権限がありません",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "このコマンドはBOTに以下の権限が必要です",
           fields:[
@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
                 color: Colors.Green,
                 author:{
                   name: "ひろゆきの退出が完了しました",
-                  icon_url: "https://cdn.taka.ml/images/system/success.png"
+                  icon_url: "https://cdn.taka.cf/images/system/success.png"
                 }
               }]
             });
@@ -68,7 +68,7 @@ module.exports = async(interaction)=>{
                 color: Colors.Green,
                 author:{
                   name: "ひろゆきの退出が完了しました",
-                  icon_url: "https://cdn.taka.ml/images/system/success.png"
+                  icon_url: "https://cdn.taka.cf/images/system/success.png"
                 },
                 description: "※webhookは既に削除済みのため、\n登録情報のみ削除しました"
               }]
@@ -78,7 +78,7 @@ module.exports = async(interaction)=>{
         await interaction.deferReply();
         await interaction.channel.createWebhook({
           name: "ひろゆき",
-          avatar: "https://cdn.taka.ml/images/hiroyuki.png",
+          avatar: "https://cdn.taka.cf/images/hiroyuki.png",
         })
           .then(async(webhook)=>{
             await db(`INSERT INTO hiroyuki (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE channel = VALUES (channel),server = VALUES (server),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
@@ -88,7 +88,7 @@ module.exports = async(interaction)=>{
                 color: Colors.Green,
                 author:{
                   name: "ひろゆきの召喚に成功しました",
-                  icon_url: "https://cdn.taka.ml/images/system/success.png"
+                  icon_url: "https://cdn.taka.cf/images/system/success.png"
                 }
               }]
             });
@@ -99,7 +99,7 @@ module.exports = async(interaction)=>{
                 color: Colors.Red,
                 author:{
                   name: "ひろゆきの召喚に失敗しました",
-                  icon_url: "https://cdn.taka.ml/images/system/error.png"
+                  icon_url: "https://cdn.taka.cf/images/system/error.png"
                 },
                 description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
                 fields:[

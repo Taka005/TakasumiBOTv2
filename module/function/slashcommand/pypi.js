@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
           url: pkg.info.package_url,
           description: pkg.info.summary,
           thumbnail:{
-            url: "https://cdn.taka.ml/images/pypi.png",
+            url: "https://cdn.taka.cf/images/pypi.png",
           },
           fields:[
             {
@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "検索ワードを変えて、もう一度実行してください"
         }]

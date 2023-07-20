@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "メッセージをピン留めできませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "メッセージの内容が存在しません"
       }],
@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります\n```メッセージの管理\nチャンネルの管理```"
       }],
@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "この機能はBOTに以下の権限が必要です\n```チャンネルの閲覧\nメッセージを送信\nメッセージの管理\nチャンネルの管理```"
       }],
@@ -56,7 +56,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "メッセージをピン留めできませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "既にこのチャンネルにはピン留めされたメッセージが存在します\nピン留めの解除は送信された埋め込みを削除してください"
       }],
@@ -68,7 +68,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "メッセージをピン留めできませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "サーバーには最大5個までしかPINは使えません\nピン留めの解除は送信された埋め込みを削除してください"
       }],

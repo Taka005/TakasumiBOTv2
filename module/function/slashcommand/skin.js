@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得出来ませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "指定したユーザーは存在しません"
         }]
@@ -29,7 +29,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${name}のスキン`,
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           image:{
             url: "attachment://skin.png"
@@ -55,7 +55,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得出来ませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "違うユーザー名で試してください"
         }]

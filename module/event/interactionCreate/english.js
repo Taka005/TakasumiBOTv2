@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Green,
         thumbnail:{
-          url: "https://cdn.taka.ml/images/bot.png"
+          url: "https://cdn.taka.cf/images/bot.png"
         },
         title: "Thanks for adding the Bot!",
         description: "My name is TakasumiBOT\nIt is a powerful BOT with useful functions!\n\nRun `/help` to view the help for the command",

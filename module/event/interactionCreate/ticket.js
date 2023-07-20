@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         author:{
           name: "作成できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
         description: "既にチケットが作成済みです"
@@ -20,7 +20,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         author:{
           name: "作成できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
         description: "ticketカテゴリーが存在していません"
@@ -58,7 +58,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             author:{
               name: `チケットを作成しました`,
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: `<#${ch.id}>`,
             color: Colors.Green
@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             author:{
               name: "作成できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             color: Colors.Red,
             fields:[
@@ -99,7 +99,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             author:{
               name: "チケットを削除できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             color: Colors.Red,
             fields:[

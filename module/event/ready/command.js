@@ -683,8 +683,8 @@ module.exports = async(client)=>{
                 .setDescriptionLocalization("ja","実行する操作")
                 .setRequired(true)
                 .addChoices(
-                  { name: "読み取り", value: "read" },
-                  { name: "生成", value: "gen" }
+                  { name: "生成", value: "gen" },
+                  { name: "読み取り", value: "read" }
                 ))
             .addStringOption(option =>
               option

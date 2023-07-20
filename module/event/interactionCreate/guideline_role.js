@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         author:{
           name: "既に同意済みです",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
         description: "このサーバーのガイドラインに既に同意しているようです"
@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             author:{
               name: "同意しました",
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: "このサーバーのガイドラインに同意しました\nこれでロールが付与され、晴れてサーバーの一員となりました",
             color: Colors.Green
@@ -35,7 +35,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             author:{
               name: "同意に失敗しました",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             color: Colors.Red,
             description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",

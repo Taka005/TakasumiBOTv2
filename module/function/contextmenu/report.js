@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         author:{
           name: "報告できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
         description: "メッセージの内容が存在しません"
@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
         color: Colors.Green,
         author:{
           name: "メッセージレポート",
-          icon_url: "https://cdn.taka.ml/images/system/success.png",
+          icon_url: "https://cdn.taka.cf/images/system/success.png",
         },
         description: `**${message.author.tag}(${message.author.id})**\n${message.content}`,
         footer:{
@@ -38,7 +38,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: "メッセージを報告しました",
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: `**${message.author.tag}(${message.author.id})**\n${message.content}`
           }],
@@ -58,7 +58,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "メッセージを報告出来ませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             }
           }],
           components:[

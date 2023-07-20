@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "メンバーを取得できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "指定したメンバーはサーバーに存在していません"
       }],
@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
           author:{
             name: `${member.user.tag}の権限`,
             url: `https://discord.com/users/${member.user.id}`,
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           description: `\`${permission(member.permissions.toArray()).join("`,`")}\``,
           footer:{
@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           fields:[
             {

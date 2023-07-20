@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "回答を追加出来ませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "Botの権限を確認してやり直してください"
       }],
@@ -41,7 +41,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: "回答しました",
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
             }
           }],
           ephemeral: true
@@ -53,7 +53,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "回答出来ませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             description: "BOTの権限が不足しています",
             fields:[

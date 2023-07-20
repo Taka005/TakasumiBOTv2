@@ -21,7 +21,7 @@ module.exports = async(interaction)=>{
         color: Colors.Green,
         author:{
           name: "ランダムで選択しました",
-          icon_url: "https://cdn.taka.ml/images/system/success.png"
+          icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
         description: random(selects)
       }]

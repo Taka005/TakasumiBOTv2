@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           title: "このサーバーのガイドライン",
           thumbnail:{
-            url: "https://cdn.taka.ml/images/system/guideline.png"
+            url: "https://cdn.taka.cf/images/system/guideline.png"
           },
           description: temp
         },
@@ -38,7 +38,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           author:{
             name: "ガイドラインの作成に失敗しました",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           color: Colors.Red,
           description: "BOTの権限等を確認し、もう一度実行してください",

@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "もう一度認証してください",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "この認証は古いバージョンを使用しているため更新しました\n再度ボタンを押すことで認証できます"
         }],
@@ -37,7 +37,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "認証に失敗しました",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "この認証は古いバージョンを使用しているため認証できません\n`/auth`を使用して作り直してください"
         }],

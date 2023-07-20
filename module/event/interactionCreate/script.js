@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           author:{
             name: "正常に実行できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           color: Colors.Red,
           description: "実行がタイムアウトしました",
@@ -61,7 +61,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "実行しました",
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**結果**\n\`\`\`${res.program_output||"なし"}\`\`\``,
           footer:{
@@ -73,7 +73,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             author:{
               name: "実行しました",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             color: Colors.Green,
             description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
@@ -93,7 +93,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           author:{
             name: "実行できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           color: Colors.Red,
           description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
@@ -106,7 +106,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             author:{
               name: "実行できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             color: Colors.Red,
             description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,

@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
           author:{
             name: `${interaction.user.tag}の検索結果`,
             url: `https://discord.com/users/${interaction.user.id}`,
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           timestamp: new Date(),
           footer:{
@@ -79,7 +79,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "取得できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             fields:[
               {
@@ -107,7 +107,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "取得できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "ユーザーID、メンションを入力してください"
       }],
@@ -124,7 +124,7 @@ module.exports = async(interaction)=>{
           author:{
             name: `${member.user.tag}の検索結果`,
             url: `https://discord.com/users/${member.user.id}`,
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           thumbnail:{
             url: member.user.avatarURL({extension:"png",size:1024})||member.user.defaultAvatarURL
@@ -180,7 +180,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "取得できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             fields:[
               {
@@ -211,7 +211,7 @@ module.exports = async(interaction)=>{
             author:{
               name: `${user.tag}の検索結果`,
               url: `https://discord.com/users/${user.id}`,
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             thumbnail:{
               url: user.avatarURL({extension:"png",size:1024})||user.defaultAvatarURL
@@ -249,7 +249,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "取得できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             description: "指定されたユーザーは存在しないか間違っています",
             fields:[
