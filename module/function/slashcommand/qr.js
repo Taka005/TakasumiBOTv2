@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
           },
           description: `内容\n\`\`\`${text}\`\`\``,
           image:{
-            url: "attachment://QRCode.png"
+            url: "attachment://QRcode.png"
           }
         }],
         files:[
