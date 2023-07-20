@@ -45,7 +45,7 @@ module.exports = async(interaction)=>{
           },
           {
             name: "権限",
-            value: `\`${permission(channel.permissionFor(interaction.member).toArray()).join("`,`")}\``
+            value: `\`${permission(channel.permissionsFor(interaction.member).toArray()).join("`,`")}\``
           }
         ],
         footer:{
