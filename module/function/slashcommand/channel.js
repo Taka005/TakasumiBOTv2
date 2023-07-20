@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
           },
           {
             name: "カテゴリー",
-            value: channel.parent ? `<#${channel.parent.id}>` : "なし",
+            value: channel.parent.name||"なし",
             inline: true
           },
           {
