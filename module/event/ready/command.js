@@ -144,7 +144,7 @@ module.exports = async(client)=>{
                 .setName("name")
                 .setDescription("Channel Name")
                 .setDescriptionLocalization("ja","チャンネル名")
-                .require(true)),
+                .setRequired(true)),
           //cipher
           new SlashCommandBuilder()
             .setName("cipher")
