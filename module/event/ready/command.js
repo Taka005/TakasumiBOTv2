@@ -134,6 +134,17 @@ module.exports = async(client)=>{
                 .setDescription("Button URL")
                 .setDescriptionLocalization("ja","ボタンのURL")
                 .setRequired(true)),
+          //channel
+          new SlashCommandBuilder()
+            .setName("channel")
+            .setDescription("View information on the specified channel")
+            .setDescriptionLocalization("ja","指定したチャンネルの情報を表示します")
+            .addChannelOption(option =>
+              option
+                .setName("name")
+                .setDescription("Channel Name")
+                .setDescriptionLocalization("ja","チャンネル名")
+                .setRequired(true)),
           //cipher
           new SlashCommandBuilder()
             .setName("cipher")
@@ -354,7 +365,8 @@ module.exports = async(client)=>{
               option
                 .setName("command")
                 .setDescription("Command name to view")
-                .setDescriptionLocalization("ja","表示するコマンド名")),
+                .setDescriptionLocalization("ja","表示するコマンド名")
+                .setAutocomplete(true)),
           //hiroyuki
           new SlashCommandBuilder()
             .setName("hiroyuki")

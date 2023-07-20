@@ -94,6 +94,10 @@ module.exports = async(interaction)=>{
               value: "サーバーの情報を表示します"
             },
             {
+              name: "/channel",
+              value: "指定されたチャンネルの情報を表示します"
+            },
+            {
               name: "/role",
               value: "指定した役職の情報を表示します"
             },
