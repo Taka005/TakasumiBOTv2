@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "表示出来ませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "あなたのアクティビティがありません"
       }],
@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${name}のアクティビティ一覧`,
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           description: members.map(member=>`<@${member.id}>`).join("\n")
         }]
@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "表示出来ませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           fields:[
             {

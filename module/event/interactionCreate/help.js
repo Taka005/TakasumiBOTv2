@@ -460,7 +460,7 @@ async function check(interaction,id){
       embeds:[{
         author:{
           name: "ページを更新できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
         description: "このコマンドは別の人が操作しています"
@@ -479,7 +479,7 @@ async function err(interaction,error){
     embeds:[{
       author:{
         name: "ページを更新できませんでした",
-        icon_url: "https://cdn.taka.ml/images/system/error.png"
+        icon_url: "https://cdn.taka.cf/images/system/error.png"
       },
       color: Colors.Red,
       description: "BOTの権限が不足しています",

@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
         color: Colors.Green,
         author:{
           name: `${interaction.user.tag}の権限`,
-          icon_url: "https://cdn.taka.ml/images/system/success.png"
+          icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
         description: `\`${permission(interaction.member.permissions.toArray()).join("`,`")}\``,
         footer:{
@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "権限を取得できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           fields:[
             {
@@ -52,7 +52,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限を取得できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "指定したユーザーがサーバーに存在しません"
       }],
@@ -64,7 +64,7 @@ module.exports = async(interaction)=>{
         color: Colors.Green,
         author:{
           name: `${member.user.tag}の権限`,
-          icon_url: "https://cdn.taka.ml/images/system/success.png"
+          icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
         description: `\`${permission(member.permissions.toArray()).join("`,`")}\``,
         footer:{
@@ -78,7 +78,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "権限を取得できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           fields:[
             {

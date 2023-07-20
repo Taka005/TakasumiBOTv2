@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "取得できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "サーバーのカスタム絵文字を指定してください"
       }],
@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "絵文字の情報",
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           thumbnail:{
             url: emoji.url
@@ -63,7 +63,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           fields:[
             {

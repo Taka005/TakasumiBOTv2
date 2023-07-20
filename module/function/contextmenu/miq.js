@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         author:{
           name: "生成できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
         description: "メッセージの内容が存在しません"

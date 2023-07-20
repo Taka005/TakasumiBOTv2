@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "再翻訳できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "再翻訳文字数は、2000文字以下です"
       }],
@@ -43,7 +43,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "再翻訳できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "再翻訳文字を変えて、もう一度実行してください"
         }],

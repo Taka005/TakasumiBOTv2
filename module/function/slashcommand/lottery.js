@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "抽選できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "指定したロールを持っている人より、抽選する人数が多いです"
       }],
@@ -31,7 +31,7 @@ module.exports = async(interaction)=>{
         color: Colors.Green,
         author:{
           name: "抽選結果",
-          icon_url: "https://cdn.taka.ml/images/system/success.png"
+          icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
         description: members.map(member=>`<@${member.id}>`).join("")
       }]

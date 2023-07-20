@@ -46,7 +46,7 @@ module.exports = async(client)=>{
       embeds:[{
         author:{
           name: "コマンドが実行できません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
         description: "BOTの操作はDMで実行することができません\nサーバー内で実行してください"
@@ -68,7 +68,7 @@ module.exports = async(client)=>{
       embeds:[{
         author:{
           name: "コマンドが実行できません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
         description: "あなた又はこのサーバーはブラックリストに登録されているため実行できません"

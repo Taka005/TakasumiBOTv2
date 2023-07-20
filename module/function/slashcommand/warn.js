@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "警告できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "指定したユーザーが取得できません"
       }],
@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "警告できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "自分自身を警告することはできません"
       }],
@@ -54,7 +54,7 @@ module.exports = async(interaction)=>{
         color: Colors.Yellow,
         author:{
           name: "警告されました",
-          icon_url: "https://cdn.taka.ml/images/system/warn.png"
+          icon_url: "https://cdn.taka.cf/images/system/warn.png"
         },
         description: reason,
         footer:{
@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: `${member.user.tag}を警告しました`,
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: `理由: ${reason}`
           }]
@@ -83,7 +83,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "警告できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             description: "ユーザーがDMを拒否している可能性があります",
             fields:[

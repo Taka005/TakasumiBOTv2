@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "この機能はBOTに以下の権限が必要です",
         fields:[
@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "フォローチャンネルを追加しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
               description: "このチャンネルでBOTのお知らせを受け取ることができます"
             }]
@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
               color: Colors.Red,
               author:{
                 name: "フォローチャンネルを追加できませんでした",
-                icon_url: "https://cdn.taka.ml/images/system/error.png"
+                icon_url: "https://cdn.taka.cf/images/system/error.png"
               },
               fields:[
                 {
@@ -88,7 +88,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "フォローチャンネルを追加しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
               description: "このチャンネルでBOTの変更ログを受け取ることができます"
             }]
@@ -100,7 +100,7 @@ module.exports = async(interaction)=>{
               color: Colors.Red,
               author:{
                 name: "フォローチャンネルを追加できませんでした",
-                icon_url: "https://cdn.taka.ml/images/system/error.png"
+                icon_url: "https://cdn.taka.cf/images/system/error.png"
               },
               fields:[
                 {

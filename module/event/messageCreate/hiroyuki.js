@@ -111,7 +111,7 @@ module.exports = async(message)=>{
     return await webhook.send({
       content: random(koizumi),
       username: "小泉進次郎",
-      avatarURL: "https://cdn.taka.ml/images/koizumi.png"
+      avatarURL: "https://cdn.taka.cf/images/koizumi.png"
     }).catch((error)=>{
       err(message,error);
     })
@@ -119,7 +119,7 @@ module.exports = async(message)=>{
     return await webhook.send({
       content: random(kinnikun),
       username: "なかやまきんに君",
-      avatarURL: "https://cdn.taka.ml/images/kinnikun.png"
+      avatarURL: "https://cdn.taka.cf/images/kinnikun.png"
     }).catch((error)=>{
       err(message,error);
     })
@@ -127,7 +127,7 @@ module.exports = async(message)=>{
     return await webhook.send({
       content: random(kisida),
       username: "岸田総理",
-      avatarURL: "https://cdn.taka.ml/images/kisida.png"
+      avatarURL: "https://cdn.taka.cf/images/kisida.png"
     }).catch((error)=>{
       err(message,error);
     })
@@ -135,7 +135,7 @@ module.exports = async(message)=>{
     return await webhook.send({
       content: "すいません。3色チーズ牛丼の特盛に温玉付きをお願いします",
       username: "チー牛",
-      avatarURL: "https://cdn.taka.ml/images/tigyuu.png"
+      avatarURL: "https://cdn.taka.cf/images/tigyuu.png"
     }).catch((error)=>{
       err(message,error);
     })
@@ -151,7 +151,7 @@ module.exports = async(message)=>{
   await webhook.send({
     content: content,
     username: "ひろゆき",
-    avatarURL: "https://cdn.taka.ml/images/hiroyuki.png"
+    avatarURL: "https://cdn.taka.cf/images/hiroyuki.png"
   }).catch((error)=>{
     err(message,error);
   })
@@ -166,7 +166,7 @@ function err(message,error){
     embeds:[{
       author:{
         name: "ひろゆき機能でエラーが発生しました",
-        icon_url: "https://cdn.taka.ml/images/system/error.png"
+        icon_url: "https://cdn.taka.cf/images/system/error.png"
       },
       color: Colors.Red,
       description: "エラーが発生したため、強制的に退出されました\n再度登録するには`/hiroyuki`を使用してください",

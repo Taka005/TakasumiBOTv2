@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "既に認証済みです",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         }
       }],
       ephemeral: true
@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "認証してください",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "以下のリンクからWeb認証を行い、再度認証ボタンを押してください\n認証してから3分を超えるとタイムアウトになります"
       }],
@@ -43,7 +43,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "認証してください",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: `前回の認証から3分以上が経過しているため再度認証を行なってください\n前回の認証日時: ${new Date(account[0].time).toLocaleString()}`
       }],
@@ -66,7 +66,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: "認証しました",
-              icon_url: "https://cdn.taka.ml/images/system/success.png"
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
             }
           }],
           ephemeral: true
@@ -78,7 +78,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "認証に失敗しました",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
             fields:[

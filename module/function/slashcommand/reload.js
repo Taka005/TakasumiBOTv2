@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
         description: "このコマンドは関係者以外実行できません"

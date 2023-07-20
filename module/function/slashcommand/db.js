@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "このコマンドは関係者以外実行できません"
       }],

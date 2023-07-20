@@ -23,7 +23,7 @@ module.exports = async(message)=>{
     embeds:[{
       author:{
         name: "利用規約に同意してください",
-        icon_url: "https://cdn.taka.ml/images/system/error.png"
+        icon_url: "https://cdn.taka.cf/images/system/error.png"
       },
       color: Colors.Red,
       description: "以下のリンクから認証を行うことでグローバルチャットを利用できます\n認証が完了すると[利用規約](https://gc.taka.ml/)に同意したものとみなします",
@@ -117,14 +117,14 @@ module.exports = async(message)=>{
     await webhook.send({
       embeds: embed,
       username: "TakasumiBOT Global",
-      avatarURL: "https://cdn.taka.ml/images/icon.png"
+      avatarURL: "https://cdn.taka.cf/images/icon.png"
     }).catch(async(error)=>{
       await db(`DELETE FROM global WHERE channel = ${data.channel} LIMIT 1;`);
       await message.client.channels.cache.get(data.channel).send({
         embeds:[{
           author:{
             name: "グローバルチャットでエラーが発生しました",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           color: Colors.Red,
           description: "エラーが発生したため、強制的に切断されました\n再度登録するには`/global`を使用してください",

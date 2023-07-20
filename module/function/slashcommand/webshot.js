@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "撮影できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "URLを指定する必要があります"
       }],
@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "撮影しました",
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           image:{
             url: "attachment://screenshot.png"
@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "スクリーンショットを撮れませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "URLを変えてやり直してください"
         }],

@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${interaction.guild.name}の情報`,
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           thumbnail:{
             url: interaction.guild.iconURL()
@@ -66,7 +66,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           fields:[
             {

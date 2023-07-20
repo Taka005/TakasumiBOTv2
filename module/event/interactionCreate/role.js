@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         author:{
           name: "ロールの付与に失敗しました",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
         description: "ロールの付与速度が速すぎるため5秒間待ってください"
@@ -37,7 +37,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           author:{
             name: "ロールを変更しました",
-            icon_url: "https://cdn.taka.ml/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           color: Colors.Green,
           fields:[
@@ -58,7 +58,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           author:{
             name: "ロールの変更に失敗しました",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           color: Colors.Red,
           description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",

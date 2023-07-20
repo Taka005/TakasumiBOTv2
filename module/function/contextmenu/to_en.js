@@ -11,12 +11,12 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "翻訳できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "メッセージの内容が存在しません",
         footer:{
           text: "Google Translate",
-          icon_url: "https://cdn.taka.ml/images/translate.png"
+          icon_url: "https://cdn.taka.cf/images/translate.png"
         }
       }],
       ephemeral: true
@@ -28,12 +28,12 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "翻訳できませんでした",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "翻訳文字数は2000文字以下です",
         footer:{
           text: "Google Translate",
-          icon_url: "https://cdn.taka.ml/images/translate.png"
+          icon_url: "https://cdn.taka.cf/images/translate.png"
         }
       }],
       ephemeral: true
@@ -56,7 +56,7 @@ module.exports = async(interaction)=>{
           description: translated.join(""),
           footer:{
             text: `Google Translate [${data.src}]->[en]`,
-            icon_url: "https://cdn.taka.ml/images/translate.png"
+            icon_url: "https://cdn.taka.cf/images/translate.png"
           }
         }]
       });
@@ -67,12 +67,12 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "翻訳できませんでした",
-            icon_url: "https://cdn.taka.ml/images/system/error.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "翻訳文字を変えて、もう一度実行してください",
           footer:{
             text: "Google Translate",
-            icon_url: "https://cdn.taka.ml/images/translate.png"
+            icon_url: "https://cdn.taka.cf/images/translate.png"
           }
         }],
         ephemeral: true

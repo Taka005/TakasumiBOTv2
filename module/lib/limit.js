@@ -17,7 +17,7 @@ module.exports = (message)=>{
         embeds:[{
           author:{
             name: "レートリミット",
-            icon_url: "https://cdn.taka.ml/images/system/warn.png"
+            icon_url: "https://cdn.taka.cf/images/system/warn.png"
           },
           description: "メッセージを送信する速度が早すぎます\n3分間はメッセージを応答しなくなります",
           timestamp: new Date(),

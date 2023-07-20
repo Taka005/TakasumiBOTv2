@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.ml/images/system/error.png"
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "このコマンドは関係者以外実行できません"
       }],
@@ -29,7 +29,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "取得しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
               description: `\`\`\`json\n${JSON.stringify(msg,null,"  ")}\`\`\``
             }]
@@ -41,7 +41,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "取得しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
               description: `\`\`\`json\n${JSON.stringify(msg,null,"  ")}\`\`\``
             }]
@@ -53,7 +53,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "取得できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             description: "メッセージが存在しません",
             fields:[
@@ -75,7 +75,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "送信できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             description: "メッセージオブジェクトが無効です",
             fields:[
@@ -98,7 +98,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "編集しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               }
             }]
           });
@@ -110,7 +110,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "編集しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               }
             }]
           });
@@ -121,7 +121,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "編集できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             description: "メッセージオブジェクトまたは、メッセージが取得できません",
             fields:[
@@ -144,7 +144,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "削除しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               }
             }]
           });
@@ -156,7 +156,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "削除しました",
-                icon_url: "https://cdn.taka.ml/images/system/success.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               }
             }]
           });
@@ -167,7 +167,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "取得できませんでした",
-              icon_url: "https://cdn.taka.ml/images/system/error.png"
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             description: "メッセージが存在しません",
             fields:[
