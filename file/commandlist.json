@@ -111,6 +111,17 @@
         ],
         "note": "なし"
     },
+    "channel":{
+        "description": "指定したチャンネルの情報を表示します",
+        "example": "`/channel #一般`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
+        ],
+        "note": "なし"
+    },
     "cipher":{
         "description": "文字列を暗号・復号します",
         "example": "`/cipher 暗号化 moji key`\n`/cipher 復号化 d1faf7e95c key`",
@@ -713,7 +724,7 @@
             "チャンネルの管理",
             "メッセージの送信"
         ],
-        "note": "この機能は未完成のため使いにくい可能性があります"
+        "note": "なし"
     },
     "timeout":{
         "description": "指定したメンバーをタイムアウトします",

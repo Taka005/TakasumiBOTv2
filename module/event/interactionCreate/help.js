@@ -110,6 +110,10 @@ module.exports = async(interaction)=>{
               value: "指定されたユーザーのアイコンを表示します\n使い方は`/user`と同じです"
             },
             {
+              name: "/channel",
+              value: "指定されたチャンネルの情報を表示します"
+            },
+            {
               name: "/permission",
               value: "指定されたユーザーの権限を表示します\n使い方は`/user`と同じです"
             },

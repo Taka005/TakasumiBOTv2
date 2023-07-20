@@ -134,6 +134,17 @@ module.exports = async(client)=>{
                 .setDescription("Button URL")
                 .setDescriptionLocalization("ja","ボタンのURL")
                 .setRequired(true)),
+          //channel
+          new SlashCommandBuilder()
+            .setName("channel")
+            .setDescription("View information on the specified channel")
+            .setDescriptionLocalization("ja","指定したチャンネルの情報を表示します")
+            .addChannelOption(option =>
+              option
+                .setName("name")
+                .setDescription("Channel Name")
+                .setDescriptionLocalization("ja","チャンネル名")
+                .require(true)),
           //cipher
           new SlashCommandBuilder()
             .setName("cipher")
