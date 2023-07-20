@@ -354,7 +354,8 @@ module.exports = async(client)=>{
               option
                 .setName("command")
                 .setDescription("Command name to view")
-                .setDescriptionLocalization("ja","表示するコマンド名")),
+                .setDescriptionLocalization("ja","表示するコマンド名")
+                .setAutocomplete(true)),
           //hiroyuki
           new SlashCommandBuilder()
             .setName("hiroyuki")
