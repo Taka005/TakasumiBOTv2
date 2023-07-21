@@ -19,7 +19,7 @@ module.exports = async(interaction)=>{
           .addComponents( 
             new ButtonBuilder()
               .setLabel("サイトへ行く")
-              .setURL("https://auth.taka.ml/")
+              .setURL("https://auth.taka.cf/")
               .setStyle(ButtonStyle.Link))
       ],
       ephemeral: true
