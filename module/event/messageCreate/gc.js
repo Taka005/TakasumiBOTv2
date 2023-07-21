@@ -33,7 +33,7 @@ module.exports = async(message)=>{
         .addComponents( 
           new ButtonBuilder()
             .setLabel("サイトへ飛ぶ")
-            .setURL("https://auth.taka.ml/")
+            .setURL("https://auth.taka.cf/")
             .setStyle(ButtonStyle.Link))
         .addComponents( 
           new ButtonBuilder()
