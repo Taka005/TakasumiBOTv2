@@ -127,7 +127,7 @@ module.exports = async(interaction)=>{
         avatar: "https://cdn.taka.cf/images/icon.png",
       })
         .then(async(webhook)=>{
-          await interaction.channel.setTopic("ここはTakasumiBOTグローバルチャットです\nこのチャンネルに入力された内容は登録チャンネル全部に送信されます\n\nチャットを利用する前に\n[利用規約](https://gc.taka.ml/ )をご確認ください")
+          await interaction.channel.setTopic("ここはTakasumiBOTグローバルチャットです\nこのチャンネルに入力された内容は登録チャンネル全部に送信されます\n\nチャットを利用する前に\n[利用規約](https://gc.taka.cf/ )をご確認ください")
             .catch(()=>{});
 
           await db(`INSERT INTO global (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE channel = VALUES (channel),server = VALUES (server),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
@@ -166,7 +166,7 @@ module.exports = async(interaction)=>{
                 name: interaction.guild.name,
                 icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
-              description: "グローバルチャットに新しいサーバーを追加しました\nみんなに挨拶してみましょう!\nこのチャンネルに入力された内容は、登録チャンネル全てに送信されます\n\n※チャットを利用した場合、[利用規約](http://gc.taka.ml/)に同意されたことになります。必ずご確認ください",
+              description: "グローバルチャットに新しいサーバーを追加しました\nみんなに挨拶してみましょう!\nこのチャンネルに入力された内容は、登録チャンネル全てに送信されます\n\n※チャットを利用した場合、[利用規約](http://gc.taka.cf/)に同意されたことになります。必ずご確認ください",
               timestamp: new Date()
             }]
           });

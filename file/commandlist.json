@@ -270,7 +270,7 @@
             "メッセージの送信",
             "ウェブフックの管理"
         ],
-        "note": "会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.ml/)に同意する必要があります"
+        "note": "会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.cf/)に同意する必要があります"
     },
     "guideline":{
         "description": "サーバーのガイドラインを作成し、同意するとロールが付与されます",

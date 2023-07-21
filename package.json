@@ -1,6 +1,6 @@
 {
   "name": "takasumibotv2",
-  "description": "TakasumiBOT開発 https://takasumibot.taka.ml/",
+  "description": "TakasumiBOT開発 https://takasumibot.github.io/",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

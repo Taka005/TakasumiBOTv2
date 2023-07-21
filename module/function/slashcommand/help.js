@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "/global",
-              value: "色々なサーバーと繋がるグローバルチャットを有効、無効にします\n[利用規約](https://gc.taka.ml/)を読んでから使用してください"
+              value: "色々なサーバーと繋がるグローバルチャットを有効、無効にします\n[利用規約](https://gc.taka.cf/)を読んでから使用してください"
             },
             {
               name: "/about",
