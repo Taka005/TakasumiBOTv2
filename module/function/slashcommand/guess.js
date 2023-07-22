@@ -10,21 +10,21 @@ module.exports = async(interaction)=>{
     const answer = random(["1","2","3","4","5"]);
 
     const data = await money.get(interaction.user.id);
-    if(amount < 0||amount > data.amount) return await interaction.reply({
+    if(amount < 5||amount > data.amount) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
           name: "失敗しました",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        description: "賭ける金額は0円以上かつ、自分の所持金の範囲です"
+        description: "賭ける金額は5円以上かつ、自分の所持金の範囲です"
       }],
       ephemeral: true
     });
 
     await interaction.deferReply();
     if(answer === number){
-      await money.add(interaction.user.id,Math.round(amount*1.5));
+      await money.add(interaction.user.id,Math.round(amount*2));
       await interaction.editReply({
         embeds:[{
           color: Colors.Green,
@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
             name: "勝利",
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          description: `${Math.round(amount*1.5)}円ゲットしました`
+          description: `${Math.round(amount*2)}円ゲットしました`
         }]
       });
     }else{
