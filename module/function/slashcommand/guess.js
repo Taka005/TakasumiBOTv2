@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
     const amount = interaction.options.getInteger("money");
     const number = interaction.options.getString("number");
 
-    const answer = random(["1","2","3","4","5","6","7","8"]);
+    const answer = random(["1","2","3","4","5"]);
 
     const data = await money.get(interaction.user.id);
     if(amount < 0||amount > data.amount) return await interaction.reply({
@@ -22,9 +22,10 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    await interaction.deferReply();
     if(answer === number){
       await money.add(interaction.user.id,Math.round(amount*1.5));
-      await interaction.reply({
+      await interaction.editReply({
         embeds:[{
           color: Colors.Green,
           author:{
@@ -36,7 +37,7 @@ module.exports = async(interaction)=>{
       });
     }else{
       await money.delete(interaction.user.id,amount);
-      await interaction.reply({
+      await interaction.editReply({
         embeds:[{
           color: Colors.Green,
           author:{
