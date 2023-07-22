@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
     const user = interaction.options.getUser("user");
 
     if(!user){
-      const data = await money.get(interaction.user.id)[0];
+      const data = (await money.get(interaction.user.id))[0];
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
         }]
       });
     }else{
-      const data = await money.get(user.id)[0];
+      const data = (await money.get(user.id)[0]);
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
