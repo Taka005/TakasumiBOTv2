@@ -25,7 +25,6 @@ module.exports = async(client)=>{
     
     if(message.author.bot) return;
 
-    await money.add(message.author.id,1);
     console.log(`\x1b[37mMESSAGE: ${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
     Promise.all(global.command.map(fn=>fn(message)));
@@ -87,7 +86,7 @@ module.exports = async(client)=>{
     });
 
     await count.command();
-    await money.add(interaction.user.id,3);
+    await money.add(interaction.user.id,5);
 
     Promise.all(global.interactionCreate.map(fn=>fn(interaction)));
     Promise.all(global.auth.map(fn=>fn(interaction)));
