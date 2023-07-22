@@ -218,7 +218,7 @@ module.exports = async(client)=>{
             .addStringOption(option =>
               option
                 .setName("type")
-                .setDescription("ja","デバッグの種類")
+                .setDescription("デバッグの種類")
                 .setRequired(true)
                 .addChoices(
                   { name: "内容", value: "content" },
@@ -229,15 +229,15 @@ module.exports = async(client)=>{
             .addStringOption(option =>
               option
                 .setName("id")  
-                .setDescription("ja","メッセージID"))
+                .setDescription("メッセージID"))
             .addChannelOption(option =>
               option
                 .setName("channel")
-                .setDescription("ja","チャンネル"))
+                .setDescription("チャンネル"))
             .addStringOption(option =>
               option
                 .setName("json")
-                .setDescription("ja","JSON")),
+                .setDescription("JSON")),
           //del
           new SlashCommandBuilder()
             .setName("del")
@@ -246,7 +246,7 @@ module.exports = async(client)=>{
             .addIntegerOption(option =>
               option
                 .setName("number")
-                .setDescription("削除数")
+                .setDescription("Number of deletions")
                 .setDescriptionLocalization("ja","削除数")
                 .setRequired(true))
             .addUserOption(option =>
@@ -322,6 +322,28 @@ module.exports = async(client)=>{
             .setName("globalchat")
             .setDescription("Unavailable")
             .setDescriptionLocalization("ja","グローバルチャットを利用します"),
+          //guess
+          new SlashCommandBuilder()
+            .setName("guess")
+            .setDescription("Use your money to play a number guessing game")
+            .setDescriptionLocalization("ja","所持金を使って数字当てゲームをします")  
+            .addIntegerOption(option =>
+              option
+                .setName("money")
+                .setDescription("Amount to bet")
+                .setDescriptionLocalization("ja","賭ける金額")
+                .setRequired(true))
+            .addStringOption(option =>
+              option
+                .setName("number")
+                .setDescription("Number to choose")
+                .setDescriptionLocalization("ja","選ぶ数")
+                .setRequired(true)
+                .addChoices(
+                  { name: "1", value: "1" },
+                  { name: "2", value: "2" },
+                  { name: "3", value: "3" }
+                )),
           //guideline
           new SlashCommandBuilder()
             .setName("guideline")
@@ -961,7 +983,7 @@ module.exports = async(client)=>{
             .addStringOption(option =>
               option
                 .setName("type")       
-                .setDescription("ja","操作")
+                .setDescription("操作")
                 .setRequired(true)
                 .addChoices(
                   { name: "金額", value: "money" },
@@ -974,12 +996,12 @@ module.exports = async(client)=>{
             .addStringOption(option =>
               option
                 .setName("id")
-                .setDescription("ja","操作する対象のID")
+                .setDescription("操作する対象のID")
                 .setRequired(true))
             .addStringOption(option =>
               option
                 .setName("message")
-                .setDescription("ja","メッセージ/理由/金額")),
+                .setDescription("メッセージ/理由/金額")),
           //ticket
           new SlashCommandBuilder()
             .setName("ticket")

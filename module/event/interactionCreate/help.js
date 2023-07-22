@@ -402,6 +402,10 @@ module.exports = async(interaction)=>{
               value: "ランダムで選びます"
             },
             {
+              name: "/guess",
+              value: "所持金を使用して数字当てゲームをします"
+            },
+            {
               name: "/news",
               value: "最近のニュースを表示します"
             },

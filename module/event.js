@@ -87,12 +87,13 @@ module.exports = async(client)=>{
     });
 
     await count.command();
-    await money.add(interaction.user.id,3);
 
     Promise.all(global.interactionCreate.map(fn=>fn(interaction)));
     Promise.all(global.auth.map(fn=>fn(interaction)));
     Promise.all(global.slashcommand.map(fn=>fn(interaction)));
     Promise.all(global.contextmenu.map(fn=>fn(interaction)));
+
+    await money.add(interaction.user.id,3);
   });
 
   client.on(Events.GuildMemberAdd,async(member)=>{
