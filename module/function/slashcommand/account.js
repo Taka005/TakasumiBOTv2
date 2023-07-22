@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
           name: "登録情報",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: `ID\n\`${account[0].id}\`\nIPアドレス\n\`${account[0].ip}\`\n所持金\n\`${account[0].money}円\`\n登録日時/更新日時\n\`${new Date(account[0].time).toLocaleString()}\``
+        description: `ID\n\`${account[0].id}\`\nIPアドレス\n\`${account[0].ip}\`\n登録日時/更新日時\n\`${new Date(account[0].time).toLocaleString()}\``
       }],
       ephemeral: true
     });
