@@ -32,12 +32,12 @@ module.exports = async(interaction)=>{
             name: "勝利",
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          description: `${Math.round(amount*3)}円ゲットしました\n所持金: ${data.amount + Math.round(amount*3)}円`
+          description: `${Math.round(amount*3)}円ゲットしました\n所持金: ${Number(data.amount) + Math.round(amount*3)}円`
         }]
       });
     }else{
       await money.delete(interaction.user.id,Math.round(amount*1.5));
-      let total = data.amount - Math.round(amount*1.5);
+      let total = Number(data.amount) - Math.round(amount*1.5);
       if(total < 0){
         total = 0;
       }
