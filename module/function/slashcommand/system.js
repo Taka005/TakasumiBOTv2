@@ -55,7 +55,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${user.tag}の金額を${message}円に変更しました`,
+            name: `${user.tag}の金額を${message||0}円に変更しました`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           }
         }]
