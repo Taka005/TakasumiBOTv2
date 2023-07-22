@@ -4,11 +4,12 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const fetchGuild = require("../../lib/fetchGuild");
   const fetchUser = require("../../lib/fetchUser");
+  const money = require("../../lib/money");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "system"){
     const id = interaction.options.getString("id");
     const type = interaction.options.getString("type");
-    const message = interaction.options.getString("message") || "なし"
+    const message = interaction.options.getString("message");
 
     if(interaction.user.id !== admin) return await interaction.reply({
       embeds:[{
@@ -35,7 +36,31 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(type === "leave"){//サーバーから脱退する
+    if(type = "money"){//金額の変更
+      const user = await fetchUser(interaction.client,ID[0]);
+      if(!user) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "ユーザーの金額を変更できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "指定したユーザーが存在しません"
+        }],
+        ephemeral: true
+      });
+      
+      await money.set(user.id,message||0);
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: `${user.tag}の金額を${message}円に変更しました`,
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          }
+        }]
+      });
+    }else if(type === "leave"){//サーバーから脱退する
       const guild = await fetchGuild(interaction.client,ID[0]);
       if(!guild) return await interaction.reply({
         embeds:[{
@@ -59,7 +84,7 @@ module.exports = async(interaction)=>{
                 icon_url: "https://cdn.taka.cf/images/system/success.png"
               }
             }]
-          })
+          });
         })
         .catch(async(error)=>{
           await interaction.reply({
@@ -225,7 +250,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await user.send(`${message}`)
+      await user.send(`${message||"なし"}`)
         .then(async()=>{
           await interaction.reply({
             embeds:[{
@@ -234,7 +259,7 @@ module.exports = async(interaction)=>{
                 name: `${user.tag} にDMを送信しました`,
                 icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
-              description: `内容:${message}`
+              description: `内容:${message||"なし"}`
             }],
             ephemeral: true
           })

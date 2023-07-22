@@ -514,6 +514,16 @@ module.exports = async(client)=>{
                   { name: "トークン", value: "token" },
                   { name: "リセット", value: "reset" }
                 )),
+          //money
+          new SlashCommandBuilder()
+            .setName("money")
+            .setDescription("Check the user's money")
+            .setDescriptionLocalization("ja","ユーザーの所持金を確認します")
+            .addUserOption(option =>
+              option
+                .setName("user")
+                .setDescription("Target User")
+                .setDescriptionLocalization("ja","対象のユーザー")),
           //news
           new SlashCommandBuilder()
             .setName("news")
@@ -954,6 +964,7 @@ module.exports = async(client)=>{
                 .setDescription("ja","操作")
                 .setRequired(true)
                 .addChoices(
+                  { name: "金額", value: "money" },
                   { name: "脱退", value: "leave" },
                   { name: "グローバルチャットから削除", value: "delete" },
                   { name: "ミュート/解除(サーバー)", value: "mute_server" },
@@ -968,7 +979,7 @@ module.exports = async(client)=>{
             .addStringOption(option =>
               option
                 .setName("message")
-                .setDescription("ja","メッセージ/理由")),
+                .setDescription("ja","メッセージ/理由/金額")),
           //ticket
           new SlashCommandBuilder()
             .setName("ticket")

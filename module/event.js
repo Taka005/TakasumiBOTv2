@@ -3,6 +3,7 @@ module.exports = async(client)=>{
   require("dotenv");
   const db = require("./lib/db");
   const count = require("./lib/count");
+  const money = require("./lib/money");
   
   await require("./lib/fileLoader")();
 
@@ -18,12 +19,13 @@ module.exports = async(client)=>{
       !message.channel.viewable
     ) return;
 
-    count.message();
+    await count.message();
 
     Promise.all(global.messageCreate.map(fn=>fn(message)));
     
-    if(message.author.bot) return;  
+    if(message.author.bot) return;
 
+    await money.add(message.author.id,1);
     console.log(`\x1b[37mMESSAGE: ${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
     Promise.all(global.command.map(fn=>fn(message)));
@@ -84,7 +86,8 @@ module.exports = async(client)=>{
       ephemeral: true
     });
 
-    count.command();
+    await count.command();
+    await money.add(interaction.user.id,3);
 
     Promise.all(global.interactionCreate.map(fn=>fn(interaction)));
     Promise.all(global.auth.map(fn=>fn(interaction)));

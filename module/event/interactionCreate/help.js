@@ -128,7 +128,11 @@ module.exports = async(interaction)=>{
             {
               name: "/activity",
               value: "同じアクティビティの人を表示します"
-            }
+            },
+            {
+              name: "/money",
+              value: "ユーザーの所持金を確認します"
+            },
           ]
         }],
         components:[

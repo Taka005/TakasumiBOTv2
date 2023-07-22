@@ -420,6 +420,17 @@
         ],
         "note": "なし"
     },
+    "money":{
+        "description": "ユーザーの所持金を確認します",
+        "example": "`/money @User`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
+        ],
+        "note": "なし"
+    },
     "news":{
         "description": "最近のニュースを表示します",
         "example": "`/news`",
