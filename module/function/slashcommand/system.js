@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(type = "money"){//金額の変更
+    if(type === "money"){//金額の変更
       const user = await fetchUser(interaction.client,ID[0]);
       if(!user) return await interaction.reply({
         embeds:[{

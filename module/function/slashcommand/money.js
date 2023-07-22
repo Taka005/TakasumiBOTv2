@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors } = require("discord.js");
+  const { Colors } = require("discord.js");
   const money = require("../../lib/money");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "money"){
