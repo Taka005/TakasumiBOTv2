@@ -44,7 +44,7 @@ module.exports = async(interaction)=>{
             name: "敗北",
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          description: `${amount}円失いました`
+          description: `${Math.round(amount*1.5)}円失いました`
         }]
       });
     }
