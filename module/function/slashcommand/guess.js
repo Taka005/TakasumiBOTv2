@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     if(answer === number){
-      await money.add(interaction.user.id,Math.round(amount*2));
+      await money.add(interaction.user.id,Math.round(amount*3));
       await interaction.editReply({
         embeds:[{
           color: Colors.Green,
@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
             name: "勝利",
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          description: `${Math.round(amount*2)}円ゲットしました`
+          description: `${Math.round(amount*3)}円ゲットしました`
         }]
       });
     }else{
