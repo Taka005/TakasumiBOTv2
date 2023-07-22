@@ -272,6 +272,17 @@
         ],
         "note": "会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.cf/)に同意する必要があります"
     },
+    "guess":{
+        "description": "所持金を使用して数字当てゲームをします",
+        "example": "`/guess 100 3`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
+        ],
+        "note": "なし"
+    },
     "guideline":{
         "description": "サーバーのガイドラインを作成し、同意するとロールが付与されます",
         "example": "`/guideline @Role`",
