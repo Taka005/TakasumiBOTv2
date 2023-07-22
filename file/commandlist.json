@@ -270,7 +270,7 @@
             "メッセージの送信",
             "ウェブフックの管理"
         ],
-        "note": "会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.ml/)に同意する必要があります"
+        "note": "会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.cf/)に同意する必要があります"
     },
     "guideline":{
         "description": "サーバーのガイドラインを作成し、同意するとロールが付与されます",
@@ -417,6 +417,17 @@
         ],
         "botPermission": [
             "サーバーの管理"
+        ],
+        "note": "なし"
+    },
+    "money":{
+        "description": "ユーザーの所持金を確認します",
+        "example": "`/money @User`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
         ],
         "note": "なし"
     },

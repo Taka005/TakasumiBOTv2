@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
           },
           {
             name: "BOTの機能はどうやって使うの？",
-            value: "全コマンドはスラッシュコマンドに対応しています。詳しい使い方は[ここから](https://takasumibot.taka.ml/)"
+            value: "全コマンドはスラッシュコマンドに対応しています。詳しい使い方は[ここから](https://takasumibot.github.io/)"
           },
           {
             name: "制作依頼は受け付けていますか？",

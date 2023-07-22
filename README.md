@@ -4,7 +4,7 @@
 [![Email](https://img.shields.io/badge/email-takasumibot@gmail.com-blue.svg?style=flat)](mailto:takasumibot@gmail.com)
 # TakasumiBOT v2
 - とても便利な万能BOTです
-- https://takasumibot.taka.ml/
+- https://takasumibot.github.io/
 - **このレポジトリはGPL-3.0ライセンスの元で公開されています**
 - **これを使って出来たコードは同じライセンスで公開する必要があるためご注意下さい**
 - **このプロジェクトに貢献したコードは全てTaka005に帰属します**

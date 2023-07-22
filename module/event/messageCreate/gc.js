@@ -26,7 +26,7 @@ module.exports = async(message)=>{
         icon_url: "https://cdn.taka.cf/images/system/error.png"
       },
       color: Colors.Red,
-      description: "以下のリンクから認証を行うことでグローバルチャットを利用できます\n認証が完了すると[利用規約](https://gc.taka.ml/)に同意したものとみなします",
+      description: "以下のリンクから認証を行うことでグローバルチャットを利用できます\n認証が完了すると[利用規約](https://gc.taka.cf/)に同意したものとみなします",
     }], 
     components:[
       new ActionRowBuilder()

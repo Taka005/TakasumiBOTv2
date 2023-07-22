@@ -72,7 +72,7 @@ module.exports = async(interaction)=>{
                   .setStyle(ButtonStyle.Link))
           ],
           ephemeral: true
-        })
+        });
       });
   }
 }

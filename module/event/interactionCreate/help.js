@@ -19,7 +19,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "/global",
-              value: "色々なサーバーと繋がるグローバルチャットを有効、無効にします\n[利用規約](https://gc.taka.ml/)を読んでから使用してください"
+              value: "色々なサーバーと繋がるグローバルチャットを有効、無効にします\n[利用規約](https://gc.taka.cf/)を読んでから使用してください"
             },
             {
               name: "/about",
@@ -128,7 +128,11 @@ module.exports = async(interaction)=>{
             {
               name: "/activity",
               value: "同じアクティビティの人を表示します"
-            }
+            },
+            {
+              name: "/money",
+              value: "ユーザーの所持金を確認します"
+            },
           ]
         }],
         components:[
