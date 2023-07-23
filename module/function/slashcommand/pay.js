@@ -18,7 +18,8 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "購入する回数は1以上かつ所持金の範囲内にする必要があります"
-        }]
+        }],
+        ephemeral: true
       });
 
       const total = Number(data.gc) + count;
@@ -30,7 +31,8 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "1人300回までしか購入できません"
-        }]
+        }],
+        ephemeral: true
       });
 
       await db(`UPDATE money SET gc = ${total} WHERE id = ${interaction.user.id}`);
