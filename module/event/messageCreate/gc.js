@@ -47,7 +47,7 @@ module.exports = async(message)=>{
   const content = message.content
     .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,"[[招待リンク]](https://discord.gg/NEesRdGQwD)")
 
-  const yellow = (await money.get(message.author.id)).yallow;
+  const yellow = (await money.get(message.author.id)).yellow;
   const red = (await money.get(message.author.id)).red;
   let color = Colors.Green;
   if(message.author.id === admin){

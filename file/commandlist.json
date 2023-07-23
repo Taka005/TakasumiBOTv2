@@ -501,7 +501,7 @@
     },
     "pay":{
         "description": "所持金を使用して機能を購入します",
-        "example": "`/pay gc 10`",
+        "example": "`/pay 種類 10`",
         "userPermission": [
             "必要なし"
         ],
