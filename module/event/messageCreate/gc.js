@@ -47,13 +47,17 @@ module.exports = async(message)=>{
   const content = message.content
     .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,"[[招待リンク]](https://discord.gg/NEesRdGQwD)")
 
-  const count = (await money.get(message.author.id)).gc;
+  const yellow = (await money.get(message.author.id)).yallow;
+  const red = (await money.get(message.author.id)).red;
   let color = Colors.Green;
   if(message.author.id === admin){
     color = Colors.Blue;
-  }else if(count > 0){
+  }else if(red > 0){
+    color = Colors.Red;
+    await db(`UPDATE money SET red = ${Number(red)-1} WHERE id = ${message.author.id}`);
+  }else if(yellow > 0){
     color = Colors.Yellow;
-    await db(`UPDATE money SET gc = ${Number(count)-1} WHERE id = ${message.author.id}`);
+    await db(`UPDATE money SET yellow = ${Number(yellow)-1} WHERE id = ${message.author.id}`);
   }
 
   const embed = [{
@@ -98,7 +102,7 @@ module.exports = async(message)=>{
   if(attachment){
     if(attachment.height&&attachment.width){
       embed.push({
-        color: Colors.Green,
+        color: color,
         title: attachment.name,
         description: `[ファイルを開く](${attachment.url})`,
         image:{
@@ -107,7 +111,7 @@ module.exports = async(message)=>{
       });
     }else{
       embed.push({
-        color: Colors.Green,
+        color: color,
         title: attachment.name,
         description: `[ファイルを開く](${attachment.url})`
       });

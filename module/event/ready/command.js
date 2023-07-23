@@ -641,7 +641,8 @@ module.exports = async(client)=>{
                 .setDescriptionLocalization("ja","買う機能")
                 .setRequired(true)
                 .addChoices(
-                  { name: "グローバルチャットの表示色(一回10円)", value: "gc" }
+                  { name: "一回10円: グローバルチャットの表示色(黄色)", value: "yellow" },
+                  { name: "一回100円: グローバルチャットの表示色(赤色)", value: "red" }
                 ))
             .addIntegerOption(option =>
               option
