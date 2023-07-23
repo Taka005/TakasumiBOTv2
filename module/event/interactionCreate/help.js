@@ -406,6 +406,10 @@ module.exports = async(interaction)=>{
               value: "所持金を使用して数字当てゲームをします"
             },
             {
+              name: "/pay",
+              value: "所持金を使用して機能を購入します"
+            },
+            {
               name: "/news",
               value: "最近のニュースを表示します"
             },

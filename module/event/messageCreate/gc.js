@@ -6,6 +6,7 @@ module.exports = async(message)=>{
   const db = require("../../lib/db");
   const fetchMessage = require("../../lib/fetchMessage");
   const fetchWebhookMessage = require("../../lib/fetchWebhookMessage");
+  const money = require("../../lib/money");
   const { admin } = require("../../../config.json");
 
   if(message.author.bot) return;
@@ -49,6 +50,8 @@ module.exports = async(message)=>{
   let color = Colors.Green;
   if(message.author.id === admin){
     color = Colors.Blue;
+  }else if((await money.get(message.author.id)).gc > 0){
+    color = Colors.Yellow
   }
 
   const embed = [{

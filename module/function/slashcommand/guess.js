@@ -44,10 +44,10 @@ module.exports = async(interaction)=>{
 
       await interaction.editReply({
         embeds:[{
-          color: Colors.Green,
+          color: Colors.Red,
           author:{
             name: "敗北",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: `${Math.round(amount*1.5)}円失いました\n所持金: ${total}円`
         }]
