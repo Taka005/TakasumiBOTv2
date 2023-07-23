@@ -11,7 +11,7 @@ module.exports = {
     if(amount > 100000000){
       amount = 100000000;
     }
-    await db(`INSERT INTO money (id, amount, gc, time) VALUES("${id}","${amount}","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
+    await db(`INSERT INTO money (id, amount, yellow, red, time) VALUES("${id}","${amount}","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
   },
   "delete":async(id,number)=>{
     const data = await db(`SELECT * FROM money WHERE id = ${id} LIMIT 1;`);
@@ -20,9 +20,9 @@ module.exports = {
     if(amount < 0){
       amount = 0;
     }
-    await db(`INSERT INTO money (id, amount, gc, time) VALUES("${id}","${amount}","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
+    await db(`INSERT INTO money (id, amount, yellow, red, time) VALUES("${id}","${amount}","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
   },
   "set":async(id,number)=>{
-    await db(`INSERT INTO money (id, amount, gc, time) VALUES("${id}","${number}","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
+    await db(`INSERT INTO money (id, amount, yellow, red, time) VALUES("${id}","${number}","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
   }
 }
