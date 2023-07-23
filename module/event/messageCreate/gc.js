@@ -47,11 +47,13 @@ module.exports = async(message)=>{
   const content = message.content
     .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,"[[招待リンク]](https://discord.gg/NEesRdGQwD)")
 
+  const count = (await money.get(message.author.id)).gc;
   let color = Colors.Green;
   if(message.author.id === admin){
     color = Colors.Blue;
-  }else if((await money.get(message.author.id)).gc > 0){
-    color = Colors.Yellow
+  }else if(count > 0){
+    color = Colors.Yellow;
+    await db(`UPDATE money SET gc = ${Number(count)-1} WHERE id = ${message.author.id}`);
   }
 
   const embed = [{
