@@ -9,7 +9,6 @@ module.exports = async(interaction)=>{
 
     if(type === "gc"){
       const data = await money.get(interaction.user.id);
-      console.log(Number(data.mount))
       if(Number(data.amount)-(count*10)<0||count<1) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
