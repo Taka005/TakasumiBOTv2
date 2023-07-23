@@ -47,15 +47,12 @@ module.exports = async(message)=>{
   const content = message.content
     .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,"[[招待リンク]](https://discord.gg/NEesRdGQwD)")
 
-  const yellow = (await money.get(message.author.id)).yellow;
-  const red = (await money.get(message.author.id)).red;
   let color = Colors.Green;
-  if(message.author.id === admin){
-    color = Colors.Blue;
-  }else if(red > 0){
+  const data = await money.get(message.author.id);
+  if(data?.red > 0){
     color = Colors.Red;
     await db(`UPDATE money SET red = ${Number(red)-1} WHERE id = ${message.author.id}`);
-  }else if(yellow > 0){
+  }else if(data?.yellow > 0){
     color = Colors.Yellow;
     await db(`UPDATE money SET yellow = ${Number(yellow)-1} WHERE id = ${message.author.id}`);
   }
@@ -63,7 +60,7 @@ module.exports = async(message)=>{
   const embed = [{
     color: color,
     author:{
-      name: message.author.tag,
+      name: admin === message.author.id?`${message.author.tag}(管理者)`:`${message.author.tag}`,
       url: `https://discord.com/users/${message.author.id}`,
       icon_url: message.author.avatarURL()||message.author.defaultAvatarURL,
     },
