@@ -629,6 +629,26 @@ module.exports = async(client)=>{
                 .setName("title")
                 .setDescription("Title")
                 .setDescriptionLocalization("ja","タイトル")),
+          //pay
+          new SlashCommandBuilder()
+            .setName("pay")
+            .setDescription("Use your money to buy function")
+            .setDescriptionLocalization("ja","所持金を使用して機能を購入します")  
+            .addStringOption(option =>
+              option
+                .setName("type")
+                .setDescription("Function to buy")
+                .setDescriptionLocalization("ja","買う機能")
+                .setRequired(true)
+                .addChoices(
+                  { name: "グローバルチャットの表示色(一回10円)", value: "gc" }
+                ))
+            .addIntegerOption(option =>
+              option
+                .setName("count")
+                .setDescription("Number of times to buy")
+                .setDescriptionLocalization("ja","買う回数")
+                .setRequired(true)),
           //permission
           new SlashCommandBuilder()
             .setName("permission")
