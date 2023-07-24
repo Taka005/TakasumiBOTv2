@@ -1,64 +1,45 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors } = require("discord.js");
+  const { ActionRowBuilder, StringSelectMenuBuilder, Colors } = require("discord.js");
   const list = require("../../../file/commandlist.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "help"){
     const command = interaction.options.getString("command");
 
+    const types = {
+      "info": "情報",
+      "manage": "サーバー管理",
+      "tool": "ツール",
+      "search": "検索",
+      "fun": "ネタ",
+      "money": "お金",
+      "bot": "Bot関連",
+      "othor": "その他"
+    };
+
     if(!command){
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
-          title: "HELP 便利系",
-          fields:[
-            {
-              name: "/poll",
-              value: "アンケートを作成することができます\n最大で選択肢は8個までです"
-            },
-            {
-              name: "/global",
-              value: "色々なサーバーと繋がるグローバルチャットを有効、無効にします\n[利用規約](https://gc.taka.cf/)を読んでから使用してください"
-            },
-            {
-              name: "/about",
-              value: "BOTについての情報や、関連リンクを表示します"
-            },
-            {
-              name: "/afk",
-              value: "AFKを設定します(留守電の機能です)"
-            },
-            {
-              name: "/follow",
-              value: "BOTのアナウンスチャンネルを追加します"
-            },
-            {
-              name: "/hiroyuki",
-              value: "ひろゆきを召喚します"
-            },
-            {
-              name: "/top",
-              value: "実行したチャンネルの1番最初のメッセージを表示します"
-            }
-          ]
+          title: "HELP 情報",
+          fields: Object.values(list).filter(command=>command.type === "info").map((command)=>({
+            name: `/${command.name}`,
+            value: command.description
+          }))
         }],
-        components:[
+        components:[     
           new ActionRowBuilder()
             .addComponents(
-              new ButtonBuilder()
-                .setStyle(ButtonStyle.Primary)
-                .setLabel("前")
-                .setCustomId(`page_5_${interaction.user.id}`))
-            .addComponents(
-              new ButtonBuilder()
-                .setStyle(ButtonStyle.Secondary)
-                .setLabel("1ページ")
-                .setCustomId("page")
-                .setDisabled(true))
-            .addComponents(
-              new ButtonBuilder()
-                .setStyle(ButtonStyle.Primary)
-                .setLabel("次")
-                .setCustomId(`page_2_${interaction.user.id}`))
+              new StringSelectMenuBuilder()
+                .setCustomId(`help_${interaction.user.id}`)
+                .setPlaceholder("ページを選択")
+                .setMinValues(1)
+                .setMaxValues(1)
+                .addOptions(
+                  Object.keys(types).map(type=>({
+                    label: types[type],
+                    value: type
+                  }))
+                ))
         ]
       });
     }else{
