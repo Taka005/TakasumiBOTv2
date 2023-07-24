@@ -24,28 +24,16 @@ module.exports = async(message)=>{
         }]  
       }).catch(()=>{});
 
-      if(data[0]){
-        setTimeout(async()=>{
-          await message.channel.send({
-            content: `<@&${data[0].role}>`,
-            embeds:[{
-              color: Colors.Blue,
-              title: "UP通知",
-              description: "DISSOKUの時間です\n`/dissoku up`でサーバーの表示順位を上げよう！"
-            }]  
-          }).catch(()=>{});
-        },3600000);
-      }else{
-        setTimeout(async()=>{
-          await message.channel.send({
-            embeds:[{
-              color: Colors.Blue,
-              title: "UP通知",
-              description: "DISSOKUの時間です\n`/dissoku up`でサーバーの表示順位を上げよう！"
-            }]  
-          }).catch(()=>{});
-        },3600000);
-      }
+      setTimeout(async()=>{
+        await message.channel.send({
+          content: data[0] ? `<@&${data[0].role}>`:"",
+          embeds:[{
+            color: Colors.Blue,
+            title: "UP通知",
+            description: "DISSOKUの時間です\n`/dissoku up`でサーバーの表示順位を上げよう！"
+          }]  
+        }).catch(()=>{});
+      },3600000);
     }
   }
 }
