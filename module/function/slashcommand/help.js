@@ -4,18 +4,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "help"){
     const command = interaction.options.getString("command");
-
-    const types = {
-      "info": "情報",
-      "manage": "サーバー管理",
-      "tool": "ツール",
-      "search": "検索",
-      "fun": "ネタ",
-      "money": "お金",
-      "bot": "Bot関連",
-      "othor": "その他"
-    };
-
+    
     if(!command){
       await interaction.reply({
         embeds:[{
@@ -34,12 +23,16 @@ module.exports = async(interaction)=>{
                 .setPlaceholder("ページを選択")
                 .setMinValues(1)
                 .setMaxValues(1)
-                .addOptions(
-                  Object.keys(types).map(type=>({
-                    label: types[type],
-                    value: type
-                  }))
-                ))
+                .addOptions([
+                  { label: "情報", value: "info" },
+                  { label: "サーバー管理", value: "manage" },
+                  { label: "ツール", value: "tool" },
+                  { label: "検索", value: "search" },
+                  { label: "ネタ", value: "fun" },
+                  { label: "お金", value: "money" },
+                  { label: "Bot関連", value: "bot" },
+                  { label: "その他", value: "othor" }
+                ]))
         ]
       });
     }else{
