@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
               .addOptions(
                 keys.map(c=>({
                   label: c.text,
-                  value: c.text,
+                  value: c.text
                 }))
               ))
       ],

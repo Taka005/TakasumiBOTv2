@@ -1129,6 +1129,11 @@ module.exports = async(client)=>{
                 .setDescription("Search word")
                 .setDescriptionLocalization("ja","検索ワード")
                 .setRequired(true)),
+          //work
+          new SlashCommandBuilder()
+            .setName("work")
+            .setDescription("Get paid every 20 minutes")
+            .setDescriptionLocalization("ja","20分に1回お金をもらえます"),
           //ContextMenu
           //avatar
           new ContextMenuCommandBuilder()

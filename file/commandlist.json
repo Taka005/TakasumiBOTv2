@@ -1,5 +1,7 @@
 {
     "5000":{
+        "type": "fun",
+        "name": "5000",
         "description": "5000兆円ジェネレーター",
         "example": "`/5000 上の文字 下の文字`",
         "userPermission": [
@@ -11,6 +13,8 @@
         "note": "なし"
     },
     "about":{
+        "type": "bot",
+        "name": "about",
         "description": "BOTについての情報や、関連リンクを表示します",
         "example": "`/about`",
         "userPermission": [
@@ -22,6 +26,8 @@
         "note": "なし"
     },
     "account":{
+        "type": "bot",
+        "name": "account",
         "description": "登録されているアカウント情報を表示します",
         "example": "`/account`",
         "userPermission": [
@@ -33,6 +39,8 @@
         "note": "アカウント情報の削除は[サポートサーバー](https://discord.gg/NEesRdGQwD)にて連絡してください"
     },
     "activity":{
+        "type": "info",
+        "name": "activity",
         "description": "同じアクティビティの人を表示します",
         "example": "`/activity`",
         "userPermission": [
@@ -44,6 +52,8 @@
         "note": "なし"
     },
     "ad":{
+        "type": "bot",
+        "name": "ad",
         "description": "BOTの宣伝を表示します",
         "example": "`/ad`",
         "userPermission": [
@@ -55,6 +65,8 @@
         "note": "なし"
     },
     "afk":{
+        "type": "othor",
+        "name": "afk",
         "description": "AFK(留守電)を設定できます",
         "example": "`/afk お出かけ中`",
         "userPermission": [
@@ -66,6 +78,8 @@
         "note": "自分が会話に戻ると、その間にされたメンションの数が表示されます"
     },
     "auth":{
+        "type": "manage",
+        "name": "auth",
         "description": "メンバー認証を設定します\n4種類の認証方式を選択できます",
         "example": "`/auth 標準`",
         "userPermission": [
@@ -79,6 +93,8 @@
         "note": "標準: ボタンを押して認証します\n計算: 簡単な計算を行って認証します\n画像: 画像に表示される文字列を選択して認証します\nWeb: TakasumiBOT Authを使用しWebで認証します"
     },
     "avatar":{
+        "type": "info",
+        "name": "avatar",
         "description": "指定されたユーザーのアイコンを表示します",
         "example": "`/avatar @TakasumiBOT`\n`/avatar 981314695543783484`",
         "userPermission": [
@@ -90,6 +106,8 @@
         "note": "サーバーで違うアイコンを設定してる場合は両方表示されます"
     },
     "ban":{
+        "type": "manage",
+        "name": "ban",
         "description": "メンバー・ユーザーをサーバーからBANすることができます",
         "example": "`/ban @Arashi`\n`/ban 1066168542669590599`",
         "userPermission": [
@@ -101,6 +119,8 @@
         "note": "サーバーにいないユーザーでもIDを使用してBANすることができます"
     },
     "button":{
+        "type": "tool",
+        "name": "button",
         "description": "URLのボタンを生成します",
         "example": "`/button Name https://google.com`",
         "userPermission": [
@@ -112,6 +132,8 @@
         "note": "なし"
     },
     "channel":{
+        "type": "info",
+        "name": "channel",
         "description": "指定したチャンネルの情報を表示します",
         "example": "`/channel #一般`",
         "userPermission": [
@@ -123,6 +145,8 @@
         "note": "なし"
     },
     "cipher":{
+        "type": "tool",
+        "name": "cipher",
         "description": "文字列を暗号・復号します",
         "example": "`/cipher 暗号化 moji key`\n`/cipher 復号化 d1faf7e95c key`",
         "userPermission": [
@@ -134,6 +158,8 @@
         "note": "aes-128-cbcを使用して暗号化しています"
     },
     "colorrole":{
+        "type": "manage",
+        "name": "colorrole",
         "description": "色付きロールを簡単に作成できます",
         "example": "`/colorrole 白`",
         "userPermission": [
@@ -145,6 +171,8 @@
         "note": "なし"
     },
     "db":{
+        "type": "bot",
+        "name": "db",
         "description": "関係者以外実行できません",
         "example": "なし",
         "userPermission": [
@@ -156,6 +184,8 @@
         "note": "なし"
     },
     "debug":{
+        "type": "bot",
+        "name": "debug",
         "description": "関係者以外実行できません",
         "example": "なし",
         "userPermission": [
@@ -169,6 +199,8 @@
         "note": "なし"
     },
     "del":{
+        "type": "manage",
+        "name": "del",
         "description": "指定された数だけメッセージを一括で削除します",
         "example": "`/del 30`\n`/del 30 @Arashi`",
         "userPermission": [
@@ -180,10 +212,12 @@
         "note": "2週間前かつ100個までメッセージを削除できます"
     },
     "embed":{
+        "type": "manage",
+        "name": "embed",
         "description": "埋め込みを簡単に作成し表示できます",
         "example": "`/embed`",
         "userPermission": [
-            "必要なし"
+            "メッセージの管理"
         ],
         "botPermission": [
             "必要なし"
@@ -191,6 +225,8 @@
         "note": "なし"
     },
     "emoji":{
+        "type": "info",
+        "name": "emoji",
         "description": "指定した絵文字の情報を表示します",
         "example": "`/emoji 🤔`",
         "userPermission": [
@@ -202,6 +238,8 @@
         "note": "サーバー上のカスタム絵文字を指定する必要があります"
     },
     "enquete":{
+        "type": "tool",
+        "name": "enquete",
         "description": "アンケートを作成することができます",
         "example": "`/enquete Title`",
         "userPermission": [
@@ -214,6 +252,8 @@
         "note": "なし"
     },
     "export":{
+        "type": "manage",
+        "name": "export",
         "description": "サーバーのデータをJSON形式に出力します",
         "example": "`/export`",
         "userPermission": [
@@ -225,6 +265,8 @@
         "note": "様々なサーバーのデータが含まれるため扱いには注意してください"
     },
     "faq":{
+        "type": "bot",
+        "name": "faq",
         "description": "よくある質問一覧を表示します",
         "example": "`/faq`",
         "userPermission": [
@@ -236,6 +278,8 @@
         "note": "なし"
     },
     "follow":{
+        "type": "bot",
+        "name": "follow",
         "description": "BOTのアナウンスチャンネルを追加します",
         "example": "`/follow`",
         "userPermission": [
@@ -247,6 +291,8 @@
         "note": "なし"
     },
     "gif":{
+        "type": "search",
+        "name": "gif",
         "description": "GIF画像を検索して表示します",
         "example": "`/gif Happy`",
         "userPermission": [
@@ -258,6 +304,8 @@
         "note": "なし"
     },
     "globalchat":{
+        "type": "othor",
+        "name": "globalchat",
         "description": "色々なサーバーと繋がるグローバルチャットを有効化、無効化します",
         "example": "`/globalchat`",
         "userPermission": [
@@ -273,6 +321,8 @@
         "note": "会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.cf/)に同意する必要があります"
     },
     "guess":{
+        "type": "money",
+        "name": "guess",
         "description": "所持金を使用して数字当てゲームをします",
         "example": "`/guess 100 3`",
         "userPermission": [
@@ -284,6 +334,8 @@
         "note": "なし"
     },
     "guideline":{
+        "type": "manage",
+        "name": "guideline",
         "description": "サーバーのガイドラインを作成し、同意するとロールが付与されます",
         "example": "`/guideline @Role`",
         "userPermission": [
@@ -297,6 +349,8 @@
         "note": "なし"
     },
     "hash":{
+        "type": "tool",
+        "name": "hash",
         "description": "指定した方式でテキストをハッシュ化します",
         "example": "`/hash テキスト SHA256`",
         "userPermission": [
@@ -308,6 +362,8 @@
         "note": "なし"
     },
     "help":{
+        "type": "othor",
+        "name": "help",
         "description": "使い方を表示します",
         "example": "`/help`\n`/help auth`",
         "userPermission": [
@@ -319,6 +375,8 @@
         "note": "なし"
     },
     "hiroyuki":{
+        "type": "fun",
+        "name": "hiroyuki",
         "description": "ひろゆきを召喚、退出します",
         "example": "`/hiroyuki`",
         "userPermission": [
@@ -333,6 +391,8 @@
         "note": "なし"
     },
     "invite":{
+        "type": "manage",
+        "name": "invite",
         "description": "カスタマイズされた招待リンクを作成します",
         "example": "`/invite 100 1`\n`/invite 500`",
         "userPermission": [
@@ -344,6 +404,8 @@
         "note": "なし"
     },
     "inviter":{
+        "type": "info",
+        "name": "inviter",
         "description": "招待ランキングを表示します",
         "example": "`/inviter`",
         "userPermission": [
@@ -355,6 +417,8 @@
         "note": "なし"
     },
     "invites":{
+        "type": "info",
+        "name": "invites",
         "description": "サーバー又はユーザーの招待一覧を表示します",
         "example": "`/invites`\n`/invites @TakasumiBOT`",
         "userPermission": [
@@ -366,6 +430,8 @@
         "note": "なし"
     },
     "kick":{
+        "type": "manage",
+        "name": "kick",
         "description": "指定されたメンバーをサーバーからKICKします",
         "example": "`/kick @Arashi`",
         "userPermission": [
@@ -377,6 +443,8 @@
         "note": "サーバーに存在してるメンバーしかKICKできません"
     },
     "lottery":{
+        "type": "fun",
+        "name": "lottery",
         "description": "指定したロールを持っているメンバーから指定した人数を選びます",
         "example": "`/lottery 10 @Role`",
         "userPermission": [
@@ -388,6 +456,8 @@
         "note": "なし"
     },
     "math":{
+        "type": "tool",
+        "name": "math",
         "description": "式を計算します",
         "example": "`/math 4 * 25`",
         "userPermission": [
@@ -399,6 +469,8 @@
         "note": "なし"
     },
     "mc":{
+        "type": "tool",
+        "name": "mc",
         "description": "指定したアドレスのMinecraftサーバーの情報を表示します",
         "example": "`/mc Java版 2b2t.jp`",
         "userPermission": [
@@ -410,6 +482,8 @@
         "note": "なし"
     },
     "miq":{
+        "type": "fun",
+        "name": "miq",
         "description": "Make it a Quoteを生成します",
         "example": "`/miq これはテストです`",
         "userPermission": [
@@ -421,6 +495,8 @@
         "note": "なし"
     },
     "moderate":{
+        "type": "manage",
+        "name": "moderate",
         "description": "AutoModを使用したモデレート機能を設定します",
         "example": "`/moderate spam`",
         "userPermission": [
@@ -432,6 +508,8 @@
         "note": "なし"
     },
     "money":{
+        "type": "money",
+        "name": "money",
         "description": "ユーザーの所持金を確認します",
         "example": "`/money @User`",
         "userPermission": [
@@ -443,6 +521,8 @@
         "note": "なし"
     },
     "news":{
+        "type": "tool",
+        "name": "news",
         "description": "最近のニュースを表示します",
         "example": "`/news`",
         "userPermission": [
@@ -454,6 +534,8 @@
         "note": "なし"
     },
     "npm":{
+        "type": "search",
+        "name": "npm",
         "description": "NPMパッケージを検索して表示します",
         "example": "`/npm discord.js`",
         "userPermission": [
@@ -465,6 +547,8 @@
         "note": "なし"
     },
     "nslookup":{
+        "type": "tool",
+        "name": "nslookup",
         "description": "DNS情報を取得します",
         "example": "`/nslookup google.com`",
         "userPermission": [
@@ -476,6 +560,8 @@
         "note": "なし"
     },
     "omikuji":{
+        "type": "fun",
+        "name": "omikuji",
         "description": "おみくじを引きます",
         "example": "`/omikuji`",
         "userPermission": [
@@ -487,6 +573,8 @@
         "note": "なし"
     },
     "panel":{
+        "type": "manage",
+        "name": "panel",
         "description": "役職パネルを作成します",
         "example": "`/panel title @Role1 @Role2`",
         "userPermission": [
@@ -500,6 +588,8 @@
         "note": "同じロールは選択できません\n最大10個までロールを選択できます\nロールの付与にはレート制限があります"
     },
     "pay":{
+        "type": "money",
+        "name": "pay",
         "description": "所持金を使用して機能を購入します",
         "example": "`/pay 種類 10`",
         "userPermission": [
@@ -511,6 +601,8 @@
         "note": "グローバルチャットの色変更(黄色): 一回10円"
     },
     "permission":{
+        "type": "info",
+        "name": "permission",
         "description": "指定されたユーザーの権限を表示します",
         "example": "`/permission @TakasumiBOT`",
         "userPermission": [
@@ -522,6 +614,8 @@
         "note": "なし"
     },
     "poll":{
+        "type": "tool",
+        "name": "poll",
         "description": "投票を作成することができます",
         "example": "`/poll Title One two Three`",
         "userPermission": [
@@ -533,6 +627,8 @@
         "note": "選択肢は最大12個まで設定できます"
     },
     "pypi":{
+        "type": "search",
+        "name": "pypi",
         "description": "PIPパッケージを検索して表示します",
         "example": "`/pypi discord.py`",
         "userPermission": [
@@ -544,6 +640,8 @@
         "note": "なし"
     },
     "qr":{
+        "type": "tool",
+        "name": "qr",
         "description": "QRコードを生成・読み取ります",
         "example": "`/qr 生成 text`\n`/qr 読み込む https://example.com/qr.png`",
         "userPermission": [
@@ -555,6 +653,8 @@
         "note": "読み込むURLは有効なものである必要があります"
     },
     "random":{
+        "type": "fun",
+        "name": "random",
         "description": "ランダムで選びます",
         "example": "`/random A B C`",
         "userPermission": [
@@ -566,6 +666,8 @@
         "note": "なし"
     },
     "reload":{
+        "type": "bot",
+        "name": "reload",
         "description": "関係者以外実行できません",
         "example": "なし",
         "userPermission": [
@@ -577,6 +679,8 @@
         "note": "なし"
     },
     "reset":{
+        "type": "manage",
+        "name": "reset",
         "description": "実行したチャンネルを**完全**にリセットします",
         "example": "`/reset`",
         "userPermission": [
@@ -590,6 +694,8 @@
         "note": "なし"
     },
     "retranslate":{
+        "type": "fun",
+        "name": "retranslate",
         "description": "様々な言語で翻訳を10回繰り返します",
         "example": "`/retranslate こんにちは`",
         "userPermission": [
@@ -601,6 +707,8 @@
         "note": "なし"
     },
     "role":{
+        "type": "info",
+        "name": "role",
         "description": "指定した役職の情報を表示します",
         "example": "`/role @Role`",
         "userPermission": [
@@ -612,6 +720,8 @@
         "note": "なし"
     },
     "rolecount":{
+        "type": "info",
+        "name": "rolecount",
         "description": "それぞれのロールを持っている人数と割合を表示します",
         "example": "`/rolecount`",
         "userPermission": [
@@ -623,6 +733,8 @@
         "note": "なし"
     },
     "safeweb":{
+        "type": "tool",
+        "name": "safeweb",
         "description": "Webサイトの安全性を評価します",
         "example": "`/safeweb https://google.com/`",
         "userPermission": [
@@ -634,6 +746,8 @@
         "note": "指定するURLは有効なものである必要があります"
     },
     "script":{
+        "type": "tool",
+        "name": "script",
         "description": "プログラムを実行します",
         "example": "`/script JavaScript`",
         "userPermission": [
@@ -645,6 +759,8 @@
         "note": "なし"
     },
     "search":{
+        "type": "search",
+        "name": "search",
         "description": "Yahooで検索します",
         "example": "`/search discord.js`",
         "userPermission": [
@@ -656,6 +772,8 @@
         "note": "なし"
     },
     "server":{
+        "type": "info",
+        "name": "server",
         "description": "サーバーの情報を表示します",
         "example": "`/server`",
         "userPermission": [
@@ -667,6 +785,8 @@
         "note": "なし"
     },
     "setting":{
+        "type": "manage",
+        "name": "setting",
         "description": "サーバーの各種設定を変更します",
         "example": "`/setting bump @Role`\n`/setting help`",
         "userPermission": [
@@ -680,6 +800,8 @@
         "note": "詳細は`/setting help`を実行してください"
     },
     "short":{
+        "type": "tool",
+        "name": "short",
         "description": "短縮URLを作成します",
         "example": "`/short https://google.com/`",
         "userPermission": [
@@ -691,6 +813,8 @@
         "note": "指定するURLは有効なものである必要があります"
     },
     "skin":{
+        "type": "tool",
+        "name": "skin",
         "description": "マインクラフトのスキンを検索します",
         "example": "`/skin User`",
         "userPermission": [
@@ -702,6 +826,8 @@
         "note": "Java版専用です"
     },
     "slowmode":{
+        "type": "manage",
+        "name": "slowmode",
         "description": "チャンネルに低速モードを設定します",
         "example": "`/slowmode 100`",
         "userPermission": [
@@ -713,6 +839,8 @@
         "note": "秒単位で低速を設定することができます"
     },
     "snowflake":{
+        "type": "othor",
+        "name": "snowflake",
         "description": "Snowflakeを解析します",
         "example": "`/snowflake 987698915820335124`",
         "userPermission": [
@@ -724,6 +852,8 @@
         "note": "有効な[Snowflake](https://discord.com/developers/docs/reference#snowflakes)である必要があります"
     },
     "status":{
+        "type": "bot",
+        "name": "status",
         "description": "BOTの情報やサーバーの状態を表示します",
         "example": "`/status`",
         "userPermission": [
@@ -735,6 +865,8 @@
         "note": "なし"
     },
     "system":{
+        "type": "bot",
+        "name": "system",
         "description": "関係者以外実行できません",
         "example": "なし",
         "userPermission": [
@@ -746,6 +878,8 @@
         "note": "なし"
     },
     "ticket":{
+        "type": "manage",
+        "name": "ticket",
         "description": "簡易的なチケット機能を作成します",
         "example": "`/ticket`",
         "userPermission": [
@@ -760,6 +894,8 @@
         "note": "なし"
     },
     "timeout":{
+        "type": "manage",
+        "name": "timeout",
         "description": "指定したメンバーをタイムアウトします",
         "example": "`/timeout @Arashi 1000 荒らし`\n`/timeout @Arashi`",
         "userPermission": [
@@ -771,6 +907,8 @@
         "note": "秒単位でタイムアウトすることができます\n秒が指定されない場合デフォルト(30秒)になります"
     },
     "top":{
+        "type": "othor",
+        "name": "top",
         "description": "実行したチャンネルの1番最初のメッセージリンクを表示します",
         "example": "`/top`",
         "userPermission": [
@@ -783,6 +921,8 @@
         "note": "なし"
     },
     "translate":{
+        "type": "tool",
+        "name": "translate",
         "description": "テキストを翻訳します",
         "example": "`/translate hello 日本語`\n`/translate こんにちは 英語`",
         "userPermission": [
@@ -794,6 +934,8 @@
         "note": "Google翻訳を使用して翻訳されています"
     },
     "user":{
+        "type": "info",
+        "name": "user",
         "description": "指定されたユーザーを検索して表示します",
         "example": "`/user @TakasumiBOT`\n`/user 981314695543783484`",
         "userPermission": [
@@ -805,6 +947,8 @@
         "note": "メンバー情報も取得できる場合は詳細情報まで表示します"
     },
     "warn":{
+        "type": "manage",
+        "name": "warn",
         "description": "指定されたユーザーを警告します",
         "example": "`/warn @Arashi`",
         "userPermission": [
@@ -816,6 +960,8 @@
         "note": "メンバーがDMを拒否している場合警告できません"
     },
     "webshot":{
+        "type": "tool",
+        "name": "webshot",
         "description": "Webサイトのスクリーンショットを撮影します",
         "example": "`/webshot https://google.com/`",
         "userPermission": [
@@ -827,6 +973,8 @@
         "note": "指定するURLは有効なものである必要があります\n一部のサイトはスクリーンショットが撮影できない場合があります"
     },
     "wiki":{
+        "type": "search",
+        "name": "wiki",
         "description": "Wikipediaの検索をします",
         "example": "`/wiki Discord`",
         "userPermission": [
@@ -836,5 +984,18 @@
             "必要なし"
         ],
         "note": "なし"     
-    }  
+    },
+    "work":{
+        "type": "money",
+        "name": "work",
+        "description": "20分に1回お金を貰えます",
+        "example": "`/work`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
+        ],
+        "note": "100円から500円のお金が貰えます"     
+    }
 }
