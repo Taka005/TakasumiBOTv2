@@ -4,7 +4,6 @@ const Spam = new spam(1200000);
 module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const money = require("../../lib/money");
-  const random = require("../../lib/random");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "work"){
 
@@ -20,7 +19,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const amount = random([100,150,200,250,300,300,350,400,450,500]);
+    const amount = Math.floor(Math.random()*400)+100;
 
     const data = await money.get(interaction.user.id);
     await money.add(interaction.user.id,amount);
