@@ -241,7 +241,7 @@
         "type": "tool",
         "name": "enquete",
         "description": "アンケートを作成することができます",
-        "example": "`/enquete Title`",
+        "example": "`/enquete title`",
         "userPermission": [
             "必要なし"
         ],
@@ -331,7 +331,7 @@
         "botPermission": [
             "必要なし"
         ],
-        "note": "なし"
+        "note": "勝つと賭け金が3倍\n負けると賭け金から-1.5倍"
     },
     "guideline":{
         "type": "manage",
