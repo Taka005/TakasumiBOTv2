@@ -11,10 +11,10 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${interaction.user.tag}の所持金`,
+            name: `${interaction.user.tag}の持ち物`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          description: `${data.amount}円`
+          description: `所持金: ${data.amount}円\n黄色: ${data.yellow}回\n赤色: ${data.red}回`
         }]
       });
     }else{
@@ -23,10 +23,10 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${user.tag}の所持金`,
+            name: `${user.tag}の持ち物`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          description: `${data?.amount||0}円`
+          description: `所持金: ${data?.amount||0}円\n黄色: ${data?.yellow||0}回\n赤色: ${data?.red||0}回`
         }]
       });
     }
