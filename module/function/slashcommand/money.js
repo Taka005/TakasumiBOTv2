@@ -14,7 +14,7 @@ module.exports = async(interaction)=>{
             name: `${interaction.user.tag}の持ち物`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          description: `所持金: ${data.amount}円\n黄色: ${data.yellow}回\n赤色: ${data.red}回`
+          description: `所持金: ${data.amount}円\nGC黄色: ${data.yellow}回\nGC赤色: ${data.red}回`
         }]
       });
     }else{
@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
             name: `${user.tag}の持ち物`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          description: `所持金: ${data?.amount||0}円\n黄色: ${data?.yellow||0}回\n赤色: ${data?.red||0}回`
+          description: `所持金: ${data?.amount||0}円\nGC黄色: ${data?.yellow||0}回\nGC赤色: ${data?.red||0}回`
         }]
       });
     }
