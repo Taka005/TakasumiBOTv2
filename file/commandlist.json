@@ -984,5 +984,18 @@
             "必要なし"
         ],
         "note": "なし"     
-    }  
+    },
+    "work":{
+        "type": "money",
+        "name": "work",
+        "description": "20分に1回お金を貰えます",
+        "example": "`/work`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
+        ],
+        "note": "100円から500円のお金が貰えます"     
+    }
 }
