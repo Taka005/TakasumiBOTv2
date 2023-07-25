@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { AttachmentBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const { AttachmentBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const config = require("../../../config.json");
   const fetchMessage = require("../../lib/fetchMessage");
   if(!interaction.isContextMenuCommand()) return;
