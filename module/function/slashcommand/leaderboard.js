@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
           name: "お金持ちランキング",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: rank.map((data,i)=>`${i+1}位 ${(await fetchUser(data.id))?.tag||"不明"} ${data.mount}円`).join("\n")
+        description: rank.map(async(data,i)=>`${i+1}位 ${(await fetchUser(data.id))?.tag||"不明"} ${data.mount}円`).join("\n")
       }]
     });
   }
