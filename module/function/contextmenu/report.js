@@ -67,7 +67,7 @@ module.exports = async(interaction)=>{
       }],
       files:[
         new AttachmentBuilder()
-          .setFile(new Buffer.from(messages.map(message=>`${message.author.tag}(${message.author.id})\n${message.content}\n`))) 
+          .setFile(new Buffer.from(messages.map(message=>`${message.author.tag}(${message.author.id})\n${message.content}`).join("\n"))) 
           .setName(`REPORT_${interaction.user.id}.txt`)
       ]
     })
