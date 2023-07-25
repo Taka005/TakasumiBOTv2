@@ -442,6 +442,11 @@ module.exports = async(client)=>{
                 .setName("reason")
                 .setDescription("Reason")
                 .setDescriptionLocalization("ja","理由")),
+          //learderboard
+          new SlashCommandBuilder()
+            .setName("leaderboard")
+            .setDescription("View the ranking of the richest people.")
+            .setDescriptionLocalization("ja","お金持ちランキングを表示します"),
           //lottery
           new SlashCommandBuilder()
             .setName("lottery")

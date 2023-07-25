@@ -17,6 +17,8 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    await interaction.deferReply();
+
     const members = [];
     while(members.length < number){
       const random = Math.floor(Math.random()*role.members.size);
@@ -26,7 +28,7 @@ module.exports = async(interaction)=>{
       }
     }
 
-    await interaction.reply({
+    await interaction.editReply({
       embeds:[{
         color: Colors.Green,
         author:{
