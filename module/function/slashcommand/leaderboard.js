@@ -5,8 +5,10 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "leaderboard"){
 
-    const rank = (await db("SELECT id, amount FROM money ORDER BY amount DESC LIMIT 10;"))
+    const data = (await db("SELECT id, amount FROM money ORDER BY amount DESC LIMIT 10;"))
       .sort((m1,m2)=>m2.mount - m1.mount);
+console.log(data)
+    const rank = await Promise.all(data.map(async(data,i)=>`${i+1}位 ${(await fetchUser(data.id))?.tag||"不明"} ${data.mount}円`));
 
     await interaction.reply({
       embeds:[{
@@ -15,7 +17,7 @@ module.exports = async(interaction)=>{
           name: "お金持ちランキング",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: (await Promise.all(rank.map(async(data,i)=>`${i+1}位 ${(await fetchUser(data.id))?.tag||"不明"} ${data.mount}円`))).join("\n")
+        description: rank.join("\n")
       }]
     });
   }
