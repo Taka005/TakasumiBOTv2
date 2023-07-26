@@ -24,28 +24,16 @@ module.exports = async(message)=>{
         }]  
       }).catch(()=>{});
 
-      if(data[0]){
-        setTimeout(async()=>{
-          await message.channel.send({
-            content: `<@&${data[0].role}>`,
-            embeds:[{
-              color: Colors.White,
-              title: "BUMP通知",
-              description: "BUMPの時間です\n`/bump`でサーバーの表示順位を上げよう！"
-            }]  
-          }).catch(()=>{});
-        },7200000);
-      }else{
-        setTimeout(async()=>{
-          await message.channel.send({
-            embeds:[{
-              color: Colors.White,
-              title: "BUMP通知",
-              description: "BUMPの時間です\n`/bump`でサーバーの表示順位を上げよう！"
-            }]  
-          }).catch(()=>{});
-        },7200000);
-      }
+      setTimeout(async()=>{
+        await message.channel.send({
+          content: data[0] ? `<@&${data[0].role}>`:"",
+          embeds:[{
+            color: Colors.White,
+            title: "BUMP通知",
+            description: "BUMPの時間です\n`/bump`でサーバーの表示順位を上げよう！"
+          }]  
+        }).catch(()=>{});
+      },7200000);
     }
   }
 }
