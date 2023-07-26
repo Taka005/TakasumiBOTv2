@@ -59,7 +59,6 @@ module.exports = async(interaction)=>{
           name: "メッセージレポート",
           icon_url: "https://cdn.taka.cf/images/system/success.png",
         },
-        description: `**${message.author.tag}(${message.author.id})**\n${message.content}`,
         footer:{
           text: `${interaction.user.tag}(${interaction.user.id})`,
           icon_url: interaction.user.avatarURL()||interaction.user.defaultAvatarURL,
