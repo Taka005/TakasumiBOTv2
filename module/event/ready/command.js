@@ -1086,6 +1086,17 @@ module.exports = async(client)=>{
                   { name: "フランス語", value: "fr" },
                   { name: "ドイツ語", value: "de" }
                 )),
+          //twitter
+          new SlashCommandBuilder()
+            .setName("twitter")
+            .setDescription("Search Tweets")
+            .setDescriptionLocalization("ja","ツイートを検索します")
+            .addStringOption(option =>
+              option
+                .setName("word")
+                .setDescription("Search Word")
+                .setDescriptionLocalization("ja","検索ワード")
+                .setRequired(true)),
           //user
           new SlashCommandBuilder()
             .setName("user")
