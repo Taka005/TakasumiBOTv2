@@ -442,9 +442,9 @@
         ],
         "note": "サーバーに存在してるメンバーしかKICKできません"
     },
-    "learderboard":{
+    "leaderboard":{
         "type": "money",
-        "name": "learderboard",
+        "name": "leaderboard",
         "description": "お金持ちランキングを表示します",
         "example": "`/leaderboard`",
         "userPermission": [
