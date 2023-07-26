@@ -443,7 +443,7 @@ module.exports = async(client)=>{
                 .setName("reason")
                 .setDescription("Reason")
                 .setDescriptionLocalization("ja","理由")),
-          //learderboard
+          //leaderboard
           new SlashCommandBuilder()
             .setName("leaderboard")
             .setDescription("View the ranking of the richest people.")
