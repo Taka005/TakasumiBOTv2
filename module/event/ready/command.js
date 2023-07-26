@@ -47,7 +47,8 @@ module.exports = async(client)=>{
               option
                 .setName("name")
                 .setDescription("Activity Name")
-                .setDescriptionLocalization("ja","アクティビティの名前")),
+                .setDescriptionLocalization("ja","アクティビティの名前")
+                .setAutocomplete(true)),
           //ad
           new SlashCommandBuilder()
             .setName("ad")
