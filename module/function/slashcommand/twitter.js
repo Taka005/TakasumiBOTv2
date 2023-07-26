@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
             name: `${word}の検索結果`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          description: data.timeline.entry.map(data=>`[**${data.name}(@${data.screenName})**](${data.url})\n${data.displayText}`).join("\n\n"),
+          description: data.timeline.entry.map(data=>`[**${data.name}(@${data.screenName})**](${data.url}) - ${new Date(data.createdAt*1000).toLocaleString()}\n${data.displayText.replace("\tSTART\t","").replace("\tEND\t","")}`).join("\n\n"),
           footer:{
             text: "TakasumiBOT"
           }
