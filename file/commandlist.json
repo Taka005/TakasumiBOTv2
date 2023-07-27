@@ -442,9 +442,9 @@
         ],
         "note": "サーバーに存在してるメンバーしかKICKできません"
     },
-    "learderboard":{
+    "leaderboard":{
         "type": "money",
-        "name": "learderboard",
+        "name": "leaderboard",
         "description": "お金持ちランキングを表示します",
         "example": "`/leaderboard`",
         "userPermission": [
@@ -945,6 +945,19 @@
             "必要なし"
         ],
         "note": "Google翻訳を使用して翻訳されています"
+    },
+    "twitter":{
+        "type": "search",
+        "name": "twitter",
+        "description": "ツイートを検索します",
+        "example": "`/twitter Discord`",
+        "userPermission": [
+            "必要なし"
+        ],
+        "botPermission": [
+            "必要なし"
+        ],
+        "note": "検索ワードに`id:ユーザー名`を指定することで特定のユーザーのツイートを取得できます"
     },
     "user":{
         "type": "info",
