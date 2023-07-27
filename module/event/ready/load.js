@@ -11,7 +11,8 @@ module.exports = async(client)=>{
     let ping = client.ws.ping;
     if(ping > 300) ping = 300;
     
-    const user = client.guilds.cache.map((g)=>g.memberCount).reduce((a,c)=>a+c);
+    const user = client.guilds.cache.map(g=>g.memberCount).reduce((a,c)=>a+c);
+    const online = client.guilds.cache.map(g=>g.memberCount - g.members.cache.filter(m=>m.presence?.status == "offline"||m.presence?.status == null).size).reduce((a,c)=>a+c);
     const guild = client.guilds.cache.size;
     const count = await db(`SELECT * FROM count WHERE id = ${process.env.ID} LIMIT 1;`);
     const cpuUsage = await cpu();
@@ -23,7 +24,7 @@ module.exports = async(client)=>{
       logCount--;
       if(logCount <= 167) break;
     }
-    await db(`INSERT INTO log (time, ping, user, guild, message, command, cpu, ram) VALUES(NOW(),"${ping}","${user}","${guild}","${count[0].message}","${count[0].command}","${cpuUsage}","${ram}");`);
+    await db(`INSERT INTO log (time, ping, user, online, guild, message, command, cpu, ram) VALUES(NOW(),"${ping}","${user}","${online}","${guild}","${count[0].message}","${count[0].command}","${cpuUsage}","${ram}");`);
     await db(`UPDATE count SET message=0, command=0 WHERE id=${process.env.ID};`);
   });
 }
