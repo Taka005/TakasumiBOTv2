@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId.startsWith("reset_")){
     const id = interaction.customId.split("_")[1];
