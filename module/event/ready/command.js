@@ -448,6 +448,27 @@ module.exports = async(client)=>{
             .setName("leaderboard")
             .setDescription("View the ranking of the richest people.")
             .setDescriptionLocalization("ja","お金持ちランキングを表示します"),
+          //log
+          new SlashCommandBuilder()
+            .setName("log")
+            .setDescription("Outputs chat logs")
+            .setDescriptionLocalization("ja","チャットの履歴を出力します")
+            .addStringOption(option =>
+              option
+                .setName("format")
+                .setDescription("Output format")
+                .setDescriptionLocalization("ja","出力する形式")
+                .setRequired(true)
+                .addChoices(
+                  { name: "JSON", value: "json" },
+                  { name: "TEXT", value: "txt" }
+                ))
+            .addStringOption(option =>
+              option
+                .setName("limit")
+                .setDescription("Obtain Number")
+                .setDescriptionLocalization("ja","取得数")
+                .setRequired(true)),
           //lottery
           new SlashCommandBuilder()
             .setName("lottery")
