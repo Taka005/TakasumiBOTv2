@@ -30,7 +30,7 @@ module.exports = async(message)=>{
           embeds:[{
             color: Colors.White,
             title: "BUMP通知",
-            description: "BUMPの時間です\n`/bump`でサーバーの表示順位を上げよう！"
+            description: "BUMPの時間です\n</bump:947088344167366698>でサーバーの表示順位を上げよう！"
           }]  
         }).catch(()=>{});
       },7200000);

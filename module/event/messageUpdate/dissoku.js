@@ -30,7 +30,7 @@ module.exports = async(message)=>{
           embeds:[{
             color: Colors.Blue,
             title: "UP通知",
-            description: "DISSOKUの時間です\n`/dissoku up`でサーバーの表示順位を上げよう！"
+            description: "DISSOKUの時間です\n</dissoku up:828002256690610256>でサーバーの表示順位を上げよう！"
           }]  
         }).catch(()=>{});
       },3600000);
