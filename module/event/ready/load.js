@@ -12,7 +12,7 @@ module.exports = async(client)=>{
     if(ping > 300) ping = 300;
     
     const user = client.guilds.cache.map(g=>g.memberCount).reduce((a,c)=>a+c);
-    const online = client.guilds.cache.map(g=>g.memberCount - g.members.cache.filter(m=>m.presence?.status == "offline"||m.presence?.status == null).size).reduce((a,c)=>a+c);
+    const online = client.guilds.cache.map(g=>g.memberCount - g.members.cache.filter(m=>m.presence?.status === "offline"||m.presence?.status === null).size).reduce((a,c)=>a+c);
     const guild = client.guilds.cache.size;
     const count = await db(`SELECT * FROM count WHERE id = ${process.env.ID} LIMIT 1;`);
     const cpuUsage = await cpu();
