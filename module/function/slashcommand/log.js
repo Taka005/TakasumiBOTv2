@@ -58,12 +58,13 @@ module.exports = async(interaction)=>{
         id: message.id,
         user:{
           id: message.author.id,
-          name: message.author.tag
+          name: message.author.tag,
+          bot: message.author.bot
         },
         content: message.content
       })),null,"  ");
     }else if(format === "txt"){
-      data = messages.map(message=>`[${message.author.bot?"BOT":""}]${message.author.tag}(${message.author.id})\n${message.content||"[内容がありません]"}`).join("\n\n") 
+      data = messages.map(message=>`${message.author.bot?"[BOT]":""}${message.author.tag}(${message.author.id})\n${message.content||"[内容がありません]"}`).join("\n\n") 
     }
 
     await interaction.reply({
