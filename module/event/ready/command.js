@@ -453,7 +453,7 @@ module.exports = async(client)=>{
             .setName("log")
             .setDescription("Outputs chat logs")
             .setDescriptionLocalization("ja","チャットの履歴を出力します")
-            .addStringOption(option =>
+            .addIntegerOption(option =>
               option
                 .setName("format")
                 .setDescription("Output format")
