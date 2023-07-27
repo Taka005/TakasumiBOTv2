@@ -18,16 +18,16 @@ module.exports = async(interaction)=>{
     };
 
     if(id[1] !== interaction.user.id) return await interaction.reply({
-        embeds:[{
-          author:{
-            name: "ページを更新できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          color: Colors.Red,
-          description: "このコマンドは別の人が操作しています"
-        }],
-        ephemeral: true
-      });
+      embeds:[{
+        author:{
+          name: "ページを更新できませんでした",
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
+        },
+        color: Colors.Red,
+        description: "このコマンドは別の人が操作しています"
+      }],
+      ephemeral: true
+    });
 
     await interaction.message.edit({
       embeds:[{
