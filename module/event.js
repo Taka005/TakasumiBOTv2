@@ -85,6 +85,8 @@ module.exports = async(client)=>{
       ephemeral: true
     });
 
+    global.errorChannel[interaction.id] = interaction.channel.id;
+
     await count.command();
     await money.add(interaction.user.id,5);
 

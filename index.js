@@ -52,11 +52,12 @@ process.on("unhandledRejection",async(error)=>{
     }]
   }).catch(()=>{});
 
-  if(error.name === "DiscordAPIError" && error.message === "Unknown Interaction"){
+  const channelId = global.errorChannel[error?.url.match(/\d{17,19}/g)];
+  if(channelId){
     await client.channels.cache.get(config.error).send({
       embeds:[{
         color: Colors.Orange,
-        description: `${error.interaction.channelId}`,
+        description: `${channelId}`,
         timestamp: new Date()
       }]
     }).catch(()=>{});
