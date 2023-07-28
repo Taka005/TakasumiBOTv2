@@ -58,7 +58,7 @@ process.on("unhandledRejection",async(error)=>{
       embeds:[{
         color: Colors.Red,
         title: "想定されないエラーが発生しました",
-        description: `サポートサーバーにこの内容を伝えてください\n\`\`\`js${error.stack}\`\`\``,
+        description: `[サポートサーバー](https://discord.gg/NEesRdGQwD)にこの内容を伝えてください\n\`\`\`js\n${error.stack}\`\`\``,
         timestamp: new Date()
       }]
     }).catch(()=>{});
