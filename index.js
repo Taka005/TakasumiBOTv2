@@ -32,7 +32,7 @@ client.login(process.env.BOT_TOKEN)
 process.on("uncaughtException",async(error)=>{
   console.log(`\x1b[31mERROR: ${error.stack}\x1b[39m`);
 
-  await client.channels.cache.get(config.error).send({
+  await client.channels.cache.get(config.error)?.send({
     embeds:[{
       color: Colors.Red,
       description: `\`\`\`js\n${error.stack}\`\`\``,
@@ -42,7 +42,7 @@ process.on("uncaughtException",async(error)=>{
 
   const channelId = global.errorChannel[error?.url.match(/\d{17,19}/g)];
   if(channelId){
-    await client.channels.cache.get(channelId).send({
+    await client.channels.cache.get(channelId)?.send({
       embeds:[{
         color: Colors.Red,
         title: "想定されないエラーが発生しました",
@@ -56,23 +56,11 @@ process.on("uncaughtException",async(error)=>{
 process.on("unhandledRejection",async(error)=>{
   console.log(`\x1b[31mERROR: ${error.stack}\x1b[39m`);
 
-  await client.channels.cache.get(config.error).send({
+  await client.channels.cache.get(config.error)?.send({
     embeds:[{
       color: Colors.Orange,
       description: `\`\`\`js\n${error.stack}\`\`\``,
       timestamp: new Date()
     }]
   }).catch(()=>{});
-
-  const channelId = global.errorChannel[error?.url.match(/\d{17,19}/g)];
-  if(channelId){
-    await client.channels.cache.get(channelId).send({
-      embeds:[{
-        color: Colors.Red,
-        title: "想定されないエラーが発生しました",
-        description: `[サポートサーバー](https://discord.gg/NEesRdGQwD)にこの内容を伝えてください\n\`\`\`js\n${error.stack}\`\`\``,
-        timestamp: new Date()
-      }]
-    }).catch(()=>{});
-  }
 });
