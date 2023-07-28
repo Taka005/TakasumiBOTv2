@@ -51,4 +51,14 @@ process.on("unhandledRejection",async(error)=>{
       timestamp: new Date()
     }]
   }).catch(()=>{});
+
+  if(error.name === "DiscordAPIError" && error.message === "Unknown Interaction"){
+    await client.channels.cache.get(config.error).send({
+      embeds:[{
+        color: Colors.Orange,
+        description: `${error.interaction.channelId}`,
+        timestamp: new Date()
+      }]
+    }).catch(()=>{});
+  }
 });
