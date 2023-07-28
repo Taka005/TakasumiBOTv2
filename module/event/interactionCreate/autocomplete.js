@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
     if(filter.length > 25) return await interaction.respond([]);
     
 		await interaction.respond(
-			filter.map(name=>({ name: `/${name}: ${commnads[name].description}`, value: name }))
+			filter.map(name=>({ name: `${commnads[name].name}: ${commnads[name].description}`, value: name }))
 		);
   }else if(interaction.commandName === "activity"){
     const filter = (await interaction.guild.members.fetch())
