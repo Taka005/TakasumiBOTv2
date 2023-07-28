@@ -85,13 +85,18 @@ module.exports = async(client)=>{
       ephemeral: true
     });
 
+    global.errorChannel = {};
+    global.errorChannel[interaction.id] = interaction.channel.id;
+
     await count.command();
     await money.add(interaction.user.id,5);
 
-    Promise.all(global.interactionCreate.map(fn=>fn(interaction)));
-    Promise.all(global.auth.map(fn=>fn(interaction)));
-    Promise.all(global.slashcommand.map(fn=>fn(interaction)));
-    Promise.all(global.contextmenu.map(fn=>fn(interaction)));
+    await Promise.all(global.interactionCreate.map(fn=>fn(interaction)));
+    await Promise.all(global.auth.map(fn=>fn(interaction)));
+    await Promise.all(global.slashcommand.map(fn=>fn(interaction)));
+    await Promise.all(global.contextmenu.map(fn=>fn(interaction)));
+
+    delete global.errorChannel[interaction.id];
   });
 
   client.on(Events.GuildMemberAdd,async(member)=>{
