@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
           },
           {
             name: "Discord",
-            value: `Ping: ${interaction.client.ws.ping}㍉秒\nGC登録数: ${global.length} / ${interaction.client.guilds.cache.size} (${Math.round(global.length/interaction.client.guilds.cache.size*100)}%)\nひろゆき登録数: ${hiroyuki.length}\nTakasumiBOT Account: ${account.length}人\nサーバー稼働時間: ${Math.round(os.uptime() / 60)}分(BOT: ${Math.round(process.uptime() / 60)}分)`
+            value: `Ping: ${interaction.client.ws.ping}㍉秒\nコマンド数: ${(await interaction.client.application.commands.fetch()).size}個\nGC登録数: ${global.length} / ${interaction.client.guilds.cache.size} (${Math.round(global.length/interaction.client.guilds.cache.size*100)}%)\nひろゆき登録数: ${hiroyuki.length}\nTakasumiBOT Account: ${account.length}人\nサーバー稼働時間: ${Math.round(os.uptime() / 60)}分(BOT: ${Math.round(process.uptime() / 60)}分)`
           },
           {
             name: "統計データ",
