@@ -54,10 +54,11 @@ process.on("unhandledRejection",async(error)=>{
 
   const channelId = global.errorChannel[error?.url.match(/\d{17,19}/g)];
   if(channelId){
-    await client.channels.cache.get(config.error).send({
+    await client.channels.cache.get(channelId).send({
       embeds:[{
-        color: Colors.Orange,
-        description: `${channelId}`,
+        color: Colors.Red,
+        title: "想定されないエラーが発生しました",
+        description: `サポートサーバーにこの内容を伝えてください\n\`\`\`js${error.stack}\`\`\``,
         timestamp: new Date()
       }]
     }).catch(()=>{});
