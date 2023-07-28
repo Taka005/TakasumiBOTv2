@@ -1038,7 +1038,7 @@
         "note": "100円から500円のお金が貰えます"     
     },
     "アバターを表示":{
-        "type": "contentmenu",
+        "type": "contextmenu",
         "name": "アバターを表示",
         "description": "ユーザーのアイコンを表示します",
         "example": "`アバターを表示`をクリック",
@@ -1051,7 +1051,7 @@
         "note": "サーバーで違うアイコンを設定してる場合は両方表示されます"
     },
     "メンバー情報を表示":{
-        "type": "contentmenu",
+        "type": "contextmenu",
         "name": "メンバー情報を表示",
         "description": "メンバーの情報を表示します",
         "example": "`メンバー情報を表示`をクリック",
@@ -1064,7 +1064,7 @@
         "note": "サーバーに存在しないメンバーは表示できません"
     },
     "Make it a Quote":{
-        "type": "contentmenu",
+        "type": "contextmenu",
         "name": "Make it a Quote",
         "description": "Make it a Quoteを生成します",
         "example": "`Make it a Quote`をクリック",
@@ -1077,7 +1077,7 @@
         "note": "サーバーに存在しないメンバーは表示できません"
     },
     "権限を表示":{
-        "type": "contentmenu",
+        "type": "contextmenu",
         "name": "権限を表示",
         "description": "メンバーの持っている権限を表示します",
         "example": "`権限を表示`をクリック",
@@ -1090,7 +1090,7 @@
         "note": "なし"
     },
     "メッセージをピン留め":{
-        "type": "contentmenu",
+        "type": "contextmenu",
         "name": "メッセージをピン留め",
         "description": "メッセージを常に下に表示します",
         "example": "`メッセージをピン留め`をクリック",
@@ -1107,7 +1107,7 @@
         "note": "連投し続けると3分間制限がかかります"
     },
     "メッセージを報告":{
-        "type": "contentmenu",
+        "type": "contextmenu",
         "name": "メッセージを報告",
         "description": "サポートサーバーにメッセージを報告します",
         "example": "`メッセージを報告`をクリック",
@@ -1120,7 +1120,7 @@
         "note": "報告されたメッセージの周囲のメッセージも送信されます"
     },
     "英語に翻訳":{
-        "type": "contentmenu",
+        "type": "contextmenu",
         "name": "英語に翻訳",
         "description": "メッセージを英語に翻訳します",
         "example": "`英語に翻訳`をクリック",
@@ -1133,7 +1133,7 @@
         "note": "なし"
     },
     "日本語に翻訳":{
-        "type": "contentmenu",
+        "type": "contextmenu",
         "name": "日本語に翻訳",
         "description": "メッセージを日本語に翻訳します",
         "example": "`日本語に翻訳`をクリック",
