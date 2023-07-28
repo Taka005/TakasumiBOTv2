@@ -85,6 +85,7 @@ module.exports = async(client)=>{
       ephemeral: true
     });
 
+    global.errorChannel = {};
     global.errorChannel[interaction.id] = interaction.channel.id;
 
     await count.command();
