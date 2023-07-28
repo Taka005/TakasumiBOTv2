@@ -39,18 +39,6 @@ process.on("uncaughtException",async(error)=>{
       timestamp: new Date()
     }]
   }).catch(()=>{});
-
-  const channelId = global.errorChannel[error?.url.match(/\d{17,19}/g)];
-  if(channelId){
-    await client.channels.cache.get(channelId)?.send({
-      embeds:[{
-        color: Colors.Red,
-        title: "想定されないエラーが発生しました",
-        description: `[サポートサーバー](https://discord.gg/NEesRdGQwD)にこの内容を伝えてください\n\`\`\`js\n${error.stack}\`\`\``,
-        timestamp: new Date()
-      }]
-    }).catch(()=>{});
-  }
 });
 
 process.on("unhandledRejection",async(error)=>{
