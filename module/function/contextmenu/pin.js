@@ -27,7 +27,13 @@ module.exports = async(interaction)=>{
           name: "権限がありません",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        description: "このコマンドを実行するには以下の権限を持っている必要があります\n```メッセージの管理\nチャンネルの管理```"
+        description: "このコマンドを実行するには以下の権限を持っている必要があります",
+        fields:[
+          {
+            name: "必要な権限",
+            value: "```メッセージの管理\nチャンネルの管理```"
+          }
+        ]
       }],
       ephemeral: true
     });
@@ -44,7 +50,13 @@ module.exports = async(interaction)=>{
           name: "BOTに権限がありません",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        description: "この機能はBOTに以下の権限が必要です\n```チャンネルの閲覧\nメッセージを送信\nメッセージの管理\nチャンネルの管理```"
+        description: "このコマンドはBOTに以下の権限が必要です",
+        fields:[
+          {
+            name: "必要な権限",
+            value: "```チャンネルの閲覧\nチャンネルの管理\nメッセージの送信\nメッセージの管理```"
+          }
+        ]
       }],
       ephemeral: true
     });

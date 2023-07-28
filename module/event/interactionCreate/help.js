@@ -14,7 +14,8 @@ module.exports = async(interaction)=>{
       "fun": "ネタ",
       "money": "お金",
       "bot": "Bot関連",
-      "othor": "その他"
+      "othor": "その他",
+      "contextmenu": "コンテキストメニュー"
     };
 
     if(id[1] !== interaction.user.id) return await interaction.reply({
@@ -34,7 +35,7 @@ module.exports = async(interaction)=>{
         title: `HELP ${types[type]}`,
         color: Colors.Green,
         fields: Object.values(list).filter(command=>command.type === type).map((command)=>({
-          name: `/${command.name}`,
+          name: `${command.name}`,
           value: command.description
         }))
       }]
