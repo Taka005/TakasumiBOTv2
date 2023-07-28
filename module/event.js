@@ -95,6 +95,8 @@ module.exports = async(client)=>{
     Promise.all(global.auth.map(fn=>fn(interaction)));
     Promise.all(global.slashcommand.map(fn=>fn(interaction)));
     Promise.all(global.contextmenu.map(fn=>fn(interaction)));
+
+    delete global.errorChannel[interaction.id];
   });
 
   client.on(Events.GuildMemberAdd,async(member)=>{
