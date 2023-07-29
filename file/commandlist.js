@@ -181,7 +181,23 @@ module.exports = {
     botPermission:[
       "メンバーをBAN"
     ],
-    note: "サーバーにいないユーザーでもIDを使用してBANすることができます"
+    note: "サーバーにいないユーザーでもIDを使用してBANすることができます",
+    data: new SlashCommandBuilder()
+      .setName("ban")
+      .setDescription("ユーザーをサーバーからBANします")
+      .addStringOption(option =>
+        option
+          .setName("id")
+          .setDescription("ユーザーID・メンション")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("reason")
+          .setDescription("理由"))
+      .addIntegerOption(option =>
+        option
+          .setName("days")
+          .setDescription("メッセージを削除する日数"))
   },
   button:{
     type: "tool",
@@ -194,7 +210,20 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("button")
+      .setDescription("URLのボタンを生成します")
+      .addStringOption(option =>
+        option
+          .setName("name")
+          .setDescription("ボタンの名前")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("url")
+          .setDescription("ボタンのURL")
+          .setRequired(true))
   },
   channel:{
     type: "info",
@@ -207,7 +236,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("channel")
+      .setDescription("指定したチャンネルの情報を表示します")
+      .addChannelOption(option =>
+        option
+          .setName("name")
+          .setDescription("チャンネル名")
+          .setRequired(true))
   },
   cipher:{
     type: "tool",
@@ -220,7 +257,29 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "aes-128-cbcを使用して暗号化しています"
+    note: "aes-128-cbcを使用して暗号化しています",
+    data: new SlashCommandBuilder()
+      .setName("cipher")
+      .setDescription("暗号を生成・復号します")
+      .addStringOption(option =>
+        option
+          .setName("type")
+          .setDescription("処理方式")
+          .setRequired(true)
+          .addChoices(
+            { name: "暗号化", value: "cipher" },
+            { name: "復号化", value: "decipher" }
+          ))
+      .addStringOption(option =>
+        option
+          .setName("text")
+          .setDescription("処理するテキスト")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("key")
+          .setDescription("鍵")
+          .setRequired(true))
   },
   colorrole:{
     type: "manage",
@@ -233,7 +292,30 @@ module.exports = {
     botPermission:[
       "ロールの管理"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("colorrole")
+      .setDescription("色付きロールを作成します")
+      .addStringOption(option =>
+        option
+          .setName("name")
+          .setDescription("ロールの名前")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("color")
+          .setDescription("ロールの色")
+          .setRequired(true)
+          .addChoices(
+            { name: "白", value: `${Colors.White}` },
+            { name: "緑", value: `${Colors.Green}` },
+            { name: "青", value: `${Colors.Blue}` },
+            { name: "黄", value: `${Colors.Yellow}` },
+            { name: "紫", value: `${Colors.Purple}` },
+            { name: "金", value: `${Colors.Gold}` },
+            { name: "橙", value: `${Colors.Orange}` },
+            { name: "赤", value: `${Colors.Red}` }
+          ))
   },
   db:{
     type: "bot",
@@ -246,7 +328,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("db")
+      .setDescription("データベースにクエリを送信します")
+      .addStringOption(option =>
+        option
+          .setName("query")
+          .setDescription("クエリ")
+          .setRequired(true))
   },
   debug:{
     type: "bot",
@@ -261,7 +351,33 @@ module.exports = {
       "メッセージの送信",
       "メッセージの管理"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("debug")
+      .setDescription("デバッグ機能を使用します") 
+      .addStringOption(option =>
+        option
+          .setName("type")
+          .setDescription("デバッグの種類")
+          .setRequired(true)
+          .addChoices(
+            { name: "内容", value: "content" },
+            { name: "送信", value: "send" },
+            { name: "編集", value: "edit" },
+            { name: "削除", value: "delete" }
+          ))
+      .addStringOption(option =>
+        option
+          .setName("id")  
+          .setDescription("メッセージID"))
+      .addChannelOption(option =>
+        option
+          .setName("channel")
+          .setDescription("チャンネル"))
+      .addStringOption(option =>
+        option
+          .setName("json")
+          .setDescription("JSON"))
   },
   del:{
     type: "manage",
@@ -274,7 +390,19 @@ module.exports = {
     botPermission:[
       "メッセージの管理"
     ],
-    note: "2週間前かつ100個までメッセージを削除できます"
+    note: "2週間前かつ100個までメッセージを削除できます",
+    data: new SlashCommandBuilder()
+      .setName("del")
+      .setDescription("メッセージを一括で削除します")
+      .addIntegerOption(option =>
+        option
+          .setName("number")
+          .setDescription("削除数")
+          .setRequired(true))
+      .addUserOption(option =>
+        option
+          .setName("user")
+          .setDescription("削除するユーザー"))
   },
   embed:{
     type: "manage",
