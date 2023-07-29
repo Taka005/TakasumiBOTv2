@@ -415,7 +415,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("embed")
+      .setDescription("埋め込みメッセージを作成します")
   },
   emoji:{
     type: "info",
@@ -428,7 +431,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "サーバー上のカスタム絵文字を指定する必要があります"
+    note: "サーバー上のカスタム絵文字を指定する必要があります",
+    data: new SlashCommandBuilder()
+      .setName("emoji")
+      .setDescription("絵文字の情報を表示します")
+      .addStringOption(option =>
+        option
+          .setName("name")
+          .setDescription("絵文字名")
+          .setRequired(true))
   },
   enquete:{
     type: "tool",
@@ -442,7 +453,15 @@ module.exports = {
       "チャンネルの閲覧",
       "メッセージ履歴の閲覧"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("enquete")
+      .setDescription("アンケートを作成します")
+      .addStringOption(option =>
+        option
+          .setName("title")
+          .setDescription("タイトル")
+          .setRequired(true))
   },
   export:{
     type: "manage",
@@ -455,7 +474,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "様々なサーバーのデータが含まれるため扱いには注意してください"
+    note: "様々なサーバーのデータが含まれるため扱いには注意してください",
+    data: new SlashCommandBuilder()
+      .setName("export")
+      .setDescription("サーバーの情報をJSON形式に出力します")
   },
   faq:{
     type: "bot",
@@ -468,7 +490,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("faq")
+      .setDescription("よくある質問一覧を表示します")
   },
   follow:{
     type: "bot",
@@ -481,7 +506,19 @@ module.exports = {
     botPermission:[
       "チャンネルの管理"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("follow")
+      .setDescription("BOTのアナウンスチャンネルを追加します")
+      .addStringOption(option =>
+        option
+          .setName("type")
+          .setDescription("設定する種類")
+          .setRequired(true)
+          .addChoices(
+            { name: "アナウンス", value: "announce" },
+            { name: "変更ログ", value: "update" }
+          ))
   },
   gif:{
     type: "search",
@@ -494,7 +531,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("gif")
+      .setDescription("GIF画像を検索し表示します")
+      .addStringOption(option =>
+        option
+          .setName("name")
+          .setDescription("検索ワード")
+          .setRequired(true))
   },
   globalchat:{
     type: "othor",
@@ -511,7 +556,10 @@ module.exports = {
       "メッセージの送信",
       "ウェブフックの管理"
     ],
-    note: "会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.cf/)に同意する必要があります"
+    note: "会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.cf/)に同意する必要があります",
+    data: new SlashCommandBuilder()
+      .setName("globalchat")
+      .setDescription("グローバルチャットを利用します")
   },
   guess:{
     type: "money",
@@ -524,7 +572,25 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "勝つと賭け金が3倍\n負けると賭け金から-1.5倍"
+    note: "勝つと賭け金が3倍\n負けると賭け金から-1.5倍",
+    data: new SlashCommandBuilder()
+      .setName("guess")
+      .setDescription("所持金を使って数字当てゲームをします")  
+      .addIntegerOption(option =>
+        option
+          .setName("money")
+          .setDescription("賭ける金額")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("number")
+          .setDescription("選ぶ数")
+          .setRequired(true)
+          .addChoices(
+            { name: "1", value: "1" },
+            { name: "2", value: "2" },
+            { name: "3", value: "3" }
+          ))
   },
   guideline:{
     type: "manage",
@@ -539,7 +605,15 @@ module.exports = {
       "チャンネルの閲覧",
       "メッセージの送信"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("guideline")
+      .setDescription("サーバーのガイドラインを作成します")
+      .addRoleOption(option =>
+        option
+          .setName("role")
+          .setDescription("付与するロール")
+          .setRequired(true))
   },
   hash:{
     type: "tool",
@@ -552,7 +626,26 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("hash")
+      .setDescription("ハッシュを生成します")
+      .addStringOption(option =>
+        option
+          .setName("text")
+          .setDescription("ハッシュ化するテキスト")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("type")
+          .setDescription("ハッシュ方式")
+          .setRequired(true)
+          .addChoices(
+            { name: "SHA224", value: "sha224" },
+            { name: "SHA256", value: "sha256" },
+            { name: "SHA384", value: "sha384" },
+            { name: "SHA512", value: "sha512" }
+          ))
   },
   help:{
     type: "othor",
@@ -565,7 +658,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "ページを更新するときに一部の権限が必要になります",
+    data: new SlashCommandBuilder()
+      .setName("help")
+      .setDescription("使い方を表示します")
+      .addStringOption(option =>
+        option
+          .setName("command")
+          .setDescription("表示するコマンド名")
+          .setAutocomplete(true))
   },
   hiroyuki:{
     type: "fun",
@@ -581,7 +682,10 @@ module.exports = {
       "メッセージの送信",
       "ウェブフックの管理"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("hiroyuki")
+      .setDescription("ひろゆきを参加・退出させます"),
   },
   invite:{
     type: "manage",
@@ -594,7 +698,20 @@ module.exports = {
     botPermission:[
       "招待リンクの作成"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("invite")
+      .setDescription("招待リンクを作成します")
+      .addIntegerOption(option =>
+        option
+          .setName("time")
+          .setDescription("有効期限(0で無限)")
+          .setRequired(true))  
+      .addIntegerOption(option =>
+        option
+          .setName("use")
+          .setDescription("使用回数(0で無限)")
+          .setRequired(true))
   },
   inviter:{
     type: "info",
@@ -607,7 +724,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("inviter")
+      .setDescription("招待ランキングを表示します"),
   },
   invites:{
     type: "info",
@@ -620,7 +740,14 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("invites")
+      .setDescription("サーバーやユーザーの招待一覧を表示します")
+      .addUserOption(option =>
+        option
+          .setName("user")
+          .setDescription("表示するユーザー"))
   },
   kick:{
     type: "manage",
@@ -633,7 +760,19 @@ module.exports = {
     botPermission:[
       "メンバーをKICK"
     ],
-    note: "サーバーに存在してるメンバーしかKICKできません"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("kick")
+      .setDescription("メンバーをサーバーからキックします")
+      .addUserOption(option =>
+        option
+          .setName("user")
+          .setDescription("キックするメンバー")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("reason")
+          .setDescription("理由"))
   },
   leaderboard:{
     type: "money",
@@ -646,7 +785,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("leaderboard")
+      .setDescription("お金持ちランキングを表示します"),
   },
   log:{
     type: "othor",
@@ -659,7 +801,24 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "json、text形式が使用できます"
+    note: "json、text形式が使用できます",
+    data: new SlashCommandBuilder()
+      .setName("log")
+      .setDescription("チャットの履歴を出力します")
+      .addStringOption(option =>
+        option
+          .setName("format")
+          .setDescription("出力する形式")
+          .setRequired(true)
+          .addChoices(
+            { name: "JSON", value: "json" },
+            { name: "TEXT", value: "txt" }
+          ))
+      .addIntegerOption(option =>
+        option
+          .setName("limit")
+          .setDescription("取得数")
+          .setRequired(true))
   },
   lottery:{
     type: "fun",
@@ -672,7 +831,20 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("lottery")
+      .setDescription("指定したロールを持っているメンバーから指定した人数を選びます")
+      .addIntegerOption(option =>
+        option
+          .setName("number")
+          .setDescription("選ぶ人数")
+          .setRequired(true))
+      .addRoleOption(option =>
+        option
+          .setName("role")
+          .setDescription("対象のロール")
+          .setRequired(true))
   },
   math:{
     type: "tool",
@@ -685,7 +857,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("math")
+      .setDescription("式を計算します")  
+      .addStringOption(option =>
+        option
+          .setName("code")
+          .setDescription("計算式")
+          .setRequired(true))
   },
   mc:{
     type: "tool",
@@ -698,7 +878,24 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("mc")
+      .setDescription("マインクラフトサーバーの情報を表示します")
+      .addStringOption(option =>
+        option
+          .setName("edition")
+          .setDescription("エディション")
+          .setRequired(true)
+          .addChoices(
+            { name: "Java版", value: "je" },
+            { name: "統合版", value: "be" }
+          ))
+      .addStringOption(option =>
+        option
+          .setName("ip")
+          .setDescription("サーバーアドレス")
+          .setRequired(true))
   },
   miq:{
     type: "fun",
@@ -711,7 +908,28 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("miq")
+      .setDescription("Make it a Quoteを生成します")
+      .addStringOption(option =>
+        option
+          .setName("type")
+          .setDescription("生成する種類")
+          .setRequired(true)
+          .addChoices(
+            { name: "標準", value: "normal" },
+            { name: "カラー", value: "color" },
+            { name: "位置反転", value: "reverse" },
+            { name: "色反転", value: "white" },
+            { name: "位置反転・カラー", value: "reverseColor"},
+            { name: "位置反転・色反転", value: "reverseWhite" }
+      ))
+      .addStringOption(option =>
+        option
+          .setName("text")
+          .setDescription("表示するテキスト")
+          .setRequired(true))
   },
   moderate:{
     type: "manage",
@@ -724,7 +942,24 @@ module.exports = {
     botPermission:[
       "サーバーの管理"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("moderate")
+      .setDescription("AutoModを使用したモデレート機能を設定します")  
+      .addStringOption(option =>
+        option
+          .setName("type")
+          .setDescription("設定する機能")
+          .setRequired(true)
+          .addChoices(
+            { name: "スパム", value: "spam" },
+            { name: "メンションスパム", value: "mention" },
+            { name: "招待リンク", value: "invite" },
+            { name: "リンク", value: "link" },
+            { name: "大文字スパム", value: "capital"},
+            { name: "トークン", value: "token" },
+            { name: "リセット", value: "reset" }
+          ))
   },
   money:{
     type: "money",
@@ -737,7 +972,14 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("money")
+      .setDescription("ユーザーの所持金を確認します")
+      .addUserOption(option =>
+        option
+          .setName("user")
+          .setDescription("対象のユーザー"))
   },
   news:{
     type: "tool",
@@ -750,7 +992,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("news")
+      .setDescription("ニュースを表示します")
   },
   npm:{
     type: "search",
@@ -763,7 +1008,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("npm")
+      .setDescription("NPMパッケージを検索します")
+      .addStringOption(option =>
+        option
+          .setName("name")
+          .setDescription("検索ワード")
+          .setRequired(true))
   },
   nslookup:{
     type: "tool",
@@ -776,7 +1029,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("nslookup")
+      .setDescription("DNS情報を取得します")
+      .addStringOption(option =>
+        option
+          .setName("name")
+          .setDescription("取得するアドレス")
+          .setRequired(true))
   },
   omikuji:{
     type: "fun",
@@ -789,7 +1050,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("omikuji")
+      .setDescription("おみくじを引きます")
   },
   panel:{
     type: "manage",
@@ -804,7 +1068,47 @@ module.exports = {
       "チャンネルの閲覧",
       "メッセージの送信"
     ],
-    note: "同じロールは選択できません\n最大10個までロールを選択できます\nロールの付与にはレート制限があります"
+    note: "同じロールは選択できません\n最大8個までロールを選択できます\nロールの付与にはレート制限があります",
+    data: new SlashCommandBuilder()
+      .setName("panel")
+      .setDescription("役職パネルを作成します")  
+      .addRoleOption(option =>
+        option
+          .setName("role_1")
+          .setDescription("役職1")
+          .setRequired(true))
+      .addRoleOption(option =>
+        option
+          .setName("role_2")
+          .setDescription("役職2"))
+      .addRoleOption(option =>
+        option
+          .setName("role_3")
+          .setDescription("役職3"))
+      .addRoleOption(option =>
+        option
+          .setName("role_4")
+          .setDescription("役職4"))
+      .addRoleOption(option =>
+        option
+          .setName("role_5")
+          .setDescription("役職5"))
+      .addRoleOption(option =>
+        option
+          .setName("role_6")
+          .setDescription("役職6"))
+      .addRoleOption(option =>
+        option
+          .setName("role_7")
+          .setDescription("役職7"))
+      .addRoleOption(option =>
+        option
+          .setName("role_8")
+          .setDescription("役職8"))
+      .addStringOption(option =>
+        option
+          .setName("title")
+          .setDescription("タイトル"))
   },
   pay:{
     type: "money",
@@ -817,7 +1121,24 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "グローバルチャットの色変更(黄色): 一回10円"
+    note: "グローバルチャットの色変更(黄色): 一回10円",
+    data: new SlashCommandBuilder()
+      .setName("pay")
+      .setDescription("所持金を使用して機能を購入します")  
+      .addStringOption(option =>
+        option
+          .setName("type")
+          .setDescription("買う機能")
+          .setRequired(true)
+          .addChoices(
+            { name: "一回10円: グローバルチャットの表示色(黄色)", value: "yellow" },
+            { name: "一回100円: グローバルチャットの表示色(赤色)", value: "red" }
+          ))
+      .addIntegerOption(option =>
+        option
+          .setName("count")
+          .setDescription("買う回数")
+          .setRequired(true))
   },
   permission:{
     type: "info",
@@ -830,7 +1151,14 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("permission")
+      .setDescription("ユーザーの権限を表示します")
+      .addUserOption(option =>
+        option
+          .setName("user")
+          .setDescription("表示するユーザー"))
   },
   poll:{
     type: "tool",
@@ -843,7 +1171,49 @@ module.exports = {
     botPermission:[
       "リアクションの追加"
     ],
-    note: "選択肢は最大12個まで設定できます"
+    note: "選択肢は最大8個まで設定できます",
+    data: new SlashCommandBuilder()
+      .setName("poll")
+      .setDescription("投票を作成します")
+      .addStringOption(option =>
+        option
+          .setName("title")
+          .setDescription("タイトル")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("select_1")
+          .setDescription("選択1")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("select_2")
+          .setDescription("選択2")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("select_3")
+          .setDescription("選択3"))
+      .addStringOption(option =>
+        option
+          .setName("select_4")
+          .setDescription("選択4"))
+      .addStringOption(option =>
+        option
+          .setName("select_5")
+          .setDescription("選択5"))
+      .addStringOption(option =>
+        option
+          .setName("select_6")
+          .setDescription("選択6"))
+      .addStringOption(option =>
+        option
+          .setName("select_7")
+          .setDescription("選択7"))
+      .addStringOption(option =>
+        option
+          .setName("select_8")
+          .setDescription("選択8"))
   },
   pypi:{
     type: "search",
@@ -856,7 +1226,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("pypi")
+      .setDescription("PIPパッケージを検索します")
+      .addStringOption(option =>
+        option
+          .setName("name")
+          .setDescription("検索ワード")
+          .setRequired(true))
   },
   qr:{
     type: "tool",
@@ -869,7 +1247,24 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "読み込むURLは有効なものである必要があります"
+    note: "読み込むURLは有効なものである必要があります",
+    data: new SlashCommandBuilder()
+      .setName("qr")
+      .setDescription("QRコードを読み取り・生成します")
+      .addStringOption(option =>
+        option
+          .setName("type")
+          .setDescription("実行する操作")
+          .setRequired(true)
+          .addChoices(
+            { name: "生成", value: "gen" },
+            { name: "読み取り", value: "read" }
+          ))
+      .addStringOption(option =>
+        option
+          .setName("text")
+          .setDescription("テキスト・URL")
+          .setRequired(true))
   },
   random:{
     type: "fun",
@@ -882,7 +1277,52 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("random")
+      .setDescription("ランダムで選びます")
+      .addStringOption(option =>
+        option
+          .setName("select_1")
+          .setDescription("選択1")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("select_2")
+          .setDescription("選択2")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("select_3")
+          .setDescription("選択3"))
+      .addStringOption(option =>
+        option
+          .setName("select_4")
+          .setDescription("選択4"))
+      .addStringOption(option =>
+        option
+          .setName("select_5")
+          .setDescription("選択5"))
+      .addStringOption(option =>
+        option
+          .setName("select_6")
+          .setDescription("選択6"))
+      .addStringOption(option =>
+        option
+          .setName("select_7")
+          .setDescription("選択7"))
+      .addStringOption(option =>
+        option
+          .setName("select_8")
+          .setDescription("選択8"))
+      .addStringOption(option =>
+        option
+          .setName("select_9")
+          .setDescription("選択9"))
+      .addStringOption(option =>
+        option
+          .setName("select_10")
+          .setDescription("選択10"))
   },
   reload:{
     type: "bot",
@@ -895,7 +1335,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("reload")
+      .setDescription("BOTのリロードをします"),
   },
   reset:{
     type: "manage",
@@ -910,7 +1353,10 @@ module.exports = {
       "チャンネルの閲覧",
       "メッセージの送信"
     ],
-    note: "なし"
+    note: "実行して確認ボタンを押すことでリセットできます",
+    data: new SlashCommandBuilder()
+      .setName("reset")
+      .setDescription("実行したチャンネルを完全にリセットします")
   },
   retranslate:{
     type: "fun",
@@ -923,7 +1369,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("retranslate")
+      .setDescription("様々な言語で翻訳を10回繰り返します")
+      .addStringOption(option =>
+        option
+          .setName("text")
+          .setDescription("再翻訳するテキスト")
+          .setRequired(true))
   },
   role:{
     type: "info",
@@ -936,7 +1390,15 @@ module.exports = {
     botPermission:[
         "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("role")
+      .setDescription("役職の内容を表示します")
+      .addRoleOption(option =>
+        option
+          .setName("name")
+          .setDescription("表示するロール")
+          .setRequired(true))
   },
   rolecount:{
     type: "info",
@@ -949,7 +1411,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("rolecount")
+      .setDescription("それぞれのロールを持っている人数と割合を表示します")
   },
   safeweb:{
     type: "tool",
@@ -962,7 +1427,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "指定するURLは有効なものである必要があります"
+    note: "指定するURLは有効なものである必要があります",
+    data: new SlashCommandBuilder()
+      .setName("safeweb")
+      .setDescription("Webサイトの安全性を評価します")
+      .addStringOption(option =>
+        option
+          .setName("url")
+          .setDescription("対象のURL")
+          .setRequired(true))
   },
   script:{
     type: "tool",
@@ -975,7 +1448,20 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("script")
+      .setDescription("プログラムを実行します")
+      .addStringOption(option =>
+        option
+          .setName("lang")
+          .setDescription("実行する言語")
+          .setRequired(true)
+          .addChoices(
+            { name: "JavaScript", value: "JavaScript" },
+            { name: "Python", value: "Python" },
+            { name: "Bash", value: "Bash" }
+          ))
   },
   search:{
     type: "search",
@@ -988,7 +1474,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("search")
+      .setDescription("Yahooで検索し表示します")
+      .addStringOption(option =>
+        option
+          .setName("word")
+          .setDescription("検索ワード")
+          .setRequired(true))
   },
   server:{
     type: "info",
@@ -1001,7 +1495,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("server")
+      .setDescription("サーバーの情報を表示します")
   },
   setting:{
     type: "manage",
@@ -1016,7 +1513,58 @@ module.exports = {
       "メッセージの送信",
       "ウェブフックの管理"
     ],
-    note: "詳細は`/setting help`を実行してください"
+    note: "詳細は`/setting help`を実行してください",
+    data: new SlashCommandBuilder()
+      .setName("setting")
+      .setDescription("サーバーの設定を変更します")
+      .addSubcommand(subcommand =>
+        subcommand
+          .setName("help")
+          .setDescription("設定のヘルプを表示します"))
+      .addSubcommand(subcommand =>
+        subcommand
+          .setName("bump")
+          .setDescription("BUMP時に通知するロールを設定します")
+          .addRoleOption(option =>
+            option
+              .setName("role")
+              .setDescription("通知するロール(無効にする場合は入力しないでください")))
+      .addSubcommand(subcommand =>
+        subcommand
+          .setName("dissoku")
+          .setDescription("Dissoku UP時に通知するロールを設定します")
+          .addRoleOption(option =>
+            option
+              .setName("role")
+              .setDescription("通知するロール(無効にする場合は入力しないでください)")))
+      .addSubcommand(subcommand =>
+        subcommand
+          .setName("join")
+          .setDescription("参加メッセージを設定します")
+          .addStringOption(option =>
+              option
+                .setName("message")
+                .setDescription("送信するメッセージ")))
+      .addSubcommand(subcommand =>
+        subcommand
+          .setName("leave")
+          .setDescription("退出メッセージを設定します")
+          .addStringOption(option =>
+              option
+                .setName("message")
+                .setDescription("送信するメッセージ")))
+      .addSubcommand(subcommand =>
+        subcommand
+          .setName("ignore")
+          .setDescription("Bump通知・Dissoku通知・メッセージ展開の有効・無効を切り替えます"))
+      .addSubcommand(subcommand =>
+        subcommand
+          .setName("info")
+          .setDescription("データベースの設定状況を表示します"))
+      .addSubcommand(subcommand =>
+        subcommand
+          .setName("delete")
+          .setDescription("データベースに登録されてるサーバーの情報を全て削除します"))
   },
   short:{
     type: "tool",
@@ -1029,7 +1577,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "指定するURLは有効なものである必要があります"
+    note: "指定するURLは有効なものである必要があります",
+    data: new SlashCommandBuilder()
+      .setName("short")
+      .setDescription("短縮URLを作成します")
+      .addStringOption(option =>
+        option
+          .setName("url")
+          .setDescription("短縮するURL")
+          .setRequired(true))
   },
   skin:{
     type: "tool",
@@ -1042,7 +1598,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "Java版専用です"
+    note: "Java版専用です",
+    data: new SlashCommandBuilder()
+      .setName("skin")
+      .setDescription("マインクラフトのスキンを検索します")
+      .addStringOption(option =>
+        option
+          .setName("name")
+          .setDescription("ユーザー名")
+          .setRequired(true))
   },
   slowmode:{
     type: "manage",
@@ -1055,7 +1619,15 @@ module.exports = {
     botPermission:[
       "チャンネルの管理"
     ],
-    note: "秒単位で低速を設定することができます"
+    note: "秒単位で低速を設定することができます",
+    data: new SlashCommandBuilder()
+      .setName("slowmode")
+      .setDescription("チャンネルに低速モードを設定します")
+      .addIntegerOption(option =>
+        option
+          .setName("time")
+          .setDescription("設定する秒数")
+          .setRequired(true))
   },
   snowflake:{
     type: "othor",
@@ -1068,7 +1640,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "有効な[Snowflake](https://discord.com/developers/docs/reference#snowflakes)である必要があります"
+    note: "有効な[Snowflake](https://discord.com/developers/docs/reference#snowflakes)である必要があります",
+    data: new SlashCommandBuilder()
+      .setName("snowflake")
+      .setDescription("Snowflakeを解析します")
+      .addStringOption(option =>
+        option
+          .setName("id")
+          .setDescription("解析するID")
+          .setRequired(true))
   },
   status:{
     type: "bot",
@@ -1081,7 +1661,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("status")
+      .setDescription("BOTのステータスを表示します")
   },
   system:{
     type: "bot",
@@ -1094,7 +1677,32 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("system")
+      .setDescription("BOTの管理をします")
+      .addStringOption(option =>
+        option
+          .setName("type")       
+          .setDescription("操作")
+          .setRequired(true)
+          .addChoices(
+            { name: "金額", value: "money" },
+            { name: "脱退", value: "leave" },
+            { name: "グローバルチャットから削除", value: "delete" },
+            { name: "ミュート/解除(サーバー)", value: "mute_server" },
+            { name: "ミュート/解除(ユーザー)", value: "mute_user" },
+            { name: "DM", value: "dm" }
+          ))
+      .addStringOption(option =>
+        option
+          .setName("id")
+          .setDescription("操作する対象のID")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("message")
+          .setDescription("メッセージ/理由/金額"))
   },
   ticket:{
     type: "manage",
@@ -1110,7 +1718,10 @@ module.exports = {
       "チャンネルの管理",
       "メッセージの送信"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("ticket")
+      .setDescription("お問い合わせ機能を作成します")
   },
   timeout:{
     type: "manage",
@@ -1123,7 +1734,23 @@ module.exports = {
     botPermission:[
       "メンバーのモデレート"
     ],
-    note: "秒単位でタイムアウトすることができます\n秒が指定されない場合デフォルト(30秒)になります"
+    note: "秒単位でタイムアウトすることができます\n秒が指定されない場合デフォルト(30秒)になります",
+    data: new SlashCommandBuilder()
+      .setName("timeout")
+      .setDescription("メンバーをタイムアウトします")
+      .addUserOption(option =>
+        option
+          .setName("user")
+          .setDescription("ユーザーID・メンション")
+          .setRequired(true))
+      .addIntegerOption(option =>
+        option
+          .setName("time")
+          .setDescription("時間(秒)"))
+      .addStringOption(option =>
+        option
+          .setName("reason")
+          .setDescription("理由"))
   },
   top:{
     type: "othor",
@@ -1137,7 +1764,10 @@ module.exports = {
       "チャンネルの閲覧",
       "メッセージ履歴の閲覧"
     ],
-    note: "なし"
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("top")
+      .setDescription("チャンネルの最初のメッセージのリンクを表示します"),
   },
   translate:{
     type: "tool",
@@ -1150,7 +1780,29 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "Google翻訳を使用して翻訳されています"
+    note: "Google翻訳を使用して翻訳されています",
+    data: new SlashCommandBuilder()
+      .setName("translate")
+      .setDescription("テキストを翻訳します")
+      .addStringOption(option =>
+        option
+          .setName("text")
+          .setDescription("翻訳するテキスト")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("lang")
+          .setDescription("翻訳先の言語")
+          .setRequired(true)
+          .addChoices(
+            { name: "日本語", value: "ja" },
+            { name: "英語", value: "en" },
+            { name: "韓国語", value: "ko" },
+            { name: "中国語", value: "zh" },
+            { name: "ロシア語", value: "ru" },
+            { name: "フランス語", value: "fr" },
+            { name: "ドイツ語", value: "de" }
+          ))
   },
   twitter:{
     type: "search",
@@ -1163,7 +1815,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "検索ワードに`id:ユーザー名`を指定することで特定のユーザーのツイートを取得できます"
+    note: "検索ワードに`id:ユーザー名`を指定することで特定のユーザーのツイートを取得できます",
+    data: new SlashCommandBuilder()
+      .setName("twitter")
+      .setDescription("ツイートを検索します")
+      .addStringOption(option =>
+        option
+          .setName("word")
+          .setDescription("検索ワード")
+          .setRequired(true))
   },
   user:{
     type: "info",
@@ -1176,7 +1836,14 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "メンバー情報も取得できる場合は詳細情報まで表示します"
+    note: "メンバー情報も取得できる場合は詳細情報まで表示します",
+    data: new SlashCommandBuilder()
+      .setName("user")
+      .setDescription("ユーザーの情報を表示します")
+      .addStringOption(option =>
+        option
+          .setName("id")
+          .setDescription("ユーザーID・メンション"))
   },
   warn:{
     type: "manage",
@@ -1189,7 +1856,20 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "メンバーがDMを拒否している場合警告できません"
+    note: "メンバーがDMを拒否している場合警告できません",
+    data: new SlashCommandBuilder()
+      .setName("warn")
+      .setDescription("メンバーを警告します")
+      .addUserOption(option =>
+        option
+          .setName("user")
+          .setDescription("対象のメンバー")
+          .setRequired(true))
+      .addStringOption(option =>
+        option
+          .setName("reason")
+          .setDescription("理由")
+          .setRequired(true))
   },
   webshot:{
     type: "tool",
@@ -1202,7 +1882,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "指定するURLは有効なものである必要があります\n一部のサイトはスクリーンショットが撮影できない場合があります"
+    note: "指定するURLは有効なものである必要があります\n一部のサイトはスクリーンショットが撮影できない場合があります",
+    data: new SlashCommandBuilder()
+      .setName("webshot")
+      .setDescription("Webサイトのスクリーンショットを撮影します")
+      .addStringOption(option =>
+        option
+          .setName("url")
+          .setDescription("対象のURL")
+          .setRequired(true))
   },
   wiki:{
     type: "search",
@@ -1215,7 +1903,15 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"     
+    note: "なし" ,
+    data: new SlashCommandBuilder()
+      .setName("wiki")
+      .setDescription("wikipediaで検索し表示します")
+      .addStringOption(option =>
+        option
+          .setName("word")
+          .setDescription("検索ワード")
+          .setRequired(true))
   },
   work:{
     type: "money",
@@ -1228,7 +1924,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "100円から500円のお金が貰えます"     
+    note: "100円から500円のお金が貰えます",
+    data: new SlashCommandBuilder()
+      .setName("work")
+      .setDescription("20分に1回お金をもらえます")
   },
   アバターを表示:{
     type: "contextmenu",
@@ -1241,7 +1940,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "サーバーで違うアイコンを設定してる場合は両方表示されます"
+    note: "サーバーで違うアイコンを設定してる場合は両方表示されます",
+    data: new ContextMenuCommandBuilder()
+      .setName("アバターを表示")
+      .setType(ApplicationCommandType.User)
   },
   メンバー情報を表示:{
     type: "contextmenu",
@@ -1254,7 +1956,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "サーバーに存在しないメンバーは表示できません"
+    note: "サーバーに存在しないメンバーは表示できません",
+    data: new ContextMenuCommandBuilder()
+      .setName("メンバー情報を表示")
+      .setType(ApplicationCommandType.User)
   },
   Make_it_a_Quote:{
     type: "contextmenu",
@@ -1267,7 +1972,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "サーバーに存在しないメンバーは表示できません"
+    note: "なし",
+    data: new ContextMenuCommandBuilder()
+      .setName("Make it a Quote")
+      .setType(ApplicationCommandType.Message)
   },
   権限を表示:{
     type: "contextmenu",
@@ -1280,7 +1988,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new ContextMenuCommandBuilder()
+      .setName("権限を表示")
+      .setType(ApplicationCommandType.User)
   },
   メッセージをピン留め:{
     type: "contextmenu",
@@ -1297,7 +2008,10 @@ module.exports = {
       "メッセージの送信",
       "メッセージの管理"
     ],
-    note: "連投し続けると3分間制限がかかります"
+    note: "連投し続けると3分間制限がかかります",
+    data: new ContextMenuCommandBuilder()
+      .setName("メッセージをピン留め")
+      .setType(ApplicationCommandType.Message)
   },
   メッセージを報告:{
     type: "contextmenu",
@@ -1310,7 +2024,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "報告されたメッセージの周囲のメッセージも送信されます"
+    note: "報告されたメッセージの周囲のメッセージも送信されます",
+    data: new ContextMenuCommandBuilder()
+      .setName("メッセージを報告")
+      .setType(ApplicationCommandType.Message)
   },
   英語に翻訳:{
     type: "contextmenu",
@@ -1323,7 +2040,10 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data: new ContextMenuCommandBuilder()
+      .setName("英語に翻訳")
+      .setType(ApplicationCommandType.Message)
   },
   日本語に翻訳:{
     type: "contextmenu",
@@ -1336,6 +2056,9 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし"
+    note: "なし",
+    data:  new ContextMenuCommandBuilder()
+      .setName("日本語に翻訳")
+      .setType(ApplicationCommandType.Message)
   }
 }

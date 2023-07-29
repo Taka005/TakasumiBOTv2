@@ -2,7 +2,7 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isContextMenuCommand()) return;
-  if(interaction.commandName === "View Member Information"){
+  if(interaction.commandName === "メンバー情報を表示"){
     const member = interaction.options.getMember("user");
 
     const status = {

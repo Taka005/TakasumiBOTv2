@@ -1,7 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isContextMenuCommand()) return;
-  if(interaction.commandName === "View Avatar"){
+  if(interaction.commandName === "アバターを表示"){
     const member = interaction.options.getMember("user");
 
     if(!member) return await interaction.reply({

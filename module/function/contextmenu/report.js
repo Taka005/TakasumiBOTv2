@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   const config = require("../../../config.json");
   const fetchMessage = require("../../lib/fetchMessage");
   if(!interaction.isContextMenuCommand()) return;
-  if(interaction.commandName === "Report Message"){
+  if(interaction.commandName === "メッセージを報告"){
     const message = interaction.options.getMessage("message");
 
     if(

@@ -2,7 +2,7 @@ module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { Colors } = require("discord.js");
   if(!interaction.isContextMenuCommand()) return;
-  if(interaction.commandName === "Translate To Japanese"){
+  if(interaction.commandName === "日本語に翻訳"){
     const message = interaction.options.getMessage("message");
     
     if(!message.content) return await interaction.reply({
