@@ -9,7 +9,7 @@ module.exports = async(client)=>{
   await rest.put(
     Routes.applicationCommands(client.application.id),
       { 
-        body: [
+        body:[
           //Slashcommand
           //5000
           new SlashCommandBuilder()

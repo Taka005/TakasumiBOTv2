@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           title: "HELP 情報",
           fields: Object.values(list).filter(command=>command.type === "info").map((command)=>({
-            name: `/${command.name}`,
+            name: `${command.name}`,
             value: command.description
           }))
         }],
@@ -31,7 +31,8 @@ module.exports = async(interaction)=>{
                   { label: "ネタ", value: "fun" },
                   { label: "お金", value: "money" },
                   { label: "Bot関連", value: "bot" },
-                  { label: "その他", value: "othor" }
+                  { label: "その他", value: "othor" },
+                  { label: "コンテキストメニュー", value: "contextmenu" }
                 ]))
         ]
       });
@@ -40,10 +41,10 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "コマンドが存在しません",
+            name: "コマンド・機能が存在しません",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          description: "`/help`を実行してコマンド一覧を確認してください"
+          description: "`/help`を実行してコマンド・機能一覧を確認してください"
         }],
         ephemeral: true
       });
@@ -51,7 +52,7 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
-          title: `/${command}の使用方法`,
+          title: `${list[command].name}の使用方法`,
           description: list[command].description,
           fields:[
             {

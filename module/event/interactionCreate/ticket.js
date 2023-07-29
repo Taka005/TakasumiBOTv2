@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
       name: interaction.user.id,
       permissionOverwrites:[{
         id: interaction.guild.roles.everyone,
-        deny: [PermissionFlagsBits.ViewChannel]
+        deny:[PermissionFlagsBits.ViewChannel]
       }],
       parent: channel.id
     })
