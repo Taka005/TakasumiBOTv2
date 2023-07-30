@@ -13,6 +13,7 @@ module.exports = async(interaction)=>{
       "search": "検索",
       "fun": "ネタ",
       "money": "お金",
+      "server": "サーバー掲示板",
       "bot": "Bot関連",
       "othor": "その他",
       "contextmenu": "コンテキストメニュー"

@@ -790,6 +790,22 @@ module.exports = {
       .setName("leaderboard")
       .setDescription("お金持ちランキングを表示します"),
   },
+  list:{
+    type: "server",
+    name: "/list",
+    description: "サーバー掲示板の簡易版を表示します",
+    example: "`/list`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "Webサイトで全てのサーバーを閲覧できます",
+    data: new SlashCommandBuilder()
+      .setName("list")
+      .setDescription("サーバー掲示板の簡易版を表示します"),
+  },
   log:{
     type: "othor",
     name: "/log",
@@ -1324,6 +1340,22 @@ module.exports = {
           .setName("select_10")
           .setDescription("選択10"))
   },
+  register:{
+    type: "server",
+    name: "/register",
+    description: "サーバー掲示板に登録、削除を行います",
+    example: "`/register`",
+    userPermission:[
+      "所有者"
+    ],
+    botPermission:[
+      "招待リンクの作成"
+    ],
+    note: "TakasumiBOT Authによる認証が必要です",
+    data: new SlashCommandBuilder()
+      .setName("register")
+      .setDescription("サーバー掲示板に登録、削除を行います"),
+  },
   reload:{
     type: "bot",
     name: "/reload",
@@ -1824,6 +1856,22 @@ module.exports = {
           .setName("word")
           .setDescription("検索ワード")
           .setRequired(true))
+  },
+  up:{
+    type: "server",
+    name: "/up",
+    description: "サーバー掲示板の表示順位を上げます",
+    example: "`/up`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "招待リンクの作成"
+    ],
+    note: "BOTの権限が不十分だと自動的に登録が解除される場合があります",
+    data: new SlashCommandBuilder()
+      .setName("up")
+      .setDescription("サーバー掲示板の表示順位を上げます"),
   },
   user:{
     type: "info",

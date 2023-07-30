@@ -562,10 +562,11 @@ module.exports = async(interaction)=>{
       const dissoku = await db(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const global = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const hiroyuki = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`); 
+      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
       const join = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const leave = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const pin = await db(`SELECT * FROM pin WHERE server = ${interaction.guild.id};`);
+      const server = await db(`SELECT * FROM server WHERE id = ${interaction.guild.id} LIMIT 1;`);
 
       await interaction.reply({
         embeds:[{
@@ -586,13 +587,18 @@ module.exports = async(interaction)=>{
               inline: true
             },
             {
+              name: "サーバー掲示板",
+              value: server[0] ? "登録済み":"未登録",
+              inline: true
+            },
+            {
               name: "グローバルチャット",
-              value: global[0] ? "設定済み":"未設定",
+              value: global[0] ? "登録済み":"未登録",
               inline: true
             },
             {
               name: "ひろゆき",
-              value: hiroyuki[0] ? "設定済み":"未設定",
+              value: hiroyuki[0] ? "登録済み":"未登録",
               inline: true
             },
             {
@@ -614,7 +620,7 @@ module.exports = async(interaction)=>{
               name: "ピン",
               value: `${pin.length}個設定済み`,
               inline: true
-            },
+            }
           ]
         }]
       });
@@ -645,6 +651,7 @@ module.exports = async(interaction)=>{
       await db(`DELETE FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
       await db(`DELETE FROM \`join\` WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM \`leave\` WHERE server = ${interaction.guild.id};`);
+      await db(`DELETE FROM server WHERE id = ${interaction.guild.id};`);
 
       await interaction.reply({
         content: `<@${interaction.user.id}>`,
