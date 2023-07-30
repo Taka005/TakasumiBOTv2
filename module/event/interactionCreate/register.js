@@ -3,16 +3,16 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId === "register"){
-    const text = JSON.stringify(interaction.fields.getTextInputValue("text"));
-console.log(text.slice("\n"))
-    if(text.slice("\n").length > 5) return await interaction.reply({
+    const text = interaction.fields.getTextInputValue("text");
+console.log(text.split("\n"))
+    if(text.split("\n").length > 10) return await interaction.reply({
       embeds:[{
         author:{
           name: "登録出来ませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
-        description: "サーバーの説明の改行数は5行以下にしてください"
+        description: "サーバーの説明の改行数は10行以下にしてください"
       }],
       ephemeral: true
     });
