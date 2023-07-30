@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "list"){
 
     const servers = await Promise.all((await db(`SELECT * FROM server;`))
-      .sort((s1,s2)=>new Date(s1.time) - new Date(s1.time))
+      .sort((s1,s2)=>new Date(s1.time) - new Date(s2.time))
       .map(async(server)=>({
         guild: await fetchGuild(interaction.client,server.id),
         url: `https://discord.gg/${server.code}`,
