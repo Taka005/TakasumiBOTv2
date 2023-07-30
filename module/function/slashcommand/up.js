@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const fetchInvite = require("../../lib/fetchInvite");
   if(!interaction.isChatInputCommand()) return;
@@ -73,7 +73,7 @@ module.exports = async(interaction)=>{
       }
     }
 
-    if(new Date()-new Date(server[0].time)<3600000) return await interaction.reply({
+    if(new Date()-new Date(data[0].time)<3600000) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
