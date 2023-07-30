@@ -13,6 +13,7 @@ module.exports = async(interaction)=>{
         url: `https://discord.gg/${server.code}`,
         time: time(new Date()-new Date(server.time))
       }));
+    console.log(servers)
 
     servers.length = 10;
 
