@@ -85,7 +85,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await db(`UPDATE server SET time = "NOW()" WHERE id = ${interaction.guild.id}`);
+    await db(`UPDATE server SET time = NOW() WHERE id = ${interaction.guild.id}`);
     await interaction.reply({
       embeds:[{
         color: Colors.Green,
