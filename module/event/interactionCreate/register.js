@@ -4,8 +4,8 @@ module.exports = async(interaction)=>{
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId === "register"){
     const text = interaction.fields.getTextInputValue("text");
-
-    if((text.match(/\n/g)||[]).length > 5) return await interaction.reply({
+console.log(text)
+    if(text.slice("\n").length > 5) return await interaction.reply({
       embeds:[{
         author:{
           name: "登録出来ませんでした",
