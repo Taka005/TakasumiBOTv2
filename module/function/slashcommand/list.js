@@ -11,11 +11,11 @@ module.exports = async(interaction)=>{
       .map(async(server)=>({
         guild: await fetchGuild(interaction.client,server.id),
         url: `https://discord.gg/${server.code}`,
-        text: server.text.length > 50 ? `${server.text.slice(0,50)}...` : server.text,
+        text: server.text,
         time: time(new Date()-new Date(server.time))
       })));
 
-    servers.length = 6;
+    servers.length = 5;
 
     await interaction.reply({
       embeds:[{
