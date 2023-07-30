@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ContextMenuCommandBuilder, ApplicationCommandType, REST, Colors, Routes } = require("discord.js");
+const { SlashCommandBuilder, ContextMenuCommandBuilder, ApplicationCommandType, Colors } = require("discord.js");
 
 module.exports = {
   5000:{
@@ -2057,7 +2057,7 @@ module.exports = {
       "必要なし"
     ],
     note: "なし",
-    data:  new ContextMenuCommandBuilder()
+    data: new ContextMenuCommandBuilder()
       .setName("日本語に翻訳")
       .setType(ApplicationCommandType.Message)
   }
