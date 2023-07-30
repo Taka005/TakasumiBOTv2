@@ -5,7 +5,7 @@ module.exports = async(interaction)=>{
   if(interaction.customId === "register"){
     const text = interaction.fields.getTextInputValue("text")
       .replace("\n","\\n");
-console.log(text)
+console.log(JSON.stringify(text))
     if(text.slice("\n").length > 5) return await interaction.reply({
       embeds:[{
         author:{
