@@ -3,9 +3,8 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId === "register"){
-    const text = interaction.fields.getTextInputValue("text")
-      //.replace("\n","\\n");
-console.log(JSON.stringify(text))
+    const text = JSON.stringify(interaction.fields.getTextInputValue("text"));
+
     if(text.slice("\n").length > 5) return await interaction.reply({
       embeds:[{
         author:{
