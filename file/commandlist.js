@@ -1850,9 +1850,9 @@ module.exports = {
       "必要なし"
     ],
     botPermission:[
-      "必要なし"
+      "招待リンクの作成"
     ],
-    note: "なし",
+    note: "BOTの権限が不十分だと自動的に登録が解除される場合があります",
     data: new SlashCommandBuilder()
       .setName("up")
       .setDescription("サーバー掲示板の表示順位を上げます"),

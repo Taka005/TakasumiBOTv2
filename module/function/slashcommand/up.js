@@ -46,6 +46,7 @@ module.exports = async(interaction)=>{
             await db(`UPDATE server SET code = "${invite.code}" WHERE id = ${interaction.guild.id}`);
           });
       }catch(error){
+        await db(`DELETE FROM server WHERE id = ${interaction.guild.id};`);
         return await interaction.reply({
           embeds:[{
             color: Colors.Red,
