@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, ModalBuilder, TextInputBuilder, TextInputStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "register"){
@@ -97,50 +97,23 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await interaction.channel.createInvite({
-        "unique": true,
-        "maxAge": 0
-      })
-        .then(async(invite)=>{
-          await db(`INSERT INTO server (id, owner, code, time) VALUES("${interaction.guild.id}","${interaction.guild.ownerId}}","${invite.code}",NOW());`);
+      const register = new ModalBuilder()
+      .setCustomId("register")
+      .setTitle("サーバー掲示板登録");
 
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: "登録しました",
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
-              },
-              description: "サーバー掲示板に公開されます"
-            }]
-          });
-        })
-        .catch(async(error)=>{
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Red,
-              author:{
-                name: "登録できませんでした",
-                icon_url: "https://cdn.taka.cf/images/system/error.png"
-              },
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            components:[
-              new ActionRowBuilder()
-                .addComponents( 
-                  new ButtonBuilder()
-                    .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
-                    .setStyle(ButtonStyle.Link))
-            ],
-            ephemeral: true
-          });
-        });
+      const text = new TextInputBuilder()
+        .setCustomId("text")
+        .setLabel("サーバーの説明文")
+        .setMaxLength(200)
+        .setRequired(true)
+        .setStyle(TextInputStyle.Paragraph);
+        
+      register.addComponents(
+        new ActionRowBuilder()
+          .addComponents(text)
+      );
+      
+      await interaction.showModal(register); 
     }
   }
 }

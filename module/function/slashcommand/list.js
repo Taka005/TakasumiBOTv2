@@ -11,10 +11,11 @@ module.exports = async(interaction)=>{
       .map(async(server)=>({
         guild: await fetchGuild(interaction.client,server.id),
         url: `https://discord.gg/${server.code}`,
+        text: server.text,
         time: time(new Date()-new Date(server.time))
       })));
 
-    servers.length = 10;
+    servers.length = 8;
 
     await interaction.reply({
       embeds:[{
@@ -23,7 +24,7 @@ module.exports = async(interaction)=>{
           name: "サーバー一覧",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: servers.map(server=>`**[${server.guild.name}](${server.url})** - ${server.time}前`).join("\n\n")
+        description: servers.map(server=>`**[${server.guild.name}](${server.url})** - ${server.time}前\n${server.text.slice(0,50)}...`).join("\n\n")
       }]
     });
   }
