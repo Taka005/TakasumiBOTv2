@@ -5,14 +5,14 @@ module.exports = async(interaction)=>{
   if(interaction.customId === "register"){
     const text = interaction.fields.getTextInputValue("text");
 
-    if(text.length > 200) return await interaction.reply({
+    if(text.split("\n").length > 5) return await interaction.reply({
       embeds:[{
         author:{
           name: "登録出来ませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         color: Colors.Red,
-        description: "サーバーの説明文は200文字以内にしてください"
+        description: "サーバーの説明の改行数は5行以下にしてください"
       }],
       ephemeral: true
     });
