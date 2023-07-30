@@ -86,7 +86,7 @@ module.exports = async(interaction)=>{
     delete require.cache[require.resolve("../../../config.json")];
     delete require.cache[require.resolve("../../../package.json")];
     delete require.cache[require.resolve("../../../package-lock.json")];
-    delete require.cache[require.resolve("../../../file/commandlist.json")];
+    delete require.cache[require.resolve("../../../file/commandlist")];
 
     require("../../event/ready/command")(interaction.client);
 

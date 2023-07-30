@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
-  const list = require("../../../file/commandlist.json");
+  const list = require("../../../file/commandlist");
   if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId.startsWith("help_")){
     const id = interaction.customId.split("_");

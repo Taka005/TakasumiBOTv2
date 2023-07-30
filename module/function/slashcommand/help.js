@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const { ActionRowBuilder, StringSelectMenuBuilder, Colors } = require("discord.js");
-  const list = require("../../../file/commandlist.json");
+  const list = require("../../../file/commandlist");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "help"){
     const command = interaction.options.getString("command");
