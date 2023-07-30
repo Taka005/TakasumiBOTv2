@@ -104,7 +104,7 @@ module.exports = async(interaction)=>{
       const text = new TextInputBuilder()
         .setCustomId("text")
         .setLabel("サーバーの説明文")
-        .setMaxLength(150)
+        .setMaxLength(180)
         .setRequired(true)
         .setStyle(TextInputStyle.Paragraph);
         
