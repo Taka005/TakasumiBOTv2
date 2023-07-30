@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "register"){
 
-    if(!interaction.user.id !== interaction.guild.ownerId) return await interaction.reply({
+    if(interaction.user.id !== interaction.guild.ownerId) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
