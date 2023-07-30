@@ -41,7 +41,7 @@ module.exports = async(interaction)=>{
     });
 
     const data = await db(`SELECT * FROM server WHERE id = ${interaction.guild.id} LIMIT 1;`);
-    if(data){
+    if(data[0]){
       await db(`DELETE FROM server WHERE id = ${interaction.guild.id};`);
 
       await interaction.reply({
