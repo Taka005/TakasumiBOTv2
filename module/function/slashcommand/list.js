@@ -14,7 +14,7 @@ module.exports = async(interaction)=>{
         time: time(new Date()-new Date(server.time))
       }));
 
-    server.length = 10;
+    servers.length = 10;
 
     await interaction.reply({
       embeds:[{
