@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "list"){
 
-    const servers = Promise.all((await db(`SELECT * FROM server;`))
+    const servers = await Promise.all((await db(`SELECT * FROM server;`))
       .sort((s1,s2)=>new Date(s1.time) - new Date(s1.time))
       .map(async(server)=>({
         guild: await fetchGuild(interaction.client,server.id),
