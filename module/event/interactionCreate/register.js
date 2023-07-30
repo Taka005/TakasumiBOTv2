@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId === "register"){
