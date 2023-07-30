@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const commnads = require("../../../file/commandlist.json");
+  const commnads = require("../../../file/commandlist");
   if(!interaction.isAutocomplete()) return;
   const focus = interaction.options.getFocused();
 
