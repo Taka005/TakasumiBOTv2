@@ -97,9 +97,12 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await interaction.channel.createInvite({"unique": true})
+      await interaction.channel.createInvite({
+        "unique": true,
+        "maxAge": 0
+      })
         .then(async(invite)=>{
-          await db(`INSERT INTO server (id, owner, link, time) VALUES("${interaction.guild.id}","${interaction.guild.ownerId}}","${invite.url}",NOW());`);
+          await db(`INSERT INTO server (id, owner, code, time) VALUES("${interaction.guild.id}","${interaction.guild.ownerId}}","${invite.code}",NOW());`);
 
           await interaction.reply({
             embeds:[{

@@ -1325,10 +1325,10 @@ module.exports = {
           .setDescription("選択10"))
   },
   register:{
-    type: "bot",
+    type: "server",
     name: "/register",
     description: "サーバー掲示板に登録、削除を行います",
-    example: "`/register",
+    example: "`/register`",
     userPermission:[
       "所有者"
     ],
@@ -1840,6 +1840,22 @@ module.exports = {
           .setName("word")
           .setDescription("検索ワード")
           .setRequired(true))
+  },
+  up:{
+    type: "server",
+    name: "/up",
+    description: "サーバー掲示板の表示順位を上げます",
+    example: "`/up`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("up")
+      .setDescription("サーバー掲示板の表示順位を上げます"),
   },
   user:{
     type: "info",
