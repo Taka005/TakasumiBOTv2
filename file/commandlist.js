@@ -1324,6 +1324,22 @@ module.exports = {
           .setName("select_10")
           .setDescription("選択10"))
   },
+  register:{
+    type: "bot",
+    name: "/register",
+    description: "サーバー掲示板に登録、削除を行います",
+    example: "`/register",
+    userPermission:[
+      "所有者"
+    ],
+    botPermission:[
+      "招待リンクの作成"
+    ],
+    note: "TakasumiBOT Authによる認証が必要です",
+    data: new SlashCommandBuilder()
+      .setName("register")
+      .setDescription("サーバー掲示板に登録、削除を行います"),
+  },
   reload:{
     type: "bot",
     name: "/reload",
