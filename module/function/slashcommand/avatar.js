@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
                 .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
-      })
+      });
     });
   
     const userId = id.match(/\d{17,19}/g);

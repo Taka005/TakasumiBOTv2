@@ -14,8 +14,9 @@ module.exports = async(message)=>{
   if(channel[0]){
     if(limit(message)) return;
     try{
-      const before = await message.client.channels.cache.get(channel[0].channel).messages.fetch({"message":channel[0].message})
+      const before = await message.client.channels.cache.get(channel[0].channel).messages.fetch(channel[0].message)
       await before.delete();
+
       const after = await message.channel.send({
         embeds:[{
           color: Colors.Green,
