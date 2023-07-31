@@ -2056,7 +2056,7 @@ module.exports = {
       "メッセージの送信",
       "メッセージの管理"
     ],
-    note: "連投し続けると3分間制限がかかります",
+    note: "最大6個まで作成できます\n連投し続けると3分間制限がかかります",
     data: new ContextMenuCommandBuilder()
       .setName("メッセージをピン留め")
       .setType(ApplicationCommandType.Message)
