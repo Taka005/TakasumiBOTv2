@@ -43,7 +43,7 @@ module.exports = async(interaction)=>{
           "maxAge": 0
         })
           .then(async(invite)=>{
-            await db(`UPDATE server SET name = ${interaction.guild.name} members = ${interaction.guild.memberCount} code = "${invite.code}" WHERE id = ${interaction.guild.id}`);
+            await db(`UPDATE server SET code = "${invite.code}" WHERE id = ${interaction.guild.id}`);
           });
       }catch(error){
         await db(`DELETE FROM server WHERE id = ${interaction.guild.id};`);
@@ -86,7 +86,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await db(`UPDATE server SET name = ${interaction.guild.name} members = ${interaction.guild.memberCount} time = NOW() WHERE id = ${interaction.guild.id}`);
+    await db(`UPDATE server SET name = ${interaction.guild.name}, members = ${interaction.guild.memberCount}, time = NOW() WHERE id = ${interaction.guild.id}`);
     await interaction.reply({
       embeds:[{
         color: Colors.Green,
