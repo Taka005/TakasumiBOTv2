@@ -2,7 +2,6 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const db = require("../../lib/db");
   const time = require("../../lib/time");
-  const fetchGuild = require("../../lib/fetchGuild");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "list"){
 
