@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { PermissionFlagsBits, Colors } = require("discord.js");
+  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "メッセージをピン留め"){
@@ -82,31 +82,58 @@ module.exports = async(interaction)=>{
           name: "メッセージをピン留めできませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        description: "サーバーには最大5個までしかPINは使えません\nピン留めの解除は送信された埋め込みを削除してください"
+        description: "サーバーには最大6個までしかPINは使えません\nピン留めの解除は送信された埋め込みを削除してください"
       }],
       ephemeral: true
     });
 
-    const msg = await interaction.channel.send({
-      embeds:[{
-        color: Colors.Green,
-        author:{
-          name: message.author.tag,
-          icon_url: message.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
-        },
-        description: message.content,
-        footer:{
-          text: "TakasumiBOT PIN"
-        }
-      }]
-    });
+    try{
+      await interaction.deferReply()
+        .then(()=>interaction.deleteReply())
 
-    await db(`INSERT INTO pin (channel, server, message, count, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}","1", NOW());`);
-    server.forEach(data=>{
-      db(`UPDATE pin SET count=${Number(data.count)+1} WHERE server=${message.guild.id};`);
-    });
+      const msg = await interaction.channel.send({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: message.author.tag,
+            icon_url: message.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
+          },
+          description: message.content,
+          footer:{
+            text: "TakasumiBOT PIN"
+          }
+        }]
+      });
 
-    await interaction.deferReply()
-      .then(()=>interaction.deleteReply())
+      await db(`INSERT INTO pin (channel, server, message, count, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}","1", NOW());`);
+      server.forEach(data=>{
+        db(`UPDATE pin SET count=${Number(data.count)+1} WHERE server=${message.guild.id};`);
+      });
+    }catch(error){
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "メッセージをピン留めできませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle(ButtonStyle.Link))
+        ],
+        ephemeral: true
+      });
+    }
   }
 }
