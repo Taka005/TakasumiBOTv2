@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
       "maxAge": 0
     })
       .then(async(invite)=>{
-        await db(`INSERT INTO server (id, name, members, owner, code, text, time) VALUES("${interaction.guild.id}","${interaction.guild.name.replace(/[^\\u0000-\\u007F\\u4E00-\\u9FAF\\u3040-\\u309F\\u30A0-\\u30FF]/g,"")}","${interaction.guild.memberCount}","${interaction.guild.ownerId}","${invite.code}","${text}",NOW());`);
+        await db(`INSERT INTO server (id, owner, code, text, time) VALUES("${interaction.guild.id}","${interaction.guild.ownerId}","${invite.code}","${text}",NOW());`);
 
         await interaction.reply({
           embeds:[{
