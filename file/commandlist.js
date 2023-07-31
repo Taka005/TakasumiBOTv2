@@ -109,12 +109,12 @@ module.exports = {
     ],
     note: "自分が会話に戻ると、その間にされたメンションの数が表示されます",
     data: new SlashCommandBuilder()
-    .setName("afk")
-    .setDescription("AFKを設定します(留守電)")
-    .addStringOption(option =>
-      option
-        .setName("message")
-        .setDescription("伝言メッセージ"))
+      .setName("afk")
+      .setDescription("AFKを設定します(留守電)")
+      .addStringOption(option =>
+        option
+          .setName("message")
+          .setDescription("伝言メッセージ"))
   },
   auth:{
     type: "manage",
