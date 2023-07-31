@@ -86,7 +86,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await db(`UPDATE server SET name = "${interaction.guild.name}", members = "${interaction.guild.memberCount}", time = NOW() WHERE id = ${interaction.guild.id}`);
+    await db(`UPDATE server SET name = "${interaction.guild.name.replace(/[\u{1F300}-\u{1F6FF}]/gu,(match)=>"&#x"+match.codePointAt(0).toString(16)+";")}", members = "${interaction.guild.memberCount}", time = NOW() WHERE id = ${interaction.guild.id}`);
     await interaction.reply({
       embeds:[{
         color: Colors.Green,
