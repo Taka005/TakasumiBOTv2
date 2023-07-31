@@ -2,6 +2,7 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const db = require("../../lib/db");
   const time = require("../../lib/time");
+  const fetchGuild = require("../../lib/fetchGuild");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "list"){
 
@@ -23,7 +24,7 @@ module.exports = async(interaction)=>{
           name: "サーバー一覧",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: servers.map(server=>`**[${server.guild.name}](${url})(${server.guild.memberCount}人)** - ${server.time}前\n${server.text}`).join("\n\n")
+        description: servers.map(server=>`**[${server.guild.name}](${server.url})(${server.guild.memberCount}人)** - ${server.time}前\n${server.text}`).join("\n\n")
       }]
     });
   }
