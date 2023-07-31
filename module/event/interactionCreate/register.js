@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId === "register"){
     const text = interaction.fields.getTextInputValue("text")
-      .replace(/\n/g,"");
+      .replace(/\\n/g,"");
 
     await interaction.channel.createInvite({
       "unique": true,
