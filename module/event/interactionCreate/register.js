@@ -3,19 +3,8 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId === "register"){
-    const text = interaction.fields.getTextInputValue("text");
-
-    if(text.split("\n").length > 8) return await interaction.reply({
-      embeds:[{
-        author:{
-          name: "登録出来ませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
-        },
-        color: Colors.Red,
-        description: "サーバーの説明の改行数は10行以下にしてください"
-      }],
-      ephemeral: true
-    });
+    const text = interaction.fields.getTextInputValue("text")
+      .replace(/\n/g,"");
 
     await interaction.channel.createInvite({
       "unique": true,

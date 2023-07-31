@@ -106,7 +106,7 @@ module.exports = async(interaction)=>{
         .setLabel("サーバーの説明文")
         .setMaxLength(180)
         .setRequired(true)
-        .setStyle(TextInputStyle.Paragraph);
+        .setStyle(TextInputStyle.Short);
         
       register.addComponents(
         new ActionRowBuilder()
