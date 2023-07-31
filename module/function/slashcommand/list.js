@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
           name: "サーバー一覧",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: servers.map(server=>`**[${server.name}](https://discord.gg/${server.url})(${server.members}人)** - ${time(new Date()-new Date(server.time))}前\n${server.text}`).join("\n\n")
+        description: servers.map(server=>`**[${server.name}](https://discord.gg/${server.code})(${server.members}人)** - ${time(new Date()-new Date(server.time))}前\n${server.text}`).join("\n\n")
       }]
     });
   }
