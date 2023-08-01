@@ -81,7 +81,7 @@ module.exports = async(interaction)=>{
           name: "UPできませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        description: "1時間に一回UPできます"
+        description: `このサーバーを上げられるようになるまであと${Math.floor((3600000 - (new Date() - new Date(data[0].time)))/60000)}分です`
       }],
       ephemeral: true
     });
@@ -94,7 +94,10 @@ module.exports = async(interaction)=>{
           name: "UPしました!",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: "表示順位が更新されました"
+        description: "表示順位が更新されました",
+        image:{
+          url: "https://cdn.taka.cf/images/up.png"
+        }
       }]
     });
   }
