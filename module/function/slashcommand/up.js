@@ -81,7 +81,7 @@ module.exports = async(interaction)=>{
           name: "UPできませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        description: `このサーバーを上げられるようになるまであと${Math.floor((new Date(data[0].time) - new Date())/(60000))}分です`
+        description: `このサーバーを上げられるようになるまであと${Math.floor((new Date() - new Date(data[0].time))/(60000))}分です`
       }],
       ephemeral: true
     });
