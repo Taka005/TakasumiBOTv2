@@ -5,7 +5,8 @@ const pool = mysql.createPool({
   host: "public.bfv4d.tky1.mdbs.jp",
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: "bfv4d_"
+  database: "bfv4d_",
+  charset: "utf8mb4"
 });
 pool.getConnection = util.promisify(pool.getConnection);
 

@@ -54,7 +54,6 @@ module.exports = async(interaction)=>{
         }]
       });
     }else{
-      
       if(Date.now() - interaction.guild.members.me.joinedAt < 86400000) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
