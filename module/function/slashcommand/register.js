@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "register"){
 
-    if(interaction.user.id !== interaction.guild.ownerId) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
         fields:[
           {
             name: "必要な権限",
-            value: "```所有者```"
+            value: "```管理者```"
           }
         ]
       }],
@@ -54,6 +54,19 @@ module.exports = async(interaction)=>{
         }]
       });
     }else{
+      
+      if(Date.now() - interaction.guild.members.me.joinedAt < 86400000) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "登録できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "サーバー掲示板に登録するにはBOTをサーバーに追加してから最低1日経過する必要があります"
+        }],
+        ephemeral: true
+      });
+
       const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
       if(!account[0]) return await interaction.reply({
         embeds:[{

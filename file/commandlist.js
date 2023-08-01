@@ -1346,7 +1346,7 @@ module.exports = {
     description: "サーバー掲示板に登録、削除を行います",
     example: "`/register`",
     userPermission:[
-      "所有者"
+      "管理者"
     ],
     botPermission:[
       "招待リンクの作成"
