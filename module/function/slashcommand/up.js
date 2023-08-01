@@ -94,7 +94,10 @@ module.exports = async(interaction)=>{
           name: "UPしました!",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: "表示順位が更新されました"
+        description: "表示順位が更新されました",
+        image:{
+          url: "https://cdn.taka.cf/images/up.png"
+        }
       }]
     });
   }
