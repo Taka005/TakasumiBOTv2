@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
         files:[
           new AttachmentBuilder()
             .setFile(Buffer.from(data,"UTF-8")) 
-            .setName("cmd.text")
+            .setName("cmd.txt")
         ]
       });
     }catch(error){
@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
         files:[
           new AttachmentBuilder()
             .setFile(Buffer.from(error.toString(),"UTF-8")) 
-            .setName("cmd.text")
+            .setName("cmd.txt")
         ]
       });
     }
