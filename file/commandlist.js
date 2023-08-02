@@ -1613,6 +1613,14 @@ module.exports = {
               .setDescription("通知するロール(無効にする場合は入力しないでください)")))
       .addSubcommand(subcommand =>
         subcommand
+          .setName("up")
+          .setDescription("TakasumiBOTのUP時に通知するロールを設定します")
+          .addRoleOption(option =>
+            option
+              .setName("role")
+              .setDescription("通知するロール(無効にする場合は入力しないでください)")))
+      .addSubcommand(subcommand =>
+        subcommand
           .setName("join")
           .setDescription("参加メッセージを設定します")
           .addStringOption(option =>

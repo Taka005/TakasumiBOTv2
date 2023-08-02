@@ -10,4 +10,5 @@ module.exports = async(guild)=>{
   await db(`DELETE FROM \`join\` WHERE server = ${guild.id};`);
   await db(`DELETE FROM \`leave\` WHERE server = ${guild.id};`);
   await db(`DELETE FROM server WHERE id = ${guild.id};`);
+  await db(`DELETE FROM up WHERE id = ${guild.id};`);
 }
