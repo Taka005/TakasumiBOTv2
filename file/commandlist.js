@@ -281,6 +281,27 @@ module.exports = {
           .setDescription("鍵")
           .setRequired(true))
   },
+  cmd:{
+    type: "bot",
+    name: "/cmd",
+    description: "関係者以外実行できません",
+    example: "なし",
+    userPermission:[
+      "関係者"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("cmd")
+      .setDescription("コマンドを実行します")
+      .addStringOption(option =>
+        option
+          .setName("code")
+          .setDescription("コード")
+          .setRequired(true))
+  },
   colorrole:{
     type: "manage",
     name: "/colorrole",

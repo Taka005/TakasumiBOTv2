@@ -70,7 +70,7 @@ module.exports = async(interaction)=>{
     await interaction.reply({
       files:[
         new AttachmentBuilder()
-          .setFile(new Buffer.from(data)) 
+          .setFile(Buffer.from(data)) 
           .setName(`LOG.${format}`)
       ]
     })

@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      const data = new Buffer.from(JSON.stringify({
+      const data = Buffer.from(JSON.stringify({
         "guild":{
           "name": interaction.guild.name,
           "id": interaction.guild.id,

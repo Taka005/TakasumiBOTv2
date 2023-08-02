@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { AttachmentBuilder ,Colors } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   const { admin } = require("../../../config.json");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
     await interaction.reply({
       files:[
         new AttachmentBuilder()
-          .setFile(new Buffer.from(data,"UTF-8")) 
+          .setFile(Buffer.from(data,"UTF-8")) 
           .setName("DB.json")
       ]
     });
