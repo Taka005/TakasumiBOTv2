@@ -404,6 +404,27 @@ module.exports = {
           .setName("user")
           .setDescription("削除するユーザー"))
   },
+  double:{
+    type: "info",
+    name: "/double",
+    description: "指定したユーザーのサブアカウントを検出します",
+    example: "`/double @User`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "TakasumiBOT Accountに登録されている必要があります",
+    data: new SlashCommandBuilder()
+      .setName("double")
+      .setDescription("指定したユーザーのサブアカウントを検出します")
+      .addUserOption(option =>
+        option
+          .setName("user")
+          .setDescription("対象のユーザー")
+          .setRequired(true))
+  },
   embed:{
     type: "manage",
     name: "/embed",
