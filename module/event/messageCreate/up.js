@@ -14,11 +14,11 @@ module.exports = async(message)=>{
       const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id} LIMIT 1;`);
       if(ignore[0]) return;
 
-      const data = await db(`SELECT * FROM up WHERE server = ${message.guild.id} LIMIT 1;`);
+      const data = await db(`SELECT * FROM up WHERE id = ${message.guild.id} LIMIT 1;`);
       await message.channel.send({
         embeds:[{
           color: Colors.White,
-          title: "UP通知",
+          title: "TakasumiBOT UP通知",
           description: "UPを受信しました\n1時間後に通知します"
         }]  
       }).catch(()=>{});
@@ -28,7 +28,7 @@ module.exports = async(message)=>{
           content: data[0] ? `<@&${data[0].role}>`:"",
           embeds:[{
             color: Colors.White,
-            title: "UP通知",
+            title: "TakasumiBOT UP通知",
             description: "UPの時間です\n</up:1135405664852783157>でサーバーの表示順位を上げよう！"
           }]  
         }).catch(()=>{});
