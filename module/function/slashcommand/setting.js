@@ -90,7 +90,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!role){
-        const data = await db(`SELECT * FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM bump WHERE id = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             color: Colors.Red,
@@ -103,7 +103,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        await db(`DELETE FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM bump WHERE id = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -127,7 +127,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
   
-        await db(`INSERT INTO bump (server, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),role = VALUES (role),time = VALUES (time);`);
+        await db(`INSERT INTO bump (id, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -183,7 +183,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!role){
-        const data = await db(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM dissoku WHERE id = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             color: Colors.Red,
@@ -196,7 +196,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        await db(`DELETE FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -220,7 +220,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
   
-        await db(`INSERT INTO dissoku (server, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),role = VALUES (role),time = VALUES (time);`);
+        await db(`INSERT INTO dissoku (id, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -615,8 +615,8 @@ module.exports = async(interaction)=>{
       const data = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
       if(!data[0]){
         await db(`INSERT INTO \`ignore\` (id, time) VALUES("${interaction.guild.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),time = VALUES (time);`);
-        await db(`DELETE FROM bump WHERE server = ${interaction.guild.id};`);
-        await db(`DELETE FROM dissoku WHERE server = ${interaction.guild.id};`);
+        await db(`DELETE FROM bump WHERE id = ${interaction.guild.id};`);
+        await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id};`);
 
         await interaction.reply({
           embeds:[{
@@ -641,8 +641,8 @@ module.exports = async(interaction)=>{
         });
       }
     }else if(interaction.options.getSubcommand() === "info"){//info
-      const bump = await db(`SELECT * FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const dissoku = await db(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      const bump = await db(`SELECT * FROM bump WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      const dissoku = await db(`SELECT * FROM dissoku WHERE id = ${interaction.guild.id} LIMIT 1;`);
       const global = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const hiroyuki = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
@@ -733,8 +733,8 @@ module.exports = async(interaction)=>{
       });
 
       await db(`DELETE FROM pin WHERE server = ${interaction.guild.id};`);
-      await db(`DELETE FROM bump WHERE server = ${interaction.guild.id};`);
-      await db(`DELETE FROM dissoku WHERE server = ${interaction.guild.id};`);
+      await db(`DELETE FROM bump WHERE id = ${interaction.guild.id};`);
+      await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id};`);
       await db(`DELETE FROM hiroyuki WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM global WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM \`ignore\` WHERE id = ${interaction.guild.id};`);

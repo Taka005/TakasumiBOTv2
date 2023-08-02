@@ -15,7 +15,7 @@ module.exports = async(message)=>{
       const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id} LIMIT 1;`);
       if(ignore[0]) return;
 
-      const data = await db(`SELECT * FROM bump WHERE server = ${message.guild.id} LIMIT 1;`);
+      const data = await db(`SELECT * FROM bump WHERE id = ${message.guild.id} LIMIT 1;`);
       await message.channel.send({
         embeds:[{
           color: Colors.White,
