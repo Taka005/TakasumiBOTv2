@@ -42,9 +42,8 @@ module.exports = async(interaction)=>{
           name: "検出されました",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: menbers.map(m=>`<@${m.id}>`).join("\n")
-      }],
-      ephemeral: true
+        description: menbers.map(m=>`${m.user.tag}(${m.id})`).join("\n")
+      }]
     });
   }
 }

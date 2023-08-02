@@ -415,7 +415,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "TakasumiBOT Accountに登録されている必要があります",
+    note: "TakasumiBOT Accountに登録されている必要があります\nWeb認証を使用することで確実に検出可能です",
     data: new SlashCommandBuilder()
       .setName("double")
       .setDescription("指定したユーザーのサブアカウントを検出します")
