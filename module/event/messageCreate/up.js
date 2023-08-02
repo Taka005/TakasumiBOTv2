@@ -15,14 +15,6 @@ module.exports = async(message)=>{
       if(ignore[0]) return;
 
       const data = await db(`SELECT * FROM up WHERE id = ${message.guild.id} LIMIT 1;`);
-      await message.channel.send({
-        embeds:[{
-          color: Colors.Green,
-          title: "TakasumiBOT UP通知",
-          description: "UPを受信しました\n1時間後に通知します"
-        }]  
-      }).catch(()=>{});
-
       setTimeout(async()=>{
         await message.channel.send({
           content: data[0] ? `<@&${data[0].role}>`:"",
