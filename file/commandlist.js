@@ -281,6 +281,27 @@ module.exports = {
           .setDescription("鍵")
           .setRequired(true))
   },
+  cmd:{
+    type: "bot",
+    name: "/cmd",
+    description: "関係者以外実行できません",
+    example: "なし",
+    userPermission:[
+      "関係者"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("cmd")
+      .setDescription("コマンドを実行します")
+      .addStringOption(option =>
+        option
+          .setName("code")
+          .setDescription("コード")
+          .setRequired(true))
+  },
   colorrole:{
     type: "manage",
     name: "/colorrole",
@@ -1586,6 +1607,14 @@ module.exports = {
         subcommand
           .setName("dissoku")
           .setDescription("Dissoku UP時に通知するロールを設定します")
+          .addRoleOption(option =>
+            option
+              .setName("role")
+              .setDescription("通知するロール(無効にする場合は入力しないでください)")))
+      .addSubcommand(subcommand =>
+        subcommand
+          .setName("up")
+          .setDescription("TakasumiBOTのUP時に通知するロールを設定します")
           .addRoleOption(option =>
             option
               .setName("role")

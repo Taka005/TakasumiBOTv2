@@ -21,6 +21,10 @@ module.exports = async(interaction)=>{
               value: "Dissoku UPの時間に通知するロールを設定します"
             },
             {
+              name: "/setting up",
+              value: "TakasumiBOTのUPの時間に通知するロールを設定します"
+            },
+            {
               name: "/setting join",
               value: "実行したチャンネルに参加メッセージの設定をします\n\n利用可能な変数\n[User] ユーザーメンション\n[UserName] ユーザーの名前\n[UserID] ユーザーID\n[ServerName] サーバーの名前\n[ServerID] サーバーID\n[Count] メンバー数"
             },
@@ -86,7 +90,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!role){
-        const data = await db(`SELECT * FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM bump WHERE id = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             color: Colors.Red,
@@ -99,7 +103,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        await db(`DELETE FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM bump WHERE id = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -123,7 +127,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
   
-        await db(`INSERT INTO bump (server, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),role = VALUES (role),time = VALUES (time);`);
+        await db(`INSERT INTO bump (id, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -179,7 +183,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!role){
-        const data = await db(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM dissoku WHERE id = ${interaction.guild.id} LIMIT 1;`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             color: Colors.Red,
@@ -192,7 +196,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        await db(`DELETE FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id} LIMIT 1;`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -216,7 +220,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
   
-        await db(`INSERT INTO dissoku (server, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),role = VALUES (role),time = VALUES (time);`);
+        await db(`INSERT INTO dissoku (id, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -225,6 +229,85 @@ module.exports = async(interaction)=>{
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: `Dissoku通知に<@&${role.id}>に設定しました`
+          }]
+        });
+      }
+    }else if(interaction.options.getSubcommand() === "up"){//TakasumiBOTロール設定
+      const role = interaction.options.getRole("role");
+
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "権限がありません",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "このコマンドを実行するには以下の権限を持っている必要があります",
+          fields:[
+            {
+              name: "必要な権限",
+              value: "```管理者```"
+            }
+          ]
+        }],
+        ephemeral: true
+      });
+
+      if(
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
+        !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.SendMessages)
+      ) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "BOTに権限がありません",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "このコマンドはBOTに以下の権限が必要です\n```チャンネルの閲覧\nメッセージの送信```",
+          fields:[
+            {
+              name: "必要な権限",
+              value: "```チャンネルの閲覧\nメッセージの送信```"
+            }
+          ]
+        }],
+        ephemeral: true
+      });
+
+      if(!role){
+        const data = await db(`SELECT * FROM up WHERE id = ${interaction.guild.id} LIMIT 1;`);
+        if(!data[0]) return await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "通知ロールを無効にできませんでした",
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
+            },
+            description: "通知ロールが設定されていません"
+          }],
+          ephemeral: true
+        });
+
+        await db(`DELETE FROM up WHERE id = ${interaction.guild.id} LIMIT 1;`);
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "通知ロールを無効にしました",
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            }
+          }]
+        });
+      }else{
+        await db(`INSERT INTO up (id, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),role = VALUES (role),time = VALUES (time);`);
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "通知ロールを有効にしました",
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            },
+            description: `TakasumiBOTのUP通知に<@&${role.id}>に設定しました`
           }]
         });
       }
@@ -532,8 +615,8 @@ module.exports = async(interaction)=>{
       const data = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
       if(!data[0]){
         await db(`INSERT INTO \`ignore\` (id, time) VALUES("${interaction.guild.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),time = VALUES (time);`);
-        await db(`DELETE FROM bump WHERE server = ${interaction.guild.id};`);
-        await db(`DELETE FROM dissoku WHERE server = ${interaction.guild.id};`);
+        await db(`DELETE FROM bump WHERE id = ${interaction.guild.id};`);
+        await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id};`);
 
         await interaction.reply({
           embeds:[{
@@ -558,8 +641,8 @@ module.exports = async(interaction)=>{
         });
       }
     }else if(interaction.options.getSubcommand() === "info"){//info
-      const bump = await db(`SELECT * FROM bump WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const dissoku = await db(`SELECT * FROM dissoku WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      const bump = await db(`SELECT * FROM bump WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      const dissoku = await db(`SELECT * FROM dissoku WHERE id = ${interaction.guild.id} LIMIT 1;`);
       const global = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const hiroyuki = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
@@ -567,6 +650,7 @@ module.exports = async(interaction)=>{
       const leave = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
       const pin = await db(`SELECT * FROM pin WHERE server = ${interaction.guild.id};`);
       const server = await db(`SELECT * FROM server WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      const up = await db(`SELECT * FROM up WHERE id = ${interaction.guild.id} LIMIT 1;`);
 
       await interaction.reply({
         embeds:[{
@@ -584,6 +668,11 @@ module.exports = async(interaction)=>{
             {
               name: "Dissoku通知",
               value: dissoku[0] ? "設定済み":"未設定",
+              inline: true
+            },
+            {
+              name: "TakasumiBOT UP通知",
+              value: up[0] ? "設定済み":"未設定",
               inline: true
             },
             {
@@ -644,14 +733,15 @@ module.exports = async(interaction)=>{
       });
 
       await db(`DELETE FROM pin WHERE server = ${interaction.guild.id};`);
-      await db(`DELETE FROM bump WHERE server = ${interaction.guild.id};`);
-      await db(`DELETE FROM dissoku WHERE server = ${interaction.guild.id};`);
+      await db(`DELETE FROM bump WHERE id = ${interaction.guild.id};`);
+      await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id};`);
       await db(`DELETE FROM hiroyuki WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM global WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
       await db(`DELETE FROM \`join\` WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM \`leave\` WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM server WHERE id = ${interaction.guild.id};`);
+      await db(`DELETE FROM up WHERE id = ${interaction.guild.id};`);
 
       await interaction.reply({
         content: `<@${interaction.user.id}>`,
