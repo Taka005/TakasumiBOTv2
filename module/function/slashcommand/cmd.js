@@ -20,7 +20,9 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     try{
-      const data = execSync(code);
+      const data = execSync(code,{
+        timeout: 10000,
+      });
 
       await interaction.editReply({
         files:[
