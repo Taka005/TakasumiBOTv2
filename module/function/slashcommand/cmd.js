@@ -21,14 +21,14 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     try{
       const data = execSync(code,{
-        timeout: 10000,
+        timeout: 10000
       });
 
       await interaction.editReply({
         files:[
           new AttachmentBuilder()
-            .setFile(Buffer.from(data,"UTF-8")) 
-            .setName("CMD.json")
+            .setFile(Buffer.from(data.toString(),"UTF-8")) 
+            .setName("cmd.txt")
         ]
       });
     }catch(error){
@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
         files:[
           new AttachmentBuilder()
             .setFile(Buffer.from(error.toString(),"UTF-8")) 
-            .setName("CMD.json")
+            .setName("cmd.txt")
         ]
       });
     }

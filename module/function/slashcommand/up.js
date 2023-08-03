@@ -96,7 +96,7 @@ module.exports = async(interaction)=>{
         },
         description: "表示順位が更新されました\n1時間後に通知します",
         image:{
-          url: "https://cdn.taka.cf/images/up.png"
+          url: "https://cdn.taka.cf/images/up.gif"
         }
       }]
     });
