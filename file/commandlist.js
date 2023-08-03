@@ -1537,27 +1537,6 @@ module.exports = {
             { name: "Bash", value: "Bash" }
           ))
   },
-  search:{
-    type: "search",
-    name: "/search",
-    description: "Yahooで検索します",
-    example: "`/search discord.js`",
-    userPermission:[
-      "必要なし"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("search")
-      .setDescription("Yahooで検索し表示します")
-      .addStringOption(option =>
-        option
-          .setName("word")
-          .setDescription("検索ワード")
-          .setRequired(true))
-  },
   server:{
     type: "info",
     name: "/server",
@@ -2026,6 +2005,27 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("work")
       .setDescription("20分に1回お金をもらえます")
+  },
+  yahoo:{
+    type: "search",
+    name: "/yahoo",
+    description: "Yahooで検索します",
+    example: "`/yahoo discord.js`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("yahoo")
+      .setDescription("Yahooで検索し表示します")
+      .addStringOption(option =>
+        option
+          .setName("word")
+          .setDescription("検索ワード")
+          .setRequired(true))
   },
   アバターを表示:{
     type: "contextmenu",
