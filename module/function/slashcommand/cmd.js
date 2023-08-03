@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
       await interaction.editReply({
         files:[
           new AttachmentBuilder()
-            .setFile(Buffer.from(data,"UTF-8")) 
+            .setFile(Buffer.from(data.toString(),"UTF-8")) 
             .setName("cmd.txt")
         ]
       });
