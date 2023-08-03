@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const messages = await fetchMessage(message.channel,{limit:"30", around:message.id});
+    const messages = await fetchMessage(message.channel,{limit: "30", before: message.id});
     if(!messages) return await interaction.reply({
       embeds:[{
         author:{
