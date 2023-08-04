@@ -1007,22 +1007,6 @@ module.exports = {
           .setName("user")
           .setDescription("対象のユーザー"))
   },
-  news:{
-    type: "tool",
-    name: "/news",
-    description: "最近のニュースを表示します",
-    example: "`/news`",
-    userPermission:[
-      "必要なし"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("news")
-      .setDescription("ニュースを表示します")
-  },
   npm:{
     type: "search",
     name: "/npm",
