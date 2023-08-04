@@ -13,6 +13,22 @@ module.exports = async(interaction)=>{
         new ActionRowBuilder()
           .addComponents(
             new ButtonBuilder()
+              .setLabel("ABOUT")
+              .setCustomId(`about_about_${interaction.user.id}`)
+              .setStyle(ButtonStyle.Primary))
+          .addComponents(
+            new ButtonBuilder()
+              .setLabel("FAQ")
+              .setCustomId(`about_faq_${interaction.user.id}`)
+              .setStyle(ButtonStyle.Primary))
+          .addComponents(
+            new ButtonBuilder()
+              .setLabel("AD")
+              .setCustomId(`about_ad_${interaction.user.id}`)
+              .setStyle(ButtonStyle.Primary)),
+        new ActionRowBuilder()
+          .addComponents(
+            new ButtonBuilder()
               .setLabel("BOTを追加")
               .setURL("https://discord.com/api/oauth2/authorize?client_id=981314695543783484&permissions=70368744177655&redirect_uri=https%3A%2F%2Fdiscord.gg%2FNEesRdGQwD&response_type=code&scope=identify%20bot%20applications.commands")
               .setStyle(ButtonStyle.Link))

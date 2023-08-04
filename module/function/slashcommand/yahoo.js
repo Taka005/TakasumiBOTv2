@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const { JSDOM } = require("jsdom");
   if(!interaction.isChatInputCommand()) return;
-  if(interaction.commandName === "search"){
+  if(interaction.commandName === "yahoo"){
     const word = interaction.options.getString("word");
 
     await interaction.deferReply();

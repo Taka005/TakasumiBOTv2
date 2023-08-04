@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const messages = await fetchMessage(message.channel,{limit:"30", around:message.id});
+    const messages = await fetchMessage(message.channel,{limit: "10", before: message.id});
     if(!messages) return await interaction.reply({
       embeds:[{
         author:{
@@ -59,6 +59,7 @@ module.exports = async(interaction)=>{
           name: "メッセージレポート",
           icon_url: "https://cdn.taka.cf/images/system/success.png",
         },
+        description: `**${message.author.tag}(${message.author.id})**\n${message.content}`,
         footer:{
           text: `${interaction.user.tag}(${interaction.user.id})`,
           icon_url: interaction.user.avatarURL()||interaction.user.defaultAvatarURL,
