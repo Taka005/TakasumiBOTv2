@@ -80,22 +80,6 @@ module.exports = {
           .setDescription("アクティビティの名前")
           .setAutocomplete(true))
   },
-  ad:{
-    type: "bot",
-    name: "/ad",
-    description: "BOTの宣伝を表示します",
-    example: "`/ad`",
-    userPermission:[
-      "必要なし"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("ad")
-      .setDescription("BOTの広告を表示します")
-  },
   afk:{
     type: "othor",
     name: "/afk",
@@ -520,22 +504,6 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("export")
       .setDescription("サーバーの情報をJSON形式に出力します")
-  },
-  faq:{
-    type: "bot",
-    name: "/faq",
-    description: "よくある質問一覧を表示します",
-    example: "`/faq`",
-    userPermission:[
-      "必要なし"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("faq")
-      .setDescription("よくある質問一覧を表示します")
   },
   follow:{
     type: "bot",
