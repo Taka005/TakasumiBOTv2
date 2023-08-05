@@ -2,7 +2,7 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "filter"){
-    const type = Boolean(interaction.options.getString("type"));
+    const type = JSON.parse(interaction.options.getString("type"));
 		const day = interaction.options.getInteger("day");
 
     if(day < 0) return await interaction.reply({ 
