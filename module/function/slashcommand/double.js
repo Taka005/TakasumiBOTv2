@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const {  Colors } = require("discord.js");
+  const { Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "double"){
