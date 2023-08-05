@@ -516,7 +516,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし",
+    note: "1日以上90日以下のメンバーを取得できます",
     data: new SlashCommandBuilder()
       .setName("filter")
       .setDescription("指定された日数以内に参加、アカウント作成したメンバーを表示します")
