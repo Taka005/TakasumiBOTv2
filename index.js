@@ -9,8 +9,7 @@ const client = new Client({
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildPresences
-  ],
-  shards: "auto"
+  ]
 });
 
 console.log("\x1b[32m*****************************\x1b[39m");
