@@ -1243,33 +1243,33 @@ module.exports = {
       .addStringOption(option =>
         option
           .setName("select_3")
-          .setDescription("選択3"))
-          .setMaxLength(50)
+          .setDescription("選択3")
+          .setMaxLength(50))
       .addStringOption(option =>
         option
           .setName("select_4")
-          .setDescription("選択4"))
-          .setMaxLength(50)
+          .setDescription("選択4")
+          .setMaxLength(50) )
       .addStringOption(option =>
         option
           .setName("select_5")
-          .setDescription("選択5"))
-          .setMaxLength(50)
+          .setDescription("選択5")
+          .setMaxLength(50))
       .addStringOption(option =>
         option
           .setName("select_6")
-          .setDescription("選択6"))
-          .setMaxLength(50)
+          .setDescription("選択6")
+          .setMaxLength(50))
       .addStringOption(option =>
         option
           .setName("select_7")
-          .setDescription("選択7"))
-          .setMaxLength(50)
+          .setDescription("選択7")
+          .setMaxLength(50))
       .addStringOption(option =>
         option
           .setName("select_8")
-          .setDescription("選択8"))
-          .setMaxLength(50)
+          .setDescription("選択8")
+          .setMaxLength(50))
   },
   pypi:{
     type: "search",
