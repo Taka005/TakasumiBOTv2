@@ -20,11 +20,13 @@ module.exports = {
         option
           .setName("top")
           .setDescription("上の文字")
+          .setMaxLength(30)
           .setRequired(true))
       .addStringOption(option =>
         option
           .setName("bottom")
           .setDescription("下の文字")
+          .setMaxLength(30)
           .setRequired(true))
   },
   about:{
@@ -202,6 +204,7 @@ module.exports = {
         option
           .setName("name")
           .setDescription("ボタンの名前")
+          .setMaxLength(30)
           .setRequired(true))
       .addStringOption(option =>
         option
@@ -305,6 +308,7 @@ module.exports = {
         option
           .setName("name")
           .setDescription("ロールの名前")
+          .setMaxLength(30)
           .setRequired(true))
       .addStringOption(option =>
         option
@@ -487,6 +491,7 @@ module.exports = {
         option
           .setName("title")
           .setDescription("タイトル")
+          .setMaxLength(30)
           .setRequired(true))
   },
   export:{
@@ -579,6 +584,7 @@ module.exports = {
         option
           .setName("name")
           .setDescription("検索ワード")
+          .setMaxLength(30)
           .setRequired(true))
   },
   globalchat:{
@@ -1056,6 +1062,7 @@ module.exports = {
         option
           .setName("name")
           .setDescription("検索ワード")
+          .setMaxLength(30)
           .setRequired(true))
   },
   nslookup:{
@@ -1219,41 +1226,50 @@ module.exports = {
         option
           .setName("title")
           .setDescription("タイトル")
+          .setMaxLength(30)
           .setRequired(true))
       .addStringOption(option =>
         option
           .setName("select_1")
           .setDescription("選択1")
+          .setMaxLength(50)
           .setRequired(true))
       .addStringOption(option =>
         option
           .setName("select_2")
           .setDescription("選択2")
+          .setMaxLength(50)
           .setRequired(true))
       .addStringOption(option =>
         option
           .setName("select_3")
           .setDescription("選択3"))
+          .setMaxLength(50)
       .addStringOption(option =>
         option
           .setName("select_4")
           .setDescription("選択4"))
+          .setMaxLength(50)
       .addStringOption(option =>
         option
           .setName("select_5")
           .setDescription("選択5"))
+          .setMaxLength(50)
       .addStringOption(option =>
         option
           .setName("select_6")
           .setDescription("選択6"))
+          .setMaxLength(50)
       .addStringOption(option =>
         option
           .setName("select_7")
           .setDescription("選択7"))
+          .setMaxLength(50)
       .addStringOption(option =>
         option
           .setName("select_8")
           .setDescription("選択8"))
+          .setMaxLength(50)
   },
   pypi:{
     type: "search",
@@ -1274,6 +1290,7 @@ module.exports = {
         option
           .setName("name")
           .setDescription("検索ワード")
+          .setMaxLength(30)
           .setRequired(true))
   },
   qr:{
@@ -1866,6 +1883,7 @@ module.exports = {
         option
           .setName("word")
           .setDescription("検索ワード")
+          .setMaxLength(30)
           .setRequired(true))
   },
   up:{
@@ -1928,6 +1946,7 @@ module.exports = {
         option
           .setName("reason")
           .setDescription("理由")
+          .setMaxLength(300)
           .setRequired(true))
   },
   webshot:{
@@ -1970,6 +1989,7 @@ module.exports = {
         option
           .setName("word")
           .setDescription("検索ワード")
+          .setMaxLength(30)
           .setRequired(true))
   },
   work:{
