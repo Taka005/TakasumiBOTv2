@@ -1043,28 +1043,6 @@ module.exports = {
           .setName("user")
           .setDescription("対象のユーザー"))
   },
-  npm:{
-    type: "search",
-    name: "/npm",
-    description: "NPMパッケージを検索して表示します",
-    example: "`/npm discord.js`",
-    userPermission:[
-      "必要なし"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("npm")
-      .setDescription("NPMパッケージを検索します")
-      .addStringOption(option =>
-        option
-          .setName("name")
-          .setDescription("検索ワード")
-          .setMaxLength(30)
-          .setRequired(true))
-  },
   nslookup:{
     type: "tool",
     name: "/nslookup",
@@ -1101,6 +1079,37 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("omikuji")
       .setDescription("おみくじを引きます")
+  },
+  package:{
+    type: "search",
+    name: "/pachage",
+    description: "パッケージを検索して表示します",
+    example: "`/package NPM discord.js`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("package")
+      .setDescription("パッケージを検索します")
+      .addStringOption(option =>
+        option
+          .setName("type")
+          .setDescription("検索するパッケージマネージャー")
+          .setRequired(true)
+          .addChoices(
+            { name: "NPM", value: "npm" },
+            { name: "PYPI", value: "pypi" }
+          ))
+      .addStringOption(option =>
+        option
+          .setName("name")
+          .setDescription("検索ワード")
+          .setMaxLength(30)
+          .setRequired(true))
   },
   panel:{
     type: "manage",
@@ -1270,28 +1279,6 @@ module.exports = {
           .setName("select_8")
           .setDescription("選択8")
           .setMaxLength(50))
-  },
-  pypi:{
-    type: "search",
-    name: "/pypi",
-    description: "PIPパッケージを検索して表示します",
-    example: "`/pypi discord.py`",
-    userPermission:[
-      "必要なし"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("pypi")
-      .setDescription("PIPパッケージを検索します")
-      .addStringOption(option =>
-        option
-          .setName("name")
-          .setDescription("検索ワード")
-          .setMaxLength(30)
-          .setRequired(true))
   },
   qr:{
     type: "tool",
