@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
           "url": url,
           "waitTime": 1,
           "browserWidth": 1000,
-		      "browserHeight": 1000
+          "browserHeight": 1000
         })
       }).then(res=>res.json());
 
