@@ -35,7 +35,7 @@
     "node-fetch": "^2.6.12"
   },
   "devDependencies": {
-    "eslint": "^8.45.0",
+    "eslint": "^8.47.0",
     "eslint-plugin-node": "^11.1.0"
   },
   "optionalDependencies": {
