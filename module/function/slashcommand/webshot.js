@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Red,
         author:{
-          name: "撮影できませんでした",
+          name: "取得できませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "URLを指定する必要があります"
@@ -20,14 +20,24 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     try{
-      const data = await fetch(`https://api.popcat.xyz/screenshot?url=${url}`)
+      const data = await fetch("https://securl.nu/jx/get_page_jx.php",{
+        "method": "POST",
+        "body": JSON.stringify({
+          "url": url,
+          "waitTime": 1,
+          "browserWidth": 1000,
+		      "browserHeight": 1000
+        })
+      }).then(res=>res.json());
+
+      const image = await fetch(`https://securl.nu${data.img}`)
         .then(res=>res.blob());
 
       await interaction.editReply({
         embeds:[{
           color: Colors.Green,
           author:{
-            name: "撮影しました",
+            name: "取得しました",
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           image:{
@@ -36,7 +46,7 @@ module.exports = async(interaction)=>{
         }],
         files:[
           new AttachmentBuilder()
-            .setFile(data.stream())
+            .setFile(image.stream())
             .setName("screenshot.png")
         ]
       });
@@ -45,7 +55,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Red,
           author:{
-            name: "スクリーンショットを撮れませんでした",
+            name: "取得できませんでした",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "URLを変えてやり直してください"
