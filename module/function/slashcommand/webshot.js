@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
+  const FormData = require("form-data");
   const { AttachmentBuilder, Colors } = require("discord.js");
   const isUrl = require("../../lib/isUrl");
   if(!interaction.isChatInputCommand()) return;
@@ -22,12 +23,10 @@ module.exports = async(interaction)=>{
     try{
       const data = await fetch("https://securl.nu/jx/get_page_jx.php",{
         "method": "POST",
-        "body": JSON.stringify({
-          "url": url,
-          "waitTime": 1,
-          "browserWidth": 1000,
-          "browserHeight": 1000
-        })
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "body": `url=${url}&waitTime=1&browserWidth=1000&browserHeight=500`
       }).then(res=>res.json());
 
       const image = await fetch(`https://securl.nu${data.img}`)
@@ -50,7 +49,7 @@ module.exports = async(interaction)=>{
             .setName("screenshot.png")
         ]
       });
-    }catch(error){
+    }catch{
       await interaction.editReply({
         embeds:[{
           color: Colors.Red,
