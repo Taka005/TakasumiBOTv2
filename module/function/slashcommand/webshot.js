@@ -1,6 +1,5 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const FormData = require("form-data");
   const { AttachmentBuilder, Colors } = require("discord.js");
   const isUrl = require("../../lib/isUrl");
   if(!interaction.isChatInputCommand()) return;
@@ -26,7 +25,7 @@ module.exports = async(interaction)=>{
         "headers": {
           "Content-Type": "application/x-www-form-urlencoded"
         },
-        "body": `url=${url}&waitTime=1&browserWidth=1000&browserHeight=500`
+        "body": `url=${url}&waitTime=1&browserWidth=800&browserHeight=800`
       }).then(res=>res.json());
 
       const image = await fetch(`https://securl.nu${data.img}`)
