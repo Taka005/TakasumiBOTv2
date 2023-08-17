@@ -19,7 +19,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const amount = Math.floor(Math.random()*400)+100;
+    const amount = Math.floor(Math.random()*700)+100;
 
     const data = await money.get(interaction.user.id);
     await money.add(interaction.user.id,amount);
