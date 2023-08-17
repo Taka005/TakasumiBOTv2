@@ -9,14 +9,14 @@ module.exports = async(interaction)=>{
 
     if(type === "yellow"){
       const data = await money.get(interaction.user.id);
-      if(Number(data.amount)-(count*10)<0||count<1) return await interaction.reply({
+      if(Number(data.amount)-(count*10)<0||count<3) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          description: "購入する回数は1以上かつ所持金の範囲内にする必要があります"
+          description: "購入する回数は3以上かつ所持金の範囲内にする必要があります"
         }],
         ephemeral: true
       });

@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "debug": "node --inspect index.js",
     "lint": "./node_modules/.bin/eslint module"
   },
   "engines": {
-    "node": "16.x"
+    "node": ">=16.x"
   },
   "repository": {
     "type": "git",
