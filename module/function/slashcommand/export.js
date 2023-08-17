@@ -28,31 +28,32 @@ module.exports = async(interaction)=>{
           "id": interaction.guild.id,
           "count": interaction.guild.memberCount,
           "icon": interaction.guild.iconURL(),
-          "time": new Date(interaction.guild.createdTimestamp).toLocaleString(),
+          "createAt": new Date(interaction.guild.createdTimestamp).toLocaleString(),
           "invites": (await interaction.guild.invites.fetch()).map(invite=>({
             "url": invite.url,
-            "code": invite.code
+            "code": invite.code,
+            "createAt": new Date(invite.createdTimestamp).toLocaleString()
           })),
           "channels": interaction.guild.channels.cache.map(channel=>({
             "name": channel.name,
             "id": channel.id,
             "topic": channel.topic,
             "type": channel.type,
-            "time": new Date(channel.createdTimestamp).toLocaleString()
+            "createAt": new Date(channel.createdTimestamp).toLocaleString()
           })),
           "members": interaction.guild.members.cache.map(member=>({
             "name": member.user.tag,
             "id": member.user.id,
             "color": member.displayHexColor,
             "avatar": member.user.avatarURL(),
-            "join": new Date(member.joinedTimestamp).toLocaleString(),
-            "time": new Date(member.user.createdTimestamp).toLocaleString()
+            "joinAt": new Date(member.joinedTimestamp).toLocaleString(),
+            "createAt": new Date(member.user.createdTimestamp).toLocaleString()
           })),
           "roles": interaction.guild.roles.cache.map(role=>({
             "name": role.name,
             "id": role.id,
             "color": role.hexColor,
-            "time": new Date(role.createdTimestamp).toLocaleString()
+            "createAt": new Date(role.createdTimestamp).toLocaleString()
           }))
         }
       },null,"  "),"UTF-8");
