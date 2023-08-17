@@ -1179,7 +1179,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "グローバルチャットの色変更(黄色): 一回10円",
+    note: "グローバルチャットの色変更(黄色): 一回10円\nグローバルチャットの色変更(赤色): 一回100円",
     data: new SlashCommandBuilder()
       .setName("pay")
       .setDescription("所持金を使用して機能を購入します")  
