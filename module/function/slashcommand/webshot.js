@@ -22,10 +22,10 @@ module.exports = async(interaction)=>{
     try{
       const data = await fetch("https://securl.nu/jx/get_page_jx.php",{
         "method": "POST",
-        "headers": {
+        "headers":{
           "Content-Type": "application/x-www-form-urlencoded"
         },
-        "body": `url=${url}&waitTime=1&browserWidth=800&browserHeight=800`
+        "body": `url=${url}&waitTime=1&browserWidth=1000&browserHeight=1000`
       }).then(res=>res.json());
 
       const image = await fetch(`https://securl.nu${data.img}`)
