@@ -602,7 +602,7 @@ module.exports = {
       "メッセージの送信",
       "ウェブフックの管理"
     ],
-    note: "会話するにはTakasumiBOT Authを使用し[利用規約](https://gc.taka.cf/)に同意する必要があります",
+    note: "会話するにはTakasumiBOT Authを使用し[利用規約](https://takasumibot.github.io/terms.html)に同意する必要があります",
     data: new SlashCommandBuilder()
       .setName("globalchat")
       .setDescription("グローバルチャットを利用します")
@@ -1421,7 +1421,7 @@ module.exports = {
   retranslate:{
     type: "fun",
     name: "/retranslate",
-    description: "様々な言語で翻訳を10回繰り返します",
+    description: "様々な言語で翻訳を25回繰り返します",
     example: "`/retranslate こんにちは`",
     userPermission:[
       "必要なし"
@@ -1432,7 +1432,7 @@ module.exports = {
     note: "なし",
     data: new SlashCommandBuilder()
       .setName("retranslate")
-      .setDescription("様々な言語で翻訳を10回繰り返します")
+      .setDescription("様々な言語で翻訳を25回繰り返します")
       .addStringOption(option =>
         option
           .setName("text")

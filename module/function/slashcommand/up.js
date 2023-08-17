@@ -2,6 +2,7 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const fetchInvite = require("../../lib/fetchInvite");
+  const money = require("../../lib/money");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "up"){
 
@@ -86,6 +87,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    await money.add(interaction.user.id,100);
     await db(`UPDATE server SET time = NOW() WHERE id = ${interaction.guild.id}`);
     await interaction.reply({
       embeds:[{
