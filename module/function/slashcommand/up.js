@@ -2,7 +2,7 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const fetchInvite = require("../../lib/fetchInvite");
-  const money = require("../../lib/moeny");
+  const money = require("../../lib/money");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "up"){
 
