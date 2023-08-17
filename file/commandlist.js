@@ -316,7 +316,6 @@ module.exports = {
           .setDescription("ロールの色")
           .setRequired(true)
           .addChoices(
-            { name: "ランダム", value: `${Colors.Random}` },
             { name: "白色", value: `${Colors.White}` },
             { name: "緑色", value: `${Colors.Green}` },
             { name: "青色", value: `${Colors.Blue}` },
