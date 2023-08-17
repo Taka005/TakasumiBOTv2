@@ -316,14 +316,17 @@ module.exports = {
           .setDescription("ロールの色")
           .setRequired(true)
           .addChoices(
-            { name: "白", value: `${Colors.White}` },
-            { name: "緑", value: `${Colors.Green}` },
-            { name: "青", value: `${Colors.Blue}` },
-            { name: "黄", value: `${Colors.Yellow}` },
-            { name: "紫", value: `${Colors.Purple}` },
-            { name: "金", value: `${Colors.Gold}` },
-            { name: "橙", value: `${Colors.Orange}` },
-            { name: "赤", value: `${Colors.Red}` }
+            { name: "ランダム", value: `${Colors.Random}` },
+            { name: "白色", value: `${Colors.White}` },
+            { name: "緑色", value: `${Colors.Green}` },
+            { name: "青色", value: `${Colors.Blue}` },
+            { name: "黄色", value: `${Colors.Yellow}` },
+            { name: "紫色", value: `${Colors.Purple}` },
+            { name: "金色", value: `${Colors.Gold}` },
+            { name: "橙色", value: `${Colors.Orange}` },
+            { name: "赤色", value: `${Colors.Red}` },
+            { name: "黒色", value: `${Colors.NotQuiteBlack}` },
+            { name: "Discord", value: "0x5865F2" }
           ))
   },
   db:{
