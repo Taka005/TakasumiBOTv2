@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "debug": "node --inspect index.js",
+    "debug": "node --inspect=0.0.0.0:9229 index.js",
     "lint": "./node_modules/.bin/eslint module"
   },
   "engines": {
