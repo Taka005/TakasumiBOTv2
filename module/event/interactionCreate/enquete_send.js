@@ -19,7 +19,6 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-
     if(!message.embeds[0]) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
