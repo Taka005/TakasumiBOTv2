@@ -19,6 +19,18 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    if(!message.embeds[0]) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "回答を追加出来ませんでした",
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
+        },
+        description: "埋め込みが存在しません"
+      }],
+      ephemeral: true
+    });
+
     await message.edit({
       embeds:[{
         color: Colors.Green,

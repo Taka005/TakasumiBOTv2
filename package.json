@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "debug": "node --inspect index.js",
+    "debug": "node --inspect=0.0.0.0:9229 index.js",
     "lint": "./node_modules/.bin/eslint module"
   },
   "engines": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/Taka005/TakasumiBOTv2#readme",
   "dependencies": {
-    "discord.js": "^14.12.1",
+    "discord.js": "^14.13.0",
     "dotenv": "^16.3.1",
     "jsdom": "^22.1.0",
     "mathjs": "^11.9.1",
