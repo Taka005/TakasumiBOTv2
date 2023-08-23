@@ -3,6 +3,7 @@ const Spam = new spam(5000);
 
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const sleep = require("../../lib/sleep");
   if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId === "role"){
     
@@ -23,15 +24,17 @@ module.exports = async(interaction)=>{
       const add = interaction.values.filter(role=>!interaction.member.roles.cache.has(role))
       const remove = interaction.values.filter(role=>!add.includes(role));
 
-      add.forEach(role=>{
-        interaction.member.roles.add(role)
+      await Promise.all(add.map(async(role)=>{
+        await sleep(500);
+        await interaction.member.roles.add(role)
           .catch(()=>{});
-      });
+      }));
 
-      remove.forEach(role=>{
-        interaction.member.roles.remove(role)
+      await Promise.all(remove.map(async(role)=>{
+        await sleep(500);
+        await interaction.member.roles.remove(role)
           .catch(()=>{});
-      });
+      }));
 
       await interaction.editReply({
         embeds:[{

@@ -9,13 +9,10 @@ module.exports = async(interaction)=>{
       interaction.options.getRole("role_2"),
       interaction.options.getRole("role_3"),
       interaction.options.getRole("role_4"),
-      interaction.options.getRole("role_5"),
-      interaction.options.getRole("role_6"),
-      interaction.options.getRole("role_7"),
-      interaction.options.getRole("role_8"),
+      interaction.options.getRole("role_5")
     ].filter(role=>role!==null);
 
-    const emojis = ["🇦","🇧","🇨","🇩","🇪","🇫","🇬","🇭"];
+    const emojis = ["🇦","🇧","🇨","🇩","🇪"];
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) return await interaction.reply({
       embeds:[{
