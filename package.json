@@ -33,7 +33,7 @@
     "mathjs": "^11.10.0",
     "mysql": "^2.18.1",
     "node-cron": "^3.0.2",
-    "node-fetch": "^2.6.13"
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "eslint": "^8.47.0",
