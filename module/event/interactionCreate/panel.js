@@ -24,6 +24,14 @@ module.exports = async(interaction)=>{
       const add = interaction.values.filter(role=>!interaction.member.roles.cache.has(role))
       const remove = interaction.values.filter(role=>!add.includes(role));
 
+      await interaction.editReply({
+        embeds:[{
+          color: Colors.Green,
+          description: "ロールを変更中..."
+        }],
+        ephemeral: true
+      });
+
       await Promise.all(add.map(async(role)=>{
         await sleep(500);
         await interaction.member.roles.add(role)
@@ -38,11 +46,11 @@ module.exports = async(interaction)=>{
 
       await interaction.editReply({
         embeds:[{
+          color: Colors.Green,
           author:{
             name: "ロールを変更しました",
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          color: Colors.Green,
           fields:[
             {
               name: "付与したロール",

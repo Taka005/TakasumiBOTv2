@@ -1,6 +1,7 @@
 module.exports = async(client)=>{
-  const { Events, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const { Events, RESTEvents, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   require("dotenv");
+  const config = require("../config.json");
   const db = require("./lib/db");
   const count = require("./lib/count");
   const money = require("./lib/money");
@@ -102,6 +103,18 @@ module.exports = async(client)=>{
     require("./event/guildMemberRemove/leave")(member);
   });
 
+  client.rest.on(RESTEvents.InvalidRequestWarning,async(message)=>{
+    console.log(`InvalidRequest: ${message}`);
+
+    await client.channels.cache.get(config.error)?.send({
+      embeds:[{
+        color: Colors.Red,
+        description: `\`\`\`${message}\`\`\``,
+        timestamp: new Date()
+      }]
+    }).catch(()=>{});
+  });
+
   if(process.env.DEBUG){
     client.on(Events.Debug,(message)=>{
       console.log(`Debug: ${message}`);
@@ -109,10 +122,6 @@ module.exports = async(client)=>{
 
     client.on(Events.Warn,(message)=>{
       console.log(`Warn: ${message}`);
-    });
-
-    client.on(Events.Error,(error)=>{
-      console.log(`Error: ${error}`);
     });
   }
 }

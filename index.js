@@ -44,7 +44,6 @@ client.login(process.env.BOT_TOKEN)
   })
   .catch(()=>{
     console.log("\x1b[31mERROR: Login Failed\x1b[39m");
-    process.exit();
   })
 
 process.on("uncaughtException",async(error)=>{
