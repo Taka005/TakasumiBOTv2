@@ -27,7 +27,8 @@ const client = new Client({
     AutoModerationRuleManager: 0,
     VoiceStateManager: 0,
     GuildInviteManager: 0
-  })
+  }),
+  shards: "auto"
 });
 
 console.log("\x1b[32m*****************************\x1b[39m");
