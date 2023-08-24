@@ -27,7 +27,8 @@ const client = new Client({
     AutoModerationRuleManager: 0,
     VoiceStateManager: 0,
     GuildInviteManager: 0
-  })
+  }),
+  shards: "auto"
 });
 
 console.log("\x1b[32m*****************************\x1b[39m");
@@ -43,7 +44,6 @@ client.login(process.env.BOT_TOKEN)
   })
   .catch(()=>{
     console.log("\x1b[31mERROR: Login Failed\x1b[39m");
-    process.exit();
   })
 
 process.on("uncaughtException",async(error)=>{

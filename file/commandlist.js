@@ -1151,18 +1151,6 @@ module.exports = {
         option
           .setName("role_5")
           .setDescription("役職5"))
-      .addRoleOption(option =>
-        option
-          .setName("role_6")
-          .setDescription("役職6"))
-      .addRoleOption(option =>
-        option
-          .setName("role_7")
-          .setDescription("役職7"))
-      .addRoleOption(option =>
-        option
-          .setName("role_8")
-          .setDescription("役職8"))
       .addStringOption(option =>
         option
           .setName("title")
