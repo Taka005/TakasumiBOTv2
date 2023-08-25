@@ -299,6 +299,18 @@ module.exports = async(interaction)=>{
           }]
         });
       }else{
+        if(!await db(`SELECT * FROM server WHERE id = ${interaction.guild.id} LIMIT 1;`)[0]) return await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "通知ロールを有効にできませんでした",
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
+            },
+            description: "掲示板に登録されていません"
+          }],
+          ephemeral: true
+        });
+        
         await db(`INSERT INTO up (id, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{

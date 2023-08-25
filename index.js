@@ -20,7 +20,6 @@ const client = new Client({
     GuildTextThreadManager: 0,
     ReactionManager: 0,
     ReactionUserManager: 0,
-    MessageManager: 0,
     StageInstanceManager: 0,
     ThreadManager: 0,
     ThreadMemberManager: 0,

@@ -117,6 +117,7 @@ module.exports = async(interaction)=>{
         .setCustomId("text")
         .setLabel("サーバーの説明文")
         .setMaxLength(180)
+        .setMaxLength(30)
         .setRequired(true)
         .setStyle(TextInputStyle.Short);
         
