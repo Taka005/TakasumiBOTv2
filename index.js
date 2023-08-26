@@ -9,7 +9,7 @@ const client = new Client({
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildPresences,
-    GatewayIntentBits.GUILD_Webhooks
+    GatewayIntentBits.Guild_Webhooks
   ],
   makeCache: Options.cacheWithLimits({
     BaseGuildEmojiManager: 0,
