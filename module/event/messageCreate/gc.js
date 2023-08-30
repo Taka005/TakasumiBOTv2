@@ -49,9 +49,9 @@ module.exports = async(message)=>{
 
   let color = Colors.Green;
   const data = await money.get(message.author.id);
-  if(data?.purple > 0){
-    color = Colors.Purple;
-    await db(`UPDATE money SET purple = ${Number(data.purple)-1} WHERE id = ${message.author.id}`);
+  if(data?.blue > 0){
+    color = Colors.Blue;
+    await db(`UPDATE money SET blue = ${Number(data.blue)-1} WHERE id = ${message.author.id}`);
   }else if(data?.red > 0){
     color = Colors.Red;
     await db(`UPDATE money SET red = ${Number(data.red)-1} WHERE id = ${message.author.id}`);

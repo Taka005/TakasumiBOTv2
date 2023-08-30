@@ -85,7 +85,7 @@ module.exports = async(interaction)=>{
           description: "グローバルチャットの表示色が変更されます"
         }]
       });
-    }else if(type === "purple"){
+    }else if(type === "blue"){
       const data = await money.get(interaction.user.id);
       if(Number(data.amount)-(count*800)<0||count<1) return await interaction.reply({
         embeds:[{
@@ -99,7 +99,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      const total = Number(data.purple) + count;
+      const total = Number(data.blue) + count;
       if(total>300) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -112,7 +112,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await db(`UPDATE money SET purple = ${total} WHERE id = ${interaction.user.id}`);
+      await db(`UPDATE money SET blue = ${total} WHERE id = ${interaction.user.id}`);
       await money.delete(interaction.user.id,count*800);
       await interaction.reply({
         embeds:[{
