@@ -1178,7 +1178,8 @@ module.exports = {
           .setRequired(true)
           .addChoices(
             { name: "一回10円: グローバルチャットの表示色(黄色)", value: "yellow" },
-            { name: "一回100円: グローバルチャットの表示色(赤色)", value: "red" }
+            { name: "一回100円: グローバルチャットの表示色(赤色)", value: "red" },
+            { name: "一回800円: グローバルチャット表示色(紫色)", value: "purple" }
           ))
       .addIntegerOption(option =>
         option

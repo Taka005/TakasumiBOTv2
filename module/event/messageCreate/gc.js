@@ -49,7 +49,10 @@ module.exports = async(message)=>{
 
   let color = Colors.Green;
   const data = await money.get(message.author.id);
-  if(data?.red > 0){
+  if(data?.purple > 0){
+    color = Colors.Purple;
+    await db(`UPDATE money SET purple = ${Number(data.purple)-1} WHERE id = ${message.author.id}`);
+  }else if(data?.red > 0){
     color = Colors.Red;
     await db(`UPDATE money SET red = ${Number(data.red)-1} WHERE id = ${message.author.id}`);
   }else if(data?.yellow > 0){
@@ -153,5 +156,6 @@ module.exports = async(message)=>{
     });
   });
 
-  await message.react("✅").catch(()=>{});
+  await message.react("✅")
+    .catch(()=>{});
 }
