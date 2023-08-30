@@ -89,7 +89,7 @@ module.exports = async(interaction)=>{
 
     await money.add(interaction.user.id,100);
     
-    await db(`UPDATE server SET time = NOW() WHERE id = ${interaction.guild.id}`);
+    await db(`UPDATE server SET name = "${interaction.guild.name}", count = "${interaction.guild.memberCount}", time = NOW() WHERE id = ${interaction.guild.id}`);
     await interaction.reply({
       embeds:[{
         color: Colors.Green,
