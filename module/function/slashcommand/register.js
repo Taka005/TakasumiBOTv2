@@ -66,6 +66,18 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
+      if((await interaction.guild.members.fetch()).filter(m=>!m.user.bot).size < 10) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "登録できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "サーバー掲示板に登録するにはサーバーに10人以上のユーザーが必要です"
+        }],
+        ephemeral: true
+      });
+
       const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
       if(!account[0]) return await interaction.reply({
         embeds:[{
