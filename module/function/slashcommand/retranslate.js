@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      Promise.all(["en","ko","id","el","zh","th","es","ru","ja","en","cs","el","id","th","zh","en","it","ko","es","ja","th","en","el","id","ko"]
+      Promise.all(["en","ko","id","el","zh","th","es","ru","ja","en","cs","el","id","th","zh","en","it","ko","es","ja","th","en","el","id","ko","it","en","zh","th","id"]
         .map(async(lang)=>{
           const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&dj=1&q=${encodeURIComponent(text)}`)
             .then(res=>res.json());
