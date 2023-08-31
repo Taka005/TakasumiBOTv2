@@ -97,7 +97,7 @@ module.exports = async(interaction)=>{
           name: "UPしました!",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: "表示順位が更新されました\n1時間後に通知します",
+        description: "表示順位が更新されました\n[サーバー掲示板](https://taka005.github.io/TakasumiBOT_Servers/)で確認してね!\n1時間後に通知します",
         image:{
           url: "https://cdn.taka.cf/images/up.gif"
         }
