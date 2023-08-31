@@ -838,22 +838,6 @@ module.exports = {
       .setName("leaderboard")
       .setDescription("お金持ちランキングを表示します"),
   },
-  list:{
-    type: "server",
-    name: "/list",
-    description: "サーバー掲示板の簡易版を表示します",
-    example: "`/list`",
-    userPermission:[
-      "必要なし"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "Webサイトで全てのサーバーを閲覧できます",
-    data: new SlashCommandBuilder()
-      .setName("list")
-      .setDescription("サーバー掲示板の簡易版を表示します"),
-  },
   log:{
     type: "othor",
     name: "/log",
