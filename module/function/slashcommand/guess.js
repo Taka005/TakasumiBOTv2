@@ -10,14 +10,14 @@ module.exports = async(interaction)=>{
     const answer = random(["1","2","3"]);
 
     const data = await money.get(interaction.user.id);
-    if(amount < 10||amount > data.amount) return await interaction.reply({
+    if(amount < 100||Math.round(amount*1.5) > data.amount) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
           name: "失敗しました",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        description: "賭ける金額は10円以上かつ、自分の所持金の範囲です"
+        description: "賭ける金額は100円以上かつ、自分の所持金で払える額以下です"
       }],
       ephemeral: true
     });
