@@ -38,9 +38,6 @@ module.exports = async(interaction)=>{
     }else{
       await money.delete(interaction.user.id,Math.round(amount*1.5));
       let total = Number(data.amount) - Math.round(amount*1.5);
-      if(total < 0){
-        total = 0;
-      }
 
       await interaction.editReply({
         embeds:[{
