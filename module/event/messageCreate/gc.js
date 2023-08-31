@@ -23,11 +23,11 @@ module.exports = async(message)=>{
   if(!(await db(`SELECT * FROM account WHERE id = ${message.author.id} LIMIT 1;`))[0]) return await message.reply({ 
     embeds:[{
       author:{
-        name: "利用規約に同意してください",
+        name: "認証してください",
         icon_url: "https://cdn.taka.cf/images/system/error.png"
       },
       color: Colors.Red,
-      description: "以下のリンクから認証を行うことでグローバルチャットを利用できます\n認証が完了すると[利用規約](https://takasumibot.github.io/terms.html)に同意したものとみなします",
+      description: "グローバルチャットを利用するには以下のリンクから認証する必要があります",
     }], 
     components:[
       new ActionRowBuilder()

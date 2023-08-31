@@ -61,7 +61,7 @@ module.exports = async(interaction)=>{
             name: "登録できませんでした",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          description: "サーバー掲示板に登録するにはBOTをサーバーに追加してから最低1日経過する必要があります"
+          description: "サーバー掲示板に登録するにはBOTをサーバーに追加してから1日経過する必要があります"
         }],
         ephemeral: true
       });
@@ -122,8 +122,8 @@ module.exports = async(interaction)=>{
       });
 
       const register = new ModalBuilder()
-      .setCustomId("register")
-      .setTitle("サーバー掲示板登録");
+        .setCustomId("register")
+        .setTitle("サーバー掲示板登録");
 
       const text = new TextInputBuilder()
         .setCustomId("text")
