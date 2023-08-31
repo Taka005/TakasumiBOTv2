@@ -1578,7 +1578,7 @@ module.exports = {
       .addSubcommand(subcommand =>
         subcommand
           .setName("ignore")
-          .setDescription("Bump通知・Dissoku通知・メッセージ展開の有効・無効を切り替えます"))
+          .setDescription("Bump通知・Dissoku通知・UP通知・メッセージ展開の無効・有効を切り替えます"))
       .addSubcommand(subcommand =>
         subcommand
           .setName("info")

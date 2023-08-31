@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "/setting ignore",
-              value: "メッセージ展開、Bump通知、Dissoku通知の無効化と有効化を切り替えます\n有効にするとBump通知、Dissoku通知の設定情報は削除されます"
+              value: "メッセージ展開、Bump通知、Dissoku通知、UP通知の無効・有効を切り替えます\n有効にするとBump通知、Dissoku通知の設定情報は削除されます"
             },
             {
               name: "/setting info",
@@ -629,6 +629,7 @@ module.exports = async(interaction)=>{
         await db(`INSERT INTO \`ignore\` (id, time) VALUES("${interaction.guild.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),time = VALUES (time);`);
         await db(`DELETE FROM bump WHERE id = ${interaction.guild.id};`);
         await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id};`);
+        await db(`DELETE FROM up WHERE id = ${interaction.guild.id};`);
 
         await interaction.reply({
           embeds:[{
@@ -704,7 +705,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "メッセージ無視",
-              value: ignore[0] ? "設定済み":"未設定",
+              value: ignore[0] ? "有効":"無効",
               inline: true
             },
             {
