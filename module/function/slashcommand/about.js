@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Green,
         title: "TakasumiBOTとは",
-        description: "便利な多機能BOTを目指して開発されています\nサポートサーバーへの参加もよろしくお願いします\n開発:[@taka005](https://discord.com/users/790489873957781536)\n\n関連リンク\n[公式サイト](https://takasumibot.github.io/)\n[ステータス](https://status.taka.cf/)\n[TakasumiBOT Auth](https://auth.taka.cf/)\n[個人サイト](https://taka.cf/)"
+        description: "便利な多機能BOTを目指して開発されています\nサポートサーバーへの参加もよろしくお願いします\n開発:[@taka005](https://discord.com/users/790489873957781536)\n\n関連リンク\n[公式サイト](https://takasumibot.github.io/)\n[ステータス](https://status.taka.cf/)\n[サーバー掲示板](https://servers.taka.cf/)\n[TakasumiBOT Auth](https://auth.taka.cf/)\n[個人サイト](https://taka.cf/)"
       }],
       components:[
         new ActionRowBuilder()
