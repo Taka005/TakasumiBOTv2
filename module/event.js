@@ -1,7 +1,7 @@
 module.exports = async(client)=>{
   const { Events, RESTEvents, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   require("dotenv");
-  const config = require("../config.json");
+  const fs = require("fs");
   const db = require("./lib/db");
   const count = require("./lib/count");
   const money = require("./lib/money");
@@ -106,13 +106,7 @@ module.exports = async(client)=>{
   client.rest.on(RESTEvents.InvalidRequestWarning,async(message)=>{
     console.log(`InvalidRequest: ${message}`);
 
-    await client.channels.cache.get(config.error)?.send({
-      embeds:[{
-        color: Colors.Red,
-        description: `\`\`\`${message}\`\`\``,
-        timestamp: new Date()
-      }]
-    }).catch(()=>{});
+    fs.writeFileSync("./tmp/log.txt",`InvalidRequest: ${message}\n`,"utf8");
   });
 
   if(process.env.DEBUG){
