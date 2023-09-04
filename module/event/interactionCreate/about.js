@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
       "about":[{
         color: Colors.Green,
         title: "TakasumiBOTとは",
-        description: "便利な多機能BOTを目指して開発されています\nサポートサーバーへの参加もよろしくお願いします\n開発:[@taka005](https://discord.com/users/790489873957781536)\n\n関連リンク\n[公式サイト](https://takasumibot.github.io/)\n[ステータス](https://status.taka.cf/)\n[TakasumiBOT Auth](https://auth.taka.cf/)\n[個人サイト](https://taka.cf/)"
+        description: "便利な多機能BOTを目指して開発されています\nサポートサーバーへの参加もよろしくお願いします\n開発:[@taka005](https://discord.com/users/790489873957781536)\n\n関連リンク\n[公式サイト](https://takasumibot.github.io/)\n[ステータス](https://status.taka.cf/)\n[TakasumiBOT Auth](https://auth.taka.cf/)"
       }],
       "faq":[{
         color: Colors.Green,
@@ -45,7 +45,7 @@ module.exports = async(interaction)=>{
       }],
       "ad":[{
         color: Colors.Green,
-        description: `**◢◤◢◤◢◤ TakasumiBOT ◢◤◢◤◢◤**\nとても便利なBOTです\nグローバルチャット、認証機能などさまざまな便利機能があります\n導入数 ${server}サーバー超え!\n\n・招待\nhttps://bot.taka.cf/\n・ 公式サイト\nhttps://takasumibot.github.io/\n・ステータス\nhttps://status.taka.cf/\n・TakasumiBOT Auth\nhttps://auth.taka.cf/\n・サポートサーバー\nhttps://discord.gg/NEesRdGQwD\n・Email\ntakasumibot@gmail.com\n\nよければプロジェクトに貢献してください\nhttps://github.com/Taka005/TakasumiBOTv2\n**◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤**`
+        description: `**◢◤◢◤◢◤ TakasumiBOT ◢◤◢◤◢◤**\nとても便利なBOTです\nグローバルチャット、サーバー掲示板、認証機能などさまざまな便利機能があります\n導入数 ${server}サーバー超え!\n\n・招待\nhttps://discord.com/application-directory/981314695543783484\n・ 公式サイト\nhttps://takasumibot.github.io/\n・ステータス\nhttps://status.taka.cf/\n・TakasumiBOT Auth\nhttps://auth.taka.cf/\n・サポートサーバー\nhttps://discord.gg/NEesRdGQwD\n・Email\ntakasumibot@gmail.com\n\nよければプロジェクトに貢献してください\nhttps://github.com/Taka005/TakasumiBOTv2\n**◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤**`
       }]
     }
 

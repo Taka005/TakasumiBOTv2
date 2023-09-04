@@ -973,6 +973,11 @@ module.exports = {
             { name: "位置反転・カラー", value: "reverseColor"},
             { name: "位置反転・色反転", value: "reverseWhite" }
       ))
+      .addUserOption(option =>
+        option
+          .setName("user")
+          .setDescription("表示するユーザー")
+          .setRequired(true))
       .addStringOption(option =>
         option
           .setName("text")
