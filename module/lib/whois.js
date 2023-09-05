@@ -1,4 +1,5 @@
 module.exports = async(host,domain)=>{
+  const net = require("net");
   return await new Promise((resolve,reject)=>{
     let data = "";
     const socket = net.connect({
