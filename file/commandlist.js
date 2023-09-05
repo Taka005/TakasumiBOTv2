@@ -16,13 +16,13 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("5000")
       .setDescription("5000兆円ジェネレーター")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("top")
           .setDescription("上の文字")
           .setMaxLength(30)
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("bottom")
           .setDescription("下の文字")
@@ -76,7 +76,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("activity")
       .setDescription("自分と同じアクティビティの人を表示します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("name")
           .setDescription("アクティビティの名前")
@@ -97,7 +97,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("afk")
       .setDescription("AFKを設定します(留守電)")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("message")
           .setDescription("伝言メッセージ"))
@@ -119,7 +119,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("auth")
       .setDescription("メンバー認証を設定します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")
           .setDescription("認証方式")
@@ -130,7 +130,7 @@ module.exports = {
             { name: "画像", value: "image" },
             { name: "ウェブ", value: "web" },
           ))
-      .addRoleOption(option =>
+      .addRoleOption(option=>
         option
           .setName("role")
           .setDescription("付与するロール")
@@ -151,7 +151,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("avatar")
       .setDescription("ユーザーのアイコンを表示します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("id")
           .setDescription("ユーザーID・メンション"))
@@ -171,16 +171,16 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("ban")
       .setDescription("ユーザーをサーバーからBANします")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("id")
           .setDescription("ユーザーID・メンション")
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("reason")
           .setDescription("理由"))
-      .addIntegerOption(option =>
+      .addIntegerOption(option=>
         option
           .setName("days")
           .setDescription("メッセージを削除する日数"))
@@ -200,13 +200,13 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("button")
       .setDescription("URLのボタンを生成します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("name")
           .setDescription("ボタンの名前")
           .setMaxLength(30)
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("url")
           .setDescription("ボタンのURL")
@@ -227,7 +227,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("channel")
       .setDescription("指定したチャンネルの情報を表示します")
-      .addChannelOption(option =>
+      .addChannelOption(option=>
         option
           .setName("name")
           .setDescription("チャンネル名")
@@ -248,7 +248,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("cipher")
       .setDescription("暗号を生成・復号します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")
           .setDescription("処理方式")
@@ -257,12 +257,12 @@ module.exports = {
             { name: "暗号化", value: "cipher" },
             { name: "復号化", value: "decipher" }
           ))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("text")
           .setDescription("処理するテキスト")
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("key")
           .setDescription("鍵")
@@ -283,7 +283,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("cmd")
       .setDescription("コマンドを実行します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("code")
           .setDescription("コード")
@@ -304,13 +304,13 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("colorrole")
       .setDescription("色付きロールを作成します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("name")
           .setDescription("ロールの名前")
           .setMaxLength(30)
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("color")
           .setDescription("ロールの色")
@@ -343,7 +343,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("db")
       .setDescription("データベースにクエリを送信します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("query")
           .setDescription("クエリ")
@@ -366,7 +366,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("debug")
       .setDescription("デバッグ機能を使用します") 
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")
           .setDescription("デバッグの種類")
@@ -377,15 +377,15 @@ module.exports = {
             { name: "編集", value: "edit" },
             { name: "削除", value: "delete" }
           ))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("id")  
           .setDescription("メッセージID"))
-      .addChannelOption(option =>
+      .addChannelOption(option=>
         option
           .setName("channel")
           .setDescription("チャンネル"))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("json")
           .setDescription("JSON"))
@@ -405,12 +405,12 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("del")
       .setDescription("メッセージを一括で削除します")
-      .addIntegerOption(option =>
+      .addIntegerOption(option=>
         option
           .setName("number")
           .setDescription("削除数")
           .setRequired(true))
-      .addUserOption(option =>
+      .addUserOption(option=>
         option
           .setName("user")
           .setDescription("削除するユーザー"))
@@ -430,7 +430,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("double")
       .setDescription("指定したユーザーのサブアカウントを検出します")
-      .addUserOption(option =>
+      .addUserOption(option=>
         option
           .setName("user")
           .setDescription("対象のユーザー")
@@ -467,7 +467,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("emoji")
       .setDescription("絵文字の情報を表示します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("name")
           .setDescription("絵文字名")
@@ -489,7 +489,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("enquete")
       .setDescription("アンケートを作成します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("title")
           .setDescription("タイトル")
@@ -527,7 +527,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("filter")
       .setDescription("指定された日数以内に参加、アカウント作成したメンバーを表示します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")
           .setDescription("種類")
@@ -536,7 +536,7 @@ module.exports = {
             { name: "参加", value: "true" },
             { name: "アカウントを作成", value: "false" }
           ))
-      .addIntegerOption(option =>
+      .addIntegerOption(option=>
         option
           .setName("day")
           .setDescription("日数")
@@ -557,7 +557,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("follow")
       .setDescription("BOTのアナウンスチャンネルを追加します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")
           .setDescription("設定する種類")
@@ -582,7 +582,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("gif")
       .setDescription("GIF画像を検索し表示します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("name")
           .setDescription("検索ワード")
@@ -624,12 +624,12 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("guess")
       .setDescription("所持金を使って数字当てゲームをします")  
-      .addIntegerOption(option =>
+      .addIntegerOption(option=>
         option
           .setName("money")
           .setDescription("賭ける金額")
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("number")
           .setDescription("選ぶ数")
@@ -657,7 +657,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("guideline")
       .setDescription("サーバーのガイドラインを作成します")
-      .addRoleOption(option =>
+      .addRoleOption(option=>
         option
           .setName("role")
           .setDescription("付与するロール")
@@ -678,12 +678,12 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("hash")
       .setDescription("ハッシュを生成します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("text")
           .setDescription("ハッシュ化するテキスト")
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")
           .setDescription("ハッシュ方式")
@@ -710,7 +710,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("help")
       .setDescription("使い方を表示します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("command")
           .setDescription("表示するコマンド名")
@@ -750,12 +750,12 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("invite")
       .setDescription("招待リンクを作成します")
-      .addIntegerOption(option =>
+      .addIntegerOption(option=>
         option
           .setName("time")
           .setDescription("有効期限(0で無限)")
           .setRequired(true))  
-      .addIntegerOption(option =>
+      .addIntegerOption(option=>
         option
           .setName("use")
           .setDescription("使用回数(0で無限)")
@@ -792,7 +792,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("invites")
       .setDescription("サーバーやユーザーの招待一覧を表示します")
-      .addUserOption(option =>
+      .addUserOption(option=>
         option
           .setName("user")
           .setDescription("表示するユーザー"))
@@ -812,12 +812,12 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("kick")
       .setDescription("メンバーをサーバーからキックします")
-      .addUserOption(option =>
+      .addUserOption(option=>
         option
           .setName("user")
           .setDescription("キックするメンバー")
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("reason")
           .setDescription("理由"))
@@ -853,7 +853,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("log")
       .setDescription("チャットの履歴を出力します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("format")
           .setDescription("出力する形式")
@@ -862,7 +862,7 @@ module.exports = {
             { name: "JSON", value: "json" },
             { name: "TEXT", value: "txt" }
           ))
-      .addIntegerOption(option =>
+      .addIntegerOption(option=>
         option
           .setName("limit")
           .setDescription("取得数")
@@ -883,12 +883,12 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("lottery")
       .setDescription("指定したロールを持っているメンバーから指定した人数を選びます")
-      .addIntegerOption(option =>
+      .addIntegerOption(option=>
         option
           .setName("number")
           .setDescription("選ぶ人数")
           .setRequired(true))
-      .addRoleOption(option =>
+      .addRoleOption(option=>
         option
           .setName("role")
           .setDescription("対象のロール")
@@ -909,7 +909,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("math")
       .setDescription("式を計算します")  
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("code")
           .setDescription("計算式")
@@ -930,7 +930,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("mc")
       .setDescription("マインクラフトサーバーの情報を表示します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("edition")
           .setDescription("エディション")
@@ -939,7 +939,7 @@ module.exports = {
             { name: "Java版", value: "je" },
             { name: "統合版", value: "be" }
           ))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("ip")
           .setDescription("サーバーアドレス")
@@ -960,7 +960,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("miq")
       .setDescription("Make it a Quoteを生成します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")
           .setDescription("生成する種類")
@@ -973,12 +973,12 @@ module.exports = {
             { name: "位置反転・カラー", value: "reverseColor"},
             { name: "位置反転・色反転", value: "reverseWhite" }
       ))
-      .addUserOption(option =>
+      .addUserOption(option=>
         option
           .setName("user")
           .setDescription("表示するユーザー")
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("text")
           .setDescription("表示するテキスト")
@@ -999,7 +999,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("moderate")
       .setDescription("AutoModを使用したモデレート機能を設定します")  
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")
           .setDescription("設定する機能")
@@ -1029,7 +1029,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("money")
       .setDescription("ユーザーの所持金を確認します")
-      .addUserOption(option =>
+      .addUserOption(option=>
         option
           .setName("user")
           .setDescription("対象のユーザー"))
@@ -1049,7 +1049,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("nslookup")
       .setDescription("DNS情報を取得します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("name")
           .setDescription("取得するアドレス")
@@ -1086,7 +1086,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("package")
       .setDescription("パッケージを検索します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")
           .setDescription("検索するパッケージマネージャー")
@@ -1095,7 +1095,7 @@ module.exports = {
             { name: "NPM", value: "npm" },
             { name: "PYPI", value: "pypi" }
           ))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("name")
           .setDescription("検索ワード")
@@ -1119,28 +1119,28 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("panel")
       .setDescription("役職パネルを作成します")  
-      .addRoleOption(option =>
+      .addRoleOption(option=>
         option
           .setName("role_1")
           .setDescription("役職1")
           .setRequired(true))
-      .addRoleOption(option =>
+      .addRoleOption(option=>
         option
           .setName("role_2")
           .setDescription("役職2"))
-      .addRoleOption(option =>
+      .addRoleOption(option=>
         option
           .setName("role_3")
           .setDescription("役職3"))
-      .addRoleOption(option =>
+      .addRoleOption(option=>
         option
           .setName("role_4")
           .setDescription("役職4"))
-      .addRoleOption(option =>
+      .addRoleOption(option=>
         option
           .setName("role_5")
           .setDescription("役職5"))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("title")
           .setDescription("タイトル"))
@@ -1160,7 +1160,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("pay")
       .setDescription("所持金を使用して機能を購入します")  
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")
           .setDescription("買う機能")
@@ -1170,7 +1170,7 @@ module.exports = {
             { name: "一回100円: グローバルチャットの表示色(赤色)", value: "red" },
             { name: "一回800円: グローバルチャット表示色(青色)", value: "blue" }
           ))
-      .addIntegerOption(option =>
+      .addIntegerOption(option=>
         option
           .setName("count")
           .setDescription("買う回数")
@@ -1191,7 +1191,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("permission")
       .setDescription("ユーザーの権限を表示します")
-      .addUserOption(option =>
+      .addUserOption(option=>
         option
           .setName("user")
           .setDescription("表示するユーザー"))
@@ -1211,50 +1211,50 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("poll")
       .setDescription("投票を作成します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("title")
           .setDescription("タイトル")
           .setMaxLength(30)
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_1")
           .setDescription("選択1")
           .setMaxLength(50)
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_2")
           .setDescription("選択2")
           .setMaxLength(50)
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_3")
           .setDescription("選択3")
           .setMaxLength(50))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_4")
           .setDescription("選択4")
           .setMaxLength(50) )
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_5")
           .setDescription("選択5")
           .setMaxLength(50))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_6")
           .setDescription("選択6")
           .setMaxLength(50))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_7")
           .setDescription("選択7")
           .setMaxLength(50))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_8")
           .setDescription("選択8")
@@ -1275,7 +1275,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("qr")
       .setDescription("QRコードを読み取り・生成します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")
           .setDescription("実行する操作")
@@ -1284,7 +1284,7 @@ module.exports = {
             { name: "生成", value: "gen" },
             { name: "読み取り", value: "read" }
           ))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("text")
           .setDescription("テキスト・URL")
@@ -1305,45 +1305,45 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("random")
       .setDescription("ランダムで選びます")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_1")
           .setDescription("選択1")
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_2")
           .setDescription("選択2")
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_3")
           .setDescription("選択3"))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_4")
           .setDescription("選択4"))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_5")
           .setDescription("選択5"))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_6")
           .setDescription("選択6"))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_7")
           .setDescription("選択7"))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_8")
           .setDescription("選択8"))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_9")
           .setDescription("選択9"))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("select_10")
           .setDescription("選択10"))
@@ -1413,7 +1413,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("retranslate")
       .setDescription("様々な言語で翻訳を30回繰り返します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("text")
           .setDescription("再翻訳するテキスト")
@@ -1434,7 +1434,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("role")
       .setDescription("役職の内容を表示します")
-      .addRoleOption(option =>
+      .addRoleOption(option=>
         option
           .setName("name")
           .setDescription("表示するロール")
@@ -1471,7 +1471,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("safeweb")
       .setDescription("Webサイトの安全性を評価します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("url")
           .setDescription("対象のURL")
@@ -1492,7 +1492,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("script")
       .setDescription("プログラムを実行します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("lang")
           .setDescription("実行する言語")
@@ -1544,7 +1544,7 @@ module.exports = {
         subcommand
           .setName("bump")
           .setDescription("BUMP時に通知するロールを設定します")
-          .addRoleOption(option =>
+          .addRoleOption(option=>
             option
               .setName("role")
               .setDescription("通知するロール(無効にする場合は入力しないでください")))
@@ -1552,7 +1552,7 @@ module.exports = {
         subcommand
           .setName("dissoku")
           .setDescription("Dissoku UP時に通知するロールを設定します")
-          .addRoleOption(option =>
+          .addRoleOption(option=>
             option
               .setName("role")
               .setDescription("通知するロール(無効にする場合は入力しないでください)")))
@@ -1560,7 +1560,7 @@ module.exports = {
         subcommand
           .setName("up")
           .setDescription("TakasumiBOTのUP時に通知するロールを設定します")
-          .addRoleOption(option =>
+          .addRoleOption(option=>
             option
               .setName("role")
               .setDescription("通知するロール(無効にする場合は入力しないでください)")))
@@ -1568,7 +1568,7 @@ module.exports = {
         subcommand
           .setName("join")
           .setDescription("参加メッセージを設定します")
-          .addStringOption(option =>
+          .addStringOption(option=>
               option
                 .setName("message")
                 .setDescription("送信するメッセージ")))
@@ -1576,7 +1576,7 @@ module.exports = {
         subcommand
           .setName("leave")
           .setDescription("退出メッセージを設定します")
-          .addStringOption(option =>
+          .addStringOption(option=>
               option
                 .setName("message")
                 .setDescription("送信するメッセージ")))
@@ -1608,7 +1608,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("short")
       .setDescription("短縮URLを作成します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("url")
           .setDescription("短縮するURL")
@@ -1629,7 +1629,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("skin")
       .setDescription("マインクラフトのスキンを検索します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("name")
           .setDescription("ユーザー名")
@@ -1650,7 +1650,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("slowmode")
       .setDescription("チャンネルに低速モードを設定します")
-      .addIntegerOption(option =>
+      .addIntegerOption(option=>
         option
           .setName("time")
           .setDescription("設定する秒数")
@@ -1671,7 +1671,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("snowflake")
       .setDescription("Snowflakeを解析します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("id")
           .setDescription("解析するID")
@@ -1708,7 +1708,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("system")
       .setDescription("BOTの管理をします")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("type")       
           .setDescription("操作")
@@ -1721,12 +1721,12 @@ module.exports = {
             { name: "ミュート/解除(ユーザー)", value: "mute_user" },
             { name: "DM", value: "dm" }
           ))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("id")
           .setDescription("操作する対象のID")
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("message")
           .setDescription("メッセージ/理由/金額"))
@@ -1765,16 +1765,16 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("timeout")
       .setDescription("メンバーをタイムアウトします")
-      .addUserOption(option =>
+      .addUserOption(option=>
         option
           .setName("user")
           .setDescription("ユーザーID・メンション")
           .setRequired(true))
-      .addIntegerOption(option =>
+      .addIntegerOption(option=>
         option
           .setName("time")
           .setDescription("時間(秒)"))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("reason")
           .setDescription("理由"))
@@ -1811,12 +1811,12 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("translate")
       .setDescription("テキストを翻訳します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("text")
           .setDescription("翻訳するテキスト")
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("lang")
           .setDescription("翻訳先の言語")
@@ -1846,7 +1846,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("twitter")
       .setDescription("ツイートを検索します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("word")
           .setDescription("検索ワード")
@@ -1884,7 +1884,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("user")
       .setDescription("ユーザーの情報を表示します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("id")
           .setDescription("ユーザーID・メンション"))
@@ -1904,12 +1904,12 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("warn")
       .setDescription("メンバーを警告します")
-      .addUserOption(option =>
+      .addUserOption(option=>
         option
           .setName("user")
           .setDescription("対象のメンバー")
           .setRequired(true))
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("reason")
           .setDescription("理由")
@@ -1931,10 +1931,31 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("webshot")
       .setDescription("Webサイトのスクリーンショットを撮影します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("url")
           .setDescription("対象のURL")
+          .setRequired(true))
+  },
+  whois:{
+    type: "tool",
+    name: "/whois",
+    description: "Whois検索をします",
+    example: "`/whois google.com`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("whois")
+      .setDescription("Whois検索をします")
+      .addStringOption(option=>
+        option
+          .setName("domain")
+          .setDescription("検索するドメイン")
           .setRequired(true))
   },
   wiki:{
@@ -1948,11 +1969,11 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし" ,
+    note: "なし",
     data: new SlashCommandBuilder()
       .setName("wiki")
       .setDescription("wikipediaで検索し表示します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("word")
           .setDescription("検索ワード")
@@ -1990,7 +2011,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("yahoo")
       .setDescription("Yahooで検索し表示します")
-      .addStringOption(option =>
+      .addStringOption(option=>
         option
           .setName("word")
           .setDescription("検索ワード")
