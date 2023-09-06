@@ -73,6 +73,6 @@ module.exports = async(interaction)=>{
           .setFile(Buffer.from(data)) 
           .setName(`LOG.${format}`)
       ]
-    })
+    });
   }
 }

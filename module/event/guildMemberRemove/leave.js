@@ -7,6 +7,7 @@ module.exports = async(member)=>{
     const msg = data[0].message
       .replace("[User]",`<@${member.user.id}>`)
       .replace("[UserName]",`${member.user.tag}`)
+      .replace("[UserDisplayName]",`${member.user.displayName}`)
       .replace("[UserID]",`${member.user.id}`)
       .replace("[ServerName]",`${member.guild.name}`)
       .replace("[ServerID]",`${member.guild.id}`)
