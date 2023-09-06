@@ -10,7 +10,10 @@ module.exports = async(host,domain)=>{
     socket.setTimeout(1000);
     socket.on("data",(chunk)=>(data += chunk));
     socket.on("close",()=>resolve(data));
-    socket.on("timeout",()=>socket.destroy(reject));
-    socket.on("error",reject);
+    socket.on("error",(error)=>reject(error));
+    socket.on("timeout",()=>{
+      socket.destroy();
+      reject();
+    });
   });
 }
