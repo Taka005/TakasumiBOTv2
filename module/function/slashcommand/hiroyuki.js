@@ -81,7 +81,7 @@ module.exports = async(interaction)=>{
         avatar: "https://cdn.taka.cf/images/hiroyuki.png",
       })
         .then(async(webhook)=>{
-          await db(`INSERT INTO hiroyuki (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE channel = VALUES (channel),server = VALUES (server),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
+          await db(`INSERT INTO hiroyuki (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW());`);
 
           await interaction.editReply({
             embeds:[{
