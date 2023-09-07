@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
           name: `${day}日以内に${type?"参加":"アカウントを作成"}したメンバー`,
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: `${menbers.size}人いました\n\n${menbers.map(m=>`**${m.user.tag}**(${m.id})`).join("\n")}`
+        description: menbers.map(m=>`**${m.user.tag}**(${m.id})`).join("\n")
       }]
     })
       .catch(async()=>{
