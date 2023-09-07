@@ -123,7 +123,7 @@ module.exports = {
       .setDescription("アナウンスチャンネルで送信されたメッセージを自動で公開します")
   },
   auth:{
-    type: "server",
+    type: "manage",
     name: "/auth",
     description: "メンバー認証を設定します\n4種類の認証方式を選択できます",
     example: "`/auth 標準`",
@@ -661,7 +661,7 @@ module.exports = {
           ))
   },
   guideline:{
-    type: "server",
+    type: "manage",
     name: "/guideline",
     description: "サーバーのガイドラインを作成し、同意するとロールが付与されます",
     example: "`/guideline @Role`",
@@ -1123,7 +1123,7 @@ module.exports = {
           .setRequired(true))
   },
   panel:{
-    type: "server",
+    type: "manage",
     name: "/panel",
     description: "役職パネルを作成します",
     example: "`/panel title @Role1 @Role2`",
