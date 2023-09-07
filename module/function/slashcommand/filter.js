@@ -5,14 +5,14 @@ module.exports = async(interaction)=>{
     const type = JSON.parse(interaction.options.getString("type"));
 		const day = interaction.options.getInteger("day");
 
-    if(day < 0||day > 90) return await interaction.reply({ 
+    if(day < 0) return await interaction.reply({ 
       embeds:[{
         color: Colors.Red,
         author:{
           name: "取得できませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        description: `フィルターする日数は1日以上90日以下にする必要があります`
+        description: `フィルターする日数は1日以上にする必要があります`
       }],
       ephemeral: true
     });
@@ -39,8 +39,21 @@ module.exports = async(interaction)=>{
           name: `${day}日以内に${type?"参加":"アカウントを作成"}したメンバー`,
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: menbers.map(m=>`${m.user.tag}(${m.id})`).join("\n")
+        description: `${menbers.length}人いました\n\n${menbers.map(m=>`**${m.user.tag}**(${m.id})`).join("\n")}`
       }]
-    });
+    })
+      .catch(async()=>{
+        await interaction.reply({ 
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "取得できませんでした",
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
+            },
+            description: "フィルターの結果が多すぎるため表示できません"
+          }],
+          ephemeral: true
+        });
+      });
   }
 }
