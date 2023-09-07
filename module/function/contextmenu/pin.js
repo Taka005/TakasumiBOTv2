@@ -89,7 +89,7 @@ module.exports = async(interaction)=>{
 
     try{
       await interaction.deferReply()
-        .then(()=>interaction.deleteReply())
+        .then(()=>interaction.deleteReply());
 
       const msg = await interaction.channel.send({
         embeds:[{
@@ -105,9 +105,9 @@ module.exports = async(interaction)=>{
         }]
       });
 
-      await db(`INSERT INTO pin (channel, server, message, count, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}","1", NOW());`);
-      server.forEach(data=>{
-        db(`UPDATE pin SET count=${Number(data.count)+1} WHERE server=${message.guild.id};`);
+      await db(`INSERT INTO pin (channel, server, message, count, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}","${server[0]?.count||"0"}",NOW());`);
+      server.forEach(async(data)=>{
+        await db(`UPDATE pin SET count = ${Number(data.count)+1} WHERE server = ${message.guild.id};`);
       });
     }catch(error){
       await interaction.reply({

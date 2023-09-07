@@ -102,6 +102,26 @@ module.exports = {
           .setName("message")
           .setDescription("伝言メッセージ"))
   },
+  announce:{
+    type: "othor",
+    name: "/announce",
+    description: "アナウンスチャンネルで送信されたメッセージを自動で公開します",
+    example: "`/announce`",
+    userPermission:[
+      "チャンネルの管理",
+      "メッセージの管理"
+    ],
+    botPermission:[
+      "リアクションの追加",
+      "チャンネルの閲覧",
+      "チャンネルの管理",
+      "メッセージの管理"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("announce")
+      .setDescription("アナウンスチャンネルで送信されたメッセージを自動で公開します")
+  },
   auth:{
     type: "manage",
     name: "/auth",
