@@ -103,7 +103,7 @@ module.exports = {
           .setDescription("伝言メッセージ"))
   },
   announce:{
-    type: "othor",
+    type: "server",
     name: "/announce",
     description: "アナウンスチャンネルで送信されたメッセージを自動で公開します",
     example: "`/announce`",
@@ -117,7 +117,7 @@ module.exports = {
       "チャンネルの管理",
       "メッセージの管理"
     ],
-    note: "なし",
+    note: "最大6個まで設定できます",
     data: new SlashCommandBuilder()
       .setName("announce")
       .setDescription("アナウンスチャンネルで送信されたメッセージを自動で公開します")
@@ -457,7 +457,7 @@ module.exports = {
           .setRequired(true))
   },
   embed:{
-    type: "manage",
+    type: "server",
     name: "/embed",
     description: "埋め込みを簡単に作成し表示できます",
     example: "`/embed`",
@@ -494,7 +494,7 @@ module.exports = {
           .setRequired(true))
   },
   enquete:{
-    type: "tool",
+    type: "server",
     name: "/enquete",
     description: "アンケートを作成することができます",
     example: "`/enquete title`",
@@ -610,7 +610,7 @@ module.exports = {
           .setRequired(true))
   },
   globalchat:{
-    type: "othor",
+    type: "server",
     name: "/globalchat",
     description: "色々なサーバーと繋がるグローバルチャットを有効化、無効化します",
     example: "`/globalchat`",
@@ -889,7 +889,7 @@ module.exports = {
           .setRequired(true))
   },
   lottery:{
-    type: "fun",
+    type: "server",
     name: "/lottery",
     description: "指定したロールを持っているメンバーから指定した人数を選びます",
     example: "`/lottery 10 @Role`",
@@ -1217,7 +1217,7 @@ module.exports = {
           .setDescription("表示するユーザー"))
   },
   poll:{
-    type: "tool",
+    type: "server",
     name: "/poll",
     description: "投票を作成することができます",
     example: "`/poll Title One two Three`",
@@ -1369,7 +1369,7 @@ module.exports = {
           .setDescription("選択10"))
   },
   register:{
-    type: "server",
+    type: "board",
     name: "/register",
     description: "サーバー掲示板に登録、削除を行います",
     example: "`/register`",
@@ -1800,7 +1800,7 @@ module.exports = {
           .setDescription("理由"))
   },
   top:{
-    type: "othor",
+    type: "server",
     name: "/top",
     description: "実行したチャンネルの1番最初のメッセージリンクを表示します",
     example: "`/top`",
@@ -1874,7 +1874,7 @@ module.exports = {
           .setRequired(true))
   },
   up:{
-    type: "server",
+    type: "board",
     name: "/up",
     description: "サーバー掲示板の表示順位を上げます",
     example: "`/up`",
@@ -1958,7 +1958,7 @@ module.exports = {
           .setRequired(true))
   },
   whois:{
-    type: "tool",
+    type: "search",
     name: "/whois",
     description: "Whois検索をします",
     example: "`/whois google.com`",
