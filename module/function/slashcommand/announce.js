@@ -88,8 +88,8 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });  
   
-      await db(`INSERT INTO announce (channel, server, count, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${server[0]?.count||"0"}",NOW());`);
-      await db(`UPDATE announce SET count = ${Number(server[0].count)+1} WHERE server = ${interaction.guild.id};`);
+      await db(`INSERT INTO announce (channel, server, count, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${server[0]?.count||0}",NOW());`);
+      await db(`UPDATE announce SET count = ${Number(server[0]?.count||0)+1} WHERE server = ${interaction.guild.id};`);
 
       await interaction.reply({
         embeds:[{
