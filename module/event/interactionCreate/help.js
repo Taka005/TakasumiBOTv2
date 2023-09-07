@@ -8,12 +8,13 @@ module.exports = async(interaction)=>{
 
     const types = {
       "info": "情報",
+      "server": "サーバー関連",
       "manage": "サーバー管理",
       "tool": "ツール",
       "search": "検索",
       "fun": "ネタ",
       "money": "お金",
-      "server": "サーバー掲示板",
+      "board": "サーバー掲示板",
       "bot": "Bot関連",
       "othor": "その他",
       "contextmenu": "コンテキストメニュー"

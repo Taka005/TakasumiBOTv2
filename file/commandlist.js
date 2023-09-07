@@ -102,6 +102,26 @@ module.exports = {
           .setName("message")
           .setDescription("伝言メッセージ"))
   },
+  announce:{
+    type: "server",
+    name: "/announce",
+    description: "アナウンスチャンネルで送信されたメッセージを自動で公開します",
+    example: "`/announce`",
+    userPermission:[
+      "チャンネルの管理",
+      "メッセージの管理"
+    ],
+    botPermission:[
+      "リアクションの追加",
+      "チャンネルの閲覧",
+      "チャンネルの管理",
+      "メッセージの管理"
+    ],
+    note: "最大6個まで設定できます",
+    data: new SlashCommandBuilder()
+      .setName("announce")
+      .setDescription("アナウンスチャンネルで送信されたメッセージを自動で公開します")
+  },
   auth:{
     type: "manage",
     name: "/auth",
@@ -269,7 +289,7 @@ module.exports = {
           .setRequired(true))
   },
   cmd:{
-    type: "bot",
+    type: "admin",
     name: "/cmd",
     description: "関係者以外実行できません",
     example: "なし",
@@ -329,7 +349,7 @@ module.exports = {
           ))
   },
   db:{
-    type: "bot",
+    type: "admin",
     name: "/db",
     description: "関係者以外実行できません",
     example: "なし",
@@ -350,7 +370,7 @@ module.exports = {
           .setRequired(true))
   },
   debug:{
-    type: "bot",
+    type: "admin",
     name: "/debug",
     description: "関係者以外実行できません",
     example: "なし",
@@ -437,7 +457,7 @@ module.exports = {
           .setRequired(true))
   },
   embed:{
-    type: "manage",
+    type: "server",
     name: "/embed",
     description: "埋め込みを簡単に作成し表示できます",
     example: "`/embed`",
@@ -474,7 +494,7 @@ module.exports = {
           .setRequired(true))
   },
   enquete:{
-    type: "tool",
+    type: "server",
     name: "/enquete",
     description: "アンケートを作成することができます",
     example: "`/enquete title`",
@@ -497,7 +517,7 @@ module.exports = {
           .setRequired(true))
   },
   export:{
-    type: "manage",
+    type: "othor",
     name: "/export",
     description: "サーバーのデータをJSON形式に出力します",
     example: "`/export`",
@@ -590,7 +610,7 @@ module.exports = {
           .setRequired(true))
   },
   globalchat:{
-    type: "othor",
+    type: "server",
     name: "/globalchat",
     description: "色々なサーバーと繋がるグローバルチャットを有効化、無効化します",
     example: "`/globalchat`",
@@ -736,7 +756,7 @@ module.exports = {
       .setDescription("ひろゆきを参加・退出させます"),
   },
   invite:{
-    type: "manage",
+    type: "server",
     name: "/invite",
     description: "カスタマイズされた招待リンクを作成します",
     example: "`/invite 100 1`\n`/invite 500`",
@@ -869,7 +889,7 @@ module.exports = {
           .setRequired(true))
   },
   lottery:{
-    type: "fun",
+    type: "server",
     name: "/lottery",
     description: "指定したロールを持っているメンバーから指定した人数を選びます",
     example: "`/lottery 10 @Role`",
@@ -1197,7 +1217,7 @@ module.exports = {
           .setDescription("表示するユーザー"))
   },
   poll:{
-    type: "tool",
+    type: "server",
     name: "/poll",
     description: "投票を作成することができます",
     example: "`/poll Title One two Three`",
@@ -1349,7 +1369,7 @@ module.exports = {
           .setDescription("選択10"))
   },
   register:{
-    type: "server",
+    type: "board",
     name: "/register",
     description: "サーバー掲示板に登録、削除を行います",
     example: "`/register`",
@@ -1365,7 +1385,7 @@ module.exports = {
       .setDescription("サーバー掲示板に登録、削除を行います"),
   },
   reload:{
-    type: "bot",
+    type: "admin",
     name: "/reload",
     description: "関係者以外実行できません",
     example: "なし",
@@ -1694,7 +1714,7 @@ module.exports = {
       .setDescription("BOTのステータスを表示します")
   },
   system:{
-    type: "bot",
+    type: "admin",
     name: "/system",
     description: "関係者以外実行できません",
     example: "なし",
@@ -1780,7 +1800,7 @@ module.exports = {
           .setDescription("理由"))
   },
   top:{
-    type: "othor",
+    type: "server",
     name: "/top",
     description: "実行したチャンネルの1番最初のメッセージリンクを表示します",
     example: "`/top`",
@@ -1854,7 +1874,7 @@ module.exports = {
           .setRequired(true))
   },
   up:{
-    type: "server",
+    type: "board",
     name: "/up",
     description: "サーバー掲示板の表示順位を上げます",
     example: "`/up`",
@@ -1938,7 +1958,7 @@ module.exports = {
           .setRequired(true))
   },
   whois:{
-    type: "tool",
+    type: "search",
     name: "/whois",
     description: "Whois検索をします",
     example: "`/whois google.com`",
