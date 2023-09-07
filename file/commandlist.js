@@ -123,7 +123,7 @@ module.exports = {
       .setDescription("アナウンスチャンネルで送信されたメッセージを自動で公開します")
   },
   auth:{
-    type: "manage",
+    type: "server",
     name: "/auth",
     description: "メンバー認証を設定します\n4種類の認証方式を選択できます",
     example: "`/auth 標準`",
@@ -517,7 +517,7 @@ module.exports = {
           .setRequired(true))
   },
   export:{
-    type: "manage",
+    type: "othor",
     name: "/export",
     description: "サーバーのデータをJSON形式に出力します",
     example: "`/export`",
@@ -661,7 +661,7 @@ module.exports = {
           ))
   },
   guideline:{
-    type: "manage",
+    type: "server",
     name: "/guideline",
     description: "サーバーのガイドラインを作成し、同意するとロールが付与されます",
     example: "`/guideline @Role`",
@@ -756,7 +756,7 @@ module.exports = {
       .setDescription("ひろゆきを参加・退出させます"),
   },
   invite:{
-    type: "manage",
+    type: "server",
     name: "/invite",
     description: "カスタマイズされた招待リンクを作成します",
     example: "`/invite 100 1`\n`/invite 500`",
@@ -1123,7 +1123,7 @@ module.exports = {
           .setRequired(true))
   },
   panel:{
-    type: "manage",
+    type: "server",
     name: "/panel",
     description: "役職パネルを作成します",
     example: "`/panel title @Role1 @Role2`",
