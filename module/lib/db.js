@@ -16,7 +16,5 @@ module.exports = async(query)=>{
   }catch(error){
     console.log(`\x1b[31mDB: ${error}\x1b[39m`);
     return [];
-  }finally{
-    connection.release();
   }
 }
