@@ -1,17 +1,15 @@
 const mysql = require("mysql");
 const util = require("util");
 require("dotenv").config();
-const pool = mysql.createPool({
+const connection = mysql.createConnection({
   host: "public.bfv4d.tky1.mdbs.jp",
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: "bfv4d_",
   charset: "utf8mb4"
 });
-pool.getConnection = util.promisify(pool.getConnection);
 
 module.exports = async(query)=>{
-  const connection = await pool.getConnection();
   connection.query = util.promisify(connection.query);
   try{
     return await connection.query(query);
