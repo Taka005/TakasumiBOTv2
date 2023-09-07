@@ -1,5 +1,5 @@
-module.exports = async(interaction)=>{
-  const { PermissionFlagsBits, ChannelType, Colors } = require("discord.js");
+module.exports = async(message)=>{
+  const { ChannelType } = require("discord.js");
   const db = require("../../lib/db");
 
   if(
