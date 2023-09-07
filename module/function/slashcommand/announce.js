@@ -49,12 +49,9 @@ module.exports = async(interaction)=>{
     });
   
     const channel = await db(`SELECT * FROM announce WHERE channel = ${interaction.channel.id} LIMIT 1;`);
-    const server = await db(`SELECT * FROM announce WHERE server = ${interaction.guild.id};`);
     if(channel[0]){
-      server.forEach(async(data)=>{
-        await db(`UPDATE announce SET count=${Number(data.count)-1} WHERE server = ${interaction.guild.id};`);
-      });
       await db(`DELETE FROM announce WHERE channel = ${interaction.channel.id} LIMIT 1;`);
+      await db(`UPDATE announce SET count = ${Number(data.count)-1} WHERE server = ${interaction.guild.id};`);
 
       await interaction.reply({
         embeds:[{
@@ -66,6 +63,7 @@ module.exports = async(interaction)=>{
         }]
       });
     }else{
+      const server = await db(`SELECT * FROM announce WHERE server = ${interaction.guild.id};`);
       if(server[0]?.count > 5) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -91,9 +89,7 @@ module.exports = async(interaction)=>{
       });  
   
       await db(`INSERT INTO announce (channel, server, count, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${server[0]?.count||"0"}",NOW());`);
-      server.forEach(async(data)=>{
-        await db(`UPDATE announce SET count=${Number(data.count)+1} WHERE server=${interaction.guild.id};`);
-      });
+      await db(`UPDATE announce SET count = ${Number(data.count)+1} WHERE server = ${interaction.guild.id};`);
 
       await interaction.reply({
         embeds:[{

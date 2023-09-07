@@ -13,10 +13,7 @@ module.exports = async(message)=>{
       await message.crosspost();
       await message.react("✅");
     }catch{
-      (await db(`SELECT * FROM announce WHERE server = ${message.guild.id};`))
-        .forEach(async(data)=>{
-          await db(`UPDATE announce SET count = ${Number(data.count)-1} WHERE server = ${message.guild.id};`);
-        });
+      await db(`UPDATE announce SET count = ${Number(data.count)-1} WHERE server = ${message.guild.id};`);
       await db(`DELETE FROM announce WHERE channel = ${message.channel.id} LIMIT 1;`);
     }
   }
