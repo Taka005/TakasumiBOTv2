@@ -289,7 +289,7 @@ module.exports = {
           .setRequired(true))
   },
   cmd:{
-    type: "bot",
+    type: "admin",
     name: "/cmd",
     description: "関係者以外実行できません",
     example: "なし",
@@ -349,7 +349,7 @@ module.exports = {
           ))
   },
   db:{
-    type: "bot",
+    type: "admin",
     name: "/db",
     description: "関係者以外実行できません",
     example: "なし",
@@ -370,7 +370,7 @@ module.exports = {
           .setRequired(true))
   },
   debug:{
-    type: "bot",
+    type: "admin",
     name: "/debug",
     description: "関係者以外実行できません",
     example: "なし",
@@ -1385,7 +1385,7 @@ module.exports = {
       .setDescription("サーバー掲示板に登録、削除を行います"),
   },
   reload:{
-    type: "bot",
+    type: "admin",
     name: "/reload",
     description: "関係者以外実行できません",
     example: "なし",
@@ -1714,7 +1714,7 @@ module.exports = {
       .setDescription("BOTのステータスを表示します")
   },
   system:{
-    type: "bot",
+    type: "admin",
     name: "/system",
     description: "関係者以外実行できません",
     example: "なし",
