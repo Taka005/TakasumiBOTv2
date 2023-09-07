@@ -62,6 +62,7 @@ module.exports = async(interaction)=>{
     });
       
     const channel = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
+    const server = await db(`SELECT * FROM pin WHERE server = ${message.guild.id};`);
     if(channel[0]) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -74,7 +75,6 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const server = await db(`SELECT * FROM pin WHERE server = ${message.guild.id};`);
     if(server[0]?.count > 5) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -106,7 +106,7 @@ module.exports = async(interaction)=>{
       });
 
       await db(`INSERT INTO pin (channel, server, message, count, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}","${server[0]?.count||"0"}",NOW());`);
-      await db(`UPDATE pin SET count = ${Number(data.count)+1} WHERE server = ${message.guild.id};`);
+      await db(`UPDATE pin SET count = ${Number(server[0].count)+1} WHERE server = ${message.guild.id};`);
     }catch(error){
       await interaction.reply({
         embeds:[{
