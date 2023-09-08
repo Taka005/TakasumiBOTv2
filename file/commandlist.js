@@ -253,6 +253,36 @@ module.exports = {
           .setDescription("チャンネル名")
           .setRequired(true))
   },
+  char:{
+    type: "fun",
+    name: "/char",
+    description: "意図的に文字化け、復元をします",
+    example: "`/char 文字化け moji`\n`/char 復元 阿懿燠ヱ淤`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "完全に復元することはできません\n長文になるほど復元率は減少します",
+    data: new SlashCommandBuilder()
+      .setName("char")
+      .setDescription("意図的に文字化け、復元をします")
+      .addStringOption(option=>
+        option
+          .setName("type")
+          .setDescription("処理方式")
+          .setRequired(true)
+          .addChoices(
+            { name: "文字化け", value: "encode" },
+            { name: "復元", value: "decode" }
+          ))
+      .addStringOption(option=>
+        option
+          .setName("text")
+          .setDescription("処理するテキスト")
+          .setRequired(true))
+  },
   cipher:{
     type: "tool",
     name: "/cipher",
