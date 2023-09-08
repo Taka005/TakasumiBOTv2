@@ -257,7 +257,7 @@ module.exports = {
     type: "fun",
     name: "/char",
     description: "意図的に文字化け、復元をします",
-    example: "`/char エンコード moji`\n`/char デコード 阿懿燠ヱ淤`",
+    example: "`/char 文字化け moji`\n`/char 復元 阿懿燠ヱ淤`",
     userPermission:[
       "必要なし"
     ],
@@ -274,8 +274,8 @@ module.exports = {
           .setDescription("処理方式")
           .setRequired(true)
           .addChoices(
-            { name: "エンコード", value: "encode" },
-            { name: "デコード", value: "decode" }
+            { name: "文字化け", value: "encode" },
+            { name: "復元", value: "decode" }
           ))
       .addStringOption(option=>
         option

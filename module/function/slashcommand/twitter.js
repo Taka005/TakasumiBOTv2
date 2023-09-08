@@ -35,7 +35,7 @@ module.exports = async(interaction)=>{
             text: "TakasumiBOT"
           }
         }]
-      })
+      });
     }catch{
       await interaction.editReply({
         embeds:[{
