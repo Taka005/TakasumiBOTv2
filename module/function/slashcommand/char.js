@@ -1,25 +1,23 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
-  const crypto = require("crypto");
+  const iconv = require("iconv-lite");
   if(!interaction.isChatInputCommand()) return;
-  if(interaction.commandName === "cipher"){
+  if(interaction.commandName === "char"){
     const type = interaction.options.getString("type");
     const text = interaction.options.getString("text");
-    const key = interaction.options.getString("key");
 
-    if(type === "cipher"){
+    if(type === "encode"){
       try{
-        const cipher = crypto.createCipher("aes-256-cbc",key);
-        cipher.update(text,"utf8","hex");
+        const buffer = iconv.encode(text,"UTF-8");
 
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
             author:{
-              name: "暗号を生成しました",
+              name: "変換しました",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
-            description: `暗号: \`\`\`${cipher.final("hex")}\`\`\`\n復号鍵: ||\`${key}\`||`
+            description: `\`\`\`${iconv.decode(buffer,"Shift_JIS")}\`\`\``
           }]
         });
       }catch(error){
@@ -27,7 +25,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Red,
             author:{
-              name: "暗号が生成できませんでした",
+              name: "変換できませんでした",
               icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
             fields:[
@@ -49,17 +47,16 @@ module.exports = async(interaction)=>{
       }
     }else{
       try{
-        const decipher = crypto.createDecipher("aes-256-cbc",key);
-        decipher.update(text,"hex","utf8");
+        const buffer = iconv.encode(text,"Shift_JIS");
 
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
             author:{
-              name: "暗号を復号しました",
+              name: "復元しました",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
-            description: `復号: \`\`\`${decipher.final("utf8")}\`\`\`\n復号鍵: ||\`${key}\`||`
+            description: `\`\`\`${iconv.decode(buffer,"UTF-8")}\`\`\``
           }]
         });
       }catch(error){
@@ -67,10 +64,9 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Red,
             author:{
-              name: "暗号が復号できませんでした",
+              name: "復元できませんでした",
               icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
-            description: "復号鍵が間違っている可能性があります",
             fields:[
               {
                 name: "エラーコード",
