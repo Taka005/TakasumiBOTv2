@@ -32,12 +32,16 @@ module.exports = async(interaction)=>{
       name: interaction.user.id,
       permissionOverwrites:[{
         id: interaction.guild.roles.everyone,
-        deny:[PermissionFlagsBits.ViewChannel]
+        deny:[
+          PermissionFlagsBits.ViewChannel
+        ]
       }],
       parent: channel.id
     })
       .then(async(ch)=>{
-        await ch.permissionOverwrites.edit(interaction.user.id,{ViewChannel: true});
+        await ch.permissionOverwrites.edit(interaction.user.id,{
+          ViewChannel: true
+        });
         await ch.send({
           content: `<@${interaction.user.id}>`,
           embeds:[{

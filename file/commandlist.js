@@ -82,6 +82,71 @@ module.exports = {
           .setDescription("アクティビティの名前")
           .setAutocomplete(true))
   },
+  admin:{
+    type: "bot",
+    name: "/admin",
+    description: "関係者以外実行できません",
+    example: "なし",
+    userPermission:[
+      "関係者"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("admin")
+      .setDescription("関係者以外実行できません")
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("cmd")
+          .setDescription("コマンドを実行します")
+          .addStringOption(option=>
+            option
+              .setName("code")
+              .setDescription("コード")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("db")
+          .setDescription("データベースにクエリを送信します")
+          .addStringOption(option=>
+            option
+              .setName("query")
+              .setDescription("クエリ")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("debug")
+          .setDescription("デバッグ機能を使用します") 
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("デバッグの種類")
+              .setRequired(true)
+              .addChoices(
+                { name: "内容", value: "content" },
+                { name: "送信", value: "send" },
+                { name: "編集", value: "edit" },
+                { name: "削除", value: "delete" }
+              ))
+          .addStringOption(option=>
+            option
+              .setName("id")  
+              .setDescription("メッセージID"))
+          .addChannelOption(option=>
+            option
+              .setName("channel")
+              .setDescription("チャンネル"))
+          .addStringOption(option=>
+            option
+              .setName("json")
+              .setDescription("JSON")))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("reload")
+          .setDescription("BOTのリロードをします"))
+  },
   afk:{
     type: "othor",
     name: "/afk",
@@ -318,27 +383,6 @@ module.exports = {
           .setDescription("鍵")
           .setRequired(true))
   },
-  cmd:{
-    type: "admin",
-    name: "/cmd",
-    description: "関係者以外実行できません",
-    example: "なし",
-    userPermission:[
-      "関係者"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("cmd")
-      .setDescription("コマンドを実行します")
-      .addStringOption(option=>
-        option
-          .setName("code")
-          .setDescription("コード")
-          .setRequired(true))
-  },
   colorrole:{
     type: "manage",
     name: "/colorrole",
@@ -377,68 +421,6 @@ module.exports = {
             { name: "黒色", value: `${Colors.NotQuiteBlack}` },
             { name: "Discord", value: "0x5865F2" }
           ))
-  },
-  db:{
-    type: "admin",
-    name: "/db",
-    description: "関係者以外実行できません",
-    example: "なし",
-    userPermission:[
-      "関係者"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("db")
-      .setDescription("データベースにクエリを送信します")
-      .addStringOption(option=>
-        option
-          .setName("query")
-          .setDescription("クエリ")
-          .setRequired(true))
-  },
-  debug:{
-    type: "admin",
-    name: "/debug",
-    description: "関係者以外実行できません",
-    example: "なし",
-    userPermission:[
-      "関係者"
-    ],
-    botPermission:[
-      "チャンネルの閲覧",
-      "メッセージの送信",
-      "メッセージの管理"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("debug")
-      .setDescription("デバッグ機能を使用します") 
-      .addStringOption(option=>
-        option
-          .setName("type")
-          .setDescription("デバッグの種類")
-          .setRequired(true)
-          .addChoices(
-            { name: "内容", value: "content" },
-            { name: "送信", value: "send" },
-            { name: "編集", value: "edit" },
-            { name: "削除", value: "delete" }
-          ))
-      .addStringOption(option=>
-        option
-          .setName("id")  
-          .setDescription("メッセージID"))
-      .addChannelOption(option=>
-        option
-          .setName("channel")
-          .setDescription("チャンネル"))
-      .addStringOption(option=>
-        option
-          .setName("json")
-          .setDescription("JSON"))
   },
   del:{
     type: "manage",
@@ -1414,22 +1396,6 @@ module.exports = {
       .setName("register")
       .setDescription("サーバー掲示板に登録、削除を行います"),
   },
-  reload:{
-    type: "admin",
-    name: "/reload",
-    description: "関係者以外実行できません",
-    example: "なし",
-    userPermission:[
-      "関係者"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("reload")
-      .setDescription("BOTのリロードをします"),
-  },
   reset:{
     type: "manage",
     name: "/reset",
@@ -1586,11 +1552,11 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("setting")
       .setDescription("サーバーの設定を変更します")
-      .addSubcommand(subcommand =>
+      .addSubcommand(subcommand=>
         subcommand
           .setName("help")
           .setDescription("設定のヘルプを表示します"))
-      .addSubcommand(subcommand =>
+      .addSubcommand(subcommand=>
         subcommand
           .setName("bump")
           .setDescription("BUMP時に通知するロールを設定します")
@@ -1598,7 +1564,7 @@ module.exports = {
             option
               .setName("role")
               .setDescription("通知するロール(無効にする場合は入力しないでください")))
-      .addSubcommand(subcommand =>
+      .addSubcommand(subcommand=>
         subcommand
           .setName("dissoku")
           .setDescription("Dissoku UP時に通知するロールを設定します")
@@ -1606,7 +1572,7 @@ module.exports = {
             option
               .setName("role")
               .setDescription("通知するロール(無効にする場合は入力しないでください)")))
-      .addSubcommand(subcommand =>
+      .addSubcommand(subcommand=>
         subcommand
           .setName("up")
           .setDescription("TakasumiBOTのUP時に通知するロールを設定します")
@@ -1614,7 +1580,7 @@ module.exports = {
             option
               .setName("role")
               .setDescription("通知するロール(無効にする場合は入力しないでください)")))
-      .addSubcommand(subcommand =>
+      .addSubcommand(subcommand=>
         subcommand
           .setName("join")
           .setDescription("参加メッセージを設定します")
@@ -1622,7 +1588,7 @@ module.exports = {
               option
                 .setName("message")
                 .setDescription("送信するメッセージ")))
-      .addSubcommand(subcommand =>
+      .addSubcommand(subcommand=>
         subcommand
           .setName("leave")
           .setDescription("退出メッセージを設定します")
@@ -1630,15 +1596,15 @@ module.exports = {
               option
                 .setName("message")
                 .setDescription("送信するメッセージ")))
-      .addSubcommand(subcommand =>
+      .addSubcommand(subcommand=>
         subcommand
           .setName("ignore")
           .setDescription("Bump通知・Dissoku通知・UP通知・メッセージ展開の無効・有効を切り替えます"))
-      .addSubcommand(subcommand =>
+      .addSubcommand(subcommand=>
         subcommand
           .setName("info")
           .setDescription("データベースの設定状況を表示します"))
-      .addSubcommand(subcommand =>
+      .addSubcommand(subcommand=>
         subcommand
           .setName("delete")
           .setDescription("データベースに登録されてるサーバーの情報を全て削除します"))
