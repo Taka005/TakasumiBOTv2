@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fs = require("fs");
-  const { AttachmentBuilder, ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   const { execSync } = require("child_process")
   const { admin } = require("../../../config.json");
   const db = require("../../lib/db");
