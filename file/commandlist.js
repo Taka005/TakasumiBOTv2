@@ -1740,44 +1740,6 @@ module.exports = {
       .setName("status")
       .setDescription("BOTのステータスを表示します")
   },
-  system:{
-    type: "admin",
-    name: "/system",
-    description: "関係者以外実行できません",
-    example: "なし",
-    userPermission:[
-      "関係者"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("system")
-      .setDescription("BOTの管理をします")
-      .addStringOption(option=>
-        option
-          .setName("type")       
-          .setDescription("操作")
-          .setRequired(true)
-          .addChoices(
-            { name: "金額", value: "money" },
-            { name: "脱退", value: "leave" },
-            { name: "グローバルチャットから削除", value: "delete" },
-            { name: "ミュート/解除(サーバー)", value: "mute_server" },
-            { name: "ミュート/解除(ユーザー)", value: "mute_user" },
-            { name: "DM", value: "dm" }
-          ))
-      .addStringOption(option=>
-        option
-          .setName("id")
-          .setDescription("操作する対象のID")
-          .setRequired(true))
-      .addStringOption(option=>
-        option
-          .setName("message")
-          .setDescription("メッセージ/理由/金額"))
-  },
   ticket:{
     type: "manage",
     name: "/ticket",
