@@ -5,7 +5,6 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const fetchUser = require("../../lib/fetchUser");
   const fetchGuild = require("../../lib/fetchGuild");
-  const money = require("../../lib/money");
   const { admin } = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "admin"){
