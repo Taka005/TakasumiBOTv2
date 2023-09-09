@@ -144,6 +144,37 @@ module.exports = {
               .setDescription("JSON")))
       .addSubcommand(subcommand=>
         subcommand
+          .setName("mute")
+          .setDescription("ミュートリストを操作します") 
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("種類")
+              .setRequired(true)
+              .addChoices(
+                { name: "ユーザー", value: "user" },
+                { name: "サーバー", value: "server" }
+              ))
+          .addStringOption(option=>
+            option
+              .setName("id")
+              .setDescription("操作対象")
+              .setRequired(true))
+          .addStringOption(option=>
+            option
+              .setName("reason")
+              .setDescription("理由")))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("leave")
+          .setDescription("サーバーから脱退します")
+          .addStringOption(option=>
+            option
+              .setName("id")
+              .setDescription("サーバーID")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
           .setName("reload")
           .setDescription("BOTのリロードをします"))
   },
