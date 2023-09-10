@@ -22,15 +22,13 @@ module.exports = async(interaction)=>{
         })
       }).then(res=>res.json());
 
-      const files = data.streamingData.formats.map(format=>`[${format.fps}FPS ${format.qualityLabel}](${format.url})`);
-
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
           title: data.videoDetails.title,
           url: `https://www.youtube.com/watch?v=${id}`,
           description: data.videoDetails.shortDescription,
-          thumbnail:{
+          image:{
             url: data.videoDetails.thumbnail.thumbnails[data.videoDetails.thumbnail.thumbnails.length - 1].url
           },
           fields:[
@@ -45,10 +43,6 @@ module.exports = async(interaction)=>{
             {
               name: "動画時間",
               value: `${data.videoDetails.lengthSeconds}秒`
-            },
-            {
-              name: "動画ファイル",
-              value: files[files.length -1]
             }
           ],
           footer:{
