@@ -1,9 +1,11 @@
 module.exports = async(interaction)=>{
   const fs = require("fs");
   const { AttachmentBuilder, Colors } = require("discord.js");
-  const { execSync } = require("child_process")
-  const { admin } = require("../../../config.json");
+  const { execSync } = require("child_process");
   const db = require("../../lib/db");
+  const fetchUser = require("../../lib/fetchUser");
+  const fetchGuild = require("../../lib/fetchGuild");
+  const { admin } = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "admin"){
 
@@ -119,6 +121,138 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
       }
+    }else if(interaction.options.getSubcommand() === "mute"){
+      const type = interaction.options.getString("type");
+      const id = interaction.options.getString("id");
+      const reason = interaction.options.getString("reason")||"なし";
+
+      if(type === "user"){
+        const user = await fetchUser(interaction.client,id);
+        if(!user) return await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "ユーザーをミュートできませんでした",
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
+            },
+            description: "指定したユーザーが存在しません"
+          }],
+          ephemeral: true
+        });
+    
+        const data = await db(`SELECT * FROM mute_user WHERE id = ${user.id} LIMIT 1;`);
+        if(data[0]){
+          await db(`DELETE FROM mute_user WHERE id = ${user.id} LIMIT 1;`);
+    
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${user.tag}(${user.id}) のミュートを解除しました`,
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              }
+            }]
+          });
+        }else{
+          await db(`INSERT INTO mute_user (id, reason, time) VALUES("${user.id}","${reason}",NOW());`);
+  
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${user.tag}(${user.id}) をミュートしました`,
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              }
+            }]
+          });
+        }
+      }else{
+        const guild = await fetchGuild(interaction.client,id);
+        if(!guild) return await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "サーバーをミュートできませんでした",
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
+            },
+            description: "指定したサーバーが存在しません"
+          }],
+          ephemeral: true
+        });
+
+        const data = await db(`SELECT * FROM mute_server WHERE id = ${guild.id} LIMIT 1;`);
+        if(data[0]){
+          await db(`DELETE FROM mute_server WHERE id = ${guild.id} LIMIT 1;`);
+    
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${guild.name}(${guild.id}) のミュートを解除しました`,
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              }
+            }]
+          });
+        }else{
+          await db(`INSERT INTO mute_server (id, reason, time) VALUES("${guild.id}","${reason}",NOW())`);
+  
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${guild.name}(${guild.id}) をミュートしました`,
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              }
+            }]
+          });
+        }
+      }
+    }else if(interaction.options.getSubcommand() === "leave"){
+      const id = interaction.options.getString("id");
+
+      const guild = await fetchGuild(interaction.client,id);
+      if(!guild) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "サーバーから脱退できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "指定したサーバーが存在しません"
+        }],
+        ephemeral: true
+      });
+
+      await guild.leave()
+        .then(async(g)=>{
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${g.name}(${guild.id}) から脱退しました`,
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              }
+            }]
+          });
+        })
+        .catch(async(error)=>{
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: "サーバーから脱退できませんでした",
+                icon_url: "https://cdn.taka.cf/images/system/error.png"
+              },
+              fields:[
+                {
+                  name: "エラーコード",
+                  value: `\`\`\`${error}\`\`\``
+                }
+              ]
+            }],
+            ephemeral: true
+          });
+        });
     }else if(interaction.options.getSubcommand() === "reload"){
       await interaction.deferReply();
     
