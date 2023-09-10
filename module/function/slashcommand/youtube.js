@@ -21,6 +21,7 @@ module.exports = async(interaction)=>{
           "videoId": id.match(/(?:v=|\/)([A-Za-z0-9_-]{11})/)
         })
       }).then(res=>res.json());
+      console.log(data)
 
       await interaction.reply({
         embeds:[{
