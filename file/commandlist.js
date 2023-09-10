@@ -2037,7 +2037,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "動画IDを含むURLも可能です",
+    note: "なし",
     data: new SlashCommandBuilder()
       .setName("youtube")
       .setDescription("Youtubeの動画の情報を取得します")

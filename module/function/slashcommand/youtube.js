@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
               "clientVersion": "2.20210721.00.00",
             }
           },
-          "videoId": id.match(/(?:v=|\/)([A-Za-z0-9_-]{11})/)[1]
+          "videoId": id
         })
       }).then(res=>res.json());
 
