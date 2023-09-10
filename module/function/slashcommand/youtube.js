@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
       }).then(res=>res.json());
 
       const files = data.streamingData.formats.map(format=>`[${format.fps}FPS ${format.qualityLabel}](${format.url})`);
-      files.length = 3;
+      files.length = 1;
 
       await interaction.reply({
         embeds:[{
