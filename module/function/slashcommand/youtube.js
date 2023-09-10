@@ -21,7 +21,9 @@ module.exports = async(interaction)=>{
           "videoId": id.match(/(?:v=|\/)([A-Za-z0-9_-]{11})/)[1]
         })
       }).then(res=>res.json());
-      console.log(id.match(/(?:v=|\/)([A-Za-z0-9_-]{11})/))
+
+      const files = data.streamingData.formats.map(format=>`[${format.fps}FPS ${format.qualityLabel}](${format.url})`);
+      files.length = 3;
 
       await interaction.reply({
         embeds:[{
@@ -55,7 +57,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "動画ファイル",
-              value: data.streamingData.formats.map(format=>`[${format.fps}FPS ${format.qualityLabel}](${format.url})`).join("\n")
+              value: files.join("\n")
             }
           ],
           footer:{
