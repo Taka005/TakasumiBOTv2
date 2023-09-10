@@ -22,8 +22,8 @@ module.exports = async(interaction)=>{
         })
       }).then(res=>res.json());
 
-      const files = data.streamingData.formats.map(format=>`[${format.fps}FPS ${format.qualityLabel}](${format.url})`);
-      files.length = 1;
+      const files = await Promise.all(data.streamingData.formats.map(format=>`[${format.fps}FPS ${format.qualityLabel}](${
+        await fetch(`https://is.gd/create.php?format=json&url=${encodeURI(format.url)}`).then(res=>res.text())})`));
 
       await interaction.reply({
         embeds:[{
@@ -31,29 +31,25 @@ module.exports = async(interaction)=>{
           title: data.videoDetails.title,
           url: `https://www.youtube.com/watch?v=${id}`,
           description: data.videoDetails.shortDescription,
-          image:{
+          thumbnail:{
             url: data.videoDetails.thumbnail.thumbnails[0].url
           },
           fields:[
             {
               name: "ID",
-              value: data.videoDetails.videoId,
-              inline: true
+              value: data.videoDetails.videoId
             },
             {
               name: "チャンネル",
-              value: `${data.videoDetails.author}(${data.videoDetails.channelId})`,
-              inline: true
+              value: `${data.videoDetails.author}(${data.videoDetails.channelId})`
             },
             {
               name: "再生数",
-              value: `${data.videoDetails.viewCount}回`,
-              inline: true
+              value: `${data.videoDetails.viewCount}回`
             },
             {
               name: "動画時間",
-              value: `${data.videoDetails.lengthSeconds}秒`,
-              inline: true
+              value: `${data.videoDetails.lengthSeconds}秒`
             },
             {
               name: "動画ファイル",
@@ -62,8 +58,7 @@ module.exports = async(interaction)=>{
           ],
           footer:{
             text: "TakasumiBOT"
-          },
-          timestamp: new Date()
+          }
         }]
       });
     }catch(error){
