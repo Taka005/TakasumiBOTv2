@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
         })
       }).then(res=>res.json());
 
-      const files = data.streamingData.formats.map(format=>`[${format.fps}FPS ${format.qualityLabel}](${format.url}})`);
+      const files = data.streamingData.formats.map(format=>`[${format.fps}FPS ${format.qualityLabel}](${format.url})`);
 
       await interaction.reply({
         embeds:[{
@@ -31,7 +31,7 @@ module.exports = async(interaction)=>{
           url: `https://www.youtube.com/watch?v=${id}`,
           description: data.videoDetails.shortDescription,
           thumbnail:{
-            url: data.videoDetails.thumbnail.thumbnails[0].url
+            url: data.videoDetails.thumbnail.thumbnails[data.videoDetails.thumbnail.thumbnails.length - 1].url
           },
           fields:[
             {
