@@ -5,6 +5,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("image_")){
     const role = interaction.customId.split("_");
+    
     const keys = [
       {text:"2daAfg",url:"https://cdn.taka.cf/images/auth/img_1.png"},
       {text:"wad3EF",url:"https://cdn.taka.cf/images/auth/img_2.png"},

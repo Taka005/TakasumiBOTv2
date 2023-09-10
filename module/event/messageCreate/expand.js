@@ -28,7 +28,7 @@ module.exports = async(message)=>{
             name: msg.author.tag,
             icon_url: msg.author.avatarURL()||msg.author.defaultAvatarURL,
           },
-          description: msg.content || "メッセージ内容がありません",
+          description: msg.content||"メッセージ内容がありません",
           footer:{
             text: `#${msg.channel.name}`
           },
@@ -44,7 +44,7 @@ module.exports = async(message)=>{
             name: msg.author.tag,
             icon_url: msg.author.avatarURL()||msg.author.defaultAvatarURL,
           },
-          description: msg.content || "メッセージ内容がありません",
+          description: msg.content||"メッセージ内容がありません",
           image:{
             url: attachment[0]
           },
@@ -63,7 +63,7 @@ module.exports = async(message)=>{
             name: msg.author.tag,
             icon_url: msg.author.avatarURL()||msg.author.defaultAvatarURL,
           },
-          description: msg.content || "メッセージ内容がありません",
+          description: msg.content||"メッセージ内容がありません",
           footer:{
             text: `#${msg.channel.name}`
           },

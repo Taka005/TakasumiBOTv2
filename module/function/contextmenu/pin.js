@@ -106,7 +106,7 @@ module.exports = async(interaction)=>{
       });
 
       await db(`INSERT INTO pin (channel, server, message, count, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}","${server[0]?.count||"0"}",NOW());`);
-      await db(`UPDATE pin SET count = ${Number(server[0]?.count||0)+1} WHERE server = ${message.guild.id};`);
+      await db(`UPDATE pin SET count = ${Number(server[0]?.count||0) + 1} WHERE server = ${message.guild.id};`);
     }catch(error){
       await interaction.reply({
         embeds:[{

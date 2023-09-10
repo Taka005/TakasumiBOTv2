@@ -2026,6 +2026,27 @@ module.exports = {
           .setDescription("検索ワード")
           .setRequired(true))
   },
+  youtube:{
+    type: "tool",
+    name: "/youtube",
+    description: "Youtubeの動画の情報を取得します",
+    example: "`/youtube DCTBgUVCdhM`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "動画IDを含むURLも可能です",
+    data: new SlashCommandBuilder()
+      .setName("youtube")
+      .setDescription("Youtubeの動画の情報を取得します")
+      .addStringOption(option=>
+        option
+          .setName("id")
+          .setDescription("動画ID")
+          .setRequired(true))
+  },
   アバターを表示:{
     type: "contextmenu",
     name: "アバターを表示",
