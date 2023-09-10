@@ -63,7 +63,7 @@ module.exports = async(interaction)=>{
           timestamp: new Date()
         }]
       });
-    }catch{
+    }catch(error){
       await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          description: "有効なYoutubeの動画IDを指定してください"
+          description: "有効なYoutubeの動画IDを指定してください"+error
         }],
         ephemeral: true
       });
