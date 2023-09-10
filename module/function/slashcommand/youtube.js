@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
           fields:[
             {
               name: "チャンネル",
-              value: `[${data.videoDetails.author}](${data.microformat.ownerProfileUrl})`
+              value: `[${data.videoDetails.author}](${data.playerMicroformatRenderer.microformat.ownerProfileUrl})`
             },
             {
               name: "再生数",
@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "投稿日",
-              value: data.microformat.uploadDate
+              value: data.playerMicroformatRenderer.microformat.uploadDate
             },
           ],
           footer:{
