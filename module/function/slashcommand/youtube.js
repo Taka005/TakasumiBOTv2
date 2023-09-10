@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           title: data.videoDetails.title,
-          url: `https://www.youtube.com/watch?v=${id}`,
+          url: `https://www.youtube.com/watch?v=${data.videoDetails.videoId}`,
           description: data.videoDetails.shortDescription,
           image:{
             url: data.videoDetails.thumbnail.thumbnails[data.videoDetails.thumbnail.thumbnails.length - 1].url
@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
           fields:[
             {
               name: "チャンネル",
-              value: `${data.videoDetails.author}`
+              value: `[${data.videoDetails.author}](${data.microformat.ownerProfileUrl})`
             },
             {
               name: "再生数",
@@ -43,7 +43,11 @@ module.exports = async(interaction)=>{
             {
               name: "動画時間",
               value: `${data.videoDetails.lengthSeconds}秒`
-            }
+            },
+            {
+              name: "投稿日",
+              value: data.microformat.uploadDate
+            },
           ],
           footer:{
             text: "TakasumiBOT"
