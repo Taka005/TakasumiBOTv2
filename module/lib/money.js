@@ -21,8 +21,5 @@ module.exports = {
       amount = 0;
     }
     await db(`INSERT INTO money (id, amount, yellow, red, blue, time) VALUES("${id}","${amount}","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
-  },
-  "set": async(id,number)=>{
-    await db(`INSERT INTO money (id, amount, yellow, red, blue, time) VALUES("${id}","${number}","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
   }
 }

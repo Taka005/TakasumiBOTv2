@@ -38,7 +38,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(new Date()-new Date(account[0].time)>180000) return await interaction.reply({
+    if(new Date() - new Date(account[0].time) > 180000) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{

@@ -3,6 +3,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("math_")){
     const role = interaction.customId.split("_");
+    
     const count_1 = Math.floor(Math.random()*15) + 1;
     const count_2 = Math.floor(Math.random()*15) + 1;
     const total = count_1 + count_2;
