@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
         }
 
         data = graph(memberCounts,"1年間の月ごとのユーザー参加数","月","人",{
-          x_fontSize: "10"
+          x_fontSize: "9"
         });
       }else if(type === "month"){ 
         const endDate = new Date();
@@ -53,15 +53,15 @@ module.exports = async(interaction)=>{
           const startMembers = (await interaction.guild.members.fetch()).filter(member=>member.joinedAt >= currentDate && member.joinedAt < nextDate);
       
           memberCounts.push({
-            label: `${currentDate.getMonth()+1}/${currentDate.getDate()}`,
+            label: currentDate.getDate(),
             value: startMembers.size,
           });
       
           currentDate.setDate(currentDate.getDate() + 1);
         }
 
-        data = graph(memberCounts,"1ヶ月間の1日ごとのユーザー参加数","日付","人",{
-          x_fontSize: "6"
+        data = graph(memberCounts,"1ヶ月間の1日ごとのユーザー参加数","日","人",{
+          x_fontSize: "8"
         });
       }
 
