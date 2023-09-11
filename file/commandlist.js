@@ -198,6 +198,30 @@ module.exports = {
           .setName("message")
           .setDescription("伝言メッセージ"))
   },
+  analytics:{
+    type: "info",
+    name: "/analytics",
+    description: "サーバーの分析データを生成します",
+    example: "`/analytics 月ごとのユーザー参加数`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("analytics")
+      .setDescription("サーバーの分析データを生成します")
+      .addStringOption(option=>
+        option
+          .setName("type")
+          .setDescription("種類")
+          .setRequired(true)
+          .addChoices(
+            { name: "月ごとのユーザー参加数", value: "year" }
+          ))
+  },
   announce:{
     type: "server",
     name: "/announce",
@@ -574,36 +598,6 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("export")
       .setDescription("サーバーの情報をJSON形式に出力します")
-  },
-  filter:{
-    type: "info",
-    name: "/filter",
-    description: "指定された日数以内に参加、アカウント作成したメンバーを表示します",
-    example: "`/del 参加 3`",
-    userPermission:[
-      "必要なし"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "1日以上90日以下のメンバーを取得できます",
-    data: new SlashCommandBuilder()
-      .setName("filter")
-      .setDescription("指定された日数以内に参加、アカウント作成したメンバーを表示します")
-      .addStringOption(option=>
-        option
-          .setName("type")
-          .setDescription("種類")
-          .setRequired(true)
-          .addChoices(
-            { name: "参加", value: "true" },
-            { name: "アカウントを作成", value: "false" }
-          ))
-      .addIntegerOption(option=>
-        option
-          .setName("day")
-          .setDescription("日数")
-          .setRequired(true))
   },
   follow:{
     type: "bot",
