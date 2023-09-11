@@ -35,20 +35,20 @@ module.exports = async(interaction)=>{
         startDate.setMonth(endDate.getMonth() - 1);
 
         const memberCounts = [];
-        let nextDate = new Date(startDate);
+        let currentDate = new Date(startDate);
 
-        while(nextDate <= endDate){
-          const nextDate = new Date(nextDate);
-          nextDate.setDate(nextDate.getDate() + 1);
-
-          const startMembers = (await interaction.guild.members.fetch()).filter(member=>member.joinedAt >= nextDate && member.joinedAt < nextDate);
-
+        while(currentDate <= endDate){
+          const nextDate = new Date(currentDate);
+          nextDate.setDate(currentDate.getDate() + 1);
+      
+          const startMembers = (await interaction.guild.members.fetch()).filter(member=>member.joinedAt >= currentDate && member.joinedAt < nextDate);
+      
           memberCounts.push({
-            label: `${nextDate.getMonth()+1}/${nextDate.getDate()}`,
-            value: startMembers.size,
+            date: `${currentDate.getMonth()+1}/${currentDate.getDay()}`,
+            count: startMembers.size,
           });
-
-          nextDate.setDate(nextDate.getDate() + 1);
+      
+          currentDate.setDate(currentDate.getDate() + 1);
         }
 
         data = graph(memberCounts,"1ヶ月間の1日ごとのユーザー参加数","日","人");
@@ -82,7 +82,7 @@ module.exports = async(interaction)=>{
           fields:[
             {
               name: "エラーコード",
-              value: `\`\`\`${error.stack}\`\`\``
+              value: `\`\`\`${error}\`\`\``
             }
           ]
         }], 
