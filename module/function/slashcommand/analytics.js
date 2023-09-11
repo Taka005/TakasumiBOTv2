@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
           const members = (await interaction.guild.members.fetch()).filter(member=>member.joinedAt >= startDate && member.joinedAt < nextMonth);
        
           memberCounts.push({
-            label: startDate.toLocaleString("default",{month:"long"}),
+            label: startDate.getMonth()+1,
             value: members.size
           });
        
