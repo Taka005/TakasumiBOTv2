@@ -1,9 +1,24 @@
+const spam = require("../../lib/spam");
+const Spam = new spam(10000);
+
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, AttachmentBuilder, Colors } = require("discord.js");
   const graph = require("../../lib/graph");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "analytics"){
     const type = interaction.options.getString("type");
+
+    if(Spam.count(interaction.user.id)) return await interaction.reply({
+      embeds:[{
+        author:{
+          name: "生成できませんでした",
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
+        },
+        color: Colors.Red,
+        description: "生成には10秒間待ってください"
+      }],
+      ephemeral: true
+    });
 
     await interaction.deferReply();
     await interaction.editReply({

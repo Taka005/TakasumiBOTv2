@@ -42,7 +42,7 @@ module.exports = (data,title,x_label,y_label,option)=>{
 
     //Y軸の数値描画
     ctx.fillStyle = "black";
-    ctx.font = "14px JapaneseFont";
+    ctx.font = `${option.y_fontSize||"14"}px JapaneseFont`;
     ctx.textAlign = "left";
     ctx.fillText(Math.round((maxValue - (maxValue - minValue) * (i / 5))).toString(),chartArea.x - 45, y + 5);
   }
