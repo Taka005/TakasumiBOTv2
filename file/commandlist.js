@@ -219,7 +219,7 @@ module.exports = {
           .setDescription("種類")
           .setRequired(true)
           .addChoices(
-            { name: "月ごとのユーザー参加数", value: "year" },
+            { name: "1年間の月ごとのユーザー参加数", value: "year" },
             { name: "1ヶ月間の1日ごとのユーザー参加数", value: "month" }
           ))
   },
