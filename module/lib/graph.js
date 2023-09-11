@@ -1,4 +1,4 @@
-module.exports = (data,title,x_label,y_label)=>{
+module.exports = (data,title,x_label,y_label,option)=>{
   const { createCanvas, registerFont } = require("canvas");
   const canvas = createCanvas(600,400);
   const ctx = canvas.getContext("2d");
@@ -22,7 +22,7 @@ module.exports = (data,title,x_label,y_label)=>{
 
   //X軸の説明描画
   ctx.fillStyle = "black";
-  ctx.font = "14px JapaneseFont";
+  ctx.font = `${option.x_fontSize||"14"}px JapaneseFont`;
   ctx.textAlign = "center";
   ctx.fillText(x_label,chartArea.x + chartArea.width / 2, chartArea.y + chartArea.height + 40);
 

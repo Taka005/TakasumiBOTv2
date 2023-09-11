@@ -51,7 +51,9 @@ module.exports = async(interaction)=>{
           currentDate.setDate(currentDate.getDate() + 1);
         }
 
-        data = graph(memberCounts,"1ヶ月間の1日ごとのユーザー参加数","日","人");
+        data = graph(memberCounts,"1ヶ月間の1日ごとのユーザー参加数","日","人",{
+          x_fontSize: "10"
+        });
       }
 
       await interaction.editReply({
