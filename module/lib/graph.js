@@ -138,12 +138,11 @@ module.exports = {
       const labelAngle = startAngle + (endAngle - startAngle) / 2;
       const labelX = centerX + Math.cos(labelAngle) * labelRadius;
       const labelY = centerY + Math.sin(labelAngle) * labelRadius;
-      const labelText = `${data[i].label} (${data[i].value})`;
   
       ctx.fillStyle = "#000000";
       ctx.font = `${option?.fontSize||"10"}px JapaneseFont`;
       ctx.textAlign = "center";
-      ctx.fillText(labelText,labelX,labelY);
+      ctx.fillText(data[i].label,labelX,labelY);
   
       startAngle = endAngle;
     }
