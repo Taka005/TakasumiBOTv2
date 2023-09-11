@@ -5,7 +5,12 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "analytics"){
     const type = interaction.options.getString("type");
 
-    await interaction.deferReply();
+    await interaction.deferReply({
+      embeds:[{
+        color: Colors.Green,
+        description: "生成中..."
+      }]
+    });
     try{
       let data;
       if(type === "year"){
@@ -52,7 +57,7 @@ module.exports = async(interaction)=>{
         }
 
         data = graph(memberCounts,"1ヶ月間の1日ごとのユーザー参加数","日","人",{
-          x_fontSize: "10"
+          x_fontSize: "8"
         });
       }
 
