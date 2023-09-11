@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/Taka005/TakasumiBOTv2#readme",
   "dependencies": {
+    "canvas": "^2.11.2",
     "discord.js": "^14.12.1",
     "dotenv": "^16.3.1",
     "iconv-lite": "^0.6.3",
@@ -37,7 +38,7 @@
     "node-fetch": "^2.7.0"
   },
   "devDependencies": {
-    "eslint": "^8.48.0",
+    "eslint": "^8.49.0",
     "eslint-plugin-node": "^11.1.0"
   },
   "optionalDependencies": {
