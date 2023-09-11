@@ -82,7 +82,7 @@ module.exports = async(interaction)=>{
           fields:[
             {
               name: "エラーコード",
-              value: `\`\`\`${error}\`\`\``
+              value: `\`\`\`${error.stack}\`\`\``
             }
           ]
         }], 
