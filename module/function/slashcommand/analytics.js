@@ -5,6 +5,7 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "analytics"){
     const type = interaction.options.getString("type");
 
+    await interaction.deferReply();
     try{
       if(type === "year"){
         const startDate = new Date();
@@ -26,7 +27,7 @@ module.exports = async(interaction)=>{
 
         const data = graph(memberCounts,"月ごとのユーザー参加数","月","人");
 
-        await interaction.reply({
+        await interaction.editReply({
           embeds:[{
             color: Colors.Green,
             author:{
@@ -45,7 +46,7 @@ module.exports = async(interaction)=>{
         });
       }
     }catch(error){
-      await interaction.reply({
+      await interaction.editReply({
         embeds:[{
           color: Colors.Red,
           author:{
