@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
         }
 
         data = graph(memberCounts,"1年間の月ごとのユーザー参加数","月","人",{
-          x_fontSize: "9"
+          x_fontSize: "8"
         });
       }else if(type === "month"){ 
         const endDate = new Date();
