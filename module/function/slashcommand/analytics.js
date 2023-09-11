@@ -12,6 +12,7 @@ module.exports = async(interaction)=>{
         description: "生成中..."
       }]
     });
+
     try{
       let data;
       if(type === "year"){
@@ -33,7 +34,7 @@ module.exports = async(interaction)=>{
         }
 
         data = graph(memberCounts,"1年間の月ごとのユーザー参加数","月","人",{
-          x_fontSize: "8"
+          x_fontSize: "10"
         });
       }else if(type === "month"){ 
         const endDate = new Date();
@@ -60,7 +61,7 @@ module.exports = async(interaction)=>{
         }
 
         data = graph(memberCounts,"1ヶ月間の1日ごとのユーザー参加数","日付","人",{
-          x_fontSize: "5"
+          x_fontSize: "6"
         });
       }
 
