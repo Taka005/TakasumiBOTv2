@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, AttachmentBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, AttachmentBuilder, Colors } = require("discord.js");
   const graph = require("../../lib/graph");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "analytics"){
@@ -9,14 +9,12 @@ module.exports = async(interaction)=>{
       if(type === "year"){
         const startDate = new Date();
         startDate.setMonth(startDate.getMonth() - 12);
-        const endDate = new Date();
-       
         const memberCounts = [];
         for(let i = 0; i < 12; i++){
           const nextMonth = new Date(startDate);
           nextMonth.setMonth(startDate.getMonth() + 1);
        
-          const members = (await message.guild.members.fetch()).filter(member=>member.joinedAt >= startDate && member.joinedAt < nextMonth);
+          const members = (await interaction.guild.members.fetch()).filter(member=>member.joinedAt >= startDate && member.joinedAt < nextMonth);
        
           memberCounts.push({
             label: startDate.toLocaleString("default",{month:"long"}),
