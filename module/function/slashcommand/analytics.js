@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
           startDate.setMonth(startDate.getMonth() + 1);
         }
 
-        data = graph(memberCounts,"1年間の月ごとのユーザー参加数","月","人",{
+        data = graph.line(memberCounts,"1年間の月ごとのユーザー参加数","月","人",{
           x_fontSize: "8"
         });
       }else if(type === "month"){ 
@@ -75,7 +75,7 @@ module.exports = async(interaction)=>{
           currentDate.setDate(currentDate.getDate() + 1);
         }
 
-        data = graph(memberCounts,"1ヶ月間の1日ごとのユーザー参加数","日","人",{
+        data = graph.line(memberCounts,"1ヶ月間の1日ごとのユーザー参加数","日","人",{
           x_fontSize: "8"
         });
       }
