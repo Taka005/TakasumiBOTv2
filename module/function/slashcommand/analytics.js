@@ -58,7 +58,7 @@ module.exports = async(interaction)=>{
         }
 
         data = graph(memberCounts,"1ヶ月間の1日ごとのユーザー参加数","日","人",{
-          x_fontSize: "1"
+          x_fontSize: "8"
         });
       }
 

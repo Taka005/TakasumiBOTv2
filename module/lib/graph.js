@@ -22,7 +22,7 @@ module.exports = (data,title,x_label,y_label,option)=>{
 
   //X軸の説明描画
   ctx.fillStyle = "black";
-  ctx.font = `${option.x_fontSize||"8"}px JapaneseFont`;
+  ctx.font = "14px JapaneseFont";
   ctx.textAlign = "center";
   ctx.fillText(x_label,chartArea.x + chartArea.width / 2, chartArea.y + chartArea.height + 40);
 
@@ -57,7 +57,7 @@ module.exports = (data,title,x_label,y_label,option)=>{
 
   //ラベル描画
   ctx.fillStyle = "black";
-  ctx.font = "14px JapaneseFont"; 
+  ctx.font = `${option.x_fontSize||"14"}px JapaneseFont`; 
   ctx.textAlign = "center";
   data.forEach((item,i)=>{
     const x = chartArea.x + (i / (data.length - 1)) * chartArea.width;
