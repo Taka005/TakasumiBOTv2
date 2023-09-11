@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
         }
 
         data = graph(memberCounts,"月ごとのユーザー参加数","月","人");
-      }else if(type = "month"){ 
+      }else if(type === "month"){ 
         const endDate = new Date();
         endDate.setDate(endDate.getDate() - 1);
 
@@ -41,7 +41,7 @@ module.exports = async(interaction)=>{
           const nextDate = new Date(nextDate);
           nextDate.setDate(nextDate.getDate() + 1);
 
-          const startMembers = guild.members.cache.filter(member=>member.joinedAt >= nextDate && member.joinedAt < nextDate);
+          const startMembers = (await interaction.guild.members.fetch()).filter(member=>member.joinedAt >= nextDate && member.joinedAt < nextDate);
 
           memberCounts.push({
             label: `${nextDate.getMonth()+1}/${nextDate.getDate()}`,
