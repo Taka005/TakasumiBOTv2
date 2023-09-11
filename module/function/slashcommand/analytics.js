@@ -44,7 +44,7 @@ module.exports = async(interaction)=>{
           const startMembers = (await interaction.guild.members.fetch()).filter(member=>member.joinedAt >= currentDate && member.joinedAt < nextDate);
       
           memberCounts.push({
-            label: currentDate.getDay(),
+            label: currentDate.getDate(),
             value: startMembers.size,
           });
       
