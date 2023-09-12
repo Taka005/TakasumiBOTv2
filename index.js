@@ -18,8 +18,6 @@ const client = new Client({
     GuildScheduledEventManager: 0,
     GuildStickerManager: 0,
     GuildTextThreadManager: 0,
-    ReactionManager: 0,
-    ReactionUserManager: 0,
     StageInstanceManager: 0,
     ThreadManager: 0,
     ThreadMemberManager: 0,
