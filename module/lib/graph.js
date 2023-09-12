@@ -1,5 +1,5 @@
 const { createCanvas, registerFont } = require("canvas");
-registerFont("./file/BIZUDPGothic-Regular.ttf",{ family: "JapaneseFont" });
+registerFont("./file/BIZUDPGothic.ttf",{ family: "JapaneseFont" });
 
 module.exports = {
   "line":(data,title,x_label,y_label,option)=>{
