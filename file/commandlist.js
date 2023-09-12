@@ -209,7 +209,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし",
+    note: "10秒に一回までしか生成できません",
     data: new SlashCommandBuilder()
       .setName("analytics")
       .setDescription("サーバーの分析データを生成します")
@@ -220,7 +220,9 @@ module.exports = {
           .setRequired(true)
           .addChoices(
             { name: "1年間の月ごとのユーザー参加数", value: "year" },
-            { name: "1ヶ月間の1日ごとのユーザー参加数", value: "month" }
+            { name: "1ヶ月間の1日ごとのユーザー参加数", value: "month" },
+            { name: "メンバーのステータスの割合", value: "status" },
+            { name: "メンバーの機種の割合", value: "platform" }
           ))
   },
   announce:{

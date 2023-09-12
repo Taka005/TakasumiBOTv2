@@ -8,15 +8,15 @@ module.exports = async(interaction)=>{
     try{
       const members = await interaction.guild.members.fetch();
 
-      const online = members.filter(member=>member.presence?.status === "online").toJSON();
-      const dnd = members.filter(member=>member.presence?.status === "dnd").toJSON();
-      const idle = members.filter(member=>member.presence?.status === "idle").toJSON();
-      const offline = members.filter(member=>member.presence?.status === "offline").toJSON();
-      const none = members.filter(member=>!(member.presence?.status)).toJSON();
+      const online = members.filter(member=>member.presence?.status === "online");
+      const dnd = members.filter(member=>member.presence?.status === "dnd");
+      const idle = members.filter(member=>member.presence?.status === "idle");
+      const offline = members.filter(member=>member.presence?.status === "offline");
+      const none = members.filter(member=>!(member.presence?.status));
 
-      const web = members.filter(member=>member.presence?.clientStatus?.web).toJSON();
-      const mobile = members.filter(member=>member.presence?.clientStatus?.mobile).toJSON();
-      const desktop = members.filter(member=>member.presence?.clientStatus?.desktop).toJSON();
+      const web = members.filter(member=>member.presence?.clientStatus?.web);
+      const mobile = members.filter(member=>member.presence?.clientStatus?.mobile);
+      const desktop = members.filter(member=>member.presence?.clientStatus?.desktop);
 
       await interaction.editReply({
         embeds:[{
@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "アクティビティ",
-              value: `🟢: ${online.length}人 ⛔: ${dnd.length}人 🌙: ${idle.length}人 ⚫: ${offline.length+none.length}人\n🌐: ${web.length}人 📱: ${mobile.length}人 🖥️: ${desktop.length}人`
+              value: `🟢: ${online.size}人 ⛔: ${dnd.size}人 🌙: ${idle.size}人 ⚫: ${offline.size + none.size}人\n🌐: ${web.size}人 📱: ${mobile.size}人 🖥️: ${desktop.size}人`
             },
             {
               name: "統計情報",
