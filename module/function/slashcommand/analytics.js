@@ -78,6 +78,33 @@ module.exports = async(interaction)=>{
         data = graph.line(memberCounts,"1ヶ月間の1日ごとのユーザー参加数","日","人",{
           x_fontSize: "8"
         });
+      }else if(type === "status"){
+        const members = await interaction.guild.members.fetch();
+
+        const online = members.filter(member=>member.presence?.status === "online");
+        const dnd = members.filter(member=>member.presence?.status === "dnd");
+        const idle = members.filter(member=>member.presence?.status === "idle");
+        const offline = members.filter(member=>member.presence?.status === "offline");
+        const none = members.filter(member=>!(member.presence?.status));
+
+        data = graph.pie([
+          { label: "オンライン", value: `${online.size}人(${((online.size/members.size)*100).toFixed(1)}%)`, color: "#7fff00" },
+          { label: "取り込み中", value: `${dnd.size}人(${((dnd.size/members.size)*100).toFixed(1)}%)`, color: "#ff7f50" },
+          { label: "待機中", value: `${idle.size}人(${((idle.size/members.size)*100).toFixed(1)}%)`, color: "#ffd700" },
+          { label: "オフライン", value: `${offline.size + none.size}人(${((offline.size + none.size)/members.size*100).toFixed(1)}%)`, color: "#d3d3d3" }
+        ],"メンバーのステータスの割合")
+      }else if(type === "platform"){
+        const members = await interaction.guild.members.fetch();
+
+        const web = members.filter(member=>member.presence?.clientStatus?.web);
+        const mobile = members.filter(member=>member.presence?.clientStatus?.mobile);
+        const desktop = members.filter(member=>member.presence?.clientStatus?.desktop);
+
+        data = graph.pie([
+          { label: "ブラウザ", value: `${web.size}人(${((web.size/members.size)*100).toFixed(1)}%)`, color: "#ffa500" },
+          { label: "モバイル", value: `${mobile.size}人(${((mobile.size/members.size)*100).toFixed(1)}%)`, color: "#7cfc00" },
+          { label: "デスクトップ", value: `${desktop.size}人(${((desktop.size/members.size)*100).toFixed(1)}%)`, color: "#00bfff" }
+        ],"メンバーの機種の割合")
       }
 
       await interaction.editReply({

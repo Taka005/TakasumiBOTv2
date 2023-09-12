@@ -105,9 +105,7 @@ module.exports = {
     ctx.font = "24px JapaneseFont";
     ctx.textAlign = "center";
     ctx.fillText(title,canvas.width / 2,30);
-    
-    const colors = ["#FF5733","#33FF57","#5733FF","#FFFF33","#33FFFF","#FF5733","#33FF57","#5733FF","#FFFF33","#33FFFF","#FF0000","#00FF00","#0000FF","#FFFF00","#00FFFF","#FF9900","#9900FF","#00FF99","#99FF00","#0099FF"];
-    
+
     //円グラフの描画
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 1.9;
@@ -124,7 +122,7 @@ module.exports = {
       ctx.arc(centerX,centerY,radius,startAngle,endAngle);
       ctx.closePath();
   
-      ctx.fillStyle = colors[i];
+      ctx.fillStyle = data[i].color;
       ctx.fill();
 
       startAngle = endAngle;
