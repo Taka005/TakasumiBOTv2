@@ -93,6 +93,10 @@ module.exports = {
   "pie":(data,title,option)=>{
     data.sort((a,b)=>b.value - a.value);
 
+    data.forEach(i=>{
+      i.rate = (i.value / data.reduce((sum,i)=>sum+i.value,0))*100;
+    });
+
     const canvas = createCanvas(600,400);
     const ctx = canvas.getContext("2d");
     
@@ -115,7 +119,7 @@ module.exports = {
     
     //セクションの描画
     for(let i = 0; i < data.length; i++){
-      const endAngle = startAngle + (data[i].value / 100 * 2 * Math.PI);
+      const endAngle = startAngle + (data[i].rate / 100 * 2 * Math.PI);
   
       ctx.beginPath();
       ctx.moveTo(centerX,centerY);
@@ -130,7 +134,7 @@ module.exports = {
 
     //ラベルの描画
     for(let i = 0; i < data.length; i++){
-      const endAngle = startAngle + (data[i].value / 100 * 2 * Math.PI);
+      const endAngle = startAngle + (data[i].rate / 100 * 2 * Math.PI);
 
       const labelRadius = radius * 0.7;
       const labelAngle = startAngle + (endAngle - startAngle) / 2;
@@ -138,7 +142,7 @@ module.exports = {
       const labelY = centerY + Math.sin(labelAngle) * labelRadius;
   
       ctx.fillStyle = "#000000";
-      ctx.font = `${option?.fontSize||"10"}px JapaneseFont`;
+      ctx.font = `${option?.fontSize||"14"}px JapaneseFont`;
       ctx.textAlign = "center";
       ctx.fillText(data[i].label,labelX,labelY);
   
