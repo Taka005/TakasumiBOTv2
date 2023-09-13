@@ -21,7 +21,7 @@ jobs:
           npm run build
       - name: Release
         run: |
-          git config user.name Taka005
+          git config user.name ReleaseBOT
           git config user.email takasumibot@gmail.com
           git checkout release
           git add bot.js
