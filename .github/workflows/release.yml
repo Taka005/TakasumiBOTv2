@@ -1,0 +1,30 @@
+name: Release
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ACCESS_TOKEN }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: "npm"
+      - name: Build
+        run: |
+          npm i
+          npm run build
+      - name: Release
+        run: |
+          git config user.name Taka005
+          git config user.email takasumibot@gmail.com
+          git checkout release
+          git add bot.js
+          git commit -m "Release"
+          git push origin release
+        working-directory: ${{ github.workspace }}
