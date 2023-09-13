@@ -90,7 +90,7 @@ module.exports = async(interaction)=>{
         const status = [
           { label: `オンライン: ${online.size}人(${((online.size/members.size)*100).toFixed(1)}%)`, value: online.size, color: "#7fff00" },
           { label: `取り込み中: ${dnd.size}人(${((dnd.size/members.size)*100).toFixed(1)}%)`, value: dnd.size, color: "#ff7f50" },
-          { label: `待機中: ${idle.size}人(${((idle.size/members.size)*100).toFixed(1)}%)`, value: idle.size, color: "#ffd700" },
+          { label: `退席中: ${idle.size}人(${((idle.size/members.size)*100).toFixed(1)}%)`, value: idle.size, color: "#ffd700" },
           { label: `オフライン: ${offline.size + none.size}人(${((offline.size + none.size)/members.size*100).toFixed(1)}%)`, value: offline.size + none.size, color: "#d3d3d3" }
         ];
 

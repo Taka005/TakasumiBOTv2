@@ -18,16 +18,13 @@ const client = new Client({
     GuildScheduledEventManager: 0,
     GuildStickerManager: 0,
     GuildTextThreadManager: 0,
-    ReactionManager: 0,
-    ReactionUserManager: 0,
     StageInstanceManager: 0,
     ThreadManager: 0,
     ThreadMemberManager: 0,
     AutoModerationRuleManager: 0,
     VoiceStateManager: 0,
     GuildInviteManager: 0
-  }),
-  shards: "auto"
+  })
 });
 
 console.log("\x1b[32m*****************************\x1b[39m");
