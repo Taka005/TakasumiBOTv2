@@ -1,7 +1,7 @@
 module.exports = async(client)=>{
   const cron = require("node-cron");
   const os = require("os");
-  require("dotenv");
+  require("dotenv").config();
   const db = require("../../lib/db");
   const cpu = require("../../lib/cpu");
 
