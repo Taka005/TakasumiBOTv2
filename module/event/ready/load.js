@@ -4,6 +4,8 @@ module.exports = async(client)=>{
   require("dotenv").config();
   const db = require("../../lib/db");
   const cpu = require("../../lib/cpu");
+  const fetchGuildCounts = require("../../lib/fetchGuildCounts");
+  const fetchUserCounts = require("../../lib/fetchUserCounts");
 
   cron.schedule("0 * * * *",async()=>{
     const log = await db("SELECT * FROM log");
@@ -11,9 +13,8 @@ module.exports = async(client)=>{
     let ping = client.ws.ping;
     if(ping > 300) ping = 300;
     
-    const user = client.guilds.cache.map(g=>g.memberCount).reduce((a,c)=>a+c);
-    const online = client.guilds.cache.map(g=>g.memberCount - g.members.cache.filter(m=>m.presence?.status === "offline"||!(m.presence?.status)).size).reduce((a,c)=>a+c);
-    const guild = client.guilds.cache.size;
+    const user = await fetchUserCounts(client);
+    const guild = await fetchGuildCounts(client);
     const count = await db(`SELECT * FROM count WHERE id = ${process.env.ID} LIMIT 1;`);
     const cpuUsage = await cpu();
     const ram = 100 - Math.floor((os.freemem()/os.totalmem())*100);
@@ -24,7 +25,8 @@ module.exports = async(client)=>{
       logCount--;
       if(logCount <= 167) break;
     }
-    await db(`INSERT INTO log (time, ping, user, online, guild, message, command, cpu, ram) VALUES(NOW(),"${ping}","${user}","${online}","${guild}","${count[0].message}","${count[0].command}","${cpuUsage}","${ram}");`);
+    
+    await db(`INSERT INTO log (time, ping, user, guild, message, command, cpu, ram) VALUES(NOW(),"${ping}","${user}","${guild}","${count[0].message}","${count[0].command}","${cpuUsage}","${ram}");`);
     await db(`UPDATE count SET message=0, command=0 WHERE id=${process.env.ID};`);
   });
 }

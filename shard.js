@@ -6,7 +6,9 @@ const manager = new ShardingManager("./index.js",{
 });
 
 manager.on("shardCreate",(shard)=>{
-  console.log(`シャードが起動しました: ${shard.id}`)
+  console.log(`${shard.id}番シャードが起動しました`)
 });
 
-manager.spawn();
+manager.spawn({
+  amount: 2
+});

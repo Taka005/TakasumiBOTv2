@@ -4,6 +4,8 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const sign = require("../../lib/sign");
   const cpu = require("../../lib/cpu");
+  const fetchGuildCounts = require("../../lib/fetchGuildCounts");
+  const fetchUserCounts = require("../../lib/fetchUserCounts");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "status"){
 
@@ -27,8 +29,8 @@ module.exports = async(interaction)=>{
     const messageSign = (await db(`SELECT SUM(message) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`))[0].total - (await db(`SELECT SUM(CASE WHEN time BETWEEN "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 00:00:00" AND "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 23:59:59" THEN message ELSE 0 END) AS total FROM log;`))[0].total;
     const commandSign = (await db(`SELECT SUM(command) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`))[0].total - (await db(`SELECT SUM(CASE WHEN time BETWEEN "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 00:00:00" AND "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 23:59:59" THEN command ELSE 0 END) AS total FROM log`))[0].total;
 
-    const guild = interaction.client.guilds.cache.size - (await db(`SELECT guild FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}" ORDER BY time ASC LIMIT 1;`))[0].guild;
-    const user = interaction.client.guilds.cache.map((g)=>g.memberCount).reduce((a,c)=>a+c) - (await db(`SELECT user FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}" ORDER BY time ASC LIMIT 1;`))[0].user;
+    const guild = await fetchGuildCounts(interaction.client) - (await db(`SELECT guild FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}" ORDER BY time ASC LIMIT 1;`))[0].guild;
+    const user = await fetchUserCounts(interaction.client) - (await db(`SELECT user FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}" ORDER BY time ASC LIMIT 1;`))[0].user;
 
     await interaction.editReply({
       embeds:[{
@@ -42,11 +44,11 @@ module.exports = async(interaction)=>{
           },
           {
             name: "Discord",
-            value: `Ping: ${interaction.client.ws.ping}㍉秒\nコマンド数: ${(await interaction.client.application.commands.fetch()).size}個\nGC登録数: ${global.length} / ${interaction.client.guilds.cache.size} (${Math.round(global.length/interaction.client.guilds.cache.size*100)}%)\nひろゆき登録数: ${hiroyuki.length}\nTakasumiBOT Account: ${account.length}人\nサーバー稼働時間: ${Math.round(os.uptime() / 60)}分(BOT: ${Math.round(process.uptime() / 60)}分)`
+            value: `Ping: ${interaction.client.ws.ping}㍉秒\nコマンド数: ${(await interaction.client.application.commands.fetch()).size}個\nGC登録数: ${global.length} / ${await fetchGuildCounts(interaction.client)} (${Math.round(global.length/await fetchGuildCounts(interaction.client)*100)}%)\nひろゆき登録数: ${hiroyuki.length}\nTakasumiBOT Account: ${account.length}人\nサーバー稼働時間: ${Math.round(os.uptime() / 60)}分(BOT: ${Math.round(process.uptime() / 60)}分)`
           },
           {
             name: "統計データ",
-            value: `サーバー数: ${interaction.client.guilds.cache.size}サーバー\nユーザー数: ${interaction.client.guilds.cache.map(g=>g.memberCount).reduce((a,c)=>a+c)}人\nサーバー増減数: ${sign(guild)}サーバー\nユーザー増減数: ${sign(user)}人\n\n今日のメッセージ数: ${message[0].total}回\n今日のコマンド実行数: ${command[0].total}回\n前日とのメッセージ増減数: ${sign(messageSign)}回\n前日とのコマンド増減数: ${sign(commandSign)}回`
+            value: `サーバー数: ${await fetchGuildCounts(interaction.client)}サーバー\nユーザー数: ${await fetchUserCounts(interaction.client)}人\nサーバー増減数: ${sign(guild)}サーバー\nユーザー増減数: ${sign(user)}人\n\n今日のメッセージ数: ${message[0].total}回\n今日のコマンド実行数: ${command[0].total}回\n前日とのメッセージ増減数: ${sign(messageSign)}回\n前日とのコマンド増減数: ${sign(commandSign)}回`
           }
         ]
       }],

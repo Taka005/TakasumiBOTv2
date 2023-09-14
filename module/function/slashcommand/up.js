@@ -37,7 +37,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(!await fetchInvite(interaction.client,data[0].code)){
+    if(!await fetchInvite(interaction.guild,data[0].code)){
       try{
         await interaction.channel.createInvite({
           "unique": true,

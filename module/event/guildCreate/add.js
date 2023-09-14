@@ -1,7 +1,9 @@
 module.exports = async(guild)=>{
   const { ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
+  const fetchGuildCounts = require("../../lib/fetchGuildCounts");
+
   let find = 0;
-  guild.channels.cache.map((channel)=>{
+  guild.channels.cache.map(async(channel)=>{
     if(find === 0){
       if(
         channel.type === ChannelType.GuildText&&
@@ -17,7 +19,7 @@ module.exports = async(guild)=>{
             title: "BOT導入ありがとうございます!",
             description: "やっほー。TakasumiBOTだよ\n便利な機能を備えた万能BOTです\n\nグローバルチャット、サーバー掲示板、認証機能などいろいろあるよ!\nコマンドのhelpを表示する時は`/help`を実行してね\n`/follow`を実行するとBOTのアナウンスチャンネルが追加できます",
             footer:{
-              text: `導入数:${guild.client.guilds.cache.size}サーバー`
+              text: `導入数:${await fetchGuildCounts(guild.client)}サーバー`
             },
             timestamp: new Date()
           }],
