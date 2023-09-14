@@ -14,7 +14,7 @@ module.exports = async(client)=>{
       });
       stats = 1;
     }else if(stats === 1){
-      client.user.setActivity(`${await fetchGuildCounts(client)}server || ${await fetchUserCounts(client)}user${client.shard ? ` || ${client.shard.id}shard` : ""}`,{
+      client.user.setActivity(`${await fetchGuildCounts(client)}server || ${await fetchUserCounts(client)}user${client.shard ? ` || ${client.shard.count}shard` : ""}`,{
         type: ActivityType.Playing
       });
       stats = 0;
