@@ -1,5 +1,7 @@
 module.exports = async(client)=>{
   const { ActivityType } = require("discord.js");
+  const fetchGuildCount = require("../../fetchGuildCount");
+  const fetchUserCount = require("../../fetchUserCount");
   const config = require("../../../config.json"); 
 
   client.user.setStatus("online");
@@ -12,7 +14,7 @@ module.exports = async(client)=>{
       });
       stats = 1;
     }else if(stats === 1){
-      client.user.setActivity(`${client.guilds.cache.size}server || ${client.guilds.cache.map((g)=>g.memberCount).reduce((a,c)=>a+c)}user`,{
+      client.user.setActivity(`${await fetchGuildCount(client)}server || ${await fetchUserCount(client)}user${client.shard ? ` || ${client.shard.id}shard` : ""}`,{
         type: ActivityType.Playing
       });
       stats = 0;
@@ -22,5 +24,5 @@ module.exports = async(client)=>{
   await client.channels.cache.get(config.log).send("システムが再起動されました");
 
   console.log(`\x1b[34mINFO: Account ${client.user.tag}\x1b[39m`);
-  console.log(`\x1b[34mINFO: Server:${client.guilds.cache.size} User:${client.guilds.cache.map((g)=>g.memberCount).reduce((a,c)=>a+c)}\x1b[39m`);
+  console.log(`\x1b[34mINFO: Server:${await fetchGuildCount(client)} User:${await fetchUserCount(client)}\x1b[39m`);
 }

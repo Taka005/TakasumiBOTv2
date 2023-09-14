@@ -1,6 +1,6 @@
-module.exports = async(client,code)=>{
+module.exports = async(guild,code)=>{
   try{
-    return await client.fetchInvite(code);
+    return await guild.invites.fetch(code)
   }catch{
     return null;
   }
