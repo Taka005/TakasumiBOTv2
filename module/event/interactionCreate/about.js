@@ -1,11 +1,11 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
-  const fetchGuildCount = require("../../fetchGuildCount");
+  const fetchGuildCounts = require("../../fetchGuildCounts");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("about_")){
     const id = interaction.customId.split("_");
   
-    const server = Math.floor(await fetchGuildCount(interaction.client)/10)*10;
+    const server = Math.floor(await fetchGuildCounts(interaction.client)/10)*10;
 
     const type = {
       "about":[{

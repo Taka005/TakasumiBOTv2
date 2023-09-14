@@ -4,8 +4,8 @@ module.exports = async(client)=>{
   require("dotenv").config();
   const db = require("../../lib/db");
   const cpu = require("../../lib/cpu");
-  const fetchGuildCount = require("../../fetchGuildCount");
-  const fetchUserCount = require("../../fetchUserCount");
+  const fetchGuildCounts = require("../../fetchGuildCounts");
+  const fetchUserCounts = require("../../fetchUserCounts");
 
   cron.schedule("0 * * * *",async()=>{
     const log = await db("SELECT * FROM log");
@@ -13,8 +13,8 @@ module.exports = async(client)=>{
     let ping = client.ws.ping;
     if(ping > 300) ping = 300;
     
-    const user = await fetchUserCount(client);
-    const guild = await fetchGuildCount(client);
+    const user = await fetchUserCounts(client);
+    const guild = await fetchGuildCounts(client);
     const count = await db(`SELECT * FROM count WHERE id = ${process.env.ID} LIMIT 1;`);
     const cpuUsage = await cpu();
     const ram = 100 - Math.floor((os.freemem()/os.totalmem())*100);
