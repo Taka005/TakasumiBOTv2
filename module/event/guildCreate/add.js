@@ -3,7 +3,7 @@ module.exports = async(guild)=>{
   const fetchGuildCounts = require("../../fetchGuildCounts");
 
   let find = 0;
-  guild.channels.cache.map((channel)=>{
+  guild.channels.cache.map(async(channel)=>{
     if(find === 0){
       if(
         channel.type === ChannelType.GuildText&&
