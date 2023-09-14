@@ -10,9 +10,7 @@ module.exports = async(client)=>{
   cron.schedule("0 * * * *",async()=>{
     const log = await db("SELECT * FROM log");
 
-    let ping = client.ws.ping;
-    if(ping > 300) ping = 300;
-    
+    const ping = client.ws.ping < 300 ? client.ws.ping : 300;
     const user = await fetchUserCounts(client);
     const guild = await fetchGuildCounts(client);
     const count = await db(`SELECT * FROM count WHERE id = ${process.env.ID} LIMIT 1;`);

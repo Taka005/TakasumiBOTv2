@@ -27,23 +27,18 @@ const client = new Client({
   })
 });
 
-console.log("\x1b[32m*****************************\x1b[39m");
-console.log("\x1b[32m        TakasumiBOT v2       \x1b[39m");
-console.log("\x1b[32m      Created By @taka005    \x1b[39m");
-console.log("\x1b[32m*****************************\x1b[39m");
-
 require("./module/event")(client);
 
 client.login(process.env.BOT_TOKEN)
   .then(()=>{
-    console.log("\x1b[34mINFO: Login Success\x1b[39m");
+    console.log("\x1b[34mログインしました\x1b[39m");
   })
   .catch(()=>{
-    console.log("\x1b[31mERROR: Login Failed\x1b[39m");
+    console.log("\x1b[31mログインできませんでした\x1b[39m");
   })
 
 process.on("uncaughtException",async(error)=>{
-  console.log(`\x1b[31mERROR: ${error.stack}\x1b[39m`);
+  console.log(`\x1b[31m${error.stack}\x1b[39m`);
 
   await client.channels.cache.get(config.error)?.send({
     embeds:[{
@@ -55,7 +50,7 @@ process.on("uncaughtException",async(error)=>{
 });
 
 process.on("unhandledRejection",async(error)=>{
-  console.log(`\x1b[31mERROR: ${error.stack}\x1b[39m`);
+  console.log(`\x1b[31m${error.stack}\x1b[39m`);
 
   await client.channels.cache.get(config.error)?.send({
     embeds:[{
