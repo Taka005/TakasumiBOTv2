@@ -4,8 +4,8 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const sign = require("../../lib/sign");
   const cpu = require("../../lib/cpu");
-  const fetchGuildCounts = require("../../fetchGuildCounts");
-  const fetchUserCounts = require("../../fetchUserCounts");
+  const fetchGuildCounts = require("../../lib/fetchGuildCounts");
+  const fetchUserCounts = require("../../lib/fetchUserCounts");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "status"){
 

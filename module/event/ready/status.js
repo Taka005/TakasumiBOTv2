@@ -1,7 +1,7 @@
 module.exports = async(client)=>{
   const { ActivityType } = require("discord.js");
-  const fetchGuildCounts = require("../../fetchGuildCounts");
-  const fetchUserCounts = require("../../fetchUserCounts");
+  const fetchGuildCounts = require("../../lib/fetchGuildCounts");
+  const fetchUserCounts = require("../../lib/fetchUserCounts");
   const config = require("../../../config.json"); 
 
   client.user.setStatus("online");

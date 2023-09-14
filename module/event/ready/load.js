@@ -4,8 +4,8 @@ module.exports = async(client)=>{
   require("dotenv").config();
   const db = require("../../lib/db");
   const cpu = require("../../lib/cpu");
-  const fetchGuildCounts = require("../../fetchGuildCounts");
-  const fetchUserCounts = require("../../fetchUserCounts");
+  const fetchGuildCounts = require("../../lib/fetchGuildCounts");
+  const fetchUserCounts = require("../../lib/fetchUserCounts");
 
   cron.schedule("0 * * * *",async()=>{
     const log = await db("SELECT * FROM log");
