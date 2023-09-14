@@ -39,7 +39,7 @@
     "node-fetch": "^2.7.0"
   },
   "devDependencies": {
-    "esbuild": "^0.19.2",
+    "esbuild": "^0.19.3",
     "eslint": "^8.49.0",
     "eslint-plugin-node": "^11.1.0"
   },
