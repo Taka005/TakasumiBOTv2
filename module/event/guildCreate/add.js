@@ -1,6 +1,6 @@
 module.exports = async(guild)=>{
   const { ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
-  const fetchGuildCounts = require("../../fetchGuildCount");
+  const fetchGuildCounts = require("../../fetchGuildCounts");
 
   let find = 0;
   guild.channels.cache.map((channel)=>{
