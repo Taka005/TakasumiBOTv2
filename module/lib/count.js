@@ -1,4 +1,4 @@
-require("dotenv");
+require("dotenv").config();
 const db = require("./db");
 module.exports = {
   "message":async()=>{
