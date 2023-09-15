@@ -106,7 +106,7 @@ module.exports = async(client)=>{
   client.rest.on(RESTEvents.InvalidRequestWarning,async(message)=>{
     console.log(`InvalidRequest: ${message}`);
 
-    fs.writeFileSync("./tmp/log.txt",`InvalidRequest: ${message}\n`,"utf8");
+    fs.appendFileSync("./tmp/log.txt",`-------- ${new Date()}:InvalidRequest --------\n${message}\n\n`,"utf8");
   });
 
   if(process.env.DEBUG){

@@ -1,7 +1,6 @@
 const { Client, GatewayIntentBits, Options, Colors } = require("discord.js");
 require("dotenv").config();
-const fetchChannel = require("./module/lib/fetchChannel");
-const config = require("./config.json"); 
+const fs = require("fs");
 
 const client = new Client({
   intents:[
@@ -38,23 +37,11 @@ client.login(process.env.BOT_TOKEN)
 process.on("uncaughtException",async(error)=>{
   console.log(`\x1b[31m${error.stack}\x1b[39m`);
 
-  await fetchChannel(client,config.log)?.send({
-    embeds:[{
-      color: Colors.Red,
-      description: `\`\`\`js\n${error.stack}\`\`\``,
-      timestamp: new Date()
-    }]
-  }).catch(()=>{});
+  fs.appendFileSync("./tmp/error.txt",`-------- ${new Date()}:UncaugthException --------\n${error.stack}\n\n`,"utf8");
 });
 
 process.on("unhandledRejection",async(error)=>{
   console.log(`\x1b[31m${error.stack}\x1b[39m`);
 
-  await fetchChannel(client,config.log)?.send({
-    embeds:[{
-      color: Colors.Orange,
-      description: `\`\`\`js\n${error.stack}\`\`\``,
-      timestamp: new Date()
-    }]
-  }).catch(()=>{});
+  fs.appendFileSync("./tmp/error.txt",`-------- ${new Date()}:unhandledRejection --------\n${message}\n\n`,"utf8");
 });
