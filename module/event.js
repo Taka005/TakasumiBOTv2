@@ -26,7 +26,7 @@ module.exports = async(client)=>{
     
     if(message.author.bot) return;
 
-    console.log(`\x1b[37mMESSAGE: ${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
+    console.log(`\x1b[37m${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
     Promise.all(global.command.map(fn=>fn(message)));
   });

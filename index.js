@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, Options, Colors } = require("discord.js");
+const { Client, GatewayIntentBits, Options } = require("discord.js");
 require("dotenv").config();
 const fs = require("fs");
 
