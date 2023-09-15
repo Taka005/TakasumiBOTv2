@@ -1,6 +1,12 @@
-module.exports = async(guild,channelId)=>{
+module.exports = async(client,channelId)=>{
   try{
-    return await guild.channels.fetch(channelId);
+    if(client.shard){
+      return await client.shard.broadcastEval((c,id)=>c.channels.fetch(id),{ 
+        context: channelId
+      }).find(res=>res)||null;
+    }else{
+      return await client.channels.fetch(channelId);
+    }
   }catch{
     return null;
   }
