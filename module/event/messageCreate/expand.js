@@ -16,7 +16,7 @@ module.exports = async(message)=>{
     const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id} LIMIT 1;`);
     if(ignore[0]||limit(message)) return;
 
-    const channel = await fetchChannel(message.client,link[2]);
+    const channel = await fetchChannel(message.guild,link[2]);
     const msg = await fetchMessage(channel,link[3]);
     if(!channel||!msg) return;
 
