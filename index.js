@@ -43,5 +43,5 @@ process.on("uncaughtException",async(error)=>{
 process.on("unhandledRejection",async(error)=>{
   console.log(`\x1b[31m${error.stack}\x1b[39m`);
 
-  fs.appendFileSync("./tmp/error.txt",`-------- ${new Date()}:unhandledRejection --------\n${message}\n\n`,"utf8");
+  fs.appendFileSync("./tmp/error.txt",`-------- ${new Date()}:unhandledRejection --------\n${error.stack}\n\n`,"utf8");
 });
