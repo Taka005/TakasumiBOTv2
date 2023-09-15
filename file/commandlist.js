@@ -2128,22 +2128,6 @@ module.exports = {
       .setName("メッセージをピン留め")
       .setType(ApplicationCommandType.Message)
   },
-  メッセージを報告:{
-    type: "contextmenu",
-    name: "メッセージを報告",
-    description: "サポートサーバーにメッセージを報告します",
-    example: "`メッセージを報告`をクリック",
-    userPermission:[
-      "必要なし"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "報告されたメッセージの周囲のメッセージも送信されます",
-    data: new ContextMenuCommandBuilder()
-      .setName("メッセージを報告")
-      .setType(ApplicationCommandType.Message)
-  },
   英語に翻訳:{
     type: "contextmenu",
     name: "英語に翻訳",
