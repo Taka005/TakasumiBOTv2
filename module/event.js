@@ -26,7 +26,7 @@ module.exports = async(client)=>{
     
     if(message.author.bot) return;
 
-    console.log(`\x1b[37mMESSAGE: ${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
+    console.log(`\x1b[37m${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
     Promise.all(global.command.map(fn=>fn(message)));
   });
@@ -106,7 +106,7 @@ module.exports = async(client)=>{
   client.rest.on(RESTEvents.InvalidRequestWarning,async(message)=>{
     console.log(`InvalidRequest: ${message}`);
 
-    fs.appendFileSync("./tmp/log.txt",`-------- ${new Date()}:InvalidRequest --------\n${message}\n\n`,"utf8");
+    fs.appendFileSync("./tmp/log.txt",`-------- InvalidRequest: ${new Date().toLocaleString()} --------\n${message}\n\n`,"utf8");
   });
 
   if(process.env.DEBUG){
