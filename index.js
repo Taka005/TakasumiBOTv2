@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits, Options, Colors } = require("discord.js");
 require("dotenv").config();
+const fetchChannel = require("./module/lib/fetchChannel");
 const config = require("./config.json"); 
 
 const client = new Client({
@@ -32,15 +33,12 @@ require("./module/event")(client);
 client.login(process.env.BOT_TOKEN)
   .then(()=>{
     console.log("\x1b[34mログインしました\x1b[39m");
-  })
-  .catch(()=>{
-    console.log("\x1b[31mログインできませんでした\x1b[39m");
-  })
+  });
 
 process.on("uncaughtException",async(error)=>{
   console.log(`\x1b[31m${error.stack}\x1b[39m`);
 
-  await client.channels.cache.get(config.log)?.send({
+  await fetchChannel(client,config.log)?.send({
     embeds:[{
       color: Colors.Red,
       description: `\`\`\`js\n${error.stack}\`\`\``,
@@ -52,7 +50,7 @@ process.on("uncaughtException",async(error)=>{
 process.on("unhandledRejection",async(error)=>{
   console.log(`\x1b[31m${error.stack}\x1b[39m`);
 
-  await client.channels.cache.get(config.log)?.send({
+  await fetchChannel(client,config.log)?.send({
     embeds:[{
       color: Colors.Orange,
       description: `\`\`\`js\n${error.stack}\`\`\``,
