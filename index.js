@@ -37,11 +37,11 @@ client.login(process.env.BOT_TOKEN)
 process.on("uncaughtException",async(error)=>{
   console.log(`\x1b[31m${error.stack}\x1b[39m`);
 
-  fs.appendFileSync("./tmp/error.txt",`-------- ${new Date()}:UncaugthException --------\n${error.stack}\n\n`,"utf8");
+  fs.appendFileSync("./tmp/error.txt",`-------- UncaugthException: ${new Date().toLocaleString()} --------\n${error.stack}\n\n`,"utf8");
 });
 
 process.on("unhandledRejection",async(error)=>{
   console.log(`\x1b[31m${error.stack}\x1b[39m`);
 
-  fs.appendFileSync("./tmp/error.txt",`-------- ${new Date()}:unhandledRejection --------\n${error.stack}\n\n`,"utf8");
+  fs.appendFileSync("./tmp/error.txt",`-------- UnhandledRejection: ${new Date().toLocaleString()} --------\n${error.stack}\n\n`,"utf8");
 });
