@@ -2,7 +2,6 @@ module.exports = async(client)=>{
   const { ActivityType } = require("discord.js");
   const fetchGuildCounts = require("../../lib/fetchGuildCounts");
   const fetchUserCounts = require("../../lib/fetchUserCounts");
-  const config = require("../../../config.json"); 
 
   client.user.setStatus("online");
 
@@ -20,9 +19,4 @@ module.exports = async(client)=>{
       stats = 0;
     }
   },5000)
-
-  await client.channels.cache.get(config.log).send("システムが再起動されました");
-
-  console.log(`\x1b[34mINFO: Account ${client.user.tag}\x1b[39m`);
-  console.log(`\x1b[34mINFO: Server:${await fetchGuildCounts(client)} User:${await fetchUserCounts(client)}\x1b[39m`);
 }
