@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "debug": "node --inspect=0.0.0.0:9229 index.js",
-    "lint": "./node_modules/.bin/eslint module"
+    "lint": "./node_modules/.bin/eslint ./"
   },
   "engines": {
     "node": ">=16.x"
