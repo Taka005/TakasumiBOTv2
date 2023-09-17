@@ -3,6 +3,7 @@ module.exports = async(message)=>{
   const db = require("../../lib/db");
   const random = require("../../lib/random");
   const rate = require("../../lib/rate");
+  const limit = require("../../lib/limit");
 
   const data = await db(`SELECT * FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
 
@@ -12,8 +13,10 @@ module.exports = async(message)=>{
     !data[0]
   ) return;
 
+  if(limit(message)) return;
+
   const reply_1 = {
-    "嘘": random(["何だろう。噓つくのやめてもらっていいですか？", `嘘は嘘であると見抜ける人でないと(${message.guild.name}を使うのは)難しい`,"本当つまんないっすよ",]),
+    "嘘": random(["何だろう。噓つくのやめてもらっていいですか？",`嘘は嘘であると見抜ける人でないと(${message.guild.name}を使うのは)難しい`,"本当つまんないっすよ",]),
     "写像": "「写像」？なんすか「写像」って...",
     "ごめん": random(["誰に謝ってんの？","さっきと言ってること違いません？","それって矛盾してますよね？"]),
     "すいません": random(["「すいません」？なんすか「すいません」って...", "何だろう。すみませんって言ってもらってもいいですか？","本当つまんないっすよ"]),
