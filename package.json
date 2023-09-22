@@ -8,6 +8,11 @@
     "debug": "node --inspect=0.0.0.0:9229 index.js",
     "lint": "./node_modules/.bin/eslint ./"
   },
+  "nodemonConfig": {
+    "ignore": [
+      "./tmp/script.js"
+    ]
+  },
   "engines": {
     "node": ">=16.x"
   },
