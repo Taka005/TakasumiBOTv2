@@ -4,14 +4,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "debug": "node --inspect=0.0.0.0:9229 index.js",
     "lint": "./node_modules/.bin/eslint ./"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "./tmp/script.js"
-    ]
   },
   "engines": {
     "node": ">=16.x"
@@ -40,8 +35,7 @@
     "mathjs": "^11.11.1",
     "mysql": "^2.18.1",
     "node-cron": "^3.0.2",
-    "node-fetch": "^2.7.0",
-    "nodemon": "^3.0.1"
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "eslint": "^8.49.0",
