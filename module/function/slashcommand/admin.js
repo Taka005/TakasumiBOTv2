@@ -5,6 +5,7 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const fetchUser = require("../../lib/fetchUser");
   const fetchGuild = require("../../lib/fetchGuild");
+  const escape = require("../../lib/escape");
   const { admin } = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "admin"){
@@ -154,7 +155,7 @@ module.exports = async(interaction)=>{
             }]
           });
         }else{
-          await db(`INSERT INTO mute_user (id, reason, time) VALUES("${user.id}","${reason}",NOW());`);
+          await db(`INSERT INTO mute_user (id, reason, time) VALUES("${user.id}","${escape(reason)}",NOW());`);
   
           await interaction.reply({
             embeds:[{
@@ -194,7 +195,7 @@ module.exports = async(interaction)=>{
             }]
           });
         }else{
-          await db(`INSERT INTO mute_server (id, reason, time) VALUES("${guild.id}","${reason}",NOW())`);
+          await db(`INSERT INTO mute_server (id, reason, time) VALUES("${guild.id}","${escape(reason)}",NOW())`);
   
           await interaction.reply({
             embeds:[{

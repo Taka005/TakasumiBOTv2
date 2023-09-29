@@ -2,6 +2,7 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const db = require("../../lib/db");
   const time = require("../../lib/time");
+  const escape = require("../../lib/escape")
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "afk"){
     const message = interaction.options.getString("message")||"メッセージはありません";
@@ -32,7 +33,7 @@ module.exports = async(interaction)=>{
         }]
       }); 
     }else{
-      await db(`INSERT INTO afk (user, message, mention, time) VALUES("${interaction.user.id}","${message}","0",NOW());`);
+      await db(`INSERT INTO afk (user, message, mention, time) VALUES("${interaction.user.id}","${escape(message)}","0",NOW());`);
       await interaction.reply({
         embeds:[{
           color: Colors.Green,

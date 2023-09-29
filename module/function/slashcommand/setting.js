@@ -2,6 +2,7 @@ module.exports = async(interaction)=>{
   const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const fetchMember = require("../../lib/fetchMember");
+  const escape = require("../../lib/escape");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "setting"){
 
@@ -425,7 +426,7 @@ module.exports = async(interaction)=>{
           avatar: "https://cdn.taka.cf/images/icon.png",
         })
           .then(async(webhook)=>{
-            await db(`INSERT INTO \`join\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${message}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
+            await db(`INSERT INTO \`join\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${escape(message)}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
             await interaction.editReply({
               embeds:[{
                 color: Colors.Green,
@@ -566,7 +567,7 @@ module.exports = async(interaction)=>{
           avatar: "https://cdn.taka.cf/images/icon.png",
         })
           .then(async(webhook)=>{
-            await db(`INSERT INTO \`leave\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${message}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
+            await db(`INSERT INTO \`leave\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${escape(message)}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
             await interaction.editReply({
               embeds:[{
                 color: Colors.Green,

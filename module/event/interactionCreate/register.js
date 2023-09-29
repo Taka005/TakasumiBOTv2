@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
+  const escape = require("../../lib/escape");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId === "register"){
     const text = interaction.fields.getTextInputValue("text")
@@ -11,7 +12,7 @@ module.exports = async(interaction)=>{
       "maxAge": 0
     })
       .then(async(invite)=>{
-        await db(`INSERT INTO server (id, name, count, owner, code, text, time) VALUES("${interaction.guild.id}","${interaction.guild.name}","${interaction.guild.memberCount}","${interaction.guild.ownerId}","${invite.code}","${text}",NOW());`);
+        await db(`INSERT INTO server (id, name, count, owner, code, text, time) VALUES("${interaction.guild.id}","${escape(interaction.guild.name)}","${interaction.guild.memberCount}","${interaction.guild.ownerId}","${invite.code}","${escape(text)}",NOW());`);
 
         await interaction.reply({
           embeds:[{
@@ -20,7 +21,7 @@ module.exports = async(interaction)=>{
               name: "登録しました",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
-            description: "サーバー掲示板に公開されます"
+            description: "サーバー掲示板に公開しました"
           }]
         });
       })
