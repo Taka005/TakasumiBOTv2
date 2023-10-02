@@ -1,5 +1,5 @@
 const spam = require("../../lib/spam");
-const Spam = new spam(10000);
+const Spam = new spam(10000,true);
 
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, AttachmentBuilder, Colors } = require("discord.js");
