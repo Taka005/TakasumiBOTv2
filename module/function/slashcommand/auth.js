@@ -51,6 +51,18 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
+
+    if(!role.editable) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "BOTに権限がありません",
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
+        },
+        description: "指定したロールがBOTより上か、管理されているロールです"
+      }],
+      ephemeral: true
+    });
     
     await interaction.channel.send({
       embeds:[{
