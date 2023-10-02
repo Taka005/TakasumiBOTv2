@@ -20,62 +20,41 @@ module.exports = async(message)=>{
     const msg = await fetchMessage(channel,link[3]);
     if(!channel||!msg) return;
 
-    if(!msg.attachments.first()){
-      await message.channel.send({//添付ファイルなし
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: msg.author.tag,
-            icon_url: msg.author.avatarURL()||msg.author.defaultAvatarURL,
-          },
-          description: msg.content||"メッセージ内容がありません",
-          footer:{
-            text: `#${msg.channel.name}`
-          },
-          timestamp: msg.createdAt
-        }]
-      });
-    }else if(msg.attachments.first().height && msg.attachments.first().width){
-      const attachment = msg.attachments.map(attachment=>attachment.url)
-      await message.channel.send({//添付ファイルあり(画像)
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: msg.author.tag,
-            icon_url: msg.author.avatarURL()||msg.author.defaultAvatarURL,
-          },
-          description: msg.content||"メッセージ内容がありません",
-          image:{
-            url: attachment[0]
-          },
-          footer:{
-            text: `#${msg.channel.name}`
-          },
-          timestamp: msg.createdAt
-        }]
-      });
-    }else{
-      const attachment = msg.attachments.map(attachment=>attachment.url)
-      await message.channel.send({//添付ファイルあり(画像以外)
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: msg.author.tag,
-            icon_url: msg.author.avatarURL()||msg.author.defaultAvatarURL,
-          },
-          description: msg.content||"メッセージ内容がありません",
-          footer:{
-            text: `#${msg.channel.name}`
-          },
-          fields:[
-            {
-              name: "添付ファイル",
-              value: `${attachment[0]||"エラー"}`
-            }
-          ],
-          timestamp: msg.createdAt
-        }]
-      });
+    const embeds = [{
+      color: Colors.Green,
+      author:{
+        name: msg.author.tag,
+        icon_url: msg.author.avatarURL()||msg.author.defaultAvatarURL,
+      },
+      description: msg.content||"",
+      footer:{
+        text: `#${msg.channel.name}`
+      },
+      timestamp: msg.createdAt
+    }];
+
+    if(msg.embeds[0]){
+      embeds.push(msg.embeds[0]);
     }
+
+    const attachment = msg.attachments.first();
+    if(attachment){
+      if(attachment.height&&attachment.width){
+        embeds[0].image = {
+          url: attachment.url
+        };
+      }else{
+        embeds[0].fields = [
+          {
+            name: "添付ファイル",
+            value: `[${attachment.name}](${attachment.url})`
+          }
+        ];
+      }
+    }
+
+    await message.channel.send({
+      embeds: embeds
+    }).catch(()=>{});
   }
 }
