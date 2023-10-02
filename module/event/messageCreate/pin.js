@@ -11,7 +11,7 @@ module.exports = async(message)=>{
   const data = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
   if(data[0]){
     if(Spam.count(message.guild.id)) return;
-    await sleep(5000);
+    await sleep(4500);
 
     try{
       const before = await message.channel.messages.fetch(data[0].message);
@@ -30,7 +30,7 @@ module.exports = async(message)=>{
           }
         }]
       });
-      
+
       await db(`UPDATE pin SET message = ${after.id} WHERE channel = ${message.channel.id};`);
     }catch{
       await db(`UPDATE pin SET count = ${Number(data[0].count)-1} WHERE server = ${message.guild.id};`);
