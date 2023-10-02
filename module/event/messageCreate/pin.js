@@ -31,8 +31,7 @@ module.exports = async(message)=>{
         }]
       });
       await db(`UPDATE pin SET message = ${after.id} WHERE channel = ${message.channel.id};`);
-    }catch(error){
-      message.channel.send(error.stack);
+    }catch{
       await db(`UPDATE pin SET count = ${Number(channel[0].count)-1} WHERE server = ${message.guild.id};`);
       await db(`DELETE FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
     }

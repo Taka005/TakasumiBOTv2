@@ -1,7 +1,7 @@
 module.exports = class Wait{
   constructor(rate){
     this.time = {};
-    this.rate;
+    this.rate = rate;
   }
 
   count(id){
