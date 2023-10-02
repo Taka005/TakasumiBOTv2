@@ -1,6 +1,6 @@
 module.exports = class Spam{
   constructor(rate,isWait){
-    this.time = [];
+    this.time = {};
     this.rate = rate;
     this.isWait = isWait;
   }
