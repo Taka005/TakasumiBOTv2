@@ -1,15 +1,17 @@
-const spam = require("../../lib/spam");
-const Spam = new spam(5000,true);
+const wait = require("../../lib/wait");
+const Wait = new wait(5000);
 
 module.exports = async(message)=>{
   const { Colors } = require("discord.js");
   const db = require("../../lib/db");
-    
+  const sleep = require("../../lib/sleep");
+
   if(message.author.bot) return;
     
   const channel = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
   if(channel[0]){
-    if(Spam.count(message.guild.id)) return;
+    if(Wait.count(message.guild.id)) return;
+    await sleep(5000);
 
     try{
       const before = await message.client.channels.cache.get(channel[0].channel).messages.fetch(channel[0].message)
