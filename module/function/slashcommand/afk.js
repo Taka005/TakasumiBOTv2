@@ -2,7 +2,7 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const db = require("../../lib/db");
   const time = require("../../lib/time");
-  const escape = require("../../lib/escape")
+  const escape = require("../../lib/escape");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "afk"){
     const message = interaction.options.getString("message")||"メッセージはありません";
