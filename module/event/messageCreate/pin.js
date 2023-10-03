@@ -1,5 +1,5 @@
 const spam = require("../../lib/spam");
-const Spam = new spam(5000,true);
+const Spam = new spam(6000,true);
 
 module.exports = async(message)=>{
   const { Colors } = require("discord.js");
@@ -10,7 +10,7 @@ module.exports = async(message)=>{
     
   const data = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
   if(data[0]){
-    if(Spam.count(message.guild.id)) return;
+    if(Spam.count(message.channel.id)) return;
     await sleep(5000);
 
     try{
