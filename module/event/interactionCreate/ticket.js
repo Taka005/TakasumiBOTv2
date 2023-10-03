@@ -3,13 +3,13 @@ module.exports = async(interaction)=>{
   if(!interaction.isButton()) return;
   if(interaction.customId === "ticket"){
 
-    if(interaction.guild.channels.cache.find(name => name.name === interaction.user.id)) return await interaction.reply({
+    if(interaction.guild.channels.cache.find(name=>name.name === interaction.user.id)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "作成できませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        color: Colors.Red,
         description: "既にチケットが作成済みです"
       }],
       ephemeral: true
@@ -18,11 +18,11 @@ module.exports = async(interaction)=>{
     const channel = interaction.guild.channels.cache.find(name => name.name === "ticket")
     if(!channel) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "作成できませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        color: Colors.Red,
         description: "ticketカテゴリーが存在していません"
       }],
       ephemeral: true
@@ -42,6 +42,7 @@ module.exports = async(interaction)=>{
         await ch.permissionOverwrites.edit(interaction.user.id,{
           ViewChannel: true
         });
+
         await ch.send({
           content: `<@${interaction.user.id}>`,
           embeds:[{
@@ -60,12 +61,12 @@ module.exports = async(interaction)=>{
 
         await interaction.reply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: `チケットを作成しました`,
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: `<#${ch.id}>`,
-            color: Colors.Green
           }],
           ephemeral: true
         });
@@ -73,11 +74,11 @@ module.exports = async(interaction)=>{
       .catch(async(error)=>{
         await interaction.reply({ 
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "作成できませんでした",
               icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
-            color: Colors.Red,
             fields:[
               {
                 name: "エラーコード",

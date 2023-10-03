@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
     const types = {
       "info": "情報",
       "server": "サーバー関連",
-      "manage": "サーバー管理",
+      "manage": "管理",
       "tool": "ツール",
       "search": "検索",
       "fun": "ネタ",

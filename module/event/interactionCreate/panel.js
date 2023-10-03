@@ -9,11 +9,11 @@ module.exports = async(interaction)=>{
     
     if(Spam.count(interaction.guild.id)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "ロールの付与に失敗しました",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        color: Colors.Red,
         description: "ロールの付与速度が速すぎるため5秒間待ってください"
       }],
       ephemeral: true
@@ -67,11 +67,11 @@ module.exports = async(interaction)=>{
     }catch(error){
       await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "ロールの変更に失敗しました",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          color: Colors.Red,
           description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
           fields:[
             {
