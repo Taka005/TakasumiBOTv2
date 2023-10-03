@@ -1,5 +1,5 @@
 module.exports = async(message)=>{
-  const { ChannelType, WebhookClient } = require("discord.js");
+  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const random = require("../../lib/random");
   const rate = require("../../lib/rate");
