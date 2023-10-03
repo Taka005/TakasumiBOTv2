@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
                 .addOptions([
                   { label: "情報", value: "info" },
                   { label: "サーバー関連", value: "server" },
-                  { label: "サーバー管理", value: "manage" },
+                  { label: "管理", value: "manage" },
                   { label: "ツール", value: "tool" },
                   { label: "検索", value: "search" },
                   { label: "ネタ", value: "fun" },
