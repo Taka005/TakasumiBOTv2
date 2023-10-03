@@ -148,9 +148,9 @@ module.exports = async(interaction)=>{
               }],
               username: "TakasumiBOT Global",
               avatarURL: "https://cdn.taka.cf/images/icon.png"
-            }).catch(async()=>{
+            }).catch(async(error)=>{
               await db(`DELETE FROM global WHERE channel = ${data.channel} LIMIT 1;`);
-              await message.client.channels.cache.get(data.channel).send({
+              await interaction.client.channels.cache.get(data.channel).send({
                 embeds:[{
                   author:{
                     name: "グローバルチャットでエラーが発生しました",
