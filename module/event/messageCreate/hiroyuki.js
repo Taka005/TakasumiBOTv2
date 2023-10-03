@@ -1,5 +1,5 @@
 module.exports = async(message)=>{
-  const { ChannelType, WebhookClient } = require("discord.js");
+  const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const random = require("../../lib/random");
   const rate = require("../../lib/rate");
@@ -103,6 +103,7 @@ module.exports = async(message)=>{
     "慎重に検討していく",
     "検討に検討を重ねていきたい",
     "検討を加速させたい",
+    "レーシックでもすればいのか？",
     "緊張感を持って対応する",
     `${message.guild.name}についてあらゆる選択肢を排除しない`,
     "検討に検討を重ね検討を加速させていきたい"
@@ -110,83 +111,72 @@ module.exports = async(message)=>{
 
   const webhook = new WebhookClient({id: data[0].id, token:data[0].token});
 
+  let msg;
   if(rate(false,true,0.01)){
-    return await webhook.send({
+    msg = {
       content: random(koizumi),
       username: "小泉進次郎",
       avatarURL: "https://cdn.taka.cf/images/koizumi.png"
-    }).catch((error)=>{
-      err(message,error);
-    })
+    };
   }else if(rate(false,true,0.01)){
-    return await webhook.send({
+    msg = {
       content: random(kinnikun),
       username: "なかやまきんに君",
       avatarURL: "https://cdn.taka.cf/images/kinnikun.png"
-    }).catch((error)=>{
-      err(message,error);
-    })
+    };
   }else if(rate(false,true,0.007)){
-    return await webhook.send({
+    msg = {
       content: random(kisida),
       username: "岸田総理",
       avatarURL: "https://cdn.taka.cf/images/kisida.png"
-    }).catch((error)=>{
-      err(message,error);
-    })
+    };
   }else if(rate(false,true,0.003)){
-    return await webhook.send({
+    msg = {
       content: "すいません。3色チーズ牛丼の特盛に温玉付きをお願いします",
       username: "チー牛",
       avatarURL: "https://cdn.taka.cf/images/tigyuu.png"
-    }).catch((error)=>{
-      err(message,error);
-    })
-  }
-
-  let content;
-  if(Object.keys(reply_1).find(key=>message.content.match(key))){
-    content = reply_1[Object.keys(reply_1).find(key=>message.content.match(key))];
+    };
   }else{
-    content = random(rate(reply_2,reply_3,0.1));
+    let content;
+    if(Object.keys(reply_1).find(key=>message.content.match(key))){
+      content = reply_1[Object.keys(reply_1).find(key=>message.content.match(key))];
+    }else{
+      content = random(rate(reply_2,reply_3,0.1));
+    }
+
+    msg = {
+      content: content,
+      username: "ひろゆき",
+      avatarURL: "https://cdn.taka.cf/images/hiroyuki.png"
+    };
   }
 
-  await webhook.send({
-    content: content,
-    username: "ひろゆき",
-    avatarURL: "https://cdn.taka.cf/images/hiroyuki.png"
-  }).catch((error)=>{
-    err(message,error);
-  })
-}
-
-function err(message,error){
-  const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
-  const db = require("../../lib/db");
-
-  db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
-  message.channel.send({
-    embeds:[{
-      author:{
-        name: "ひろゆき機能でエラーが発生しました",
-        icon_url: "https://cdn.taka.cf/images/system/error.png"
-      },
-      color: Colors.Red,
-      description: "エラーが発生したため、強制的に退出されました\n再度登録するには`/hiroyuki`を使用してください",
-      fields:[
-        {
-          name: "エラーコード",
-          value: `\`\`\`${error}\`\`\``
-        }
-      ]
-    }],
-    components:[
-      new ActionRowBuilder()
-        .addComponents( 
-          new ButtonBuilder()
-            .setLabel("サポートサーバー")
-            .setURL("https://discord.gg/NEesRdGQwD")
-            .setStyle(ButtonStyle.Link))
-    ]
-  }).catch(()=>{});
+  await webhook.send(msg)
+    .catch(async(error)=>{
+      await db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
+      await message.channel.send({
+        embeds:[{
+          author:{
+            name: "ひろゆき機能でエラーが発生しました",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          color: Colors.Red,
+          description: "エラーが発生したため、強制的に退出されました\n再度登録するには`/hiroyuki`を使用してください",
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle(ButtonStyle.Link))
+        ]
+      }).catch(()=>{});
+    });
 }

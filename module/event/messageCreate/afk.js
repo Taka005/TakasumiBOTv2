@@ -13,13 +13,13 @@ module.exports = async(message)=>{
   const data = await db(`SELECT * FROM afk WHERE user = ${message.author.id} LIMIT 1;`);
   if(data[0]){
     await db(`DELETE FROM afk WHERE user = ${message.author.id} LIMIT 1;`);
-    message.channel.send({
+    await message.channel.send({
       embeds:[{
+        color: Colors.Green,
         author:{
           name: "AFKを無効にしました",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        color: Colors.Green,
         description: `メンションは${data[0].mention}件ありました\n${time(new Date()-new Date(data[0].time))}間AFKでした`
       }]
     }).catch(()=>{});
@@ -33,11 +33,11 @@ module.exports = async(message)=>{
         await db(`UPDATE afk SET mention = ${Number(afk[0].mention)+1} WHERE user = ${id[0]}`);
         await message.channel.send({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "AFK中です",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
-            color: Colors.Green,
             description: afk[0].message
           }]
         }).catch(()=>{});

@@ -71,11 +71,11 @@ module.exports = async(interaction)=>{
       }).catch(async()=>{
         await interaction.editReply({
           embeds:[{
+            color: Colors.Green,
             author:{
               name: "実行しました",
               icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
-            color: Colors.Green,
             description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
             footer:{
               text: `${lang[1]} || TakasumiBOT`
@@ -91,11 +91,11 @@ module.exports = async(interaction)=>{
     }else{
       await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "実行できませんでした",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          color: Colors.Red,
           description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
           footer:{
             text: `${lang[1]} || TakasumiBOT`
@@ -104,11 +104,11 @@ module.exports = async(interaction)=>{
       }).catch(async()=>{
         await interaction.editReply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "実行できませんでした",
               icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
-            color: Colors.Red,
             description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,
             footer:{
               text: `${lang[1]} || TakasumiBOT`

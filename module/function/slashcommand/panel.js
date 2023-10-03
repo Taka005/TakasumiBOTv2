@@ -54,12 +54,31 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    const editable = roles.filter(role=>!role.editable);
+    if(editable.length > 0) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "作成できませんでした",
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
+        },
+        description: "以下のロールがBOTより上か、管理されているロールです",
+        fields:[
+          {
+            name: "権限のないロール",
+            value: editable.map(role=>`<@&${role.id}>`).join("\n")
+          }
+        ]
+      }],
+      ephemeral: true
+    });
+
     try{
       await interaction.channel.send({
         embeds:[{
           color: Colors.Green,
           title: title,
-          description: roles.map((c,i)=>`${emojis[i]}<@&${c.id}>`).join("\n")
+          description: roles.map((r,i)=>`${emojis[i]}<@&${r.id}>`).join("\n")
         }],
         components:[     
           new ActionRowBuilder()
@@ -70,9 +89,9 @@ module.exports = async(interaction)=>{
                 .setMinValues(0)
                 .setMaxValues(roles.length)
                 .addOptions(
-                  roles.map((c,i)=>({
-                    label: `@${c.name}`,
-                    value: c.id,
+                  roles.map((r,i)=>({
+                    label: `@${r.name}`,
+                    value: r.id,
                     emoji:{
                       name: emojis[i]
                     }

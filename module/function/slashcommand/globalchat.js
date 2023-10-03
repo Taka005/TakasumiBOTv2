@@ -77,9 +77,6 @@ module.exports = async(interaction)=>{
             }]
           })
         });
-
-      await interaction.channel.setTopic("")
-        .catch(()=>{});
     }else{
       if(
         interaction.guild.memberCount < 20||
@@ -127,9 +124,6 @@ module.exports = async(interaction)=>{
         avatar: "https://cdn.taka.cf/images/icon.png",
       })
         .then(async(webhook)=>{
-          await interaction.channel.setTopic("ここはTakasumiBOTグローバルチャットです\nこのチャンネルに入力された内容は登録チャンネル全部に送信されます\n\nチャットを利用する前に\n[利用規約](https://takasumibot.github.io/terms.html )をご確認ください")
-            .catch(()=>{});
-
           await db(`INSERT INTO global (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW());`);
           
           const global = await db("SELECT * FROM global;");
@@ -154,8 +148,32 @@ module.exports = async(interaction)=>{
               }],
               username: "TakasumiBOT Global",
               avatarURL: "https://cdn.taka.cf/images/icon.png"
-            }).catch(async()=>{
-              await db(`DELETE FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
+            }).catch(async(error)=>{
+              await db(`DELETE FROM global WHERE channel = ${data.channel} LIMIT 1;`);
+              await interaction.client.channels.cache.get(data.channel).send({
+                embeds:[{
+                  author:{
+                    name: "グローバルチャットでエラーが発生しました",
+                    icon_url: "https://cdn.taka.cf/images/system/error.png"
+                  },
+                  color: Colors.Red,
+                  description: "エラーが発生したため、強制的に切断されました\n再度登録するには`/global`を使用してください",
+                  fields:[
+                    {
+                      name: "エラーコード",
+                      value: `\`\`\`${error}\`\`\``
+                    }
+                  ]
+                }],
+                components:[
+                  new ActionRowBuilder()
+                    .addComponents( 
+                      new ButtonBuilder()
+                        .setLabel("サポートサーバー")
+                        .setURL("https://discord.gg/NEesRdGQwD")
+                        .setStyle(ButtonStyle.Link))
+                ]
+              }).catch(()=>{});
             });
           });
 
@@ -174,11 +192,11 @@ module.exports = async(interaction)=>{
       .catch(async(error)=>{
         await interaction.editReply({
           embeds:[{
+            color: Colors.Red,
             author:{
               name: "Webhookの作成に失敗しました",
               icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
-            color: Colors.Red,
             description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
             fields:[
               {

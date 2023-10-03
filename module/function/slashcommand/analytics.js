@@ -1,5 +1,5 @@
 const spam = require("../../lib/spam");
-const Spam = new spam(10000);
+const Spam = new spam(10000,true);
 
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, AttachmentBuilder, Colors } = require("discord.js");
@@ -10,11 +10,11 @@ module.exports = async(interaction)=>{
 
     if(Spam.count(interaction.user.id)) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "生成できませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        color: Colors.Red,
         description: "生成には10秒間待ってください"
       }],
       ephemeral: true
@@ -34,6 +34,7 @@ module.exports = async(interaction)=>{
         const startDate = new Date();
         startDate.setMonth(startDate.getMonth() - 12);
         const memberCounts = [];
+        
         for(let i = 0; i < 12; i++){
           const nextMonth = new Date(startDate);
           nextMonth.setMonth(startDate.getMonth() + 1);

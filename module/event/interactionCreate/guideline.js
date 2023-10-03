@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("guideline_")){
     const role = interaction.customId.split("_");
-    const temp = interaction.fields.getTextInputValue("temp");
+    const text = interaction.fields.getTextInputValue("text");
 
     await interaction.channel.send({
       embeds:[
@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
           thumbnail:{
             url: "https://cdn.taka.cf/images/system/guideline.png"
           },
-          description: temp
+          description: text
         },
         {
           color: Colors.Green,
@@ -36,11 +36,11 @@ module.exports = async(interaction)=>{
     .catch(async(error)=>{
       await interaction.reply({ 
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "ガイドラインの作成に失敗しました",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          color: Colors.Red,
           description: "BOTの権限等を確認し、もう一度実行してください",
           fields:[
             {

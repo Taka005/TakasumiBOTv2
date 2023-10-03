@@ -9,11 +9,11 @@ module.exports = async(interaction)=>{
     
     if(!title&&!description&&!image) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "入力箇所が不足しています",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        color: Colors.Red,
         description: "記入欄を全て空にはできません"
       }],
       ephemeral: true
@@ -22,11 +22,11 @@ module.exports = async(interaction)=>{
     if(image){
       if(!isUrl(image)) return await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "入力された画像が無効です",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          color: Colors.Red,
           description: "画像はURLで指定する必要があります"
         }],
         ephemeral: true
