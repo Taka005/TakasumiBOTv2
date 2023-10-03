@@ -118,7 +118,7 @@ module.exports = async(message)=>{
     }
   }
 
-  (await db("SELECT * FROM global;")).map(async(data)=>{
+  (await db("SELECT * FROM global;")).forEach(async(data)=>{
     const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
     if(data.server === message.guild.id||mute[0]) return;
 

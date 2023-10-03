@@ -20,7 +20,7 @@ module.exports = async(message)=>{
     const msg = await fetchMessage(channel,link[3]);
     if(!channel||!msg) return;
 
-    const embeds = [{
+    const embed = [{
       color: Colors.Green,
       author:{
         name: msg.author.tag,
@@ -34,17 +34,17 @@ module.exports = async(message)=>{
     }];
 
     if(msg.embeds[0]){
-      embeds.push(msg.embeds[0]);
+      embed.push(msg.embeds[0]);
     }
 
     const attachment = msg.attachments.first();
     if(attachment){
       if(attachment.height&&attachment.width){
-        embeds[0].image = {
+        embed[0].image = {
           url: attachment.url
         };
       }else{
-        embeds[0].fields = [
+        embed[0].fields = [
           {
             name: "添付ファイル",
             value: `[${attachment.name}](${attachment.url})`
@@ -54,7 +54,7 @@ module.exports = async(message)=>{
     }
 
     await message.channel.send({
-      embeds: embeds
+      embeds: embed
     }).catch(()=>{});
   }
 }
