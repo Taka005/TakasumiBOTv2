@@ -19,6 +19,7 @@ module.exports = async(interaction)=>{
       math.config({
         "number": "BigNumber"
       });
+      
       const res = math.evaluate(format).toString();
       
       await interaction.reply({
