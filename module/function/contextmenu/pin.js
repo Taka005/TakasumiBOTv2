@@ -5,18 +5,6 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "メッセージをピン留め"){
     const message = interaction.options.getMessage("message");
 
-    if(!message.content) return await interaction.reply({
-      embeds:[{
-        color: Colors.Red,
-        author:{
-          name: "メッセージをピン留めできませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
-        },
-        description: "メッセージの内容が存在しません"
-      }],
-      ephemeral: true
-    });
-
     if(
       !interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)||
       !interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)
@@ -64,6 +52,18 @@ module.exports = async(interaction)=>{
     const channel = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
     const server = await db(`SELECT * FROM pin WHERE server = ${message.guild.id};`);
     if(!channel[0]){
+      if(!message.content) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "メッセージをピン留めできませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "メッセージの内容が存在しません"
+        }],
+        ephemeral: true
+      });
+
       if(server[0]?.count > 5) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
