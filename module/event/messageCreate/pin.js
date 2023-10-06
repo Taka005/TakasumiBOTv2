@@ -2,7 +2,6 @@ const spam = require("../../lib/spam");
 const Spam = new spam(6000,true);
 
 module.exports = async(message)=>{
-  const { Colors } = require("discord.js");
   const db = require("../../lib/db");
   const sleep = require("../../lib/sleep");
 
@@ -18,17 +17,7 @@ module.exports = async(message)=>{
       await before.delete();
 
       const after = await message.channel.send({
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: before.embeds[0].author.name,
-            icon_url: before.embeds[0].author.iconURL,
-          },
-          description: before.embeds[0].description,
-          footer:{
-            text: "TakasumiBOT PIN"
-          }
-        }]
+        embeds: before.embeds
       });
 
       await db(`UPDATE pin SET message = ${after.id} WHERE channel = ${message.channel.id};`);
