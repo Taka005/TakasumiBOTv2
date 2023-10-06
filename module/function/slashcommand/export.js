@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
           "name": interaction.guild.name,
           "id": interaction.guild.id,
           "count": interaction.guild.memberCount,
-          "icon": interaction.guild.iconURL(),
+          "icon": interaction.guild.iconURL({extension:"png",size:1024}),
           "createAt": new Date(interaction.guild.createdTimestamp).toLocaleString(),
           "invites": (await interaction.guild.invites.fetch()).map(invite=>({
             "url": invite.url,
@@ -45,7 +45,7 @@ module.exports = async(interaction)=>{
             "name": member.user.tag,
             "id": member.user.id,
             "color": member.displayHexColor,
-            "avatar": member.user.avatarURL(),
+            "avatar": member.user.avatarURL({extension:"png",size:1024}),
             "joinAt": new Date(member.joinedTimestamp).toLocaleString(),
             "createAt": new Date(member.user.createdTimestamp).toLocaleString()
           })),
