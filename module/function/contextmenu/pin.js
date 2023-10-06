@@ -123,47 +123,21 @@ module.exports = async(interaction)=>{
         });
       }
     }else{
-      try{
-        await (await message.channel.messages.fetch(channel[0].message)).delete();
+      await (await message.channel.messages.fetch(channel[0].message)).delete()
+        .catch(()=>{});
 
-        await db(`UPDATE pin SET count = ${Number(server[0].count)-1} WHERE server = ${message.guild.id};`);
-        await db(`DELETE FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
-  
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "ピン留めを削除しました",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
-            }
-          }]
-        });
-      }catch(error){
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "ピン留めを削除できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }],
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle(ButtonStyle.Link))
-          ],
-          ephemeral: true
-        });
-      }
+      await db(`UPDATE pin SET count = ${Number(server[0].count)-1} WHERE server = ${message.guild.id};`);
+      await db(`DELETE FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
+
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: "ピン留めを削除しました",
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          }
+        }]
+      });
     }
   }
 }
