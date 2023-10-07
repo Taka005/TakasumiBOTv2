@@ -52,44 +52,44 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.channel.setRateLimitPerUser(time)
-      .then(async()=>{
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "低速モードを設定しました",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
-            },
-            description: `低速モードは現在${time}秒です`
-          }]
-        })
-      })
-      .catch(async(error)=>{
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "低速モードが設定できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }],      
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle(ButtonStyle.Link))
-          ],
-          ephemeral: true
-        });
-      })
+    try{
+      await interaction.channel.setRateLimitPerUser(time);
+
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: "低速モードを設定しました",
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          },
+          description: `低速モードは現在${time}秒です`
+        }]
+      });
+    }catch(error){
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "低速モードが設定できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],      
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle(ButtonStyle.Link))
+        ],
+        ephemeral: true
+      });
+    }
   }
 }

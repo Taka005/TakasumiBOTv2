@@ -49,60 +49,60 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
   
-    await member.user.send({
-      embeds:[{
-        color: Colors.Yellow,
-        author:{
-          name: "警告されました",
-          icon_url: "https://cdn.taka.cf/images/system/warn.png"
-        },
-        description: reason,
-        footer:{
-          text: `${interaction.guild.name}(${interaction.guild.id})`,
-          icon_url: interaction.guild.iconURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
-        },
-        timestamp: new Date()
-      }]
-    })
-      .then(async()=>{
-        await interaction.reply({
-          content: `<@${interaction.user.id}>`,
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: `${member.user.tag}を警告しました`,
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
-            },
-            description: `理由: ${reason}`
-          }]
-        });
-      })
-      .catch(async(error)=>{
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "警告できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            description: "ユーザーがDMを拒否している可能性があります",
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }],
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle(ButtonStyle.Link))
-          ],
-          ephemeral: true
-        });
-      })
+    try{
+      await member.user.send({
+        embeds:[{
+          color: Colors.Yellow,
+          author:{
+            name: "警告されました",
+            icon_url: "https://cdn.taka.cf/images/system/warn.png"
+          },
+          description: reason,
+          footer:{
+            text: `${interaction.guild.name}(${interaction.guild.id})`,
+            icon_url: interaction.guild.iconURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
+          },
+          timestamp: new Date()
+        }]
+      });
+
+      await interaction.reply({
+        content: `<@${interaction.user.id}>`,
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: `${member.user.tag}を警告しました`,
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          },
+          description: `理由: ${reason}`
+        }]
+      });
+    }catch(error){
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "警告できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "ユーザーがDMを拒否している可能性があります",
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle(ButtonStyle.Link))
+        ],
+        ephemeral: true
+      });
+    }
   }
 }

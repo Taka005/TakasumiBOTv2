@@ -64,50 +64,50 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
     
-    await interaction.channel.send({
-      embeds:[{
-        color: color[type],
-        description: `<@&${role.id}>を貰うには、認証ボタンを押してください`
-      }],
-      components:[
-        new ActionRowBuilder()
-          .addComponents(
-            new ButtonBuilder()
-              .setCustomId(`${type}_${role.id}`)
-              .setStyle(ButtonStyle.Primary)
-              .setLabel("認証"))
-        ]
-    })
-      .then(async()=>{
-        await interaction.deferReply()
-          .then(()=>interaction.deleteReply());
-      })
-      .catch(async(error)=>{
-        await interaction.reply({ 
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "認証機能の作成に失敗しました",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            description: "BOTの権限等を確認してもう一度実行してください",
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }], 
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle(ButtonStyle.Link))
-          ],
-          ephemeral: true 
-        });
-      })
+    try{
+      await interaction.channel.send({
+        embeds:[{
+          color: color[type],
+          description: `<@&${role.id}>を貰うには、認証ボタンを押してください`
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents(
+              new ButtonBuilder()
+                .setCustomId(`${type}_${role.id}`)
+                .setStyle(ButtonStyle.Primary)
+                .setLabel("認証"))
+          ]
+      });
+
+      await interaction.deferReply()
+        .then(()=>interaction.deleteReply());
+    }catch(error){
+      await interaction.reply({ 
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "認証機能の作成に失敗しました",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "BOTの権限等を確認してもう一度実行してください",
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }], 
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle(ButtonStyle.Link))
+        ],
+        ephemeral: true 
+      });
+    }
   }
 }

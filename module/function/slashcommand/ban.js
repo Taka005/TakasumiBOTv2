@@ -81,93 +81,48 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
     
-    if(days){
+    try{
       await interaction.guild.bans.create(user.id,{
         "reason": reason,
-        "deleteMessageSeconds": days*86400
-      })
-        .then(async()=>{
-          await interaction.reply({
-            content: `<@${interaction.user.id}>`,
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: `${user.tag}(${user.id}) をサーバーからBANしました`,
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
-              }
-            }]
-          });
-        })
-        .catch(async(error)=>{
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Red,
-              author:{
-                name: "BANできませんでした",
-                icon_url: "https://cdn.taka.cf/images/system/error.png"
-              },
-              description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            components:[
-              new ActionRowBuilder()
-                .addComponents( 
-                  new ButtonBuilder()
-                    .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
-                    .setStyle(ButtonStyle.Link))
-            ],
-            ephemeral: true
-          });
-        });
-    }else{
-      await interaction.guild.bans.create(user.id,{
-        "reason": reason 
-      })
-        .then(async()=>{
-          await interaction.reply({
-            content: `<@${interaction.user.id}>`,
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: `${user.tag}(${user.id}) をサーバーからBANしました`,
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
-              }
-            }]
-          });
-        })
-        .catch(async(error)=>{
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Red,
-              author:{
-                name: "BANできませんでした",
-                icon_url: "https://cdn.taka.cf/images/system/error.png"
-              },
-              description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            components:[
-              new ActionRowBuilder()
-                .addComponents( 
-                  new ButtonBuilder()
-                    .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
-                    .setStyle(ButtonStyle.Link))
-            ],
-            ephemeral: true
-          });
-        })
+        "deleteMessageDays": days
+      });
+
+      await interaction.reply({
+        content: `<@${interaction.user.id}>`,
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: `${user.tag}(${user.id}) をサーバーからBANしました`,
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          }
+        }]
+      });
+    }catch(error){
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "BANできませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle(ButtonStyle.Link))
+        ],
+        ephemeral: true
+      });
     }
   }
 }

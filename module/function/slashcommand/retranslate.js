@@ -22,11 +22,13 @@ module.exports = async(interaction)=>{
         .map(async(lang)=>{
           const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&dj=1&q=${encodeURIComponent(text)}`)
             .then(res=>res.json());
+
           text = data.sentences.map(sentence=>sentence.trans).join("");
         }))
         .then(async()=>{
           const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&dj=1&q=${encodeURIComponent(text)}`)
             .then(res=>res.json());
+
           text = data.sentences.map(sentence=>sentence.trans).join("");
 
           await interaction.reply({

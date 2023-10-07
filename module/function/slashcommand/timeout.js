@@ -68,45 +68,45 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
   
-      await member.timeout(time*1000,reason)
-        .then(async()=>{
-          await interaction.reply({
-            content: `<@${interaction.user.id}>`,
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: `${member.user.tag}を${time}秒タイムアウトしました`,
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
-              }
-            }]
-          })
-        })
-        .catch(async(error)=>{
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Red,
-              author:{
-                name: "タイムアウトできませんでした",
-                icon_url: "https://cdn.taka.cf/images/system/error.png"
-              },
-              description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            components:[
-              new ActionRowBuilder()
-                .addComponents( 
-                  new ButtonBuilder()
-                    .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
-                    .setStyle(ButtonStyle.Link))
-            ],
-            ephemeral: true
-          })
+      try{
+        await member.timeout(time*1000,reason);
+
+        await interaction.reply({
+          content: `<@${interaction.user.id}>`,
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: `${member.user.tag}を${time}秒タイムアウトしました`,
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            }
+          }]
         });
+      }catch(error){
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "タイムアウトできませんでした",
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
+            },
+            description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
+            fields:[
+              {
+                name: "エラーコード",
+                value: `\`\`\`${error}\`\`\``
+              }
+            ]
+          }],
+          components:[
+            new ActionRowBuilder()
+              .addComponents( 
+                new ButtonBuilder()
+                  .setLabel("サポートサーバー")
+                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setStyle(ButtonStyle.Link))
+          ],
+          ephemeral: true
+        });
+      }
     }
   }
