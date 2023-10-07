@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
 
     data.length = 15;
 
-    const rank = await Promise.all(data.map(async(data,i)=>`**${i+1}位** ${(await fetchUser(interaction.client,data.id))?.tag||"不明"} - ${data.amount}円`));
+    const rank = await Promise.all(data.map(async(data,i)=>`**${i+1}位** ${(await fetchUser(interaction.client,data.id))?.displayName||"不明"} - ${data.amount}円`));
 
     await interaction.editReply({
       embeds:[{
