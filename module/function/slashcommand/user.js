@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: `${interaction.user.displayName}(${interaction.user.username})の検索結果`,
+              name: `${interaction.user.displayName}の検索結果`,
               url: `https://discord.com/users/${interaction.user.id}`,
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
@@ -98,7 +98,7 @@ module.exports = async(interaction)=>{
             embeds:[{
               color: Colors.Green,
               author:{
-                name: `${member.user.displayName}(${member.user.username})の検索結果`,
+                name: `${member.user.displayName}の検索結果`,
                 url: `https://discord.com/users/${member.user.id}`,
                 icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
@@ -160,7 +160,7 @@ module.exports = async(interaction)=>{
             embeds:[{
               color: Colors.Green,
               author:{
-                name: `${user.displayName}(${user.username})の検索結果`,
+                name: `${user.displayName}の検索結果`,
                 url: `https://discord.com/users/${user.id}`,
                 icon_url: "https://cdn.taka.cf/images/system/success.png"
               },

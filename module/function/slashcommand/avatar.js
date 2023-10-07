@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: `${interaction.user.displayName}(${interaction.user.username})のアバター`,
+              name: `${interaction.user.displayName}のアバター`,
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             thumbnail:{
@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: `${user.displayName}(${user.username})のアバター`,
+              name: `${user.displayName}のアバター`,
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             thumbnail:{
