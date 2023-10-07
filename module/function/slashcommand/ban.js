@@ -81,13 +81,14 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
     
+    await interaction.deferReply();
     try{
       await interaction.guild.bans.create(user.id,{
         "reason": reason,
         "deleteMessageDays": days
       });
 
-      await interaction.reply({
+      await interaction.editReply({
         content: `<@${interaction.user.id}>`,
         embeds:[{
           color: Colors.Green,
@@ -98,7 +99,7 @@ module.exports = async(interaction)=>{
         }]
       });
     }catch(error){
-      await interaction.reply({
+      await interaction.editReply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -120,8 +121,7 @@ module.exports = async(interaction)=>{
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle(ButtonStyle.Link))
-        ],
-        ephemeral: true
+        ]
       });
     }
   }
