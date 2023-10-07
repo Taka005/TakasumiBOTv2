@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Green,
         author:{
-          name: "検出されました",
+          name: "検出しました",
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
         description: menbers.map(m=>`${m.user.tag}(${m.id})`).join("\n")

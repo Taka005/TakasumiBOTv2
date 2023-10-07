@@ -27,33 +27,33 @@ module.exports = async(interaction)=>{
           "name": interaction.guild.name,
           "id": interaction.guild.id,
           "count": interaction.guild.memberCount,
-          "icon": interaction.guild.iconURL(),
-          "createAt": new Date(interaction.guild.createdTimestamp).toLocaleString(),
+          "icon": interaction.guild.iconURL({extension:"png",size:1024}),
+          "createAt": interaction.guild.createdAt.toLocaleString(),
           "invites": (await interaction.guild.invites.fetch()).map(invite=>({
             "url": invite.url,
             "code": invite.code,
-            "createAt": new Date(invite.createdTimestamp).toLocaleString()
+            "createAt": invite.createdAt.toLocaleString()
           })),
           "channels": interaction.guild.channels.cache.map(channel=>({
             "name": channel.name,
             "id": channel.id,
             "topic": channel.topic,
             "type": channel.type,
-            "createAt": new Date(channel.createdTimestamp).toLocaleString()
+            "createAt": channel.createdAt.toLocaleString()
           })),
           "members": interaction.guild.members.cache.map(member=>({
             "name": member.user.tag,
             "id": member.user.id,
             "color": member.displayHexColor,
-            "avatar": member.user.avatarURL(),
-            "joinAt": new Date(member.joinedTimestamp).toLocaleString(),
-            "createAt": new Date(member.user.createdTimestamp).toLocaleString()
+            "avatar": member.user.avatarURL({extension:"png",size:1024}),
+            "joinAt": member.joinedAt.toLocaleString(),
+            "createAt": member.user.createdAt.toLocaleString()
           })),
           "roles": interaction.guild.roles.cache.map(role=>({
             "name": role.name,
             "id": role.id,
             "color": role.hexColor,
-            "createAt": new Date(role.createdTimestamp).toLocaleString()
+            "createAt": role.createdAt.toLocaleString()
           }))
         }
       },null,"  "),"UTF-8");

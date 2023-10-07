@@ -114,7 +114,7 @@ module.exports = async(interaction)=>{
       await interaction.deferReply();
       await interaction.editReply({
         embeds:[{
-          color: Colors.Gray,
+          color: Colors.Green,
           description: "登録情報を確認、登録中....",
         }]
       });

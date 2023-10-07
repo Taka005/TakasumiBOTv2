@@ -67,45 +67,45 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await member.kick({reason:`${reason}`})
-      .then(async()=>{
-        await interaction.reply({
-          content: `<@${interaction.user.id}>`,
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: `${member.user.tag}(${member.user.id})をサーバーからキックしました`,
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+    await interaction.deferReply();
+    try{
+      await member.kick({reason:`${reason}`});
+
+      await interaction.editReply({
+        content: `<@${interaction.user.id}>`,
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: `${member.user.tag}(${member.user.id})をサーバーからキックしました`,
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          }
+        }]
+      });
+    }catch(error){
+      await interaction.editReply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "キックできませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
             }
-          }]
-        })
-      })
-      .catch(async(error)=>{
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "キックできませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }],
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle(ButtonStyle.Link))
-          ],
-          ephemeral: true
-        })
-      })
+          ]
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle(ButtonStyle.Link))
+        ]
+      });
+    }
   }
 }

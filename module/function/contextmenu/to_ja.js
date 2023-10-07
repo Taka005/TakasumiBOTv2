@@ -51,7 +51,7 @@ module.exports = async(interaction)=>{
           color: Colors.Blue,
           author:{
             name: message.author.tag,
-            icon_url: message.author.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png",
+            icon_url: message.author.avatarURL()||message.author.defaultAvatarURL,
           },
           description: translated.join(""),
           footer:{

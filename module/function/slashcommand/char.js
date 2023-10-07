@@ -6,8 +6,8 @@ module.exports = async(interaction)=>{
     const type = interaction.options.getString("type");
     const text = interaction.options.getString("text");
 
-    if(type === "encode"){
-      try{
+    try{
+      if(type === "encode"){
         const buffer = iconv.encode(text,"UTF-8");
 
         await interaction.reply({
@@ -20,70 +20,44 @@ module.exports = async(interaction)=>{
             description: `\`\`\`${iconv.decode(buffer,"Shift_JIS")}\`\`\``
           }]
         });
-      }catch(error){
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "変換できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }],     
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle(ButtonStyle.Link))
-          ]
-        });
-      }
-    }else{
-      try{
+      }else{
         const buffer = iconv.encode(text,"Shift_JIS");
 
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
             author:{
-              name: "復元しました",
+              name: "変換しました",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: `\`\`\`${iconv.decode(buffer,"UTF-8")}\`\`\``
           }]
         });
-      }catch(error){
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "復元できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }],
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle(ButtonStyle.Link))
-          ]
-        });
       }
+    }catch(error){
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "変換できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],     
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle(ButtonStyle.Link))
+        ]
+      });
     }
   }
 }

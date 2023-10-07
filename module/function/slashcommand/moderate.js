@@ -144,7 +144,7 @@ module.exports = async(interaction)=>{
     if(type === "reset"){
       try{
         (await interaction.guild.autoModerationRules.fetch())
-          .filter(rule=>rule.name.startsWith("TakasumiBOT"))
+          .filter(rule=>rule.creatorId === interaction.client.user.id)
           .forEach(async(rule)=>{
             await interaction.guild.autoModerationRules.delete(rule)
               .catch(()=>{});

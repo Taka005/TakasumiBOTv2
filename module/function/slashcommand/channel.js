@@ -5,55 +5,57 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "channel"){
     const channel = interaction.options.getChannel("name");
 
-    await interaction.reply({
-      embeds:[{
-        color: Colors.Green,
-        author:{
-          name: `${channel.name}の情報`,
-          icon_url: "https://cdn.taka.cf/images/system/success.png"
-        },
-        fields:[
-          {
-            name: "ID",
-            value: channel.id,
-            inline: true
+    try{
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: `${channel.name}の情報`,
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          {
-            name: "トピック",
-            value: channel.topic||"なし",
-            inline: true
+          fields:[
+            {
+              name: "ID",
+              value: channel.id,
+              inline: true
+            },
+            {
+              name: "トピック",
+              value: channel.topic||"なし",
+              inline: true
+            },
+            {
+              name: "カテゴリー",
+              value: channel.parent?.name||"なし",
+              inline: true
+            },
+            {
+              name: "NSFW",
+              value: channel.snfw ? "有効" : "無効",
+              inline: true
+            },
+            {
+              name: "作成日時",
+              value: `${channel.createdAt.toLocaleString()}\n(${Math.round((Date.now() - channel.createdAt) / 86400000)}日前)`,
+              inline: true
+            },
+            {
+              name: "メンバー数",
+              value: `${channel.members.size}人`,
+              inline: true
+            },
+            {
+              name: "権限",
+              value: `\`${permission(channel.permissionsFor(interaction.member).toArray()).join("`,`")}\``
+            }
+          ],
+          footer:{
+            text: "TakasumiBOT"
           },
-          {
-            name: "カテゴリー",
-            value: channel.parent?.name||"なし",
-            inline: true
-          },
-          {
-            name: "NSFW",
-            value: channel.snfw ? "有効" : "無効",
-            inline: true
-          },
-          {
-            name: "作成日時",
-            value: `${new Date(channel.createdTimestamp).toLocaleString()}\n(${Math.round((Date.now() - channel.createdAt) / 86400000)}日前)`,
-            inline: true
-          },
-          {
-            name: "メンバー数",
-            value: `${channel.members.size}人`,
-            inline: true
-          },
-          {
-            name: "権限",
-            value: `\`${permission(channel.permissionsFor(interaction.member).toArray()).join("`,`")}\``
-          }
-        ],
-        footer:{
-          text: "TakasumiBOT"
-        },
-        timestamp: new Date()
-      }]
-    }).catch(async(error)=>{
+          timestamp: new Date()
+        }]
+      })
+    }catch(error){
       await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -78,6 +80,6 @@ module.exports = async(interaction)=>{
         ],
         ephemeral: true
       })
-    });
+    }
   }
 }
