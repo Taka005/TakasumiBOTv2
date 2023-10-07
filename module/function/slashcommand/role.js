@@ -35,7 +35,7 @@ module.exports = async(interaction)=>{
           },
           {
             name: "作成日時",
-            value: `${new Date(role.createdTimestamp).toLocaleString()}\n(${Math.round((Date.now() - role.createdAt) / 86400000)}日前)`,
+            value: `${role.createdAt.toLocaleString()}\n(${Math.round((Date.now() - role.createdAt) / 86400000)}日前)`,
             inline: true
           },
           {

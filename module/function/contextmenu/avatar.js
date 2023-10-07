@@ -16,26 +16,27 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.reply({
-      embeds:[{
-        color: Colors.Green,
-        author:{
-          name: `${member.user.tag}のアバター`,
-          icon_url: "https://cdn.taka.cf/images/system/success.png"
-        },
-        thumbnail:{
-          url: member.avatarURL({extension:"png",size:1024})
-        },
-        image:{
-          url: member.user.avatarURL({extension:"png",size:1024})||member.user.defaultAvatarURL
-        },
-        footer:{
-          text: "TakasumiBOT"
-        },
-        timestamp: new Date()
-      }]
-    })
-    .catch(async(error)=>{
+    try{
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: `${member.user.tag}のアバター`,
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          },
+          thumbnail:{
+            url: member.avatarURL({extension:"png",size:1024})
+          },
+          image:{
+            url: member.user.avatarURL({extension:"png",size:1024})||member.user.defaultAvatarURL
+          },
+          footer:{
+            text: "TakasumiBOT"
+          },
+          timestamp: new Date()
+        }]
+      });
+    }catch(error){
       await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -59,7 +60,7 @@ module.exports = async(interaction)=>{
                 .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
-      })
-    });
+      });
+    }
   }
 }

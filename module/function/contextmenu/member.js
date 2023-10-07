@@ -24,67 +24,68 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const account = await db(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
+    try{
+      const account = await db(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
 
-    await interaction.reply({
-      embeds:[{
-        color: Colors.Green,
-        author:{
-          name: `${member.user.tag}の検索結果`,
-          url: `https://discord.com/users/${member.user.id}`,
-          icon_url: "https://cdn.taka.cf/images/system/success.png"
-        },
-        thumbnail:{
-          url: member.user.avatarURL({extension:"png",size:1024})||member.user.defaultAvatarURL
-        },
-        fields:[
-          {
-            name: "ID",
-            value: member.user.id,
-            inline: true
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: `${member.user.tag}の検索結果`,
+            url: `https://discord.com/users/${member.user.id}`,
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          {
-            name: "ニックネーム",
-            value: member.nickname||"未設定",
-            inline: true
+          thumbnail:{
+            url: member.user.avatarURL({extension:"png",size:1024})||member.user.defaultAvatarURL
           },
-          {
-            name: "ステータス",
-            value: status[member.presence?.status]||"取得不可",
-            inline: true
+          fields:[
+            {
+              name: "ID",
+              value: member.user.id,
+              inline: true
+            },
+            {
+              name: "ニックネーム",
+              value: member.nickname||"未設定",
+              inline: true
+            },
+            {
+              name: "ステータス",
+              value: status[member.presence?.status]||"取得不可",
+              inline: true
+            },
+            {
+              name: "作成日時",
+              value: `${member.user.createdAt.toLocaleString()}\n(${Math.round((Date.now() - member.user.createdAt) / 86400000)}日前)`,
+              inline: true
+            },
+            {
+              name: "参加日時",
+              value: `${member.joinedAt.toLocaleString()}\n(${Math.round((Date.now() - member.joinedAt) / 86400000)}日前)`,
+              inline: true
+            },
+            {
+              name: "アカウントの種類",
+              value: member.user.bot ? "BOT" : "ユーザー",
+              inline: true
+            },
+            {
+              name: "TakasumiBOT Account",
+              value: account[0] ? "登録済み" : "未登録",
+              inline: true
+            },
+            {
+              name: "ロール",
+              value: member.roles.cache.toJSON().join("")
+            }
+          ],
+          footer:{
+            text: "TakasumiBOT"
           },
-          {
-            name: "作成日時",
-            value: `${new Date(member.user.createdTimestamp).toLocaleString()}\n(${Math.round((Date.now() - member.user.createdAt) / 86400000)}日前)`,
-            inline: true
-          },
-          {
-            name: "参加日時",
-            value: `${new Date(member.joinedTimestamp).toLocaleString()}\n(${Math.round((Date.now() - member.joinedAt) / 86400000)}日前)`,
-            inline: true
-          },
-          {
-            name: "アカウントの種類",
-            value: member.user.bot ? "BOT" : "ユーザー",
-            inline: true
-          },
-          {
-            name: "TakasumiBOT Account",
-            value: account[0] ? "登録済み" : "未登録",
-            inline: true
-          },
-          {
-            name: "ロール",
-            value: member.roles.cache.toJSON().join("")
-          }
-        ],
-        footer:{
-          text: "TakasumiBOT"
-        },
-        timestamp: new Date()
-      }]
-    })
-    .catch(async(error)=>{
+          timestamp: new Date()
+        }]
+      });
+    }catch(error){
       await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -108,7 +109,7 @@ module.exports = async(interaction)=>{
                 .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
-      })
-    });
+      });
+    }
   }
 }

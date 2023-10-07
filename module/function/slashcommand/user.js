@@ -50,12 +50,12 @@ module.exports = async(interaction)=>{
             },
             {
               name: "作成日時",
-              value: `${new Date(interaction.user.createdTimestamp).toLocaleString()}\n(${Math.round((Date.now() - interaction.user.createdAt) / 86400000)}日前)`,
+              value: `${interaction.user.createdAt.toLocaleString()}\n(${Math.round((Date.now() - interaction.user.createdAt) / 86400000)}日前)`,
               inline: true
             },
             {
               name: "参加日時",
-              value: `${new Date(interaction.member.joinedTimestamp).toLocaleString()}\n(${Math.round((Date.now() - interaction.member.joinedAt) / 86400000)}日前)`,
+              value: `${interaction.member.joinedAt.toLocaleString()}\n(${Math.round((Date.now() - interaction.member.joinedAt) / 86400000)}日前)`,
               inline: true
             },
             {
@@ -148,12 +148,12 @@ module.exports = async(interaction)=>{
             },
             {
               name: "作成日時",
-              value: `${new Date(member.user.createdTimestamp).toLocaleString()}\n(${Math.round((Date.now() - member.user.createdAt) / 86400000)}日前)`,
+              value: `${member.user.createdAt.toLocaleString()}\n(${Math.round((Date.now() - member.user.createdAt) / 86400000)}日前)`,
               inline: true
             },
             {
               name: "参加日時",
-              value: `${new Date(member.joinedTimestamp).toLocaleString()}\n(${Math.round((Date.now() - member.joinedAt) / 86400000)}日前)`,
+              value: `${member.joinedAt.toLocaleString()}\n(${Math.round((Date.now() - member.joinedAt) / 86400000)}日前)`,
               inline: true
             },
             {
@@ -226,7 +226,7 @@ module.exports = async(interaction)=>{
               },
               {
                 name: "作成日時",
-                value: `${new Date(user.createdTimestamp).toLocaleString()}`,
+                value: `${user.createdAt.toLocaleString()}`,
                 inline: true
               },
               {

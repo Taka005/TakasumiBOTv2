@@ -18,28 +18,29 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.reply({
-      components:[
-        new ActionRowBuilder()
-          .addComponents(
-            new ButtonBuilder()
-              .setLabel(name)
-              .setURL(url)
-              .setStyle(ButtonStyle.Link))
-      ]
-    })
-      .catch(async()=>{
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "作成できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            description: "有効なURLを指定してください"
-          }],
-          ephemeral: true
-        });
+    try{
+      await interaction.reply({
+        components:[
+          new ActionRowBuilder()
+            .addComponents(
+              new ButtonBuilder()
+                .setLabel(name)
+                .setURL(url)
+                .setStyle(ButtonStyle.Link))
+        ]
       });
+    }catch{
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "作成できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "有効なURLを指定してください"
+        }],
+        ephemeral: true
+      });
+    }
   }
 }
