@@ -41,40 +41,40 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.channel.createInvite({
-      "maxAge": time,
-      "maxUses": use,
-      "unique": true,
-      "reason": `${interaction.user.tag}により作成`
-    })
-      .then(async(invite)=>{
-        await interaction.reply(invite.url)
-      })
-      .catch(async(error)=>{
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "招待リンクを作成できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }],
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle(ButtonStyle.Link))
-          ],
-          ephemeral: true
-        });
+    try{
+      const invite = await interaction.channel.createInvite({
+        "maxAge": time,
+        "maxUses": use,
+        "unique": true,
+        "reason": `${interaction.user.tag}により作成`
       });
+
+      await interaction.reply(invite.url);
+    }catch(error){
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "招待リンクを作成できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents( 
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle(ButtonStyle.Link))
+        ],
+        ephemeral: true
+      });
+    }
   }
 }

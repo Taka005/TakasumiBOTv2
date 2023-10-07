@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
     try{
       if(user){
         const messages = (await interaction.channel.messages.fetch({ limit: 100 }))
-          .filter(msg => user.id === msg.author.id&&interaction.client.user.id !== msg.author.id).first(number);
+          .filter(msg=>user.id === msg.author.id&&interaction.client.user.id !== msg.author.id).first(number);
           
         if(!messages[0]) return await interaction.editReply({
           embeds:[{
@@ -73,36 +73,34 @@ module.exports = async(interaction)=>{
           }]
         });
 
-        await interaction.channel.bulkDelete(messages)
-          .then(async()=>{
-            await interaction.editReply({
-              content: `<@${interaction.user.id}>`,
-              embeds:[{
-                color: Colors.Green,
-                author:{
-                  name: `${user.tag} のメッセージを${number}個削除しました`,
-                  icon_url: "https://cdn.taka.cf/images/system/success.png"
-                }
-              }]
-            })
-          });
+        await interaction.channel.bulkDelete(messages);
+
+        await interaction.editReply({
+          content: `<@${interaction.user.id}>`,
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: `${user.tag} のメッセージを${number}個削除しました`,
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            }
+          }]
+        });
       }else{
         const messages = (await interaction.channel.messages.fetch({ limit: number }))
-          .filter(msg => msg.author.id !== interaction.client.user.id);
+          .filter(msg=>msg.author.id !== interaction.client.user.id);
 
-        await interaction.channel.bulkDelete(messages)
-          .then(async()=>{
-            await interaction.editReply({
-              content: `<@${interaction.user.id}>`,
-              embeds:[{
-                color: Colors.Green,
-                author:{
-                  name: `${number}個のメッセージを削除しました`,
-                  icon_url: "https://cdn.taka.cf/images/system/success.png"
-                }
-              }]
-            });
-          });
+        await interaction.channel.bulkDelete(messages);
+
+        await interaction.editReply({
+          content: `<@${interaction.user.id}>`,
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: `${number}個のメッセージを削除しました`,
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            }
+          }]
+        });
       }
     }catch(error){
       await interaction.editReply({
