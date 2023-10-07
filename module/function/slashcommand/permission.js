@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: `${interaction.user.tag}の権限`,
+              name: `${interaction.user.displayName}(${interaction.user.username})の権限`,
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: `\`${permission(interaction.member.permissions.toArray()).join("`,`")}\``,
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: `${member.user.tag}の権限`,
+              name: `${member.user.displayName}(${member.user.username})の権限`,
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: `\`${permission(member.permissions.toArray()).join("`,`")}\``,

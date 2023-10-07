@@ -21,7 +21,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${member.user.tag}のアバター`,
+            name: `${member.user.displayName}(${member.user.username})のアバター`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           thumbnail:{
