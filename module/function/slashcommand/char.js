@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: "復元しました",
+              name: "変換しました",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: `\`\`\`${iconv.decode(buffer,"UTF-8")}\`\`\``
