@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
+  const platform = require("../../lib/platform");
   const fetchUser = require("../../lib/fetchUser");
   const fetchMember = require("../../lib/fetchMember");
   if(!interaction.isChatInputCommand()) return;
@@ -47,6 +48,11 @@ module.exports = async(interaction)=>{
               {
                 name: "ステータス",
                 value: status[interaction.member.presence?.status]||"取得不可",
+                inline: true
+              },
+              {
+                name: "プラットフォーム",
+                value: platform(interaction.member.presence),
                 inline: true
               },
               {
@@ -119,6 +125,11 @@ module.exports = async(interaction)=>{
                 {
                   name: "ステータス",
                   value: status[member.presence?.status]||"取得不可",
+                  inline: true
+                },
+                {
+                  name: "プラットフォーム",
+                  value: platform(member.presence),
                   inline: true
                 },
                 {

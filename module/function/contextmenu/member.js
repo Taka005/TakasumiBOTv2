@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
+  const platform = require("../../lib/platform");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "メンバー情報を表示"){
     const member = interaction.options.getMember("user");
@@ -52,6 +53,11 @@ module.exports = async(interaction)=>{
             {
               name: "ステータス",
               value: status[member.presence?.status]||"取得不可",
+              inline: true
+            },
+            {
+              name: "プラットフォーム",
+              value: platform(member.presence),
               inline: true
             },
             {
