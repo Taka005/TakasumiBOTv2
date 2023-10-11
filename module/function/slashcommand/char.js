@@ -14,7 +14,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: "変換しました",
+              name: "エンコードしました",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: `\`\`\`${iconv.decode(buffer,"Shift_JIS")}\`\`\``
@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: "変換しました",
+              name: "デコードしました",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             description: `\`\`\`${iconv.decode(buffer,"UTF-8")}\`\`\``

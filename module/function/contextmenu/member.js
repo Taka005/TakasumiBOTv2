@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
+  const platform = require("../../lib/platform");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "メンバー情報を表示"){
     const member = interaction.options.getMember("user");
@@ -31,7 +32,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${member.user.tag}の検索結果`,
+            name: `${member.user.displayName}の検索結果`,
             url: `https://discord.com/users/${member.user.id}`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
@@ -51,7 +52,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "ステータス",
-              value: status[member.presence?.status]||"取得不可",
+              value: member.presence?.status ? `${status[member.presence?.status]}\n${platform(member.presence)||""}` : "取得不可",
               inline: true
             },
             {

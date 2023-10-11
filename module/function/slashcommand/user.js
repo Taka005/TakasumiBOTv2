@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
+  const platform = require("../../lib/platform");
   const fetchUser = require("../../lib/fetchUser");
   const fetchMember = require("../../lib/fetchMember");
   if(!interaction.isChatInputCommand()) return;
@@ -22,7 +23,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: `${interaction.user.tag}の検索結果`,
+              name: `${interaction.user.displayName}の検索結果`,
               url: `https://discord.com/users/${interaction.user.id}`,
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
@@ -46,7 +47,7 @@ module.exports = async(interaction)=>{
               },
               {
                 name: "ステータス",
-                value: status[interaction.member.presence?.status]||"取得不可",
+                value: interaction.member.presence?.status ? `${status[interaction.member.presence?.status]}\n${platform(interaction.member.presence)||""}` : "取得不可",
                 inline: true
               },
               {
@@ -98,7 +99,7 @@ module.exports = async(interaction)=>{
             embeds:[{
               color: Colors.Green,
               author:{
-                name: `${member.user.tag}の検索結果`,
+                name: `${member.user.displayName}の検索結果`,
                 url: `https://discord.com/users/${member.user.id}`,
                 icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
@@ -118,7 +119,7 @@ module.exports = async(interaction)=>{
                 },
                 {
                   name: "ステータス",
-                  value: status[member.presence?.status]||"取得不可",
+                  value: member.presence?.status ? `${status[member.presence?.status]}\n${platform(member.presence)||""}` : "取得不可",
                   inline: true
                 },
                 {
@@ -160,7 +161,7 @@ module.exports = async(interaction)=>{
             embeds:[{
               color: Colors.Green,
               author:{
-                name: `${user.tag}の検索結果`,
+                name: `${user.displayName}の検索結果`,
                 url: `https://discord.com/users/${user.id}`,
                 icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
@@ -175,7 +176,7 @@ module.exports = async(interaction)=>{
                 },
                 {
                   name: "作成日時",
-                  value: `${user.createdAt.toLocaleString()}`,
+                  value: `${user.createdAt.toLocaleString()}\n(${Math.round((Date.now() - user.createdAt) / 86400000)}日前)`,
                   inline: true
                 },
                 {
