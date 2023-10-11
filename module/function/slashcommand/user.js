@@ -51,11 +51,6 @@ module.exports = async(interaction)=>{
                 inline: true
               },
               {
-                name: "プラットフォーム",
-                value: platform(interaction.member.presence),
-                inline: true
-              },
-              {
                 name: "作成日時",
                 value: `${interaction.user.createdAt.toLocaleString()}\n(${Math.round((Date.now() - interaction.user.createdAt) / 86400000)}日前)`,
                 inline: true
@@ -125,11 +120,6 @@ module.exports = async(interaction)=>{
                 {
                   name: "ステータス",
                   value: member.presence?.status ? `${status[member.presence?.status]}\n${platform(member.presence)||""}` : "取得不可",
-                  inline: true
-                },
-                {
-                  name: "プラットフォーム",
-                  value: platform(member.presence),
                   inline: true
                 },
                 {
