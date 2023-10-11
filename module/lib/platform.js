@@ -5,7 +5,5 @@ module.exports = (presence)=>{
 		return "📱モバイル";
 	}else if(presence?.clientStatus?.desktop){
 		return "🖥️デスクトップ";
-	}else{
-		return "⚫オフライン"
 	}
 }

@@ -52,12 +52,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "ステータス",
-              value: status[member.presence?.status]||"取得不可",
-              inline: true
-            },
-            {
-              name: "プラットフォーム",
-              value: platform(member.presence),
+              value: member.presence?.status ? `${status[member.presence?.status]}\n${platform(member.presence)||""}` : "取得不可",
               inline: true
             },
             {
