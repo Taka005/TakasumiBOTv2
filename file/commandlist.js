@@ -1137,6 +1137,7 @@ module.exports = {
           .setRequired(true)
           .addChoices(
             { name: "2進数", value: "2" },
+            { name: "8進数", value: "8" },
             { name: "10進数", value: "10" },
             { name: "16進数", value: "16" }
           ))
@@ -1147,6 +1148,7 @@ module.exports = {
           .setRequired(true)
           .addChoices(
             { name: "2進数", value: "2" },
+            { name: "8進数", value: "8" },
             { name: "10進数", value: "10" },
             { name: "16進数", value: "16" }
           ))
