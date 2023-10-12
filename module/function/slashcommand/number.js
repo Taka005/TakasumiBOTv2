@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
     const target = interaction.options.getString("target");
     const number = interaction.options.getString("number");
 
-    if(isNaN(number)) return await interaction.editReply({
+    if(isNaN(number)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
