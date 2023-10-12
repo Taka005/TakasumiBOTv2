@@ -1115,6 +1115,47 @@ module.exports = {
           .setDescription("取得するアドレス")
           .setRequired(true))
   },
+  number:{
+    type: "fun",
+    name: "/number",
+    description: "進数の変換をします",
+    example: "`/number 10進数 2進数 120`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("number")
+      .setDescription("進数の変換をします")
+      .addStringOption(option=>
+        option
+          .setName("source")
+          .setDescription("変換元の進数")
+          .setRequired(true)
+          .addChoices(
+            { name: "2進数", value: "2" },
+            { name: "10進数", value: "10" },
+            { name: "16進数", value: "16" }
+          ))
+      .addStringOption(option=>
+        option
+          .setName("target")
+          .setDescription("変換先の進数")
+          .setRequired(true)
+          .addChoices(
+            { name: "2進数", value: "2" },
+            { name: "10進数", value: "10" },
+            { name: "16進数", value: "16" }
+          ))
+      .addStringOption(option=>
+        option
+          .setName("number")
+          .setDescription("変換する数値")
+          .setRequired(true))
+  },
   omikuji:{
     type: "fun",
     name: "/omikuji",
