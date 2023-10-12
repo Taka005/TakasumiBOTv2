@@ -1798,10 +1798,6 @@ module.exports = {
       .setDescription("お問い合わせ機能を作成します")
       .addStringOption(option=>
         option
-          .setName("title")
-          .setDescription("チケットのタイトル"))
-      .addStringOption(option=>
-        option
           .setName("description")
           .setDescription("チケットの説明"))
   },
