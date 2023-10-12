@@ -20,13 +20,11 @@ module.exports = {
         option
           .setName("top")
           .setDescription("上の文字")
-          .setMaxLength(30)
           .setRequired(true))
       .addStringOption(option=>
         option
           .setName("bottom")
           .setDescription("下の文字")
-          .setMaxLength(30)
           .setRequired(true))
   },
   about:{
@@ -347,7 +345,6 @@ module.exports = {
         option
           .setName("name")
           .setDescription("ボタンの名前")
-          .setMaxLength(30)
           .setRequired(true))
       .addStringOption(option=>
         option
@@ -460,7 +457,6 @@ module.exports = {
         option
           .setName("name")
           .setDescription("ロールの名前")
-          .setMaxLength(30)
           .setRequired(true))
       .addStringOption(option=>
         option
@@ -646,7 +642,6 @@ module.exports = {
         option
           .setName("name")
           .setDescription("検索ワード")
-          .setMaxLength(30)
           .setRequired(true))
   },
   globalchat:{
@@ -1115,6 +1110,49 @@ module.exports = {
           .setDescription("取得するアドレス")
           .setRequired(true))
   },
+  number:{
+    type: "fun",
+    name: "/number",
+    description: "進数の変換をします",
+    example: "`/number 10進数 2進数 120`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("number")
+      .setDescription("進数の変換をします")
+      .addStringOption(option=>
+        option
+          .setName("source")
+          .setDescription("変換元の進数")
+          .setRequired(true)
+          .addChoices(
+            { name: "2進数", value: "2" },
+            { name: "8進数", value: "8" },
+            { name: "10進数", value: "10" },
+            { name: "16進数", value: "16" }
+          ))
+      .addStringOption(option=>
+        option
+          .setName("target")
+          .setDescription("変換先の進数")
+          .setRequired(true)
+          .addChoices(
+            { name: "2進数", value: "2" },
+            { name: "8進数", value: "8" },
+            { name: "10進数", value: "10" },
+            { name: "16進数", value: "16" }
+          ))
+      .addStringOption(option=>
+        option
+          .setName("number")
+          .setDescription("変換する数値")
+          .setRequired(true))
+  },
   omikuji:{
     type: "fun",
     name: "/omikuji",
@@ -1159,7 +1197,6 @@ module.exports = {
         option
           .setName("name")
           .setDescription("検索ワード")
-          .setMaxLength(30)
           .setRequired(true))
   },
   panel:{
@@ -1298,7 +1335,7 @@ module.exports = {
         option
           .setName("select_4")
           .setDescription("選択4")
-          .setMaxLength(50) )
+          .setMaxLength(50))
       .addStringOption(option=>
         option
           .setName("select_5")
@@ -1741,7 +1778,7 @@ module.exports = {
     type: "manage",
     name: "/ticket",
     description: "簡易的なチケット機能を作成します",
-    example: "`/ticket`",
+    example: "`/ticket チケット 説明`",
     userPermission:[
       "チャンネルの管理",
       "メッセージの管理"
@@ -1755,6 +1792,10 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("ticket")
       .setDescription("お問い合わせ機能を作成します")
+      .addStringOption(option=>
+        option
+          .setName("description")
+          .setDescription("チケットの説明"))
   },
   timeout:{
     type: "manage",
@@ -1856,7 +1897,6 @@ module.exports = {
         option
           .setName("word")
           .setDescription("検索ワード")
-          .setMaxLength(30)
           .setRequired(true))
   },
   up:{
@@ -1983,7 +2023,6 @@ module.exports = {
         option
           .setName("word")
           .setDescription("検索ワード")
-          .setMaxLength(30)
           .setRequired(true))
   },
   work:{
