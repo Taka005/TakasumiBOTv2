@@ -20,13 +20,11 @@ module.exports = {
         option
           .setName("top")
           .setDescription("上の文字")
-          .setMaxLength(30)
           .setRequired(true))
       .addStringOption(option=>
         option
           .setName("bottom")
           .setDescription("下の文字")
-          .setMaxLength(30)
           .setRequired(true))
   },
   about:{
@@ -347,7 +345,6 @@ module.exports = {
         option
           .setName("name")
           .setDescription("ボタンの名前")
-          .setMaxLength(30)
           .setRequired(true))
       .addStringOption(option=>
         option
@@ -460,7 +457,6 @@ module.exports = {
         option
           .setName("name")
           .setDescription("ロールの名前")
-          .setMaxLength(30)
           .setRequired(true))
       .addStringOption(option=>
         option
@@ -646,7 +642,6 @@ module.exports = {
         option
           .setName("name")
           .setDescription("検索ワード")
-          .setMaxLength(30)
           .setRequired(true))
   },
   globalchat:{
@@ -1202,7 +1197,6 @@ module.exports = {
         option
           .setName("name")
           .setDescription("検索ワード")
-          .setMaxLength(30)
           .setRequired(true))
   },
   panel:{
@@ -1341,7 +1335,7 @@ module.exports = {
         option
           .setName("select_4")
           .setDescription("選択4")
-          .setMaxLength(50) )
+          .setMaxLength(50))
       .addStringOption(option=>
         option
           .setName("select_5")
@@ -1903,7 +1897,6 @@ module.exports = {
         option
           .setName("word")
           .setDescription("検索ワード")
-          .setMaxLength(30)
           .setRequired(true))
   },
   up:{
@@ -2030,7 +2023,6 @@ module.exports = {
         option
           .setName("word")
           .setDescription("検索ワード")
-          .setMaxLength(30)
           .setRequired(true))
   },
   work:{
