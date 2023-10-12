@@ -20,8 +20,7 @@ module.exports = async(interaction)=>{
     try{
       const data = parseInt(number,Number(source)).toString(Number(target));
         
-      await interaction.editReply({
-        content: `<@${interaction.user.id}>`,
+      await interaction.reply({
         embeds:[{
           color: Colors.Green,
           author:{
@@ -32,7 +31,7 @@ module.exports = async(interaction)=>{
         }]
       });
     }catch(error){
-      await interaction.editReply({
+      await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
