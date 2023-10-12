@@ -1741,7 +1741,7 @@ module.exports = {
     type: "manage",
     name: "/ticket",
     description: "簡易的なチケット機能を作成します",
-    example: "`/ticket`",
+    example: "`/ticket チケット 説明`",
     userPermission:[
       "チャンネルの管理",
       "メッセージの管理"
@@ -1755,6 +1755,14 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("ticket")
       .setDescription("お問い合わせ機能を作成します")
+      .addStringOption(option=>
+        option
+          .setName("title")
+          .setDescription("チケットのタイトル"))
+      .addStringOption(option=>
+        option
+          .setName("description")
+          .setDescription("チケットの説明"))
   },
   timeout:{
     type: "manage",

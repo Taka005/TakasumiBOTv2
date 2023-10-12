@@ -2,7 +2,9 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, ChannelType, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ticket"){
-    
+    const title = interaction.options.getString("title")||"チケット";
+    const description = interaction.options.getString("description")||"チケットの発行は下のボタンを押してください";
+
     if(
       !interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)||
       !interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)
@@ -50,8 +52,8 @@ module.exports = async(interaction)=>{
       await interaction.channel.send({
         embeds:[{
           color: Colors.Green,
-          title:"チケット",
-          description: "チケットの発行は下のボタンを押してください"
+          title: title,
+          description: description
         }],
         components:[
           new ActionRowBuilder()
