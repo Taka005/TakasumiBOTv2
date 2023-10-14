@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
         "maxAge": 0
       });
 
-      await db(`INSERT INTO server (id, name, count, icon, owner, code, text, time) VALUES("${interaction.guild.id}","${escape(interaction.guild.name)}","${interaction.guild.memberCount}","${interaction.guild.ownerId}","${invite.code}","${escape(text)}",NOW());`);
+      await db(`INSERT INTO server (id, name, count, icon, owner, code, text, time) VALUES("${interaction.guild.id}","${escape(interaction.guild.name)}","${interaction.guild.memberCount}","${interaction.guild.iconURL({size:1024})}","${interaction.guild.ownerId}","${invite.code}","${escape(text)}",NOW());`);
 
       await interaction.reply({
         embeds:[{

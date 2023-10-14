@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
           "name": interaction.guild.name,
           "id": interaction.guild.id,
           "count": interaction.guild.memberCount,
-          "icon": interaction.guild.iconURL({extension:"png",size:1024}),
+          "icon": interaction.guild.iconURL({size:1024}),
           "createAt": interaction.guild.createdAt.toLocaleString(),
           "invites": (await interaction.guild.invites.fetch()).map(invite=>({
             "url": invite.url,
