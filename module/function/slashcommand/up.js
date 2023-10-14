@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
       });
 
       const image = await fetch(interaction.guild.iconURL({extension:"png",size:1024}))
-        .then(res=>Buffer.from(res.arrayBuffer()).toString("base64"));
+        .then(async(res)=>Buffer.from(await res.arrayBuffer()).toString("base64"));
       
       await db(`UPDATE server SET name = "${interaction.guild.name}", count = "${interaction.guild.memberCount}", icon = "data:image/png;base64,${image}", time = NOW() WHERE id = ${interaction.guild.id}`);
       await interaction.reply({

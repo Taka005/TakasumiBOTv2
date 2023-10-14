@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
       });
       
       const image = await fetch(interaction.guild.iconURL({extension:"png",size:1024}))
-        .then(res=>Buffer.from(res.arrayBuffer()).toString("base64"));
+        .then(async(res)=>Buffer.from(await res.arrayBuffer()).toString("base64"));
 
       await db(`INSERT INTO server (id, name, count, icon, owner, code, text, time) VALUES("${interaction.guild.id}","${escape(interaction.guild.name)}","${interaction.guild.memberCount}","data:image/png;base64,${image}","${interaction.guild.ownerId}","${invite.code}","${escape(text)}",NOW());`);
 
