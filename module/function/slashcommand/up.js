@@ -1,6 +1,5 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
-  const fetch = require("node-fetch");
   const db = require("../../lib/db");
   const fetchInvite = require("../../lib/fetchInvite");
   if(!interaction.isChatInputCommand()) return;
@@ -59,10 +58,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      const image = await fetch(interaction.guild.iconURL({extension:"png",size:1024}))
-        .then(async(res)=>Buffer.from(await res.arrayBuffer()).toString("base64"));
-      
-      await db(`UPDATE server SET name = "${interaction.guild.name}", count = "${interaction.guild.memberCount}", icon = "data:image/png;base64,${image}", time = NOW() WHERE id = ${interaction.guild.id}`);
+      await db(`UPDATE server SET name = "${interaction.guild.name}", count = "${interaction.guild.memberCount}", time = NOW() WHERE id = ${interaction.guild.id}`);
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
