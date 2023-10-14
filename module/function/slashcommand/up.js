@@ -58,7 +58,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await db(`UPDATE server SET name = "${interaction.guild.name}", count = "${interaction.guild.memberCount}", time = NOW() WHERE id = ${interaction.guild.id}`);
+      await db(`UPDATE server SET name = "${interaction.guild.name}", count = "${interaction.guild.memberCount}", icon = "${interaction.guild.iconURL({size:1024})}", time = NOW() WHERE id = ${interaction.guild.id}`);
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
