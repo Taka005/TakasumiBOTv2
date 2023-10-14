@@ -1,6 +1,5 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
-  const fetch = require("node-fetch");
   const db = require("../../lib/db");
   const escape = require("../../lib/escape");
   if(!interaction.isModalSubmit()) return;
@@ -13,11 +12,8 @@ module.exports = async(interaction)=>{
         "unique": true,
         "maxAge": 0
       });
-      
-      const image = await fetch(interaction.guild.iconURL({extension:"png",size:1024}))
-        .then(async(res)=>Buffer.from(await res.arrayBuffer()).toString("base64"));
 
-      await db(`INSERT INTO server (id, name, count, icon, owner, code, text, time) VALUES("${interaction.guild.id}","${escape(interaction.guild.name)}","${interaction.guild.memberCount}","data:image/png;base64,${image}","${interaction.guild.ownerId}","${invite.code}","${escape(text)}",NOW());`);
+      await db(`INSERT INTO server (id, name, count, icon, owner, code, text, time) VALUES("${interaction.guild.id}","${escape(interaction.guild.name)}","${interaction.guild.memberCount}","${interaction.guild.ownerId}","${invite.code}","${escape(text)}",NOW());`);
 
       await interaction.reply({
         embeds:[{
