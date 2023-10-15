@@ -9,12 +9,12 @@ module.exports = async(client)=>{
   setInterval(async()=>{
     if(stats === 0){
       client.user.setActivity(`/help || ping:${client.ws.ping}ms`,{
-        type: ActivityType.Custom
+        type: ActivityType.Playing
       });
       stats = 1;
     }else if(stats === 1){
       client.user.setActivity(`${await fetchGuildCounts(client)}server || ${await fetchUserCounts(client)}user${client.shard ? ` || ${client.shard.count}shard` : ""}`,{
-        type: ActivityType.Custom
+        type: ActivityType.Playing
       });
       stats = 0;
     }
