@@ -664,6 +664,35 @@ module.exports = {
       .setName("globalchat")
       .setDescription("グローバルチャットを利用します")
   },
+  graph:{
+    type: "tool",
+    name: "/graph",
+    description: "数式からグラフを生成します",
+    example: "`/graph 2*x x+5`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("graph")
+      .setDescription("数式からグラフを生成します")
+      .addStringOption(option=>
+        option
+          .setName("formula_1")
+          .setDescription("数式1")
+          .setRequired(true))
+      .addStringOption(option=>
+        option
+          .setName("formula_2")
+          .setDescription("数式2"))
+      .addStringOption(option=>
+        option
+          .setName("formula_3")
+          .setDescription("数式3"))
+  },
   guess:{
     type: "money",
     name: "/guess",
