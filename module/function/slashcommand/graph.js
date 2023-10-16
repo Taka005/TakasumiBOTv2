@@ -22,13 +22,13 @@ module.exports = async(interaction)=>{
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
             image:{
-              url: "attachment://graph.gif"
+              url: "attachment://graph.png"
             }
           }],
           files:[
             new AttachmentBuilder()
               .setFile(image.stream())
-              .setName("graph.gif")
+              .setName("graph.png")
           ]
         });
     }catch{
