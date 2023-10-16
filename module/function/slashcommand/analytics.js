@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
           startDate.setMonth(startDate.getMonth() + 1);
         }
 
-        data = await fetch("https://localhost:4000/line",{
+        data = await fetch("http://localhost:4000/line",{
           "method": "POST",
           "headers":{
             "Content-Type": "application/json"
