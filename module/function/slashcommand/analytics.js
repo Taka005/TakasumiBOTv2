@@ -56,7 +56,7 @@ module.exports = async(interaction)=>{
         const time = [];
         const count = [];
 
-        const members = await interaction.guild.member.fetch();
+        const members = await interaction.guild.members.fetch();
 
         while(startDate <= endDate){
           const nextDate = new Date(startDate);
