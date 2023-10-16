@@ -69,7 +69,7 @@ module.exports = async(interaction)=>{
             "title": "1ヶ月間の1日ごとのユーザー参加数",
             "xLabel": "日",
             "yLabel": "人",
-            "fontSize": "8"
+            "xFont": "5"
           })
         }).then(res=>res.blob());
       }else if(type === "status"){
