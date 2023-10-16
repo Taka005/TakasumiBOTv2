@@ -675,7 +675,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし",
+    note: "式は半角で入力する必要があります",
     data: new SlashCommandBuilder()
       .setName("graph")
       .setDescription("数式からグラフを生成します")
