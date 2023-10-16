@@ -40,18 +40,15 @@ module.exports = async(interaction)=>{
           })
         }).then(res=>res.blob());
       }else if(type === "month"){ 
-        const endDate = new Date();
-        endDate.setDate(endDate.getDate() - 1);
-
         const startDate = new Date();
-        startDate.setMonth(endDate.getMonth() - 1);
+        startDate.setMonth();
 
         const time = [];
         const count = [];
 
         const members = await interaction.guild.members.fetch();
 
-        while(startDate <= endDate){
+        for(let i = 0;i < 30;i++){
           const nextDate = new Date(startDate);
           nextDate.setDate(startDate.getDate() + 1);
       
