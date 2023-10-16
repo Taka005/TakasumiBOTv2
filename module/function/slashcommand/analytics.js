@@ -6,13 +6,6 @@ module.exports = async(interaction)=>{
     const type = interaction.options.getString("type");
 
     await interaction.deferReply();
-    await interaction.editReply({
-      embeds:[{
-        color: Colors.Green,
-        description: "生成中..."
-      }]
-    });
-
     try{
       let data;
       if(type === "year"){
