@@ -21,14 +21,14 @@ module.exports = async(interaction)=>{
         const time = [];
         const count = [];
         
+        const members = await interaction.guild.members.fetch();
+
         for(let i = 0;i < 12;i++){
           const nextMonth = new Date(startDate);
           nextMonth.setMonth(startDate.getMonth() + 1);
        
-          const members = (await interaction.guild.members.fetch()).filter(member=>member.joinedAt >= startDate && member.joinedAt < nextMonth);
-       
           time.push(`${startDate.getMonth()+1}月`);
-          count.push(members.size);
+          count.push(members.filter(member=>member.joinedAt >= startDate && member.joinedAt < nextMonth).size);
 
           startDate.setMonth(startDate.getMonth() + 1);
         }
@@ -56,14 +56,14 @@ module.exports = async(interaction)=>{
         const time = [];
         const count = [];
 
+        const members = await interaction.guild.member.fetch();
+
         while(startDate <= endDate){
           const nextDate = new Date(startDate);
           nextDate.setDate(startDate.getDate() + 1);
       
-          const members = (await interaction.guild.members.fetch()).filter(member=>member.joinedAt >= startDate && member.joinedAt < nextDate);
-      
           time.push(startDate.getDate());
-          count.push(members.size);
+          count.push(members.filter(member=>member.joinedAt >= startDate && member.joinedAt < nextDate).size);
       
           startDate.setDate(startDate.getDate() + 1);
         }
