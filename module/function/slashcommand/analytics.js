@@ -120,7 +120,7 @@ module.exports = async(interaction)=>{
         }],
         files:[
           new AttachmentBuilder()
-            .setFile(data)
+            .setFile(data.stream())
             .setName("analytics.png")
         ]
       });
