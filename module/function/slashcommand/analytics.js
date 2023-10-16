@@ -52,7 +52,7 @@ module.exports = async(interaction)=>{
           const nextDate = new Date(startDate);
           nextDate.setDate(startDate.getDate() + 1);
       
-          time.push(startDate.getDate());
+          time.push(`${startDate.getDate()}日`);
           count.push(members.filter(member=>member.joinedAt >= startDate && member.joinedAt < nextDate).size);
       
           startDate.setDate(startDate.getDate() + 1);
