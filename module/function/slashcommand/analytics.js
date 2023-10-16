@@ -41,7 +41,7 @@ module.exports = async(interaction)=>{
         }).then(res=>res.blob());
       }else if(type === "month"){ 
         const startDate = new Date();
-        startDate.setMonth();
+        startDate.setMonth(startDate.getMonth() - 1);
 
         const time = [];
         const count = [];
