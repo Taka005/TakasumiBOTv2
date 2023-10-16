@@ -68,7 +68,8 @@ module.exports = async(interaction)=>{
             "y": count,
             "title": "1ヶ月間の1日ごとのユーザー参加数",
             "xLabel": "日",
-            "yLabel": "人"
+            "yLabel": "人",
+            "xFont": "8"
           })
         }).then(res=>res.blob());
       }else if(type === "status"){
