@@ -3,26 +3,15 @@ module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "graph"){
-    const formulas = [
+    const formula = [
       interaction.options.getString("formula_1"),
       interaction.options.getString("formula_2"),
       interaction.options.getString("formula_3")
-    ]
-      .filter(formula=>formula!==null)
-      .map(formula=>
-        formula
-          .replace((/[０-９]/gu),(str)=>String.fromCharCode(str.charCodeAt(0) - 65248))
-          .replace((/＋/gu),"+")
-          .replace((/ー/gu),"-")
-          .replace((/[x×]/gu),"*")
-          .replace((/÷/gu),"/")
-          .replace((/（/gu),"(")
-          .replace((/）/gu),")")
-      ).join(",");
+    ].filter(f=>f!==null).join(",");
   
     await interaction.deferReply();
     try{
-      const image = await fetch(`http://localhost:4000/?formula=${formulas}`)
+      const image = await fetch(`http://localhost:4000/?formula=${formula}`)
         .then(res=>res.blob());
   
         await interaction.editReply({
