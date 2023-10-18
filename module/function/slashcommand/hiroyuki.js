@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
     });
   
     const data = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
-    if(data[0]){//登録済み
+    if(data[0]){0
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
 
       await db(`DELETE FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
@@ -76,49 +76,49 @@ module.exports = async(interaction)=>{
         })
     }else{//登録なし
       await interaction.deferReply();
-      await interaction.channel.createWebhook({
-        name: "ひろゆき",
-        avatar: "https://cdn.taka.cf/images/hiroyuki.png",
-      })
-        .then(async(webhook)=>{
-          await db(`INSERT INTO hiroyuki (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW());`);
-
-          await interaction.editReply({
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: "ひろゆきの召喚に成功しました",
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
-              }
-            }]
-          });
-        })
-        .catch(async(error)=>{
-          await interaction.editReply({
-            embeds:[{
-              color: Colors.Red,
-              author:{
-                name: "ひろゆきの召喚に失敗しました",
-                icon_url: "https://cdn.taka.cf/images/system/error.png"
-              },
-              description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            components:[
-              new ActionRowBuilder()
-                .addComponents( 
-                  new ButtonBuilder()
-                    .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
-                    .setStyle(ButtonStyle.Link))
-            ]
-          });
+      try{
+        await interaction.channel.createWebhook({
+          name: "ひろゆき",
+          avatar: "https://cdn.taka.cf/images/hiroyuki.png",
         });
+
+        await db(`INSERT INTO hiroyuki (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW());`);
+
+        await interaction.editReply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "ひろゆきの召喚に成功しました",
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            }
+          }]
+        });
+      }catch(error){
+        await interaction.editReply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "ひろゆきの召喚に失敗しました",
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
+            },
+            description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
+            fields:[
+              {
+                name: "エラーコード",
+                value: `\`\`\`${error}\`\`\``
+              }
+            ]
+          }],
+          components:[
+            new ActionRowBuilder()
+              .addComponents( 
+                new ButtonBuilder()
+                  .setLabel("サポートサーバー")
+                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setStyle(ButtonStyle.Link))
+          ]
+        });
+      }
     }
   }
 }
