@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           thumbnail:{
-            url: interaction.guild.iconURL()
+            url: interaction.guild.iconURL({extension:"png",size:1024})
           },
           fields:[
             {
