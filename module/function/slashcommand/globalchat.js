@@ -80,7 +80,7 @@ module.exports = async(interaction)=>{
     }else{
       if(
         interaction.guild.memberCount < 20||
-        (await interaction.guild.members.fetch()).filter(m => !m.user.bot).size < 8
+        (await interaction.guild.members.fetch()).filter(m=>!m.user.bot).size < 8
       ) return await interaction.reply({
         embeds:[{
           color: Colors.Red,

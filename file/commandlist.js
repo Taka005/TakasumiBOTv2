@@ -220,7 +220,9 @@ module.exports = {
             { name: "1年間の月ごとのユーザー参加数", value: "year" },
             { name: "1ヶ月間の1日ごとのユーザー参加数", value: "month" },
             { name: "メンバーのステータスの割合", value: "status" },
-            { name: "メンバーの機種の割合", value: "platform" }
+            { name: "メンバーの機種の割合", value: "platform" },
+            { name: "ユーザーとBOTの割合", value: "bot" },
+            { name: "チャンネルの種類の割合", value: "channel" }
           ))
   },
   announce:{

@@ -14,23 +14,23 @@ module.exports = async(interaction)=>{
       const image = await fetch(`http://localhost:4000/?formula=${formula}`)
         .then(res=>res.blob());
   
-        await interaction.editReply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "生成しました",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
-            },
-            image:{
-              url: "attachment://graph.png"
-            }
-          }],
-          files:[
-            new AttachmentBuilder()
-              .setFile(image.stream())
-              .setName("graph.png")
-          ]
-        });
+      await interaction.editReply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: "生成しました",
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          },
+          image:{
+            url: "attachment://graph.png"
+          }
+        }],
+        files:[
+          new AttachmentBuilder()
+            .setFile(image.stream())
+            .setName("graph.png")
+        ]
+      });
     }catch{
       await interaction.editReply({
         embeds:[{

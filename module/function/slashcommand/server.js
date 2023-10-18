@@ -11,8 +11,7 @@ module.exports = async(interaction)=>{
       const online = members.filter(member=>member.presence?.status === "online");
       const dnd = members.filter(member=>member.presence?.status === "dnd");
       const idle = members.filter(member=>member.presence?.status === "idle");
-      const offline = members.filter(member=>member.presence?.status === "offline");
-      const none = members.filter(member=>!(member.presence?.status));
+      const offline = members.filter(member=>member.presence?.status === "offline"||!member.presence?.status);
 
       const web = members.filter(member=>member.presence?.clientStatus?.web);
       const mobile = members.filter(member=>member.presence?.clientStatus?.mobile);
@@ -26,7 +25,7 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           thumbnail:{
-            url: interaction.guild.iconURL()
+            url: interaction.guild.iconURL({extension:"png",size:1024})
           },
           fields:[
             {
@@ -47,7 +46,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "アクティビティ",
-              value: `🟢: ${online.size}人 ⛔: ${dnd.size}人 🌙: ${idle.size}人 ⚫: ${offline.size + none.size}人\n🌐: ${web.size}人 📱: ${mobile.size}人 🖥️: ${desktop.size}人`
+              value: `🟢: ${online.size}人 ⛔: ${dnd.size}人 🌙: ${idle.size}人 ⚫: ${offline.size}人\n🌐: ${web.size}人 📱: ${mobile.size}人 🖥️: ${desktop.size}人`
             },
             {
               name: "統計情報",

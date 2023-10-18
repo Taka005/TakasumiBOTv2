@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, AttachmentBuilder, Colors } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, AttachmentBuilder, ChannelType, Colors } = require("discord.js");
   const fetch = require("node-fetch");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "analytics"){
@@ -109,6 +109,43 @@ module.exports = async(interaction)=>{
             "label": ["ブラウザ","モバイル","デスクトップ"],
             "color": ["#ffa500","#7cfc00","#00bfff"],
             "title": "メンバーの機種の割合"
+          })
+        }).then(res=>res.blob());
+      }else if(type === "bot"){
+        const members = await interaction.guild.members.fetch();
+
+        const bot = members.filter(m=>m.user.bot);
+        const user = members.filter(m=>!m.user.bot);
+
+        data = await fetch("http://localhost:4000/pie",{
+          "method": "POST",
+          "headers":{
+            "Content-Type": "application/json"
+          },
+          "body": JSON.stringify({
+            "data": [bot.size,user.size],
+            "label": ["BOT","ユーザー"],
+            "color": ["#808080","#00bfff"],
+            "title": "ユーザーとBOTの割合"
+          })
+        }).then(res=>res.blob());
+      }else if(type === "channel"){
+        const channels = await interaction.guild.channels.fetch();
+
+        const text = channels.filter(ch=>ch.type===ChannelType.GuildText);
+        const voice = channels.filter(ch=>ch.type===ChannelType.GuildVoice);
+        const category = channels.filter(ch=>ch.type===ChannelType.GuildCategory);
+
+        data = await fetch("http://localhost:4000/pie",{
+          "method": "POST",
+          "headers":{
+            "Content-Type": "application/json"
+          },
+          "body": JSON.stringify({
+            "data": [text.size,voice.size,category.size],
+            "label": ["テキスト","ボイス","カテゴリー"],
+            "color": ["#7fff00","#00bfff","#ffa500"],
+            "title": "チャンネルの種類の割合"
           })
         }).then(res=>res.blob());
       }

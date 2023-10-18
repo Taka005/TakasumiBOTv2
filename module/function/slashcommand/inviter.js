@@ -36,13 +36,7 @@ module.exports = async(interaction)=>{
           invite.uses = invites[user].reduce((total,invite)=>total + invite.uses,0);
           return invite;
         })
-        .sort((a,b)=>{
-          if(a.uses < b.uses){
-            return 1;
-          }else{
-            return -1;
-          }
-        });
+        .sort((i1,i2)=>i2.uses - i1.uses);
 
       await interaction.reply({
         embeds:[{
