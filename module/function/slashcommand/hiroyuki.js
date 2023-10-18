@@ -77,7 +77,7 @@ module.exports = async(interaction)=>{
     }else{//登録なし
       await interaction.deferReply();
       try{
-        await interaction.channel.createWebhook({
+        const webhook = await interaction.channel.createWebhook({
           name: "ひろゆき",
           avatar: "https://cdn.taka.cf/images/hiroyuki.png",
         });
