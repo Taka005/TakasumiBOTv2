@@ -15,13 +15,13 @@ module.exports = (message)=>{
     if(new Date() - time[message.guild.id].time2 <= 600){
       message.channel.send({
         embeds:[{
+          color: Colors.Yellow,
           author:{
             name: "レートリミット",
             icon_url: "https://cdn.taka.cf/images/system/warn.png"
           },
           description: "メッセージを送信する速度が早すぎます\n3分間はメッセージを応答しなくなります",
-          timestamp: new Date(),
-          color: Colors.Yellow
+          timestamp: new Date()
         }]
       }).catch(()=>{});
       time[message.guild.id].last = new Date();
