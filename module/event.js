@@ -46,11 +46,11 @@ module.exports = async(client)=>{
   client.on(Events.InteractionCreate,async(interaction)=>{
     if(!interaction.guild) return await interaction.reply({ 
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "コマンドが実行できません",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        color: Colors.Red,
         description: "BOTの操作はDMで実行することができません\nサーバー内で実行してください"
       }],      
       components:[
@@ -68,11 +68,11 @@ module.exports = async(client)=>{
       (await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id} LIMIT 1;`))[0]
     ) return await interaction.reply({ 
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "コマンドが実行できません",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        color: Colors.Red,
         description: "あなた又はこのサーバーはブラックリストに登録されているため実行できません"
       }],      
       components:[
@@ -87,7 +87,7 @@ module.exports = async(client)=>{
     });
 
     await count.command();
-    await money.add(interaction.user.id,5);
+    await money.add(interaction.user.id,10);
 
     Promise.all(global.interactionCreate.map(fn=>fn(interaction)));
     Promise.all(global.auth.map(fn=>fn(interaction)));

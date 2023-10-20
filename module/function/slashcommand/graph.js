@@ -12,7 +12,10 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     try{
       const image = await fetch(`http://localhost:4000/?formula=${formula}`)
-        .then(res=>res.blob());
+        .then(async(res)=>{
+          if(!res.ok) throw new Error();
+          return await res.blob();
+        });
   
       await interaction.editReply({
         embeds:[{
