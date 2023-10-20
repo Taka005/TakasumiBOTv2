@@ -87,7 +87,7 @@ module.exports = async(interaction)=>{
           },
           "body": JSON.stringify({
             "data": [online.size,dnd.size,idle.size,offline.size],
-            "label": ["オンライン","取り込み中","退席中","オフライン"],
+            "label": [`オンライン(${online.size}人)`,`取り込み中(${dnd.size}人)`,`退席中(${idle.size}人)`,`オフライン(${offline.size}人)`],
             "color": ["#7fff00","#ff7f50","#ffd700","#d3d3d3"],
             "title": "メンバーのステータスの割合"
           })
@@ -106,7 +106,7 @@ module.exports = async(interaction)=>{
           },
           "body": JSON.stringify({
             "data": [web.size,mobile.size,desktop.size],
-            "label": ["ブラウザ","モバイル","デスクトップ"],
+            "label": [`ブラウザ(${web.size}人)`,`モバイル(${mobile.size}人)`,`デスクトップ(${desktop.size}人)`],
             "color": ["#ffa500","#7cfc00","#00bfff"],
             "title": "メンバーの機種の割合"
           })
@@ -124,7 +124,7 @@ module.exports = async(interaction)=>{
           },
           "body": JSON.stringify({
             "data": [bot.size,user.size],
-            "label": ["BOT","ユーザー"],
+            "label": [`BOT(${bot.size}人)`,`ユーザー(${user.size}人)`],
             "color": ["#808080","#00bfff"],
             "title": "ユーザーとBOTの割合"
           })
@@ -143,7 +143,7 @@ module.exports = async(interaction)=>{
           },
           "body": JSON.stringify({
             "data": [text.size,voice.size,category.size],
-            "label": ["テキスト","ボイス","カテゴリー"],
+            "label": [`テキスト(${text.size}個)`,`ボイス(${voice.size}個)`,`カテゴリー(${category.size}個)`],
             "color": ["#7fff00","#00bfff","#ffa500"],
             "title": "チャンネルの種類の割合"
           })
