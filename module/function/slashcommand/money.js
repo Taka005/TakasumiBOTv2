@@ -55,7 +55,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "順位",
-              value: `${rank.indexOf(user.id)}/${rank.length}位`
+              value: `${data ? `${rank.indexOf(user.id)}/${rank.length}位`:"不明"}`
             }
           ]
         }]
