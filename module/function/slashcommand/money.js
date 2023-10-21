@@ -1,9 +1,14 @@
 module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const money = require("../../lib/money");
+  const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "money"){
     const user = interaction.options.getUser("user");
+
+    const rank = (await db("SELECT * FROM money;"))
+      .sort((m1,m2)=>m2.amount - m1.amount)
+      .map(m=>m.id);
 
     if(!user){
       const data = await money.get(interaction.user.id);
@@ -22,6 +27,10 @@ module.exports = async(interaction)=>{
             {
               name: "アイテム",
               value: `GC黄色: ${data.yellow}回\nGC赤色: ${data.red}回\nGC青色: ${data.blue}回`,
+            },
+            {
+              name: "順位",
+              value: `${rank.indexOf(interaction.user.id)}/${rank.length}位`
             }
           ]
         }]
@@ -43,6 +52,10 @@ module.exports = async(interaction)=>{
             {
               name: "アイテム",
               value: `GC黄色: ${data?.yellow||0}回\nGC赤色: ${data?.red||0}回\nGC青色: ${data?.blue||0}回`,
+            },
+            {
+              name: "順位",
+              value: `${data ? `${rank.indexOf(user.id)}/${rank.length}位`:"不明"}`
             }
           ]
         }]
