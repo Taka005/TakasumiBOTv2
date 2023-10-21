@@ -7,6 +7,7 @@ module.exports = async(interaction)=>{
     const user = interaction.options.getUser("user");
 
     const rank = (await db("SELECT * FROM money;"))
+      .sort((m1,m2)=>m2.amount - m1.amount)
       .map(m=>m.id);
 
     if(!user){
