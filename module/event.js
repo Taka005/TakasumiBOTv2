@@ -5,6 +5,7 @@ module.exports = async(client)=>{
   const db = require("./lib/db");
   const count = require("./lib/count");
   const money = require("./lib/money");
+  const data = require("../tmp/data.json");
  
   await require("./lib/fileLoader")();
 
@@ -27,6 +28,10 @@ module.exports = async(client)=>{
     if(message.author.bot) return;
 
     console.log(`\x1b[37m${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
+
+    data.push(message.cleanContent);
+    fs.writeFileSync("./tmp/data.json",JSON.stringify(data),"utf8");
+    delete require.cache[require.resolve("../tmp/data.json")];
 
     Promise.all(global.command.map(fn=>fn(message)));
   });
