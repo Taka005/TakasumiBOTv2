@@ -222,7 +222,7 @@ module.exports = async(interaction)=>{
             }]
           });
         }else{
-          await db(`INSERT INTO mute_ip (ip, reason, time) VALUES("${ip}","${escape(reason)}",NOW())`);
+          await db(`INSERT INTO mute_ip (ip, reason, time) VALUES("${id}","${escape(reason)}",NOW())`);
   
           await interaction.reply({
             embeds:[{
