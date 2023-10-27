@@ -151,7 +151,8 @@ module.exports = {
               .setRequired(true)
               .addChoices(
                 { name: "ユーザー", value: "user" },
-                { name: "サーバー", value: "server" }
+                { name: "サーバー", value: "server" },
+                { name: "IPアドレス", value: "ip" }
               ))
           .addStringOption(option=>
             option

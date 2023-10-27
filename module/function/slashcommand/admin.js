@@ -167,7 +167,7 @@ module.exports = async(interaction)=>{
             }]
           });
         }
-      }else{
+      }else if(type === "server"){
         const guild = await fetchGuild(interaction.client,id);
         if(!guild) return await interaction.reply({
           embeds:[{
@@ -202,6 +202,33 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: `${guild.name}(${guild.id}) をミュートしました`,
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              }
+            }]
+          });
+        }
+      }else if(type === "ip"){
+        const data = await db(`SELECT * FROM mute_ip WHERE ip = ${id} LIMIT 1;`);
+        if(data[0]){
+          await db(`DELETE FROM mute_ip WHERE ip = ${id} LIMIT 1;`);
+    
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${id} のミュートを解除しました`,
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              }
+            }]
+          });
+        }else{
+          await db(`INSERT INTO mute_ip (ip, reason, time) VALUES("${ip}","${escape(reason)}",NOW())`);
+  
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${id} をミュートしました`,
                 icon_url: "https://cdn.taka.cf/images/system/success.png"
               }
             }]
