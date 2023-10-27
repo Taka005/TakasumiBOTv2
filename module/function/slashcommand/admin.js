@@ -30,19 +30,19 @@ module.exports = async(interaction)=>{
         const data = execSync(code,{
           timeout: 10000
         });
-  
+
         await interaction.editReply({
           files:[
             new AttachmentBuilder()
-              .setFile(Buffer.from(data.toString(),"UTF-8")) 
+              .setFile(Buffer.from(data.toString(),"UTF-8"))
               .setName("cmd.txt")
           ]
         });
       }catch(error){
-        await interaction.editReply({ 
+        await interaction.editReply({
           files:[
             new AttachmentBuilder()
-              .setFile(Buffer.from(error.toString(),"UTF-8")) 
+              .setFile(Buffer.from(error.toString(),"UTF-8"))
               .setName("cmd.txt")
           ]
         });
@@ -54,7 +54,7 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         files:[
           new AttachmentBuilder()
-            .setFile(Buffer.from(data,"UTF-8")) 
+            .setFile(Buffer.from(data,"UTF-8"))
             .setName("DB.json")
         ]
       });
@@ -140,11 +140,11 @@ module.exports = async(interaction)=>{
           }],
           ephemeral: true
         });
-    
+
         const data = await db(`SELECT * FROM mute_user WHERE id = ${user.id} LIMIT 1;`);
         if(data[0]){
           await db(`DELETE FROM mute_user WHERE id = ${user.id} LIMIT 1;`);
-    
+
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
@@ -156,7 +156,7 @@ module.exports = async(interaction)=>{
           });
         }else{
           await db(`INSERT INTO mute_user (id, reason, time) VALUES("${user.id}","${escape(reason)}",NOW());`);
-  
+
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
@@ -184,7 +184,7 @@ module.exports = async(interaction)=>{
         const data = await db(`SELECT * FROM mute_server WHERE id = ${guild.id} LIMIT 1;`);
         if(data[0]){
           await db(`DELETE FROM mute_server WHERE id = ${guild.id} LIMIT 1;`);
-    
+
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
@@ -196,7 +196,7 @@ module.exports = async(interaction)=>{
           });
         }else{
           await db(`INSERT INTO mute_server (id, reason, time) VALUES("${guild.id}","${escape(reason)}",NOW())`);
-  
+
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
@@ -208,10 +208,10 @@ module.exports = async(interaction)=>{
           });
         }
       }else if(type === "ip"){
-        const data = await db(`SELECT * FROM mute_ip WHERE ip = ${id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM mute_ip WHERE ip = "${id}" LIMIT 1;`);
         if(data[0]){
-          await db(`DELETE FROM mute_ip WHERE ip = ${id} LIMIT 1;`);
-    
+          await db(`DELETE FROM mute_ip WHERE ip = "${id}" LIMIT 1;`);
+
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
@@ -223,7 +223,7 @@ module.exports = async(interaction)=>{
           });
         }else{
           await db(`INSERT INTO mute_ip (ip, reason, time) VALUES("${id}","${escape(reason)}",NOW())`);
-  
+
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
@@ -283,7 +283,7 @@ module.exports = async(interaction)=>{
         });
     }else if(interaction.options.getSubcommand() === "reload"){
       await interaction.deferReply();
-    
+
       await Promise.all([
         fs.readdirSync("./module/function/command")
           .map(file=>{
@@ -346,17 +346,17 @@ module.exports = async(interaction)=>{
             delete require.cache[require.resolve(`../auth/${file}`)];
           })
       ]);
-      
+
       delete require.cache[require.resolve("../../event/ready/command")];
       delete require.cache[require.resolve("../../../config.json")];
       delete require.cache[require.resolve("../../../package.json")];
       delete require.cache[require.resolve("../../../package-lock.json")];
       delete require.cache[require.resolve("../../../file/commandlist")];
-  
+
       require("../../event/ready/command")(interaction.client);
-  
+
       await require("../../lib/fileLoader")();
-  
+
       await interaction.editReply({
         embeds:[{
           color: Colors.Green,
