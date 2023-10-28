@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, AttachmentBuilder, ChannelType, Colors } = require("discord.js");
   const fetch = require("node-fetch");
+  const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "analytics"){
     const type = interaction.options.getString("type");
