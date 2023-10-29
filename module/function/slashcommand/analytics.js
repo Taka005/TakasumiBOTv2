@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
       let data;
       if(type === "year"){
         const startDate = new Date();
-        startDate.setMonth(startDate.getMonth() - 12);
+        startDate.setMonth(startDate.getMonth()-12);
         const time = [];
         const count = [];
         
@@ -19,12 +19,12 @@ module.exports = async(interaction)=>{
 
         for(let i = 0;i < 12;i++){
           const nextMonth = new Date(startDate);
-          nextMonth.setMonth(startDate.getMonth() + 1);
+          nextMonth.setMonth(startDate.getMonth()+1,0);
        
           time.push(`${startDate.getMonth()+1}月`);
           count.push(members.filter(member=>member.joinedAt >= startDate && member.joinedAt < nextMonth).size);
 
-          startDate.setMonth(startDate.getMonth() + 1);
+          startDate.setMonth(startDate.getMonth()+1,1);
         }
 
         data = await fetch("http://localhost:4000/line",{
@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
         }).then(res=>res.blob());
       }else if(type === "month"){ 
         const startDate = new Date();
-        startDate.setMonth(startDate.getMonth() - 1);
+        startDate.setMonth(startDate.getMonth()-1);
 
         const time = [];
         const count = [];
@@ -51,12 +51,12 @@ module.exports = async(interaction)=>{
 
         for(let i = 0;i < 30;i++){
           const nextDate = new Date(startDate);
-          nextDate.setDate(startDate.getDate() + 1);
+          nextDate.setDate(startDate.getDate()+1);
       
           time.push(`${startDate.getDate()}日`);
           count.push(members.filter(member=>member.joinedAt >= startDate && member.joinedAt < nextDate).size);
       
-          startDate.setDate(startDate.getDate() + 1);
+          startDate.setDate(startDate.getDate()+1);
         }
 
         data = await fetch("http://localhost:4000/line",{
