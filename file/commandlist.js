@@ -116,7 +116,7 @@ module.exports = {
       .addSubcommand(subcommand=>
         subcommand
           .setName("debug")
-          .setDescription("デバッグ機能を使用します") 
+          .setDescription("デバッグ機能を使用します")
           .addStringOption(option=>
             option
               .setName("type")
@@ -130,7 +130,7 @@ module.exports = {
               ))
           .addStringOption(option=>
             option
-              .setName("id")  
+              .setName("id")
               .setDescription("メッセージID"))
           .addChannelOption(option=>
             option
@@ -143,7 +143,7 @@ module.exports = {
       .addSubcommand(subcommand=>
         subcommand
           .setName("mute")
-          .setDescription("ミュートリストを操作します") 
+          .setDescription("ミュートリストを操作します")
           .addStringOption(option=>
             option
               .setName("type")
@@ -151,7 +151,8 @@ module.exports = {
               .setRequired(true)
               .addChoices(
                 { name: "ユーザー", value: "user" },
-                { name: "サーバー", value: "server" }
+                { name: "サーバー", value: "server" },
+                { name: "IPアドレス", value: "ip" }
               ))
           .addStringOption(option=>
             option
@@ -222,7 +223,8 @@ module.exports = {
             { name: "メンバーのステータスの割合", value: "status" },
             { name: "メンバーの機種の割合", value: "platform" },
             { name: "ユーザーとBOTの割合", value: "bot" },
-            { name: "チャンネルの種類の割合", value: "channel" }
+            { name: "チャンネルの種類の割合", value: "channel" },
+            { name: "TakasumiBOT Accountの登録割合", value: "account" }
           ))
   },
   announce:{
@@ -709,7 +711,7 @@ module.exports = {
     note: "勝つと賭け金が3倍\n負けると賭け金から-1.5倍",
     data: new SlashCommandBuilder()
       .setName("guess")
-      .setDescription("所持金を使って数字当てゲームをします")  
+      .setDescription("所持金を使って数字当てゲームをします")
       .addIntegerOption(option=>
         option
           .setName("money")
@@ -840,7 +842,7 @@ module.exports = {
         option
           .setName("time")
           .setDescription("有効期限(0で無限)")
-          .setRequired(true))  
+          .setRequired(true))
       .addIntegerOption(option=>
         option
           .setName("use")
@@ -994,7 +996,7 @@ module.exports = {
     note: "なし",
     data: new SlashCommandBuilder()
       .setName("math")
-      .setDescription("式を計算します")  
+      .setDescription("式を計算します")
       .addStringOption(option=>
         option
           .setName("code")
@@ -1084,7 +1086,7 @@ module.exports = {
     note: "なし",
     data: new SlashCommandBuilder()
       .setName("moderate")
-      .setDescription("AutoModを使用したモデレート機能を設定します")  
+      .setDescription("AutoModを使用したモデレート機能を設定します")
       .addStringOption(option=>
         option
           .setName("type")
@@ -1246,7 +1248,7 @@ module.exports = {
     note: "同じロールは選択できません\n最大8個までロールを選択できます\nロールの付与にはレート制限があります",
     data: new SlashCommandBuilder()
       .setName("panel")
-      .setDescription("役職パネルを作成します")  
+      .setDescription("役職パネルを作成します")
       .addRoleOption(option=>
         option
           .setName("role_1")
@@ -1287,7 +1289,7 @@ module.exports = {
     note: "グローバルチャットの色変更(黄色): 一回10円\nグローバルチャットの色変更(赤色): 一回100円",
     data: new SlashCommandBuilder()
       .setName("pay")
-      .setDescription("所持金を使用して機能を購入します")  
+      .setDescription("所持金を使用して機能を購入します")
       .addStringOption(option=>
         option
           .setName("type")

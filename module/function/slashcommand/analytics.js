@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, AttachmentBuilder, ChannelType, Colors } = require("discord.js");
   const fetch = require("node-fetch");
+  const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "analytics"){
     const type = interaction.options.getString("type");
@@ -114,8 +115,7 @@ module.exports = async(interaction)=>{
       }else if(type === "bot"){
         const members = await interaction.guild.members.fetch();
 
-        const bot = members.filter(m=>m.user.bot);
-        const user = members.filter(m=>!m.user.bot);
+        const bot = members.filter(member=>member.user.bot);
 
         data = await fetch("http://localhost:4000/pie",{
           "method": "POST",
@@ -123,8 +123,8 @@ module.exports = async(interaction)=>{
             "Content-Type": "application/json"
           },
           "body": JSON.stringify({
-            "data": [bot.size,user.size],
-            "label": [`BOT(${bot.size}人)`,`ユーザー(${user.size}人)`],
+            "data": [bot.size,interaction.guild.memberCount - bot.size],
+            "label": [`BOT(${bot.size}人)`,`ユーザー(${interaction.guild.memberCount - bot.size}人)`],
             "color": ["#808080","#00bfff"],
             "title": "ユーザーとBOTの割合"
           })
@@ -146,6 +146,28 @@ module.exports = async(interaction)=>{
             "label": [`テキスト(${text.size}個)`,`ボイス(${voice.size}個)`,`カテゴリー(${category.size}個)`],
             "color": ["#7fff00","#00bfff","#ffa500"],
             "title": "チャンネルの種類の割合"
+          })
+        }).then(res=>res.blob());
+      }else if(type === "account"){
+        const members = await interaction.guild.members.fetch()
+        const accounts = await db(`SELECT * FROM account;`);
+
+        const register = members
+          .filter(member=>!member.user.bot)
+          .filter(member=>accounts.find(account=>account.id === member.id))
+
+        const user = members.filter(member=>!member.user.bot);
+
+        data = await fetch("http://localhost:4000/pie",{
+          "method": "POST",
+          "headers":{
+            "Content-Type": "application/json"
+          },
+          "body": JSON.stringify({
+            "data": [register.size,user.size - register.size],
+            "label": [`登録済み(${register.size}人)`,`未登録(${user.size - register.size}人)`],
+            "color": ["#7fff00","#808080"],
+            "title": "TakasumiBOT Accountの登録割合"
           })
         }).then(res=>res.blob());
       }
