@@ -115,7 +115,7 @@ module.exports = async(interaction)=>{
       }else if(type === "bot"){
         const members = await interaction.guild.members.fetch();
 
-        const bot = members.filter(m=>m.user.bot);
+        const bot = members.filter(member=>member.user.bot);
 
         data = await fetch("http://localhost:4000/pie",{
           "method": "POST",
@@ -149,9 +149,14 @@ module.exports = async(interaction)=>{
           })
         }).then(res=>res.blob());
       }else if(type === "account"){
+        const members = await interaction.guild.members.fetch()
         const accounts = await db(`SELECT * FROM account;`);
-        const members = (await interaction.guild.members.fetch())
+
+        const register = members
+          .filter(member=>!member.user.bot)
           .filter(member=>accounts.find(account=>account.id === member.id))
+
+        const user = members.filter(member=>!member.user.bot);
 
         data = await fetch("http://localhost:4000/pie",{
           "method": "POST",
@@ -159,8 +164,8 @@ module.exports = async(interaction)=>{
             "Content-Type": "application/json"
           },
           "body": JSON.stringify({
-            "data": [members.size,interaction.guild.memberCount - members.size],
-            "label": [`登録済み(${members.size}人)`,`未登録(${interaction.guild.memberCount - members.size}人)`],
+            "data": [register.size,user - register.size],
+            "label": [`登録済み(${register.size}人)`,`未登録(${user - register.size}人)`],
             "color": ["#7fff00","#808080"],
             "title": "TakasumiBOT Accountの登録割合"
           })
