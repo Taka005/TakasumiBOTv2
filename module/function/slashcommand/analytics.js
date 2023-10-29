@@ -164,8 +164,8 @@ module.exports = async(interaction)=>{
             "Content-Type": "application/json"
           },
           "body": JSON.stringify({
-            "data": [register.size,user - register.size],
-            "label": [`登録済み(${register.size}人)`,`未登録(${user - register.size}人)`],
+            "data": [register.size,user.size - register.size],
+            "label": [`登録済み(${register.size}人)`,`未登録(${user.size - register.size}人)`],
             "color": ["#7fff00","#808080"],
             "title": "TakasumiBOT Accountの登録割合"
           })
