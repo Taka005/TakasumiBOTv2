@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const data = await db(`SELECT * FROM server WHERE id = ${interaction.guild.id} LIMIT 1;`);
+    const data = await db(`SELECT * FROM server WHERE id = ${interaction.guild.id};`);
     if(!data[0]) return await interaction.reply({
       embeds:[{
         color: Colors.Red,

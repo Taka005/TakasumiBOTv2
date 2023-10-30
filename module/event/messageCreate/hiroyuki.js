@@ -5,7 +5,7 @@ module.exports = async(message)=>{
   const rate = require("../../lib/rate");
   const limit = require("../../lib/limit");
 
-  const data = await db(`SELECT * FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
+  const data = await db(`SELECT * FROM hiroyuki WHERE channel = ${message.channel.id};`);
 
   if(
     message.channel.type !== ChannelType.GuildText||
@@ -153,7 +153,7 @@ module.exports = async(message)=>{
 
   await webhook.send(msg)
     .catch(async(error)=>{
-      await db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id} LIMIT 1;`);
+      await db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id};`);
       await message.channel.send({
         embeds:[{
           author:{

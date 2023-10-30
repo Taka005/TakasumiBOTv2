@@ -8,12 +8,12 @@ module.exports = async(client)=>{
   const fetchUserCounts = require("../../lib/fetchUserCounts");
 
   cron.schedule("0 * * * *",async()=>{
-    const log = await db("SELECT * FROM log");
+    const log = await db("SELECT * FROM log;");
 
     const ping = client.ws.ping < 300 ? client.ws.ping : 300;
     const user = await fetchUserCounts(client);
     const guild = await fetchGuildCounts(client);
-    const count = await db(`SELECT * FROM count WHERE id = ${process.env.ID} LIMIT 1;`);
+    const count = await db(`SELECT * FROM count WHERE id = ${process.env.ID};`);
     const cpuUsage = await cpu();
     const ram = 100 - Math.floor((os.freemem()/os.totalmem())*100);
 

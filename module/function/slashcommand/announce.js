@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
   
-    const channel = await db(`SELECT * FROM announce WHERE channel = ${interaction.channel.id} LIMIT 1;`);
+    const channel = await db(`SELECT * FROM announce WHERE channel = ${interaction.channel.id};`);
     const server = await db(`SELECT * FROM announce WHERE server = ${interaction.guild.id};`);
     if(channel[0]){
       await db(`DELETE FROM announce WHERE channel = ${interaction.channel.id} LIMIT 1;`);

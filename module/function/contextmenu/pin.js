@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
       
-    const channel = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
+    const channel = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id};`);
     const server = await db(`SELECT * FROM pin WHERE server = ${message.guild.id};`);
     if(!channel[0]){
       if(!message.content) return await interaction.reply({
@@ -127,7 +127,7 @@ module.exports = async(interaction)=>{
         await (await message.channel.messages.fetch(channel[0].message)).delete();
 
         await db(`UPDATE pin SET count = ${Number(server[0].count)-1} WHERE server = ${message.guild.id};`);
-        await db(`DELETE FROM pin WHERE channel = ${message.channel.id} LIMIT 1;`);
+        await db(`DELETE FROM pin WHERE channel = ${message.channel.id};`);
 
         await interaction.reply({
           embeds:[{

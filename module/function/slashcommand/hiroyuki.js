@@ -45,7 +45,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
   
-    const data = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
+    const data = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id};`);
     if(data[0]){0
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
 

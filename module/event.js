@@ -67,8 +67,8 @@ module.exports = async(client)=>{
     });
     
     if(
-      (await db(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id} LIMIT 1;`))[0]||
-      (await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id} LIMIT 1;`))[0]
+      (await db(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id};`))[0]||
+      (await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id};`))[0]
     ) return await interaction.reply({ 
       embeds:[{
         color: Colors.Red,

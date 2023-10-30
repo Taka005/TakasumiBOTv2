@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      const data = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      const data = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id};`);
       if(data[0]){
         await db(`INSERT INTO stats (id, message, \`join\`, \`leave\`, time) VALUES("${interaction.guild.id}","0","0","0",NOW());`);
         await interaction.reply({
@@ -138,7 +138,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!role){
-        const data = await db(`SELECT * FROM bump WHERE id = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM bump WHERE id = ${interaction.guild.id};`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             color: Colors.Red,
@@ -151,7 +151,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        await db(`DELETE FROM bump WHERE id = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM bump WHERE id = ${interaction.guild.id};`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -230,7 +230,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!role){
-        const data = await db(`SELECT * FROM dissoku WHERE id = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM dissoku WHERE id = ${interaction.guild.id};`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             color: Colors.Red,
@@ -243,7 +243,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id};`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -322,7 +322,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!role){
-        const data = await db(`SELECT * FROM up WHERE id = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM up WHERE id = ${interaction.guild.id};`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             color: Colors.Red,
@@ -335,7 +335,7 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        await db(`DELETE FROM up WHERE id = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM up WHERE id = ${interaction.guild.id};`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -346,7 +346,7 @@ module.exports = async(interaction)=>{
           }]
         });
       }else{
-        if(!(await db(`SELECT * FROM server WHERE id = ${interaction.guild.id} LIMIT 1;`))[0]) return await interaction.reply({
+        if(!(await db(`SELECT * FROM server WHERE id = ${interaction.guild.id};`))[0]) return await interaction.reply({
           embeds:[{
             color: Colors.Red,
             author:{
@@ -414,7 +414,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!message){
-        const data = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id};`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             color: Colors.Red,
@@ -431,7 +431,7 @@ module.exports = async(interaction)=>{
         await webhook.delete()
           .catch(()=>{});
 
-        await db(`DELETE FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM \`join\` WHERE server = ${interaction.guild.id};`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -555,7 +555,7 @@ module.exports = async(interaction)=>{
       });
 
       if(!message){
-        const data = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id};`);
         if(!data[0]) return await interaction.reply({
           embeds:[{
             color: Colors.Red,
@@ -572,7 +572,7 @@ module.exports = async(interaction)=>{
         await webhook.delete()
           .catch(()=>{});
 
-        await db(`DELETE FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+        await db(`DELETE FROM \`leave\` WHERE server = ${interaction.guild.id};`);
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -671,7 +671,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      const data = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      const data = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
       if(!data[0]){
         await db(`INSERT INTO \`ignore\` (id, time) VALUES("${interaction.guild.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),time = VALUES (time);`);
         await db(`DELETE FROM bump WHERE id = ${interaction.guild.id};`);

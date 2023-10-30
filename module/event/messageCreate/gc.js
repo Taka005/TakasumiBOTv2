@@ -10,17 +10,17 @@ module.exports = async(message)=>{
   const { admin } = require("../../../config.json");
 
   if(message.author.bot) return;
-  const global = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
+  const global = await db(`SELECT * FROM global WHERE channel = ${message.channel.id};`);
   if(!global[0]) return;
 
   if(
-    (await db(`SELECT * FROM mute_server WHERE id = ${message.guild.id} LIMIT 1;`))[0]||
-    (await db(`SELECT * FROM mute_user WHERE id = ${message.author.id} LIMIT 1;`))[0]||
+    (await db(`SELECT * FROM mute_server WHERE id = ${message.guild.id};`))[0]||
+    (await db(`SELECT * FROM mute_user WHERE id = ${message.author.id};`))[0]||
     message.content.length > 300||
     Spam.count(message.guild.id)
   ) return await message.react("❌").catch(()=>{});
 
-  if(!(await db(`SELECT * FROM account WHERE id = ${message.author.id} LIMIT 1;`))[0]) return await message.reply({ 
+  if(!(await db(`SELECT * FROM account WHERE id = ${message.author.id};`))[0]) return await message.reply({ 
     embeds:[{
       author:{
         name: "認証してください",
@@ -119,7 +119,7 @@ module.exports = async(message)=>{
   }
 
   (await db("SELECT * FROM global;")).forEach(async(data)=>{
-    const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
+    const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server};`);
     if(data.server === message.guild.id||mute[0]) return;
 
     const webhook = new WebhookClient({id: data.id, token: data.token});

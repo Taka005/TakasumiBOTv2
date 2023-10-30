@@ -11,10 +11,10 @@ module.exports = async(message)=>{
     if(
       message.embeds[0]?.author?.name.match(/UPしました!/)
     ){
-      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id} LIMIT 1;`);
+      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id};`);
       if(ignore[0]) return;
 
-      const data = await db(`SELECT * FROM up WHERE id = ${message.guild.id} LIMIT 1;`);
+      const data = await db(`SELECT * FROM up WHERE id = ${message.guild.id};`);
       setTimeout(async()=>{
         await message.channel.send({
           content: data[0] ? `<@&${data[0].role}>`:"",

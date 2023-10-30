@@ -2,7 +2,7 @@ module.exports = async(member)=>{
   const { WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
 
-  const data = await db(`SELECT * FROM \`join\` WHERE server = ${member.guild.id} LIMIT 1;`);
+  const data = await db(`SELECT * FROM \`join\` WHERE server = ${member.guild.id};`);
   if(data[0]){
     const msg = data[0].message
       .replace("[User]",`<@${member.user.id}>`)
@@ -22,7 +22,7 @@ module.exports = async(member)=>{
       avatarURL: "https://cdn.taka.cf/images/icon.png"
     })
       .catch(async(error)=>{
-        await db(`DELETE FROM \`join\` WHERE channel = ${data[0].channel} LIMIT 1;`);
+        await db(`DELETE FROM \`join\` WHERE channel = ${data[0].channel};`);
         await member.guild.channels.cache.get(data[0].channel).send({
           embeds:[{
             author:{

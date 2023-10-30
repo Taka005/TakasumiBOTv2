@@ -46,11 +46,11 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const data = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
+    const data = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id};`);
     if(data[0]){//登録済み
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
 
-      await db(`DELETE FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      await db(`DELETE FROM global WHERE server = ${interaction.guild.id};`);
       await webhook.delete()
         .then(async()=>{
           await interaction.reply({
@@ -129,7 +129,7 @@ module.exports = async(interaction)=>{
           const global = await db("SELECT * FROM global;");
   
           global.map(async(data)=>{
-            const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
+            const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server};`);
             if(data.server === interaction.guild.id||mute[0]) return;
 
             const webhooks = new WebhookClient({id: data.id, token: data.token});
@@ -149,7 +149,7 @@ module.exports = async(interaction)=>{
               username: "TakasumiBOT Global",
               avatarURL: "https://cdn.taka.cf/images/icon.png"
             }).catch(async(error)=>{
-              await db(`DELETE FROM global WHERE channel = ${data.channel} LIMIT 1;`);
+              await db(`DELETE FROM global WHERE channel = ${data.channel};`);
               await interaction.client.channels.cache.get(data.channel).send({
                 embeds:[{
                   author:{
