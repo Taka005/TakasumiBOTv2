@@ -210,7 +210,7 @@ module.exports = async(interaction)=>{
       }else if(type === "ip"){
         const data = await db(`SELECT * FROM mute_ip WHERE ip = "${id}";`);
         if(data[0]){
-          await db(`DELETE FROM mute_ip WHERE ip = "${id}" LIMIT 1;`);
+          await db(`DELETE FROM mute_ip WHERE ip = "${id}";`);
 
           await interaction.reply({
             embeds:[{

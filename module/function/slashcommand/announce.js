@@ -51,7 +51,7 @@ module.exports = async(interaction)=>{
     const channel = await db(`SELECT * FROM announce WHERE channel = ${interaction.channel.id};`);
     const server = await db(`SELECT * FROM announce WHERE server = ${interaction.guild.id};`);
     if(channel[0]){
-      await db(`DELETE FROM announce WHERE channel = ${interaction.channel.id} LIMIT 1;`);
+      await db(`DELETE FROM announce WHERE channel = ${interaction.channel.id};`);
       await db(`UPDATE announce SET count = ${Number(server[0].count)-1} WHERE server = ${interaction.guild.id};`);
 
       await interaction.reply({

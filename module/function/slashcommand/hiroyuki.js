@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
     if(data[0]){0
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
 
-      await db(`DELETE FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      await db(`DELETE FROM hiroyuki WHERE server = ${interaction.guild.id};`);
       await webhook.delete()
         .then(async()=>{
           await interaction.reply({
