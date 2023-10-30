@@ -12,7 +12,7 @@ module.exports = async(message)=>{
   if(message.author.bot) return;
 
   const global = await db(`SELECT * FROM global;`);
-  if(!global.find(g=>g.server === message.guild.id)) return;
+  if(!global.find(g=>g.channel === message.channel.id)) return;
 
   const mute_server = await db(`SELECT * FROM mute_server;`);
   const mute_user = await db(`SELECT * FROM mute_user;`);
