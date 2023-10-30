@@ -1,8 +1,10 @@
 const db = require("./db");
 module.exports = {
   "message":async(guildId)=>{
+    console.log("A")
     const data = await db(`SELECT * FROM stats WHERE id = ${guildId};`);
     if(data[0]){
+      console.log("B")
       await db(`UPDATE stats SET message = ${Number(data[0].message)+1} WHERE id = ${data[0].id};`);
     }
   },
