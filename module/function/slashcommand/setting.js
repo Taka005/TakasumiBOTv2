@@ -14,6 +14,10 @@ module.exports = async(interaction)=>{
           description: "設定の変更には`管理者`の権限が必要です",
           fields:[
             {
+              name: "/setting stats",
+              value: "サーバーの統計情報の収集の有効・無効を切り替えます"
+            },
+            {
               name: "/setting bump",
               value: "BUMPの時間に通知するロールを設定します"
             },
@@ -48,6 +52,49 @@ module.exports = async(interaction)=>{
           ]
         }]
       });
+    }else if(interaction.options.getSubcommand() === "stats"){
+      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "権限がありません",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "このコマンドを実行するには以下の権限を持っている必要があります",
+          fields:[
+            {
+              name: "必要な権限",
+              value: "```管理者```"
+            }
+          ]
+        }],
+        ephemeral: true
+      });
+
+      const data = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      if(data[0]){
+        await db(`INSERT INTO stats (id, message, \`join\`, \`leave\`, time) VALUES("${interaction.guild.id}","0","0","0",NOW());`);
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "統計情報の収集を有効にしました",
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            }
+          }]
+        });
+      }else{
+        await db(`DELETE FROM stats WHERE id = ${interaction.guild.id};`);
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "統計情報の収集を無効にしました",
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            }
+          }]
+        });
+      }
     }else if(interaction.options.getSubcommand() === "bump"){//BUMPロール設定
       const role = interaction.options.getRole("role");
 
@@ -140,7 +187,6 @@ module.exports = async(interaction)=>{
           }]
         });
       }
-
     }else if(interaction.options.getSubcommand() === "dissoku"){//Dissokuロール設定
       const role = interaction.options.getRole("role");
 
@@ -655,16 +701,17 @@ module.exports = async(interaction)=>{
         });
       }
     }else if(interaction.options.getSubcommand() === "info"){//info
-      const bump = await db(`SELECT * FROM bump WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      const dissoku = await db(`SELECT * FROM dissoku WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      const global = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const hiroyuki = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      const join = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
-      const leave = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      const bump = await db(`SELECT * FROM bump WHERE id = ${interaction.guild.id};`);
+      const dissoku = await db(`SELECT * FROM dissoku WHERE id = ${interaction.guild.id};`);
+      const global = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id};`);
+      const hiroyuki = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id};`);
+      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
+      const join = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id};`);
+      const leave = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id};`);
       const pin = await db(`SELECT * FROM pin WHERE server = ${interaction.guild.id};`);
-      const server = await db(`SELECT * FROM server WHERE id = ${interaction.guild.id} LIMIT 1;`);
-      const up = await db(`SELECT * FROM up WHERE id = ${interaction.guild.id} LIMIT 1;`);
+      const server = await db(`SELECT * FROM server WHERE id = ${interaction.guild.id};`);
+      const stats = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id};`);
+      const up = await db(`SELECT * FROM up WHERE id = ${interaction.guild.id};`);
 
       await interaction.reply({
         embeds:[{
@@ -674,6 +721,11 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
           fields:[
+            {
+              name: "統計情報の収集",
+              value: stats[0] ? "設定済み":"未設定",
+              inline: true
+            },
             {
               name: "Bump通知",
               value: bump[0] ? "設定済み":"未設定",
@@ -755,6 +807,7 @@ module.exports = async(interaction)=>{
       await db(`DELETE FROM \`join\` WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM \`leave\` WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM server WHERE id = ${interaction.guild.id};`);
+      await db(`DELETE FROM stats WHERE id = ${interaction.guild.id};`);
       await db(`DELETE FROM up WHERE id = ${interaction.guild.id};`);
 
       await interaction.reply({
