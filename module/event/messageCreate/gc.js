@@ -80,7 +80,7 @@ module.exports = async(message)=>{
   }];
 
   if(message.reference?.messageId){
-    const replyWebhook = new WebhookClient({id: global[0].id, token: global[0].token});
+    const replyWebhook = new WebhookClient({id: global.find(g=>g.channel === message.channel.id).id, token: global.find(g=>g.channel === message.channel.id).token});
     const replyWebhookMessage = await fetchWebhookMessage(replyWebhook,message.reference.messageId);
     if(replyWebhookMessage){
       embed[0].fields = [
