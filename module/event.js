@@ -27,11 +27,11 @@ module.exports = async(client)=>{
     
     if(message.author.bot) return;
 
+    await stats.message(message.guild.id);
+
     console.log(`\x1b[37m${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
     Promise.all(global.command.map(fn=>fn(message)));
-    console.log("C")
-    await stats.message(message.guild.id);
   });
 
   client.on(Events.MessageUpdate,async(oldMessage,newMessage)=>{
@@ -99,15 +99,15 @@ module.exports = async(client)=>{
   });
 
   client.on(Events.GuildMemberAdd,async(member)=>{
-    require("./event/guildMemberAdd/join")(member);
-
     await stats.join(member.guild.id);
+
+    require("./event/guildMemberAdd/join")(member);
   });
 
   client.on(Events.GuildMemberRemove,async(member)=>{
-    require("./event/guildMemberRemove/leave")(member);
-
     await stats.leave(member.guild.id);
+
+    require("./event/guildMemberRemove/leave")(member);
   });
 
   client.rest.on(RESTEvents.InvalidRequestWarning,async(message)=>{
