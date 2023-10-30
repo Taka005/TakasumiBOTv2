@@ -30,7 +30,7 @@ module.exports = async(client)=>{
     console.log(`\x1b[37m${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
     Promise.all(global.command.map(fn=>fn(message)));
-
+    console.log("C")
     await stats.message(message.guild.id);
   });
 
