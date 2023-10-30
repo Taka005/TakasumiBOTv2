@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
 
     try{
       if(!id){
-        const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
+        const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id};`);
   
         await interaction.reply({
           embeds:[{
@@ -93,7 +93,7 @@ module.exports = async(interaction)=>{
 
         const member = await fetchMember(interaction.guild,userId[0]);
         if(member){
-          const account = await db(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
+          const account = await db(`SELECT * FROM account WHERE id = ${member.user.id};`);
     
           await interaction.reply({
             embeds:[{
@@ -155,7 +155,7 @@ module.exports = async(interaction)=>{
           });
         }else{
           const user = await fetchUser(interaction.client,userId[0]);
-          const account = await db(`SELECT * FROM account WHERE id = ${user.id} LIMIT 1;`);
+          const account = await db(`SELECT * FROM account WHERE id = ${user.id};`);
 
           await interaction.reply({
             embeds:[{

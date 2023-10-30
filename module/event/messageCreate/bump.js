@@ -12,10 +12,10 @@ module.exports = async(message)=>{
       message.embeds[0]?.description.match(/表示順をアップしたよ/)||
       message.embeds[0]?.description.match(/Bump done/)
     ){
-      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id} LIMIT 1;`);
+      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id};`);
       if(ignore[0]) return;
 
-      const data = await db(`SELECT * FROM bump WHERE id = ${message.guild.id} LIMIT 1;`);
+      const data = await db(`SELECT * FROM bump WHERE id = ${message.guild.id};`);
       await message.channel.send({
         embeds:[{
           color: Colors.White,

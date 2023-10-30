@@ -1656,6 +1656,10 @@ module.exports = {
           .setDescription("設定のヘルプを表示します"))
       .addSubcommand(subcommand=>
         subcommand
+          .setName("stats")
+          .setDescription("サーバーの統計情報の収集の有効・無効を切り替えます"))
+      .addSubcommand(subcommand=>
+        subcommand
           .setName("bump")
           .setDescription("BUMP時に通知するロールを設定します")
           .addRoleOption(option=>

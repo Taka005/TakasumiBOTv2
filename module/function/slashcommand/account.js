@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "account"){
-    const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id} LIMIT 1;`);
+    const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id};`);
 
     if(!account[0]) return await interaction.reply({ 
       embeds:[{

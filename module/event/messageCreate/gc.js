@@ -10,17 +10,21 @@ module.exports = async(message)=>{
   const { admin } = require("../../../config.json");
 
   if(message.author.bot) return;
-  const global = await db(`SELECT * FROM global WHERE channel = ${message.channel.id} LIMIT 1;`);
-  if(!global[0]) return;
+
+  const global = await db(`SELECT * FROM global;`);
+  if(!global.find(g=>g.channel === message.channel.id)) return;
+
+  const mute_server = await db(`SELECT * FROM mute_server;`);
+  const mute_user = await db(`SELECT * FROM mute_user;`);
 
   if(
-    (await db(`SELECT * FROM mute_server WHERE id = ${message.guild.id} LIMIT 1;`))[0]||
-    (await db(`SELECT * FROM mute_user WHERE id = ${message.author.id} LIMIT 1;`))[0]||
+    mute_user.find(m=>m.id === message.author.id)||
     message.content.length > 300||
     Spam.count(message.guild.id)
   ) return await message.react("❌").catch(()=>{});
 
-  if(!(await db(`SELECT * FROM account WHERE id = ${message.author.id} LIMIT 1;`))[0]) return await message.reply({ 
+  const account = await db(`SELECT * FROM account WHERE id = ${message.author.id};`)
+  if(!account[0]) return await message.reply({ 
     embeds:[{
       author:{
         name: "認証してください",
@@ -118,17 +122,21 @@ module.exports = async(message)=>{
     }
   }
 
-  (await db("SELECT * FROM global;")).forEach(async(data)=>{
-    const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
-    if(data.server === message.guild.id||mute[0]) return;
+  global.forEach(async(data)=>{
+    if(
+      data.server === message.guild.id||
+      mute_server.find(m=>m.id === message.guild.id)
+    ) return;
 
-    const webhook = new WebhookClient({id: data.id, token: data.token});
-    await webhook.send({
-      embeds: embed,
-      username: "TakasumiBOT Global",
-      avatarURL: "https://cdn.taka.cf/images/icon.png"
-    }).catch(async(error)=>{
-      await db(`DELETE FROM global WHERE channel = ${data.channel} LIMIT 1;`);
+    try{
+      const webhook = new WebhookClient({id: data.id, token: data.token});
+      await webhook.send({
+        embeds: embed,
+        username: "TakasumiBOT Global",
+        avatarURL: "https://cdn.taka.cf/images/icon.png"
+      });
+    }catch(error){
+      await db(`DELETE FROM global WHERE channel = ${data.channel};`);
       await message.client.channels.cache.get(data.channel).send({
         embeds:[{
           author:{
@@ -153,7 +161,7 @@ module.exports = async(message)=>{
                 .setStyle(ButtonStyle.Link))
         ]
       }).catch(()=>{});
-    });
+    }
   });
 
   await message.react("✅")

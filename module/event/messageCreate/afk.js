@@ -10,9 +10,9 @@ module.exports = async(message)=>{
     !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.SendMessages)
   ) return;
 
-  const data = await db(`SELECT * FROM afk WHERE user = ${message.author.id} LIMIT 1;`);
+  const data = await db(`SELECT * FROM afk WHERE user = ${message.author.id};`);
   if(data[0]){
-    await db(`DELETE FROM afk WHERE user = ${message.author.id} LIMIT 1;`);
+    await db(`DELETE FROM afk WHERE user = ${message.author.id};`);
     await message.channel.send({
       embeds:[{
         color: Colors.Green,
@@ -27,7 +27,7 @@ module.exports = async(message)=>{
     const mention = message.content.match(/<@\d{17,19}>/g);
     if(mention){
       const id = mention[0].match(/\d{17,19}/g);
-      const afk = await db(`SELECT * FROM afk WHERE user = ${id[0]} LIMIT 1;`);
+      const afk = await db(`SELECT * FROM afk WHERE user = ${id[0]};`);
       if(data[0]){
         if(limit(message)) return;
         await db(`UPDATE afk SET mention = ${Number(afk[0].mention)+1} WHERE user = ${id[0]}`);

@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      const account = await db(`SELECT * FROM account WHERE id = ${member.user.id} LIMIT 1;`);
+      const account = await db(`SELECT * FROM account WHERE id = ${member.user.id};`);
 
       await interaction.reply({
         embeds:[{

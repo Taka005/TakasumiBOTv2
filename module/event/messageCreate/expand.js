@@ -13,7 +13,7 @@ module.exports = async(message)=>{
   
   const link = message.content.match(/^https?:\/\/(?:ptb\.|canary\.)?(?:discord|discordapp)\.com\/channels\/(\d+)\/(\d+)\/(\d+)$/);
   if(link){
-    const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id} LIMIT 1;`);
+    const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id};`);
     if(ignore[0]||limit(message)) return;
 
     const channel = await fetchChannel(message.guild,link[2]);

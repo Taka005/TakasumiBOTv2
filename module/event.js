@@ -4,6 +4,7 @@ module.exports = async(client)=>{
   const fs = require("fs");
   const db = require("./lib/db");
   const count = require("./lib/count");
+  const stats = require("./lib/stats");
   const money = require("./lib/money");
 
   await require("./lib/fileLoader")();
@@ -25,6 +26,8 @@ module.exports = async(client)=>{
     Promise.all(global.messageCreate.map(fn=>fn(message)));
     
     if(message.author.bot) return;
+
+    await stats.message(message.guild.id);
 
     console.log(`\x1b[37m${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
@@ -64,8 +67,8 @@ module.exports = async(client)=>{
     });
     
     if(
-      (await db(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id} LIMIT 1;`))[0]||
-      (await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id} LIMIT 1;`))[0]
+      (await db(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id};`))[0]||
+      (await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id};`))[0]
     ) return await interaction.reply({ 
       embeds:[{
         color: Colors.Red,
@@ -96,10 +99,14 @@ module.exports = async(client)=>{
   });
 
   client.on(Events.GuildMemberAdd,async(member)=>{
+    await stats.join(member.guild.id);
+
     require("./event/guildMemberAdd/join")(member);
   });
 
   client.on(Events.GuildMemberRemove,async(member)=>{
+    await stats.leave(member.guild.id);
+
     require("./event/guildMemberRemove/leave")(member);
   });
 

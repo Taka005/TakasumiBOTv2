@@ -141,9 +141,9 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        const data = await db(`SELECT * FROM mute_user WHERE id = ${user.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM mute_user WHERE id = ${user.id};`);
         if(data[0]){
-          await db(`DELETE FROM mute_user WHERE id = ${user.id} LIMIT 1;`);
+          await db(`DELETE FROM mute_user WHERE id = ${user.id};`);
 
           await interaction.reply({
             embeds:[{
@@ -181,9 +181,9 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        const data = await db(`SELECT * FROM mute_server WHERE id = ${guild.id} LIMIT 1;`);
+        const data = await db(`SELECT * FROM mute_server WHERE id = ${guild.id};`);
         if(data[0]){
-          await db(`DELETE FROM mute_server WHERE id = ${guild.id} LIMIT 1;`);
+          await db(`DELETE FROM mute_server WHERE id = ${guild.id};`);
 
           await interaction.reply({
             embeds:[{
@@ -208,9 +208,9 @@ module.exports = async(interaction)=>{
           });
         }
       }else if(type === "ip"){
-        const data = await db(`SELECT * FROM mute_ip WHERE ip = "${id}" LIMIT 1;`);
+        const data = await db(`SELECT * FROM mute_ip WHERE ip = "${id}";`);
         if(data[0]){
-          await db(`DELETE FROM mute_ip WHERE ip = "${id}" LIMIT 1;`);
+          await db(`DELETE FROM mute_ip WHERE ip = "${id}";`);
 
           await interaction.reply({
             embeds:[{

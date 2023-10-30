@@ -19,9 +19,9 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const data = await db(`SELECT * FROM afk WHERE user = ${interaction.user.id} LIMIT 1;`);
+    const data = await db(`SELECT * FROM afk WHERE user = ${interaction.user.id};`);
     if(data[0]){
-      await db(`DELETE FROM afk WHERE user = ${interaction.user.id} LIMIT 1;`);
+      await db(`DELETE FROM afk WHERE user = ${interaction.user.id};`);
       await interaction.reply({
         embeds:[{
           color: Colors.Green,

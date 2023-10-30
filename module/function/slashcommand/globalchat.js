@@ -46,11 +46,11 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const data = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
+    const data = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id};`);
     if(data[0]){//登録済み
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
 
-      await db(`DELETE FROM global WHERE server = ${interaction.guild.id} LIMIT 1;`);
+      await db(`DELETE FROM global WHERE server = ${interaction.guild.id};`);
       await webhook.delete()
         .then(async()=>{
           await interaction.reply({
@@ -119,19 +119,23 @@ module.exports = async(interaction)=>{
         }]
       });
 
-      await interaction.channel.createWebhook({
-        name: "TakasumiBOT Global",
-        avatar: "https://cdn.taka.cf/images/icon.png",
-      })
-        .then(async(webhook)=>{
-          await db(`INSERT INTO global (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW());`);
-          
-          const global = await db("SELECT * FROM global;");
-  
-          global.map(async(data)=>{
-            const mute = await db(`SELECT * FROM mute_server WHERE id = ${data.server} LIMIT 1;`);
-            if(data.server === interaction.guild.id||mute[0]) return;
+      try{
+        const webhook = await interaction.channel.createWebhook({
+          name: "TakasumiBOT Global",
+          avatar: "https://cdn.taka.cf/images/icon.png",
+        });
 
+        await db(`INSERT INTO global (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW());`);
+        const mute = await db(`SELECT * FROM mute_server;`);
+
+        const global = await db("SELECT * FROM global;");
+        global.map(async(data)=>{
+          if(
+            data.server === interaction.guild.id||
+            mute.find(m=>m.id === data.server)
+          ) return;
+
+          try{
             const webhooks = new WebhookClient({id: data.id, token: data.token});
             await webhooks.send({
               embeds:[{
@@ -148,48 +152,48 @@ module.exports = async(interaction)=>{
               }],
               username: "TakasumiBOT Global",
               avatarURL: "https://cdn.taka.cf/images/icon.png"
-            }).catch(async(error)=>{
-              await db(`DELETE FROM global WHERE channel = ${data.channel} LIMIT 1;`);
-              await interaction.client.channels.cache.get(data.channel).send({
-                embeds:[{
-                  author:{
-                    name: "グローバルチャットでエラーが発生しました",
-                    icon_url: "https://cdn.taka.cf/images/system/error.png"
-                  },
-                  color: Colors.Red,
-                  description: "エラーが発生したため、強制的に切断されました\n再度登録するには`/global`を使用してください",
-                  fields:[
-                    {
-                      name: "エラーコード",
-                      value: `\`\`\`${error}\`\`\``
-                    }
-                  ]
-                }],
-                components:[
-                  new ActionRowBuilder()
-                    .addComponents( 
-                      new ButtonBuilder()
-                        .setLabel("サポートサーバー")
-                        .setURL("https://discord.gg/NEesRdGQwD")
-                        .setStyle(ButtonStyle.Link))
-                ]
-              }).catch(()=>{});
             });
-          });
+          }catch(error){
+            await db(`DELETE FROM global WHERE channel = ${data.channel};`);
+            await interaction.client.channels.cache.get(data.channel).send({
+              embeds:[{
+                author:{
+                  name: "グローバルチャットでエラーが発生しました",
+                  icon_url: "https://cdn.taka.cf/images/system/error.png"
+                },
+                color: Colors.Red,
+                description: "エラーが発生したため、強制的に切断されました\n再度登録するには`/global`を使用してください",
+                fields:[
+                  {
+                    name: "エラーコード",
+                    value: `\`\`\`${error}\`\`\``
+                  }
+                ]
+              }],
+              components:[
+                new ActionRowBuilder()
+                  .addComponents( 
+                    new ButtonBuilder()
+                      .setLabel("サポートサーバー")
+                      .setURL("https://discord.gg/NEesRdGQwD")
+                      .setStyle(ButtonStyle.Link))
+              ]
+            }).catch(()=>{});
+          }
+        });
 
-          await interaction.editReply({
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: interaction.guild.name,
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
-              },
-              description: "グローバルチャットに新しいサーバーを追加しました\nみんなに挨拶してみましょう!\nこのチャンネルに入力された内容は、登録チャンネル全てに送信されます\n\n※チャットを利用した場合、[利用規約](https://takasumibot.github.io/terms.html)に同意されたことになります。必ずご確認ください",
-              timestamp: new Date()
-            }]
-          });
-      })
-      .catch(async(error)=>{
+        await interaction.editReply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: interaction.guild.name,
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            },
+            description: "グローバルチャットに新しいサーバーを追加しました\nみんなに挨拶してみましょう!\nこのチャンネルに入力された内容は、登録チャンネル全てに送信されます\n\n※チャットを利用した場合、[利用規約](https://takasumibot.github.io/terms.html)に同意されたことになります。必ずご確認ください",
+            timestamp: new Date()
+          }]
+        });
+      }catch(error){
         await interaction.editReply({
           embeds:[{
             color: Colors.Red,
@@ -214,7 +218,7 @@ module.exports = async(interaction)=>{
                   .setStyle(ButtonStyle.Link))
           ]
         });
-      });
+      }
     }
   }
 }
