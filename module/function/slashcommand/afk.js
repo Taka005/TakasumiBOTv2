@@ -19,9 +19,9 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const data = await db(`SELECT * FROM afk WHERE user = ${interaction.user.id};`);
+    const data = await db(`SELECT * FROM afk WHERE id = ${interaction.user.id};`);
     if(data[0]){
-      await db(`DELETE FROM afk WHERE user = ${interaction.user.id};`);
+      await db(`DELETE FROM afk WHERE id = ${interaction.user.id};`);
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -33,7 +33,7 @@ module.exports = async(interaction)=>{
         }]
       }); 
     }else{
-      await db(`INSERT INTO afk (user, message, mention, time) VALUES("${interaction.user.id}","${escape(message)}","0",NOW());`);
+      await db(`INSERT INTO afk (id, message, mention, time) VALUES("${interaction.user.id}","${escape(message)}","0",NOW());`);
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
