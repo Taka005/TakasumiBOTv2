@@ -100,10 +100,14 @@ module.exports = async(client)=>{
 
   client.on(Events.GuildMemberAdd,async(member)=>{
     require("./event/guildMemberAdd/join")(member);
+
+    await stats.join(member.guild.id);
   });
 
   client.on(Events.GuildMemberRemove,async(member)=>{
     require("./event/guildMemberRemove/leave")(member);
+
+    await stats.leave(member.guild.id);
   });
 
   client.rest.on(RESTEvents.InvalidRequestWarning,async(message)=>{

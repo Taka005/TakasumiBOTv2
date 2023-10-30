@@ -30,5 +30,7 @@ module.exports = async(client)=>{
 
   cron.schedule("0 0 0 * * *",async()=>{
     await db(`UPDATE count SET message = 0;`);
+    await db(`UPDATE count SET \`join\` = 0;`);
+    await db(`UPDATE count SET \`leave\` = 0;`);
   });
 }
