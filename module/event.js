@@ -4,6 +4,7 @@ module.exports = async(client)=>{
   const fs = require("fs");
   const db = require("./lib/db");
   const count = require("./lib/count");
+  const stats = require("./lib/stats");
   const money = require("./lib/money");
 
   await require("./lib/fileLoader")();
@@ -29,6 +30,8 @@ module.exports = async(client)=>{
     console.log(`\x1b[37m${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
     Promise.all(global.command.map(fn=>fn(message)));
+
+    await stats.message(message.guild.id);
   });
 
   client.on(Events.MessageUpdate,async(oldMessage,newMessage)=>{

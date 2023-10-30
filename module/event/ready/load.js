@@ -25,6 +25,10 @@ module.exports = async(client)=>{
     }
     
     await db(`INSERT INTO log (time, ping, user, guild, message, command, cpu, ram) VALUES(NOW(),"${ping}","${user}","${guild}","${count[0].message}","${count[0].command}","${cpuUsage}","${ram}");`);
-    await db(`UPDATE count SET message=0, command=0 WHERE id=${process.env.ID};`);
+    await db(`UPDATE count SET message = 0, command = 0 WHERE id = ${process.env.ID};`);
+  });
+
+  cron.schedule("0 0 0 * * *",async()=>{
+    await db(`UPDATE count SET message = 0;`);
   });
 }
