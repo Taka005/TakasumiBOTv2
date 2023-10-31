@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, ChannelType, Colors } = require("discord.js");
+  const db = require("../../lib/db");
   const boost = require("../../lib/boost");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "server"){
@@ -29,6 +30,8 @@ module.exports = async(interaction)=>{
       const emojis = await interaction.guild.emojis.fetch();
       const stickers = await interaction.guild.stickers.fetch();
 
+      const stats = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id};`);
+      
       await interaction.editReply({
         embeds:[{
           color: Colors.Green,
@@ -61,8 +64,12 @@ module.exports = async(interaction)=>{
               value: `🟢: ${online.size}人 ⛔: ${dnd.size}人 🌙: ${idle.size}人 ⚫: ${offline.size}人\n🌐: ${web.size}人 📱: ${mobile.size}人 🖥️: ${desktop.size}人`
             },
             {
-              name: "統計情報",
+              name: "その他",
               value: `チャンネル:${channels.size}個(💬:${text.size} 🔊:${voice.size} 📁:${category.size})\nロール:${roles.size}個\n絵文字:${emojis.size}個\nステッカー:${stickers.size}個\nNitro:${interaction.guild.premiumSubscriptionCount}ブースト(${boost(interaction.guild.premiumSubscriptionCount)}レベル)`
+            },
+            {
+              name: "統計情報",
+              value: stats[0] ? `メッセージ数: ${stats[0].message}回\n参加数: ${stats[0].join}人\n脱退数: ${stats[0].leave}人` : "設定されていません"
             }
           ],
           footer:{
