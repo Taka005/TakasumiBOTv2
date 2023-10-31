@@ -29,6 +29,9 @@ module.exports = async(interaction)=>{
       const emojis = await interaction.guild.emojis.fetch();
       const stickers = await interaction.guild.stickers.fetch();
 
+      const stats = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id};`);
+      
+
       await interaction.editReply({
         embeds:[{
           color: Colors.Green,
