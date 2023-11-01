@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits, Options } = require("discord.js");
 require("dotenv").config();
 const fs = require("fs");
+const log = require("./module/lib/log");
 
 const client = new Client({
   intents:[
@@ -31,26 +32,26 @@ require("./module/event")(client);
 
 client.login(process.env.BOT_TOKEN)
   .then(()=>{
-    console.log("\x1b[34mログインしました\x1b[39m");
+    log.info("ログイン完了");
   });
 
 process.on("message",(message)=>{
   if(!message.type) return;
 
   if(message.type === "shardId"){
-    console.log(`\x1b[34m${message.data}番シャード起動\x1b[39m`);
+    log.info(`${message.data}番シャード起動`);
     global.shardId = message.data;
   }
 });
 
 process.on("uncaughtException",async(error)=>{
-  console.log(`\x1b[31m${error.stack}\x1b[39m`);
+  log.error(error.stack);
 
-  fs.appendFileSync("./tmp/error.txt",`-------- UncaugthException: ${new Date().toLocaleString()} --------\n${error.stack}\n\n`,"utf8");
+  fs.appendFileSync("./tmp/error.txt",`-------- [UNCAUGTH_EXCEPTION]: ${new Date().toLocaleString()} --------\n${error.stack}\n\n`,"utf8");
 });
 
 process.on("unhandledRejection",async(error)=>{
-  console.log(`\x1b[31m${error.stack}\x1b[39m`);
+  log.error(error.stack);
 
-  fs.appendFileSync("./tmp/error.txt",`-------- UnhandledRejection: ${new Date().toLocaleString()} --------\n${error.stack}\n\n`,"utf8");
+  fs.appendFileSync("./tmp/error.txt",`-------- [UNHANDLED_REJECTION]: ${new Date().toLocaleString()} --------\n${error.stack}\n\n`,"utf8");
 });

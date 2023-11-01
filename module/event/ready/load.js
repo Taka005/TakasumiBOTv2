@@ -3,6 +3,7 @@ module.exports = async(client)=>{
   const os = require("os");
   require("dotenv").config();
   const db = require("../../lib/db");
+  const log = require("../../lib/log");
   const cpu = require("../../lib/cpu");
   const fetchGuildCounts = require("../../lib/fetchGuildCounts");
   const fetchUserCounts = require("../../lib/fetchUserCounts");
@@ -28,11 +29,15 @@ module.exports = async(client)=>{
     
     await db(`INSERT INTO log (time, ping, user, guild, message, command, cpu, ram) VALUES(NOW(),"${ping}","${user}","${guild}","${count[0].message}","${count[0].command}","${cpuUsage}","${ram}");`);
     await db(`UPDATE count SET message = 0, command = 0 WHERE id = ${process.env.ID};`);
+
+    log.info("ログの保存完了");
   });
 
   cron.schedule("0 0 0 * * *",async()=>{
     await db(`UPDATE stats SET message = 0;`);
     await db(`UPDATE stats SET \`join\` = 0;`);
     await db(`UPDATE stats SET \`leave\` = 0;`);
+
+    log.info("統計データリセット");
   });
 }
