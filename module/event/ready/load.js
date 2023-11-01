@@ -11,8 +11,6 @@ module.exports = async(client)=>{
   if(client.shard&&process.env.SHARDS !== "0") return;
 
   cron.schedule("0 * * * *",async()=>{
-    const log = await db("SELECT * FROM log;");
-
     const ping = client.ws.ping < 300 ? client.ws.ping : 300;
     const user = await fetchUserCounts(client);
     const guild = await fetchGuildCounts(client);
@@ -20,7 +18,7 @@ module.exports = async(client)=>{
     const cpuUsage = await cpu();
     const ram = 100 - Math.floor((os.freemem()/os.totalmem())*100);
 
-    let logCount = log.length;
+    let logCount = (await db("SELECT * FROM log;")).length;
     while(logCount >= 168){
       await db("DELETE FROM log ORDER BY time LIMIT 1;");
       logCount--;
