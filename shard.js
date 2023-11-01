@@ -1,11 +1,12 @@
 const { ShardingManager } = require("discord.js");
 require("dotenv").config();
+const log = require("./module/lib/log");
 
 const manager = new ShardingManager("./index.js",{
   token: process.env.BOT_TOKEN
 });
 
-console.log(`\x1b[34mシャードを起動中...\x1b[39m`);
+log.info("シャード起動中...");
 
 manager.on("shardCreate",(shard)=>{
   shard.on("ready",async()=>{

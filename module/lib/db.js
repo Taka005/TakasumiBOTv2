@@ -1,6 +1,8 @@
 const mysql = require("mysql");
 const util = require("util");
 require("dotenv").config();
+const log = require("./log");
+
 const connection = mysql.createConnection({
   host: "public.bfv4d.tky1.mdbs.jp",
   user: process.env.DB_USER,
@@ -14,7 +16,7 @@ module.exports = async(query)=>{
   try{
     return await connection.query(query);
   }catch(error){
-    console.log(`\x1b[31m${error}\x1b[39m`);
+    log.error(error);
     return [];
   }
 }

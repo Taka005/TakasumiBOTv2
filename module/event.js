@@ -6,10 +6,11 @@ module.exports = async(client)=>{
   const count = require("./lib/count");
   const stats = require("./lib/stats");
   const money = require("./lib/money");
+  const log = require("./lib/log");
 
   await require("./lib/fileLoader")();
 
-  client.once(Events.ClientReady,async(client)=>{
+  client.on(Events.ClientReady,async(client)=>{
     require("./event/ready/status")(client);
     require("./event/ready/load")(client);
     require("./event/ready/command")(client);
@@ -28,8 +29,6 @@ module.exports = async(client)=>{
     if(message.author.bot) return;
 
     await stats.message(message.guild.id);
-
-    console.log(`\x1b[37m${message.author.tag}(${message.guild.id})${message.content}\x1b[39m`);
 
     Promise.all(global.command.map(fn=>fn(message)));
   });
@@ -111,18 +110,18 @@ module.exports = async(client)=>{
   });
 
   client.rest.on(RESTEvents.InvalidRequestWarning,async(message)=>{
-    console.log(`InvalidRequest: ${message}`);
+    log.error(message);
 
-    fs.appendFileSync("./tmp/log.txt",`-------- InvalidRequest: ${new Date().toLocaleString()} --------\n${message}\n\n`,"utf8");
+    fs.appendFileSync("./tmp/log.txt",`-------- [INVSLID_REQUEST]: ${new Date().toLocaleString()} --------\n${message}\n\n`,"utf8");
   });
 
   if(process.env.DEBUG){
     client.on(Events.Debug,(message)=>{
-      console.log(`Debug: ${message}`);
+      log.debug(message);
     });
 
     client.on(Events.Warn,(message)=>{
-      console.log(`Warn: ${message}`);
+      log.warn(message);
     });
   }
 }
