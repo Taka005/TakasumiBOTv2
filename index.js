@@ -37,7 +37,7 @@ client.login(process.env.BOT_TOKEN)
 process.on("message",(message)=>{
   if(!message.type) return;
 
-  if(message.type == "shardId"){
+  if(message.type === "shardId"){
     console.log(`\x1b[34m${message.data}番シャード起動\x1b[39m`);
     global.shardId = message.data;
   }
