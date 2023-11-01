@@ -9,12 +9,7 @@ const manager = new ShardingManager("./index.js",{
 log.info("シャード起動中...");
 
 manager.on("shardCreate",(shard)=>{
-  shard.on("ready",async()=>{
-    await shard.send({
-      type: "shardId",
-      data: shard.id
-    });
-  });
+  log.info(`${shard.id}番シャードが起動しました`);
 });
 
 manager.spawn({

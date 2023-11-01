@@ -35,15 +35,6 @@ client.login(process.env.BOT_TOKEN)
     log.info("ログインしました");
   });
 
-process.on("message",(message)=>{
-  if(!message.type) return;
-
-  if(message.type === "shardId"){
-    log.info(`${message.data}番シャードが起動しました`);
-    global.shardId = message.data;
-  }
-});
-
 process.on("uncaughtException",async(error)=>{
   log.error(error.stack);
 
