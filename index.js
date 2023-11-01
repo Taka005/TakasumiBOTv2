@@ -30,16 +30,13 @@ const client = new Client({
 
 require("./module/event")(client);
 
-client.login(process.env.BOT_TOKEN)
-  .then(()=>{
-    log.info("ログイン完了");
-  });
+client.login(process.env.BOT_TOKEN);
 
 process.on("message",(message)=>{
   if(!message.type) return;
 
   if(message.type === "shardId"){
-    log.info(`${message.data}番シャード起動`);
+    log.info(`${message.data}番シャードが起動しました`);
     global.shardId = message.data;
   }
 });
