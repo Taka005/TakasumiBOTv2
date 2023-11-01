@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
               text: "TakasumiBOT"
             },
             thumbnail:{
-              url: interaction.user.avatarURL({extension:"png",size:1024})|| interaction.user.defaultAvatarURL
+              url: interaction.user.avatarURL({extension:"png",size:1024})||interaction.user.defaultAvatarURL
             },
             fields:[
               {
