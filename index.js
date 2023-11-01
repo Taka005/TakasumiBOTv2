@@ -30,7 +30,10 @@ const client = new Client({
 
 require("./module/event")(client);
 
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN)
+  .then(()=>{
+    log.info("ログインしました");
+  });
 
 process.on("message",(message)=>{
   if(!message.type) return;
