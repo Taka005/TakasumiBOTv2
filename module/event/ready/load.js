@@ -7,6 +7,8 @@ module.exports = async(client)=>{
   const fetchGuildCounts = require("../../lib/fetchGuildCounts");
   const fetchUserCounts = require("../../lib/fetchUserCounts");
 
+  if(client.shards&&global.shardId !== 0) return;
+
   cron.schedule("0 * * * *",async()=>{
     const log = await db("SELECT * FROM log;");
 

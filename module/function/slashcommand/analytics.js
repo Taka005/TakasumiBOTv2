@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
           nextMonth.setMonth(startDate.getMonth()+1,0);
        
           time.push(`${startDate.getMonth()+1}月`);
-          count.push(members.filter(member=>member.joinedAt >= startDate && member.joinedAt < nextMonth).size);
+          count.push(members.filter(member=>member.joinedAt >= startDate&&member.joinedAt < nextMonth).size);
 
           startDate.setMonth(startDate.getMonth()+1,1);
         }
@@ -54,7 +54,7 @@ module.exports = async(interaction)=>{
           nextDate.setDate(startDate.getDate()+1);
       
           time.push(`${startDate.getDate()}日`);
-          count.push(members.filter(member=>member.joinedAt >= startDate && member.joinedAt < nextDate).size);
+          count.push(members.filter(member=>member.joinedAt >= startDate&&member.joinedAt < nextDate).size);
       
           startDate.setDate(startDate.getDate()+1);
         }
