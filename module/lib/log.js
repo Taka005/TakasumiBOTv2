@@ -9,6 +9,6 @@ module.exports = {
     console.error(`\x1b[31m[ERROR] ${str}\x1b[39m`);
   },
   "debug":(str)=>{
-    console.debug(`\x1b[34m[ERROR] ${str}\x1b[39m`)
+    console.debug(`\x1b[34m[DEBUG] ${str}\x1b[39m`)
   }
 }
