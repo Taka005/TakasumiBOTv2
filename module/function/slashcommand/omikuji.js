@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   const random = require("../../lib/random");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "omikuji"){
-    
+
     const draws = [
       //大吉
       "https://cdn.taka.cf/images/omikuji/daikiti_1.png",

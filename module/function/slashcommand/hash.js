@@ -34,11 +34,11 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }], 
-        ephemeral: true,   
+        }],
+        ephemeral: true,
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

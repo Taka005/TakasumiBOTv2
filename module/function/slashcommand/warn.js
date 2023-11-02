@@ -5,7 +5,7 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "warn"){
     const user = interaction.options.getUser("user");
     const reason = interaction.options.getString("reason");
-      
+
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-  
+
     const member = await fetchMember(interaction.guild,user.id);
     if(!member) return await interaction.reply({
       embeds:[{
@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-  
+
     if(member.user.id === interaction.user.id) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-  
+
     try{
       await member.user.send({
         embeds:[{
@@ -95,7 +95,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

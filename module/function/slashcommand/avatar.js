@@ -40,10 +40,10 @@ module.exports = async(interaction)=>{
           }],
           ephemeral: true
         });
-    
+
         const user = await fetchUser(interaction.client,userId[0]);
         const member = await fetchMember(interaction.guild,userId[0]);
-        
+
         if(!user) return await interaction.reply({
           embeds:[{
             color: Colors.Red,
@@ -93,7 +93,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

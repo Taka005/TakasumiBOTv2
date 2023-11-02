@@ -176,7 +176,7 @@ module.exports = async(interaction)=>{
           }],
           components:[
             new ActionRowBuilder()
-              .addComponents( 
+              .addComponents(
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
@@ -187,7 +187,7 @@ module.exports = async(interaction)=>{
       }
     }else{
       await interaction.guild.autoModerationRules.create(options[type])
-        .then(async()=>{    
+        .then(async()=>{
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
@@ -215,7 +215,7 @@ module.exports = async(interaction)=>{
             }],
             components:[
               new ActionRowBuilder()
-                .addComponents( 
+                .addComponents(
                   new ButtonBuilder()
                     .setLabel("サポートサーバー")
                     .setURL("https://discord.gg/NEesRdGQwD")

@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("about_")){
     const id = interaction.customId.split("_");
-  
+
     const server = Math.floor(await fetchGuildCounts(interaction.client)/10)*10;
 
     const type = {
@@ -86,7 +86,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

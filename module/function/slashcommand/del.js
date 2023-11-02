@@ -55,13 +55,13 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-    
+
     await interaction.deferReply();
     try{
       if(user){
         const messages = (await interaction.channel.messages.fetch({ limit: 100 }))
           .filter(msg=>user.id === msg.author.id&&interaction.client.user.id !== msg.author.id).first(number);
-          
+
         if(!messages[0]) return await interaction.editReply({
           embeds:[{
             color: Colors.Red,
@@ -120,7 +120,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

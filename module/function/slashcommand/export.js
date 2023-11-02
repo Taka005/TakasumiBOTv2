@@ -61,12 +61,12 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         files:[
           new AttachmentBuilder()
-            .setFile(data) 
+            .setFile(data)
             .setName("SERVER_FILE.json")
-        ] 
+        ]
       });
     }catch(error){
-      await interaction.reply({ 
+      await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -79,16 +79,16 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }], 
+        }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle(ButtonStyle.Link))
         ],
-        ephemeral: true 
+        ephemeral: true
       });
     }
   }

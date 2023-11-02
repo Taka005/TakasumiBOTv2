@@ -63,7 +63,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-    
+
     try{
       await interaction.channel.send({
         embeds:[{
@@ -83,7 +83,7 @@ module.exports = async(interaction)=>{
       await interaction.deferReply()
         .then(()=>interaction.deleteReply());
     }catch(error){
-      await interaction.reply({ 
+      await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -97,16 +97,16 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }], 
+        }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle(ButtonStyle.Link))
         ],
-        ephemeral: true 
+        ephemeral: true
       });
     }
   }

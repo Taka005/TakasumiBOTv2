@@ -71,10 +71,10 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }],      
+        }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

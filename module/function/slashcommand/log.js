@@ -64,13 +64,13 @@ module.exports = async(interaction)=>{
         content: message.content
       })),null,"  ");
     }else if(format === "txt"){
-      data = messages.map(message=>`${message.author.bot?"[BOT]":""}${message.author.tag}(${message.author.id})\n${message.content||"[内容がありません]"}`).join("\n\n") 
+      data = messages.map(message=>`${message.author.bot?"[BOT]":""}${message.author.tag}(${message.author.id})\n${message.content||"[内容がありません]"}`).join("\n\n")
     }
 
     await interaction.reply({
       files:[
         new AttachmentBuilder()
-          .setFile(Buffer.from(data)) 
+          .setFile(Buffer.from(data))
           .setName(`LOG.${format}`)
       ]
     });

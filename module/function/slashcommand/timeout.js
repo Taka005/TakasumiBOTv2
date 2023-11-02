@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
     const user = interaction.options.getUser("user");
     const time = interaction.options.getInteger("time")||30;
     const reason = interaction.options.getString("reason")||`${interaction.user.tag}によってタイムアウト`;
-    
+
     if(!interaction.member.permissions.has(PermissionFlagsBits.ModerateMembers)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -100,7 +100,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

@@ -2,7 +2,7 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "about"){
-    
+
     await interaction.reply({
       embeds:[{
         color: Colors.Green,

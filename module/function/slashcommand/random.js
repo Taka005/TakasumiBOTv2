@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
     ].filter(select=>select!==null);
 
     await interaction.reply({
-      embeds:[{    
+      embeds:[{
         color: Colors.Green,
         author:{
           name: "ランダムで選択しました",

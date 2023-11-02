@@ -23,7 +23,9 @@ module.exports = async(member)=>{
     })
       .catch(async(error)=>{
         await db(`DELETE FROM \`join\` WHERE channel = ${data[0].channel};`);
-        await member.guild.channels.cache.get(data[0].channel).send({
+        const channel = member.guild.channels.cache.get(data[0].channel);
+        if(!channel) return;
+        await channel.send({
           embeds:[{
             author:{
               name: "参加メッセージでエラーが発生しました",
@@ -40,7 +42,7 @@ module.exports = async(member)=>{
           }],
           components:[
             new ActionRowBuilder()
-              .addComponents( 
+              .addComponents(
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")

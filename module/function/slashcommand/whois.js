@@ -16,7 +16,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-    
+
     try{
       const refer = (await whois("whois.iana.org",domain)).match(/refer:\s*(.*)/);
       if(!refer?.[1]) return await interaction.reply({
@@ -35,7 +35,7 @@ module.exports = async(interaction)=>{
       await interaction.reply({
         files:[
           new AttachmentBuilder()
-            .setFile(Buffer.from(data)) 
+            .setFile(Buffer.from(data))
             .setName(`WHOIS_${domain}.txt`)
         ]
       });

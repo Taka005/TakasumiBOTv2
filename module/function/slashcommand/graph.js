@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
       interaction.options.getString("formula_2"),
       interaction.options.getString("formula_3")
     ].filter(f=>f!==null).join(",");
-  
+
     await interaction.deferReply();
     try{
       const image = await fetch(`http://localhost:4000/?formula=${formula}`)
@@ -16,7 +16,7 @@ module.exports = async(interaction)=>{
           if(!res.ok) throw new Error();
           return await res.blob();
         });
-  
+
       await interaction.editReply({
         embeds:[{
           color: Colors.Green,

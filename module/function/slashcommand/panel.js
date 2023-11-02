@@ -80,7 +80,7 @@ module.exports = async(interaction)=>{
           title: title,
           description: roles.map((r,i)=>`${emojis[i]}<@&${r.id}>`).join("\n")
         }],
-        components:[     
+        components:[
           new ActionRowBuilder()
             .addComponents(
               new StringSelectMenuBuilder()
@@ -120,7 +120,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

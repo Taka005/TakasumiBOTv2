@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "slowmode"){
     const time = interaction.options.getInteger("time");
-  
+
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -21,7 +21,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-   
+
     if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -79,10 +79,10 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }],      
+        }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

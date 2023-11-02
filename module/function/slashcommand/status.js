@@ -18,21 +18,21 @@ module.exports = async(interaction)=>{
           timestamp: new Date()
         }]
       });
-  
+
       const account = await db("SELECT * FROM account;");
       const hiroyuki = await db("SELECT * FROM hiroyuki;");
       const global = await db("SELECT * FROM global;");
-  
+
       const date = new Date();
       const message = await db(`SELECT SUM(message) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`);
       const command = await db(`SELECT SUM(command) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`);
-  
+
       const messageSign = (await db(`SELECT SUM(message) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`))[0].total - (await db(`SELECT SUM(CASE WHEN time BETWEEN "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 00:00:00" AND "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 23:59:59" THEN message ELSE 0 END) AS total FROM log;`))[0].total;
       const commandSign = (await db(`SELECT SUM(command) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`))[0].total - (await db(`SELECT SUM(CASE WHEN time BETWEEN "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 00:00:00" AND "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 23:59:59" THEN command ELSE 0 END) AS total FROM log`))[0].total;
-  
+
       const guild = await fetchGuildCounts(interaction.client) - (await db(`SELECT guild FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}" ORDER BY time ASC LIMIT 1;`))[0].guild;
       const user = await fetchUserCounts(interaction.client) - (await db(`SELECT user FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}" ORDER BY time ASC LIMIT 1;`))[0].user;
-  
+
       await interaction.editReply({
         embeds:[{
           color: Colors.Blue,
@@ -55,7 +55,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
@@ -76,10 +76,10 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }],     
+        }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

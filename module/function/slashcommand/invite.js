@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-  
+
     if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.CreateInstantInvite)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -67,7 +67,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
