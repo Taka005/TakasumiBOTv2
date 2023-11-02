@@ -15,9 +15,9 @@ module.exports = async(interaction)=>{
       .setMaxLength(500)
       .setRequired(true)
       .setStyle(TextInputStyle.Paragraph);
-      
+
     modal.addComponents(new ActionRowBuilder().addComponents(code));
-  
+
     await interaction.showModal(modal);
   }
 }

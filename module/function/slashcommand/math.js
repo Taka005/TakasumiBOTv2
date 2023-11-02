@@ -13,15 +13,15 @@ module.exports = async(interaction)=>{
       .replace((/÷/gu),"/")
       .replace((/（/gu),"(")
       .replace((/）/gu),")");
-      
+
     try{
       const math = mathjs.create(mathjs.all);
       math.config({
         "number": "BigNumber"
       });
-      
+
       const res = math.evaluate(format).toString();
-      
+
       await interaction.reply({
         embeds:[{
           color: Colors.Green,

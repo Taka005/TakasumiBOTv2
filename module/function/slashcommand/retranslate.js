@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "retranslate"){
     let text = interaction.options.getString("text");
-    
+
     if(text > 2000) return await interaction.reply({
       embeds:[{
         color: Colors.Red,

@@ -174,7 +174,7 @@ module.exports = async(interaction)=>{
           }],
           ephemeral: true
         });
-  
+
         await db(`INSERT INTO bump (id, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
@@ -266,7 +266,7 @@ module.exports = async(interaction)=>{
           }],
           ephemeral: true
         });
-  
+
         await db(`INSERT INTO dissoku (id, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
@@ -357,7 +357,7 @@ module.exports = async(interaction)=>{
           }],
           ephemeral: true
         });
-        
+
         await db(`INSERT INTO up (id, role, time) VALUES("${interaction.guild.id}","${role.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),role = VALUES (role),time = VALUES (time);`);
         await interaction.reply({
           embeds:[{
@@ -502,7 +502,7 @@ module.exports = async(interaction)=>{
               }],
               components:[
                 new ActionRowBuilder()
-                  .addComponents( 
+                  .addComponents(
                     new ButtonBuilder()
                       .setLabel("サポートサーバー")
                       .setURL("https://discord.gg/NEesRdGQwD")
@@ -643,7 +643,7 @@ module.exports = async(interaction)=>{
               }],
               components:[
                 new ActionRowBuilder()
-                  .addComponents( 
+                  .addComponents(
                     new ButtonBuilder()
                       .setLabel("サポートサーバー")
                       .setURL("https://discord.gg/NEesRdGQwD")

@@ -5,7 +5,7 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "account"){
     const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id};`);
 
-    if(!account[0]) return await interaction.reply({ 
+    if(!account[0]) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -13,10 +13,10 @@ module.exports = async(interaction)=>{
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "以下のリンクから登録を行うことができます\n登録が完了すると[利用規約](https://takasumibot.github.io/terms.html)にも同意したものとみなします"
-      }], 
+      }],
       components:[
         new ActionRowBuilder()
-          .addComponents( 
+          .addComponents(
             new ButtonBuilder()
               .setLabel("サイトへ行く")
               .setURL("https://auth.taka.cf/")
@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.reply({ 
+    await interaction.reply({
       embeds:[{
         color: Colors.Green,
         author:{

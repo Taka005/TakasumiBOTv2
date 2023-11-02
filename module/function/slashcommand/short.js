@@ -20,7 +20,7 @@ module.exports = async(interaction)=>{
 
     const data = await fetch(`https://is.gd/create.php?format=json&url=${encodeURI(url)}`)
       .then(res=>res.json());
-    
+
     if(data.errorcode) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-    
+
     await interaction.reply(data.shorturl);
   }
 }

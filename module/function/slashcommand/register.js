@@ -21,7 +21,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-  
+
     if(!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.CreateInstantInvite)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -90,7 +90,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サイトへ飛ぶ")
                 .setURL("https://auth.taka.cf/")
@@ -99,7 +99,7 @@ module.exports = async(interaction)=>{
         ],
         ephemeral: true
       });
-  
+
       if(new Date()-new Date(account[0].time)>600000) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -111,7 +111,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サイトへ飛ぶ")
                 .setURL("https://auth.taka.cf/")
@@ -132,13 +132,13 @@ module.exports = async(interaction)=>{
         .setMinLength(30)
         .setRequired(true)
         .setStyle(TextInputStyle.Short);
-        
+
       register.addComponents(
         new ActionRowBuilder()
           .addComponents(text)
       );
-      
-      await interaction.showModal(register); 
+
+      await interaction.showModal(register);
     }
   }
 }

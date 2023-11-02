@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "hiroyuki"){
-  
+
     if(!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -21,7 +21,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-  
+
     if(
       !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageWebhooks)||
       !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
@@ -44,7 +44,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-  
+
     const data = await db(`SELECT * FROM hiroyuki WHERE server = ${interaction.guild.id};`);
     if(data[0]){0
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
@@ -111,7 +111,7 @@ module.exports = async(interaction)=>{
           }],
           components:[
             new ActionRowBuilder()
-              .addComponents( 
+              .addComponents(
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")

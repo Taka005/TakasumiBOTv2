@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     try{
       const image = await fetch(`https://minotar.net/armor/body/${name}/100.png`);
-      
+
       if(!image.headers.get("Content-Type").startsWith("image/")) return await interaction.editReply({
         embeds:[{
           color: Colors.Red,
@@ -43,7 +43,7 @@ module.exports = async(interaction)=>{
         ],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("スキンをダウンロード")
                 .setURL(`https://textures.minecraft.net/texture/${link}`)

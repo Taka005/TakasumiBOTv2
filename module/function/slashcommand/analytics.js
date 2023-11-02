@@ -14,13 +14,13 @@ module.exports = async(interaction)=>{
         startDate.setMonth(startDate.getMonth()-12);
         const time = [];
         const count = [];
-        
+
         const members = await interaction.guild.members.fetch();
 
         for(let i = 0;i < 12;i++){
           const nextMonth = new Date(startDate);
           nextMonth.setMonth(startDate.getMonth()+1,0);
-       
+
           time.push(`${startDate.getMonth()+1}月`);
           count.push(members.filter(member=>member.joinedAt >= startDate&&member.joinedAt < nextMonth).size);
 
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
             "yLabel": "人"
           })
         }).then(res=>res.blob());
-      }else if(type === "month"){ 
+      }else if(type === "month"){
         const startDate = new Date();
         startDate.setMonth(startDate.getMonth()-1);
 
@@ -52,10 +52,10 @@ module.exports = async(interaction)=>{
         for(let i = 0;i < 30;i++){
           const nextDate = new Date(startDate);
           nextDate.setDate(startDate.getDate()+1);
-      
+
           time.push(`${startDate.getDate()}日`);
           count.push(members.filter(member=>member.joinedAt >= startDate&&member.joinedAt < nextDate).size);
-      
+
           startDate.setDate(startDate.getDate()+1);
         }
 
@@ -203,10 +203,10 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }], 
+        }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

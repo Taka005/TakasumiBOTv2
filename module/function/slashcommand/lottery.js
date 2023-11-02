@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "lottery"){
     const number = interaction.options.getInteger("number");
     const role = interaction.options.getRole("role");
-  
+
     if(number >= role.members.size) return await interaction.reply({
       embeds:[{
         color: Colors.Red,

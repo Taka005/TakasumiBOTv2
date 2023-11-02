@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
     const id = interaction.options.getString("id");
     const reason = interaction.options.getString("reason")||`${interaction.user.tag}によってBAN`;
     const days = interaction.options.getInteger("days");
-    
+
     if(!interaction.member.permissions.has(PermissionFlagsBits.BanMembers)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -80,7 +80,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-    
+
     await interaction.deferReply();
     try{
       await interaction.guild.bans.create(user.id,{
@@ -116,7 +116,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

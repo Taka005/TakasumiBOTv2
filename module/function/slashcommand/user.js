@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
     try{
       if(!id){
         const account = await db(`SELECT * FROM account WHERE id = ${interaction.user.id};`);
-  
+
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
@@ -94,7 +94,7 @@ module.exports = async(interaction)=>{
         const member = await fetchMember(interaction.guild,userId[0]);
         if(member){
           const account = await db(`SELECT * FROM account WHERE id = ${member.user.id};`);
-    
+
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
@@ -215,7 +215,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

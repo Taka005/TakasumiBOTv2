@@ -24,7 +24,7 @@ module.exports = async(client)=>{
     await count.message();
 
     Promise.all(global.messageCreate.map(fn=>fn(message)));
-    
+
     if(message.author.bot) return;
 
     await stats.message(message.guild.id);
@@ -39,13 +39,13 @@ module.exports = async(client)=>{
   client.on(Events.GuildCreate,async(guild)=>{
     require("./event/guildCreate/add")(guild);
   });
-  
+
   client.on(Events.GuildDelete,async(guild)=>{
     require("./event/guildDelete/remove")(guild);
   });
 
   client.on(Events.InteractionCreate,async(interaction)=>{
-    if(!interaction.guild) return await interaction.reply({ 
+    if(!interaction.guild) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -53,21 +53,21 @@ module.exports = async(client)=>{
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "BOTの操作はDMで実行することができません\nサーバー内で実行してください"
-      }],      
+      }],
       components:[
         new ActionRowBuilder()
-          .addComponents( 
+          .addComponents(
             new ButtonBuilder()
               .setLabel("サポートサーバー")
               .setURL("https://discord.gg/NEesRdGQwD")
               .setStyle(ButtonStyle.Link))
       ]
     });
-    
+
     if(
       (await db(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id};`))[0]||
       (await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id};`))[0]
-    ) return await interaction.reply({ 
+    ) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -75,10 +75,10 @@ module.exports = async(client)=>{
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
         description: "あなた又はこのサーバーはブラックリストに登録されているため実行できません"
-      }],      
+      }],
       components:[
         new ActionRowBuilder()
-          .addComponents( 
+          .addComponents(
             new ButtonBuilder()
               .setLabel("サポートサーバー")
               .setURL("https://discord.gg/NEesRdGQwD")

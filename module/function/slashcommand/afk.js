@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "afk"){
     const message = interaction.options.getString("message")||"メッセージはありません";
-    
+
     if(message.length>300) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -31,7 +31,7 @@ module.exports = async(interaction)=>{
           },
           description: `メンションは${data[0].mention}件ありました\n${time(new Date()-new Date(data[0].time))}間AFKでした`
         }]
-      }); 
+      });
     }else{
       await db(`INSERT INTO afk (id, message, mention, time) VALUES("${interaction.user.id}","${escape(message)}","0",NOW());`);
       await interaction.reply({

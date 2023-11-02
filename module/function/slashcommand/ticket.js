@@ -90,7 +90,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
@@ -98,6 +98,6 @@ module.exports = async(interaction)=>{
         ],
         ephemeral: true
       });
-    }  
+    }
   }
 }

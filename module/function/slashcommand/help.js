@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "help"){
     const command = interaction.options.getString("command");
-    
+
     if(!command){
       await interaction.reply({
         embeds:[{
@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
             value: command.description
           }))
         }],
-        components:[     
+        components:[
           new ActionRowBuilder()
             .addComponents(
               new StringSelectMenuBuilder()

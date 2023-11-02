@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-  
+
     if(
       !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
       !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageChannels)||
@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-  
+
     const channel = await db(`SELECT * FROM announce WHERE channel = ${interaction.channel.id};`);
     const server = await db(`SELECT * FROM announce WHERE server = ${interaction.guild.id};`);
     if(channel[0]){
@@ -86,8 +86,8 @@ module.exports = async(interaction)=>{
           description: "設定するチャンネルはアナウンスチャンネルにしてください"
         }],
         ephemeral: true
-      });  
-  
+      });
+
       await db(`INSERT INTO announce (channel, server, count, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${server[0]?.count||0}",NOW());`);
       await db(`UPDATE announce SET count = ${Number(server[0]?.count||0)+1} WHERE server = ${interaction.guild.id};`);
 

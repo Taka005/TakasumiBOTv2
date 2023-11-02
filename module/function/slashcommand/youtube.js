@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
         "headers":{
           "Content-Type": "application/json"
         },
-        "body": JSON.stringify({  
+        "body": JSON.stringify({
           "context":{
             "client":{
               "clientName": "WEB",

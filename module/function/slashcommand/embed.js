@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
       .setMaxLength(3000)
       .setRequired(false)
       .setStyle(TextInputStyle.Paragraph);
-      
+
     const image = new TextInputBuilder()
       .setCustomId("image")
       .setLabel("画像")
@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
       .setMaxLength(120)
       .setRequired(false)
       .setStyle(TextInputStyle.Short);
-      
+
     embed.addComponents(
       new ActionRowBuilder()
         .addComponents(title),
@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
       new ActionRowBuilder()
         .addComponents(image)
     );
-    
+
     await interaction.showModal(embed);
   }
 }

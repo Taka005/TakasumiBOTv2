@@ -5,7 +5,7 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "translate"){
     const text = interaction.options.getString("text");
     const lang = interaction.options.getString("lang");
-    
+
     if(text > 2000) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -21,10 +21,10 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-    
+
     const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&dj=1&q=${encodeURIComponent(text)}`)
       .then(res=>res.json());
-  
+
     try{
       const translate = data.sentences.map(sentence=>sentence.trans);
 

@@ -56,7 +56,7 @@ module.exports = async(interaction)=>{
           title: "読み取り中..."
         }]
       });
-      
+
       const data = await fetch(`https://api.qrserver.com/v1/read-qr-code/?fileurl=${encodeURI(text)}`)
         .then(res =>res.json());
 

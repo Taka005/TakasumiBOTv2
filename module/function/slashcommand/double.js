@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
     const accounts = await db(`SELECT * FROM account;`);
 
 		const account = accounts.find(account=>account.id === user.id);
-		if(!account) return await interaction.reply({ 
+		if(!account) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
       .filter(member=>accounts.find(account=>account.id === member.id)?.ip === account.ip)
       .filter(member=>member.id!==user.id);
 
-		if(!menbers.first()) return await interaction.reply({ 
+		if(!menbers.first()) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -35,7 +35,7 @@ module.exports = async(interaction)=>{
       }]
     });
 
-    await interaction.reply({ 
+    await interaction.reply({
       embeds:[{
         color: Colors.Green,
         author:{

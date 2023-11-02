@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
     try{
       const res = await fetch(`https://search.yahoo.co.jp/search?p=${word}`)
         .then(res=>res.text());
-      
+
       const { document } = (new JSDOM(res)).window;
 
       await interaction.editReply({

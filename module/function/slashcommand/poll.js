@@ -37,7 +37,7 @@ module.exports = async(interaction)=>{
 
     const msg = await interaction.reply({
       embeds:[{
-        title: title,          
+        title: title,
         color: Colors.Green,
         description: selects.map((c,i)=>`${emojis[i]}${c}`).join("\n"),
         timestamp: new Date()

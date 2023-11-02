@@ -31,7 +31,7 @@ module.exports = async(interaction)=>{
       const stickers = await interaction.guild.stickers.fetch();
 
       const stats = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id};`);
-      
+
       await interaction.editReply({
         embeds:[{
           color: Colors.Green,
@@ -92,10 +92,10 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }],      
+        }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
