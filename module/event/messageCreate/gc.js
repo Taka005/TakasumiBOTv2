@@ -24,7 +24,7 @@ module.exports = async(message)=>{
   ) return await message.react("❌").catch(()=>{});
 
   const account = await db(`SELECT * FROM account WHERE id = ${message.author.id};`)
-  if(!account[0]) return await message.reply({ 
+  if(!account[0]) return await message.reply({
     embeds:[{
       author:{
         name: "認証してください",
@@ -32,15 +32,15 @@ module.exports = async(message)=>{
       },
       color: Colors.Red,
       description: "グローバルチャットを利用するには以下のリンクから認証する必要があります",
-    }], 
+    }],
     components:[
       new ActionRowBuilder()
-        .addComponents( 
+        .addComponents(
           new ButtonBuilder()
             .setLabel("サイトへ飛ぶ")
             .setURL("https://auth.taka.cf/")
             .setStyle(ButtonStyle.Link))
-        .addComponents( 
+        .addComponents(
           new ButtonBuilder()
             .setLabel("サポートサーバー")
             .setURL("https://discord.gg/NEesRdGQwD")
@@ -137,7 +137,9 @@ module.exports = async(message)=>{
       });
     }catch(error){
       await db(`DELETE FROM global WHERE channel = ${data.channel};`);
-      await message.client.channels.cache.get(data.channel).send({
+      const channel = message.client.channels.cache.get(data.channel);
+      if(!channel) return;
+      await channel.send({
         embeds:[{
           author:{
             name: "グローバルチャットでエラーが発生しました",
@@ -154,7 +156,7 @@ module.exports = async(message)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

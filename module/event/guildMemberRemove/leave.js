@@ -14,7 +14,7 @@ module.exports = async(member)=>{
       .replace("[Count]",`${member.guild.memberCount}`)
       .replace("@everyone","＠everyone")
       .replace("@here","＠here");
-      
+
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
       await webhook.send({
         content: msg,
@@ -23,7 +23,9 @@ module.exports = async(member)=>{
       })
         .catch(async(error)=>{
           await db(`DELETE FROM \`leave\` WHERE channel = ${data[0].channel};`);
-          await member.guild.channels.cache.get(data[0].channel).send({
+          const channel = member.guild.channels.cache.get(data[0].channel);
+          if(!channel) return;
+          await channel.send({
             embeds:[{
               author:{
                 name: "退出メッセージでエラーが発生しました",
@@ -40,7 +42,7 @@ module.exports = async(member)=>{
             }],
             components:[
               new ActionRowBuilder()
-                .addComponents( 
+                .addComponents(
                   new ButtonBuilder()
                     .setLabel("サポートサーバー")
                     .setURL("https://discord.gg/NEesRdGQwD")

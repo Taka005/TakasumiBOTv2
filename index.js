@@ -1,6 +1,5 @@
 const { Client, GatewayIntentBits, Options } = require("discord.js");
 require("dotenv").config();
-const fs = require("fs");
 const log = require("./module/lib/log");
 
 log.reset();

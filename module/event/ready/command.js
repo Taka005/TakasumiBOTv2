@@ -11,5 +11,5 @@ module.exports = async(client)=>{
     body: Object.values(commands).map(command=>command.data)
   });
 
-  log.info("コマンドをロードしました")
+  log.info("コマンドをロードしました");
 }
