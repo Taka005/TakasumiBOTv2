@@ -3,6 +3,8 @@ require("dotenv").config();
 const fs = require("fs");
 const log = require("./module/lib/log");
 
+log.reset();
+
 const client = new Client({
   intents:[
     GatewayIntentBits.Guilds,
@@ -32,17 +34,13 @@ require("./module/event")(client);
 
 client.login(process.env.BOT_TOKEN)
   .then(()=>{
-    log.info("ログインしました");
+    log.info(`${process.env.SHARDS ? `${process.env.SHARDS}番シャードが` : ""}ログインしました`);
   });
 
 process.on("uncaughtException",async(error)=>{
   log.error(error.stack);
-
-  fs.appendFileSync("./tmp/error.txt",`-------- [UNCAUGTH_EXCEPTION]: ${new Date().toLocaleString()} --------\n${error.stack}\n\n`,"utf8");
 });
 
 process.on("unhandledRejection",async(error)=>{
   log.error(error.stack);
-
-  fs.appendFileSync("./tmp/error.txt",`-------- [UNHANDLED_REJECTION]: ${new Date().toLocaleString()} --------\n${error.stack}\n\n`,"utf8");
 });

@@ -109,10 +109,8 @@ module.exports = async(client)=>{
     require("./event/guildMemberRemove/leave")(member);
   });
 
-  client.rest.on(RESTEvents.InvalidRequestWarning,async(message)=>{
+  client.rest.on(RESTEvents.InvalidRequestWarning,(message)=>{
     log.error(message);
-
-    fs.appendFileSync("./tmp/log.txt",`-------- [INVSLID_REQUEST]: ${new Date().toLocaleString()} --------\n${message}\n\n`,"utf8");
   });
 
   if(process.env.DEBUG){
