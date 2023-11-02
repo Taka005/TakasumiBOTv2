@@ -2,8 +2,6 @@ const { Client, GatewayIntentBits, Options } = require("discord.js");
 require("dotenv").config();
 const log = require("./module/lib/log");
 
-log.reset();
-
 const client = new Client({
   intents:[
     GatewayIntentBits.Guilds,
@@ -28,6 +26,8 @@ const client = new Client({
     GuildInviteManager: 0
   })
 });
+
+if(!client.shard||process.env.SHARDS === "0") log.reset();
 
 require("./module/event")(client);
 
