@@ -27,7 +27,7 @@ const client = new Client({
   })
 });
 
-if(!client.shard||process.env.SHARDS === "0") log.reset();
+if(!client.shard) log.reset();
 
 require("./module/event")(client);
 
