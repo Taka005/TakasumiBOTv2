@@ -27,5 +27,6 @@ module.exports = {
   },
   "reset":()=>{
     fs.writeFileSync("./tmp/app.log","","utf-8");
+    fs.writeFileSync("./tmp/db.log","","utf-8");
   }
 }
