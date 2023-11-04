@@ -5,7 +5,7 @@ module.exports = async(client)=>{
 
   client.user.setStatus("online");
 
-  let stats = 0; 
+  let stats = 0;
   setInterval(async()=>{
     if(stats === 0){
       client.user.setActivity(`/help || ping:${client.ws.ping}ms`,{

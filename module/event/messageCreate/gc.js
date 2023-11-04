@@ -125,7 +125,7 @@ module.exports = async(message)=>{
   global.forEach(async(data)=>{
     if(
       data.server === message.guild.id||
-      mute_server.find(m=>m.id === message.guild.id)
+      mute_server.find(m=>m.id === data.server)
     ) return;
 
     try{
@@ -141,11 +141,11 @@ module.exports = async(message)=>{
       if(!channel) return;
       await channel.send({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "グローバルチャットでエラーが発生しました",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          color: Colors.Red,
           description: "エラーが発生したため、強制的に切断されました\n再度登録するには`/global`を使用してください",
           fields:[
             {

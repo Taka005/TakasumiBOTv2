@@ -22,7 +22,7 @@ module.exports = async(message)=>{
             color: Colors.Green,
             title: "TakasumiBOT UP通知",
             description: "UPの時間です\n</up:1135405664852783157>でサーバーの表示順位を上げよう！"
-          }]  
+          }]
         }).catch(()=>{});
       },3600000);
     }

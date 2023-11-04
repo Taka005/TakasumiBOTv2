@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const util = require("util");
+const fs = require("fs");
 require("dotenv").config();
 const log = require("./log");
 
@@ -14,6 +15,9 @@ const connection = mysql.createConnection({
 module.exports = async(query)=>{
   connection.query = util.promisify(connection.query);
   try{
+    const now = new Date();
+    fs.appendFileSync("./tmp/db.log",`[${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}] ${query}\n`,"utf8");
+
     return await connection.query(query);
   }catch(error){
     log.error(error);

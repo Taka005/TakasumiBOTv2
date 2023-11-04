@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   const list = require("../../../file/commandlist");
   if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId.startsWith("help_")){
-    const id = interaction.customId.split("_");
+    const data = interaction.customId.split("_");
     const type = interaction.values[0];
 
     const types = {
@@ -20,39 +20,39 @@ module.exports = async(interaction)=>{
       "contextmenu": "コンテキストメニュー"
     };
 
-    if(id[1] !== interaction.user.id) return await interaction.reply({
+    if(data[1] !== interaction.user.id) return await interaction.reply({
       embeds:[{
+        color: Colors.Red,
         author:{
           name: "ページを更新できませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        color: Colors.Red,
         description: "このコマンドは別の人が操作しています"
       }],
       ephemeral: true
     });
 
-    await interaction.message.edit({
-      embeds:[{
-        title: `HELP ${types[type]}`,
-        color: Colors.Green,
-        fields: Object.values(list).filter(command=>command.type === type).map((command)=>({
-          name: `${command.name}`,
-          value: command.description
-        }))
-      }]
-    })
-    .then(async()=>{
+    try{
+      await interaction.message.edit({
+        embeds:[{
+          color: Colors.Green,
+          title: `HELP ${types[type]}`,
+          fields: Object.values(list).filter(command=>command.type === type).map((command)=>({
+            name: `${command.name}`,
+            value: command.description
+          }))
+        }]
+      });
+
       await interaction.deferUpdate({});
-    })
-    .catch(async(error)=>{
+    }catch(error){
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "ページを更新できませんでした",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          color: Colors.Red,
           description: "BOTの権限が不足しています",
           fields:[
             {
@@ -63,7 +63,7 @@ module.exports = async(interaction)=>{
         }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
@@ -71,6 +71,6 @@ module.exports = async(interaction)=>{
         ],
         ephemeral: true
       });
-    });
+    }
   }
 }

@@ -4,8 +4,8 @@ module.exports = async(interaction)=>{
   const random = require("../../lib/random");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("image_")){
-    const role = interaction.customId.split("_");
-    
+    const data = interaction.customId.split("_");
+
     const keys = [
       {text:"2daAfg",url:"https://cdn.taka.cf/images/auth/img_1.png"},
       {text:"wad3EF",url:"https://cdn.taka.cf/images/auth/img_2.png"},
@@ -37,11 +37,11 @@ module.exports = async(interaction)=>{
           .setFile(image.stream())
           .setName("code.png")
       ],
-      components:[     
+      components:[
         new ActionRowBuilder()
           .addComponents(
             new StringSelectMenuBuilder()
-              .setCustomId(`imagerole_${role[1]}_${key.text}`)
+              .setCustomId(`imagerole_${data[1]}_${key.text}`)
               .setPlaceholder("正しいものを選択")
               .setMinValues(1)
               .setMaxValues(1)

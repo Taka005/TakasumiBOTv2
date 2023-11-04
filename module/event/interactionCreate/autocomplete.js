@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "help"){
 		const filter = Object.keys(commnads).filter(name=>name.startsWith(focus));
     if(filter.length > 25) return await interaction.respond([]);
-    
+
 		await interaction.respond(
 			filter.map(name=>({ name: `${commnads[name].name}: ${commnads[name].description}`, value: name }))
 		);
@@ -14,11 +14,11 @@ module.exports = async(interaction)=>{
     const filter = (await interaction.guild.members.fetch())
       .filter(member=>member.presence?.activities[0])
       .map(member=>member.presence.activities[0].name)
-      .filter((activity,i,array)=>array.indexOf(activity) === i) 
+      .filter((activity,i,array)=>array.indexOf(activity) === i)
       .filter(name=>name.startsWith(focus));
 
     if(filter.length > 25) return await interaction.respond([]);
-    
+
 		await interaction.respond(
 			filter.map(name=>({ name: name, value: name }))
 		);

@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
   const sleep = require("../../lib/sleep");
   if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId === "role"){
-    
+
     if(Spam.count(interaction.guild.id)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -55,7 +55,7 @@ module.exports = async(interaction)=>{
             {
               name: "付与したロール",
               value: add.map(role=>`<@&${role}>`).join("\n")||"なし"
-            },     
+            },
             {
               name: "削除したロール",
               value: remove.map(role=>`<@&${role}>`).join("\n")||"なし"
@@ -79,10 +79,10 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }],      
+        }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")

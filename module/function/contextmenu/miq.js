@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "Make it a Quote"){
     const message = interaction.options.getMessage("message");
-    
+
     if(!message.cleanContent) return await interaction.reply({
       embeds:[{
         author:{
@@ -22,14 +22,14 @@ module.exports = async(interaction)=>{
 
     const image = await fetch(`http://localhost:3000/?name=${message.author.username}&id=${message.author.id}&content=${message.cleanContent.replace("#","＃")}&icon=${message.author.avatarURL({extension:"png",size:1024})||message.author.defaultAvatarURL}`)
       .then(res=>res.blob());
-    
-    await interaction.editReply({ 
+
+    await interaction.editReply({
       content: `[生成元](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`,
       files:[
         new AttachmentBuilder()
           .setFile(image.stream())
           .setName("TakasumiBOT_Quote.png")
       ]
-    }); 
+    });
   }
 }

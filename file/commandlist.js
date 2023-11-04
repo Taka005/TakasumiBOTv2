@@ -532,7 +532,7 @@ module.exports = {
     description: "埋め込みを簡単に作成し表示できます",
     example: "`/embed`",
     userPermission:[
-      "メッセージの管理"
+      "必要なし"
     ],
     botPermission:[
       "必要なし"

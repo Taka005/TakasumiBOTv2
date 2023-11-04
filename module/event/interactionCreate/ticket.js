@@ -72,7 +72,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
     }catch(error){
-      await interaction.reply({ 
+      await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -85,23 +85,23 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }], 
+        }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle(ButtonStyle.Link))
         ],
-        ephemeral: true 
+        ephemeral: true
       });
     }
   }else if(interaction.customId === "close"){
     try{
       await interaction.channel.delete();
     }catch(error){
-      await interaction.reply({ 
+      await interaction.reply({
         embeds:[{
           author:{
             name: "チケットを削除できませんでした",
@@ -114,16 +114,16 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }], 
+        }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle(ButtonStyle.Link))
         ],
-        ephemeral: true 
+        ephemeral: true
       });
     }
   }

@@ -1,6 +1,9 @@
 const { ShardingManager } = require("discord.js");
 require("dotenv").config();
 const log = require("./module/lib/log");
+const config = require("./config.json");
+
+log.reset();
 
 const manager = new ShardingManager("./index.js",{
   token: process.env.BOT_TOKEN
@@ -13,5 +16,5 @@ manager.on("shardCreate",(shard)=>{
 });
 
 manager.spawn({
-  amount: 2
+  amount: config.shards
 });

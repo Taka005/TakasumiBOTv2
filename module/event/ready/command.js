@@ -6,8 +6,8 @@ module.exports = async(client)=>{
 
   const rest = new REST({version:"10"})
     .setToken(process.env.BOT_TOKEN);
-            
-  await rest.put(Routes.applicationCommands(client.application.id),{ 
+
+  await rest.put(Routes.applicationCommands(client.application.id),{
     body: Object.values(commands).map(command=>command.data)
   });
 

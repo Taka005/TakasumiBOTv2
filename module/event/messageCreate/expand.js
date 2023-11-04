@@ -10,7 +10,7 @@ module.exports = async(message)=>{
     !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.ViewChannel)||
     !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.SendMessages)
   ) return;
-  
+
   const link = message.content.match(/^https?:\/\/(?:ptb\.|canary\.)?(?:discord|discordapp)\.com\/channels\/(\d+)\/(\d+)\/(\d+)$/);
   if(link){
     const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id};`);

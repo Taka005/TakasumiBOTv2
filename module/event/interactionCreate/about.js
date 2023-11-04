@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   const fetchGuildCounts = require("../../lib/fetchGuildCounts");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("about_")){
-    const id = interaction.customId.split("_");
+    const data = interaction.customId.split("_");
 
     const server = Math.floor(await fetchGuildCounts(interaction.client)/10)*10;
 
@@ -50,7 +50,7 @@ module.exports = async(interaction)=>{
       }]
     }
 
-    if(id[2] !== interaction.user.id) return await interaction.reply({
+    if(data[2] !== interaction.user.id) return await interaction.reply({
       embeds:[{
         author:{
           name: "ページを更新できませんでした",
@@ -62,20 +62,20 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.message.edit({
-      embeds: type[id[1]]
-    })
-    .then(async()=>{
+    try{
+      await interaction.message.edit({
+        embeds: type[data[1]]
+      });
+
       await interaction.deferUpdate({});
-    })
-    .catch(async(error)=>{
+    }catch(error){
       await interaction.reply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "ページを更新できませんでした",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          color: Colors.Red,
           description: "BOTの権限が不足しています",
           fields:[
             {
@@ -94,6 +94,6 @@ module.exports = async(interaction)=>{
         ],
         ephemeral: true
       });
-    });
+    }
   }
 }
