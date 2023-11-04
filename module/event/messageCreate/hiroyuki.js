@@ -5,13 +5,13 @@ module.exports = async(message)=>{
   const rate = require("../../lib/rate");
   const limit = require("../../lib/limit");
 
-  const data = await db(`SELECT * FROM hiroyuki WHERE channel = ${message.channel.id};`);
-
   if(
-    message.channel.type !== ChannelType.GuildText||
     message.author.bot||
-    !data[0]
+    message.channel.type !== ChannelType.GuildText
   ) return;
+
+  const data = await db(`SELECT * FROM hiroyuki WHERE channel = ${message.channel.id};`);
+  if(!data[0]) return;
 
   if(limit(message)) return;
 
