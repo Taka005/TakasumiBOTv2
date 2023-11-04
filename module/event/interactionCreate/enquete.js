@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
       .setMaxLength(50)
       .setRequired(true)
       .setStyle(TextInputStyle.Short);
-      
+
     enquete.addComponents(new ActionRowBuilder().addComponents(text));
 
     await interaction.showModal(enquete);

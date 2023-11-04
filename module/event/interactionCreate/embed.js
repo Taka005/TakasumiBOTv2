@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
     const title = interaction.fields.getTextInputValue("title");
     const description = interaction.fields.getTextInputValue("description");
     const image = interaction.fields.getTextInputValue("image");
-    
+
     if(!title&&!description&&!image) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -19,19 +19,17 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(image){
-      if(!isUrl(image)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "入力された画像が無効です",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          description: "画像はURLで指定する必要があります"
-        }],
-        ephemeral: true
-      });
-    }
+    if(!isUrl(image)) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "入力された画像が無効です",
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
+        },
+        description: "画像はURLで指定する必要があります"
+      }],
+      ephemeral: true
+    });
 
     await interaction.reply({
       embeds:[{

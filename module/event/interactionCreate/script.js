@@ -3,10 +3,10 @@ module.exports = async(interaction)=>{
   const { AttachmentBuilder, Colors } = require("discord.js");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("script_")){
-    const lang = interaction.customId.split("_");
+    const data = interaction.customId.split("_");
     const code = interaction.fields.getTextInputValue("code");
-  
-    const language = {
+
+    const lang = {
       "JavaScript":{
         "type": "js",
         "compiler": "nodejs-16.14.0"
@@ -35,7 +35,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           description: "実行がタイムアウトしました",
           footer:{
-            text: `${lang[1]} || TakasumiBOT`
+            text: `${data[1]} || TakasumiBOT`
           }
         }]
       });
@@ -48,13 +48,13 @@ module.exports = async(interaction)=>{
       },
       body: JSON.stringify({
         "code": code,
-        "compiler": language[lang[1]].compiler
+        "compiler": lang[data[1]].compiler
       })
     }).then(res=>res.json());
 
     if(timeouted) return;
     clearTimeout(timeout);
-    
+
     if(res.status === "0"){
       await interaction.editReply({
         embeds:[{
@@ -63,9 +63,9 @@ module.exports = async(interaction)=>{
             name: "実行しました",
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           },
-          description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**結果**\n\`\`\`${res.program_output||"なし"}\`\`\``,
+          description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n\`\`\`${res.program_output||"なし"}\`\`\``,
           footer:{
-            text: `${lang[1]} || TakasumiBOT`
+            text: `${data[1]} || TakasumiBOT`
           }
         }]
       }).catch(async()=>{
@@ -76,16 +76,16 @@ module.exports = async(interaction)=>{
               name: "実行しました",
               icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
-            description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
+            description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
             footer:{
               text: `${lang[1]} || TakasumiBOT`
             }
           }],
           files:[
-            new AttachmentBuilder() 
-              .setFile(Buffer.from(res.program_output,"UTF-8")) 
+            new AttachmentBuilder()
+              .setFile(Buffer.from(res.program_output,"UTF-8"))
               .setName("data.txt")
-          ] 
+          ]
         });
       })
     }else{
@@ -96,7 +96,7 @@ module.exports = async(interaction)=>{
             name: "実行できませんでした",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
+          description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
           footer:{
             text: `${lang[1]} || TakasumiBOT`
           }
@@ -109,16 +109,16 @@ module.exports = async(interaction)=>{
               name: "実行できませんでした",
               icon_url: "https://cdn.taka.cf/images/system/error.png"
             },
-            description: `**コード**\n\`\`\`${language[lang[1]].type}\n${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,
+            description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,
             footer:{
               text: `${lang[1]} || TakasumiBOT`
             }
           }],
           files:[
-            new AttachmentBuilder() 
-              .setFile(Buffer.from(res.program_error,"UTF-8")) 
+            new AttachmentBuilder()
+              .setFile(Buffer.from(res.program_error,"UTF-8"))
               .setName("error.txt")
-          ] 
+          ]
         });
       })
     }

@@ -21,7 +21,7 @@ module.exports = async(message)=>{
           color: Colors.White,
           title: "BUMP通知",
           description: "UPを受信しました\n2時間後に通知します"
-        }]  
+        }]
       }).catch(()=>{});
 
       setTimeout(async()=>{
@@ -31,7 +31,7 @@ module.exports = async(message)=>{
             color: Colors.White,
             title: "BUMP通知",
             description: "BUMPの時間です\n</bump:947088344167366698>でサーバーの表示順位を上げよう！"
-          }]  
+          }]
         }).catch(()=>{});
       },7200000);
     }

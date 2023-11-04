@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-      
+
     const channel = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id};`);
     const server = await db(`SELECT * FROM pin WHERE server = ${message.guild.id};`);
     if(!channel[0]){
@@ -79,7 +79,7 @@ module.exports = async(interaction)=>{
       try{
         await interaction.deferReply()
           .then(()=>interaction.deleteReply());
-  
+
         const msg = await interaction.channel.send({
           embeds:[{
             color: Colors.Green,
@@ -93,7 +93,7 @@ module.exports = async(interaction)=>{
             }
           }]
         });
-  
+
         await db(`INSERT INTO pin (channel, server, message, count, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}","${server[0]?.count||"0"}",NOW());`);
         await db(`UPDATE pin SET count = ${Number(server[0]?.count||0) + 1} WHERE server = ${message.guild.id};`);
       }catch(error){
@@ -113,7 +113,7 @@ module.exports = async(interaction)=>{
           }],
           components:[
             new ActionRowBuilder()
-              .addComponents( 
+              .addComponents(
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")

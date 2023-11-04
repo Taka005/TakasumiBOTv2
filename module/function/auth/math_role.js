@@ -2,10 +2,10 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("mathrole_")){
-    const list = interaction.customId.split("_");
+    const data = interaction.customId.split("_");
     const code = interaction.fields.getTextInputValue("code");
 
-    if(interaction.member.roles.cache.has(list[1])) return await interaction.reply({
+    if(interaction.member.roles.cache.has(data[1])) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(code !== list[2]) return await interaction.reply({
+    if(code !== data[2]) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -40,45 +40,45 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.member.roles.add(list[1])
-      .then(async()=>{
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "認証しました",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
-            }
-          }],
-          ephemeral: true
-        });
-      })
-      .catch(async(error)=>{
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "認証に失敗しました",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
-            fields:[
-              {
-                name: "エラーコード",
-                value: `\`\`\`${error}\`\`\``
-              }
-            ]
-          }],
-          components:[
-            new ActionRowBuilder()
-              .addComponents( 
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
-                  .setStyle(ButtonStyle.Link))
-          ],
-          ephemeral: true
-        })
+    try{
+      await interaction.member.roles.add(data[1]);
+
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: "認証しました",
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          }
+        }],
+        ephemeral: true
       });
+    }catch(error){
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "認証に失敗しました",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ]
+        }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents(
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL("https://discord.gg/NEesRdGQwD")
+                .setStyle(ButtonStyle.Link))
+        ],
+        ephemeral: true
+      });
+    }
   }
 }

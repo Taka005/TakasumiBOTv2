@@ -35,6 +35,7 @@ module.exports = async(message)=>{
     "なんかそういうのって頭悪いか、嘘つきかのどちらかですよ",
     "それで勝った気になってるんですか？だったら相当頭悪いっすね",
     "それってほぼ詐欺ですよね",
+    "それって明らかではないですよね？",
     "頭の悪い人は目立つんですよ",
     "それって答えになってないですよね？",
     "それはそう言う風にしか理解できない知能の問題だと思いますけどね",
@@ -69,7 +70,7 @@ module.exports = async(message)=>{
     `僕は子供ができたときには「${message.guild.name}を見せない」というフィルタリングをするのではなく、「${message.guild.name}を見せても大丈夫な教育」をしたいと思っています`,
     "おいらのトゥイッターが更新されたんでいいねしてもらってもいいですか？\nhttps://twitter.com/hirox246",
     "なんだろう、まだ始まってもないのに諦めるのやめてもらっていいですか？",
-    "人間って基本死ぬまでの暇つぶしなんですよ", 
+    "人間って基本死ぬまでの暇つぶしなんですよ",
     "頭悪い人はそういう思想になりますよね",
     "嘘は嘘であると見抜ける人でないと(TakasumiBOTを使うのは)難しい",
     "「好きなものは好き。だって好きだから」これ以上に、何を語る必要があるだろうか",
@@ -77,6 +78,7 @@ module.exports = async(message)=>{
     "人を応援するって、すごく幸福なことなんですよ",
     "必要なプライドなんてありません！",
     "本当つまんないっすよ",
+    "それって明らかではなくて、あなたの感想ですよね？",
     "え。言えないんすか？",
     "はいかいいえで答えてください。",
     "それが偉いんですか？",
@@ -151,32 +153,33 @@ module.exports = async(message)=>{
     };
   }
 
-  await webhook.send(msg)
-    .catch(async(error)=>{
-      await db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id};`);
-      await message.channel.send({
-        embeds:[{
-          author:{
-            name: "ひろゆき機能でエラーが発生しました",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          color: Colors.Red,
-          description: "エラーが発生したため、強制的に退出されました\n再度登録するには`/hiroyuki`を使用してください",
-          fields:[
-            {
-              name: "エラーコード",
-              value: `\`\`\`${error}\`\`\``
-            }
-          ]
-        }],
-        components:[
-          new ActionRowBuilder()
-            .addComponents( 
-              new ButtonBuilder()
-                .setLabel("サポートサーバー")
-                .setURL("https://discord.gg/NEesRdGQwD")
-                .setStyle(ButtonStyle.Link))
+  try{
+    await webhook.send(msg);
+  }catch(error){
+    await db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id};`);
+    await message.channel.send({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "ひろゆき機能でエラーが発生しました",
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
+        },
+        description: "エラーが発生したため、強制的に退出されました\n再度登録するには`/hiroyuki`を使用してください",
+        fields:[
+          {
+            name: "エラーコード",
+            value: `\`\`\`${error}\`\`\``
+          }
         ]
-      }).catch(()=>{});
-    });
+      }],
+      components:[
+        new ActionRowBuilder()
+          .addComponents(
+            new ButtonBuilder()
+              .setLabel("サポートサーバー")
+              .setURL("https://discord.gg/NEesRdGQwD")
+              .setStyle(ButtonStyle.Link))
+      ]
+    }).catch(()=>{});
+  }
 }

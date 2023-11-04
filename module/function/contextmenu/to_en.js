@@ -38,10 +38,10 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-      
+
     const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&dj=1&q=${encodeURIComponent(message.content)}`)
       .then(res=>res.json());
-    
+
     try{
       const translated = data.sentences.map(sentence=>sentence.trans);
 

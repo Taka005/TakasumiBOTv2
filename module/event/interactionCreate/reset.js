@@ -38,9 +38,9 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    try{  
+    try{
       const channel = await interaction.channel.clone();
-      await channel.setPosition(interaction.channel.position+1)
+      await channel.setPosition(interaction.channel.position+1);
       await interaction.channel.delete();
 
       await interaction.deferUpdate({});
@@ -55,7 +55,7 @@ module.exports = async(interaction)=>{
         }]
       }).catch(()=>{});
     }catch(error){
-      await interaction.reply({ 
+      await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -68,16 +68,16 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }], 
+        }],
         components:[
           new ActionRowBuilder()
-            .addComponents( 
+            .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle(ButtonStyle.Link))
         ],
-        ephemeral: true 
+        ephemeral: true
       });
     }
   }

@@ -11,7 +11,7 @@ module.exports = async(message)=>{
     if(
       message.embeds[0]?.fields[0]?.name.match(/をアップしたよ/)||
       message.embeds[0]?.fields[0]?.name.match(/I've bumped up/)
-    ){  
+    ){
       const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id};`);
       if(ignore[0]) return;
 
@@ -21,7 +21,7 @@ module.exports = async(message)=>{
           color: Colors.Blue,
           title: "UP通知",
           description: "UPを受信しました\n1時間後に通知します"
-        }]  
+        }]
       }).catch(()=>{});
 
       setTimeout(async()=>{
@@ -31,7 +31,7 @@ module.exports = async(message)=>{
             color: Colors.Blue,
             title: "UP通知",
             description: "DISSOKUの時間です\n</dissoku up:828002256690610256>でサーバーの表示順位を上げよう！"
-          }]  
+          }]
         }).catch(()=>{});
       },3600000);
     }

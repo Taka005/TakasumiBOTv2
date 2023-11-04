@@ -6,7 +6,7 @@ module.exports = async(message)=>{
   const sleep = require("../../lib/sleep");
 
   if(message.author.bot) return;
-    
+
   const data = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id};`);
   if(data[0]){
     if(Spam.count(message.channel.id)) return;
@@ -26,4 +26,4 @@ module.exports = async(message)=>{
       await db(`DELETE FROM pin WHERE channel = ${message.channel.id};`);
     }
   }
-}  
+}

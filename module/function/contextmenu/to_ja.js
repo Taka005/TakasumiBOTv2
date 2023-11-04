@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "日本語に翻訳"){
     const message = interaction.options.getMessage("message");
-    
+
     if(!message.content) return await interaction.reply({
       content: `[翻訳元](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)`,
       embeds:[{
@@ -38,10 +38,10 @@ module.exports = async(interaction)=>{
       }],
       ephemeral: true
     });
-      
+
     const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&dj=1&q=${encodeURIComponent(message.content)}`)
       .then(res=>res.json());
-    
+
     try{
       const translated = data.sentences.map(sentence=>sentence.trans);
 
