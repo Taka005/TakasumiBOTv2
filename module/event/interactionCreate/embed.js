@@ -19,7 +19,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(!isUrl(image)) return await interaction.reply({
+    if(image&&!isUrl(image)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
