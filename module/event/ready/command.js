@@ -1,6 +1,6 @@
 module.exports = async(client)=>{
   require("dotenv").config();
-  const { REST, Routes } = require("discord.js");
+  const { REST, Routes, ApplicationRoleConnectionMetadataType } = require("discord.js");
   const log = require("../../lib/log");
   const commands = require("../../../file/commandlist");
 
@@ -10,6 +10,15 @@ module.exports = async(client)=>{
   await rest.put(Routes.applicationCommands(client.application.id),{
     body: Object.values(commands).map(command=>command.data)
   });
+
+  await client.application.editRoleConnectionMetadataRecords([
+    {
+      name: "TakasumiBOT Account",
+      description: "TakasumiBOT Accountとリンクします",
+      key: "account",
+      type: ApplicationRoleConnectionMetadataType.IntegerGreaterThanOrEqual
+    }
+  ]);
 
   log.info("コマンドをロードしました");
 }
