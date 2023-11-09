@@ -33,7 +33,7 @@
     "jsdom": "^22.1.0",
     "mathjs": "^11.12.0",
     "mysql": "^2.18.1",
-    "node-cron": "^3.0.2",
+    "node-cron": "^3.0.3",
     "node-fetch": "^2.7.0"
   },
   "devDependencies": {
