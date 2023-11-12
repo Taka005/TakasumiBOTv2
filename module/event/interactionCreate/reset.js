@@ -2,7 +2,7 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("reset_")){
-    const id = interaction.customId.split("_")[1];
+    const data = interaction.customId.split("_");
 
     if(
       !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ManageChannels)||
@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    if(id !== interaction.user.id) return await interaction.reply({
+    if(data[1] !== interaction.user.id) return await interaction.reply({
       embeds:[{
         author:{
           name: "リセットできませんでした",

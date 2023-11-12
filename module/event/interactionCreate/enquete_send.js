@@ -3,10 +3,10 @@ module.exports = async(interaction)=>{
   const fetchMessage = require("../../lib/fetchMessage");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("enquetesend_")){
-    const id = interaction.customId.split("_")[1];
+    const data = interaction.customId.split("_");
     const text = interaction.fields.getTextInputValue("text");
 
-    const message = await fetchMessage(interaction.channel,id);
+    const message = await fetchMessage(interaction.channel,data[1]);
     if(!message) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
