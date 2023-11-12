@@ -924,7 +924,11 @@ module.exports = {
     note: "なし",
     data: new SlashCommandBuilder()
       .setName("leaderboard")
-      .setDescription("お金持ちランキングを表示します"),
+      .setDescription("お金持ちランキングを表示します")
+        .addIntegerOption(option=>
+          option
+            .setName("range")
+            .setDescription("表示範囲")),
   },
   log:{
     type: "othor",
