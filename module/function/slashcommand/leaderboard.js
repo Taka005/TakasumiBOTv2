@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   const fetchUser = require("../../lib/fetchUser");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "leaderboard"){
-    const range =  interaction.options.getInteger("range");
+    const range = interaction.options.getInteger("range");
 
     let data = (await db("SELECT * FROM money;"))
       .sort((m1,m2)=>m2.amount - m1.amount);
@@ -26,9 +26,9 @@ module.exports = async(interaction)=>{
     }
 
     data.length = 15;
-
+    console.log(data)
     await interaction.deferReply();
-    
+
     const rank = await Promise.all(data.map(async(data,i)=>{
       const user = await fetchUser(interaction.client,data.id);
 
