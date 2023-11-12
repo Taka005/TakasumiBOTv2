@@ -78,7 +78,7 @@ module.exports = async(interaction)=>{
             },
             description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
             footer:{
-              text: `${lang[1]} || TakasumiBOT`
+              text: `${data[1]} || TakasumiBOT`
             }
           }],
           files:[
@@ -98,7 +98,7 @@ module.exports = async(interaction)=>{
           },
           description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
           footer:{
-            text: `${lang[1]} || TakasumiBOT`
+            text: `${data[1]} || TakasumiBOT`
           }
         }]
       }).catch(async()=>{
@@ -111,7 +111,7 @@ module.exports = async(interaction)=>{
             },
             description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,
             footer:{
-              text: `${lang[1]} || TakasumiBOT`
+              text: `${data[1]} || TakasumiBOT`
             }
           }],
           files:[
