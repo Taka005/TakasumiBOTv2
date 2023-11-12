@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
     }
 
     data.length = 15;
-
+    console.log(data)
     await interaction.deferReply();
 
     const rank = await Promise.all(data.map(async(data,i)=>{
