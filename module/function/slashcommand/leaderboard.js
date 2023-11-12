@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
 
     if(range){
       data = data.slice(range+1);
-
+      console.log(data)
       if(data.length < 0) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
     }
 
     data.length = 15;
-    console.log(data)
+
     await interaction.deferReply();
 
     const rank = await Promise.all(data.map(async(data,i)=>{
