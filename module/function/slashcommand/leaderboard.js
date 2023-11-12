@@ -11,8 +11,8 @@ module.exports = async(interaction)=>{
 
     if(range){
       data = data.slice(range+1);
-      console.log(data)
-      if(data.length < 0) return await interaction.reply({
+      console.log(data.length)
+      if(data.length) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
