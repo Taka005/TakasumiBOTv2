@@ -10,7 +10,19 @@ module.exports = async(interaction)=>{
       .sort((m1,m2)=>m2.amount - m1.amount);
 
     if(range){
-      data = data.slice(range+1);
+      if(range <= 0) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "表示できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "正の範囲で指定してください"
+        }],
+        ephemeral: true
+      });
+
+      data = data.slice(range-1);
 
       if(!data.length) return await interaction.reply({
         embeds:[{
