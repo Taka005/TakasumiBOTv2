@@ -27,8 +27,7 @@ module.exports = async(interaction)=>{
               new ButtonBuilder()
                 .setCustomId(`guide_${data[1]}`)
                 .setStyle(ButtonStyle.Secondary)
-                .setLabel("同意します")
-            )
+                .setLabel("同意します"))
         ]
       });
 

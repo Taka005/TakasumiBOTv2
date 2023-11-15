@@ -41,19 +41,21 @@ module.exports = async(interaction)=>{
       }).then(res=>res.json());
 
       if(res.status === "0"){
-        await interaction.editReply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "実行しました",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
-            },
-            description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n\`\`\`${res.program_output||"なし"}\`\`\``,
-            footer:{
-              text: `${data[1]} || TakasumiBOT`
-            }
-          }]
-        }).catch(async()=>{
+        try{
+          await interaction.editReply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: "実行しました",
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              },
+              description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n\`\`\`${res.program_output||"なし"}\`\`\``,
+              footer:{
+                text: `${data[1]} || TakasumiBOT`
+              }
+            }]
+          });
+        }catch{
           await interaction.editReply({
             embeds:[{
               color: Colors.Green,
@@ -72,21 +74,23 @@ module.exports = async(interaction)=>{
                 .setName("data.txt")
             ]
           });
-        })
+        }
       }else{
-        await interaction.editReply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "実行できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
-            footer:{
-              text: `${data[1]} || TakasumiBOT`
-            }
-          }]
-        }).catch(async()=>{
+        try{
+          await interaction.editReply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: "実行できませんでした",
+                icon_url: "https://cdn.taka.cf/images/system/error.png"
+              },
+              description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
+              footer:{
+                text: `${data[1]} || TakasumiBOT`
+              }
+            }]
+          });
+        }catch{
           await interaction.editReply({
             embeds:[{
               color: Colors.Red,
@@ -105,7 +109,7 @@ module.exports = async(interaction)=>{
                 .setName("error.txt")
             ]
           });
-        });
+        }
       }
     }catch{
       await interaction.editReply({
