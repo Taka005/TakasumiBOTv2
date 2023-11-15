@@ -23,9 +23,11 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
 
+    const controller = new AbortController();
     let timeouted = false;
-    const timeout = setTimeout(async()=>{
+    const timer = setTimeout(async()=>{
       timeouted = true;
+      controller.abort();
       await interaction.editReply({
         embeds:[{
           author:{
@@ -46,6 +48,7 @@ module.exports = async(interaction)=>{
       header:{
         "content-type": "application/json"
       },
+      signal: controller.signal,
       body: JSON.stringify({
         "code": code,
         "compiler": lang[data[1]].compiler
@@ -53,7 +56,7 @@ module.exports = async(interaction)=>{
     }).then(res=>res.json());
 
     if(timeouted) return;
-    clearTimeout(timeout);
+    clearTimeout(timer);
 
     if(res.status === "0"){
       await interaction.editReply({
