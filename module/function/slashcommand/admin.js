@@ -51,6 +51,7 @@ module.exports = async(interaction)=>{
       const query = interaction.options.getString("query");
 
       const data = JSON.stringify(await db(query),null,"  ");
+
       await interaction.reply({
         files:[
           new AttachmentBuilder()
@@ -67,6 +68,7 @@ module.exports = async(interaction)=>{
       try{
         if(type === "content"){
           const msg = channel ? await channel.messages.fetch({"message":id}) : await interaction.channel.messages.fetch({"message":id});
+
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
@@ -82,6 +84,7 @@ module.exports = async(interaction)=>{
         }else if(type === "edit"){
           const msg = channel ? await channel.messages.fetch({"message":id}) : await interaction.channel.messages.fetch({"message":id});
           await msg.edit(JSON.parse(json));
+
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
@@ -94,6 +97,7 @@ module.exports = async(interaction)=>{
         }else if(type === "delete"){
           const msg = channel ? await channel.messages.fetch({"message":id}) : await interaction.channel.messages.fetch({"message":id});
           await msg.delete();
+
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
@@ -251,36 +255,36 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await guild.leave()
-        .then(async(g)=>{
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: `${g.name}(${guild.id}) から脱退しました`,
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
-              }
-            }]
-          });
-        })
-        .catch(async(error)=>{
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Red,
-              author:{
-                name: "サーバーから脱退できませんでした",
-                icon_url: "https://cdn.taka.cf/images/system/error.png"
-              },
-              fields:[
-                {
-                  name: "エラーコード",
-                  value: `\`\`\`${error}\`\`\``
-                }
-              ]
-            }],
-            ephemeral: true
-          });
+      try{
+        await guild.leave();
+
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: `${g.name}(${guild.id}) から脱退しました`,
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            }
+          }]
         });
+      }catch(error){
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "サーバーから脱退できませんでした",
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
+            },
+            fields:[
+              {
+                name: "エラーコード",
+                value: `\`\`\`${error}\`\`\``
+              }
+            ]
+          }],
+          ephemeral: true
+        });
+      }
     }else if(interaction.options.getSubcommand() === "reload"){
       await interaction.deferReply();
 
