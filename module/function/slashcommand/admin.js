@@ -256,13 +256,13 @@ module.exports = async(interaction)=>{
       });
 
       try{
-        await guild.leave();
+        const guild = await guild.leave();
 
         await interaction.reply({
           embeds:[{
             color: Colors.Green,
             author:{
-              name: `${g.name}(${guild.id}) から脱退しました`,
+              name: `${guild.name}(${guild.id}) から脱退しました`,
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             }
           }]
