@@ -256,7 +256,7 @@ module.exports = async(interaction)=>{
       });
 
       try{
-        const guild = await guild.leave();
+        await guild.leave();
 
         await interaction.reply({
           embeds:[{

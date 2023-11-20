@@ -61,7 +61,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "実行しました",
-                icon_url: "https://cdn.taka.cf/images/system/error.png"
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
               },
               description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
               footer:{
