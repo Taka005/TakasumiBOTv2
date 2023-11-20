@@ -2,6 +2,7 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors } = require("discord.js");
   if(!interaction.isButton()) return;
   if(interaction.customId === "english"){
+    
     await interaction.reply({
       embeds:[{
         color: Colors.Green,

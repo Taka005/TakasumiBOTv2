@@ -46,9 +46,9 @@ module.exports = async(interaction)=>{
               .setMinValues(1)
               .setMaxValues(1)
               .addOptions(
-                keys.map(c=>({
-                  label: c.text,
-                  value: c.text
+                keys.map(key=>({
+                  label: key.text,
+                  value: key.text
                 }))
               ))
       ],

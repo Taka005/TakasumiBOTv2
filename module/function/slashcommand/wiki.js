@@ -5,10 +5,10 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "wiki"){
     const word = interaction.options.getString("word");
 
-    const data = await fetch(`https://ja.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(word)}`)
-      .then(res=>res.json());
-
     try{
+      const data = await fetch(`https://ja.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(word)}`)
+        .then(res=>res.json());
+
       await interaction.reply({
         embeds:[{
           color: Colors.Green,

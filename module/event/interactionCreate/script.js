@@ -21,11 +21,97 @@ module.exports = async(interaction)=>{
       }
     };
 
-    await interaction.deferReply();
+    const controller = new AbortController();
+    setTimeout(async()=>{
+      controller.abort();
+    },3000);
 
-    let timeouted = false;
-    const timeout = setTimeout(async()=>{
-      timeouted = true;
+    await interaction.deferReply();
+    try{
+      const res = await fetch("https://wandbox.org/api/compile.json",{
+        method: "POST",
+        header:{
+          "content-type": "application/json"
+        },
+        signal: controller.signal,
+        body: JSON.stringify({
+          "code": code,
+          "compiler": lang[data[1]].compiler
+        })
+      }).then(res=>res.json());
+
+      if(res.status === "0"){
+        try{
+          await interaction.editReply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: "実行しました",
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              },
+              description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n\`\`\`${res.program_output||"なし"}\`\`\``,
+              footer:{
+                text: `${data[1]} || TakasumiBOT`
+              }
+            }]
+          });
+        }catch{
+          await interaction.editReply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: "実行しました",
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              },
+              description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
+              footer:{
+                text: `${data[1]} || TakasumiBOT`
+              }
+            }],
+            files:[
+              new AttachmentBuilder()
+                .setFile(Buffer.from(res.program_output,"UTF-8"))
+                .setName("data.txt")
+            ]
+          });
+        }
+      }else{
+        try{
+          await interaction.editReply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: "実行できませんでした",
+                icon_url: "https://cdn.taka.cf/images/system/error.png"
+              },
+              description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
+              footer:{
+                text: `${data[1]} || TakasumiBOT`
+              }
+            }]
+          });
+        }catch{
+          await interaction.editReply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: "実行できませんでした",
+                icon_url: "https://cdn.taka.cf/images/system/error.png"
+              },
+              description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,
+              footer:{
+                text: `${data[1]} || TakasumiBOT`
+              }
+            }],
+            files:[
+              new AttachmentBuilder()
+                .setFile(Buffer.from(res.program_error,"UTF-8"))
+                .setName("error.txt")
+            ]
+          });
+        }
+      }
+    }catch{
       await interaction.editReply({
         embeds:[{
           author:{
@@ -39,88 +125,6 @@ module.exports = async(interaction)=>{
           }
         }]
       });
-    },3000);
-
-    const res = await fetch("https://wandbox.org/api/compile.json",{
-      method: "POST",
-      header:{
-        "content-type": "application/json"
-      },
-      body: JSON.stringify({
-        "code": code,
-        "compiler": lang[data[1]].compiler
-      })
-    }).then(res=>res.json());
-
-    if(timeouted) return;
-    clearTimeout(timeout);
-
-    if(res.status === "0"){
-      await interaction.editReply({
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: "実行しました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
-          },
-          description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n\`\`\`${res.program_output||"なし"}\`\`\``,
-          footer:{
-            text: `${data[1]} || TakasumiBOT`
-          }
-        }]
-      }).catch(async()=>{
-        await interaction.editReply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "実行しました",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
-            footer:{
-              text: `${lang[1]} || TakasumiBOT`
-            }
-          }],
-          files:[
-            new AttachmentBuilder()
-              .setFile(Buffer.from(res.program_output,"UTF-8"))
-              .setName("data.txt")
-          ]
-        });
-      })
-    }else{
-      await interaction.editReply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "実行できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
-          footer:{
-            text: `${lang[1]} || TakasumiBOT`
-          }
-        }]
-      }).catch(async()=>{
-        await interaction.editReply({
-          embeds:[{
-            color: Colors.Red,
-            author:{
-              name: "実行できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
-            },
-            description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,
-            footer:{
-              text: `${lang[1]} || TakasumiBOT`
-            }
-          }],
-          files:[
-            new AttachmentBuilder()
-              .setFile(Buffer.from(res.program_error,"UTF-8"))
-              .setName("error.txt")
-          ]
-        });
-      })
     }
   }
 }
