@@ -708,7 +708,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "勝つと賭け金が3倍\n負けると賭け金から-1.5倍",
+    note: "勝つと賭け金が2.5倍\n負けると賭け金から-1.5倍",
     data: new SlashCommandBuilder()
       .setName("guess")
       .setDescription("所持金を使って数字当てゲームをします")
