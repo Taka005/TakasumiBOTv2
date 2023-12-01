@@ -2,6 +2,7 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, AttachmentBuilder, ChannelType, Colors } = require("discord.js");
   const fetch = require("node-fetch");
   const db = require("../../lib/db");
+  const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "analytics"){
     const type = interaction.options.getString("type");
@@ -27,7 +28,7 @@ module.exports = async(interaction)=>{
           startDate.setMonth(startDate.getMonth()+1,1);
         }
 
-        data = await fetch("http://localhost:4000/line",{
+        data = await fetch(`${config.api.graph}/line`,{
           "method": "POST",
           "headers":{
             "Content-Type": "application/json"
@@ -59,7 +60,7 @@ module.exports = async(interaction)=>{
           startDate.setDate(startDate.getDate()+1);
         }
 
-        data = await fetch("http://localhost:4000/line",{
+        data = await fetch(`${config.api.graph}/line`,{
           "method": "POST",
           "headers":{
             "Content-Type": "application/json"
@@ -81,7 +82,7 @@ module.exports = async(interaction)=>{
         const idle = members.filter(member=>member.presence?.status === "idle");
         const offline = members.filter(member=>member.presence?.status === "offline"||!member.presence?.status);
 
-        data = await fetch("http://localhost:4000/pie",{
+        data = await fetch(`${config.api.graph}/pie`,{
           "method": "POST",
           "headers":{
             "Content-Type": "application/json"
@@ -100,7 +101,7 @@ module.exports = async(interaction)=>{
         const mobile = members.filter(member=>member.presence?.clientStatus?.mobile);
         const desktop = members.filter(member=>member.presence?.clientStatus?.desktop);
 
-        data = await fetch("http://localhost:4000/pie",{
+        data = await fetch(`${config.api.graph}/pie`,{
           "method": "POST",
           "headers":{
             "Content-Type": "application/json"
@@ -117,7 +118,7 @@ module.exports = async(interaction)=>{
 
         const bot = members.filter(member=>member.user.bot);
 
-        data = await fetch("http://localhost:4000/pie",{
+        data = await fetch(`${config.api.graph}/pie`,{
           "method": "POST",
           "headers":{
             "Content-Type": "application/json"
@@ -136,7 +137,7 @@ module.exports = async(interaction)=>{
         const voice = channels.filter(ch=>ch.type===ChannelType.GuildVoice);
         const category = channels.filter(ch=>ch.type===ChannelType.GuildCategory);
 
-        data = await fetch("http://localhost:4000/pie",{
+        data = await fetch(`${config.api.graph}/pie`,{
           "method": "POST",
           "headers":{
             "Content-Type": "application/json"
@@ -158,7 +159,7 @@ module.exports = async(interaction)=>{
 
         const user = members.filter(member=>!member.user.bot);
 
-        data = await fetch("http://localhost:4000/pie",{
+        data = await fetch(`${config.api.graph}/pie`,{
           "method": "POST",
           "headers":{
             "Content-Type": "application/json"

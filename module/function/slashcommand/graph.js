@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { Colors, AttachmentBuilder } = require("discord.js");
   const fetch = require("node-fetch");
+  const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "graph"){
     const formula = [
@@ -11,7 +12,7 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     try{
-      const image = await fetch(`http://localhost:4000/?formula=${formula}`)
+      const image = await fetch(`${config.api.graph}/?formula=${formula}`)
         .then(async(res)=>{
           if(!res.ok) throw new Error();
           return await res.blob();
