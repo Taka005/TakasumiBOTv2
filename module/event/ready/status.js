@@ -18,5 +18,5 @@ module.exports = async(client)=>{
       });
       stats = 0;
     }
-  },5000)
+  },5000);
 }

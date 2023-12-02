@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const channel = interaction.guild.channels.cache.find(name => name.name === "ticket")
+    const channel = interaction.guild.channels.cache.find(name=>name.name === "ticket")
     if(!channel) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
