@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { AttachmentBuilder, Colors } = require("discord.js");
+  const config = require("../../../config.json");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "Make it a Quote"){
     const message = interaction.options.getMessage("message");
@@ -20,7 +21,7 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     await interaction.editReply("生成中...");
 
-    const image = await fetch(`http://localhost:3000/?name=${message.author.username}&id=${message.author.id}&content=${message.cleanContent.replace("#","＃")}&icon=${message.author.avatarURL({extension:"png",size:1024})||message.author.defaultAvatarURL}`)
+    const image = await fetch(`${config.api.miq}/?name=${message.author.username}&id=${message.author.id}&content=${message.cleanContent.replace("#","＃")}&icon=${message.author.avatarURL({extension:"png",size:1024})||message.author.defaultAvatarURL}`)
       .then(res=>res.blob());
 
     await interaction.editReply({

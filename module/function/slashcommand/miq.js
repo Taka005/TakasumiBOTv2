@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { Colors, AttachmentBuilder } = require("discord.js");
   const fetch = require("node-fetch");
+  const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "miq"){
     const type = interaction.options.getString("type");
@@ -9,7 +10,7 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     try{
-      const image = await fetch(`http://localhost:3000/?type=${type}&name=${user.username}&id=${interaction.user.id}&content=${text.replace("#","＃")}&icon=${user.avatarURL({extension:"png",size:1024})||user.defaultAvatarURL}`)
+      const image = await fetch(`${config.api.miq}/?type=${type}&name=${user.username}&id=${interaction.user.id}&content=${text.replace("#","＃")}&icon=${user.avatarURL({extension:"png",size:1024})||user.defaultAvatarURL}`)
         .then(res=>res.blob());
 
       await interaction.editReply({

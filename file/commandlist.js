@@ -708,7 +708,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "勝つと賭け金が3倍\n負けると賭け金から-1.5倍",
+    note: "勝つと賭け金が2.5倍\n負けると賭け金から-1.5倍",
     data: new SlashCommandBuilder()
       .setName("guess")
       .setDescription("所持金を使って数字当てゲームをします")
@@ -1290,7 +1290,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "グローバルチャットの色変更(黄色): 一回10円\nグローバルチャットの色変更(赤色): 一回100円",
+    note: "グローバルチャットの色変更(黄色): 一回10円\nグローバルチャットの色変更(赤色): 一回100円\nグローバルチャットの色変更(青色): 一回800円",
     data: new SlashCommandBuilder()
       .setName("pay")
       .setDescription("所持金を使用して機能を購入します")

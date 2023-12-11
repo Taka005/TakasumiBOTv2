@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const fetch = require("node-fetch");
   const { Colors } = require("discord.js");
+  const translate = require("../../lib/translate");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "translate"){
     const text = interaction.options.getString("text");
@@ -22,19 +22,16 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&dj=1&q=${encodeURIComponent(text)}`)
-      .then(res=>res.json());
-
     try{
-      const translate = data.sentences.map(sentence=>sentence.trans);
+      const data = await translate(encodeURIComponent(text),"auto",lang);
 
       await interaction.reply({
         embeds:[{
           color: Colors.Blue,
           title: "翻訳結果",
-          description: translate.join(""),
+          description: data.text,
           footer:{
-            text: `Google Translate [${data.src}]->[${lang}]`,
+            text: `Google Translate [${data.source}]->[${lang}]`,
             icon_url: "https://cdn.taka.cf/images/translate.png"
           }
         }]

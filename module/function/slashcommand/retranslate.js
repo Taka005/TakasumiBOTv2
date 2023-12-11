@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const fetch = require("node-fetch");
   const { Colors } = require("discord.js");
+  const translate = require("../../lib/translate");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "retranslate"){
     let text = interaction.options.getString("text");
@@ -20,21 +20,18 @@ module.exports = async(interaction)=>{
     try{
       Promise.all(["en","ko","id","el","zh","th","es","ru","ja","en","cs","el","id","th","zh","en","it","ko","es","ja","th","en","el","id","ko","it","en","zh","th","id"]
         .map(async(lang)=>{
-          const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&dj=1&q=${encodeURIComponent(text)}`)
-            .then(res=>res.json());
-
-          text = data.sentences.map(sentence=>sentence.trans).join("");
+          text = (await translate(encodeURIComponent(text),"auto",lang)).text;
         }))
         .then(async()=>{
-          const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&dj=1&q=${encodeURIComponent(text)}`)
-            .then(res=>res.json());
-
-          text = data.sentences.map(sentence=>sentence.trans).join("");
+          text = (await translate(encodeURIComponent(text),"auto","ja")).text;
 
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
-              title: "再翻訳結果",
+              author:{
+                name: "再翻訳しました",
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              },
               description: text
             }]
           });

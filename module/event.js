@@ -1,7 +1,7 @@
 module.exports = async(client)=>{
   const { Events, RESTEvents, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   require("dotenv").config();
-  const db = require("./lib/db");
+  const mute = require("./lib/mute");
   const count = require("./lib/count");
   const stats = require("./lib/stats");
   const money = require("./lib/money");
@@ -65,8 +65,8 @@ module.exports = async(client)=>{
     });
 
     if(
-      (await db(`SELECT * FROM mute_server WHERE id = ${interaction.guild.id};`))[0]||
-      (await db(`SELECT * FROM mute_user WHERE id = ${interaction.user.id};`))[0]
+      await mute.getUser(interaction.user.id)||
+      await mute.getServer(interaction.guild.id)
     ) return await interaction.reply({
       embeds:[{
         color: Colors.Red,

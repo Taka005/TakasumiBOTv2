@@ -26,13 +26,9 @@ module.exports = async(guild)=>{
                   .setLabel("サポートサーバー")
                   .setURL("https://discord.gg/NEesRdGQwD")
                   .setStyle(ButtonStyle.Link))
-              .addComponents(
-                new ButtonBuilder()
-                  .setLabel("For English")
-                  .setCustomId("english")
-                  .setStyle(ButtonStyle.Primary))
           ]
         }).catch(()=>{});
+        
         return find = 1;
       }
     }

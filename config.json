@@ -1,5 +1,9 @@
 {
     "admin": "790489873957781536",
     "prefix": ">",
+    "api":{
+        "miq": "http://localhost:3000",
+        "graph": "http://localhost:4000"
+    },
     "shards": 2
 }

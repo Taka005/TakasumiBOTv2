@@ -7,20 +7,18 @@ module.exports = async(interaction)=>{
 
     try{
       await interaction.channel.send({
-        embeds:[
-          {
-            color: Colors.Green,
-            title: "このサーバーのガイドライン",
-            thumbnail:{
-              url: "https://cdn.taka.cf/images/system/guideline.png"
-            },
-            description: text
+        embeds:[{
+          color: Colors.Green,
+          title: "このサーバーのガイドライン",
+          thumbnail:{
+            url: "https://cdn.taka.cf/images/system/guideline.png"
           },
-          {
-            color: Colors.Green,
-            description: "続行するにはこのサーバーのガイドラインを守る必要があります。\n[Discord コミュニティガイドライン](https://discord.com/guidelines) も忘れないようにして下さい。"
-          }
-        ],
+          description: text
+        },
+        {
+          color: Colors.Green,
+          description: "続行するにはこのサーバーのガイドラインを守る必要があります。\n[Discord コミュニティガイドライン](https://discord.com/guidelines) も忘れないようにして下さい。"
+        }],
         components:[
           new ActionRowBuilder()
             .addComponents(

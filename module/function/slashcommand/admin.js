@@ -5,7 +5,7 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const fetchUser = require("../../lib/fetchUser");
   const fetchGuild = require("../../lib/fetchGuild");
-  const escape = require("../../lib/escape");
+  const mute = require("../../lib/mute");
   const { admin } = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "admin"){
@@ -145,9 +145,8 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        const data = await db(`SELECT * FROM mute_user WHERE id = ${user.id};`);
-        if(data[0]){
-          await db(`DELETE FROM mute_user WHERE id = ${user.id};`);
+        if(await mute.getUser(user.id)){
+          await mute.removeUser(user.id);
 
           await interaction.reply({
             embeds:[{
@@ -159,7 +158,7 @@ module.exports = async(interaction)=>{
             }]
           });
         }else{
-          await db(`INSERT INTO mute_user (id, reason, time) VALUES("${user.id}","${escape(reason)}",NOW());`);
+          await mute.addUser(user.id,reason);
 
           await interaction.reply({
             embeds:[{
@@ -185,9 +184,8 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
-        const data = await db(`SELECT * FROM mute_server WHERE id = ${guild.id};`);
-        if(data[0]){
-          await db(`DELETE FROM mute_server WHERE id = ${guild.id};`);
+        if(await mute.getServer(guild.id)){
+          await mute.removeServer(guild.id);
 
           await interaction.reply({
             embeds:[{
@@ -199,7 +197,7 @@ module.exports = async(interaction)=>{
             }]
           });
         }else{
-          await db(`INSERT INTO mute_server (id, reason, time) VALUES("${guild.id}","${escape(reason)}",NOW())`);
+          await mute.addServer(guild.id,reason);
 
           await interaction.reply({
             embeds:[{
@@ -212,9 +210,8 @@ module.exports = async(interaction)=>{
           });
         }
       }else if(type === "ip"){
-        const data = await db(`SELECT * FROM mute_ip WHERE ip = "${id}";`);
-        if(data[0]){
-          await db(`DELETE FROM mute_ip WHERE ip = "${id}";`);
+        if(await mute.getIp(id)){
+          await mute.removeIp(id);
 
           await interaction.reply({
             embeds:[{
@@ -226,7 +223,7 @@ module.exports = async(interaction)=>{
             }]
           });
         }else{
-          await db(`INSERT INTO mute_ip (ip, reason, time) VALUES("${id}","${escape(reason)}",NOW())`);
+          await mute.addIp(id,reason);
 
           await interaction.reply({
             embeds:[{
