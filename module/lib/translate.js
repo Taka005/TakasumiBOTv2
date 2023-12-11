@@ -1,4 +1,6 @@
 module.exports = async(text,source,target)=>{
+  const fetch = require("node-fetch");
+
   const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${source}&tl=${target}&dt=t&dj=1&q=${text}`)
     .then(res=>res.json());
 
