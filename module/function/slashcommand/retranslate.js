@@ -28,7 +28,10 @@ module.exports = async(interaction)=>{
           await interaction.reply({
             embeds:[{
               color: Colors.Green,
-              title: "再翻訳結果",
+              author:{
+                name: "再翻訳しました",
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              },
               description: text
             }]
           });
