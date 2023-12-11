@@ -5,7 +5,6 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const fetchUser = require("../../lib/fetchUser");
   const fetchGuild = require("../../lib/fetchGuild");
-  const escape = require("../../lib/escape");
   const mute = require("../../lib/mute");
   const { admin } = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
@@ -211,7 +210,6 @@ module.exports = async(interaction)=>{
           });
         }
       }else if(type === "ip"){
-        const data = await db(`SELECT * FROM mute_ip WHERE ip = "${id}";`);
         if(await mute.getIp(id)){
           await mute.removeIp(id);
 
