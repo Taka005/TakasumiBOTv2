@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
-  const fetch = require("node-fetch");
   const { Colors } = require("discord.js");
+  const translate = require("../../lib/translate");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "日本語に翻訳"){
     const message = interaction.options.getMessage("message");
@@ -39,11 +39,8 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const data = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&dj=1&q=${encodeURIComponent(message.content)}`)
-      .then(res=>res.json());
-
     try{
-      const translated = data.sentences.map(sentence=>sentence.trans);
+      const data = await translate(encodeURIComponent(message.content),"auto","ja");
 
       await interaction.reply({
         content: `[翻訳元](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)`,
@@ -53,9 +50,9 @@ module.exports = async(interaction)=>{
             name: message.author.tag,
             icon_url: message.author.avatarURL()||message.author.defaultAvatarURL,
           },
-          description: translated.join(""),
+          description: data.text,
           footer:{
-            text: `Google Translate [${data.src}]->[ja]`,
+            text: `Google Translate [${data. source}]->[ja]`,
             icon_url: "https://cdn.taka.cf/images/translate.png"
           }
         }]
