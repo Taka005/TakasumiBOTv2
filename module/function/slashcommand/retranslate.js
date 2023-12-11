@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const translate = require("../../lib/translate");
+  const random = require("../../lib/random");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "retranslate"){
     let text = interaction.options.getString("text");
@@ -18,24 +19,23 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      Promise.all(["en","ko","id","el","zh","th","es","ru","ja","en","cs","el","id","th","zh","en","it","ko","es","ja","th","en","el","id","ko","it","en","zh","th","id"]
-        .map(async(lang)=>{
-          text = (await translate(encodeURIComponent(text),"auto",lang)).text;
-        }))
-        .then(async()=>{
-          text = (await translate(encodeURIComponent(text),"auto","ja")).text;
+      const langs = ["ja","en","es","fr","zh","ru","ko"];
+      await Promise.all(Array(30).map(async()=>{
+        text = (await translate(encodeURIComponent(text),"auto",random(langs))).text;
+      }));
 
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: "再翻訳しました",
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
-              },
-              description: text
-            }]
-          });
-        });
+      text = (await translate(encodeURIComponent(text),"auto","ja")).text;
+
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: "再翻訳しました",
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          },
+          description: text
+        }]
+      });
     }catch{
       await interaction.reply({
         embeds:[{
