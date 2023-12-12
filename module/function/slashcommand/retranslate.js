@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
       await Promise.all(Array(30).map(async()=>{
         console.log(text);
         text = (await translate(encodeURIComponent(text),"auto",random(langs))).text;
-      })).then(()=>{
+      })).then(async()=>{
         text = (await translate(encodeURIComponent(text),"auto","ja")).text;
 
         await interaction.reply({
