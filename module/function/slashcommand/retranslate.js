@@ -20,7 +20,7 @@ module.exports = async(interaction)=>{
     try{
       const langs = ["ja","en","es","fr","zh","ru","ko"];
 
-      for(let i;i>50;i++){
+      for(let i = 0;i<50;i++){
         text = (await translate(encodeURIComponent(text),"auto",langs[i%7])).text;
       }
 
