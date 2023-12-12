@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
 
 		const menbers = (await interaction.guild.members.fetch())
       .filter(member=>accounts.find(account=>account.id === member.id)?.ip === account.ip)
-      .filter(member=>member.id!==user.id);
+      .filter(member=>member.id !== user.id);
 
 		if(!menbers.first()) return await interaction.reply({
       embeds:[{
