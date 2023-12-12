@@ -23,19 +23,19 @@ module.exports = async(interaction)=>{
       await Promise.all(Array(30).map(async()=>{
         console.log(text);
         text = (await translate(encodeURIComponent(text),"auto",random(langs))).text;
-      }));
+      })).then(()=>{
+        text = (await translate(encodeURIComponent(text),"auto","ja")).text;
 
-      text = (await translate(encodeURIComponent(text),"auto","ja")).text;
-
-      await interaction.reply({
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: "再翻訳しました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
-          },
-          description: text
-        }]
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "再翻訳しました",
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            },
+            description: text
+          }]
+        });
       });
     }catch{
       await interaction.reply({
