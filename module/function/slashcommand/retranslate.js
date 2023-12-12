@@ -20,22 +20,22 @@ module.exports = async(interaction)=>{
 
     try{
       const langs = ["ja","en","es","fr","zh","ru","ko"];
-      await Promise.all(Array.apply(null,{length: 10}).map(async()=>{
+      
+      await Promise.all(Array.apply(null,{length: 50}).map(async()=>{
         text = (await translate(encodeURIComponent(text),"auto",random(langs))).text;
-        console.log(text);
-      })).then(async()=>{
-        text = (await translate(encodeURIComponent(text),"auto","ja")).text;
+      }));
 
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "再翻訳しました",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
-            },
-            description: text
-          }]
-        });
+      text = (await translate(encodeURIComponent(text),"auto","ja")).text;
+
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: "再翻訳しました",
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          },
+          description: text
+        }]
       });
     }catch{
       await interaction.reply({
