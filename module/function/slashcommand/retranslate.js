@@ -1,7 +1,6 @@
 module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const translate = require("../../lib/translate");
-  const random = require("../../lib/random");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "retranslate"){
     let text = interaction.options.getString("text");
@@ -21,9 +20,9 @@ module.exports = async(interaction)=>{
     try{
       const langs = ["ja","en","es","fr","zh","ru","ko"];
 
-      await Promise.all(Array.apply(null,{length: 100}).map(async()=>{
-        text = (await translate(encodeURIComponent(text),"auto",random(langs))).text;
-      }));
+      for(let i;i>50;i++){
+        text = (await translate(encodeURIComponent(text),"auto",langs[i%7])).text;
+      }
 
       text = (await translate(encodeURIComponent(text),"auto","ja")).text;
 
