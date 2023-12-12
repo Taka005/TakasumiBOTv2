@@ -20,7 +20,7 @@ module.exports = async(interaction)=>{
 
     try{
       const langs = ["ja","en","es","fr","zh","ru","ko"];
-      await Promise.all(Array(30).map(async()=>{
+      await Promise.all(Array.apply(null,{length: 10}).map(async()=>{
         console.log(text);
         text = (await translate(encodeURIComponent(text),"auto",random(langs))).text;
       })).then(async()=>{
