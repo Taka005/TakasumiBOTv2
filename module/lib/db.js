@@ -3,9 +3,10 @@ const util = require("util");
 const fs = require("fs");
 require("dotenv").config();
 const log = require("./log");
+const config = require("../../config.json");
 
 const connection = mysql.createConnection({
-  host: "public.bfv4d.tky1.mdbs.jp",
+  host: config.database,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: "bfv4d_",
