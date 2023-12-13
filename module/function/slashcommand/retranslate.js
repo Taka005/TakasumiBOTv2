@@ -21,10 +21,10 @@ module.exports = async(interaction)=>{
       const langs = ["ja","en","es","fr","zh","ru","ko"];
 
       for(let i = 0;i<50;i++){
-        text = (await translate(encodeURIComponent(text),"auto",langs[i%7])).text;
+        text = (await translate(text,"auto",langs[i%7])).text;
       }
 
-      text = (await translate(encodeURIComponent(text),"auto","ja")).text;
+      text = (await translate(text,"auto","ja")).text;
 
       await interaction.reply({
         embeds:[{

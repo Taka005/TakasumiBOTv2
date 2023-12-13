@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      const data = await translate(encodeURIComponent(text),"auto",lang);
+      const data = await translate(text,"auto",lang);
 
       await interaction.reply({
         embeds:[{
