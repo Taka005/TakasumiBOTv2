@@ -23,6 +23,7 @@ module.exports = async(interaction)=>{
 
       for(let i = 0;i<10;i++){
         text = (await translate(text,"auto",langs[i%7])).text;
+        console.log(text)
       }
 
       text = (await translate(text,"auto","ja")).text;
