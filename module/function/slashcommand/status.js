@@ -24,14 +24,17 @@ module.exports = async(interaction)=>{
       const global = await db("SELECT * FROM global;");
 
       const date = new Date();
-      const message = await db(`SELECT SUM(message) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`);
-      const command = await db(`SELECT SUM(command) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`);
+      const time = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+      const prevTime = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1}`;
 
-      const messageSign = (await db(`SELECT SUM(message) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`))[0].total - (await db(`SELECT SUM(CASE WHEN time BETWEEN "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 00:00:00" AND "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 23:59:59" THEN message ELSE 0 END) AS total FROM log;`))[0].total;
-      const commandSign = (await db(`SELECT SUM(command) as total FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}";`))[0].total - (await db(`SELECT SUM(CASE WHEN time BETWEEN "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 00:00:00" AND "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1} 23:59:59" THEN command ELSE 0 END) AS total FROM log`))[0].total;
+      const message = await db(`SELECT SUM(message) as total FROM log WHERE DATE(time) = "${time}";`);
+      const command = await db(`SELECT SUM(command) as total FROM log WHERE DATE(time) = "${time}";`);
 
-      const guild = await fetchGuildCounts(interaction.client) - (await db(`SELECT guild FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}" ORDER BY time ASC LIMIT 1;`))[0].guild;
-      const user = await fetchUserCounts(interaction.client) - (await db(`SELECT user FROM log WHERE DATE(time) = "${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}" ORDER BY time ASC LIMIT 1;`))[0].user;
+      const messageSign = (await db(`SELECT SUM(message) as total FROM log WHERE DATE(time) = "${time}";`))[0].total - (await db(`SELECT SUM(CASE WHEN time BETWEEN "${prevTime} 00:00:00" AND "${prevTime} 23:59:59" THEN message ELSE 0 END) AS total FROM log;`))[0].total;
+      const commandSign = (await db(`SELECT SUM(command) as total FROM log WHERE DATE(time) = "${time}";`))[0].total - (await db(`SELECT SUM(CASE WHEN time BETWEEN "${prevTime} 00:00:00" AND "${prevTime} 23:59:59" THEN command ELSE 0 END) AS total FROM log;`))[0].total;
+
+      const guild = await fetchGuildCounts(interaction.client) - (await db(`SELECT guild FROM log WHERE DATE(time) = "${time}" ORDER BY time ASC LIMIT 1;`))[0].guild;
+      const user = await fetchUserCounts(interaction.client) - (await db(`SELECT user FROM log WHERE DATE(time) = "${time}" ORDER BY time ASC LIMIT 1;`))[0].user;
 
       await interaction.editReply({
         embeds:[{

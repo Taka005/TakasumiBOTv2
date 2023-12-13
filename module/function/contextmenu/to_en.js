@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      const data = await translate(encodeURIComponent(message.content),"auto","en");
+      const data = await translate(message.content,"auto","en");
 
       await interaction.reply({
         content: `[翻訳元](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)`,

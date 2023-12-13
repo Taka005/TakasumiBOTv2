@@ -17,27 +17,28 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    await interaction.deferReply();
     try{
-      Promise.all(["en","ko","id","el","zh","th","es","ru","ja","en","cs","el","id","th","zh","en","it","ko","es","ja","th","en","el","id","ko","it","en","zh","th","id"]
-        .map(async(lang)=>{
-          text = (await translate(encodeURIComponent(text),"auto",lang)).text;
-        }))
-        .then(async()=>{
-          text = (await translate(encodeURIComponent(text),"auto","ja")).text;
+      const langs = ["ja","en","es","fr","zh","ru","ko"];
 
-          await interaction.reply({
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: "再翻訳しました",
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
-              },
-              description: text
-            }]
-          });
-        });
+      for(let i = 0;i<10;i++){
+        text = (await translate(text,"auto",langs[i%7])).text;
+      }
+
+      text = (await translate(text,"auto","ja")).text;
+
+      await interaction.editReply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: "再翻訳しました",
+            icon_url: "https://cdn.taka.cf/images/system/success.png"
+          },
+          description: text
+        }]
+      });
     }catch{
-      await interaction.reply({
+      await interaction.editReply({
         embeds:[{
           color: Colors.Red,
           author:{

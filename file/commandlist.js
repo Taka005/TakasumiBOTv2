@@ -1519,7 +1519,7 @@ module.exports = {
   retranslate:{
     type: "fun",
     name: "/retranslate",
-    description: "様々な言語で翻訳を30回繰り返します",
+    description: "様々な言語で翻訳を繰り返します",
     example: "`/retranslate こんにちは`",
     userPermission:[
       "必要なし"
@@ -1530,7 +1530,7 @@ module.exports = {
     note: "なし",
     data: new SlashCommandBuilder()
       .setName("retranslate")
-      .setDescription("様々な言語で翻訳を30回繰り返します")
+      .setDescription("様々な言語で翻訳を繰り返します")
       .addStringOption(option=>
         option
           .setName("text")
