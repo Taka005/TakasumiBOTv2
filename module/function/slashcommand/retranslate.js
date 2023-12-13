@@ -21,7 +21,7 @@ module.exports = async(interaction)=>{
     try{
       const langs = ["ja","en","es","fr","zh","ru","ko"];
 
-      for(let i = 0;i<10;i++){
+      for(let i = 0;i<30;i++){
         text = (await translate(text,"auto",langs[i%7])).text;
         console.log(text)
       }
