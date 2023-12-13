@@ -17,16 +17,17 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    await interaction.deferReply();
     try{
       const langs = ["ja","en","es","fr","zh","ru","ko"];
 
-      for(let i = 0;i<50;i++){
+      for(let i = 0;i<30;i++){
         text = (await translate(text,"auto",langs[i%7])).text;
       }
 
       text = (await translate(text,"auto","ja")).text;
 
-      await interaction.reply({
+      await interaction.editReply({
         embeds:[{
           color: Colors.Green,
           author:{
@@ -37,7 +38,7 @@ module.exports = async(interaction)=>{
         }]
       });
     }catch{
-      await interaction.reply({
+      await interaction.editReply({
         embeds:[{
           color: Colors.Red,
           author:{
