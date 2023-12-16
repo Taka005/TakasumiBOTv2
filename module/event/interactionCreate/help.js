@@ -38,7 +38,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           title: `HELP ${types[type]}`,
           fields: Object.values(list).filter(command=>command.type === type).map((command)=>({
-            name: `${command.name}`,
+            name: command.name,
             value: command.description
           }))
         }]
