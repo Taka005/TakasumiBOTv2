@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "順位",
-              value: `${rank.indexOf(interaction.user.id)}/${rank.length}位`
+              value: `${rank.indexOf(interaction.user.id)+1}/${rank.length}位`
             }
           ]
         }]
@@ -55,7 +55,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "順位",
-              value: `${data ? `${rank.indexOf(user.id)}/${rank.length}位`:"不明"}`
+              value: `${data ? `${rank.indexOf(user.id)+1}/${rank.length}位`:"不明"}`
             }
           ]
         }]
