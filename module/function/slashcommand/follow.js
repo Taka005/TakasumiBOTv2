@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
+  const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "follow"){
     const type = interaction.options.getString("type");
@@ -41,8 +42,9 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      if(type === "announce"){
-        await interaction.client.channels.cache.get("1049155527214628954").addFollower(interaction.channel);
+      if(type === "notice"){
+        const channel = await interaction.client.channels.fetch(config.announce.notice);
+        await channel.addFollower(interaction.channel);
 
         await interaction.reply({
           embeds:[{
@@ -54,8 +56,9 @@ module.exports = async(interaction)=>{
             description: "このチャンネルでBOTのお知らせを受け取ることができます"
           }]
         });
-      }else{
-        await interaction.client.channels.cache.get("1106533820498452500").addFollower(interaction.channel);
+      }else if(type === "update"){
+        const channel = await interaction.client.channels.fetch(config.announce.update);
+        await channel.addFollower(interaction.channel);
 
         await interaction.reply({
           embeds:[{

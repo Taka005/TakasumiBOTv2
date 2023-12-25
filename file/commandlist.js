@@ -606,7 +606,7 @@ module.exports = {
     type: "bot",
     name: "/follow",
     description: "BOTのアナウンスチャンネルを追加します",
-    example: "`/follow`",
+    example: "`/follow アナウンス`",
     userPermission:[
       "チャンネルの管理"
     ],
@@ -623,7 +623,7 @@ module.exports = {
           .setDescription("設定する種類")
           .setRequired(true)
           .addChoices(
-            { name: "アナウンス", value: "announce" },
+            { name: "アナウンス", value: "notice" },
             { name: "変更ログ", value: "update" }
           ))
   },
