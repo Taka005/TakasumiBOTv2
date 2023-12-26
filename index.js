@@ -53,9 +53,6 @@ const client = new Client({
     stageInstances:{
       interval: 1800
     },
-    autoModerationRules:{
-      interval: 1800
-    },
     applicationCommands:{
       interval: 1800
     },
