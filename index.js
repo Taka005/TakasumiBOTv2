@@ -16,48 +16,64 @@ const client = new Client({
       lifetime: 3600
     },
     users:{
-      interval: 3600
+      interval: 3600,
+      filter: ()=>{},
     },
     guildMembers:{
-      interval: 3600
+      interval: 3600,
+      filter: ()=>{},
     },
     reactions:{
-      interval: 1800
+      interval: 1800,
+      filter: ()=>{},
     },
     presences:{
-      interval: 1800
+      interval: 1800,
+      filter: ()=>{},
     },
     invites:{
       interval: 3600,
       lifetime: 86400
     },
     emojis:{
-      interval: 1800
+      interval: 1800,
+      filter: ()=>{},
     },
     threads:{
       interval: 1800,
       lifetime: 3600
     },
     threadMembers:{
-      interval: 1800
+      interval: 1800,
+      filter: ()=>{},
     },
     stickers:{
-      interval: 1800
+      interval: 1800,
+      filter: ()=>{},
     },
     bans:{
-      interval: 1800
+      interval: 1800,
+      filter: ()=>{},
     },
     voiceStates:{
-      interval: 1800
+      interval: 1800,
+      filter: ()=>{},
     },
     stageInstances:{
-      interval: 1800
+      interval: 1800,
+      filter: ()=>{},
     },
     applicationCommands:{
-      interval: 1800
+      interval: 1800,
+      filter: ()=>{},
+    },
+    autoModerationRules:{
+      interval: 1800,
+      filter: ()=>{},
     },
     entitlements:{
-      interval: 1800
+      interval: 1800,
+      filter: ()=>{},
     }
   }
 });
