@@ -2,6 +2,7 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, ChannelType, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const boost = require("../../lib/boost");
+  const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "server"){
 
@@ -29,6 +30,8 @@ module.exports = async(interaction)=>{
       const roles = await interaction.guild.roles.fetch();
       const emojis = await interaction.guild.emojis.fetch();
       const stickers = await interaction.guild.stickers.fetch();
+
+      const shardCount = interaction.client.shard ? `\nシャード:${interaction.client.shard.shardIdForGuildId(interaction.guild.id,config.shards)}番`:""
 
       const stats = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id};`);
 
@@ -65,7 +68,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "その他",
-              value: `チャンネル:${channels.size}個(💬:${text.size} 🔊:${voice.size} 📁:${category.size})\nロール:${roles.size}個\n絵文字:${emojis.size}個\nステッカー:${stickers.size}個\nNitro:${interaction.guild.premiumSubscriptionCount}ブースト(${boost(interaction.guild.premiumSubscriptionCount)}レベル)`
+              value: `チャンネル:${channels.size}個(💬:${text.size} 🔊:${voice.size} 📁:${category.size})\nロール:${roles.size}個\n絵文字:${emojis.size}個\nステッカー:${stickers.size}個\nNitro:${interaction.guild.premiumSubscriptionCount}ブースト(${boost(interaction.guild.premiumSubscriptionCount)}レベル)${shardCount}`
             },
             {
               name: "統計情報",
