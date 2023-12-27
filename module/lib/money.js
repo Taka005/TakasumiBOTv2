@@ -1,4 +1,5 @@
 const db = require("./db");
+
 module.exports = {
   "get":async(id)=>{
     const data = await db(`SELECT * FROM money WHERE id = ${id};`);
