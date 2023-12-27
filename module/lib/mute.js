@@ -1,5 +1,6 @@
 const db = require("./db");
 const escape = require("./escape");
+
 module.exports = {
   "getUser":async(id)=>{
     const data = await db(`SELECT * FROM mute_user WHERE id = "${id}";`);

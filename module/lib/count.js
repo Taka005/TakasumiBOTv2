@@ -1,5 +1,6 @@
 require("dotenv").config();
 const db = require("./db");
+
 module.exports = {
   "message":async()=>{
     const data = await db(`SELECT * FROM count WHERE id = ${process.env.ID};`);

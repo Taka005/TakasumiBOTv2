@@ -1,4 +1,5 @@
 const db = require("./db");
+
 module.exports = {
   "message":async(guildId)=>{
     const data = await db(`SELECT * FROM stats WHERE id = ${guildId};`);
