@@ -21,7 +21,7 @@ const client = new Client({
     },
     guildMembers:{
       interval: 3600,
-      filter: ()=>()=>true
+      filter: ()=>member=>member.id !== client.user.id
     },
     reactions:{
       interval: 1800,
