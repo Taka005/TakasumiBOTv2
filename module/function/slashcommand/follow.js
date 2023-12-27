@@ -42,8 +42,8 @@ module.exports = async(interaction)=>{
     });
 
     try{
+      const guild = await interaction.client.guilds.fetch(config.announce.server);
       if(type === "notice"){
-        const guild = await interaction.client.guilds.fetch(config.announce.server);
         await guild.channels.addFollower(config.announce.notice,interaction.channel);
 
         await interaction.reply({
@@ -57,7 +57,6 @@ module.exports = async(interaction)=>{
           }]
         });
       }else if(type === "update"){
-        const guild = await interaction.client.guilds.fetch(config.announce.server);
         await guild.channels.addFollower(config.announce.update,interaction.channel);
 
         await interaction.reply({
