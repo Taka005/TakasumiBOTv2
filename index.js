@@ -17,18 +17,18 @@ const client = new Client({
     },
     users:{
       interval: 3600,
-      filter: ()=>()=>true
+      filter: ()=>user=>user.id !== client.user.id
     },
     guildMembers:{
       interval: 3600,
       filter: ()=>member=>member.id !== client.user.id
     },
     reactions:{
-      interval: 1800,
+      interval: 3600,
       filter: ()=>()=>true
     },
     presences:{
-      interval: 1800,
+      interval: 3600,
       filter: ()=>()=>true
     },
     invites:{
@@ -36,43 +36,43 @@ const client = new Client({
       lifetime: 86400
     },
     emojis:{
-      interval: 1800,
+      interval: 3600,
       filter: ()=>()=>true
     },
     threads:{
-      interval: 1800,
+      interval: 3600,
       lifetime: 3600
     },
     threadMembers:{
-      interval: 1800,
+      interval: 3600,
       filter: ()=>()=>true
     },
     stickers:{
-      interval: 1800,
+      interval: 3600,
       filter: ()=>()=>true
     },
     bans:{
-      interval: 1800,
+      interval: 3600,
       filter: ()=>()=>true
     },
     voiceStates:{
-      interval: 1800,
+      interval: 3600,
       filter: ()=>()=>true
     },
     stageInstances:{
-      interval: 1800,
+      interval: 3600,
       filter: ()=>()=>true
     },
     applicationCommands:{
-      interval: 1800,
+      interval: 3600,
       filter: ()=>()=>true
     },
     autoModerationRules:{
-      interval: 1800,
+      interval: 3600,
       filter: ()=>()=>true
     },
     entitlements:{
-      interval: 1800,
+      interval: 3600,
       filter: ()=>()=>true
     }
   }
