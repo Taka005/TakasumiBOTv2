@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
           name: "表示出来ませんでした",
           icon_url: "https://cdn.taka.cf/images/system/error.png"
         },
-        description: "あなたのアクティビティがありません"
+        description: "アクティビティーを指定してください"
       }],
       ephemeral: true
     });
@@ -22,6 +22,18 @@ module.exports = async(interaction)=>{
           if(!member.presence?.activities[0]) return false;
           return member.presence.activities.filter(activitiy=>name === activitiy.name)[0];
         });
+
+      if(!members.first()) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "表示出来ませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "指定されたアクティビティを持っているメンバーが存在しません"
+        }],
+        ephemeral: true
+      });
 
       await interaction.reply({
         embeds:[{
