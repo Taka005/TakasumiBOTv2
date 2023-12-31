@@ -1,5 +1,6 @@
 module.exports = async()=>{
   const fs = require("fs");
+  const log = require("./log");
 
   const files = await Promise.all([
     fs.readdirSync("./module/event/messageCreate")
@@ -22,4 +23,6 @@ module.exports = async()=>{
   global.auth = files[3];
   global.slashcommand = files[4];
   global.contextmenu = files[5];
+
+  log.info("ファイルをロードしました");
 }
