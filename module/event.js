@@ -1,5 +1,5 @@
 module.exports = async(client)=>{
-  const { Events, RESTEvents, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const { Events, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   require("dotenv").config();
   const mute = require("./lib/mute");
   const count = require("./lib/count");
@@ -106,10 +106,6 @@ module.exports = async(client)=>{
     await stats.leave(member.guild.id);
 
     require("./event/guildMemberRemove/leave")(member);
-  });
-
-  client.rest.on(RESTEvents.InvalidRequestWarning,(message)=>{
-    log.error(message);
   });
 
   if(process.env.DEBUG){
