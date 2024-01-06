@@ -124,10 +124,7 @@ module.exports = async(message)=>{
   }
 
   global.forEach(async(data)=>{
-    if(
-      data.server === message.guild.id||
-      mute_server.find(m=>m.id === data.server)
-    ) return;
+    if(data.server === message.guild.id) return;
 
     try{
       const webhook = new WebhookClient({id: data.id, token: data.token});
