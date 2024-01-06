@@ -15,10 +15,6 @@ module.exports = async(message)=>{
 
   if(limit(message)) return;
 
-  const cleanContent = message.cleanContent
-    .replace(/@everyone/g,"everyone")
-    .replace(/@here/g,"here");
-
   const reply_1 = {
     "嘘": random(["何だろう。噓つくのやめてもらっていいですか？",`嘘は嘘であると見抜ける人でないと(${message.guild.name}を使うのは)難しい`,"本当つまんないっすよ",]),
     "写像": "「写像」？なんすか「写像」って...",
@@ -35,7 +31,7 @@ module.exports = async(message)=>{
   const reply_2 = [
     `嘘は嘘であると見抜ける人でないと(${message.guild.name}を使うのは)難しい`,
     `嘘を嘘と見抜けない人は、${message.guild.name}を使うのは難しいでしょう`,
-    `「${cleanContent}」？なんすか「${cleanContent}」って...`,
+    `「${message.cleanContent}」？なんすか「${message.cleanContent}」って...`,
     "なんかそういうのって頭悪いか、嘘つきかのどちらかですよ",
     "それで勝った気になってるんですか？だったら相当頭悪いっすね",
     "それってほぼ詐欺ですよね",
@@ -115,8 +111,6 @@ module.exports = async(message)=>{
     "検討に検討を重ね検討を加速させていきたい"
   ];
 
-  const webhook = new WebhookClient({id: data[0].id, token:data[0].token});
-
   let msg;
   if(rate(false,true,0.01)){
     msg = {
@@ -158,6 +152,12 @@ module.exports = async(message)=>{
   }
 
   try{
+    const webhook = new WebhookClient({id: data[0].id, token:data[0].token},{
+      allowedMentions:{
+        parse: []
+      }
+    });
+
     await webhook.send(msg);
   }catch(error){
     await db(`DELETE FROM hiroyuki WHERE channel = ${message.channel.id};`);
