@@ -19,6 +19,7 @@ module.exports = async(message)=>{
 
   if(
     mute_user.find(m=>m.id === message.author.id)||
+    mute_server.find(g=>g.id === message.guild.id)||
     message.content.length > 300||
     Spam.count(message.guild.id)
   ) return await message.react("❌").catch(()=>{});
