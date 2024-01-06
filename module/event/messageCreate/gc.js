@@ -19,6 +19,7 @@ module.exports = async(message)=>{
 
   if(
     mute_user.find(m=>m.id === message.author.id)||
+    mute_server.find(g=>g.id === message.guild.id)||
     message.content.length > 300||
     Spam.count(message.guild.id)
   ) return await message.react("❌").catch(()=>{});
@@ -123,10 +124,7 @@ module.exports = async(message)=>{
   }
 
   global.forEach(async(data)=>{
-    if(
-      data.server === message.guild.id||
-      mute_server.find(m=>m.id === data.server)
-    ) return;
+    if(data.server === message.guild.id) return;
 
     try{
       const webhook = new WebhookClient({id: data.id, token: data.token});
