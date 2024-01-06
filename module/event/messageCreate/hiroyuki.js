@@ -15,6 +15,10 @@ module.exports = async(message)=>{
 
   if(limit(message)) return;
 
+  const cleanContent = message.cleanContent
+    .replace("@everyone","everyone")
+    .replace("@here","here");
+
   const reply_1 = {
     "嘘": random(["何だろう。噓つくのやめてもらっていいですか？",`嘘は嘘であると見抜ける人でないと(${message.guild.name}を使うのは)難しい`,"本当つまんないっすよ",]),
     "写像": "「写像」？なんすか「写像」って...",
@@ -31,7 +35,7 @@ module.exports = async(message)=>{
   const reply_2 = [
     `嘘は嘘であると見抜ける人でないと(${message.guild.name}を使うのは)難しい`,
     `嘘を嘘と見抜けない人は、${message.guild.name}を使うのは難しいでしょう`,
-    `「${message.cleanContent}」？なんすか「${message.cleanContent}」って...`,
+    `「${cleanContent}」？なんすか「${cleanContent}」って...`,
     "なんかそういうのって頭悪いか、嘘つきかのどちらかですよ",
     "それで勝った気になってるんですか？だったら相当頭悪いっすね",
     "それってほぼ詐欺ですよね",
