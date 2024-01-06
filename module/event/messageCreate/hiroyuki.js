@@ -16,8 +16,8 @@ module.exports = async(message)=>{
   if(limit(message)) return;
 
   const cleanContent = message.cleanContent
-    .replace("@everyone","everyone")
-    .replace("@here","here");
+    .replace(/@everyone/g,"everyone")
+    .replace(/@here/g,"here");
 
   const reply_1 = {
     "嘘": random(["何だろう。噓つくのやめてもらっていいですか？",`嘘は嘘であると見抜ける人でないと(${message.guild.name}を使うのは)難しい`,"本当つまんないっすよ",]),
