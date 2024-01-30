@@ -885,6 +885,26 @@ module.exports = {
           .setName("user")
           .setDescription("表示するユーザー"))
   },
+  ip:{
+    type: "info",
+    name: "/ip",
+    description: "IPアドレスの詳細情報を表示します",
+    example: "`/ip 8.8.8.8`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("ip")
+      .setDescription("IPアドレスの詳細情報を表示します")
+      .addUserOption(option=>
+        option
+          .setName("address")
+          .setDescription("表示するIPアドレス"))
+  },
   kick:{
     type: "manage",
     name: "/kick",
