@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "位置",
-              value: `緯度${data.latitude}度\n経度${data.longitude}度`
+              value: `緯度${data.latitude.toFixed(1)}度\n経度${data.longitude.toFixed(1)}度`
             },
             {
               name: "プロバイダー",
