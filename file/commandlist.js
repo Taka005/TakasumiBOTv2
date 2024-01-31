@@ -903,7 +903,8 @@ module.exports = {
       .addUserOption(option=>
         option
           .setName("address")
-          .setDescription("表示するIPアドレス"))
+          .setDescription("表示するIPアドレス")
+          .setRequired(true))
   },
   kick:{
     type: "manage",
