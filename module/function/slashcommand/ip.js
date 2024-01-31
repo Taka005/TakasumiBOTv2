@@ -34,39 +34,28 @@ module.exports = async(interaction)=>{
           },
           fields:[
             {
-              name: "IP",
-              value: data.ip,
-              inline: true
-            },
-            {
               name: "国名",
-              value: data.country_name,
-              inline: true
+              value: data.country_name
             },
             {
               name: "地域名",
-              value: data.region_name,
-              inline: true
+              value: data.region_name
             },
             {
               name: "都市名",
-              value: data.city_name,
-              inline: true
+              value: data.city_name
             },
             {
               name: "位置",
-              value: `緯度${data.latitude}度 経度${data.longitude}度`,
-              inline: true
+              value: `緯度${data.latitude}度\n経度${data.longitude}度`
             },
             {
               name: "プロバイダー",
-              value: data.as,
-              inline: true
+              value: data.as
             },
             {
               name: "プロキシ",
-              value: data.is_proxy ? "使用しています":"使用していません",
-              inline: true
+              value: data.is_proxy ? "使用しています":"使用していません"
             }
           ],
           footer:{
