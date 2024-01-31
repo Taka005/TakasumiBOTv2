@@ -9,7 +9,8 @@ module.exports = async(interaction)=>{
 
     if(type === "yellow"){
       const data = await money.get(interaction.user.id);
-      if(Number(data.amount)-(count*10)<0||count<3) return await interaction.reply({
+
+      if(Number(data.amount)<count*10||count<3) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -47,7 +48,8 @@ module.exports = async(interaction)=>{
       });
     }else if(type === "red"){
       const data = await money.get(interaction.user.id);
-      if(Number(data.amount)-(count*100)<0||count<1) return await interaction.reply({
+
+      if(Number(data.amount)<count*100||count<1) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -85,7 +87,8 @@ module.exports = async(interaction)=>{
       });
     }else if(type === "blue"){
       const data = await money.get(interaction.user.id);
-      if(Number(data.amount)-(count*800)<0||count<1) return await interaction.reply({
+
+      if(Number(data.amount)<count*800||count<1) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
