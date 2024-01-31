@@ -69,7 +69,7 @@ module.exports = async(interaction)=>{
 
       await interaction.deferReply();
       try{
-        const trade = await db("SELECT * FROM trade;");
+        const trade = await db("SELECT * FROM trade ORDER BY time;");
 
         const data = await fetch(`${config.api.graph}/line`,{
           "method": "POST",
@@ -77,7 +77,7 @@ module.exports = async(interaction)=>{
             "Content-Type": "application/json"
           },
           "body": JSON.stringify({
-            "x": trade.map(d=>new Date(d.time).toLocaleString()),
+            "x": trade.map(d,i=>i),
             "y": trade.map(d=>d.price),
             "title": "株価",
             "xLabel": "時間",
