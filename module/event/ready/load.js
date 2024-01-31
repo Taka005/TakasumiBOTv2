@@ -5,6 +5,7 @@ module.exports = async(client)=>{
   const db = require("../../lib/db");
   const log = require("../../lib/log");
   const cpu = require("../../lib/cpu");
+  const rate = require("../../lib/rate");
   const fetchGuildCounts = require("../../lib/fetchGuildCounts");
   const fetchUserCounts = require("../../lib/fetchUserCounts");
 
@@ -37,5 +38,33 @@ module.exports = async(client)=>{
     await db(`UPDATE stats SET \`leave\` = 0;`);
 
     log.info("統計データリセットしました");
+  });
+
+  cron.schedule("*/15 * * * *",async()=>{
+    let price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
+
+    const trade = await db("SELECT * FROM trade;");
+    let tradeLength = trade.length;
+    while(tradeLength >= 672){
+      await db("DELETE FROM trade ORDER BY time LIMIT 1;");
+      tradeLength--;
+      if(tradeLength <= 671) break;
+    }
+
+    if(price >= 1000){
+      if(rate(false,true,0.6)){
+        price -= price*(Math.random()*0.02 + 0.03).toFixed(2);
+      }else if(rate(false,true,0.2)){
+        price += price*(Math.random()*0.02 + 0.03).toFixed(2);
+      }
+    }else{
+      if(rate(false,true,0.6)){
+        price += price*(Math.random()*0.02 + 0.03).toFixed(2);
+      }else if(rate(false,true,0.2)){
+        price -= price*(Math.random()*0.02 + 0.03).toFixed(2);
+      }
+    }
+
+    await db(`INSERT INTO trade (time, price) VALUES(NOW(),"${price}");`);
   });
 }
