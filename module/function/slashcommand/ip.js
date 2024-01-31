@@ -22,9 +22,8 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      const data = await fetch(`https://api.ip2location.io/?key=${process.env.IP_KEY}&ip=${address}&lang=ja`)
+      const data = await fetch(`https://api.ip2location.io/?key=${process.env.IP_KEY}&ip=${address}`)
         .then(res=>res.json());
-      console.log(data)
 
       await interaction.reply({
         embeds:[{
@@ -76,7 +75,7 @@ module.exports = async(interaction)=>{
           timestamp: new Date()
         }]
       });
-    }catch(error){
+    }catch{
       await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -84,7 +83,7 @@ module.exports = async(interaction)=>{
             name: "取得できませんでした",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          description: "有効なIPアドレスを指定してください"+error.message
+          description: "有効なIPアドレスを指定してください"
         }]
       });
     }
