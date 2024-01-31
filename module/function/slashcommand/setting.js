@@ -6,7 +6,25 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "setting"){
 
-    if(interaction.options.getSubcommand() === "help"){//Help画面
+    if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "権限がありません",
+          icon_url: "https://cdn.taka.cf/images/system/error.png"
+        },
+        description: "このコマンドを実行するには以下の権限を持っている必要があります",
+        fields:[
+          {
+            name: "必要な権限",
+            value: "```管理者```"
+          }
+        ]
+      }],
+      ephemeral: true
+    });
+
+    if(interaction.options.getSubcommand() === "help"){
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -53,23 +71,6 @@ module.exports = async(interaction)=>{
         }]
       });
     }else if(interaction.options.getSubcommand() === "stats"){
-      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "権限がありません",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          description: "このコマンドを実行するには以下の権限を持っている必要があります",
-          fields:[
-            {
-              name: "必要な権限",
-              value: "```管理者```"
-            }
-          ]
-        }],
-        ephemeral: true
-      });
 
       const data = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id};`);
       if(!data[0]){
@@ -95,26 +96,8 @@ module.exports = async(interaction)=>{
           }]
         });
       }
-    }else if(interaction.options.getSubcommand() === "bump"){//BUMPロール設定
+    }else if(interaction.options.getSubcommand() === "bump"){
       const role = interaction.options.getRole("role");
-
-      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "権限がありません",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          description: "このコマンドを実行するには以下の権限を持っている必要があります",
-          fields:[
-            {
-              name: "必要な権限",
-              value: "```管理者```"
-            }
-          ]
-        }],
-        ephemeral: true
-      });
 
       if(
         !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
@@ -187,26 +170,8 @@ module.exports = async(interaction)=>{
           }]
         });
       }
-    }else if(interaction.options.getSubcommand() === "dissoku"){//Dissokuロール設定
+    }else if(interaction.options.getSubcommand() === "dissoku"){
       const role = interaction.options.getRole("role");
-
-      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "権限がありません",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          description: "このコマンドを実行するには以下の権限を持っている必要があります",
-          fields:[
-            {
-              name: "必要な権限",
-              value: "```管理者```"
-            }
-          ]
-        }],
-        ephemeral: true
-      });
 
       if(
         !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
@@ -279,26 +244,8 @@ module.exports = async(interaction)=>{
           }]
         });
       }
-    }else if(interaction.options.getSubcommand() === "up"){//TakasumiBOTロール設定
+    }else if(interaction.options.getSubcommand() === "up"){
       const role = interaction.options.getRole("role");
-
-      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "権限がありません",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          description: "このコマンドを実行するには以下の権限を持っている必要があります",
-          fields:[
-            {
-              name: "必要な権限",
-              value: "```管理者```"
-            }
-          ]
-        }],
-        ephemeral: true
-      });
 
       if(
         !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
@@ -370,26 +317,8 @@ module.exports = async(interaction)=>{
           }]
         });
       }
-    }else if(interaction.options.getSubcommand() === "join"){//join
+    }else if(interaction.options.getSubcommand() === "join"){
       const message = interaction.options.getString("message");
-
-      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "権限がありません",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          description: "このコマンドを実行するには以下の権限を持っている必要があります",
-          fields:[
-            {
-              name: "必要な権限",
-              value: "```管理者```"
-            }
-          ]
-        }],
-        ephemeral: true
-      });
 
       if(
         !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
@@ -467,70 +396,52 @@ module.exports = async(interaction)=>{
         });
 
         await interaction.deferReply();
-        await interaction.channel.createWebhook({
-          name: "TakasumiBOT Join",
-          avatar: "https://cdn.taka.cf/images/icon.png",
-        })
-          .then(async(webhook)=>{
-            await db(`INSERT INTO \`join\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${escape(message)}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
-            await interaction.editReply({
-              embeds:[{
-                color: Colors.Green,
-                author:{
-                  name: "参加メッセージを設定しました",
-                  icon_url: "https://cdn.taka.cf/images/system/success.png"
-                },
-                description: `送信メッセージ: ${message}`
-              }]
-            });
-          })
-          .catch(async(error)=>{
-            await interaction.editReply({
-              embeds:[{
-                color: Colors.Red,
-                author:{
-                  name: "参加メッセージを設定できませんでした",
-                  icon_url: "https://cdn.taka.cf/images/system/error.png"
-                },
-                description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
-                fields:[
-                  {
-                    name: "エラーコード",
-                    value: `\`\`\`${error}\`\`\``
-                  }
-                ]
-              }],
-              components:[
-                new ActionRowBuilder()
-                  .addComponents(
-                    new ButtonBuilder()
-                      .setLabel("サポートサーバー")
-                      .setURL("https://discord.gg/NEesRdGQwD")
-                      .setStyle(ButtonStyle.Link))
-              ]
-            });
-          })
-      }
-    }else if(interaction.options.getSubcommand() === "leave"){//leave
-      const message = interaction.options.getString("message");
+        try{
+          const webhook = await interaction.channel.createWebhook({
+            name: "TakasumiBOT Join",
+            avatar: "https://cdn.taka.cf/images/icon.png",
+          });
 
-      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "権限がありません",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          description: "このコマンドを実行するには以下の権限を持っている必要があります",
-          fields:[
-            {
-              name: "必要な権限",
-              value: "```管理者```"
-            }
-          ]
-        }],
-        ephemeral: true
-      });
+          await db(`INSERT INTO \`join\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${escape(message)}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
+          await interaction.editReply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: "参加メッセージを設定しました",
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              },
+              description: `送信メッセージ: ${message}`
+            }]
+          });
+        }catch(error){
+          await interaction.editReply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: "参加メッセージを設定できませんでした",
+                icon_url: "https://cdn.taka.cf/images/system/error.png"
+              },
+              description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
+              fields:[
+                {
+                  name: "エラーコード",
+                  value: `\`\`\`${error}\`\`\``
+                }
+              ]
+            }],
+            components:[
+              new ActionRowBuilder()
+                .addComponents(
+                  new ButtonBuilder()
+                    .setLabel("サポートサーバー")
+                    .setURL("https://discord.gg/NEesRdGQwD")
+                    .setStyle(ButtonStyle.Link))
+            ]
+          });
+        }
+      }
+    }else if(interaction.options.getSubcommand() === "leave"){
+      const message = interaction.options.getString("message");
 
       if(
         !interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionFlagsBits.ViewChannel)||
@@ -608,68 +519,51 @@ module.exports = async(interaction)=>{
         });
 
         await interaction.deferReply();
-        await interaction.channel.createWebhook({
-          name: "TakasumiBOT Leave",
-          avatar: "https://cdn.taka.cf/images/icon.png",
-        })
-          .then(async(webhook)=>{
-            await db(`INSERT INTO \`leave\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${escape(message)}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
-            await interaction.editReply({
-              embeds:[{
-                color: Colors.Green,
-                author:{
-                  name: "退出メッセージを設定しました",
-                  icon_url: "https://cdn.taka.cf/images/system/success.png"
-                },
-                description: `送信メッセージ: ${message}`
-              }]
-            });
-          })
-          .catch(async(error)=>{
-            await interaction.editReply({
-              embeds:[{
-                color: Colors.Red,
-                author:{
-                  name: "退出メッセージを設定できませんでした",
-                  icon_url: "https://cdn.taka.cf/images/system/error.png"
-                },
-                description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
-                fields:[
-                  {
-                    name: "エラーコード",
-                    value: `\`\`\`${error}\`\`\``
-                  }
-                ]
-              }],
-              components:[
-                new ActionRowBuilder()
-                  .addComponents(
-                    new ButtonBuilder()
-                      .setLabel("サポートサーバー")
-                      .setURL("https://discord.gg/NEesRdGQwD")
-                      .setStyle(ButtonStyle.Link))
+        try{
+          const webhook = await interaction.channel.createWebhook({
+            name: "TakasumiBOT Leave",
+            avatar: "https://cdn.taka.cf/images/icon.png",
+          });
+
+          await db(`INSERT INTO \`leave\` (server, channel, message, id, token, time) VALUES("${interaction.guild.id}","${interaction.channel.id}","${escape(message)}","${webhook.id}","${webhook.token}",NOW()) ON DUPLICATE KEY UPDATE server = VALUES (server),channel = VALUES (channel),message = VALUES (message),id = VALUES (id),token = VALUES (token),time = VALUES (time);`);
+          await interaction.editReply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: "退出メッセージを設定しました",
+                icon_url: "https://cdn.taka.cf/images/system/success.png"
+              },
+              description: `送信メッセージ: ${message}`
+            }]
+          });
+        }catch(error){
+          await interaction.editReply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: "退出メッセージを設定できませんでした",
+                icon_url: "https://cdn.taka.cf/images/system/error.png"
+              },
+              description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
+              fields:[
+                {
+                  name: "エラーコード",
+                  value: `\`\`\`${error}\`\`\``
+                }
               ]
-            });
-          })
+            }],
+            components:[
+              new ActionRowBuilder()
+                .addComponents(
+                  new ButtonBuilder()
+                    .setLabel("サポートサーバー")
+                    .setURL("https://discord.gg/NEesRdGQwD")
+                    .setStyle(ButtonStyle.Link))
+            ]
+          });
+        }
       }
-    }else if(interaction.options.getSubcommand() === "ignore"){//ignore
-      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "権限がありません",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          description: "このコマンドを実行するには以下の権限を持っている必要があります",
-          fields:[
-            {
-              name: "必要な権限",
-              value: "```管理者```"
-            }
-          ]
-        }],
-        ephemeral: true
-      });
+    }else if(interaction.options.getSubcommand() === "ignore"){
 
       const data = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
       if(!data[0]){
@@ -700,7 +594,7 @@ module.exports = async(interaction)=>{
           }]
         });
       }
-    }else if(interaction.options.getSubcommand() === "info"){//info
+    }else if(interaction.options.getSubcommand() === "info"){
       const bump = await db(`SELECT * FROM bump WHERE id = ${interaction.guild.id};`);
       const dissoku = await db(`SELECT * FROM dissoku WHERE id = ${interaction.guild.id};`);
       const global = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id};`);
@@ -779,25 +673,7 @@ module.exports = async(interaction)=>{
           ]
         }]
       });
-    }else if(interaction.options.getSubcommand() === "delete"){//delete
-      if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "権限がありません",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
-          },
-          description: "このコマンドを実行するには以下の権限を持っている必要があります",
-          fields:[
-            {
-              name: "必要な権限",
-              value: "```管理者```"
-            }
-          ]
-        }],
-        ephemeral: true
-      });
-
+    }else if(interaction.options.getSubcommand() === "delete"){
       await db(`DELETE FROM pin WHERE server = ${interaction.guild.id};`);
       await db(`DELETE FROM bump WHERE id = ${interaction.guild.id};`);
       await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id};`);

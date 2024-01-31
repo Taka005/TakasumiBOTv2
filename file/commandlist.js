@@ -885,6 +885,26 @@ module.exports = {
           .setName("user")
           .setDescription("表示するユーザー"))
   },
+  ip:{
+    type: "info",
+    name: "/ip",
+    description: "IPアドレスの詳細情報を表示します",
+    example: "`/ip 8.8.8.8`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("ip")
+      .setDescription("IPアドレスの詳細情報を表示します")
+      .addUserOption(option=>
+        option
+          .setName("address")
+          .setDescription("表示するIPアドレス"))
+  },
   kick:{
     type: "manage",
     name: "/kick",
@@ -1883,6 +1903,44 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("top")
       .setDescription("チャンネルの最初のメッセージのリンクを表示します"),
+  },
+  trade:{
+    type: "money",
+    name: "/trade",
+    description: "株の情報や取引をします",
+    example: "`/trade buy 3`\n`/trade info`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("trade")
+      .setDescription("株の情報や取引をします")
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("buy")
+          .setDescription("株を購入します")
+          .addIntegerOption(option=>
+            option
+              .setName("count")
+              .setDescription("購入する個数")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("sell")
+          .setDescription("株を売却します")
+          .addIntegerOption(option=>
+            option
+              .setName("count")
+              .setDescription("売却する個数")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("info")
+          .setDescription("株の情報を表示します"))
   },
   translate:{
     type: "tool",
