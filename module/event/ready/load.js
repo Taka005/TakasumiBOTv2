@@ -45,10 +45,10 @@ module.exports = async(client)=>{
 
     const trade = await db("SELECT * FROM trade;");
     let tradeLength = trade.length;
-    while(tradeLength >= 672){
+    while(tradeLength >= 288){
       await db("DELETE FROM trade ORDER BY time LIMIT 1;");
       tradeLength--;
-      if(tradeLength <= 671) break;
+      if(tradeLength <= 287) break;
     }
 
     if(price >= 1000){
