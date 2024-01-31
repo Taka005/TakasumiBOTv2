@@ -29,12 +29,6 @@ module.exports = async(interaction)=>{
       await db(`UPDATE money SET stock = ${Number(data.stock) + count} WHERE id = ${interaction.user.id}`);
       await money.delete(interaction.user.id,count*price);
 
-      for(let i = 1;i <= count;i++){
-        price += Math.round(price*(Math.random()*0.02 + 0.01));
-      }
-
-      await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
-
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -44,6 +38,12 @@ module.exports = async(interaction)=>{
           }
         }]
       });
+
+      for(let i = 1;i <= count;i++){
+        price += Math.round(price*(Math.random()*0.002 + 0.001));
+      }
+
+      await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
     }else if(interaction.options.getSubcommand() === "sell"){
       const count = interaction.options.getInteger("count");
 
@@ -64,12 +64,6 @@ module.exports = async(interaction)=>{
       await db(`UPDATE money SET stock = ${Number(data.stock) - count} WHERE id = ${interaction.user.id}`);
       await money.add(interaction.user.id,count*price);
 
-      for(let i = 1;i <= count;i++){
-        price -= Math.round(price*(Math.random()*0.02 + 0.01));
-      }
-
-      await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
-
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -79,6 +73,12 @@ module.exports = async(interaction)=>{
           }
         }]
       });
+
+      for(let i = 1;i <= count;i++){
+        price -= Math.round(price*(Math.random()*0.002 + 0.001));
+      }
+
+      await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
     }else if(interaction.options.getSubcommand() === "info"){
 
       await interaction.deferReply();
