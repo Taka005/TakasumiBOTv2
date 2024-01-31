@@ -24,6 +24,7 @@ module.exports = async(interaction)=>{
     try{
       const data = await fetch(`https://api.ip2location.io/?key=${process.env.IP_KEY}&ip=${address}&lang=ja`)
         .then(res=>res.json());
+      console.log(data)
 
       await interaction.reply({
         embeds:[{
@@ -67,7 +68,7 @@ module.exports = async(interaction)=>{
               name: "プロキシ",
               value: data.is_proxy ? "使用しています":"使用していません",
               inline: true
-            },
+            }
           ],
           footer:{
             text: "TakasumiBOT"
