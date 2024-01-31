@@ -886,7 +886,7 @@ module.exports = {
           .setDescription("表示するユーザー"))
   },
   ip:{
-    type: "info",
+    type: "tool",
     name: "/ip",
     description: "IPアドレスの詳細情報を表示します",
     example: "`/ip 8.8.8.8`",

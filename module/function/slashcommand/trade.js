@@ -92,7 +92,7 @@ module.exports = async(interaction)=>{
           },
           "body": JSON.stringify({
             "x": trade.map(d=>new Date(d.time).toLocaleString()),
-            "y": trade.map(d=>d.price),
+            "y": trade.map(d=>Number(d.price)),
             "title": "株価",
             "xLabel": "時間",
             "yLabel": "円"
