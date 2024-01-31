@@ -212,8 +212,7 @@ module.exports = async(interaction)=>{
                 .setLabel("サポートサーバー")
                 .setURL("https://discord.gg/NEesRdGQwD")
                 .setStyle(ButtonStyle.Link))
-        ],
-        ephemeral: true
+        ]
       });
     }
   }
