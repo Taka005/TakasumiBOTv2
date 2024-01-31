@@ -65,6 +65,7 @@ module.exports = async(client)=>{
       }
     }
 
+    await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
     await db(`INSERT INTO trade (time, price) VALUES(NOW(),"${price}");`);
   });
 }
