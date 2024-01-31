@@ -1904,6 +1904,44 @@ module.exports = {
       .setName("top")
       .setDescription("チャンネルの最初のメッセージのリンクを表示します"),
   },
+  trade:{
+    type: "money",
+    name: "/trade",
+    description: "株の情報や取引をします",
+    example: "`/trade buy 3`\n`/trade info`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("trade")
+      .setDescription("株の情報や取引をします")
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("buy")
+          .setDescription("株を購入します")
+          .addIntegerOption(option=>
+            option
+              .setName("count")
+              .setDescription("購入する個数")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("sell")
+          .setDescription("株を売却します")
+          .addIntegerOption(option=>
+            option
+              .setName("count")
+              .setDescription("売却する個数")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("info")
+          .setDescription("株の情報を表示します"))
+  },
   translate:{
     type: "tool",
     name: "/translate",
