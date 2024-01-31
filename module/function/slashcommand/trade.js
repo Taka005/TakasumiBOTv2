@@ -29,7 +29,7 @@ module.exports = async(interaction)=>{
       await db(`UPDATE money SET stock = ${Number(data.stock) + count} WHERE id = ${interaction.user.id}`);
       await money.delete(interaction.user.id,count*price);
 
-      for(let i;i <= count;i++){
+      for(let i = 1;i <= count;i++){
         price += Math.round(price*(Math.random()*0.02 + 0.01));
       }
 
@@ -64,7 +64,7 @@ module.exports = async(interaction)=>{
       await db(`UPDATE money SET stock = ${Number(data.stock) - count} WHERE id = ${interaction.user.id}`);
       await money.add(interaction.user.id,count*price);
 
-      for(let i;i <= count;i++){
+      for(let i = 1;i <= count;i++){
         price -= Math.round(price*(Math.random()*0.02 + 0.01));
       }
 
