@@ -42,8 +42,7 @@ module.exports = async(interaction)=>{
           author:{
             name: `${count}回分(${count*10}円)を購入しました`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
-          },
-          description: "グローバルチャットの表示色が変更されます"
+          }
         }]
       });
     }else if(type === "red"){
@@ -81,8 +80,7 @@ module.exports = async(interaction)=>{
           author:{
             name: `${count}回分(${count*100}円)を購入しました`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
-          },
-          description: "グローバルチャットの表示色が変更されます"
+          }
         }]
       });
     }else if(type === "blue"){
@@ -120,8 +118,7 @@ module.exports = async(interaction)=>{
           author:{
             name: `${count}回分(${count*800}円)を購入しました`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
-          },
-          description: "グローバルチャットの表示色が変更されます"
+          }
         }]
       });
     }
