@@ -900,7 +900,7 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("ip")
       .setDescription("IPアドレスの詳細情報を表示します")
-      .addUserOption(option=>
+      .addStringOption(option=>
         option
           .setName("address")
           .setDescription("表示するIPアドレス")
