@@ -46,22 +46,22 @@ module.exports = async(client)=>{
     const trade = await db("SELECT * FROM trade;");
     let tradeLength = trade.length;
     while(tradeLength >= 288){
-      await db("DELETE FROM trade;");
+      await db("DELETE FROM trade ORDER BY time LIMIT 1;");
       tradeLength--;
       if(tradeLength <= 287) break;
     }
 
     if(price >= 1000){
       if(rate(false,true,0.6)){
-        price -= price*(Math.random()*0.02 + 0.03).toFixed(2);
+        price -= Math.round(price*(Math.random()*0.02 + 0.03));
       }else if(rate(false,true,0.2)){
-        price += price*(Math.random()*0.02 + 0.03).toFixed(2);
+        price += Math.round(price*(Math.random()*0.02 + 0.03));
       }
     }else{
       if(rate(false,true,0.6)){
-        price += price*(Math.random()*0.02 + 0.03).toFixed(2);
+        price += Math.round(price*(Math.random()*0.02 + 0.03));
       }else if(rate(false,true,0.2)){
-        price -= price*(Math.random()*0.02 + 0.03).toFixed(2);
+        price -= Math.round(price*(Math.random()*0.02 + 0.03));
       }
     }
 

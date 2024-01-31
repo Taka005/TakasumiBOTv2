@@ -28,6 +28,13 @@ module.exports = async(interaction)=>{
 
       await db(`UPDATE money SET stock = ${Number(data.stock) + count} WHERE id = ${interaction.user.id}`);
       await money.delete(interaction.user.id,count*price);
+
+      for(let i;i <= count;i++){
+        price += Math.round(price*(Math.random()*0.02 + 0.01));
+      }
+
+      await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
+
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -56,6 +63,13 @@ module.exports = async(interaction)=>{
 
       await db(`UPDATE money SET stock = ${Number(data.stock) - count} WHERE id = ${interaction.user.id}`);
       await money.add(interaction.user.id,count*price);
+
+      for(let i;i <= count;i++){
+        price -= Math.round(price*(Math.random()*0.02 + 0.01));
+      }
+
+      await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
+
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -69,7 +83,7 @@ module.exports = async(interaction)=>{
 
       await interaction.deferReply();
       try{
-        const trade = await db("SELECT * FROM trade ORDER BY time;");
+        const trade = await db("SELECT * FROM trade;");
 
         const data = await fetch(`${config.api.graph}/line`,{
           "method": "POST",
@@ -92,6 +106,7 @@ module.exports = async(interaction)=>{
               name: "株価情報",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
+            description: `現在の株価: ${price}円`,
             image:{
               url: "attachment://price.png"
             }
