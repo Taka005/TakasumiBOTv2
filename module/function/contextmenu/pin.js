@@ -95,7 +95,7 @@ module.exports = async(interaction)=>{
         });
 
         await db(`INSERT INTO pin (channel, server, message, count, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}","${server[0]?.count||"0"}",NOW());`);
-        await db(`UPDATE pin SET count = ${Number(server[0]?.count||0) + 1} WHERE server = ${message.guild.id};`);
+        await db(`UPDATE pin SET count = ${(server[0]?.count||0) + 1} WHERE server = ${message.guild.id};`);
       }catch(error){
         await interaction.reply({
           embeds:[{
@@ -126,7 +126,7 @@ module.exports = async(interaction)=>{
       try{
         await (await message.channel.messages.fetch(channel[0].message)).delete();
 
-        await db(`UPDATE pin SET count = ${Number(server[0].count)-1} WHERE server = ${message.guild.id};`);
+        await db(`UPDATE pin SET count = ${server[0].count-1} WHERE server = ${message.guild.id};`);
         await db(`DELETE FROM pin WHERE channel = ${message.channel.id};`);
 
         await interaction.reply({

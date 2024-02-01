@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
     if(type === "yellow"){
       const data = await money.get(interaction.user.id);
 
-      if(Number(data.amount)<count*10||count<3) return await interaction.reply({
+      if(data.amount<count*10||count<3) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      const total = Number(data.yellow) + count;
+      const total = data.yellow + count;
       if(total>300) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
     }else if(type === "red"){
       const data = await money.get(interaction.user.id);
 
-      if(Number(data.amount)<count*100||count<1) return await interaction.reply({
+      if(data.amount<count*100||count<1) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -61,7 +61,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      const total = Number(data.red) + count;
+      const total = data.red + count;
       if(total>300) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -88,7 +88,7 @@ module.exports = async(interaction)=>{
     }else if(type === "blue"){
       const data = await money.get(interaction.user.id);
 
-      if(Number(data.amount)<count*800||count<1) return await interaction.reply({
+      if(data.amount<count*800||count<1) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -100,7 +100,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      const total = Number(data.blue) + count;
+      const total = data.blue + count;
       if(total>300) return await interaction.reply({
         embeds:[{
           color: Colors.Red,

@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
           name: `${amount}円手に入れました`,
           icon_url: "https://cdn.taka.cf/images/system/success.png"
         },
-        description: `所持金: ${Number(data.amount)+amount}円`
+        description: `所持金: ${data.amount+amount}円`
       }]
     });
   }

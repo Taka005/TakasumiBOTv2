@@ -8,7 +8,7 @@ module.exports = {
   "add":async(id,number)=>{
     const data = await db(`SELECT * FROM money WHERE id = ${id};`);
 
-    let amount = Number(data[0] ? data[0].amount : 0) + number;
+    let amount = (data[0] ? data[0].amount : 0) + number;
     if(amount > 10000000){
       amount = 10000000;
     }
@@ -17,7 +17,7 @@ module.exports = {
   "delete":async(id,number)=>{
     const data = await db(`SELECT * FROM money WHERE id = ${id};`);
 
-    let amount = Number(data[0] ? data[0].amount : 0) - number;
+    let amount = (data[0] ? data[0].amount : 0) - number;
     if(amount < 0){
       amount = 0;
     }
