@@ -94,7 +94,7 @@ module.exports = async(interaction)=>{
             "Content-Type": "application/json"
           },
           "body": JSON.stringify({
-            "x": trade.map(d=>new Date(d.time).toLocaleString()),
+            "x": trade.map(d=>new Date(d.time).getMinutes()),
             "y": trade.map(d=>d.price),
             "title": "株価",
             "xLabel": "時間",
