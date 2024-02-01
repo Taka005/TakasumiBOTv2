@@ -3,6 +3,7 @@ module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const money = require("../../lib/money");
   const db = require("../../lib/db");
+  const sign = require("../../lib/sign");
   require("dotenv").config();
   const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
@@ -83,7 +84,9 @@ module.exports = async(interaction)=>{
 
       await interaction.deferReply();
       try{
-        const trade = await db("SELECT * FROM trade;");
+        const trade = await db("SELECT * FROM trade ORDER BY time DESC;");
+        const high = Math.max(...trade.map(d=>d.price));
+        const low = Math.min(...trade.map(d=>d.price));
 
         const data = await fetch(`${config.api.graph}/line`,{
           "method": "POST",
@@ -95,7 +98,8 @@ module.exports = async(interaction)=>{
             "y": trade.map(d=>Number(d.price)),
             "title": "株価",
             "xLabel": "時間",
-            "yLabel": "円"
+            "yLabel": "円",
+            "xFont": 0
           })
         }).then(res=>res.blob());
 
@@ -103,10 +107,10 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: "株価情報",
+              name: "株式情報",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
-            description: `現在の株価: ${price}円`,
+            description: `現在の株価: ${price}円\n変動額: ${sign(price - trade[trade.length - 1].price)}\n最高額: ${high}円\n最低額: ${low}`,
             image:{
               url: "attachment://price.png"
             }
