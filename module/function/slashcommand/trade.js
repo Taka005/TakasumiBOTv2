@@ -104,7 +104,7 @@ module.exports = async(interaction)=>{
             "title": "株価",
             "xLabel": "時間",
             "yLabel": "円",
-            "grid": false,
+            "grid": "False",
             "xFont": 1
           })
         }).then(res=>res.blob());
