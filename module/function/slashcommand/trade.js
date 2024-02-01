@@ -85,12 +85,10 @@ module.exports = async(interaction)=>{
       await interaction.deferReply();
       try{
         const trade = await db("SELECT * FROM trade ORDER BY time DESC;");
-        const time = trade.map(d=>new Date(d.time).getMinutes());
+        const time = trade.map(d=>new Date(d.time));
         const prices = trade.map(d=>d.price);
-        time.push(new Date().getMinutes()+1)
+        time.push(new Date())
         prices.push(price);
-        console.log(time)
-        console.log(price)
 
         const high = Math.max(...trade.map(d=>d.price));
         const low = Math.min(...trade.map(d=>d.price));
@@ -106,7 +104,7 @@ module.exports = async(interaction)=>{
             "title": "株価",
             "xLabel": "時間",
             "yLabel": "円",
-            //"grid": false,
+            "grid": false,
             "xFont": 1
           })
         }).then(res=>res.blob());
