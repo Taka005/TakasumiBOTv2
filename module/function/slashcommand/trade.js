@@ -89,6 +89,8 @@ module.exports = async(interaction)=>{
         const prices = trade.map(d=>d.price);
         time.push(new Date().getMinutes()+1)
         prices.push(price);
+        console.log(time)
+        console.log(price)
 
         const high = Math.max(...trade.map(d=>d.price));
         const low = Math.min(...trade.map(d=>d.price));
@@ -104,7 +106,7 @@ module.exports = async(interaction)=>{
             "title": "株価",
             "xLabel": "時間",
             "yLabel": "円",
-            "grid": false,
+            //"grid": false,
             "xFont": 1
           })
         }).then(res=>res.blob());
