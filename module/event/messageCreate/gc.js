@@ -56,13 +56,13 @@ module.exports = async(message)=>{
   const data = await money.get(message.author.id);
   if(data?.blue > 0){
     color = Colors.Blue;
-    await db(`UPDATE money SET blue = ${Number(data.blue)-1} WHERE id = ${message.author.id}`);
+    await db(`UPDATE money SET blue = ${data.blue-1} WHERE id = ${message.author.id}`);
   }else if(data?.red > 0){
     color = Colors.Red;
-    await db(`UPDATE money SET red = ${Number(data.red)-1} WHERE id = ${message.author.id}`);
+    await db(`UPDATE money SET red = ${data.red-1} WHERE id = ${message.author.id}`);
   }else if(data?.yellow > 0){
     color = Colors.Yellow;
-    await db(`UPDATE money SET yellow = ${Number(data.yellow)-1} WHERE id = ${message.author.id}`);
+    await db(`UPDATE money SET yellow = ${data.yellow-1} WHERE id = ${message.author.id}`);
   }
 
   const embed = [{

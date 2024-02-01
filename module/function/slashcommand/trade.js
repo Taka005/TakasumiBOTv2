@@ -3,18 +3,19 @@ module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const money = require("../../lib/money");
   const db = require("../../lib/db");
+  const sign = require("../../lib/sign");
   require("dotenv").config();
   const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "trade"){
-    let price = Number((await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock);
+    let price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
 
     if(interaction.options.getSubcommand() === "buy"){
       const count = interaction.options.getInteger("count");
 
       const data = await money.get(interaction.user.id);
 
-      if(Number(data.amount)<count*price||count<1) return await interaction.reply({
+      if(data.amount<count*price||count<1) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -26,7 +27,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await db(`UPDATE money SET stock = ${Number(data.stock) + count} WHERE id = ${interaction.user.id}`);
+      await db(`UPDATE money SET stock = ${data.stock + count} WHERE id = ${interaction.user.id}`);
       await money.delete(interaction.user.id,count*price);
 
       await interaction.reply({
@@ -49,7 +50,7 @@ module.exports = async(interaction)=>{
 
       const data = await money.get(interaction.user.id);
 
-      if(Number(data.stock)<count||count<1) return await interaction.reply({
+      if(data.stock<count||count<1) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -61,7 +62,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await db(`UPDATE money SET stock = ${Number(data.stock) - count} WHERE id = ${interaction.user.id}`);
+      await db(`UPDATE money SET stock = ${data.stock - count} WHERE id = ${interaction.user.id}`);
       await money.add(interaction.user.id,count*price);
 
       await interaction.reply({
@@ -83,7 +84,9 @@ module.exports = async(interaction)=>{
 
       await interaction.deferReply();
       try{
-        const trade = await db("SELECT * FROM trade;");
+        const trade = await db("SELECT * FROM trade ORDER BY time DESC;");
+        const high = Math.max(...trade.map(d=>d.price));
+        const low = Math.min(...trade.map(d=>d.price));
 
         const data = await fetch(`${config.api.graph}/line`,{
           "method": "POST",
@@ -92,10 +95,11 @@ module.exports = async(interaction)=>{
           },
           "body": JSON.stringify({
             "x": trade.map(d=>new Date(d.time).toLocaleString()),
-            "y": trade.map(d=>Number(d.price)),
+            "y": trade.map(d=>d.price),
             "title": "株価",
             "xLabel": "時間",
-            "yLabel": "円"
+            "yLabel": "円",
+            "xFont": 0
           })
         }).then(res=>res.blob());
 
@@ -103,10 +107,10 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             author:{
-              name: "株価情報",
+              name: "株式情報",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
-            description: `現在の株価: ${price}円`,
+            description: `現在の株価: ${price}円\n変動額: ${sign(price - trade[trade.length - 1].price)}\n最高額: ${high}円\n最低額: ${low}`,
             image:{
               url: "attachment://price.png"
             }

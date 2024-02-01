@@ -73,7 +73,8 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
           description: "有効なIPアドレスを指定してください"
-        }]
+        }],
+        ephemeral: true
       });
     }
   }

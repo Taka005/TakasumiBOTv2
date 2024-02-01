@@ -41,7 +41,7 @@ module.exports = async(client)=>{
   });
 
   cron.schedule("*/15 * * * *",async()=>{
-    let price = Number((await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock);
+    let price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
 
     const trade = await db("SELECT * FROM trade;");
     let tradeLength = trade.length;
