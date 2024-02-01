@@ -86,7 +86,7 @@ module.exports = async(interaction)=>{
       try{
         const trade = await db("SELECT * FROM trade ORDER BY time DESC;");
         const time = trade.map(d=>new Date(d.time).getMinutes()).push(new Date().getMinutes()+1)
-        const data = trade.map(d=>d.price).push(price);
+        const prices = trade.map(d=>d.price).push(price);
 
         const high = Math.max(...trade.map(d=>d.price));
         const low = Math.min(...trade.map(d=>d.price));
@@ -98,7 +98,7 @@ module.exports = async(interaction)=>{
           },
           "body": JSON.stringify({
             "x": time,
-            "y": data,
+            "y": prices,
             "title": "株価",
             "xLabel": "時間",
             "yLabel": "円",
