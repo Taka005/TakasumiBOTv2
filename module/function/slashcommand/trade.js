@@ -85,8 +85,10 @@ module.exports = async(interaction)=>{
       await interaction.deferReply();
       try{
         const trade = await db("SELECT * FROM trade ORDER BY time DESC;");
-        const time = trade.map(d=>new Date(d.time).getMinutes()).push(new Date().getMinutes()+1)
-        const prices = trade.map(d=>d.price).push(price);
+        const time = trade.map(d=>new Date(d.time).getMinutes());
+        const prices = trade.map(d=>d.price);
+        time.push(new Date().getMinutes()+1)
+        prices.push(price);
 
         const high = Math.max(...trade.map(d=>d.price));
         const low = Math.min(...trade.map(d=>d.price));
