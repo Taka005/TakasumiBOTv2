@@ -41,7 +41,7 @@ module.exports = async(interaction)=>{
       });
 
       for(let i = 1;i <= count;i++){
-        price += Math.round(price*(Math.random()*0.002 + 0.001));
+        price += Math.round(price*(Math.random()*0.004 + 0.001));
       }
 
       await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
@@ -76,7 +76,7 @@ module.exports = async(interaction)=>{
       });
 
       for(let i = 1;i <= count;i++){
-        price -= Math.round(price*(Math.random()*0.002 + 0.001));
+        price -= Math.round(price*(Math.random()*0.004 + 0.001));
       }
 
       await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
