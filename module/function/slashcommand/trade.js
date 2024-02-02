@@ -27,6 +27,18 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
+      if(data.stock + count > 1000) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "購入できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "1000株までしか購入できません"
+        }],
+        ephemeral: true
+      });
+
       await db(`UPDATE money SET stock = ${data.stock + count} WHERE id = ${interaction.user.id}`);
       await money.delete(interaction.user.id,count*price);
 
