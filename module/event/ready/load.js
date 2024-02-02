@@ -52,15 +52,15 @@ module.exports = async(client)=>{
     }
 
     if(price >= 1000){
-      if(rate(false,true,0.6)){
+      if(rate(false,true,0.5)){
         price -= Math.round(price*(Math.random()*0.02 + 0.03));
-      }else if(rate(false,true,0.2)){
+      }else if(rate(false,true,0.4)){
         price += Math.round(price*(Math.random()*0.02 + 0.03));
       }
     }else{
       if(rate(false,true,0.6)){
         price += Math.round(price*(Math.random()*0.02 + 0.03));
-      }else if(rate(false,true,0.2)){
+      }else if(rate(false,true,0.3)){
         price -= Math.round(price*(Math.random()*0.02 + 0.03));
       }
     }

@@ -40,9 +40,7 @@ module.exports = async(interaction)=>{
         }]
       });
 
-      for(let i = 1;i <= count;i++){
-        price += Math.round(price*(Math.random()*0.002 + 0.001));
-      }
+      price += Math.round(price*(Math.random()*0.04 + 0.01));
 
       await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
     }else if(interaction.options.getSubcommand() === "sell"){
@@ -75,9 +73,7 @@ module.exports = async(interaction)=>{
         }]
       });
 
-      for(let i = 1;i <= count;i++){
-        price -= Math.round(price*(Math.random()*0.002 + 0.001));
-      }
+      price -= Math.round(price*(Math.random()*0.04 + 0.01));
 
       await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
     }else if(interaction.options.getSubcommand() === "info"){
