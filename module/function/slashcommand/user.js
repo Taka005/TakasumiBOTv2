@@ -27,10 +27,6 @@ module.exports = async(interaction)=>{
               url: `https://discord.com/users/${interaction.user.id}`,
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
-            timestamp: new Date(),
-            footer:{
-              text: "TakasumiBOT"
-            },
             thumbnail:{
               url: interaction.user.avatarURL({extension:"png",size:1024})||interaction.user.defaultAvatarURL
             },
@@ -74,7 +70,11 @@ module.exports = async(interaction)=>{
                 name: "ロール",
                 value: interaction.member.roles.cache.toJSON().join("")
               }
-            ]
+            ],
+            timestamp: new Date(),
+            footer:{
+              text: "TakasumiBOT"
+            }
           }]
         });
       }else{

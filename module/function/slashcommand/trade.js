@@ -27,14 +27,14 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      if(data.stock + count > 1000) return await interaction.reply({
+      if(data.stock + count > 500) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          description: "1000株までしか購入できません"
+          description: "500株までしか購入できません"
         }],
         ephemeral: true
       });
@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${price}円の株を${count}個(${count*price}円)購入しました`,
+            name: `${price}円の株を${count}株(${count*price}円)購入しました`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           }
         }]
@@ -79,7 +79,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${price}円の株を${count}個(${count*price}円)売却しました`,
+            name: `${price}円の株を${count}株(${count*price}円)売却しました`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           }
         }]
@@ -100,6 +100,8 @@ module.exports = async(interaction)=>{
 
         const high = Math.max(...trade.map(d=>d.price));
         const low = Math.min(...trade.map(d=>d.price));
+        const priceDeff = prices[prices.length - 1] - prices[prices.length - 2];
+        const pricePer = ((priceDeff / prices[prices.length - 2])*100).toFixed(2);
 
         const data = await fetch(`${config.api.graph}/line`,{
           "method": "POST",
@@ -123,7 +125,7 @@ module.exports = async(interaction)=>{
               name: "株式情報",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
-            description: `現在の株価: ${price}円\n変動額: ${sign(price - trade[trade.length - 1].price)}円\n最高額: ${high}円\n最低額: ${low}円`,
+            description: `現在の株価: ${price}円\n変動額: ${sign(priceDeff)}円(${pricePer}%)\n最高額: ${high}円\n最低額: ${low}円`,
             image:{
               url: "attachment://price.png"
             }
