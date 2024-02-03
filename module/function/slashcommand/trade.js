@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
   const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "trade"){
-    let price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
+    const price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
 
     if(interaction.options.getSubcommand() === "buy"){
       const count = interaction.options.getInteger("count");
@@ -51,10 +51,6 @@ module.exports = async(interaction)=>{
           }
         }]
       });
-
-      price += Math.round(price*(Math.random()*0.04 + 0.01));
-
-      await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
     }else if(interaction.options.getSubcommand() === "sell"){
       const count = interaction.options.getInteger("count");
 
@@ -84,10 +80,6 @@ module.exports = async(interaction)=>{
           }
         }]
       });
-
-      price -= Math.round(price*(Math.random()*0.04 + 0.01));
-
-      await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
     }else if(interaction.options.getSubcommand() === "info"){
 
       await interaction.deferReply();
