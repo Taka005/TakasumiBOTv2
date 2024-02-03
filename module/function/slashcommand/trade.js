@@ -100,6 +100,8 @@ module.exports = async(interaction)=>{
 
         const high = Math.max(...trade.map(d=>d.price));
         const low = Math.min(...trade.map(d=>d.price));
+        const priceDeff = prices[prices.length - 1] - prices[prices.length - 2];
+        const pricePer = ((priceDeff / prices[prices.length - 2])*100).toFixed(2);
 
         const data = await fetch(`${config.api.graph}/line`,{
           "method": "POST",
@@ -123,7 +125,7 @@ module.exports = async(interaction)=>{
               name: "株式情報",
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
-            description: `現在の株価: ${price}円\n変動額: ${sign(price - trade[trade.length - 1].price)}円\n最高額: ${high}円\n最低額: ${low}円`,
+            description: `現在の株価: ${price}円\n変動額: ${sign(priceDeff)}円(${pricePer}%)\n最高額: ${high}円\n最低額: ${low}円`,
             image:{
               url: "attachment://price.png"
             }
