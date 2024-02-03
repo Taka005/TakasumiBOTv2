@@ -27,14 +27,14 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      if(data.stock + count > 1000) return await interaction.reply({
+      if(data.stock + count > 500) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
             icon_url: "https://cdn.taka.cf/images/system/error.png"
           },
-          description: "1000株までしか購入できません"
+          description: "500株までしか購入できません"
         }],
         ephemeral: true
       });
