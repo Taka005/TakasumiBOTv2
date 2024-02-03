@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${price}円の株を${count}個(${count*price}円)購入しました`,
+            name: `${price}円の株を${count}株(${count*price}円)購入しました`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           }
         }]
@@ -79,7 +79,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${price}円の株を${count}個(${count*price}円)売却しました`,
+            name: `${price}円の株を${count}株(${count*price}円)売却しました`,
             icon_url: "https://cdn.taka.cf/images/system/success.png"
           }
         }]
