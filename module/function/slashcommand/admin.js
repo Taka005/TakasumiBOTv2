@@ -253,6 +253,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
+      await interaction.deferReply();
       try{
         const owner = await guild.fetchOwner();
         await owner.send({
@@ -275,7 +276,7 @@ module.exports = async(interaction)=>{
           ]
         });
 
-        await interaction.reply({
+        await interaction.editReply({
           embeds:[{
             color: Colors.Green,
             author:{
@@ -286,7 +287,7 @@ module.exports = async(interaction)=>{
           }]
         });
       }catch(error){
-        await interaction.reply({
+        await interaction.editReply({
           embeds:[{
             color: Colors.Red,
             author:{
@@ -299,8 +300,7 @@ module.exports = async(interaction)=>{
                 value: `\`\`\`${error}\`\`\``
               }
             ]
-          }],
-          ephemeral: true
+          }]
         });
       }
     }else if(interaction.options.getSubcommand() === "leave"){
