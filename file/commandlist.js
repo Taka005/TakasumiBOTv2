@@ -174,7 +174,7 @@ module.exports = {
               .setRequired(true))
           .addStringOption(option=>
             option
-              .setName("text")
+              .setName("reason")
               .setDescription("警告内容")
               .setRequired(true)))
       .addSubcommand(subcommand=>

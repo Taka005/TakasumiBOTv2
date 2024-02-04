@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fs = require("fs");
-  const { AttachmentBuilder, Colors } = require("discord.js");
+  const { AttachmentBuilder, Colors, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
   const { execSync } = require("child_process");
   const db = require("../../lib/db");
   const fetchUser = require("../../lib/fetchUser");
@@ -238,7 +238,7 @@ module.exports = async(interaction)=>{
       }
     }else if(interaction.options.getSubcommand() === "warn"){
       const id = interaction.options.getString("id");
-      const text = interaction.options.getString("text");
+      const reason = interaction.options.getString("reason");
 
       const guild = await fetchGuild(interaction.client,id);
       if(!guild) return await interaction.reply({
@@ -262,9 +262,17 @@ module.exports = async(interaction)=>{
               name: "TakasumiBOTから警告されました",
               icon_url: "https://cdn.taka.cf/images/system/warn.png"
             },
-            description: text,
+            description: reason,
             timestamp: new Date()
-          }]
+          }],
+          components:[
+            new ActionRowBuilder()
+              .addComponents(
+                new ButtonBuilder()
+                  .setLabel("サポートサーバー")
+                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setStyle(ButtonStyle.Link))
+          ]
         });
 
         await interaction.reply({
