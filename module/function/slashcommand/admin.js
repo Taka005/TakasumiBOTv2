@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fs = require("fs");
-  const { AttachmentBuilder, Colors } = require("discord.js");
+  const { AttachmentBuilder, Colors, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
   const { execSync } = require("child_process");
   const db = require("../../lib/db");
   const fetchUser = require("../../lib/fetchUser");
@@ -235,6 +235,73 @@ module.exports = async(interaction)=>{
             }]
           });
         }
+      }
+    }else if(interaction.options.getSubcommand() === "warn"){
+      const id = interaction.options.getString("id");
+      const reason = interaction.options.getString("reason");
+
+      const guild = await fetchGuild(interaction.client,id);
+      if(!guild) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "サーバーに警告できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "指定したサーバーが存在しません"
+        }],
+        ephemeral: true
+      });
+
+      try{
+        const owner = await guild.fetchOwner();
+        await owner.send({
+          embeds:[{
+            color: Colors.Yellow,
+            author:{
+              name: "TakasumiBOTから警告されました",
+              icon_url: "https://cdn.taka.cf/images/system/warn.png"
+            },
+            description: reason,
+            timestamp: new Date()
+          }],
+          components:[
+            new ActionRowBuilder()
+              .addComponents(
+                new ButtonBuilder()
+                  .setLabel("サポートサーバー")
+                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setStyle(ButtonStyle.Link))
+          ]
+        });
+
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: `${guild.name}(${guild.id})に警告しました`,
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            },
+            description: reason
+          }]
+        });
+      }catch(error){
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "サーバーに警告できませんでした",
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
+            },
+            fields:[
+              {
+                name: "エラーコード",
+                value: `\`\`\`${error}\`\`\``
+              }
+            ]
+          }],
+          ephemeral: true
+        });
       }
     }else if(interaction.options.getSubcommand() === "leave"){
       const id = interaction.options.getString("id");

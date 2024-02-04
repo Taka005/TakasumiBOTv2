@@ -165,6 +165,20 @@ module.exports = {
               .setDescription("理由")))
       .addSubcommand(subcommand=>
         subcommand
+          .setName("warn")
+          .setDescription("サーバーに警告します")
+          .addStringOption(option=>
+            option
+              .setName("id")
+              .setDescription("サーバーID")
+              .setRequired(true))
+          .addStringOption(option=>
+            option
+              .setName("reason")
+              .setDescription("警告内容")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
           .setName("leave")
           .setDescription("サーバーから脱退します")
           .addStringOption(option=>
