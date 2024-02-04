@@ -282,7 +282,7 @@ module.exports = async(interaction)=>{
               name: `${guild.name}(${guild.id})に警告しました`,
               icon_url: "https://cdn.taka.cf/images/system/success.png"
             },
-            description: text
+            description: reason
           }]
         });
       }catch(error){
