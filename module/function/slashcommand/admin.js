@@ -236,6 +236,62 @@ module.exports = async(interaction)=>{
           });
         }
       }
+    }else if(interaction.options.getSubcommand() === "warn"){
+      const id = interaction.options.getString("id");
+      const text = interaction.options.getString("text");
+
+      const guild = await fetchGuild(interaction.client,id);
+      if(!guild) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "サーバーに警告できませんでした",
+            icon_url: "https://cdn.taka.cf/images/system/error.png"
+          },
+          description: "指定したサーバーが存在しません"
+        }],
+        ephemeral: true
+      });
+
+      try{
+        const owner = await guild.fetchOwner();
+        await owner.send({
+          embeds:[{
+            color: Colors.Green,
+            title: "TakasumiBOTから警告されました",
+            description: text,
+            timestamp: new Date()
+          }]
+        });
+
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: `${guild.name}(${guild.id})に警告しました`,
+              icon_url: "https://cdn.taka.cf/images/system/success.png"
+            },
+            description: text
+          }]
+        });
+      }catch(error){
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "サーバーに警告できませんでした",
+              icon_url: "https://cdn.taka.cf/images/system/error.png"
+            },
+            fields:[
+              {
+                name: "エラーコード",
+                value: `\`\`\`${error}\`\`\``
+              }
+            ]
+          }],
+          ephemeral: true
+        });
+      }
     }else if(interaction.options.getSubcommand() === "leave"){
       const id = interaction.options.getString("id");
 
