@@ -257,8 +257,11 @@ module.exports = async(interaction)=>{
         const owner = await guild.fetchOwner();
         await owner.send({
           embeds:[{
-            color: Colors.Green,
-            title: "TakasumiBOTから警告されました",
+            color: Colors.Yellow,
+            author:{
+              name: "TakasumiBOTから警告されました",
+              icon_url: "https://cdn.taka.cf/images/system/warn.png"
+            },
             description: text,
             timestamp: new Date()
           }]
