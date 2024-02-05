@@ -34,7 +34,8 @@ module.exports = async(message)=>{
       },
       description: msg.content||"",
       footer:{
-        text: `#${msg.channel.name}`
+        text: `${guild.name} #${msg.channel.name}`,
+        icon_url: guild.iconURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
       },
       timestamp: msg.createdAt
     }];
