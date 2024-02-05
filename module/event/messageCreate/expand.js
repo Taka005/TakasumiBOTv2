@@ -2,6 +2,7 @@ module.exports = async(message)=>{
   const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const limit = require("../../lib/limit");
+  const fetchGuild = require("../../lib/fetchGuild");
   const fetchChannel = require("../../lib/fetchChannel");
   const fetchMessage = require("../../lib/fetchMessage");
 
@@ -16,9 +17,14 @@ module.exports = async(message)=>{
     const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id};`);
     if(ignore[0]||limit(message)) return;
 
-    const channel = await fetchChannel(message.guild,link[2]);
+    const guild = await fetchGuild(message.client,link[1]);
+    if(!guild) return;
+
+    const channel = await fetchChannel(guild,link[2]);
+    if(!channel) return;
+
     const msg = await fetchMessage(channel,link[3]);
-    if(!channel||!msg) return;
+    if(!msg) return;
 
     const embed = [{
       color: Colors.Green,
