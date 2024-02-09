@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "メンバーを取得できませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "指定したメンバーはサーバーに存在していません"
       }],
@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${member.user.displayName}のアバター`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           thumbnail:{
             url: member.avatarURL({extension:"png",size:1024})
@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           fields:[
             {

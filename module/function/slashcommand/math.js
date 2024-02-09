@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "計算しました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: `**式**\n\`\`\`${format}\`\`\`\n**結果**\n\`\`\`${Number(res)}\`\`\``
         }]
@@ -38,7 +38,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "計算できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "計算式を変えてやり直してください"
         }],

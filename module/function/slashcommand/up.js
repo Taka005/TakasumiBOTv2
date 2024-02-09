@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "UPできませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "まだ登録されていません\n`/register`を使用して登録してください"
       }],
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "UPできませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: `このサーバーを上げられるようになるまであと${Math.floor((3600000 - (new Date() - new Date(data[0].time)))/60000)}分です`
       }],
@@ -53,12 +53,12 @@ module.exports = async(interaction)=>{
         color: Colors.Green,
         author:{
           name: "UPしました!",
-          icon_url: "https://cdn.taka.cf/images/system/success.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
         image:{
-          url: "https://cdn.taka.cf/images/up.gif"
+          url: "https://cdn.takasumibot.com/images/up.gif"
         },
-        description: "表示順位が更新されました\n[サーバー掲示板](https://servers.taka.cf/)で確認してね!\n1時間後に通知します"
+        description: "表示順位が更新されました\n[サーバー掲示板](https://servers.takasumibot.com/)で確認してね!\n1時間後に通知します"
       }]
     });
   }

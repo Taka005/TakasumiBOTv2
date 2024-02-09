@@ -18,7 +18,7 @@ module.exports = async(message)=>{
         color: Colors.Green,
         author:{
           name: "AFKを無効にしました",
-          icon_url: "https://cdn.taka.cf/images/system/success.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
         description: `メンションは${data[0].mention}件ありました\n${time(new Date()-new Date(data[0].time))}間AFKでした`
       }]
@@ -36,7 +36,7 @@ module.exports = async(message)=>{
             color: Colors.Green,
             author:{
               name: "AFK中です",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             },
             description: afk[0].message
           }]

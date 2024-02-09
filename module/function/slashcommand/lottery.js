@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "抽選できませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "指定したロールを持っている人より、抽選する人数が多いです"
       }],
@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "抽選できませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "指定した人数が多すぎます"
       }],
@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
         color: Colors.Green,
         author:{
           name: "抽選結果",
-          icon_url: "https://cdn.taka.cf/images/system/success.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
         description: data
       }]

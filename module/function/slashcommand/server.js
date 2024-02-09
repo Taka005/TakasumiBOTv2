@@ -21,7 +21,7 @@ module.exports = async(interaction)=>{
       const desktop = members.filter(member=>member.presence?.clientStatus?.desktop);
 
       const channels = await interaction.guild.channels.fetch();
-      
+
       const text = channels.filter(ch=>ch.type === ChannelType.GuildText);
       const voice = channels.filter(ch=>ch.type === ChannelType.GuildVoice);
       const category = channels.filter(ch=>ch.type === ChannelType.GuildCategory);
@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${interaction.guild.name}の情報`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           thumbnail:{
             url: interaction.guild.iconURL({extension:"png",size:1024})
@@ -86,7 +86,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           fields:[
             {

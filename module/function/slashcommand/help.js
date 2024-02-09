@@ -44,7 +44,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "コマンド・機能が存在しません",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "`/help`を実行してコマンド・機能一覧を確認してください"
         }],

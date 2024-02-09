@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           title: "このサーバーのガイドライン",
           thumbnail:{
-            url: "https://cdn.taka.cf/images/system/guideline.png"
+            url: "https://cdn.takasumibot.com/images/system/guideline.png"
           },
           description: text
         },
@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "ガイドラインの作成に失敗しました",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "BOTの権限等を確認し、もう一度実行してください",
           fields:[

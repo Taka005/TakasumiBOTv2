@@ -2,7 +2,7 @@ const time = {};
 
 module.exports = (message)=>{
   const { Colors } = require("discord.js");
-  
+
   if(!time[message.guild.id]){
     time[message.guild.id] = {
       time1: 0,
@@ -20,7 +20,7 @@ module.exports = (message)=>{
           color: Colors.Yellow,
           author:{
             name: "レートリミット",
-            icon_url: "https://cdn.taka.cf/images/system/warn.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/warn.png"
           },
           description: "メッセージを送信する速度が早すぎます\n3分間はメッセージを応答しなくなります",
           timestamp: new Date()

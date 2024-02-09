@@ -23,13 +23,13 @@ module.exports = async(message)=>{
     message.content.length > 300||
     Spam.count(message.guild.id)
   ) return await message.react("❌").catch(()=>{});
-  /*
+
   const account = await db(`SELECT * FROM account WHERE id = ${message.author.id};`)
   if(!account[0]) return await message.reply({
     embeds:[{
       author:{
         name: "認証してください",
-        icon_url: "https://cdn.taka.cf/images/system/error.png"
+        icon_url: "https://cdn.takasumibot.com/images/system/error.png"
       },
       color: Colors.Red,
       description: "グローバルチャットを利用するには以下のリンクから認証する必要があります",
@@ -39,7 +39,7 @@ module.exports = async(message)=>{
         .addComponents(
           new ButtonBuilder()
             .setLabel("サイトへ飛ぶ")
-            .setURL("https://auth.taka.cf/")
+            .setURL("https://auth.takasumibot.com/")
             .setStyle(ButtonStyle.Link))
         .addComponents(
           new ButtonBuilder()
@@ -48,7 +48,7 @@ module.exports = async(message)=>{
             .setStyle(ButtonStyle.Link))
     ]
   }).catch(()=>{});
-  */
+
   const content = message.content
     .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,"[[招待リンク]](https://discord.gg/NEesRdGQwD)")
 
@@ -131,7 +131,7 @@ module.exports = async(message)=>{
       await webhook.send({
         embeds: embed,
         username: "TakasumiBOT Global",
-        avatarURL: "https://cdn.taka.cf/images/icon.png"
+        avatarURL: "https://cdn.takasumibot.com/images/icon.png"
       });
     }catch(error){
       await db(`DELETE FROM global WHERE channel = ${data.channel};`);
@@ -142,7 +142,7 @@ module.exports = async(message)=>{
           color: Colors.Red,
           author:{
             name: "グローバルチャットでエラーが発生しました",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "エラーが発生したため、強制的に切断されました\n再度登録するには`/global`を使用してください",
           fields:[

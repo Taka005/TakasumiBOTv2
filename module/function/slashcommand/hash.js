@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "ハッシュを生成しました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: `${hash.digest("hex")}`
         }]
@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "ハッシュを生成できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           fields:[
             {

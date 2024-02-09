@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
@@ -33,7 +33,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "登録の削除が完了しました",
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               }
             }]
           });
@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "登録の削除が完了しました",
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               },
               description: "※webhookは既に削除済みのため、\n登録情報のみ削除しました"
             }]
@@ -86,7 +86,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "参加条件を満たしていません",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "グローバルチャットを利用するには以下の条件を満たしている必要があります",
           fields:[
@@ -104,7 +104,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "グローバルチャットに参加できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "設定するチャンネルはテキストチャンネルにしてください"
         }],
@@ -122,7 +122,7 @@ module.exports = async(interaction)=>{
       try{
         const webhook = await interaction.channel.createWebhook({
           name: "TakasumiBOT Global",
-          avatar: "https://cdn.taka.cf/images/icon.png",
+          avatar: "https://cdn.takasumibot.com/images/icon.png",
         });
 
         await db(`INSERT INTO global (channel, server, id, token, time) VALUES("${interaction.channel.id}","${interaction.guild.id}","${webhook.id}","${webhook.token}",NOW());`);
@@ -151,7 +151,7 @@ module.exports = async(interaction)=>{
                 timestamp: new Date()
               }],
               username: "TakasumiBOT Global",
-              avatarURL: "https://cdn.taka.cf/images/icon.png"
+              avatarURL: "https://cdn.takasumibot.com/images/icon.png"
             });
           }catch(error){
             await db(`DELETE FROM global WHERE channel = ${data.channel};`);
@@ -159,7 +159,7 @@ module.exports = async(interaction)=>{
               embeds:[{
                 author:{
                   name: "グローバルチャットでエラーが発生しました",
-                  icon_url: "https://cdn.taka.cf/images/system/error.png"
+                  icon_url: "https://cdn.takasumibot.com/images/system/error.png"
                 },
                 color: Colors.Red,
                 description: "エラーが発生したため、強制的に切断されました\n再度登録するには`/global`を使用してください",
@@ -187,7 +187,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: interaction.guild.name,
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             },
             description: "グローバルチャットに新しいサーバーを追加しました\nみんなに挨拶してみましょう!\nこのチャンネルに入力された内容は、登録チャンネル全てに送信されます\n\n※チャットを利用した場合、[利用規約](https://takasumibot.github.io/terms.html)に同意されたことになります。必ずご確認ください",
             timestamp: new Date()
@@ -199,7 +199,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "Webhookの作成に失敗しました",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             description: "BOTの権限が不足しているか,\n既にwebhookの作成回数が上限に達しています",
             fields:[

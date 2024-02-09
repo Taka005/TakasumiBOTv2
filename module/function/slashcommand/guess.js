@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "失敗しました",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "賭ける金額は100円以上かつ、自分の所持金で払える額以下です"
       }],
@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "勝利",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: `${Math.round(amount*2.5)}円ゲットしました\n所持金: ${data.amount + Math.round(amount*2.5)}円`
         }]
@@ -44,7 +44,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "敗北",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: `${Math.round(amount*1.5)}円失いました\n所持金: ${total}円`
         }]

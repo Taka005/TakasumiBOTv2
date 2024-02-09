@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: "エンコードしました",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             },
             description: `\`\`\`${iconv.decode(buffer,"Shift_JIS")}\`\`\``
           }]
@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: "デコードしました",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             },
             description: `\`\`\`${iconv.decode(buffer,"UTF-8")}\`\`\``
           }]
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "変換できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           fields:[
             {

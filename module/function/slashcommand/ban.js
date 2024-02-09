@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持ってる必要があります",
         fields:[
@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BANできませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "ユーザーID、メンションを入力してください"
       }],
@@ -62,7 +62,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BANできませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "指定したユーザーが存在しません"
       }],
@@ -74,7 +74,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BANできませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "自分自身をBANすることはできません"
       }],
@@ -94,7 +94,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${user.tag}(${user.id}) をサーバーからBANしました`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       });
@@ -104,7 +104,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "BANできませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
           fields:[

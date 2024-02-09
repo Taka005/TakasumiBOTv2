@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "まだお金は貰えません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "20分に一回実行できます"
       }],
@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
         color: Colors.Green,
         author:{
           name: `${amount}円手に入れました`,
-          icon_url: "https://cdn.taka.cf/images/system/success.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
         description: `所持金: ${data.amount+amount}円`
       }]

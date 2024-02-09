@@ -50,7 +50,7 @@ module.exports = async(client)=>{
         color: Colors.Red,
         author:{
           name: "コマンドが実行できません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "BOTの操作はDMで実行することができません\nサーバー内で実行してください"
       }],
@@ -72,7 +72,7 @@ module.exports = async(client)=>{
         color: Colors.Red,
         author:{
           name: "コマンドが実行できません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "あなた又はこのサーバーはブラックリストに登録されているため実行できません"
       }],

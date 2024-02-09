@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         author:{
           name: "作成できませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         color: Colors.Red,
         description: "URLを指定する必要があります"
@@ -35,7 +35,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "作成できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "有効なURLを指定してください"
         }],

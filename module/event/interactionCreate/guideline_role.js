@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "既に同意済みです",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このサーバーのガイドラインに既に同意しているようです"
       }],
@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "同意しました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: "このサーバーのガイドラインに同意しました\nこれでロールが付与され、晴れてサーバーの一員となりました"
         }],
@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "同意に失敗しました",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
           fields:[

@@ -19,7 +19,7 @@ module.exports = async(member)=>{
       await webhook.send({
         content: msg,
         username: "TakasumiBOT Leave",
-        avatarURL: "https://cdn.taka.cf/images/icon.png"
+        avatarURL: "https://cdn.takasumibot.com/images/icon.png"
       });
     }catch(error){
       await db(`DELETE FROM \`leave\` WHERE channel = ${data[0].channel};`);
@@ -29,7 +29,7 @@ module.exports = async(member)=>{
         embeds:[{
           author:{
             name: "退出メッセージでエラーが発生しました",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           color: Colors.Red,
           description: "エラーが発生したため、強制的に無効にされました",

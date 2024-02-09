@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "購入する回数は3以上かつ所持金の範囲内にする必要があります"
         }],
@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "300回までしか購入できません"
         }],
@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${count}回分(${count*10}円)を購入しました`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       });
@@ -54,7 +54,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "購入する回数は1以上かつ所持金の範囲内にする必要があります"
         }],
@@ -67,7 +67,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "300回までしか購入できません"
         }],
@@ -81,7 +81,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${count}回分(${count*100}円)を購入しました`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       });
@@ -93,7 +93,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "購入する回数は1以上かつ所持金の範囲内にする必要があります"
         }],
@@ -106,7 +106,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "300回までしか購入できません"
         }],
@@ -120,7 +120,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${count}回分(${count*800}円)を購入しました`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       });

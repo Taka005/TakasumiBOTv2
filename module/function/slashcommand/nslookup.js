@@ -14,7 +14,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "違うアドレスで試してください"
         }],
@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${name}の結果`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: `\`${data.Answer.map(address=>address.data).join("\n")}\``,
           footer:{
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "違うアドレスを試してください"
         }],

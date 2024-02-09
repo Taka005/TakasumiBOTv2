@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "AFKを設定できませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "メッセージは300文字未満にしてください"
       }],
@@ -22,13 +22,13 @@ module.exports = async(interaction)=>{
     const data = await db(`SELECT * FROM afk WHERE id = ${interaction.user.id};`);
     if(data[0]){
       await db(`DELETE FROM afk WHERE id = ${interaction.user.id};`);
-      
+
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
           author:{
             name: "AFKを無効にしました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: `メンションは${data[0].mention}件ありました\n${time(new Date()-new Date(data[0].time))}間AFKでした`
         }]
@@ -41,7 +41,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "AFKを有効にしました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       });

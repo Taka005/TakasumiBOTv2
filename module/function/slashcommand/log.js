@@ -14,7 +14,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "取得できませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "取得するメッセージの数は`1`以上`100`以下にする必要があります"
       }],
@@ -44,7 +44,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         author:{
           name: "取得できませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         color: Colors.Red,
         description: "BOTの権限が不足しています"

@@ -20,7 +20,7 @@ module.exports = async(interaction)=>{
             url: pkg.links.npm,
             description: pkg.description,
             thumbnail:{
-              url: "https://cdn.taka.cf/images/npm.png",
+              url: "https://cdn.takasumibot.com/images/npm.png",
             },
             fields:[
               {
@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
             url: pkg.info.package_url,
             description: pkg.info.summary,
             thumbnail:{
-              url: "https://cdn.taka.cf/images/pypi.png",
+              url: "https://cdn.takasumibot.com/images/pypi.png",
             },
             fields:[
               {
@@ -101,7 +101,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "検索ワードを変えてやり直してください"
         }]

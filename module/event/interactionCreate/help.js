@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "ページを更新できませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドは別の人が操作しています"
       }],
@@ -51,7 +51,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "ページを更新できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "BOTの権限が不足しています",
           fields:[

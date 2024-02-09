@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "メッセージをピン留めできませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "メッセージの内容が存在しません"
         }],
@@ -69,7 +69,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "メッセージをピン留めできませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "サーバーには最大6個までしかPINは使えません"
         }],
@@ -102,7 +102,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "メッセージをピン留めできませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             fields:[
               {
@@ -134,7 +134,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: "ピン留めを削除しました",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             }
           }]
         });
@@ -144,7 +144,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: "ピン留めを削除しました",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             }
           }]
         });
