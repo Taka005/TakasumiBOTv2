@@ -189,7 +189,7 @@ module.exports = async(interaction)=>{
               name: interaction.guild.name,
               icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             },
-            description: "グローバルチャットに新しいサーバーを追加しました\nみんなに挨拶してみましょう!\nこのチャンネルに入力された内容は、登録チャンネル全てに送信されます\n\n※チャットを利用した場合、[利用規約](https://takasumibot.github.io/terms.html)に同意されたことになります。必ずご確認ください",
+            description: "グローバルチャットに新しいサーバーを追加しました\nみんなに挨拶してみましょう!\nこのチャンネルに入力された内容は、登録チャンネル全てに送信されます\n\n※チャットを利用した場合、[利用規約](https://www.takasumibot.com/terms.html)に同意されたことになります。必ずご確認ください",
             timestamp: new Date()
           }]
         });

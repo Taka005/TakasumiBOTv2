@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
           name: "登録されていません",
           icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
-        description: "以下のリンクから登録を行うことができます\n登録が完了すると[利用規約](https://takasumibot.github.io/terms.html)にも同意したものとみなします"
+        description: "以下のリンクから登録を行うことができます\n登録が完了すると[利用規約](https://www.takasumibot.com/terms.html)にも同意したものとみなします"
       }],
       components:[
         new ActionRowBuilder()

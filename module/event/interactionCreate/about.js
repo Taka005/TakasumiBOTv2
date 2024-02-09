@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
       "about":[{
         color: Colors.Green,
         title: "TakasumiBOTとは",
-        description: "便利な多機能BOTを目指して開発されています\nサポートサーバーへの参加もよろしくお願いします\n開発:[@taka005](https://discord.com/users/790489873957781536)\n\n関連リンク\n[公式サイト](https://takasumibot.github.io/)\n[ステータス](https://status.takasumibot.com/)\n[サーバー掲示板](https://servers.takasumibot.com/)\n[TakasumiBOT Auth](https://auth.takasumibot.com/)"
+        description: "便利な多機能BOTを目指して開発されています\nサポートサーバーへの参加もよろしくお願いします\n開発:[@taka005](https://discord.com/users/790489873957781536)\n\n関連リンク\n[公式サイト](https://www.takasumibot.com/)\n[ステータス](https://status.takasumibot.com/)\n[サーバー掲示板](https://servers.takasumibot.com/)\n[TakasumiBOT Auth](https://auth.takasumibot.com/)"
       }],
       "faq":[{
         color: Colors.Green,
@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
           },
           {
             name: "BOTの機能はどうやって使うの？",
-            value: "全コマンドはスラッシュコマンドに対応しています。詳しい使い方は[ここから](https://takasumibot.github.io/)"
+            value: "全コマンドはスラッシュコマンドに対応しています。詳しい使い方は[ここから](https://www.takasumibot.com/)"
           },
           {
             name: "どこでBOT等のお知らせを受け取れますか？",
@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
       }],
       "ad":[{
         color: Colors.Green,
-        description: `**◢◤◢◤◢◤ TakasumiBOT ◢◤◢◤◢◤**\nとても便利なBOTです\nグローバルチャット、サーバー掲示板、認証機能などさまざまな便利機能があります\n導入数 ${server}サーバー超え!\n\n・招待\nhttps://discord.com/application-directory/981314695543783484\n・ 公式サイト\nhttps://takasumibot.github.io/\n・ステータス\nhttps://status.takasumibot.com/\n・サーバー掲示板\nhttps://servers.takasumibot.com/\n・TakasumiBOT Auth\nhttps://auth.takasumibot.com/\n・サポートサーバー\nhttps://discord.gg/NEesRdGQwD\n・Email\ntakasumibot@gmail.com\n\nよければプロジェクトに貢献してください\nhttps://github.com/Taka005/TakasumiBOTv2\n**◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤**`
+        description: `**◢◤◢◤◢◤ TakasumiBOT ◢◤◢◤◢◤**\nとても便利なBOTです\nグローバルチャット、サーバー掲示板、認証機能などさまざまな便利機能があります\n導入数 ${server}サーバー超え!\n\n・招待\nhttps://discord.com/application-directory/981314695543783484\n・ 公式サイト\nhttps://www.takasumibot.com/\n・ステータス\nhttps://status.takasumibot.com/\n・サーバー掲示板\nhttps://servers.takasumibot.com/\n・TakasumiBOT Auth\nhttps://auth.takasumibot.com/\n・サポートサーバー\nhttps://discord.gg/NEesRdGQwD\n・Email\ntakasumibot@gmail.com\n\nよければプロジェクトに貢献してください\nhttps://github.com/Taka005/TakasumiBOTv2\n**◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤**`
       }]
     }
 
