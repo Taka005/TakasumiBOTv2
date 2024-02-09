@@ -23,7 +23,7 @@ module.exports = async(message)=>{
     message.content.length > 300||
     Spam.count(message.guild.id)
   ) return await message.react("❌").catch(()=>{});
-
+  /*
   const account = await db(`SELECT * FROM account WHERE id = ${message.author.id};`)
   if(!account[0]) return await message.reply({
     embeds:[{
@@ -48,7 +48,7 @@ module.exports = async(message)=>{
             .setStyle(ButtonStyle.Link))
     ]
   }).catch(()=>{});
-
+  */
   const content = message.content
     .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,"[[招待リンク]](https://discord.gg/NEesRdGQwD)")
 
