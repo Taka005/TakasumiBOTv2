@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "既に認証済みです",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         }
       }],
       ephemeral: true
@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "認証しました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }],
         ephemeral: true
@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "認証に失敗しました",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "BOTの権限が不足しているか、付与するロールがBOTより上の可能性があります",
           fields:[

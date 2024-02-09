@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
@@ -29,7 +29,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "キックできませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "指定したユーザーが取得できません"
       }],
@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "キックできませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "自分自身をキックすることはできません"
       }],
@@ -77,7 +77,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${member.user.tag}(${member.user.id})をサーバーからキックしました`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       });
@@ -87,7 +87,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "キックできませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "BOTの権限が不足しているか、メンバーが正しく指定されていません",
           fields:[

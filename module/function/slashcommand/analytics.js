@@ -178,7 +178,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "生成しました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           image:{
             url: "attachment://analytics.png"
@@ -196,7 +196,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "生成できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           fields:[
             {

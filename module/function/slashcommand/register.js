@@ -9,7 +9,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "登録を解除しました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       });
@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "登録できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "サーバー掲示板に登録するにはBOTをサーバーに追加してから1日経過する必要があります"
         }],
@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "登録できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "サーバー掲示板に登録するにはサーバーに10人以上のユーザーが必要です"
         }],
@@ -84,7 +84,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "登録できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "このサーバーを掲示板に登録するには認証する必要があります"
         }],
@@ -93,7 +93,7 @@ module.exports = async(interaction)=>{
             .addComponents(
               new ButtonBuilder()
                 .setLabel("サイトへ飛ぶ")
-                .setURL("https://auth.taka.cf/")
+                .setURL("https://auth.takasumibot.com/")
                 .setStyle(ButtonStyle.Link)
             )
         ],
@@ -105,7 +105,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "登録できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: `前回の認証から10分以上が経過しているため再度認証を行なってください\n前回の認証日時: ${new Date(account[0].time).toLocaleString()}`
         }],
@@ -114,7 +114,7 @@ module.exports = async(interaction)=>{
             .addComponents(
               new ButtonBuilder()
                 .setLabel("サイトへ飛ぶ")
-                .setURL("https://auth.taka.cf/")
+                .setURL("https://auth.takasumibot.com/")
                 .setStyle(ButtonStyle.Link)
             )
         ],

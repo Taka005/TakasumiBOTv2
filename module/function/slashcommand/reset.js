@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
         color: Colors.Yellow,
         author:{
           name: "本当にこのチャンネルをリセットしますか？",
-          icon_url: "https://cdn.taka.cf/images/system/warn.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/warn.png"
         }
       }],
       components:[

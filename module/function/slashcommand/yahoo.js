@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "検索ワードを変えてやり直してください"
         }]

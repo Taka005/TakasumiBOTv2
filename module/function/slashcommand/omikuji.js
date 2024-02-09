@@ -7,34 +7,34 @@ module.exports = async(interaction)=>{
 
     const draws = [
       //大吉
-      "https://cdn.taka.cf/images/omikuji/daikiti_1.png",
-      "https://cdn.taka.cf/images/omikuji/daikiti_2.png",
-      "https://cdn.taka.cf/images/omikuji/daikiti_3.png",
+      "https://cdn.takasumibot.com/images/omikuji/daikiti_1.png",
+      "https://cdn.takasumibot.com/images/omikuji/daikiti_2.png",
+      "https://cdn.takasumibot.com/images/omikuji/daikiti_3.png",
       //大凶
-      "https://cdn.taka.cf/images/omikuji/daikyou_1.png",
-      "https://cdn.taka.cf/images/omikuji/daikyou_2.png",
+      "https://cdn.takasumibot.com/images/omikuji/daikyou_1.png",
+      "https://cdn.takasumibot.com/images/omikuji/daikyou_2.png",
       //吉
-      "https://cdn.taka.cf/images/omikuji/kiti_1.png",
-      "https://cdn.taka.cf/images/omikuji/kiti_2.png",
-      "https://cdn.taka.cf/images/omikuji/kiti_3.png",
-      "https://cdn.taka.cf/images/omikuji/kiti_4.png",
-      "https://cdn.taka.cf/images/omikuji/kiti_5.png",
+      "https://cdn.takasumibot.com/images/omikuji/kiti_1.png",
+      "https://cdn.takasumibot.com/images/omikuji/kiti_2.png",
+      "https://cdn.takasumibot.com/images/omikuji/kiti_3.png",
+      "https://cdn.takasumibot.com/images/omikuji/kiti_4.png",
+      "https://cdn.takasumibot.com/images/omikuji/kiti_5.png",
       //凶
-      "https://cdn.taka.cf/images/omikuji/kyou_1.png",
-      "https://cdn.taka.cf/images/omikuji/kyou_2.png",
-      "https://cdn.taka.cf/images/omikuji/kyou_3.png",
-      "https://cdn.taka.cf/images/omikuji/kyou_4.png",
+      "https://cdn.takasumibot.com/images/omikuji/kyou_1.png",
+      "https://cdn.takasumibot.com/images/omikuji/kyou_2.png",
+      "https://cdn.takasumibot.com/images/omikuji/kyou_3.png",
+      "https://cdn.takasumibot.com/images/omikuji/kyou_4.png",
       //小吉
-      "https://cdn.taka.cf/images/omikuji/syoukiti_1.png",
-      "https://cdn.taka.cf/images/omikuji/syoukiti_2.png",
-      "https://cdn.taka.cf/images/omikuji/syoukiti_3.png",
-      "https://cdn.taka.cf/images/omikuji/syoukiti_4.png",
-      "https://cdn.taka.cf/images/omikuji/syoukiti_5.png",
+      "https://cdn.takasumibot.com/images/omikuji/syoukiti_1.png",
+      "https://cdn.takasumibot.com/images/omikuji/syoukiti_2.png",
+      "https://cdn.takasumibot.com/images/omikuji/syoukiti_3.png",
+      "https://cdn.takasumibot.com/images/omikuji/syoukiti_4.png",
+      "https://cdn.takasumibot.com/images/omikuji/syoukiti_5.png",
       //中吉
-      "https://cdn.taka.cf/images/omikuji/tyuukiti_1.png",
-      "https://cdn.taka.cf/images/omikuji/tyuukiti_2.png",
-      "https://cdn.taka.cf/images/omikuji/tyuukiti_3.png",
-      "https://cdn.taka.cf/images/omikuji/tyuukiti_4.png"
+      "https://cdn.takasumibot.com/images/omikuji/tyuukiti_1.png",
+      "https://cdn.takasumibot.com/images/omikuji/tyuukiti_2.png",
+      "https://cdn.takasumibot.com/images/omikuji/tyuukiti_3.png",
+      "https://cdn.takasumibot.com/images/omikuji/tyuukiti_4.png"
     ];
 
     await interaction.deferReply();

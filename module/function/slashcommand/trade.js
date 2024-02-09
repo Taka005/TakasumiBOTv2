@@ -20,7 +20,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "所持金の範囲内にする必要があります"
         }],
@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "500株までしか購入できません"
         }],
@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${price}円の株を${count}株(${count*price}円)購入しました`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       });
@@ -61,7 +61,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "売却できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "所持している株が不足しています"
         }],
@@ -76,7 +76,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${price}円の株を${count}株(${count*price}円)売却しました`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       });
@@ -115,7 +115,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: "株式情報",
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             },
             description: `現在の株価: ${price}円\n変動額: ${sign(priceDeff)}円(${pricePer}%)\n最高額: ${high}円\n最低額: ${low}円`,
             image:{
@@ -134,7 +134,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "表示できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             fields:[
               {

@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: `${interaction.user.displayName}のアバター`,
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             },
             thumbnail:{
               url: interaction.member.avatarURL({extension:"png",size:1024})
@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "取得できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             description: "ユーザーID、メンションを入力してください"
           }],
@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "取得できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             description: "指定されたユーザーが存在しません"
           }],
@@ -61,7 +61,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: `${user.displayName}のアバター`,
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             },
             thumbnail:{
               url: member?.avatarURL({extension:"png",size:1024})
@@ -82,7 +82,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           fields:[
             {

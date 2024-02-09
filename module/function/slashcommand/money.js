@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${interaction.user.tag}の持ち物`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           fields:[
             {
@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${user.tag}の持ち物`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           fields:[
             {

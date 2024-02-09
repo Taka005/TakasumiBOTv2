@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
@@ -31,7 +31,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です\n```チャンネルの閲覧\nメッセージの管理```",
         fields:[
@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "削除できませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "削除するメッセージの数は`2`以上`99`以下にする必要があります"
       }],
@@ -67,7 +67,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "削除できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             description: "メッセージに指定したユーザーが含まれていませんでした",
           }]
@@ -81,7 +81,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: `${user.tag} のメッセージを${number}個削除しました`,
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             }
           }]
         });
@@ -97,7 +97,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: `${number}個のメッセージを削除しました`,
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             }
           }]
         });
@@ -108,7 +108,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "削除できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "二週間より前のメッセージが含まれていたか、BOTの権限が不足しています",
           fields:[

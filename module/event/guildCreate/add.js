@@ -13,7 +13,7 @@ module.exports = async(guild)=>{
           embeds:[{
             color: Colors.Green,
             thumbnail:{
-              url: "https://cdn.taka.cf/images/bot.png"
+              url: "https://cdn.takasumibot.com/images/bot.png"
             },
             title: "BOT導入ありがとうございます!",
             description: "やっほー。TakasumiBOTだよ\n便利な機能を備えた万能BOTです\n\nグローバルチャット、サーバー掲示板、認証機能などいろいろあるよ!\nコマンドのhelpを表示する時は`/help`を実行してね\n`/follow`を実行するとBOTのアナウンスチャンネルが追加できます",
@@ -28,7 +28,7 @@ module.exports = async(guild)=>{
                   .setStyle(ButtonStyle.Link))
           ]
         }).catch(()=>{});
-        
+
         return find = 1;
       }
     }

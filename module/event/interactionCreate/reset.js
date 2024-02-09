@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         author:{
           name: "リセットできませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         color: Colors.Red,
         description: "このコマンドは別の人が実行しています"
@@ -50,7 +50,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "チャンネルをリセットしました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       }).catch(()=>{});
@@ -60,7 +60,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "チャンネルをリセットできませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           fields:[
             {

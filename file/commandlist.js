@@ -677,7 +677,7 @@ module.exports = {
       "メッセージの送信",
       "ウェブフックの管理"
     ],
-    note: "会話するにはTakasumiBOT Authを使用し[利用規約](https://takasumibot.github.io/terms.html)に同意する必要があります",
+    note: "会話するにはTakasumiBOT Authを使用し[利用規約](https://www.takasumibot.com/terms.html)に同意する必要があります",
     data: new SlashCommandBuilder()
       .setName("globalchat")
       .setDescription("グローバルチャットを利用します")

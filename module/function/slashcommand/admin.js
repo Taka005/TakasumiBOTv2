@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドは関係者以外実行できません"
       }],
@@ -74,7 +74,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "取得しました",
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               },
               description: `\`\`\`json\n${JSON.stringify(msg,null,"  ")}\`\`\``
             }]
@@ -90,7 +90,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "編集しました",
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               }
             }]
           });
@@ -103,7 +103,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "削除しました",
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               }
             }]
           });
@@ -114,7 +114,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "実行できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             fields:[
               {
@@ -138,7 +138,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "ユーザーをミュートできませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             description: "指定したユーザーが存在しません"
           }],
@@ -153,7 +153,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: `${user.tag}(${user.id}) のミュートを解除しました`,
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               }
             }]
           });
@@ -165,7 +165,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: `${user.tag}(${user.id}) をミュートしました`,
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               }
             }]
           });
@@ -177,7 +177,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "サーバーをミュートできませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             description: "指定したサーバーが存在しません"
           }],
@@ -192,7 +192,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: `${guild.name}(${guild.id}) のミュートを解除しました`,
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               }
             }]
           });
@@ -204,7 +204,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: `${guild.name}(${guild.id}) をミュートしました`,
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               }
             }]
           });
@@ -218,7 +218,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: `${id} のミュートを解除しました`,
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               }
             }]
           });
@@ -230,7 +230,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: `${id} をミュートしました`,
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               }
             }]
           });
@@ -246,7 +246,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "サーバーに警告できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "指定したサーバーが存在しません"
         }],
@@ -261,7 +261,7 @@ module.exports = async(interaction)=>{
             color: Colors.Yellow,
             author:{
               name: "TakasumiBOTから警告されました",
-              icon_url: "https://cdn.taka.cf/images/system/warn.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/warn.png"
             },
             description: reason,
             timestamp: new Date()
@@ -281,7 +281,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: `${guild.name}(${guild.id})に警告しました`,
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             },
             description: reason
           }]
@@ -292,7 +292,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "サーバーに警告できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             fields:[
               {
@@ -312,7 +312,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "サーバーから脱退できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "指定したサーバーが存在しません"
         }],
@@ -327,7 +327,7 @@ module.exports = async(interaction)=>{
             color: Colors.Green,
             author:{
               name: `${guild.name}(${guild.id}) から脱退しました`,
-              icon_url: "https://cdn.taka.cf/images/system/success.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             }
           }]
         });
@@ -337,7 +337,7 @@ module.exports = async(interaction)=>{
             color: Colors.Red,
             author:{
               name: "サーバーから脱退できませんでした",
-              icon_url: "https://cdn.taka.cf/images/system/error.png"
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             fields:[
               {

@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "検索結果が存在しませんでした"
         }]
@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: `${word}の検索結果`,
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: data.timeline.entry.map(data=>`[**${data.name}(@${data.screenName})**](${data.url}) - ${new Date(data.createdAt*1000).toLocaleString()}\n${data.displayText.replace(/\tSTART\t/g,"").replace(/\tEND\t/g,"")}`).join("\n\n"),
           footer:{
@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "検索ワードを変えて、もう一度実行してください"
         }]

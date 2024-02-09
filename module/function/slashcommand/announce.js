@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドを実行するには以下の権限を持っている必要があります",
         fields:[
@@ -35,7 +35,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "BOTに権限がありません",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "このコマンドはBOTに以下の権限が必要です",
         fields:[
@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "アナウンスの自動公開を無効にしました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       });
@@ -69,7 +69,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "アナウンスの自動公開を設定できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "サーバーには最大6個までしか設定できません"
         }],
@@ -81,7 +81,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "アナウンスの自動公開を設定できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "設定するチャンネルはアナウンスチャンネルにしてください"
         }],
@@ -96,7 +96,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "アナウンスの自動公開を設定にしました",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
       });

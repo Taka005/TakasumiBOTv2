@@ -116,25 +116,25 @@ module.exports = async(message)=>{
     msg = {
       content: random(koizumi),
       username: "小泉進次郎",
-      avatarURL: "https://cdn.taka.cf/images/koizumi.png"
+      avatarURL: "https://cdn.takasumibot.com/images/koizumi.png"
     };
   }else if(rate(false,true,0.01)){
     msg = {
       content: random(kinnikun),
       username: "なかやまきんに君",
-      avatarURL: "https://cdn.taka.cf/images/kinnikun.png"
+      avatarURL: "https://cdn.takasumibot.com/images/kinnikun.png"
     };
   }else if(rate(false,true,0.007)){
     msg = {
       content: random(kisida),
       username: "岸田総理",
-      avatarURL: "https://cdn.taka.cf/images/kisida.png"
+      avatarURL: "https://cdn.takasumibot.com/images/kisida.png"
     };
   }else if(rate(false,true,0.003)){
     msg = {
       content: "すいません。3色チーズ牛丼の特盛に温玉付きをお願いします",
       username: "チー牛",
-      avatarURL: "https://cdn.taka.cf/images/tigyuu.png"
+      avatarURL: "https://cdn.takasumibot.com/images/tigyuu.png"
     };
   }else{
     let content;
@@ -147,7 +147,7 @@ module.exports = async(message)=>{
     msg = {
       content: content,
       username: "ひろゆき",
-      avatarURL: "https://cdn.taka.cf/images/hiroyuki.png"
+      avatarURL: "https://cdn.takasumibot.com/images/hiroyuki.png"
     };
   }
 
@@ -166,7 +166,7 @@ module.exports = async(message)=>{
         color: Colors.Red,
         author:{
           name: "ひろゆき機能でエラーが発生しました",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "エラーが発生したため、強制的に退出されました\n再度登録するには`/hiroyuki`を使用してください",
         fields:[

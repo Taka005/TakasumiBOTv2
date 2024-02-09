@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "実行しました",
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               },
               description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n\`\`\`${res.program_output||"なし"}\`\`\``,
               footer:{
@@ -61,7 +61,7 @@ module.exports = async(interaction)=>{
               color: Colors.Green,
               author:{
                 name: "実行しました",
-                icon_url: "https://cdn.taka.cf/images/system/success.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               },
               description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
               footer:{
@@ -82,7 +82,7 @@ module.exports = async(interaction)=>{
               color: Colors.Red,
               author:{
                 name: "実行できませんでした",
-                icon_url: "https://cdn.taka.cf/images/system/error.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/error.png"
               },
               description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
               footer:{
@@ -96,7 +96,7 @@ module.exports = async(interaction)=>{
               color: Colors.Red,
               author:{
                 name: "実行できませんでした",
-                icon_url: "https://cdn.taka.cf/images/system/error.png"
+                icon_url: "https://cdn.takasumibot.com/images/system/error.png"
               },
               description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,
               footer:{
@@ -116,7 +116,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           author:{
             name: "正常に実行できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           color: Colors.Red,
           description: "実行がタイムアウトしました",

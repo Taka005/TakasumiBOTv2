@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "ロールの人数・割合一覧",
-            icon_url: "https://cdn.taka.cf/images/system/success.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: `${roles.map(role=>`<@&${role.id}>: ${role.members.size}人 - ${(role.members.size/interaction.guild.memberCount*100).toFixed(2)}%`).join("\n")}`
         }]
@@ -26,7 +26,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "取得できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           fields:[
             {

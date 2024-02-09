@@ -12,7 +12,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "入力箇所が不足しています",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "記入欄を全て空にはできません"
       }],
@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "入力された画像が無効です",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "画像はURLで指定する必要があります"
       }],

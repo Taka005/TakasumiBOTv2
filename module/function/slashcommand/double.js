@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "検出できませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "指定されたユーザーはTakasumiBOTアカウントに登録されていません"
       }],
@@ -29,7 +29,7 @@ module.exports = async(interaction)=>{
         color: Colors.Red,
         author:{
           name: "検出されませんでした",
-          icon_url: "https://cdn.taka.cf/images/system/error.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: `このサーバーでは${user.tag}のサブアカウントは存在しません`
       }]
@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
         color: Colors.Green,
         author:{
           name: "検出しました",
-          icon_url: "https://cdn.taka.cf/images/system/success.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
         description: menbers.map(m=>`${m.user.tag}(${m.id})`).join("\n")
       }]

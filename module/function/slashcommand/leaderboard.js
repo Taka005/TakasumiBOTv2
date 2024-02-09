@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "表示できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "正の範囲で指定してください"
         }],
@@ -29,7 +29,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           author:{
             name: "表示できませんでした",
-            icon_url: "https://cdn.taka.cf/images/system/error.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "指定した範囲が無効です"
         }],
@@ -52,7 +52,7 @@ module.exports = async(interaction)=>{
         color: Colors.Green,
         author:{
           name: "お金持ちランキング",
-          icon_url: "https://cdn.taka.cf/images/system/success.png"
+          icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
         description: rank.join("\n")
       }]
