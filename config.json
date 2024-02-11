@@ -11,5 +11,5 @@
         "graph": "http://localhost:4000"
     },
     "database": "public.bfv4d.tky1.mdbs.jp",
-    "shards": 4
+    "shards": 3
 }
