@@ -3,6 +3,7 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const fetchMember = require("../../lib/fetchMember");
   const escape = require("../../lib/escape");
+  const ignore = require("../../lib/ignore");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "setting"){
 
@@ -564,35 +565,82 @@ module.exports = async(interaction)=>{
         }
       }
     }else if(interaction.options.getSubcommand() === "ignore"){
+      const type = interaction.options.getString("type");
 
-      const data = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
-      if(!data[0]){
-        await db(`INSERT INTO \`ignore\` (id, time) VALUES("${interaction.guild.id}",NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id),time = VALUES (time);`);
-        await db(`DELETE FROM bump WHERE id = ${interaction.guild.id};`);
-        await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id};`);
-        await db(`DELETE FROM up WHERE id = ${interaction.guild.id};`);
+      const types = {
+        "bump": "Bump通知",
+        "dissoku": "Dissoku通知",
+        "up": "UP通知",
+        "expned": "メッセージ展開"
+      }
 
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "有効にしました",
-              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
-            }
-          }]
-        });
+      if(type === "all"){
+        const data = await db(`SELECT * FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
+        if(!data[0]){
+          await ignore.enable(interaction.guild.id);
+
+          await db(`DELETE FROM bump WHERE id = ${interaction.guild.id};`);
+          await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id};`);
+          await db(`DELETE FROM up WHERE id = ${interaction.guild.id};`);
+
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: "全て無効にしました",
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+              }
+            }]
+          });
+        }else{
+          await ignore.disable(interaction.guild.id);
+
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: "全て有効にしました",
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+              }
+            }]
+          });
+        }
       }else{
-        await db(`DELETE FROM \`ignore\` WHERE id = ${interaction.guild.id};`);
+        const check = await ignore.check(interaction.guild.id,type);
+        if(!check){
+          await ignore.enable(interaction.guild.id,type);
 
-        await interaction.reply({
-          embeds:[{
-            color: Colors.Green,
-            author:{
-              name: "無効にしました",
-              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
-            }
-          }]
-        });
+          if(type === "bump"){
+            await db(`DELETE FROM bump WHERE id = ${interaction.guild.id};`);
+          }else if(type === "dissoku"){
+            await db(`DELETE FROM dissoku WHERE id = ${interaction.guild.id};`);
+          }else if(type === "up"){
+            await db(`DELETE FROM up WHERE id = ${interaction.guild.id};`);
+          }
+
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${types[type]}を無効にしました`,
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+              }
+            }]
+          });
+        }else{
+          await ignore.disable(interaction.guild.id,type);
+
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${types[type]}を有効にしました`,
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+              }
+            }]
+          });
+
+        }
       }
     }else if(interaction.options.getSubcommand() === "info"){
       const bump = await db(`SELECT * FROM bump WHERE id = ${interaction.guild.id};`);
@@ -652,7 +700,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "メッセージ無視",
-              value: ignore[0] ? "有効":"無効",
+              value: ignore[0] ? `Bump通知: ${ignore[0].bump?"有効":"無効"}\nDissoku通知: ${ignore[0].dissoku?"有効":"無効"}\nUP通知: ${ignore[0].up?"有効":"無効"}\nメッセージ展開: ${ignore[0].expend?"有効":"無効"}`:"無効",
               inline: true
             },
             {

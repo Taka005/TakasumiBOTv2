@@ -1,7 +1,7 @@
 module.exports = async(message)=>{
   const { PermissionFlagsBits, Colors } = require("discord.js");
-  const db = require("../../lib/db");
   const limit = require("../../lib/limit");
+  const ignore = require("../../lib/ignore");
   const fetchGuild = require("../../lib/fetchGuild");
   const fetchChannel = require("../../lib/fetchChannel");
   const fetchMessage = require("../../lib/fetchMessage");
@@ -14,8 +14,7 @@ module.exports = async(message)=>{
 
   const link = message.content.match(/^https?:\/\/(?:ptb\.|canary\.)?(?:discord|discordapp)\.com\/channels\/(\d+)\/(\d+)\/(\d+)$/);
   if(link){
-    const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id};`);
-    if(ignore[0]||limit(message)) return;
+    if(ignore.check(message.guild.id,"expend")||limit(message)) return;
 
     const guild = await fetchGuild(message.client,link[1]);
     if(!guild) return;

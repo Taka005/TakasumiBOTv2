@@ -1,6 +1,7 @@
 module.exports = async(message)=>{
   const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
+  const ignore = require("../../lib/ignore");
 
   if(
     !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.ViewChannel)||
@@ -12,8 +13,7 @@ module.exports = async(message)=>{
       message.embeds[0]?.fields[0]?.name.match(/をアップしたよ/)||
       message.embeds[0]?.fields[0]?.name.match(/I've bumped up/)
     ){
-      const ignore = await db(`SELECT * FROM \`ignore\` WHERE id = ${message.guild.id};`);
-      if(ignore[0]) return;
+      if(ignore.check(message.guild.id,"dissoku")) return;
 
       const data = await db(`SELECT * FROM dissoku WHERE id = ${message.guild.id};`);
       await message.channel.send({

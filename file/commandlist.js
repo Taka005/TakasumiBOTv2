@@ -1726,21 +1726,33 @@ module.exports = {
           .setName("join")
           .setDescription("参加メッセージを設定します")
           .addStringOption(option=>
-              option
-                .setName("message")
-                .setDescription("送信するメッセージ")))
+            option
+              .setName("message")
+              .setDescription("送信するメッセージ")))
       .addSubcommand(subcommand=>
         subcommand
           .setName("leave")
           .setDescription("退出メッセージを設定します")
           .addStringOption(option=>
-              option
-                .setName("message")
-                .setDescription("送信するメッセージ")))
+            option
+              .setName("message")
+              .setDescription("送信するメッセージ")))
       .addSubcommand(subcommand=>
         subcommand
           .setName("ignore")
-          .setDescription("Bump通知・Dissoku通知・UP通知・メッセージ展開の無効・有効を切り替えます"))
+          .setDescription("Bump通知・Dissoku通知・UP通知・メッセージ展開の無効・有効を切り替えます")
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("無効・有効にする種類")
+              .setRequired(true)
+              .addChoices(
+                { name: "Bump通知", value: "bump" },
+                { name: "Dissoku通知", value: "dissoku" },
+                { name: "UP通知", value: "up" },
+                { name: "メッセージ展開", value: "expend" },
+                { name: "全てを選択", value: "all" }
+              )))
       .addSubcommand(subcommand=>
         subcommand
           .setName("info")
