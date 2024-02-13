@@ -2,7 +2,6 @@ const db = require("./db");
 
 module.exports = {
   enable:async(guildId,type)=>{
-    console.log(type)
     if(type){
       await db(`INSERT INTO \`ignore\` (id, ${type}, time) VALUES("${guildId}",true,NOW()) ON DUPLICATE KEY UPDATE id = VALUES (id), ${type} = VALUES(${type}), time = VALUES (time);`);
     }else{
@@ -28,8 +27,8 @@ module.exports = {
 
     if(!data[0]) return false;
 
-    for(let key in data){
-      if(typeof data[key] === "boolean"&&data[key] === true){
+    for(let key in data[0]){
+      if(typeof data[0][key] === "boolean"&&data[0][key] === true){
         return false;
       }
     }
