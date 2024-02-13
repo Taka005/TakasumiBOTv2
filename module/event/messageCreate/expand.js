@@ -14,7 +14,7 @@ module.exports = async(message)=>{
 
   const link = message.content.match(/^https?:\/\/(?:ptb\.|canary\.)?(?:discord|discordapp)\.com\/channels\/(\d+)\/(\d+)\/(\d+)$/);
   if(link){
-    if(ignore.check(message.guild.id,"expend")||limit(message)) return;
+    if(await ignore.check(message.guild.id,"expend")||limit(message)) return;
 
     const guild = await fetchGuild(message.client,link[1]);
     if(!guild) return;

@@ -12,7 +12,7 @@ module.exports = async(message)=>{
     if(
       message.embeds[0]?.author?.name.match(/UPしました!/)
     ){
-      if(ignore.check(message.guild.id,"up")) return;
+      if(await ignore.check(message.guild.id,"up")) return;
 
       const data = await db(`SELECT * FROM up WHERE id = ${message.guild.id};`);
       setTimeout(async()=>{
