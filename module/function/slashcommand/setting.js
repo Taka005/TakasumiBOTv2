@@ -571,7 +571,7 @@ module.exports = async(interaction)=>{
         "bump": "Bump通知",
         "dissoku": "Dissoku通知",
         "up": "UP通知",
-        "expned": "メッセージ展開"
+        "expend": "メッセージ展開"
       }
 
       if(type === "all"){
