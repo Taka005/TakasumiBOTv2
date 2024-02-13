@@ -628,7 +628,11 @@ module.exports = async(interaction)=>{
             }]
           });
         }else{
-          await ignore.disable(interaction.guild.id,type);
+          if(ignore.isAllDisable(interaction.guild.id)){
+            await ignore.disable(interaction.guild.id);
+          }else{
+            await ignore.disable(interaction.guild.id,type);
+          }
 
           await interaction.reply({
             embeds:[{

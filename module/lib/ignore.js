@@ -21,5 +21,18 @@ module.exports = {
     if(!data[0]) return false;
 
     return data[0][type];
+  },
+  isAllDisable:async(guildId)=>{
+    const data = await db(`SELECT * FROM \`ignore\` WHERE id = ${guildId};`);
+
+    if(!data[0]) return false;
+
+    for(let key in data){
+      if(typeof data[key] === "boolean"&&data[key] === true){
+        return false;
+      }
+    }
+
+    return true;
   }
 }
