@@ -87,8 +87,6 @@ module.exports = async(interaction)=>{
         const trade = await db("SELECT * FROM trade");
         const time = trade.map(d=>new Date(d.time));
         const prices = trade.map(d=>d.price);
-        time.push(new Date())
-        prices.push(price);
 
         const high = Math.max(...trade.map(d=>d.price));
         const low = Math.min(...trade.map(d=>d.price));
