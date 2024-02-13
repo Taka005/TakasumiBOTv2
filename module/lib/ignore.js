@@ -27,8 +27,8 @@ module.exports = {
 
     if(!data[0]) return false;
 
-    for(let key in data){
-      if(typeof data[key] === "boolean"&&data[key] === true){
+    for(let key in data[0]){
+      if(typeof data[0][key] === "number"&&data[0][key] === 1){
         return false;
       }
     }
