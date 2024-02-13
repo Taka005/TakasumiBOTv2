@@ -26,7 +26,7 @@ module.exports = {
     const data = await db(`SELECT * FROM \`ignore\` WHERE id = ${guildId};`);
 
     if(!data[0]) return false;
-
+    console.log(data[0])
     for(let key in data[0]){
       if(typeof data[0][key] === "boolean"&&data[0][key] === true){
         return false;
