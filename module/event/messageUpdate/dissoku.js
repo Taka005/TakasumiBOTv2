@@ -13,7 +13,7 @@ module.exports = async(message)=>{
       message.embeds[0]?.fields[0]?.name.match(/をアップしたよ/)||
       message.embeds[0]?.fields[0]?.name.match(/I've bumped up/)
     ){
-      if(ignore.check(message.guild.id,"dissoku")) return;
+      if(await ignore.check(message.guild.id,"dissoku")) return;
 
       const data = await db(`SELECT * FROM dissoku WHERE id = ${message.guild.id};`);
       await message.channel.send({

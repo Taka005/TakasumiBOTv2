@@ -628,7 +628,7 @@ module.exports = async(interaction)=>{
             }]
           });
         }else{
-          if(ignore.isAllDisable(interaction.guild.id)){
+          if(await ignore.isAllDisable(interaction.guild.id)){
             await ignore.disable(interaction.guild.id);
           }else{
             await ignore.disable(interaction.guild.id,type);
@@ -643,7 +643,6 @@ module.exports = async(interaction)=>{
               }
             }]
           });
-
         }
       }
     }else if(interaction.options.getSubcommand() === "info"){
@@ -704,7 +703,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "メッセージ無視",
-              value: ignore[0] ? `Bump通知: ${ignore[0].bump?"有効":"無効"}\nDissoku通知: ${ignore[0].dissoku?"有効":"無効"}\nUP通知: ${ignore[0].up?"有効":"無効"}\nメッセージ展開: ${ignore[0].expend?"有効":"無効"}`:"無効",
+              value: ignore[0] ? `Bump通知: ${ignore[0].bump?"無効":"有効"}\nDissoku通知: ${ignore[0].dissoku?"無効":"有効"}\nUP通知: ${ignore[0].up?"無効":"有効"}\nメッセージ展開: ${ignore[0].expend?"無効":"有効"}`:"無効",
               inline: true
             },
             {
