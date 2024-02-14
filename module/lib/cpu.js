@@ -8,7 +8,7 @@ module.exports = async()=>{
     return acc;
   },0);
 
-  const idle = totalIdle / cpus.length;
-  const total = totalTick / cpus.length;
-  return (100 - (100 * idle) / total).toFixed(2);
+  const idle = totalIdle/cpus.length;
+  const total = totalTick/cpus.length;
+  return (100 - (100*idle)/total).toFixed(2);
 }

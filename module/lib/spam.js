@@ -10,6 +10,7 @@ module.exports = class Spam{
       if(!this.isWait){
         this.time[id] = new Date();
       }
+
       return true;
     }else{
       this.time[id] = new Date();
