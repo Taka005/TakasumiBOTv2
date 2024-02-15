@@ -571,7 +571,7 @@ module.exports = async(interaction)=>{
         "bump": "Bump通知",
         "dissoku": "Dissoku通知",
         "up": "UP通知",
-        "expend": "メッセージ展開"
+        "expand": "メッセージ展開"
       }
 
       if(type === "all"){
@@ -703,7 +703,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "メッセージ無視",
-              value: ignore[0] ? `Bump通知: ${ignore[0].bump?"無効":"有効"}\nDissoku通知: ${ignore[0].dissoku?"無効":"有効"}\nUP通知: ${ignore[0].up?"無効":"有効"}\nメッセージ展開: ${ignore[0].expend?"無効":"有効"}`:"無効",
+              value: ignore[0] ? `Bump通知: ${ignore[0].bump?"無効":"有効"}\nDissoku通知: ${ignore[0].dissoku?"無効":"有効"}\nUP通知: ${ignore[0].up?"無効":"有効"}\nメッセージ展開: ${ignore[0].expand?"無効":"有効"}`:"無効",
               inline: true
             },
             {

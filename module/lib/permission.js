@@ -48,9 +48,5 @@ module.exports = (permissions)=>{
     if(p === "ModerateMembers") return "メンバーをタイムアウト";
   });
 
-  if(permission.length > 0){
-    return permission;
-  }else{
-    return ["なし"];
-  }
+  return permission.length > 0 ? permission : ["なし"];
 }

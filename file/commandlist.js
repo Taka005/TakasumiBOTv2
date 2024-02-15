@@ -1750,7 +1750,7 @@ module.exports = {
                 { name: "Bump通知", value: "bump" },
                 { name: "Dissoku通知", value: "dissoku" },
                 { name: "UP通知", value: "up" },
-                { name: "メッセージ展開", value: "expend" },
+                { name: "メッセージ展開", value: "expand" },
                 { name: "全てを選択", value: "all" }
               )))
       .addSubcommand(subcommand=>
