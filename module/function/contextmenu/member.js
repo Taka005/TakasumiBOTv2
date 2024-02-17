@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
       "offline": "⚫オフライン",
       "dnd": "⛔取り込み中",
       "idle": "🌙退席中"
-    };
+    }
 
     if(!member) return await interaction.reply({
       embeds:[{
