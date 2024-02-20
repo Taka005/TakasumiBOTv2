@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ban"){
     const id = interaction.options.getString("id");
-    const reason = interaction.options.getString("reason")||`${interaction.user.tag}によってBAN`;
+    const reason = `${interaction.options.getString("reason")||"なし"}\n${interaction.user.tag}によってBAN`;
     const days = interaction.options.getInteger("days");
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.BanMembers)) return await interaction.reply({

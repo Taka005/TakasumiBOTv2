@@ -5,7 +5,7 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "timeout"){
     const user = interaction.options.getUser("user");
     const time = interaction.options.getInteger("time")||30;
-    const reason = interaction.options.getString("reason")||`${interaction.user.tag}によってタイムアウト`;
+    const reason = `${interaction.options.getString("reason")||"なし"}\n${interaction.user.tag}によってタイムアウト`;
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.ModerateMembers)) return await interaction.reply({
       embeds:[{

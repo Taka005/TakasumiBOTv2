@@ -4,7 +4,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "kick"){
     const user = interaction.options.getUser("user");
-    const reason = interaction.options.getString("reason")||`${interaction.user.tag}によってKICK`;
+    const reason = `${interaction.options.getString("reason")||"なし"}\n${interaction.user.tag}によってKICK`;
 
     if(!interaction.member.permissions.has(PermissionFlagsBits.KickMembers)) return await interaction.reply({
       embeds:[{
