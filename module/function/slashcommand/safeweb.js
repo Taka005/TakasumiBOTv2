@@ -21,7 +21,7 @@ module.exports = async(interaction)=>{
     await interaction.deferReply();
     try{
       const res = await fetch(`https://safeweb.norton.com/report/show?url=${encodeURI(url)}&ulang=jpn`)
-        .then(res=>res.text())
+        .then(res=>res.text());
 
       if(res.indexOf("［注意］") !== -1){
         await interaction.editReply({
@@ -52,7 +52,7 @@ module.exports = async(interaction)=>{
               text: "Powered by Norton Safeweb"
             }
           }]
-        })
+        });
       }else if(res.indexOf("未評価") !== -1){
         await interaction.editReply({
           embeds:[{
@@ -67,7 +67,7 @@ module.exports = async(interaction)=>{
               text: "Powered by Norton Safeweb"
             }
           }]
-        })
+        });
       }else{
         await interaction.editReply({
           embeds:[{
@@ -82,7 +82,7 @@ module.exports = async(interaction)=>{
               text: "Powered by Norton Safeweb"
             }
           }]
-        })
+        });
       }
     }catch{
       await interaction.editReply({
