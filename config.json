@@ -10,6 +10,9 @@
         "miq": "http://localhost:3000",
         "graph": "http://localhost:4000"
     },
-    "database": "public.bfv4d.tky1.mdbs.jp",
+    "database": {
+        "host": "public.bfv4d.tky1.mdbs.jp",
+        "name": "bfv4d_"
+    },
     "shards": 3
 }
