@@ -1,11 +1,11 @@
 {
     "admin": "790489873957781536",
+    "prefix": ">",
     "announce":{
         "server": "987698915820335124",
         "notice": "1049155527214628954",
         "update": "1106533820498452500"
     },
-    "prefix": ">",
     "api":{
         "miq": "http://localhost:3000",
         "graph": "http://localhost:4000"
