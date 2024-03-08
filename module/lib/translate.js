@@ -7,5 +7,5 @@ module.exports = async(text,source,target)=>{
   return {
     "text": data.sentences.map(sentence=>sentence.trans).join(""),
     "source": data.src
-  };
+  }
 }

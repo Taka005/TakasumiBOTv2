@@ -79,7 +79,7 @@ module.exports = async(interaction)=>{
           },
           timestamp: new Date()
         }]
-      })
+      });
     }catch(error){
       await interaction.editReply({
         embeds:[{

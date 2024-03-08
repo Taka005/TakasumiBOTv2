@@ -668,58 +668,47 @@ module.exports = async(interaction)=>{
           fields:[
             {
               name: "統計情報の収集",
-              value: stats[0] ? "設定済み":"未設定",
-              inline: true
+              value: stats[0] ? "設定済み":"未設定"
             },
             {
               name: "Bump通知",
-              value: bump[0] ? "設定済み":"未設定",
-              inline: true
+              value: bump[0] ? "設定済み":"未設定"
             },
             {
               name: "Dissoku通知",
-              value: dissoku[0] ? "設定済み":"未設定",
-              inline: true
+              value: dissoku[0] ? "設定済み":"未設定"
             },
             {
               name: "TakasumiBOT UP通知",
-              value: up[0] ? "設定済み":"未設定",
-              inline: true
+              value: up[0] ? "設定済み":"未設定"
             },
             {
               name: "サーバー掲示板",
-              value: server[0] ? "登録済み":"未登録",
-              inline: true
+              value: server[0] ? "登録済み":"未登録"
             },
             {
               name: "グローバルチャット",
-              value: global[0] ? "登録済み":"未登録",
-              inline: true
+              value: global[0] ? "登録済み":"未登録"
             },
             {
               name: "ひろゆき",
-              value: hiroyuki[0] ? "登録済み":"未登録",
-              inline: true
+              value: hiroyuki[0] ? "登録済み":"未登録"
             },
             {
               name: "メッセージ無視",
-              value: ignore[0] ? `Bump通知: ${ignore[0].bump?"無効":"有効"}\nDissoku通知: ${ignore[0].dissoku?"無効":"有効"}\nUP通知: ${ignore[0].up?"無効":"有効"}\nメッセージ展開: ${ignore[0].expand?"無効":"有効"}`:"無効",
-              inline: true
+              value: ignore[0] ? `Bump通知: ${ignore[0].bump?"無効":"有効"}\nDissoku通知: ${ignore[0].dissoku?"無効":"有効"}\nUP通知: ${ignore[0].up?"無効":"有効"}\nメッセージ展開: ${ignore[0].expand?"無効":"有効"}`:"無効"
             },
             {
               name: "参加メッセージ",
-              value: join[0] ? "設定済み":"未設定",
-              inline: true
+              value: join[0] ? "設定済み":"未設定"
             },
             {
               name: "退出メッセージ",
-              value: leave[0] ? "設定済み":"未設定",
-              inline: true
+              value: leave[0] ? "設定済み":"未設定"
             },
             {
               name: "ピン",
-              value: `${pin.length}個設定済み`,
-              inline: true
+              value: `${pin.length}個設定済み`
             }
           ]
         }]

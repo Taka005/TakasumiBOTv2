@@ -19,10 +19,10 @@ module.exports = async(interaction)=>{
         "type": "bash",
         "compiler": "bash"
       }
-    };
+    }
 
     const controller = new AbortController();
-    setTimeout(async()=>{
+    setTimeout(()=>{
       controller.abort();
     },3000);
 

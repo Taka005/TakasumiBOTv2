@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
           },
           {
             name: "どんなサービスを使って運営しているの？",
-            value: "Github、CloudFlare、RPS Internet Group等を使用し運営しています"
+            value: "Github、CloudFlare、RSP Internet Group等を使用し運営しています"
           },
           {
             name: "TakasumiBOT Authとは?",

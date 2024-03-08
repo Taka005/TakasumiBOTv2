@@ -6,10 +6,10 @@ const log = require("./log");
 const config = require("../../config.json");
 
 const connection = mysql.createConnection({
-  host: config.database,
+  host: config.database.host,
+  database: config.database.name,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: "bfv4d_",
   charset: "utf8mb4"
 });
 
