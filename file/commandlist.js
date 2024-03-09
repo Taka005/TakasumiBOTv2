@@ -222,7 +222,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "10秒に一回までしか生成できません",
+    note: "なし",
     data: new SlashCommandBuilder()
       .setName("analytics")
       .setDescription("サーバーの分析データを生成します")
