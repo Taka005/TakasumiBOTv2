@@ -14,5 +14,5 @@
         "host": "public.bfv4d.tky1.mdbs.jp",
         "name": "bfv4d_"
     },
-    "shards": 3
+    "shardCount": 3
 }
