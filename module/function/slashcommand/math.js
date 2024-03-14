@@ -6,13 +6,13 @@ module.exports = async(interaction)=>{
     const code = interaction.options.getString("code");
 
     const format = code
-      .replace((/[０-９]/gu),(str)=>String.fromCharCode(str.charCodeAt(0) - 65248))
-      .replace((/＋/gu),"+")
-      .replace((/ー/gu),"-")
-      .replace((/[x×]/gu),"*")
-      .replace((/÷/gu),"/")
-      .replace((/（/gu),"(")
-      .replace((/）/gu),")");
+      .replace(/[０-９]/gu,(str)=>String.fromCharCode(str.charCodeAt(0) - 65248))
+      .replace(/＋/gu,"+")
+      .replace(/ー/gu,"-")
+      .replace(/[x×]/gu,"*")
+      .replace(/÷/gu,"/")
+      .replace(/（/gu,"(")
+      .replace(/）/gu,")");
 
     try{
       const math = mathjs.create(mathjs.all);

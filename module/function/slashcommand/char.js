@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const iconv = require("iconv-lite");
+  const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "char"){
     const type = interaction.options.getString("type");
@@ -54,7 +55,7 @@ module.exports = async(interaction)=>{
             .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
-                .setURL("https://discord.gg/NEesRdGQwD")
+                .setURL(config.inviteUrl)
                 .setStyle(ButtonStyle.Link))
         ]
       });

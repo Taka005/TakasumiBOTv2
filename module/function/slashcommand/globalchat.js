@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
+  const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "globalchat"){
 
@@ -47,7 +48,7 @@ module.exports = async(interaction)=>{
     });
 
     const data = await db(`SELECT * FROM global WHERE server = ${interaction.guild.id};`);
-    if(data[0]){//登録済み
+    if(data[0]){
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
 
       await db(`DELETE FROM global WHERE server = ${interaction.guild.id};`);
@@ -175,7 +176,7 @@ module.exports = async(interaction)=>{
                   .addComponents(
                     new ButtonBuilder()
                       .setLabel("サポートサーバー")
-                      .setURL("https://discord.gg/NEesRdGQwD")
+                      .setURL(config.inviteUrl)
                       .setStyle(ButtonStyle.Link))
               ]
             }).catch(()=>{});
@@ -214,7 +215,7 @@ module.exports = async(interaction)=>{
               .addComponents(
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setURL(config.inviteUrl)
                   .setStyle(ButtonStyle.Link))
           ]
         });

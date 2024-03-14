@@ -6,11 +6,12 @@ module.exports = async(interaction)=>{
   const fetchUser = require("../../lib/fetchUser");
   const fetchGuild = require("../../lib/fetchGuild");
   const mute = require("../../lib/mute");
-  const { admin } = require("../../../config.json");
+  const fileLoader = require("../../lib/fileLoader");
+  const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "admin"){
 
-    if(interaction.user.id !== admin) return await interaction.reply({
+    if(interaction.user.id !== config.admin) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -271,7 +272,7 @@ module.exports = async(interaction)=>{
               .addComponents(
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setURL(config.inviteUrl)
                   .setStyle(ButtonStyle.Link))
           ]
         });
@@ -423,7 +424,7 @@ module.exports = async(interaction)=>{
 
       require("../../event/ready/command")(interaction.client);
 
-      await require("../../lib/fileLoader")();
+      await fileLoader();
 
       await interaction.editReply({
         embeds:[{

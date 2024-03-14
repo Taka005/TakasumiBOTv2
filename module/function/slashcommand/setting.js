@@ -4,6 +4,7 @@ module.exports = async(interaction)=>{
   const fetchMember = require("../../lib/fetchMember");
   const escape = require("../../lib/escape");
   const ignore = require("../../lib/ignore");
+  const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "setting"){
 
@@ -435,7 +436,7 @@ module.exports = async(interaction)=>{
                 .addComponents(
                   new ButtonBuilder()
                     .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
+                    .setURL(config.inviteUrl)
                     .setStyle(ButtonStyle.Link))
             ]
           });
@@ -558,7 +559,7 @@ module.exports = async(interaction)=>{
                 .addComponents(
                   new ButtonBuilder()
                     .setLabel("サポートサーバー")
-                    .setURL("https://discord.gg/NEesRdGQwD")
+                    .setURL(config.inviteUrl)
                     .setStyle(ButtonStyle.Link))
             ]
           });

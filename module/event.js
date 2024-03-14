@@ -7,7 +7,7 @@ module.exports = async(client)=>{
   const money = require("./lib/money");
   const log = require("./lib/log");
   const fileLoader = require("./lib/fileLoader");
-  const config = require("../../../config.json");
+  const config = require("../config.json");
 
   await fileLoader();
 
