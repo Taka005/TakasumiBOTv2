@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const permission = require("../../lib/permission");
+  const config = require("../../../config.json");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "権限を表示"){
     const member = interaction.options.getMember("user");
@@ -53,7 +54,7 @@ module.exports = async(interaction)=>{
             .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
-                .setURL("https://discord.gg/NEesRdGQwD")
+                .setURL(config.inviteUrl)
                 .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true

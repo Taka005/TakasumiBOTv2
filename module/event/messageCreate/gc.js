@@ -7,7 +7,7 @@ module.exports = async(message)=>{
   const fetchMessage = require("../../lib/fetchMessage");
   const fetchWebhookMessage = require("../../lib/fetchWebhookMessage");
   const money = require("../../lib/money");
-  const { admin } = require("../../../config.json");
+  const config = require("../../../config.json");
 
   if(message.author.bot) return;
 
@@ -68,7 +68,7 @@ module.exports = async(message)=>{
   const embed = [{
     color: color,
     author:{
-      name: admin === message.author.id?`${message.author.tag}(管理者)`:`${message.author.tag}`,
+      name: config.admin === message.author.id?`${message.author.tag}(管理者)`:`${message.author.tag}`,
       url: `https://discord.com/users/${message.author.id}`,
       icon_url: message.author.avatarURL()||message.author.defaultAvatarURL,
     },
@@ -157,7 +157,7 @@ module.exports = async(message)=>{
             .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
-                .setURL("https://discord.gg/NEesRdGQwD")
+                .setURL(config.inviteUrl)
                 .setStyle(ButtonStyle.Link))
         ]
       }).catch(()=>{});

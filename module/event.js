@@ -6,8 +6,10 @@ module.exports = async(client)=>{
   const stats = require("./lib/stats");
   const money = require("./lib/money");
   const log = require("./lib/log");
+  const fileLoader = require("./lib/fileLoader");
+  const config = require("../../../config.json");
 
-  await require("./lib/fileLoader")();
+  await fileLoader();
 
   client.on(Events.ClientReady,async(client)=>{
     require("./event/ready/status")(client);
@@ -59,7 +61,7 @@ module.exports = async(client)=>{
           .addComponents(
             new ButtonBuilder()
               .setLabel("サポートサーバー")
-              .setURL("https://discord.gg/NEesRdGQwD")
+              .setURL(config.inviteUrl)
               .setStyle(ButtonStyle.Link))
       ]
     });
@@ -81,7 +83,7 @@ module.exports = async(client)=>{
           .addComponents(
             new ButtonBuilder()
               .setLabel("サポートサーバー")
-              .setURL("https://discord.gg/NEesRdGQwD")
+              .setURL(config.inviteUrl)
               .setStyle(ButtonStyle.Link))
       ],
       ephemeral: true

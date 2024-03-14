@@ -4,6 +4,7 @@ module.exports = async(message)=>{
   const random = require("../../lib/random");
   const rate = require("../../lib/rate");
   const limit = require("../../lib/limit");
+  const config = require("../../../config.json");
 
   if(
     message.author.bot||
@@ -181,7 +182,7 @@ module.exports = async(message)=>{
           .addComponents(
             new ButtonBuilder()
               .setLabel("サポートサーバー")
-              .setURL("https://discord.gg/NEesRdGQwD")
+              .setURL(config.inviteUrl)
               .setStyle(ButtonStyle.Link))
       ]
     }).catch(()=>{});

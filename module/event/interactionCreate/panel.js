@@ -4,6 +4,7 @@ const Spam = new spam(5000,true);
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const sleep = require("../../lib/sleep");
+  const config = require("../../../config.json");
   if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId === "role"){
 
@@ -85,7 +86,7 @@ module.exports = async(interaction)=>{
             .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
-                .setURL("https://discord.gg/NEesRdGQwD")
+                .setURL(config.inviteUrl)
                 .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true

@@ -2,6 +2,7 @@ module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const escape = require("../../lib/escape");
+  const config = require("../../../config.json");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId === "register"){
     const text = interaction.fields.getTextInputValue("text")
@@ -45,7 +46,7 @@ module.exports = async(interaction)=>{
             .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
-                .setURL("https://discord.gg/NEesRdGQwD")
+                .setURL(config.inviteUrl)
                 .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
