@@ -1539,13 +1539,13 @@ module.exports = {
           .setRequired(true))
       .addStringOption(option=>
         option
-          .setName("flag")
-          .setDescription("正規表現のフラグ"))
-      .addStringOption(option=>
-        option
           .setName("match")
           .setDescription("検証する文字列")
-          .setRequired(true)),
+          .setRequired(true))
+      .addStringOption(option=>
+        option
+          .setName("flag")
+          .setDescription("正規表現のフラグ")),
   },
   register:{
     type: "board",
