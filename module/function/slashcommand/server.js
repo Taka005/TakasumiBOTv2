@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
       const emojis = await interaction.guild.emojis.fetch();
       const stickers = await interaction.guild.stickers.fetch();
 
-      const shardCount = interaction.client.shard ? `\nシャード:${ShardClientUtil.shardIdForGuildId(interaction.guild.id,config.shards)}番`:""
+      const shardCount = interaction.client.shard ? `\nシャード:${ShardClientUtil.shardIdForGuildId(interaction.guild.id,config.shardCount)}番`:""
 
       const stats = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id};`);
 
@@ -100,7 +100,7 @@ module.exports = async(interaction)=>{
             .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
-                .setURL("https://discord.gg/NEesRdGQwD")
+                .setURL(config.inviteUrl)
                 .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true

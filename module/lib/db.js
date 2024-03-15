@@ -22,6 +22,7 @@ module.exports = async(query)=>{
     return await connection.query(query);
   }catch(error){
     log.error(error);
+
     return [];
   }
 }

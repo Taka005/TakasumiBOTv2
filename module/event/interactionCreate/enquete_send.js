@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const fetchMessage = require("../../lib/fetchMessage");
+  const config = require("../../../config.json");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("enquetesend_")){
     const data = interaction.customId.split("_");
@@ -80,7 +81,7 @@ module.exports = async(interaction)=>{
             .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
-                .setURL("https://discord.gg/NEesRdGQwD")
+                .setURL(config.inviteUrl)
                 .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true

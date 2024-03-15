@@ -1,5 +1,6 @@
 module.exports = async(guild)=>{
   const { ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
+  const config = require("../../../config.json");
 
   let find = 0;
   guild.channels.cache.map((channel)=>{
@@ -24,7 +25,7 @@ module.exports = async(guild)=>{
               .addComponents(
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setURL(config.inviteUrl)
                   .setStyle(ButtonStyle.Link))
           ]
         }).catch(()=>{});

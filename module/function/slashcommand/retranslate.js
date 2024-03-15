@@ -46,8 +46,7 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "再翻訳文字を変えて、もう一度実行してください"
-        }],
-        ephemeral: true
+        }]
       });
     }
   }

@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const crypto = require("crypto");
+  const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "cipher"){
     const type = interaction.options.getString("type");
@@ -42,7 +43,7 @@ module.exports = async(interaction)=>{
               .addComponents(
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setURL(config.inviteUrl)
                   .setStyle(ButtonStyle.Link))
           ]
         });
@@ -83,7 +84,7 @@ module.exports = async(interaction)=>{
               .addComponents(
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setURL(config.inviteUrl)
                   .setStyle(ButtonStyle.Link))
           ]
         });

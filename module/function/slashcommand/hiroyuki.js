@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
+  const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "hiroyuki"){
 
@@ -74,7 +75,7 @@ module.exports = async(interaction)=>{
             }]
           });
         })
-    }else{//登録なし
+    }else{
       await interaction.deferReply();
       try{
         const webhook = await interaction.channel.createWebhook({
@@ -114,7 +115,7 @@ module.exports = async(interaction)=>{
               .addComponents(
                 new ButtonBuilder()
                   .setLabel("サポートサーバー")
-                  .setURL("https://discord.gg/NEesRdGQwD")
+                  .setURL(config.inviteUrl)
                   .setStyle(ButtonStyle.Link))
           ]
         });

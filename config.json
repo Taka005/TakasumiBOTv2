@@ -1,6 +1,7 @@
 {
     "admin": "790489873957781536",
     "prefix": ">",
+    "inviteUrl": "https://discord.gg/NEesRdGQwD",
     "announce":{
         "server": "987698915820335124",
         "notice": "1049155527214628954",
@@ -14,5 +15,5 @@
         "host": "public.bfv4d.tky1.mdbs.jp",
         "name": "bfv4d_"
     },
-    "shards": 3
+    "shardCount": 3
 }

@@ -222,7 +222,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "10秒に一回までしか生成できません",
+    note: "なし",
     data: new SlashCommandBuilder()
       .setName("analytics")
       .setDescription("サーバーの分析データを生成します")
@@ -1516,6 +1516,36 @@ module.exports = {
         option
           .setName("select_10")
           .setDescription("選択10"))
+  },
+  regex:{
+    type: "tool",
+    name: "/regex",
+    description: "正規表現を検証します",
+    example: "`/regex [A-Z]{1,10} g ABCDEFD`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("regex")
+      .setDescription("正規表現を検証します")
+      .addStringOption(option=>
+        option
+          .setName("pattern")
+          .setDescription("検証する正規表現")
+          .setRequired(true))
+      .addStringOption(option=>
+        option
+          .setName("match")
+          .setDescription("検証する文字列")
+          .setRequired(true))
+      .addStringOption(option=>
+        option
+          .setName("flag")
+          .setDescription("正規表現のフラグ")),
   },
   register:{
     type: "board",

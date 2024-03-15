@@ -2,17 +2,18 @@ module.exports = async(member)=>{
   const { WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const fetchChannel = require("../../lib/fetchChannel");
+  const config = require("../../../config.json");
 
   const data = await db(`SELECT * FROM \`leave\` WHERE server = ${member.guild.id};`);
   if(data[0]){
     const msg = data[0].message
-      .replace("[User]",`<@${member.user.id}>`)
-      .replace("[UserName]",`${member.user.tag}`)
-      .replace("[UserDisplayName]",`${member.user.displayName}`)
-      .replace("[UserID]",`${member.user.id}`)
-      .replace("[ServerName]",`${member.guild.name}`)
-      .replace("[ServerID]",`${member.guild.id}`)
-      .replace("[Count]",`${member.guild.memberCount}`);
+      .replace(/\[User\]/g,`<@${member.user.id}>`)
+      .replace(/\[UserName\]/g,`${member.user.tag}`)
+      .replace(/\[UserDisplayName\]/g,`${member.user.displayName}`)
+      .replace(/\[UserID\]/g,`${member.user.id}`)
+      .replace(/\[ServerName\]/g,`${member.guild.name}`)
+      .replace(/\[ServerID\]/g,`${member.guild.id}`)
+      .replace(/\[Count\]/g,`${member.guild.memberCount}`);
 
     try{
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
@@ -45,7 +46,7 @@ module.exports = async(member)=>{
             .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
-                .setURL("https://discord.gg/NEesRdGQwD")
+                .setURL(config.inviteUrl)
                 .setStyle(ButtonStyle.Link))
         ]
       }).catch(()=>{});

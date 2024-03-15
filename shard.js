@@ -16,5 +16,5 @@ manager.on("shardCreate",(shard)=>{
 });
 
 manager.spawn({
-  amount: config.shards
+  amount: config.shardCount
 });

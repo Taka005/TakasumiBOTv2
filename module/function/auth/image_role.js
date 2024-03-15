@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const config = require("../../../config.json");
   if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId.startsWith("imagerole_")){
     const data = interaction.customId.split("_");
@@ -62,7 +63,7 @@ module.exports = async(interaction)=>{
             .addComponents(
               new ButtonBuilder()
                 .setLabel("サポートサーバー")
-                .setURL("https://discord.gg/NEesRdGQwD")
+                .setURL(config.inviteUrl)
                 .setStyle(ButtonStyle.Link))
         ],
         ephemeral: true
