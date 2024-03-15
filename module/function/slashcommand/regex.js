@@ -10,11 +10,11 @@ module.exports = async(interaction)=>{
     try{
       const regex = new RegExp(pattern,flag);
 
-      let matches = [];
-      let data;
-      while((data = regex.exec(match)) !== null){
-        matches.push(data[0]);
-        regex.lastIndex++;
+      let matches;
+      if(regex.global){
+        matches = [...match.matchAll(regex)].map(arr=>arr[0]);
+      }else{
+        matches = regex.exec(match);
       }
 
       await interaction.reply({
