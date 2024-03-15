@@ -10,6 +10,12 @@ module.exports = async(interaction)=>{
     try{
       const regex = new RegExp(pattern,flag);
 
+      let matches = [];
+      let data;
+      while((data = regex.exec(match)) !== null){
+        matches.push(data[0]);
+      }
+
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -28,7 +34,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "マッチした文字列",
-              value:  [...match.matchAll(regex)].map(arr=>arr[0])?.join("\n")||"マッチしませんでした"
+              value: matches?.join("\n")||"マッチしませんでした"
             }
           ]
         }]
