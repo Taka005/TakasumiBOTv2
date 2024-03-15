@@ -28,7 +28,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "マッチした文字列",
-              value: regex.exec(match).join("\n")||"マッチしませんでした"
+              value:  [...match.matchAll(regex)].map(arr=>arr[0])?.join("\n")||"マッチしませんでした"
             }
           ]
         }]
