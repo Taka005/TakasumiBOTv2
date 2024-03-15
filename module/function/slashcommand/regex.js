@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
           fields:[
             {
               name: "正規表現",
-              value: `/${pattern}/${flag}`
+              value: `\`/${pattern}/${flag}\``
             },
             {
               name: "検証する文字列",
