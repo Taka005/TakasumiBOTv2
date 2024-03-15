@@ -14,6 +14,7 @@ module.exports = async(interaction)=>{
       let data;
       while((data = regex.exec(match)) !== null){
         matches.push(data[0]);
+        regex.lastIndex++;
       }
 
       await interaction.reply({
