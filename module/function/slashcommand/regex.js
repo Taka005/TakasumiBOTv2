@@ -10,12 +10,7 @@ module.exports = async(interaction)=>{
     try{
       const regex = new RegExp(pattern,flag);
 
-      let matches;
-      if(regex.global){
-        matches = [...match.matchAll(regex)].map(arr=>arr[0]);
-      }else{
-        matches = regex.exec(match);
-      }
+      const matches = match.match(regex);
 
       await interaction.reply({
         embeds:[{
