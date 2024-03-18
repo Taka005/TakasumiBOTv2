@@ -1325,7 +1325,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "グローバルチャットの色変更(黄色): 一回10円\nグローバルチャットの色変更(赤色): 一回100円\nグローバルチャットの色変更(青色): 一回800円",
+    note: "グローバルチャットの色変更(黄色): 一回10コイン\nグローバルチャットの色変更(赤色): 一回100コイン\nグローバルチャットの色変更(青色): 一回800コイン",
     data: new SlashCommandBuilder()
       .setName("pay")
       .setDescription("所持金を使用して機能を購入します")
@@ -1335,9 +1335,9 @@ module.exports = {
           .setDescription("買う機能")
           .setRequired(true)
           .addChoices(
-            { name: "一回10円: グローバルチャットの表示色(黄色)", value: "yellow" },
-            { name: "一回100円: グローバルチャットの表示色(赤色)", value: "red" },
-            { name: "一回800円: グローバルチャット表示色(青色)", value: "blue" }
+            { name: "一回10コイン: グローバルチャットの表示色(黄色)", value: "yellow" },
+            { name: "一回100コイン: グローバルチャットの表示色(赤色)", value: "red" },
+            { name: "一回800コイン: グローバルチャット表示色(青色)", value: "blue" }
           ))
       .addIntegerOption(option=>
         option
@@ -2192,7 +2192,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "100円から500円のお金が貰えます",
+    note: "500コインから1000コインのお金が貰えます",
     data: new SlashCommandBuilder()
       .setName("work")
       .setDescription("20分に1回お金をもらえます")

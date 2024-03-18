@@ -44,7 +44,7 @@ module.exports = async(interaction)=>{
     const rank = await Promise.all(data.map(async(data,i)=>{
       const user = await fetchUser(interaction.client,data.id);
 
-      return `**${i+(range||1)}位** ${user ? `${user.displayName}(${user.username})` : "不明"} - ${data.amount}円`;
+      return `**${i+(range||1)}位** ${user ? `${user.displayName}(${user.username})` : "不明"} - ${data.amount}コイン`;
     }));
 
     await interaction.editReply({

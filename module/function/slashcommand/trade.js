@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${price}円の株を${count}株(${count*price}円)購入しました`,
+            name: `${price}コインの株を${count}株(${count*price}コイン)購入しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
@@ -75,7 +75,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${price}円の株を${count}株(${count*price}円)売却しました`,
+            name: `${price}コインの株を${count}株(${count*price}コイン)売却しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
@@ -103,7 +103,7 @@ module.exports = async(interaction)=>{
             "y": prices,
             "title": "株価",
             "xLabel": "時間",
-            "yLabel": "円",
+            "yLabel": "コイン",
             "xFont": 1
           })
         }).then(res=>res.blob());
@@ -115,7 +115,7 @@ module.exports = async(interaction)=>{
               name: "株式情報",
               icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             },
-            description: `現在の株価: ${price}円\n変動額: ${sign(priceDeff)}円(${pricePer}%)\n最高額: ${high}円\n最低額: ${low}円`,
+            description: `現在の株価: ${price}コイン\n変動額: ${sign(priceDeff)}コイン(${pricePer}%)\n最高額: ${high}コイン\n最低額: ${low}コイン`,
             image:{
               url: "attachment://price.png"
             }

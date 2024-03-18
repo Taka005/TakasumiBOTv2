@@ -27,10 +27,10 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Green,
         author:{
-          name: `${amount}円手に入れました`,
+          name: `${amount}コイン手に入れました`,
           icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
-        description: `所持金: ${data.amount+amount}円`
+        description: `所持金: ${data.amount+amount}コイン`
       }]
     });
   }
