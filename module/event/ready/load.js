@@ -44,11 +44,11 @@ module.exports = async(client)=>{
     let price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
 
     const trade = await db("SELECT * FROM trade;");
-    let tradeLength = trade.length;
-    while(tradeLength >= 96){
+    let tradeLen = trade.length;
+    while(tradeLen >= 96){
       await db("DELETE FROM trade ORDER BY time LIMIT 1;");
-      tradeLength--;
-      if(tradeLength <= 95) break;
+      tradeLen--;
+      if(tradeLen <= 95) break;
     }
 
     if(price >= 1000){
