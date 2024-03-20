@@ -38,7 +38,7 @@ module.exports = async(message)=>{
       new ActionRowBuilder()
         .addComponents(
           new ButtonBuilder()
-            .setLabel("サイトへ飛ぶ")
+            .setLabel("サイトへ移動")
             .setURL("https://auth.takasumibot.com/")
             .setStyle(ButtonStyle.Link))
         .addComponents(

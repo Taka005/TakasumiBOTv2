@@ -22,7 +22,7 @@ module.exports = async(interaction)=>{
           fields:[
             {
               name: "残高",
-              value: `${data.amount}円`
+              value: `${data.amount}コイン`
             },
             {
               name: "アイテム",
@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
           fields:[
             {
               name: "残高",
-              value: `${data?.amount||0}円`
+              value: `${data?.amount||0}コイン`
             },
             {
               name: "アイテム",

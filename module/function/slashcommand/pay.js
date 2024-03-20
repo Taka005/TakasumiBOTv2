@@ -41,7 +41,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${count}回分(${count*10}円)を購入しました`,
+            name: `${count}回分(${count*10}コイン)を購入しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
@@ -80,7 +80,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${count}回分(${count*100}円)を購入しました`,
+            name: `${count}回分(${count*100}コイン)を購入しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
@@ -119,7 +119,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${count}回分(${count*800}円)を購入しました`,
+            name: `${count}回分(${count*800}コイン)を購入しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
