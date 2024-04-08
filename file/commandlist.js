@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, ContextMenuCommandBuilder, ApplicationCommandType, Colors } = require("discord.js");
+const products = require("./products");
 
 module.exports = {
   5000:{
@@ -1335,9 +1336,10 @@ module.exports = {
           .setDescription("買う機能")
           .setRequired(true)
           .addChoices(
-            { name: "一回10コイン: グローバルチャットの表示色(黄色)", value: "yellow" },
-            { name: "一回100コイン: グローバルチャットの表示色(赤色)", value: "red" },
-            { name: "一回800コイン: グローバルチャット表示色(青色)", value: "blue" }
+            products.map(product=>({
+              name: `一回${product.price}コイン: ${product.description}`,
+              value: product.id
+            }))
           ))
       .addIntegerOption(option=>
         option
