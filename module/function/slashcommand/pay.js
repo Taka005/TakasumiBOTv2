@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
 
     const data = await money.get(interaction.user.id);
 
-    if(data.amount<count*product.price) return await interaction.reply({
+    if(data.amount<count*product.price||count<=0) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
