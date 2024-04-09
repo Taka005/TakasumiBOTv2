@@ -55,16 +55,16 @@ module.exports = async(message)=>{
   let color = Colors.Green;
   const data = await money.get(message.author.id);
 
-  if(data?.random > 0){
+  if(data.random > 0){
     color = Math.floor(Math.random()*(0xffffff + 1));
     await db(`UPDATE money SET random = ${data.random-1} WHERE id = ${message.author.id}`);
-  }else if(data?.blue > 0){
+  }else if(data.blue > 0){
     color = Colors.Blue;
     await db(`UPDATE money SET blue = ${data.blue-1} WHERE id = ${message.author.id}`);
-  }else if(data?.red > 0){
+  }else if(data.red > 0){
     color = Colors.Red;
     await db(`UPDATE money SET red = ${data.red-1} WHERE id = ${message.author.id}`);
-  }else if(data?.yellow > 0){
+  }else if(data.yellow > 0){
     color = Colors.Yellow;
     await db(`UPDATE money SET yellow = ${data.yellow-1} WHERE id = ${message.author.id}`);
   }
