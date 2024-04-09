@@ -3,7 +3,7 @@ const db = require("./db");
 module.exports = {
   "get":async(id)=>{
     const data = await db(`SELECT * FROM money WHERE id = ${id};`);
-    return data[0];
+    return data[0]||{};
   },
   "add":async(id,number)=>{
     const data = await db(`SELECT * FROM money WHERE id = ${id};`);

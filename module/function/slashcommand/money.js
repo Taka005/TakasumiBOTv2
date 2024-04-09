@@ -48,11 +48,11 @@ module.exports = async(interaction)=>{
           fields:[
             {
               name: "残高",
-              value: `${data?.amount||0}コイン`
+              value: `${data.amount||0}コイン`
             },
             {
               name: "アイテム",
-              value: `${products.map(pro=>`${pro.name}: ${data[pro.id]||"0"}`).join("\n")}\n株: ${data?.stock||"0"}個`,
+              value: `${products.map(pro=>`${pro.name}: ${data[pro.id]||"0"}`).join("\n")}\n株: ${data.stock||"0"}個`,
             },
             {
               name: "順位",
