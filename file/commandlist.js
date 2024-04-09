@@ -1326,7 +1326,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: products.map(product=>`${product.description}: 一回${product.price}コイン`).join("\n"),
+    note: products.map(pro=>`${pro.description}: 一回${pro.price}コイン`).join("\n"),
     data: new SlashCommandBuilder()
       .setName("pay")
       .setDescription("所持金を使用して機能を購入します")
@@ -1336,9 +1336,9 @@ module.exports = {
           .setDescription("買う機能")
           .setRequired(true)
           .addChoices(
-            ...products.map(product=>({
-              name: `一回${product.price}コイン: ${product.description}`,
-              value: product.id
+            ...products.map(pro=>({
+              name: `一回${pro.price}コイン: ${pro.description}`,
+              value: pro.id
             }))
           ))
       .addIntegerOption(option=>
