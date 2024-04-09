@@ -1336,7 +1336,7 @@ module.exports = {
           .setDescription("買う機能")
           .setRequired(true)
           .addChoices(
-            products.map(product=>({
+            ...products.map(product=>({
               name: `一回${product.price}コイン: ${product.description}`,
               value: product.id
             }))
