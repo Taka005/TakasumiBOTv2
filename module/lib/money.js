@@ -13,7 +13,7 @@ module.exports = {
       amount = 10000000;
     }
 
-    await db(`INSERT INTO money (id, amount, yellow, red, blue, stock, time) VALUES("${id}","${amount}","0","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
+    await db(`INSERT INTO money (id, amount, yellow, red, blue, random, stock, time) VALUES("${id}","${amount}","0","0","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
   },
   "delete":async(id,number)=>{
     const data = await db(`SELECT * FROM money WHERE id = ${id};`);
@@ -22,7 +22,7 @@ module.exports = {
     if(amount < 0){
       amount = 0;
     }
-    
-    await db(`INSERT INTO money (id, amount, yellow, red, blue, stock, time) VALUES("${id}","${amount}","0","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
+
+    await db(`INSERT INTO money (id, amount, yellow, red, blue, random, stock, time) VALUES("${id}","${amount}","0","0","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
   }
 }

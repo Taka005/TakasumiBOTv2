@@ -16,5 +16,11 @@ module.exports = [
     name: "GC青色",
     description: "グローバルチャット表示色(青色)",
     price: 800
+  },
+  {
+    id: "random",
+    name: "GCランダム",
+    description: "グローバルチャット表示色(ランダム)",
+    price: 1500
   }
 ]
