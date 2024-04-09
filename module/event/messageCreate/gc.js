@@ -63,6 +63,9 @@ module.exports = async(message)=>{
   }else if(data?.yellow > 0){
     color = Colors.Yellow;
     await db(`UPDATE money SET yellow = ${data.yellow-1} WHERE id = ${message.author.id}`);
+  }else if(data?.random > 0){
+    color = Math.floor(Math.random()*(0xffffff + 1));
+    await db(`UPDATE money SET random = ${data.random-1} WHERE id = ${message.author.id}`);
   }
 
   const embed = [{
