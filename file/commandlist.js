@@ -1326,7 +1326,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "グローバルチャットの色変更(黄色): 一回10コイン\nグローバルチャットの色変更(赤色): 一回100コイン\nグローバルチャットの色変更(青色): 一回800コイン",
+    note: products.map(product=>`${product.description}: 一回${product.price}コイン`).join("\n"),
     data: new SlashCommandBuilder()
       .setName("pay")
       .setDescription("所持金を使用して機能を購入します")
