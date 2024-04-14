@@ -1,5 +1,5 @@
-const spam = require("../../lib/spam");
-const Spam = new spam(5000,true);
+const Spam = require("../../lib/spam");
+const spam = new Spam(5000,true);
 
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isStringSelectMenu()) return;
   if(interaction.customId === "role"){
 
-    if(Spam.count(interaction.guild.id)) return await interaction.reply({
+    if(spam.count(interaction.guild.id)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
