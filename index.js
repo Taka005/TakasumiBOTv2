@@ -12,8 +12,8 @@ const client = new Client({
   ],
   sweepers:{
     messages:{
-      interval: 3600,
-      lifetime: 3600
+      interval: 10800,
+      lifetime: 10800
     },
     users:{
       interval: 3600,
@@ -33,7 +33,7 @@ const client = new Client({
     },
     invites:{
       interval: 3600,
-      lifetime: 86400
+      lifetime: 3600
     },
     emojis:{
       interval: 3600,
