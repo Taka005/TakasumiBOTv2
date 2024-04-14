@@ -1,5 +1,5 @@
-const spam = require("../../lib/spam");
-const Spam = new spam(6000,true);
+const Spam = require("../../lib/spam");
+const spam = new Spam(6000,true);
 
 module.exports = async(message)=>{
   const db = require("../../lib/db");
@@ -9,7 +9,7 @@ module.exports = async(message)=>{
 
   const data = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id};`);
   if(data[0]){
-    if(Spam.count(message.channel.id)) return;
+    if(spam.count(message.channel.id)) return;
     await sleep(5000);
 
     try{

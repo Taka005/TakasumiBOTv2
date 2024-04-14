@@ -1,5 +1,5 @@
-const spam = require("../../lib/spam");
-const Spam = new spam(1200000,true);
+const Spam = require("../../lib/spam");
+const spam = new Spam(1200000,true);
 
 module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "work"){
 
-    if(Spam.count(interaction.user.id)) return await interaction.reply({
+    if(spam.count(interaction.user.id)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
