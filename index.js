@@ -33,7 +33,7 @@ const client = new Client({
     },
     invites:{
       interval: 3600,
-      lifetime: 10800
+      lifetime: 3600
     },
     emojis:{
       interval: 3600,
