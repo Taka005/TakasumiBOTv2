@@ -264,7 +264,7 @@ module.exports = async(interaction)=>{
               name: "TakasumiBOTから警告されました",
               icon_url: "https://cdn.takasumibot.com/images/system/warn.png"
             },
-            description: `${reason}\n\n質問や異議申し立ては[サポートサーバー](${config.inviteUrl})まで\nTakasumiBOT Team`
+            description: `${reason}\n\n質問や異議申し立ては[サポートサーバー](${config.inviteUrl})まで`
           }]
         });
 
