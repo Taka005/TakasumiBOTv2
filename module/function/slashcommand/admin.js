@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fs = require("fs");
-  const { AttachmentBuilder, Colors, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   const { execSync } = require("child_process");
   const db = require("../../lib/db");
   const fetchUser = require("../../lib/fetchUser");
@@ -264,17 +264,8 @@ module.exports = async(interaction)=>{
               name: "TakasumiBOTから警告されました",
               icon_url: "https://cdn.takasumibot.com/images/system/warn.png"
             },
-            description: reason,
-            timestamp: new Date()
-          }],
-          components:[
-            new ActionRowBuilder()
-              .addComponents(
-                new ButtonBuilder()
-                  .setLabel("サポートサーバー")
-                  .setURL(config.inviteUrl)
-                  .setStyle(ButtonStyle.Link))
-          ]
+            description: `${reason}\n\n質問や異議申し立ては[サポートサーバー](${config.inviteUrl})まで\nTakasumiBOT Team`
+          }]
         });
 
         await interaction.editReply({
