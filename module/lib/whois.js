@@ -3,6 +3,7 @@ module.exports = async(host,domain)=>{
 
   return new Promise((resolve,reject)=>{
     let data = "";
+
     const socket = net.connect({
       "host": host,
       "port": 43

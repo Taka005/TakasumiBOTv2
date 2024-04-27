@@ -50,7 +50,7 @@ module.exports = async(message)=>{
   }).catch(()=>{});
 
   const content = message.content
-    .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,"[[招待リンク]](https://discord.gg/NEesRdGQwD)")
+    .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,`[[招待リンク]](${config.inviteUrl})`)
 
   let color = Colors.Green;
   const data = await money.get(message.author.id);
