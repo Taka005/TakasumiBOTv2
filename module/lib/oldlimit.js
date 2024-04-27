@@ -1,15 +1,20 @@
-const Spam = require("./spam");
-const spam1 = new Spam(600);
-const spam2 = new Spam(600);
-const last = new Spam(180000);
+const time = {};
 
 module.exports = (message)=>{
   const { Colors } = require("discord.js");
 
-  if(last.check(message.guild.id)) return true;
+  if(!time[message.guild.id]){
+    time[message.guild.id] = {
+      time1: 0,
+      time2: 0,
+      last: 0
+    };
+  }
 
-  if(spam1.count(message.guild.id)){
-    if(spam2.count(message.guild.id)){
+  if(new Date() - time[message.guild.id].last <= 180000) return true;
+
+  if(new Date() - time[message.guild.id].time1 <= 600){
+    if(new Date() - time[message.guild.id].time2 <= 600){
       message.channel.send({
         embeds:[{
           color: Colors.Yellow,
@@ -21,14 +26,15 @@ module.exports = (message)=>{
           timestamp: new Date()
         }]
       }).catch(()=>{});
-
-      last.count(message.guild.id);
-
+      time[message.guild.id].last = new Date();
       return true;
     }else{
+      time[message.guild.id].time1 = new Date();
+      time[message.guild.id].time2 = new Date();
       return false;
     }
   }else{
+    time[message.guild.id].time1 = new Date();
     return false;
   }
 }

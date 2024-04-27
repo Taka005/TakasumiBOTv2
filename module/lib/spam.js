@@ -17,4 +17,12 @@ module.exports = class Spam{
       return false;
     }
   }
+
+  check(id){
+    if(new Date() - this.time[id] <= this.rate){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }
