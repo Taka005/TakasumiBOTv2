@@ -29,6 +29,10 @@ module.exports = async(client)=>{
 
     if(message.author.bot) return;
 
+    if(process.env.LOG){
+      await db(`INSERT INTO message (id, userId, guildId, channelId, content, createAt) VALUES("${message.id}","${message.author.id}","${message.guild.id}","${message.channel.id}","${message.cleanContent}",NOW());`);
+    }
+
     await stats.message(message.guild.id);
 
     Promise.all(global.command.map(fn=>fn(message)));
