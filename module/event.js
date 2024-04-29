@@ -31,6 +31,8 @@ module.exports = async(client)=>{
     if(message.author.bot) return;
 
     if(process.env.LOG){
+      if(!message.cleanContent) return;
+
       await db(`INSERT INTO message (id, userId, guildId, channelId, content, createAt) VALUES("${message.id}","${message.author.id}","${message.guild.id}","${message.channel.id}","${message.cleanContent}",NOW());`);
     }
 
