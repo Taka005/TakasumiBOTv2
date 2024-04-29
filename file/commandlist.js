@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, ContextMenuCommandBuilder, ApplicationCommandType, Colors } = require("discord.js");
 const products = require("./products");
+const config = require("../config.json");
 
 module.exports = {
   5000:{
@@ -55,7 +56,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "アカウント情報の削除は[サポートサーバー](https://discord.gg/NEesRdGQwD)にて連絡してください",
+    note: `アカウント情報の削除は[サポートサーバー](${config.inviteUrl})にて連絡してください`,
     data: new SlashCommandBuilder()
       .setName("account")
       .setDescription("登録されているアカウント情報を表示します")

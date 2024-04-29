@@ -17,7 +17,7 @@ module.exports = async(interaction)=>{
       "faq":[{
         color: Colors.Green,
         title: "FAQ",
-        description: "よくある質問一覧です。他の質問がある場合は[サポートサーバー](https://discord.gg/NEesRdGQwD)にてよろしくお願いします",
+        description: `よくある質問一覧です。他の質問がある場合は[サポートサーバー](${config.inviteUrl})にてよろしくお願いします`,
         fields:[
           {
             name: "何で開発しているの？",
@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
       }],
       "ad":[{
         color: Colors.Green,
-        description: `**◢◤◢◤◢◤ TakasumiBOT ◢◤◢◤◢◤**\nとても便利なBOTです\nグローバルチャット、サーバー掲示板、認証機能などさまざまな便利機能があります\n導入数 ${server}サーバー超え!\n\n・招待\nhttps://discord.com/application-directory/981314695543783484\n・ 公式サイト\nhttps://www.takasumibot.com/\n・ステータス\nhttps://status.takasumibot.com/\n・サーバー掲示板\nhttps://servers.takasumibot.com/\n・TakasumiBOT Auth\nhttps://auth.takasumibot.com/\n・サポートサーバー\nhttps://discord.gg/NEesRdGQwD\n・Email\ntakasumibot@gmail.com\n\nよければプロジェクトに貢献してください\nhttps://github.com/Taka005/TakasumiBOTv2\n**◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤**`
+        description: `**◢◤◢◤◢◤ TakasumiBOT ◢◤◢◤◢◤**\nとても便利なBOTです\nグローバルチャット、サーバー掲示板、認証機能などさまざまな便利機能があります\n導入数 ${server}サーバー超え!\n\n・招待\nhttps://discord.com/application-directory/981314695543783484\n・ 公式サイト\nhttps://www.takasumibot.com/\n・ステータス\nhttps://status.takasumibot.com/\n・サーバー掲示板\nhttps://servers.takasumibot.com/\n・TakasumiBOT Auth\nhttps://auth.takasumibot.com/\n・サポートサーバー\n${config.inviteUrl}\n・Email\ntakasumibot@gmail.com\n\nよければプロジェクトに貢献してください\nhttps://github.com/Taka005/TakasumiBOTv2\n**◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤**`
       }]
     }
 
