@@ -14,7 +14,7 @@ module.exports = async(interaction)=>{
           name: "まだお金は貰えません",
           icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
-        description: "20分に一回実行できます"
+        description: `次に実行できるまであと${Math.floor((3600000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
       }],
       ephemeral: true
     });
