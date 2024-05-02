@@ -69,7 +69,9 @@ module.exports = async(interaction)=>{
     }else if(interaction.options.getSubcommand() === "get"){
       const code = interaction.options.getString("code");
 
-      const data = (await db(`SELECT * FROM gift WHERE id = "${escape(code)}";`))[0];
+      const id = code.match(/\/([^\/]+)$/);
+
+      const data = (await db(`SELECT * FROM gift WHERE id = "${escape(id ? id[0] : code)}";`))[0];
       if(!data) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
