@@ -84,7 +84,7 @@ module.exports = async(interaction)=>{
 
       const gift = gifts.find(gift=>gift.id === data.type);
       await money.add(interaction.user.id,gift.price);
-      await db(`DELETE FROM gift WHERE id = ${data.id};`);
+      await db(`DELETE FROM gift WHERE id = "${data.id}";`);
 
       await interaction.reply({
         embeds:[{
