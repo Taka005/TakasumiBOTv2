@@ -24,9 +24,9 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      const data = await money.get(interaction.user.id);
+      const user = await money.get(interaction.user.id);
 
-      if(data.amount<gift.price) return await interaction.reply({
+      if(user.amount<gift.price) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
