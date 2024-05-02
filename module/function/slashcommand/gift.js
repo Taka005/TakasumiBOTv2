@@ -81,10 +81,10 @@ module.exports = async(interaction)=>{
         }],
         ephemeral: true
       });
-
+      console.log(data)
       const gift = gifts.find(gift=>gift.id === data.type);
       const user = await money.get(interaction.user.id);
-
+      console.log(gift)
       await db(`UPDATE money SET ${gift.type} = ${user[gift.type] + gift.amount} WHERE id = ${interaction.user.id}`);
       await db(`DELETE FROM gift WHERE id = ${data.id};`);
 
