@@ -124,8 +124,8 @@ module.exports = async(interaction)=>{
       }
     }else{
       try{
-        await (await message.channel.messages.fetch(channel[0].message)).delete();
         await db(`DELETE FROM pin WHERE channel = ${message.channel.id};`);
+        await (await message.channel.messages.fetch(channel[0].message)).delete();
 
         await interaction.reply({
           embeds:[{
@@ -143,7 +143,8 @@ module.exports = async(interaction)=>{
             author:{
               name: "ピン留めを削除しました",
               icon_url: "https://cdn.takasumibot.com/images/system/success.png"
-            }
+            },
+            description: "メッセージを削除できなかったため登録のみ削除しました"
           }]
         });
       }
