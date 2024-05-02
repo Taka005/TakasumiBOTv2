@@ -691,7 +691,7 @@ module.exports = {
               .setRequired(true)
               .addChoices(
                 ...gifts.map(gift=>({
-                  name: `${gift.name}: ${gift.description}`,
+                  name: `${gift.id}コイン`,
                   value: gift.id
                 }))
               )))

@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${gift.name}のギフトを作成しました`,
+            name: `${gift.id}コインのギフトを作成しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: `ギフトコード: \`${code}\``
@@ -83,16 +83,14 @@ module.exports = async(interaction)=>{
       });
 
       const gift = gifts.find(gift=>gift.id === data.type);
-      const user = await money.get(interaction.user.id);
-
-      await db(`UPDATE money SET ${gift.type} = ${user[gift.type] + gift.amount} WHERE id = ${interaction.user.id}`);
+      await money.add(interaction.user.id,gift.price);
       await db(`DELETE FROM gift WHERE id = ${data.id};`);
 
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${gift.name}のギフトを受け取りました`,
+            name: `${gift.id}コインのギフトを受け取りました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]
@@ -107,7 +105,7 @@ module.exports = async(interaction)=>{
             name: `作成したギフト一覧`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: data.map(gift=>`${gifts.find(g=>g.id === gift.type).name} \`${gift.id}\``).join("\n")
+          description: data.map(gift=>`${gift.type}コイン \`${gift.id}\``).join("\n")
         }],
         ephemeral: true
       });
