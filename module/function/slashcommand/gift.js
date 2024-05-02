@@ -59,7 +59,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${gift.name}(${gift.price}コイン)のギフトを作成しました`,
+            name: `${gift.name}のギフトを作成しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: `ギフトコード: \`${code}\``
@@ -69,7 +69,7 @@ module.exports = async(interaction)=>{
     }else if(interaction.options.getSubcommand() === "get"){
       const code = interaction.options.getString("code");
 
-      const data = await db(`SELECT * FROM gift WHERE id = ${escape(code)};`);
+      const data = await db(`SELECT * FROM gift WHERE id = "${escape(code)}";`);
       if(!data[0]) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -107,7 +107,7 @@ module.exports = async(interaction)=>{
             name: `作成したギフト一覧`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: data.map(gift=>`${gifts.find(g=>g.id === gift.type).name} コード: ${gift.id}`).join("\n")
+          description: data.map(gift=>`${gifts.find(g=>g.id === gift.type).name} \`${gift.id}\``).join("\n")
         }],
         ephemeral: true
       });
