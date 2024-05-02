@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, ContextMenuCommandBuilder, ApplicationCommandType, Colors } = require("discord.js");
 const products = require("./products");
+const gifts = require("./gifts");
 const config = require("../config.json");
 
 module.exports = {
@@ -664,6 +665,50 @@ module.exports = {
           .setDescription("検索ワード")
           .setRequired(true))
   },
+  gift:{
+    type: "money",
+    name: "/gift",
+    description: "ギフトを作成、受け取りします",
+    example: "`/gif create 100コイン`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("gift")
+      .setDescription("ギフトの操作をします")
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("create")
+          .setDescription("ギフトの作成")
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("ギフトする商品")
+              .setRequired(true)
+              .addChoices(
+                ...gifts.map(gift=>({
+                  name: `${gift.id}コイン`,
+                  value: gift.id
+                }))
+              )))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("get")
+          .setDescription("ギフトの受け取り")
+          .addStringOption(option=>
+            option
+              .setName("code")
+              .setDescription("ギフトコード")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("list")
+          .setDescription("作成したギフト一覧を表示"))
+  },
   globalchat:{
     type: "server",
     name: "/globalchat",
@@ -1319,7 +1364,7 @@ module.exports = {
   pay:{
     type: "money",
     name: "/pay",
-    description: "所持金を使用して機能を購入します",
+    description: "所持金を使用して商品を購入します",
     example: "`/pay 種類 10`",
     userPermission:[
       "必要なし"
@@ -1330,11 +1375,11 @@ module.exports = {
     note: products.map(pro=>`${pro.description}: 一回${pro.price}コイン`).join("\n"),
     data: new SlashCommandBuilder()
       .setName("pay")
-      .setDescription("所持金を使用して機能を購入します")
+      .setDescription("所持金を使用して商品を購入します")
       .addStringOption(option=>
         option
           .setName("type")
-          .setDescription("買う機能")
+          .setDescription("購入商品")
           .setRequired(true)
           .addChoices(
             ...products.map(pro=>({
@@ -1345,7 +1390,7 @@ module.exports = {
       .addIntegerOption(option=>
         option
           .setName("count")
-          .setDescription("買う回数")
+          .setDescription("購入回数")
           .setRequired(true))
   },
   permission:{

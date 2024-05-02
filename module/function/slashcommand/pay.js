@@ -9,6 +9,7 @@ module.exports = async(interaction)=>{
     const count = interaction.options.getInteger("count");
 
     const product = products.find(pro=>pro.id === type);
+
     if(!product) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -36,14 +37,14 @@ module.exports = async(interaction)=>{
     });
 
     const total = data[product.id] + count;
-    if(total>300) return await interaction.reply({
+    if(total>product.limit) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
           name: "購入できませんでした",
           icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
-        description: "300回までしか購入できません"
+        description: `${product.name}は${product.limit}回までしか購入できません`
       }],
       ephemeral: true
     });

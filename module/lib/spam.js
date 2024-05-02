@@ -25,4 +25,8 @@ module.exports = class Spam{
       return false;
     }
   }
+
+  get(id){
+    return this.time[id]||new Date();
+  }
 }

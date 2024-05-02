@@ -65,7 +65,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      if(server[0]?.count > 5) return await interaction.reply({
+      if(server.length > 5) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -95,8 +95,7 @@ module.exports = async(interaction)=>{
           }]
         });
 
-        await db(`INSERT INTO pin (channel, server, message, count, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}","${server[0]?.count||"0"}",NOW());`);
-        await db(`UPDATE pin SET count = ${(server[0]?.count||0) + 1} WHERE server = ${message.guild.id};`);
+        await db(`INSERT INTO pin (channel, server, message, time) VALUES("${message.channel.id}","${message.guild.id}","${msg.id}",NOW());`);
       }catch(error){
         await interaction.reply({
           embeds:[{
@@ -125,10 +124,8 @@ module.exports = async(interaction)=>{
       }
     }else{
       try{
-        await (await message.channel.messages.fetch(channel[0].message)).delete();
-
-        await db(`UPDATE pin SET count = ${server[0].count-1} WHERE server = ${message.guild.id};`);
         await db(`DELETE FROM pin WHERE channel = ${message.channel.id};`);
+        await (await message.channel.messages.fetch(channel[0].message)).delete();
 
         await interaction.reply({
           embeds:[{
@@ -146,7 +143,8 @@ module.exports = async(interaction)=>{
             author:{
               name: "ピン留めを削除しました",
               icon_url: "https://cdn.takasumibot.com/images/system/success.png"
-            }
+            },
+            description: "メッセージを削除できなかったため登録のみ削除しました"
           }]
         });
       }
