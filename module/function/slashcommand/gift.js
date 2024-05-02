@@ -83,6 +83,19 @@ module.exports = async(interaction)=>{
       });
 
       const gift = gifts.find(gift=>gift.id === data.type);
+
+      if(!gift) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "取得できませんでした",
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+          },
+          description: "存在しない商品です"
+        }],
+        ephemeral: true
+      });
+
       await money.add(interaction.user.id,gift.price);
       await db(`DELETE FROM gift WHERE id = "${data.id}";`);
 
