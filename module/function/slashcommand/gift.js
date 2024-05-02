@@ -1,4 +1,4 @@
-module.exports = (interaction)=>{
+module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const db = require("../../lib/db");
   const money = require("../../lib/money");
@@ -98,7 +98,6 @@ module.exports = (interaction)=>{
         }]
       });
     }else if(interaction.options.getSubcommand() === "list"){
-
       const data = await db(`SELECT * FROM gift WHERE user = ${interaction.user.id};`);
 
       await interaction.reply({
