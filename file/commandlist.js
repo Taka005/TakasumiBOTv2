@@ -220,7 +220,7 @@ module.exports = {
             option
               .setName("code")
               .setDescription("ギフトコード")
-              .setRequired(true)))
+              .setRequired(true))
           .addStringOption(option=>
             option
               .setName("type")
@@ -231,7 +231,7 @@ module.exports = {
                   name: `${gift.id}コイン`,
                   value: gift.id
                 }))
-              ))
+              )))
       .addSubcommand(subcommand=>
         subcommand
           .setName("reload")
