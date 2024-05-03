@@ -1,7 +1,6 @@
 module.exports = async(interaction)=>{
   const { ChannelType, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
-  const fetchMember = require("../../lib/fetchMember");
   const escape = require("../../lib/escape");
   const config = require("../../../config.json");
   if(interaction.options.getSubcommand() === "leave"){
