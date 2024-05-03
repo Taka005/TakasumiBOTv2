@@ -1,7 +1,5 @@
 module.exports = async(interaction)=>{
   const commnads = require("../../../file/commandlist");
-  const gifts = require("../../../file/gifts");
-  const config = require("../../../config.json");
   if(!interaction.isAutocomplete()) return;
   const focus = interaction.options.getFocused();
 
@@ -23,15 +21,6 @@ module.exports = async(interaction)=>{
 
 		await interaction.respond(
 			filter.map(name=>({ name: name, value: name }))
-		);
-  }else if(interaction.commandName === "gift"){
-    await interaction.respond(
-      gifts
-        .filter(gift=>gift.isBuy||interaction.user.id === config.admin)
-        .map(gift=>({
-          name: `${gift.id}コイン`,
-          value: gift.id
-        }))
 		);
   }
 }

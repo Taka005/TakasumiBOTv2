@@ -689,7 +689,14 @@ module.exports = {
               .setName("type")
               .setDescription("ギフトする商品")
               .setRequired(true)
-              .setAutocomplete(true)))
+              .addChoices(
+                ...gifts
+                  .filter(gift=>gift.isBuy)
+                  .map(gift=>({
+                    name: `${gift.id}コイン`,
+                    value: gift.id
+                  }))
+              )))
       .addSubcommand(subcommand=>
         subcommand
           .setName("get")

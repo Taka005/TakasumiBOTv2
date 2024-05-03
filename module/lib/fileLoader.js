@@ -14,7 +14,9 @@ module.exports = async()=>{
     fs.readdirSync("./module/function/slashcommand")
       .map(file=>require(`../function/slashcommand/${file}`)),
     fs.readdirSync("./module/function/contextmenu")
-      .map(file=>require(`../function/contextmenu/${file}`))
+      .map(file=>require(`../function/contextmenu/${file}`)),
+    fs.readdirSync("./module/function/admin")
+      .map(file=>require(`../function/admin/${file}`))
   ]);
 
   global.messageCreate = files[0];
@@ -23,6 +25,7 @@ module.exports = async()=>{
   global.auth = files[3];
   global.slashcommand = files[4];
   global.contextmenu = files[5];
+  global.admin = files[6];
 
   log.info("ファイルをロードしました");
 }
