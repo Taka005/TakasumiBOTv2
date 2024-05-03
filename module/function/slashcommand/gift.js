@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
 
       const id = code.match(/\/([^/]+)$/);
 
-      const data = (await db(`SELECT * FROM gift WHERE id = "${escape(id ? id[0] : code)}";`))[0];
+      const data = (await db(`SELECT * FROM gift WHERE id = "${escape(id ? id[1] : code)}";`))[0];
       if(!data) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
