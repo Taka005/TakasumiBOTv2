@@ -57,6 +57,10 @@ module.exports = async(interaction)=>{
       fs.readdirSync("./module/function/admin/")
         .map(file=>{
           delete require.cache[require.resolve(`../admin/${file}`)];
+        }),
+      fs.readdirSync("./module/function/setting/")
+        .map(file=>{
+          delete require.cache[require.resolve(`../setting/${file}`)];
         })
     ]);
 
