@@ -120,7 +120,7 @@ module.exports = async(interaction)=>{
             name: `作成したギフト一覧`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: data.map(gift=>`${gift.type}コイン https://gift.takasumibot.com/${code}`).join("\n")
+          description: data.map(gift=>`${gift.type}コイン https://gift.takasumibot.com/${gift.id}`).join("\n")
         }],
         ephemeral: true
       });
