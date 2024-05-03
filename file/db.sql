@@ -1,5 +1,4 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 CREATE TABLE `account` (
@@ -18,7 +17,6 @@ CREATE TABLE `afk` (
 CREATE TABLE `announce` (
   `channel` varchar(20) NOT NULL,
   `server` varchar(20) NOT NULL,
-  `count` int(10) NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -38,6 +36,13 @@ CREATE TABLE `count` (
 CREATE TABLE `dissoku` (
   `id` varchar(20) NOT NULL,
   `role` varchar(20) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `gift` (
+  `id` varchar(20) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `user` varchar(20) NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -101,6 +106,7 @@ CREATE TABLE `money` (
   `yellow` int(10) NOT NULL,
   `red` int(10) NOT NULL,
   `blue` int(10) NOT NULL,
+  `random` int(10) NOT NULL,
   `stock` int(10) NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -127,7 +133,6 @@ CREATE TABLE `pin` (
   `channel` varchar(20) NOT NULL,
   `server` varchar(20) NOT NULL,
   `message` varchar(20) NOT NULL,
-  `count` int(10) NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -180,6 +185,9 @@ ALTER TABLE `count`
 ALTER TABLE `dissoku`
   ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `gift`
+  ADD PRIMARY KEY (`id`);
+
 ALTER TABLE `global`
   ADD PRIMARY KEY (`channel`);
 
@@ -224,4 +232,3 @@ ALTER TABLE `trade`
 
 ALTER TABLE `up`
   ADD PRIMARY KEY (`id`);
-COMMIT;

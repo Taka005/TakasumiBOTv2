@@ -62,14 +62,16 @@ module.exports = async(interaction)=>{
             name: `${gift.id}コインのギフトを作成しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `ギフトコード: \`${code}\``
+          description: `https://gift.takasumibot.com/${code}`
         }],
         ephemeral: true
       });
     }else if(interaction.options.getSubcommand() === "get"){
       const code = interaction.options.getString("code");
 
-      const data = (await db(`SELECT * FROM gift WHERE id = "${escape(code)}";`))[0];
+      const id = code.match(/\/([^/]+)$/);
+
+      const data = (await db(`SELECT * FROM gift WHERE id = "${escape(id ? id[1] : code)}";`))[0];
       if(!data) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -83,6 +85,19 @@ module.exports = async(interaction)=>{
       });
 
       const gift = gifts.find(gift=>gift.id === data.type);
+
+      if(!gift) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "取得できませんでした",
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+          },
+          description: "存在しない商品です"
+        }],
+        ephemeral: true
+      });
+
       await money.add(interaction.user.id,gift.price);
       await db(`DELETE FROM gift WHERE id = "${data.id}";`);
 
@@ -105,7 +120,7 @@ module.exports = async(interaction)=>{
             name: `作成したギフト一覧`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: data.map(gift=>`${gift.type}コイン \`${gift.id}\``).join("\n")
+          description: data.map(gift=>`${gift.type}コイン https://gift.takasumibot.com/${gift.id}`).join("\n")
         }],
         ephemeral: true
       });
