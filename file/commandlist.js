@@ -191,6 +191,49 @@ module.exports = {
               .setRequired(true)))
       .addSubcommand(subcommand=>
         subcommand
+          .setName("money")
+          .setDescription("ユーザーの所持金を操作します")
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("種類")
+              .setRequired(true)
+              .addChoices(
+                { name: "付与", value: "add" },
+                { name: "剥奪", value: "delete" }
+              ))
+          .addStringOption(option=>
+            option
+              .setName("id")
+              .setDescription("ユーザーID、メンション")
+              .setRequired(true))
+          .addIntegerOption(option=>
+            option
+              .setName("count")
+              .setDescription("金額")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("gift")
+          .setDescription("ギフトを作成します")
+          .addStringOption(option=>
+            option
+              .setName("code")
+              .setDescription("ギフトコード")
+              .setRequired(true))
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("ギフトする商品")
+              .setRequired(true)
+              .addChoices(
+                ...gifts.map(gift=>({
+                  name: `${gift.id}コイン`,
+                  value: gift.id
+                }))
+              )))
+      .addSubcommand(subcommand=>
+        subcommand
           .setName("reload")
           .setDescription("BOTのリロードをします"))
   },
@@ -690,10 +733,12 @@ module.exports = {
               .setDescription("ギフトする商品")
               .setRequired(true)
               .addChoices(
-                ...gifts.map(gift=>({
-                  name: `${gift.id}コイン`,
-                  value: gift.id
-                }))
+                ...gifts
+                  .filter(gift=>gift.isBuy)
+                  .map(gift=>({
+                    name: `${gift.id}コイン`,
+                    value: gift.id
+                  }))
               )))
       .addSubcommand(subcommand=>
         subcommand

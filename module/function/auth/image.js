@@ -7,14 +7,14 @@ module.exports = async(interaction)=>{
     const data = interaction.customId.split("_");
 
     const keys = [
-      { text:"2daAfg", url:"https://cdn.takasumibot.com/images/auth/img_1.png" },
-      { text:"wad3EF", url:"https://cdn.takasumibot.com/images/auth/img_2.png" },
-      { text:"G4sveS", url:"https://cdn.takasumibot.com/images/auth/img_3.png" },
-      { text:"3dgHR", url:"https://cdn.takasumibot.com/images/auth/img_4.png" },
-      { text:"ascA23", url:"https://cdn.takasumibot.com/images/auth/img_5.png" },
-      { text:"Cd2d4s", url:"https://cdn.takasumibot.com/images/auth/img_6.png" },
-      { text:"Mgfn4", url:"https://cdn.takasumibot.com/images/auth/img_7.png" },
-      { text:"Hsdgs1", url:"https://cdn.takasumibot.com/images/auth/img_8.png" }
+      { text: "2daAfg", url: "https://cdn.takasumibot.com/images/auth/img_1.png" },
+      { text: "wad3EF", url: "https://cdn.takasumibot.com/images/auth/img_2.png" },
+      { text: "G4sveS", url: "https://cdn.takasumibot.com/images/auth/img_3.png" },
+      { text: "3dgHR", url: "https://cdn.takasumibot.com/images/auth/img_4.png" },
+      { text: "ascA23", url: "https://cdn.takasumibot.com/images/auth/img_5.png" },
+      { text: "Cd2d4s", url: "https://cdn.takasumibot.com/images/auth/img_6.png" },
+      { text: "Mgfn4", url: "https://cdn.takasumibot.com/images/auth/img_7.png" },
+      { text: "Hsdgs1", url: "https://cdn.takasumibot.com/images/auth/img_8.png" }
     ];
 
     await interaction.deferReply({ephemeral: true});
