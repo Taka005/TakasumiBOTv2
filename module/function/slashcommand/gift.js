@@ -62,7 +62,7 @@ module.exports = async(interaction)=>{
             name: `${gift.id}コインのギフトを作成しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `ギフトコード: \`${code}\``
+          description: `https://gift.takasumibot.com/${code}`
         }],
         ephemeral: true
       });
@@ -120,7 +120,7 @@ module.exports = async(interaction)=>{
             name: `作成したギフト一覧`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: data.map(gift=>`${gift.type}コイン \`${gift.id}\``).join("\n")
+          description: data.map(gift=>`${gift.type}コイン https://gift.takasumibot.com/${code}`).join("\n")
         }],
         ephemeral: true
       });
