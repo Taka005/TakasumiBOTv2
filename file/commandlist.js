@@ -191,6 +191,26 @@ module.exports = {
               .setRequired(true)))
       .addSubcommand(subcommand=>
         subcommand
+          .setName("gift")
+          .setDescription("ギフトを作成します")
+          .addStringOption(option=>
+            option
+              .setName("code")
+              .setDescription("ギフトコード")
+              .setRequired(true)))
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("ギフトする商品")
+              .setRequired(true)
+              .addChoices(
+                ...gifts.map(gift=>({
+                  name: `${gift.id}コイン`,
+                  value: gift.id
+                }))
+              ))
+      .addSubcommand(subcommand=>
+        subcommand
           .setName("reload")
           .setDescription("BOTのリロードをします"))
   },
