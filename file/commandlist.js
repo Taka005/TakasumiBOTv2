@@ -191,6 +191,29 @@ module.exports = {
               .setRequired(true)))
       .addSubcommand(subcommand=>
         subcommand
+          .setName("money")
+          .setDescription("ユーザーの所持金を操作します")
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("種類")
+              .setRequired(true)
+              .addChoices(
+                { name: "付与", value: "add" },
+                { name: "剥奪", value: "delete" }
+              ))
+          .addStringOption(option=>
+            option
+              .setName("id")
+              .setDescription("ユーザーID、メンション")
+              .setRequired(true))
+          .addIntegerOption(option=>
+            option
+              .setName("count")
+              .setDescription("金額")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
           .setName("gift")
           .setDescription("ギフトを作成します")
           .addStringOption(option=>
