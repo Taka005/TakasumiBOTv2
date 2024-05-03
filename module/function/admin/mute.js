@@ -2,6 +2,7 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const mute = require("../../lib/mute");
   const fetchUser = require("../../lib/fetchUser");
+  const fetchGuild = require("../../lib/fetchGuild");
   if(interaction.options.getSubcommand() === "mute"){
     const type = interaction.options.getString("type");
     const id = interaction.options.getString("id");

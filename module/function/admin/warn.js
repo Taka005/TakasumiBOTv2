@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const fetchGuild = require("../../lib/fetchGuild");
+  const config = require("../../../config.json");
   if(interaction.options.getSubcommand() === "warn"){
     const id = interaction.options.getString("id");
     const reason = interaction.options.getString("reason");
