@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
           color: Colors.Green,
           author:{
             name: "TakasumiBOTから通知されました",
-            icon_url: "https://cdn.takasumibot.com/images/system/warn.png"
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: `${message}\n\n質問は[サポートサーバー](${config.inviteUrl})まで`
         }]
