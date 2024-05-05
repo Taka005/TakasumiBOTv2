@@ -1810,19 +1810,7 @@ module.exports = {
       .setDescription("サーバーの情報を表示します")
   },
   setting:{
-    type: "manage",
-    name: "/setting",
-    description: "サーバーの各種設定を変更します",
-    example: "`/setting`",
-    userPermission:[
-      "管理者"
-    ],
-    botPermission:[
-      "チャンネルの閲覧",
-      "メッセージの送信",
-      "ウェブフックの管理"
-    ],
-    note: "詳細は設定ページを確認してください",
+    type: "none",
     data: new SlashCommandBuilder()
       .setName("setting")
       .setDescription("サーバーの設定を変更します")
@@ -1911,7 +1899,7 @@ module.exports = {
   setting_delete:{
     type: "setting",
     name: "/setting delete",
-    description: "サーバーの設定情報を**全て**削除します\n**この操作は元に戻せません**",
+    description: "サーバーの設定情報を全て削除します",
     example: "`/setting delete`",
     userPermission:[
       "管理者"
@@ -1920,7 +1908,7 @@ module.exports = {
       "チャンネルの閲覧",
       "メッセージの送信"
     ],
-    note: "なし"
+    note: "この操作は元に戻せません"
   },
   setting_dissoku:{
     type: "setting",
