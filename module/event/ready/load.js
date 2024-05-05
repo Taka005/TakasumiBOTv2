@@ -47,7 +47,6 @@ module.exports = async(client)=>{
     let price = data.stock;
     const per = trade[trade.length - 1].buy - trade[trade.length - 1].sell;
 
-    const trade = await db("SELECT * FROM trade;");
     let tradeLen = trade.length;
     while(tradeLen >= 96){
       await db("DELETE FROM trade ORDER BY time LIMIT 1;");
