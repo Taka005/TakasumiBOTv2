@@ -24,6 +24,7 @@
       "no-self-compare":"error",
       "no-extra-semi":"error",
       "no-unused-vars":"error",
+      "no-prototype-builtins":"off",
       "no-irregular-whitespace":"error",
       "no-constant-binary-expression":"error",
       "node/no-unsupported-features":"error",

@@ -33,6 +33,7 @@ module.exports = async(interaction)=>{
                   { label: "お金", value: "money" },
                   { label: "サーバー掲示板", value: "board" },
                   { label: "Bot関連", value: "bot" },
+                  { label: "設定", value: "setting" },
                   { label: "その他", value: "othor" },
                   { label: "コンテキストメニュー", value: "contextmenu" }
                 ]))

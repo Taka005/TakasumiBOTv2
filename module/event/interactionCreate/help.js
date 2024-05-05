@@ -17,6 +17,7 @@ module.exports = async(interaction)=>{
       "money": "お金",
       "board": "サーバー掲示板",
       "bot": "Bot関連",
+      "setting": "設定",
       "othor": "その他",
       "contextmenu": "コンテキストメニュー"
     };
