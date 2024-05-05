@@ -5,7 +5,9 @@ module.exports = async(client)=>{
   const commands = require("../../../file/commandlist");
 
   await client.rest.put(Routes.applicationCommands(client.application.id),{
-    body: Object.values(commands).map(command=>command.data)
+    body: Object.values(commands)
+      .filter(command=>command.hasOwnProperty("data"))
+      .map(command=>command.data)
   });
 
   log.info("コマンドをロードしました");

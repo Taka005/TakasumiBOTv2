@@ -182,6 +182,20 @@ module.exports = {
               .setRequired(true)))
       .addSubcommand(subcommand=>
         subcommand
+          .setName("dm")
+          .setDescription("ユーザーにメッセージを送信します")
+          .addStringOption(option=>
+            option
+              .setName("id")
+              .setDescription("ユーザーID、メンション")
+              .setRequired(true))
+          .addStringOption(option=>
+            option
+              .setName("message")
+              .setDescription("メッセージ")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
           .setName("leave")
           .setDescription("サーバーから脱退します")
           .addStringOption(option=>
@@ -1799,7 +1813,7 @@ module.exports = {
     type: "manage",
     name: "/setting",
     description: "サーバーの各種設定を変更します",
-    example: "`/setting bump @Role`\n`/setting help`",
+    example: "`/setting`",
     userPermission:[
       "管理者"
     ],
@@ -1808,14 +1822,10 @@ module.exports = {
       "メッセージの送信",
       "ウェブフックの管理"
     ],
-    note: "詳細は`/setting help`を実行してください",
+    note: "詳細は設定ページを確認してください",
     data: new SlashCommandBuilder()
       .setName("setting")
       .setDescription("サーバーの設定を変更します")
-      .addSubcommand(subcommand=>
-        subcommand
-          .setName("help")
-          .setDescription("設定のヘルプを表示します"))
       .addSubcommand(subcommand=>
         subcommand
           .setName("stats")
@@ -1884,6 +1894,130 @@ module.exports = {
         subcommand
           .setName("delete")
           .setDescription("データベースに登録されてるサーバーの情報を全て削除します"))
+  },
+  setting_bump:{
+    type: "setting",
+    name: "/setting bump",
+    description: "BUMPの時間に通知するロールを設定します",
+    example: "`/setting bump @通知`",
+    userPermission:[
+      "管理者"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "ディスボードがサーバーに参加している必要があります"
+  },
+  setting_delete:{
+    type: "setting",
+    name: "/setting delete",
+    description: "サーバーの設定情報を**全て**削除します\n**この操作は元に戻せません**",
+    example: "`/setting delete`",
+    userPermission:[
+      "管理者"
+    ],
+    botPermission:[
+      "チャンネルの閲覧",
+      "メッセージの送信"
+    ],
+    note: "なし"
+  },
+  setting_dissoku:{
+    type: "setting",
+    name: "/setting dissoku",
+    description: "Dissoku UPの時間に通知するロールを設定します",
+    example: "`/setting dissoku @通知`",
+    userPermission:[
+      "管理者"
+    ],
+    botPermission:[
+      "チャンネルの閲覧",
+      "メッセージの送信"
+    ],
+    note: "Dissokuがサーバーに参加している必要があります"
+  },
+  setting_ignore:{
+    type: "setting",
+    name: "/setting ignore",
+    description: "メッセージ展開、Bump通知、Dissoku通知、UP通知の無効・有効を切り替えます",
+    example: "`/setting ignore メッセージ展開 有効`",
+    userPermission:[
+      "管理者"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "有効にすると各機能の設定情報は削除されます"
+  },
+  setting_info:{
+    type: "setting",
+    name: "/setting info",
+    description: "データベースの設定状況を表示します",
+    example: "`/setting info`",
+    userPermission:[
+      "管理者"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし"
+  },
+  setting_join:{
+    type: "setting",
+    name: "/setting join",
+    description: "実行したチャンネルに参加メッセージの設定をします",
+    example: "`/setting join [User]ようこそ!`",
+    userPermission:[
+      "管理者"
+    ],
+    botPermission:[
+      "チャンネルの閲覧",
+      "メッセージの送信",
+      "Webhookの管理"
+    ],
+    note: "利用可能な変数\n[User] ユーザーメンション\n[UserName] ユーザーの名前\n[UserDisplayName] ユーザーの表示名\n[UserID] ユーザーID\n[ServerName] サーバーの名前\n[ServerID] サーバーID\n[Count] メンバー数"
+  },
+  setting_leave:{
+    type: "setting",
+    name: "/setting leave",
+    description: "実行したチャンネルに退出メッセージの設定をします",
+    example: "`/setting leave [User]さようなら`",
+    userPermission:[
+      "管理者"
+    ],
+    botPermission:[
+      "チャンネルの閲覧",
+      "メッセージの送信",
+      "Webhookの管理"
+    ],
+    note: "利用可能な変数は`/setting join`と同じです"
+  },
+  setting_stats:{
+    type: "setting",
+    name: "/setting stats",
+    description: "サーバーの統計情報の収集の有効・無効を切り替えます",
+    example: "`/setting stats`",
+    userPermission:[
+      "管理者"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "統計情報は`/server`コマンドで確認できます"
+  },
+  setting_up:{
+    type: "setting",
+    name: "/setting up",
+    description: "TakasumiBOTのUPの時間に通知するロールを設定します",
+    example: "`/setting up @通知`",
+    userPermission:[
+      "管理者"
+    ],
+    botPermission:[
+      "チャンネルの閲覧",
+      "メッセージの送信"
+    ],
+    note: "なし"
   },
   short:{
     type: "tool",
