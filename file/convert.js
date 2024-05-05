@@ -2,6 +2,7 @@ const fs = require("fs");
 const commands = require("./commandlist");
 
 const data = Object.values(commands)
+  .filter(command=>command.type !== "none")
   .map(command=>({
     "type": command.type,
     "name": command.name,
