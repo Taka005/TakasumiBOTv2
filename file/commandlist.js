@@ -1349,7 +1349,7 @@ module.exports = {
   },
   package:{
     type: "search",
-    name: "/pachage",
+    name: "/package",
     description: "パッケージを検索して表示します",
     example: "`/package NPM discord.js`",
     userPermission:[
