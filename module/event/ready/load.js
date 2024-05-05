@@ -41,9 +41,12 @@ module.exports = async(client)=>{
   });
 
   cron.schedule("*/15 * * * *",async()=>{
-    let price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
+    const data = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0];
+    const trade = await db("SELECT * FROM trade");
 
-    const trade = await db("SELECT * FROM trade;");
+    let price = data.stock;
+    const per = trade[trade.length - 1].buy - trade[trade.length - 1].sell;
+
     let tradeLen = trade.length;
     while(tradeLen >= 96){
       await db("DELETE FROM trade ORDER BY time LIMIT 1;");
@@ -53,19 +56,19 @@ module.exports = async(client)=>{
 
     if(price >= 1000){
       if(rate(false,true,0.5)){
-        price -= Math.round(price*(Math.random()*0.02 + 0.03));
+        price -= Math.round(price*(Math.random()*0.02 + 0.03)) + per;
       }else if(rate(false,true,0.4)){
-        price += Math.round(price*(Math.random()*0.02 + 0.03));
+        price += Math.round(price*(Math.random()*0.02 + 0.03)) + per;
       }
     }else{
       if(rate(false,true,0.6)){
-        price += Math.round(price*(Math.random()*0.02 + 0.03));
+        price += Math.round(price*(Math.random()*0.02 + 0.03)) + per;
       }else if(rate(false,true,0.3)){
-        price -= Math.round(price*(Math.random()*0.02 + 0.03));
+        price -= Math.round(price*(Math.random()*0.02 + 0.03)) + per;
       }
     }
 
-    await db(`UPDATE count SET stock = ${price} WHERE id = ${process.env.ID};`);
-    await db(`INSERT INTO trade (time, price) VALUES(NOW(),"${price}");`);
+    await db(`UPDATE count SET stock = ${price}, buy = 0, sell = 0 WHERE id = ${process.env.ID};`);
+    await db(`INSERT INTO trade (time, price, buy, sell) VALUES(NOW(),"${price}","${data.buy}","${data.sell}");`);
   });
 }
