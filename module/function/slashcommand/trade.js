@@ -39,6 +39,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
+      await db(`UPDATE count SET buy = buy + 1 WHERE id = ${process.env.ID}`);
       await db(`UPDATE money SET stock = ${data.stock + count} WHERE id = ${interaction.user.id}`);
       await money.delete(interaction.user.id,count*price);
 
@@ -68,6 +69,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
+      await db(`UPDATE count SET sell = sell + 1 WHERE id = ${process.env.ID}`);
       await db(`UPDATE money SET stock = ${data.stock - count} WHERE id = ${interaction.user.id}`);
       await money.add(interaction.user.id,count*price);
 
