@@ -117,7 +117,7 @@ module.exports = async(interaction)=>{
         const time = trade.map(d=>new Date(d.time));
         const prices = trade.map(d=>d.price);
 
-        time.push(new Date());
+        price.pop();
         prices.push(price);
 
         const high = Math.max(...trade.map(d=>d.price));
