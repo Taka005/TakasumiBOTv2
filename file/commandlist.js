@@ -228,6 +228,25 @@ module.exports = {
               .setRequired(true)))
       .addSubcommand(subcommand=>
         subcommand
+          .setName("trade")
+          .setDescription("株価を操作します")
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("種類")
+              .setRequired(true)
+              .addChoices(
+                { name: "増加", value: "add" },
+                { name: "減少", value: "delete" },
+                { name: "設定", value: "set" }
+              ))
+          .addIntegerOption(option=>
+            option
+              .setName("count")
+              .setDescription("金額")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
           .setName("gift")
           .setDescription("ギフトを作成します")
           .addStringOption(option=>
