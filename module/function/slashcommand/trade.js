@@ -1,3 +1,6 @@
+const Spam = require("../../lib/spam");
+const spam = new Spam(180000,true);
+
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, AttachmentBuilder, Colors } = require("discord.js");
   const fetch = require("node-fetch");
@@ -12,6 +15,18 @@ module.exports = async(interaction)=>{
 
     if(interaction.options.getSubcommand() === "buy"){
       const count = interaction.options.getInteger("count");
+
+      if(spam.count(interaction.user.id)) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "購入できませんでした",
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+          },
+          description: `次に取引できるまであと${Math.floor((180000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
+        }],
+        ephemeral: true
+      });
 
       const data = await money.get(interaction.user.id);
 
@@ -54,6 +69,18 @@ module.exports = async(interaction)=>{
       });
     }else if(interaction.options.getSubcommand() === "sell"){
       const count = interaction.options.getInteger("count");
+
+      if(spam.count(interaction.user.id)) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "売却できませんでした",
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+          },
+          description: `次に取引できるまであと${Math.floor((180000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
+        }],
+        ephemeral: true
+      });
 
       const data = await money.get(interaction.user.id);
 
