@@ -45,7 +45,7 @@ module.exports = async(client)=>{
     const trade = await db("SELECT * FROM trade");
 
     let price = data.stock;
-    const per = trade[trade.length - 1].buy - trade[trade.length - 1].sell;
+    const per = (trade[trade.length - 1].buy - trade[trade.length - 1].sell)*2;
 
     let tradeLen = trade.length;
     while(tradeLen >= 96){
@@ -54,18 +54,16 @@ module.exports = async(client)=>{
       if(tradeLen <= 95) break;
     }
 
-    if(price >= 1000){
-      if(rate(false,true,0.5)){
-        price -= Math.round(price*(Math.random()*0.02 + 0.03)) + per;
-      }else if(rate(false,true,0.4)){
-        price += Math.round(price*(Math.random()*0.02 + 0.03)) + per;
-      }
-    }else{
-      if(rate(false,true,0.6)){
-        price += Math.round(price*(Math.random()*0.02 + 0.03)) + per;
-      }else if(rate(false,true,0.3)){
-        price -= Math.round(price*(Math.random()*0.02 + 0.03)) + per;
-      }
+    if(rate(false,true,0.4)){
+      price -= Math.round(price*(Math.random()*0.02 + 0.03)) + per;
+    }else if(rate(false,true,0.4)){
+      price += Math.round(price*(Math.random()*0.02 + 0.03)) + per;
+    }
+
+    if(price < 100){
+      price = 100;
+    }else if(price > 10000){
+      price = 10000;
     }
 
     await db(`UPDATE count SET stock = ${price}, buy = 0, sell = 0 WHERE id = ${process.env.ID};`);

@@ -16,18 +16,6 @@ module.exports = async(interaction)=>{
     if(interaction.options.getSubcommand() === "buy"){
       const count = interaction.options.getInteger("count");
 
-      if(spam.count(interaction.user.id)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "購入できませんでした",
-            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
-          },
-          description: `次に取引できるまであと${Math.floor((180000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
-        }],
-        ephemeral: true
-      });
-
       const data = await money.get(interaction.user.id);
 
       if(data.amount<count*price||count<1) return await interaction.reply({
@@ -54,6 +42,18 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
+      if(spam.count(interaction.user.id)) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "購入できませんでした",
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+          },
+          description: `次に取引できるまであと${Math.floor((180000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
+        }],
+        ephemeral: true
+      });
+
       await db(`UPDATE count SET buy = buy + 1 WHERE id = ${process.env.ID}`);
       await db(`UPDATE money SET stock = ${data.stock + count} WHERE id = ${interaction.user.id}`);
       await money.delete(interaction.user.id,count*price);
@@ -70,18 +70,6 @@ module.exports = async(interaction)=>{
     }else if(interaction.options.getSubcommand() === "sell"){
       const count = interaction.options.getInteger("count");
 
-      if(spam.count(interaction.user.id)) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "売却できませんでした",
-            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
-          },
-          description: `次に取引できるまであと${Math.floor((180000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
-        }],
-        ephemeral: true
-      });
-
       const data = await money.get(interaction.user.id);
 
       if(data.stock<count||count<1) return await interaction.reply({
@@ -92,6 +80,18 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
           description: "所持している株が不足しています"
+        }],
+        ephemeral: true
+      });
+
+      if(spam.count(interaction.user.id)) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "売却できませんでした",
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+          },
+          description: `次に取引できるまであと${Math.floor((180000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
         }],
         ephemeral: true
       });
@@ -114,8 +114,8 @@ module.exports = async(interaction)=>{
       await interaction.deferReply();
       try{
         const trade = await db("SELECT * FROM trade");
-        const time = trade.map(d=>new Date(d.time));
-        const prices = trade.map(d=>d.price);
+        const time = trade.map(d=>new Date(d.time)).push(new Date());
+        const prices = trade.map(d=>d.price).push(price);
 
         const high = Math.max(...trade.map(d=>d.price));
         const low = Math.min(...trade.map(d=>d.price));
