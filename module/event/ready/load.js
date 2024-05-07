@@ -55,9 +55,9 @@ module.exports = async(client)=>{
     }
 
     if(rate(false,true,0.4)){
-      price -= Math.round(Math.random()*100 + 1) + per;
+      price -= Math.round(Math.random()*50 + 1) + per;
     }else if(rate(false,true,0.4)){
-      price += Math.round(Math.random()*100 + 1) + per;
+      price += Math.round(Math.random()*50 + 1) + per;
     }else{
       price += per;
     }
