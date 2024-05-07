@@ -5,8 +5,6 @@ module.exports = async(client)=>{
   const count = require("./lib/count");
   const stats = require("./lib/stats");
   const money = require("./lib/money");
-  const db = require("./lib/db");
-  const escape = require("./lib/escape");
   const log = require("./lib/log");
   const fileLoader = require("./lib/fileLoader");
   const config = require("../config.json");
@@ -30,12 +28,6 @@ module.exports = async(client)=>{
     Promise.all(global.messageCreate.map(fn=>fn(message)));
 
     if(message.author.bot) return;
-
-    if(process.env.LOG){
-      if(!message.cleanContent) return;
-
-      await db(`INSERT INTO message (id, userId, guildId, channelId, content, createAt) VALUES("${message.id}","${message.author.id}","${message.guild.id}","${message.channel.id}","${escape(message.cleanContent)}",NOW());`);
-    }
 
     await stats.message(message.guild.id);
 

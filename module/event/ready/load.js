@@ -48,16 +48,18 @@ module.exports = async(client)=>{
     const per = (trade[trade.length - 1].buy - trade[trade.length - 1].sell)*2;
 
     let tradeLen = trade.length;
-    while(tradeLen >= 96){
+    while(tradeLen >= 288){
       await db("DELETE FROM trade ORDER BY time LIMIT 1;");
       tradeLen--;
-      if(tradeLen <= 95) break;
+      if(tradeLen <= 287) break;
     }
 
     if(rate(false,true,0.4)){
-      price -= Math.round(price*(Math.random()*0.02 + 0.03)) + per;
+      price -= Math.round(Math.random()*300 + 1) + per;
     }else if(rate(false,true,0.4)){
-      price += Math.round(price*(Math.random()*0.02 + 0.03)) + per;
+      price += Math.round(Math.random()*300 + 1) + per;
+    }else{
+      price += per;
     }
 
     if(price < 100){
