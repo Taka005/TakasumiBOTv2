@@ -113,7 +113,7 @@ module.exports = async(interaction)=>{
 
       await interaction.deferReply();
       try{
-        const trade = await db("SELECT * FROM trade");
+        const trade = await db("SELECT * FROM trade WHERE time >= DATE_SUB(NOW(),INTERVAL 1 DAY);");
         const time = trade.map(d=>new Date(d.time));
         const prices = trade.map(d=>d.price);
 
