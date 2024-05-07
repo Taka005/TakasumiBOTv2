@@ -5,8 +5,6 @@ module.exports = async(client)=>{
   const count = require("./lib/count");
   const stats = require("./lib/stats");
   const money = require("./lib/money");
-  const db = require("./lib/db");
-  const escape = require("./lib/escape");
   const log = require("./lib/log");
   const fileLoader = require("./lib/fileLoader");
   const config = require("../config.json");
