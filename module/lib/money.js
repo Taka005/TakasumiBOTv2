@@ -14,7 +14,7 @@ module.exports = {
       amount = 10000000;
     }
 
-    await db(`INSERT INTO trade (id, flag, amount, reason, user, time) VALUES("${createId(10)}","add","${number}","${reason}","${id}",NOW());`);
+    await db(`INSERT INTO history (id, flag, amount, reason, user, time) VALUES("${createId(10)}","add","${number}","${reason}","${id}",NOW());`);
     await db(`INSERT INTO money (id, amount, yellow, red, blue, random, stock, time) VALUES("${id}","${amount}","0","0","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
   },
   "delete":async(id,number,reason)=>{
@@ -25,7 +25,7 @@ module.exports = {
       amount = 0;
     }
 
-    await db(`INSERT INTO trade (id, flag, amount, reason, user, time) VALUES("${createId(10)}","delete","${number}","${reason}","${id}",NOW());`);
+    await db(`INSERT INTO history (id, flag, amount, reason, user, time) VALUES("${createId(10)}","delete","${number}","${reason}","${id}",NOW());`);
     await db(`INSERT INTO money (id, amount, yellow, red, blue, random, stock, time) VALUES("${id}","${amount}","0","0","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
   }
 }
