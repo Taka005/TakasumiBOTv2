@@ -19,12 +19,8 @@ module.exports = async(client)=>{
     const cpuUsage = await cpu();
     const ram = 100 - Math.floor((os.freemem()/os.totalmem())*100);
 
-    let logCount = (await db("SELECT * FROM log;")).length;
-    while(logCount >= 168){
-      await db("DELETE FROM log ORDER BY time LIMIT 1;");
-      logCount--;
-      if(logCount <= 167) break;
-    }
+    await db("DELETE FROM log WHERE time <= DATE_SUB(NOW(),INTERVAL 1 WEEK);");
+    await db("DELETE FROM gift WHERE time <= DATE_SUB(NOW(),INTERVAL 1 MONTH)");
 
     await db(`INSERT INTO log (time, ping, user, guild, message, command, cpu, ram) VALUES(NOW(),"${ping}","${user}","${guild}","${count[0].message}","${count[0].command}","${cpuUsage}","${ram}");`);
     await db(`UPDATE count SET message = 0, command = 0 WHERE id = ${process.env.ID};`);
@@ -47,13 +43,6 @@ module.exports = async(client)=>{
     let price = data.stock;
     const per = (trade[trade.length - 1].buy - trade[trade.length - 1].sell)*2;
 
-    let tradeLen = trade.length;
-    while(tradeLen >= 288){
-      await db("DELETE FROM trade ORDER BY time LIMIT 1;");
-      tradeLen--;
-      if(tradeLen <= 287) break;
-    }
-
     if(rate(false,true,0.4)){
       price -= Math.round(Math.random()*50 + 1) + per;
     }else if(rate(false,true,0.4)){
@@ -68,7 +57,11 @@ module.exports = async(client)=>{
       price = 10000;
     }
 
+    await db("DELETE FROM trade WHERE time <= DATE_SUB(NOW(), INTERVAL 3 DAY);");
+
     await db(`UPDATE count SET stock = ${price}, buy = 0, sell = 0 WHERE id = ${process.env.ID};`);
     await db(`INSERT INTO trade (time, price, buy, sell) VALUES(NOW(),"${price}","${data.buy}","${data.sell}");`);
+
+    log.info("株価を更新しました");
   });
 }
