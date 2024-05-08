@@ -90,7 +90,6 @@ module.exports = async(client)=>{
     });
 
     await count.command();
-    await money.add(interaction.user.id,10);
 
     Promise.all(global.interactionCreate.map(fn=>fn(interaction)));
     Promise.all(global.auth.map(fn=>fn(interaction)));

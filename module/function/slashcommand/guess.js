@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     if(answer === number){
-      await money.add(interaction.user.id,Math.round(amount*2.5));
+      await money.add(interaction.user.id,Math.round(amount*2.5),"賭けの賞金");
       await interaction.editReply({
         embeds:[{
           color: Colors.Green,
@@ -36,7 +36,7 @@ module.exports = async(interaction)=>{
         }]
       });
     }else{
-      await money.delete(interaction.user.id,Math.round(amount*1.5));
+      await money.delete(interaction.user.id,Math.round(amount*1.5),"賭けの罰金");
       let total = data.amount - Math.round(amount*1.5);
 
       await interaction.editReply({

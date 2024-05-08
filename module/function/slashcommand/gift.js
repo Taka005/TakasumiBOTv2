@@ -54,7 +54,7 @@ module.exports = async(interaction)=>{
       const code = createId(10);
 
       await db(`INSERT INTO gift (id, type, user, time) VALUES("${code}","${gift.id}","${interaction.user.id}",NOW());`);
-      await money.delete(interaction.user.id,gift.price);
+      await money.delete(interaction.user.id,gift.price,"ギフトの作成");
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -98,7 +98,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await money.add(interaction.user.id,gift.price);
+      await money.add(interaction.user.id,gift.price,"ユーザーからのギフト");
       await db(`DELETE FROM gift WHERE id = "${data.id}";`);
 
       await interaction.reply({

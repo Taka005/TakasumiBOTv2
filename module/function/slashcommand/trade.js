@@ -56,7 +56,7 @@ module.exports = async(interaction)=>{
 
       await db(`UPDATE count SET buy = buy + 1 WHERE id = ${process.env.ID}`);
       await db(`UPDATE money SET stock = ${data.stock + count} WHERE id = ${interaction.user.id}`);
-      await money.delete(interaction.user.id,count*price);
+      await money.delete(interaction.user.id,count*price,"株の購入");
 
       await interaction.reply({
         embeds:[{
@@ -98,7 +98,7 @@ module.exports = async(interaction)=>{
 
       await db(`UPDATE count SET sell = sell + 1 WHERE id = ${process.env.ID}`);
       await db(`UPDATE money SET stock = ${data.stock - count} WHERE id = ${interaction.user.id}`);
-      await money.add(interaction.user.id,count*price);
+      await money.add(interaction.user.id,count*price,"株の売却");
 
       await interaction.reply({
         embeds:[{
