@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
     });
 
     if(type === "add"){
-      await money.add(user.id,count);
+      await money.add(user.id,count,"管理者による調整");
 
       await interaction.reply({
         embeds:[{
@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
         }]
       });
     }else if(type === "delete"){
-      await money.delete(user.id,count);
+      await money.delete(user.id,count,"管理者による調整");
 
       await interaction.reply({
         embeds:[{

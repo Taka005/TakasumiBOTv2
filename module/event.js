@@ -4,7 +4,6 @@ module.exports = async(client)=>{
   const mute = require("./lib/mute");
   const count = require("./lib/count");
   const stats = require("./lib/stats");
-  const money = require("./lib/money");
   const log = require("./lib/log");
   const fileLoader = require("./lib/fileLoader");
   const config = require("../config.json");
@@ -90,7 +89,6 @@ module.exports = async(client)=>{
     });
 
     await count.command();
-    await money.add(interaction.user.id,10);
 
     Promise.all(global.interactionCreate.map(fn=>fn(interaction)));
     Promise.all(global.auth.map(fn=>fn(interaction)));

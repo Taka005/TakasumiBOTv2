@@ -50,7 +50,7 @@ module.exports = async(interaction)=>{
     });
 
     await db(`UPDATE money SET ${product.id} = ${total} WHERE id = ${interaction.user.id}`);
-    await money.delete(interaction.user.id,count*product.price);
+    await money.delete(interaction.user.id,count*product.price,"商品の購入");
     await interaction.reply({
       embeds:[{
         color: Colors.Green,
