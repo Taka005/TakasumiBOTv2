@@ -45,12 +45,12 @@ module.exports = async(client)=>{
     const per = (trade[trade.length - 1].buy - trade[trade.length - 1].sell)*2;
 
     if(rate(false,true,0.4)){
-      price -= Math.round(Math.random()*50 + 1) + per;
+      price -= Math.round(Math.random()*50 + 1);
     }else if(rate(false,true,0.4)){
-      price += Math.round(Math.random()*50 + 1) + per;
-    }else{
-      price += per;
+      price += Math.round(Math.random()*50 + 1);
     }
+
+    price += per;
 
     if(price < 100){
       price = 100;
