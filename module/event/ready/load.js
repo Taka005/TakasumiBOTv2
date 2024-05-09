@@ -42,7 +42,7 @@ module.exports = async(client)=>{
     const trade = await db("SELECT * FROM trade");
 
     let price = data.stock;
-    const per = (trade[trade.length - 1].buy - trade[trade.length - 1].sell)*2;
+    const per = trade[trade.length - 1].buy - trade[trade.length - 1].sell;
 
     if(rate(false,true,0.4)){
       price -= Math.round(Math.random()*50 + 1);
