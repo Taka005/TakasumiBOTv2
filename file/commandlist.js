@@ -1269,8 +1269,8 @@ module.exports = {
   money:{
     type: "money",
     name: "/money",
-    description: "ユーザーの所持金を確認します",
-    example: "`/money @User`",
+    description: "ユーザーの所持品や取引履歴を確認します",
+    example: "`/money`",
     userPermission:[
       "必要なし"
     ],
@@ -1280,11 +1280,15 @@ module.exports = {
     note: "なし",
     data: new SlashCommandBuilder()
       .setName("money")
-      .setDescription("ユーザーの所持金を確認します")
-      .addUserOption(option=>
-        option
-          .setName("user")
-          .setDescription("対象のユーザー"))
+      .setDescription("所持品の表示")
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("info")
+          .setDescription("所持品を表示します"))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("log")
+          .setDescription("取引履歴を表示します"))
   },
   nslookup:{
     type: "tool",

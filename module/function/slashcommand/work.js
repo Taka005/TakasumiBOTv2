@@ -21,8 +21,9 @@ module.exports = async(interaction)=>{
 
     const amount = Math.floor(Math.random()*500)+500;
 
-    const data = await money.get(interaction.user.id);
     await money.add(interaction.user.id,amount,"給料");
+    const data = await money.get(interaction.user.id);
+
     await interaction.reply({
       embeds:[{
         color: Colors.Green,
