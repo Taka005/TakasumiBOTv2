@@ -86,7 +86,7 @@ module.exports = async(interaction)=>{
               name: "取引履歴",
               icon_url: "https://cdn.takasumibot.com/images/system/success.png"
             },
-            description: "過去3日分を表示しています",
+            description: "過去1日分を表示しています",
             image:{
               url: "attachment://history.png"
             }
