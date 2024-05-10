@@ -51,18 +51,15 @@ module.exports = async(interaction)=>{
               icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             description: "取引履歴が存在しません"
-          }],
-          ephemeral: true
+          }]
         });
 
-        const table =  history
-          .map(his=>([
-            his.id,
-            his.reason,
-            `${his.amount}コイン`,
-            new Date(his.time).toLocaleString()
-          ]))
-          .reverse();
+        const table =  history.map(his=>([
+          his.id,
+          his.reason,
+          `${his.amount}コイン`,
+          new Date(his.time).toLocaleString()
+        ]));
 
         table.push([
           "-",
