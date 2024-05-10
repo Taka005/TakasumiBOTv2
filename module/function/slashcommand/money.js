@@ -41,7 +41,7 @@ module.exports = async(interaction)=>{
 
       await interaction.deferReply();
       try{
-        const history = (await db(`SELECT * FROM history WHERE user = ${interaction.user.id}`));
+        const history = (await db(`SELECT * FROM history WHERE user = ${interaction.user.id} ORDER BY time ASC;`));
 
         if(!history[0]) return await interaction.reply({
           embeds:[{
