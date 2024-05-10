@@ -46,7 +46,7 @@ module.exports = async(client)=>{
     if(rate(false,true,0.4)){
       price -= Math.round(Math.random()*50 + 1);
     }else if(rate(false,true,0.4)){
-      price += Math.round(Math.random()*50 + 1);
+      price += Math.round(Math.random()*45 + 1);
     }
 
     price += trade[trade.length - 1].buy - trade[trade.length - 1].sell;

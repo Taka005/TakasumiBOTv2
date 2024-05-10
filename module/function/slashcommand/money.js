@@ -41,8 +41,7 @@ module.exports = async(interaction)=>{
 
       await interaction.deferReply();
       try{
-        const history = (await db(`SELECT * FROM history WHERE user = ${interaction.user.id}`))
-          .map(his=>([his.id,his.reason,his.amount,new Date(his.time).toLocaleString()]));
+        const history = (await db(`SELECT * FROM history WHERE user = ${interaction.user.id}`));
 
         if(!history[0]) return await interaction.reply({
           embeds:[{
@@ -56,6 +55,22 @@ module.exports = async(interaction)=>{
           ephemeral: true
         });
 
+        const table =  history
+          .map(his=>([
+            his.id,
+            his.reason,
+            his.amount,
+            new Date(his.time).toLocaleString()
+          ]))
+          .reverse();
+
+        table.push([
+          "-",
+          "合計",
+          history.reduce((pre,his)=>pre+his.amount,0),
+          "-"
+        ]);
+
         const data = await fetch(`${config.api.graph}/table`,{
           "method": "POST",
           "headers":{
@@ -63,7 +78,7 @@ module.exports = async(interaction)=>{
           },
           "body": JSON.stringify({
             "label": ["取引ID","内容","金額","取引日時"],
-            "data": history
+            "data": table
           })
         }).then(res=>res.blob());
 
