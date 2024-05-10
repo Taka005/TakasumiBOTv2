@@ -43,7 +43,7 @@ module.exports = async(interaction)=>{
       try{
         const history = (await db(`SELECT * FROM history WHERE user = ${interaction.user.id} ORDER BY time ASC;`));
 
-        if(!history[0]) return await interaction.reply({
+        if(!history[0]) return await interaction.editReply({
           embeds:[{
             color: Colors.Red,
             author:{

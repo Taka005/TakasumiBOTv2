@@ -21,8 +21,8 @@ module.exports = async(interaction)=>{
 
     const amount = Math.floor(Math.random()*500)+500;
 
-    await money.add(interaction.user.id,amount,"給料");
     const data = await money.get(interaction.user.id);
+    await money.add(interaction.user.id,amount,"給料");
 
     await interaction.reply({
       embeds:[{
@@ -31,7 +31,7 @@ module.exports = async(interaction)=>{
           name: `${amount}コイン手に入れました`,
           icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
-        description: `所持金: ${data.amount+amount}コイン`
+        description: `所持金: ${(data.amount||0)+amount}コイン`
       }]
     });
   }
