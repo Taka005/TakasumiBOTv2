@@ -59,16 +59,16 @@ module.exports = async(interaction)=>{
           .map(his=>([
             his.id,
             his.reason,
-            his.amount,
+            `${his.amount}コイン`,
             new Date(his.time).toLocaleString()
           ]))
           .reverse();
 
         table.push([
           "-",
-          "合計",
-          history.reduce((pre,his)=>pre+his.amount,0),
-          "-"
+          "-",
+          "-",
+          `合計:${history.reduce((pre,his)=>pre+his.amount,0)}コイン`
         ]);
 
         const data = await fetch(`${config.api.graph}/table`,{
