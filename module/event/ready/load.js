@@ -5,7 +5,7 @@ module.exports = async(client)=>{
   const db = require("../../lib/db");
   const log = require("../../lib/log");
   const cpu = require("../../lib/cpu");
-  const rate = require("../../lib/rate");
+  const money = require("../../lib/money");
   const fetchGuildCounts = require("../../lib/fetchGuildCounts");
   const fetchUserCounts = require("../../lib/fetchUserCounts");
 
@@ -34,6 +34,12 @@ module.exports = async(client)=>{
     await db(`UPDATE stats SET \`join\` = 0;`);
     await db(`UPDATE stats SET \`leave\` = 0;`);
 
+    const price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
+    (await db("SELECT * FROM money WHERE stock >= 100"))
+      .forEach(async(data)=>{
+        await money.add(data.id,Math.floor(data.stock*price*0.01+100),"株の配当金");
+      });
+
     log.info("統計データリセットしました");
   });
 
@@ -42,19 +48,15 @@ module.exports = async(client)=>{
     const trade = await db("SELECT * FROM trade");
 
     let price = data.stock;
+    const correct = (price - 1000)/1000;
 
-    if(rate(false,true,0.4)){
-      price -= Math.round(Math.random()*50 + 1);
-    }else if(rate(false,true,0.4)){
-      price += Math.round(Math.random()*45 + 1);
-    }
-
+    price += Math.round((Math.random()*100 + 1)*correct*Math.abs(correct));
     price += trade[trade.length - 1].buy - trade[trade.length - 1].sell;
 
     if(price < 100){
       price = 100;
-    }else if(price > 10000){
-      price = 10000;
+    }else if(price > 5000){
+      price = 5000;
     }
 
     await db("DELETE FROM trade WHERE time < DATE_SUB(NOW(),INTERVAL 3 DAY);");
