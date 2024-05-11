@@ -68,7 +68,7 @@ module.exports = async(interaction)=>{
             name: `${price}コインの株を${count}株(${count*price}コイン)購入しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `手数料: ${commission}`
+          description: `手数料: ${commission}コイン`
         }]
       });
     }else if(interaction.options.getSubcommand() === "sell"){
