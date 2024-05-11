@@ -18,14 +18,16 @@ module.exports = async(interaction)=>{
 
       const data = await money.get(interaction.user.id);
 
-      if(data.amount<count*price||count<1) return await interaction.reply({
+      const commission = Math.floor(count*price*0.05 + count*0.5);
+
+      if(data.amount<count*price+commission||count<1) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: "所持金の範囲内にする必要があります"
+          description: "所持金の範囲内にする必要があります\n※株の購入には手数料かかります"
         }],
         ephemeral: true
       });
@@ -54,9 +56,10 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await db(`UPDATE count SET buy = buy + 1 WHERE id = ${process.env.ID}`);
+      await db(`UPDATE count SET buy = buy + 1, stock = stock + ${Math.floor(count*0.05)} WHERE id = ${process.env.ID}`);
       await db(`UPDATE money SET stock = ${data.stock + count} WHERE id = ${interaction.user.id}`);
       await money.delete(interaction.user.id,count*price,"株の購入");
+      await money.delete(interaction.user.id,commission,"株の購入手数料");
 
       await interaction.reply({
         embeds:[{
@@ -64,7 +67,8 @@ module.exports = async(interaction)=>{
           author:{
             name: `${price}コインの株を${count}株(${count*price}コイン)購入しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
-          }
+          },
+          description: `手数料: ${commission}`
         }]
       });
     }else if(interaction.options.getSubcommand() === "sell"){
@@ -96,7 +100,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await db(`UPDATE count SET sell = sell + 1 WHERE id = ${process.env.ID}`);
+      await db(`UPDATE count SET sell = sell + 1, stock = stock - ${Math.floor(count*0.05)} WHERE id = ${process.env.ID}`);
       await db(`UPDATE money SET stock = ${data.stock - count} WHERE id = ${interaction.user.id}`);
       await money.add(interaction.user.id,count*price,"株の売却");
 

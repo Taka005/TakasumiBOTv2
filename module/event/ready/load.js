@@ -6,6 +6,7 @@ module.exports = async(client)=>{
   const log = require("../../lib/log");
   const cpu = require("../../lib/cpu");
   const rate = require("../../lib/rate");
+  const money = require("../../lib/money");
   const fetchGuildCounts = require("../../lib/fetchGuildCounts");
   const fetchUserCounts = require("../../lib/fetchUserCounts");
 
@@ -33,6 +34,12 @@ module.exports = async(client)=>{
     await db(`UPDATE stats SET message = 0;`);
     await db(`UPDATE stats SET \`join\` = 0;`);
     await db(`UPDATE stats SET \`leave\` = 0;`);
+
+    const price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
+    (await db("SELECT * FROM money WHERE stock >= 100"))
+      .forEach(async(data)=>{
+        await money.add(data,id,Math.floor(data.stock*price*0.01+100),"株の配当金");
+      });
 
     log.info("統計データリセットしました");
   });
