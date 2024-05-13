@@ -50,7 +50,7 @@ module.exports = async(client)=>{
     let price = data.stock;
     const correct = (price - 1000)/1000;
 
-    price -= Math.round((Math.random()*100 + 1)*correct*Math.abs(correct));
+    price -= Math.round((Math.random()*150 + 1)*correct*Math.abs(correct));
     price += trade[trade.length - 1].buy - trade[trade.length - 1].sell;
 
     if(price < 100){
