@@ -35,7 +35,7 @@ module.exports = async(client)=>{
     await db(`UPDATE stats SET \`leave\` = 0;`);
 
     const price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
-    (await db("SELECT * FROM money WHERE stock >= 50"))
+    (await db("SELECT * FROM money WHERE stock >= 80"))
       .forEach(async(data)=>{
         await money.add(data.id,Math.floor(data.stock*price*0.01+100),"株の配当金");
       });
