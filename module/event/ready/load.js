@@ -35,7 +35,7 @@ module.exports = async(client)=>{
     await db(`UPDATE stats SET \`leave\` = 0;`);
 
     const price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
-    (await db("SELECT * FROM money WHERE stock >= 100"))
+    (await db("SELECT * FROM money WHERE stock >= 80"))
       .forEach(async(data)=>{
         await money.add(data.id,Math.floor(data.stock*price*0.01+100),"株の配当金");
       });
@@ -50,7 +50,7 @@ module.exports = async(client)=>{
     let price = data.stock;
     const correct = (price - 1000)/1000;
 
-    price -= Math.round((Math.random()*100 + 1)*correct*Math.abs(correct));
+    price -= Math.round((Math.random()*150 + 1)*correct*Math.abs(correct));
     price += trade[trade.length - 1].buy - trade[trade.length - 1].sell;
 
     if(price < 100){
