@@ -37,7 +37,7 @@ module.exports = async(client)=>{
     const price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
     (await db("SELECT * FROM money WHERE stock >= 80"))
       .forEach(async(data)=>{
-        await money.add(data.id,Math.floor(data.stock*price*0.01+100),"株の配当金");
+        await money.add(data.id,Math.floor(data.stock*price*0.03+100),"株の配当金");
       });
 
     log.info("統計データリセットしました");
