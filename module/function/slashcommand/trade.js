@@ -18,7 +18,7 @@ module.exports = async(interaction)=>{
 
       const data = await money.get(interaction.user.id);
 
-      const commission = Math.floor(count*price*0.05 + count*0.5);
+      const commission = Math.floor(count*price*0.03 + count*0.5);
 
       if(data.amount<count*price+commission||count<1) return await interaction.reply({
         embeds:[{
