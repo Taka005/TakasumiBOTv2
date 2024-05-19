@@ -1283,7 +1283,7 @@ module.exports = {
       .setDescription("所持品の表示")
       .addSubcommand(subcommand=>
         subcommand
-          .setName("info")
+          .setName("items")
           .setDescription("所持品を表示します"))
       .addSubcommand(subcommand=>
         subcommand

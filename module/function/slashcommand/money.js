@@ -8,7 +8,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "money"){
 
-    if(interaction.options.getSubcommand() === "info"){
+    if(interaction.options.getSubcommand() === "items"){
       const rank = (await db("SELECT * FROM money;"))
         .sort((m1,m2)=>m2.amount - m1.amount)
         .map(m=>m.id);
