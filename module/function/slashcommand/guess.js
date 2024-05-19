@@ -32,7 +32,7 @@ module.exports = async(interaction)=>{
             name: "勝利",
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `${Math.round(amount*3)}コインゲットしました\n所持金: ${data.amount + Math.round(amount*2.5)}コイン`
+          description: `${Math.round(amount*3)}コインゲットしました\n所持金: ${data.amount + Math.round(amount*3)}コイン`
         }]
       });
     }else{
