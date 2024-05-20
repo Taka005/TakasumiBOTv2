@@ -131,16 +131,18 @@ module.exports = async(message)=>{
     if(data.server === message.guild.id) return;
 
     try{
-      const webhook = new WebhookClient({id: data.id, token: data.token});
+      const webhook = await message.client.fetchWebhook(data.id,data.token);
+
       await webhook.send({
         embeds: embed,
         username: "TakasumiBOT Global",
         avatarURL: "https://cdn.takasumibot.com/images/icon.png"
-      });
+      }).catch(()=>{});
     }catch(error){
       await db(`DELETE FROM global WHERE channel = ${data.channel};`);
       const channel = message.client.channels.cache.get(data.channel);
       if(!channel) return;
+
       await channel.send({
         embeds:[{
           color: Colors.Red,
