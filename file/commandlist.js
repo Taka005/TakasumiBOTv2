@@ -2234,7 +2234,7 @@ module.exports = {
               .setRequired(true)))
       .addSubcommand(subcommand=>
         subcommand
-          .setName("info")
+          .setName("graph")
           .setDescription("株の情報を表示します"))
   },
   translate:{
