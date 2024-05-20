@@ -113,7 +113,7 @@ module.exports = async(interaction)=>{
           }
         }]
       });
-    }else if(interaction.options.getSubcommand() === "info"){
+    }else if(interaction.options.getSubcommand() === "graph"){
 
       await interaction.deferReply();
       try{
