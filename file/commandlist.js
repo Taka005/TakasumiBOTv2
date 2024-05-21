@@ -2151,7 +2151,7 @@ module.exports = {
       .addChannelOption(option=>
         option
           .setName("channel")
-          .setDescription("チャンネル")
+          .setDescription("チケットを作成するカテゴリーチャンネル")
           .setRequired(true))
       .addStringOption(option=>
         option
