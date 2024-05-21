@@ -1,11 +1,10 @@
 module.exports = async(interaction)=>{
-  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors, PermissionFlagsBits } = require("discord.js");
+  const { ButtonBuilder, ButtonStyle, ActionRowBuilder, Colors } = require("discord.js");
   const config = require("../../../config.json");
   if(!interaction.isButton()) return;
-  if(interaction.customId.startsWith("ticket_")){
-    const data = interaction.customId.split("_");
+  if(interaction.customId === "ticket"){
 
-    if(interaction.guild.channels.cache.find(channel=>channel.parentId === data[1]&&channel.name === interaction.user.id)) return await interaction.reply({
+    if(interaction.guild.channels.cache.find(channel=>channel.name === interaction.user.id)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -17,7 +16,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    const channel = interaction.guild.channels.cache.find(name=>name.id === data[1]);
+    const channel = interaction.guild.channels.cache.find(channel=>channel.name === "ticket")
     if(!channel) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
@@ -25,52 +24,41 @@ module.exports = async(interaction)=>{
           name: "作成できませんでした",
           icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
-        description: "設定されたカテゴリーが存在していません"
+        description: "ticketカテゴリーが存在していません"
       }],
       ephemeral: true
     });
 
     try{
-      const ch = await interaction.guild.channels.create({
-        name: interaction.user.id,
-        permissionOverwrites:[{
-          id: interaction.guild.roles.everyone,
-          deny:[
-            PermissionFlagsBits.ViewChannel
-          ]
-        }],
-        parent: channel.id
-      });
-
-      await ch.permissionOverwrites.edit(interaction.user.id,{
-        ViewChannel: true
-      });
-
-      await ch.send({
-        content: `<@${interaction.user.id}>`,
-        embeds:[{
-          color: Colors.Green,
-          title: "チケットへようこそ"
-        }],
+      await interaction.message.edit({
+        embeds: interaction.message.embeds,
         components:[
           new ActionRowBuilder()
             .addComponents(
               new ButtonBuilder()
-                .setCustomId("close")
+                .setCustomId(`ticket_${channel.id}`)
                 .setStyle(ButtonStyle.Primary)
-                .setLabel("閉じる"))
+                .setLabel("作成"))
         ]
       });
 
       await interaction.reply({
         embeds:[{
-          color: Colors.Green,
+          color: Colors.Red,
           author:{
-            name: `チケットを作成しました`,
-            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+            name: "作成できませんでした",
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: `<#${ch.id}>`,
+          description: "このチケットは旧型のため自動更新しました\n再度作成ボタンを押してチケットを作成してください"
         }],
+        components:[
+          new ActionRowBuilder()
+            .addComponents(
+              new ButtonBuilder()
+                .setLabel("サポートサーバー")
+                .setURL(config.inviteUrl)
+                .setStyle(ButtonStyle.Link))
+        ],
         ephemeral: true
       });
     }catch(error){
@@ -81,12 +69,7 @@ module.exports = async(interaction)=>{
             name: "作成できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          fields:[
-            {
-              name: "エラーコード",
-              value: `\`\`\`${error}\`\`\``
-            }
-          ]
+          description: "このチケットは旧型のため移行中です\n移行には`/ticket`コマンドより更新する必要があります"
         }],
         components:[
           new ActionRowBuilder()

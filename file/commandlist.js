@@ -2133,7 +2133,7 @@ module.exports = {
   ticket:{
     type: "manage",
     name: "/ticket",
-    description: "簡易的なチケット機能を作成します",
+    description: "チケット機能を作成します",
     example: "`/ticket チケット 説明`",
     userPermission:[
       "チャンネルの管理",
@@ -2148,6 +2148,11 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("ticket")
       .setDescription("お問い合わせ機能を作成します")
+      .addChannelOption(option=>
+        option
+          .setName("channel")
+          .setDescription("チャンネル")
+          .setRequired(true))
       .addStringOption(option=>
         option
           .setName("description")

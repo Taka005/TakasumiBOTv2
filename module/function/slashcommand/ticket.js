@@ -3,6 +3,7 @@ module.exports = async(interaction)=>{
   const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "ticket"){
+    const channel = interaction.options.getChannel("channel");
     const description = interaction.options.getString("description")||"チケットの発行は下のボタンを押してください";
 
     if(
@@ -48,6 +49,18 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    if(channel.type !== ChannelType.GuildCategory) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "作成できませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "チケットを作成するチャンネルはカテゴリーチャンネルを指定する必要があります"
+      }],
+      ephemeral: true
+    });
+
     try{
       await interaction.channel.send({
         embeds:[{
@@ -59,18 +72,11 @@ module.exports = async(interaction)=>{
           new ActionRowBuilder()
             .addComponents(
               new ButtonBuilder()
-                .setCustomId("ticket")
+                .setCustomId(`ticket_${channel.id}`)
                 .setStyle(ButtonStyle.Primary)
                 .setLabel("作成"))
         ]
       });
-
-      if(!interaction.guild.channels.cache.find(ch=>ch.name === "ticket")){
-        await interaction.guild.channels.create({
-          name: "ticket",
-          type: ChannelType.GuildCategory
-        });
-      }
 
       await interaction.deferReply()
         .then(()=>interaction.deleteReply());
