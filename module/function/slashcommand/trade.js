@@ -56,7 +56,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await db(`UPDATE count SET buy = buy + 1, stock = stock + ${Math.floor(count*0.05)} WHERE id = ${process.env.ID}`);
+      await db(`UPDATE count SET buy = buy + 1, stock = stock + ${Math.floor(count*0.01)} WHERE id = ${process.env.ID}`);
       await db(`UPDATE money SET stock = ${data.stock + count} WHERE id = ${interaction.user.id}`);
       await money.delete(interaction.user.id,count*price,"株の購入");
       await money.delete(interaction.user.id,commission,"株の購入手数料");
@@ -100,7 +100,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await db(`UPDATE count SET sell = sell + 1, stock = stock - ${Math.floor(count*0.05)} WHERE id = ${process.env.ID}`);
+      await db(`UPDATE count SET sell = sell + 1, stock = stock - ${Math.floor(count*0.01)} WHERE id = ${process.env.ID}`);
       await db(`UPDATE money SET stock = ${data.stock - count} WHERE id = ${interaction.user.id}`);
       await money.add(interaction.user.id,count*price,"株の売却");
 
