@@ -69,7 +69,7 @@ module.exports = async(interaction)=>{
             name: "作成できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: "このチケットは旧型のため移行中です\n移行には`/ticket`コマンドより更新する必要があります"
+          description: "このチケットは旧型のため移行中です\n移行には`/ticket`コマンドで更新する必要があります"
         }],
         components:[
           new ActionRowBuilder()
