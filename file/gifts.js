@@ -73,5 +73,25 @@ module.exports = [
     id: "100000",
     price: 100000,
     isBuy: false
+  },
+  {
+    id: "150000",
+    price: 150000,
+    isBuy: false
+  },
+  {
+    id: "200000",
+    price: 200000,
+    isBuy: false
+  },
+  {
+    id: "250000",
+    price: 250000,
+    isBuy: false
+  },
+  {
+    id: "300000",
+    price: 300000,
+    isBuy: false
   }
 ]
