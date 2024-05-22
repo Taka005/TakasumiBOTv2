@@ -5,6 +5,7 @@ module.exports = async(message)=>{
   const { WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
   const db = require("../../lib/db");
   const fetchMessage = require("../../lib/fetchMessage");
+  const fetchChannel = require("../../lib/fetchChannel");
   const fetchWebhookMessage = require("../../lib/fetchWebhookMessage");
   const money = require("../../lib/money");
   const config = require("../../../config.json");
@@ -140,7 +141,7 @@ module.exports = async(message)=>{
       }).catch(()=>{});
     }catch(error){
       await db(`DELETE FROM global WHERE channel = ${data.channel};`);
-      const channel = message.client.channels.cache.get(data.channel);
+      const channel = await fetchChannel(message.guild,data.channel);
       if(!channel) return;
 
       await channel.send({
