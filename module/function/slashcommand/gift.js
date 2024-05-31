@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
       });
 
       const data = await db(`SELECT * FROM gift WHERE user = ${interaction.user.id};`);
-      if(data.length>5) return await interaction.reply({
+      if(data.length>=5) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
