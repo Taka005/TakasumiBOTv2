@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   const db = require("../../lib/db");
   const config = require("../../../config.json");
   if(!interaction.isContextMenuCommand()) return;
-  if(interaction.commandName === "メッセージをピン留め"){
+  if(interaction.commandName === "メッセージを固定"){
     const message = interaction.options.getMessage("message");
 
     if(
