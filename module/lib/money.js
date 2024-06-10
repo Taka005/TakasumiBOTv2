@@ -4,7 +4,14 @@ const createId = require("./createId");
 module.exports = {
   "get":async(id)=>{
     const data = await db(`SELECT * FROM money WHERE id = ${id};`);
-    return data[0]||{};
+    return data[0]||{
+      amount: 0,
+      yellow: 0,
+      red: 0,
+      blue: 0,
+      random: 0,
+      stock: 0
+    };
   },
   "add":async(id,number,reason)=>{
     const data = await db(`SELECT * FROM money WHERE id = ${id};`);
