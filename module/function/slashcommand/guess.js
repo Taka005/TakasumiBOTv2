@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
     const answer = random(["1","2","3"]);
 
     const data = await money.get(interaction.user.id);
-    if(amount < 100||Math.round(amount*1.5) > (data.amount||0)) return await interaction.reply({
+    if(amount < 100||Math.round(amount*1.5) > data.amount) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{

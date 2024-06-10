@@ -31,7 +31,7 @@ module.exports = async(interaction)=>{
           name: `${amount}コイン手に入れました`,
           icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
-        description: `所持金: ${(data.amount||0)+amount}コイン`
+        description: `所持金: ${data.amount+amount}コイン`
       }]
     });
   }
