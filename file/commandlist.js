@@ -2546,11 +2546,11 @@ module.exports = {
       .setName("権限を表示")
       .setType(ApplicationCommandType.User)
   },
-  メッセージをピン留め:{
+  メッセージを固定:{
     type: "contextmenu",
-    name: "メッセージをピン留め",
+    name: "メッセージを固定",
     description: "メッセージを常に下に表示します",
-    example: "`メッセージをピン留め`をクリック",
+    example: "`メッセージを固定`をクリック",
     userPermission:[
       "チャンネルの管理",
       "メッセージの管理"
@@ -2563,7 +2563,7 @@ module.exports = {
     ],
     note: "最大6個まで作成できます\nもう一度実行することでピン留めを削除できます",
     data: new ContextMenuCommandBuilder()
-      .setName("メッセージをピン留め")
+      .setName("メッセージを固定")
       .setType(ApplicationCommandType.Message)
   },
   英語に翻訳:{
