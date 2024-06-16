@@ -278,7 +278,7 @@ module.exports = {
                 { name: "追加", value: "add" },
                 { name: "削除", value: "delete" }
               ))
-          .addIntegerOption(option=>
+          .addStringOption(option=>
             option
               .setName("id")
               .setDescription("ユーザーID")
