@@ -29,8 +29,7 @@ module.exports = async(interaction)=>{
             name: `${user.displayName}を管理者に追加しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-        }],
-        ephemeral: true
+        }]
       });
     }else if(type === "delete"){
       await db(`DELETE FROM admin WHERE id = "${user.id}";`);
@@ -42,8 +41,7 @@ module.exports = async(interaction)=>{
             name: `${user.displayName}を管理者から削除しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-        }],
-        ephemeral: true
+        }]
       });
     }
   }
