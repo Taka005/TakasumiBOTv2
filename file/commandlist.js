@@ -267,6 +267,24 @@ module.exports = {
               )))
       .addSubcommand(subcommand=>
         subcommand
+          .setName("member")
+          .setDescription("管理者の管理をします")
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("種類")
+              .setRequired(true)
+              .addChoices(
+                { name: "追加", value: "add" },
+                { name: "削除", value: "delete" }
+              ))
+          .addIntegerOption(option=>
+            option
+              .setName("id")
+              .setDescription("ユーザーID")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
           .setName("reload")
           .setDescription("BOTのリロードをします"))
   },
