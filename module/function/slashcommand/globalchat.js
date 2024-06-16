@@ -52,32 +52,32 @@ module.exports = async(interaction)=>{
       const webhook = new WebhookClient({id: data[0].id, token: data[0].token});
 
       await db(`DELETE FROM global WHERE server = ${interaction.guild.id};`);
-      await webhook.delete()
-        .then(async()=>{
-          await interaction.reply({
-            content: `<@${interaction.user.id}>`,
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: "登録の削除が完了しました",
-                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
-              }
-            }]
-          });
-        })
-        .catch(async()=>{
-          await interaction.reply({
-            content: `<@${interaction.user.id}>`,
-            embeds:[{
-              color: Colors.Green,
-              author:{
-                name: "登録の削除が完了しました",
-                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
-              },
-              description: "※webhookは既に削除済みのため、\n登録情報のみ削除しました"
-            }]
-          })
+      try{
+        await webhook.delete();
+
+        await interaction.reply({
+          content: `<@${interaction.user.id}>`,
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "登録の削除が完了しました",
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+            }
+          }]
         });
+      }catch{
+        await interaction.reply({
+          content: `<@${interaction.user.id}>`,
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "登録の削除が完了しました",
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+            },
+            description: "※webhookは既に削除済みのため、\n登録情報のみ削除しました"
+          }]
+        });
+      }
     }else{
       if(
         interaction.guild.memberCount < 20||
@@ -130,7 +130,7 @@ module.exports = async(interaction)=>{
         const mute = await db(`SELECT * FROM mute_server;`);
 
         const global = await db("SELECT * FROM global;");
-        global.map(async(data)=>{
+        global.forEach(async(data)=>{
           if(
             data.server === interaction.guild.id||
             mute.find(m=>m.id === data.server)
@@ -139,6 +139,8 @@ module.exports = async(interaction)=>{
           try{
             const webhooks = new WebhookClient({id: data.id, token: data.token});
             await webhooks.send({
+              username: "TakasumiBOT Global",
+              avatarURL: "https://cdn.takasumibot.com/images/icon.png",
               embeds:[{
                 color: Colors.Green,
                 title: `${interaction.guild.name}<${interaction.guild.id}>`,
@@ -150,9 +152,7 @@ module.exports = async(interaction)=>{
                   text: `登録数:${global.length}`
                 },
                 timestamp: new Date()
-              }],
-              username: "TakasumiBOT Global",
-              avatarURL: "https://cdn.takasumibot.com/images/icon.png"
+              }]
             });
           }catch(error){
             await db(`DELETE FROM global WHERE channel = ${data.channel};`);
