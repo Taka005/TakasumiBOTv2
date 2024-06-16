@@ -42,7 +42,7 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      const guild = await interaction.client.guilds.fetch(config.announce.server);
+      const guild = await interaction.client.guilds.fetch(config.server);
       if(type === "notice"){
         await guild.channels.addFollower(config.announce.notice,interaction.channel);
 
