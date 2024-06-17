@@ -3,6 +3,7 @@ module.exports = async(interaction)=>{
   const fetchUser = require("../../lib/fetchUser");
   const fetchGuild = require("../../lib/fetchGuild");
   const createId = require("../../lib/createId");
+  const db = require("../../lib/db");
   const config = require("../../../config.json");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId === "report"){
@@ -40,11 +41,13 @@ module.exports = async(interaction)=>{
       const reportId = createId(10);
       const message = user ? `ユーザー: ${user.displayName}(${user})` : `サーバー: ${guild.name}(${guild.id})`;
 
+      await db(`INSERT INTO report (id, type, target, title, reason, reporter time) VALUES("${reportId}","${user ? "user" : "server" }",${user ? user.id : guild.id},"${title}","${reason}","${interaction.user.id}",NOW());`);
+
       await channel.send({
         embeds:[{
           color: Colors.Green,
           title: title,
-          description: `通報ID: ${reportId}}\n\n${message}\n\n${reason}`,
+          description: `通報ID: ${reportId}\n\n${message}\n\n${reason}`,
           footer:{
             text: `${interaction.user.displayName}(${interaction.user.id})`,
             icon_url: interaction.user.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
@@ -60,6 +63,10 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           fields:[
+            {
+              name: "通報ID",
+              value: reportId
+            },
             {
               name: "用件",
               value: title
@@ -109,6 +116,5 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
     }
-
   }
 }
