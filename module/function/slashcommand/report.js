@@ -22,21 +22,33 @@ module.exports = async(interaction)=>{
       .setCustomId("report")
       .setTitle("通報");
 
+    const title = new TextInputBuilder()
+      .setCustomId("title")
+      .setLabel("用件")
+      .setPlaceholder("通報する用件を簡潔に入力してください")
+      .setMaxLength(100)
+      .setRequired(true)
+      .setStyle(TextInputStyle.Short);
+
     const id = new TextInputBuilder()
       .setCustomId("id")
-      .setLabel("対象のユーザーID又はサーバーID")
+      .setLabel("対象のID")
+      .setPlaceholder("ユーザーID又はサーバーIDを入力してください")
       .setMaxLength(20)
       .setRequired(true)
       .setStyle(TextInputStyle.Short);
 
     const reason = new TextInputBuilder()
       .setCustomId("reason")
-      .setLabel("理由(なるべく詳しく書いてください)")
+      .setLabel("理由")
+      .setPlaceholder("可能な限り詳しく入力してください")
       .setMaxLength(800)
       .setRequired(true)
       .setStyle(TextInputStyle.Paragraph);
 
     report.addComponents(
+      new ActionRowBuilder()
+        .addComponents(title),
       new ActionRowBuilder()
         .addComponents(id),
       new ActionRowBuilder()
