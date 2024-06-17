@@ -1711,6 +1711,22 @@ module.exports = {
       .setName("register")
       .setDescription("サーバー掲示板に登録、削除を行います"),
   },
+  report:{
+    type: "bot",
+    name: "/report",
+    description: "サポートに通報します",
+    example: "`/report`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "偽の通報を繰り返し行うと処罰される可能性があります",
+    data: new SlashCommandBuilder()
+      .setName("report")
+      .setDescription("サポートに通報します")
+  },
   reset:{
     type: "manage",
     name: "/reset",
