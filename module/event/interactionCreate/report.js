@@ -43,7 +43,7 @@ module.exports = async(interaction)=>{
       const components = [];
 
       if(user){
-        await db(`INSERT INTO report (id, type, target, title, reason, reporter time) VALUES("${reportId}","user",${user.id},"${title}","${reason}","${interaction.user.id}",NOW());`);
+        await db(`INSERT INTO report (id, type, target, title, reason, reporter, time) VALUES("${reportId}","user",${user.id},"${title}","${reason}","${interaction.user.id}",NOW());`);
 
         if(await mute.getUser(user.id)){
           components.push(
@@ -101,7 +101,7 @@ module.exports = async(interaction)=>{
           components: components
         });
       }else{
-        await db(`INSERT INTO report (id, type, target, title, reason, reporter time) VALUES("${reportId}","user","${guild.id}","${title}","${reason}","${interaction.user.id}",NOW());`);
+        await db(`INSERT INTO report (id, type, target, title, reason, reporter, time) VALUES("${reportId}","user","${guild.id}","${title}","${reason}","${interaction.user.id}",NOW());`);
 
         if(await mute.getServer(guild.id)){
           components.push(
