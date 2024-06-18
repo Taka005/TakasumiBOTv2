@@ -12,6 +12,27 @@ module.exports = async(interaction)=>{
     const id = interaction.fields.getTextInputValue("id");
     const reason = interaction.fields.getTextInputValue("reason");
 
+    const reports = await db(`SELECT * FROM report WHERE target = "${id}";`);
+    if(reports[0]) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "通報できませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "このIDは既に通報されています"
+      }],
+      components:[
+        new ActionRowBuilder()
+          .addComponents(
+            new ButtonBuilder()
+              .setLabel("サポートサーバー")
+              .setURL(config.inviteUrl)
+              .setStyle(ButtonStyle.Link))
+      ],
+      ephemeral: true
+    });
+
     const user = await fetchUser(interaction.client,id);
     const guild = await fetchGuild(interaction.client,id);
 
@@ -40,7 +61,14 @@ module.exports = async(interaction)=>{
       const channel = await guild.channels.fetch(config.channels.report);
 
       const reportId = createId(10);
-      const components = [];
+      const components = [
+        new ActionRowBuilder()
+         .addComponents(
+            new ButtonBuilder()
+              .setCustomId(`report_warn_${reportId}`)
+              .setStyle(ButtonStyle.Warn)
+              .setLabel("警告"))
+      ]
 
       if(user){
         await db(`INSERT INTO report (id, type, target, title, reason, reporter, time) VALUES("${reportId}","user",${user.id},"${title}","${reason}","${interaction.user.id}",NOW());`);
@@ -92,7 +120,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             title: title,
-            description: `通報ID: ${reportId}\n\nユーザー: ${user.displayName}(${user.id})\n\n${reason}`,
+            description: `***通報ID***: \`${reportId}\`\n\n***ユーザー***: ${user.displayName}(${user.id})\n\n${reason}`,
             footer:{
               text: `${interaction.user.displayName}(${interaction.user.id})`,
               icon_url: interaction.user.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
@@ -127,7 +155,7 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             title: title,
-            description: `通報ID: ${reportId}\n\nサーバー: ${guild.name}(${guild.id})\n\n${reason}`,
+            description: `***通報ID***: \`${reportId}\`\n\n***サーバー***: ${guild.name}(${guild.id})\n\n${reason}`,
             footer:{
               text: `${interaction.user.displayName}(${interaction.user.id})`,
               icon_url: interaction.user.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
