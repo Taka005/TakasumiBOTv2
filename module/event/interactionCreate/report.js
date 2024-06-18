@@ -4,6 +4,7 @@ module.exports = async(interaction)=>{
   const fetchGuild = require("../../lib/fetchGuild");
   const createId = require("../../lib/createId");
   const db = require("../../lib/db");
+  const mute = require("../../lib/mute");
   const config = require("../../../config.json");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId === "report"){
@@ -39,21 +40,102 @@ module.exports = async(interaction)=>{
       const channel = await guild.channels.fetch(config.channels.report);
 
       const reportId = createId(10);
-      const message = user ? `ユーザー: ${user.displayName}(${user})` : `サーバー: ${guild.name}(${guild.id})`;
+      const components = [];
 
-      await db(`INSERT INTO report (id, type, target, title, reason, reporter time) VALUES("${reportId}","${user ? "user" : "server" }",${user ? user.id : guild.id},"${title}","${reason}","${interaction.user.id}",NOW());`);
+      if(user){
+        await db(`INSERT INTO report (id, type, target, title, reason, reporter time) VALUES("${reportId}","user",${user.id},"${title}","${reason}","${interaction.user.id}",NOW());`);
 
-      await channel.send({
-        embeds:[{
-          color: Colors.Green,
-          title: title,
-          description: `通報ID: ${reportId}\n\n${message}\n\n${reason}`,
-          footer:{
-            text: `${interaction.user.displayName}(${interaction.user.id})`,
-            icon_url: interaction.user.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
-          },
-        }]
-      });
+        if(mute.getUser(user.id)){
+          components.push(
+            new ActionRowBuilder()
+              .addComponents(
+                new ButtonBuilder()
+                  .setCustomId(`report_unMuteUser_${reportId}`)
+                  .setStyle(ButtonStyle.Danger)
+                  .setLabel("ミュートを解除"))
+          )
+        }else{
+          components.push(
+            new ActionRowBuilder()
+              .addComponents(
+                new ButtonBuilder()
+                  .setCustomId(`report_unMuteUser_${reportId}`)
+                  .setStyle(ButtonStyle.Danger)
+                  .setLabel("ミュート"))
+          )
+        }
+
+        const account = await db(`SELECT * FROM account WHERE id = "${user.id}";`);
+        if(account[0]){
+          if(mute.getIp(account[0].ip)){
+            components.push(
+              new ActionRowBuilder()
+                .addComponents(
+                  new ButtonBuilder()
+                    .setCustomId(`report_unMuteIp_${reportId}`)
+                    .setStyle(ButtonStyle.Danger)
+                    .setLabel("IPミュートを解除"))
+            )
+          }else{
+            components.push(
+              new ActionRowBuilder()
+                .addComponents(
+                  new ButtonBuilder()
+                    .setCustomId(`report_muteIp_${reportId}`)
+                    .setStyle(ButtonStyle.Danger)
+                    .setLabel("IPミュート"))
+            )
+          }
+        }
+
+        await channel.send({
+          embeds:[{
+            color: Colors.Green,
+            title: title,
+            description: `通報ID: ${reportId}\n\nユーザー: ${user.displayName}(${user.id})\n\n${reason}`,
+            footer:{
+              text: `${interaction.user.displayName}(${interaction.user.id})`,
+              icon_url: interaction.user.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
+            }
+          }],
+          components: components
+        });
+      }else{
+        await db(`INSERT INTO report (id, type, target, title, reason, reporter time) VALUES("${reportId}","user",${user.id},"${title}","${reason}","${interaction.user.id}",NOW());`);
+
+        if(mute.getServer(guild.id)){
+          components.push(
+            new ActionRowBuilder()
+              .addComponents(
+                new ButtonBuilder()
+                  .setCustomId(`report_unMuteServer_${reportId}`)
+                  .setStyle(ButtonStyle.Danger)
+                  .setLabel("ミュートを解除"))
+          )
+        }else{
+          components.push(
+            new ActionRowBuilder()
+              .addComponents(
+                new ButtonBuilder()
+                  .setCustomId(`report_unMuteServer_${reportId}`)
+                  .setStyle(ButtonStyle.Danger)
+                  .setLabel("ミュート"))
+          )
+        }
+
+        await channel.send({
+          embeds:[{
+            color: Colors.Green,
+            title: title,
+            description: `通報ID: ${reportId}\n\nサーバー: ${guild.name}(${guild.id})\n\n${reason}`,
+            footer:{
+              text: `${interaction.user.displayName}(${interaction.user.id})`,
+              icon_url: interaction.user.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
+            }
+          }],
+          components: components
+        });
+      }
 
       await interaction.reply({
         embeds:[{
@@ -72,8 +154,8 @@ module.exports = async(interaction)=>{
               value: title
             },
             {
-              name: "対象のID",
-              value: id
+              name: "対象",
+              value: user ? `${user.displayName}(${user.id})` : `${guild.name}(${guild.id})`
             },
             {
               name: "用件",

@@ -78,7 +78,7 @@ module.exports = async(interaction)=>{
                 .setCustomId(`${type}_${role.id}`)
                 .setStyle(ButtonStyle.Primary)
                 .setLabel("認証"))
-          ]
+        ]
       });
 
       await interaction.deferReply()
