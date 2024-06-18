@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, Colors } = require("discord.js");
+  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require("discord.js");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "report"){
 
