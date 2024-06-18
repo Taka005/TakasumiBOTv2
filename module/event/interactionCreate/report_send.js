@@ -20,7 +20,7 @@ module.exports = async(interaction)=>{
       "delete": "棄却"
     }
 
-    const admin = (await db(`SELECT * FROM admin WHERE id = "${interaction.user.id}"`));
+    const admin = (await db(`SELECT * FROM admin WHERE id = "${interaction.user.id}"`))[0];
     if(!admin) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
