@@ -62,12 +62,10 @@ module.exports = async(interaction)=>{
 
       const reportId = createId(10);
       const components = [
-        new ActionRowBuilder()
-         .addComponents(
-            new ButtonBuilder()
-              .setCustomId(`report_warn_${reportId}`)
-              .setStyle(ButtonStyle.Danger)
-              .setLabel("警告"))
+        new ButtonBuilder()
+          .setCustomId(`report_warn_${reportId}`)
+          .setStyle(ButtonStyle.Danger)
+          .setLabel("警告")
       ]
 
       if(user){
@@ -95,21 +93,17 @@ module.exports = async(interaction)=>{
 
         if(await mute.getUser(user.id)){
           components.push(
-            new ActionRowBuilder()
-              .addComponents(
-                new ButtonBuilder()
-                  .setCustomId(`report_unMuteUser_${reportId}`)
-                  .setStyle(ButtonStyle.Danger)
-                  .setLabel("ミュートを解除"))
+            new ButtonBuilder()
+              .setCustomId(`report_unMuteUser_${reportId}`)
+              .setStyle(ButtonStyle.Danger)
+              .setLabel("ミュートを解除")
           )
         }else{
           components.push(
-            new ActionRowBuilder()
-              .addComponents(
-                new ButtonBuilder()
-                  .setCustomId(`report_unMuteUser_${reportId}`)
-                  .setStyle(ButtonStyle.Danger)
-                  .setLabel("ミュート"))
+            new ButtonBuilder()
+              .setCustomId(`report_unMuteUser_${reportId}`)
+              .setStyle(ButtonStyle.Danger)
+              .setLabel("ミュート")
           )
         }
 
@@ -117,21 +111,17 @@ module.exports = async(interaction)=>{
         if(account[0]){
           if(mute.getIp(account[0].ip)){
             components.push(
-              new ActionRowBuilder()
-                .addComponents(
-                  new ButtonBuilder()
-                    .setCustomId(`report_unMuteIp_${reportId}`)
-                    .setStyle(ButtonStyle.Danger)
-                    .setLabel("IPミュートを解除"))
+              new ButtonBuilder()
+                .setCustomId(`report_unMuteIp_${reportId}`)
+                .setStyle(ButtonStyle.Danger)
+                .setLabel("IPミュートを解除")
             )
           }else{
             components.push(
-              new ActionRowBuilder()
-                .addComponents(
-                  new ButtonBuilder()
-                    .setCustomId(`report_muteIp_${reportId}`)
-                    .setStyle(ButtonStyle.Danger)
-                    .setLabel("IPミュート"))
+              new ButtonBuilder()
+                .setCustomId(`report_muteIp_${reportId}`)
+                .setStyle(ButtonStyle.Danger)
+                .setLabel("IPミュート")
             )
           }
         }
@@ -140,34 +130,33 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             title: title,
-            description: `***通報ID***: \`${reportId}\`\n\n***ユーザー***: ${user.displayName}(${user.id})\n\n${reason}`,
+            description: `**通報ID**: \`${reportId}\`\n\n**ユーザー**: ${user.displayName}(${user.id})\n\n${reason}`,
             footer:{
               text: `${interaction.user.displayName}(${interaction.user.id})`,
               icon_url: interaction.user.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
             }
           }],
-          components: components
+          components: [
+            new ActionRowBuilder()
+              .addComponents(...components)
+          ]
         });
       }else{
         await db(`INSERT INTO report (id, type, target, title, reason, reporter, time) VALUES("${reportId}","user","${guild.id}","${title}","${reason}","${interaction.user.id}",NOW());`);
 
         if(await mute.getServer(guild.id)){
           components.push(
-            new ActionRowBuilder()
-              .addComponents(
-                new ButtonBuilder()
-                  .setCustomId(`report_unMuteServer_${reportId}`)
-                  .setStyle(ButtonStyle.Danger)
-                  .setLabel("ミュートを解除"))
+            new ButtonBuilder()
+              .setCustomId(`report_unMuteServer_${reportId}`)
+              .setStyle(ButtonStyle.Danger)
+              .setLabel("ミュートを解除")
           )
         }else{
           components.push(
-            new ActionRowBuilder()
-              .addComponents(
-                new ButtonBuilder()
-                  .setCustomId(`report_unMuteServer_${reportId}`)
-                  .setStyle(ButtonStyle.Danger)
-                  .setLabel("ミュート"))
+            new ButtonBuilder()
+              .setCustomId(`report_unMuteServer_${reportId}`)
+              .setStyle(ButtonStyle.Danger)
+              .setLabel("ミュート")
           )
         }
 
@@ -175,13 +164,16 @@ module.exports = async(interaction)=>{
           embeds:[{
             color: Colors.Green,
             title: title,
-            description: `***通報ID***: \`${reportId}\`\n\n***サーバー***: ${guild.name}(${guild.id})\n\n${reason}`,
+            description: `**通報ID**: \`${reportId}\`\n\n**サーバー**: ${guild.name}(${guild.id})\n\n${reason}`,
             footer:{
               text: `${interaction.user.displayName}(${interaction.user.id})`,
               icon_url: interaction.user.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
             }
           }],
-          components: components
+          components: [
+            new ActionRowBuilder()
+              .addComponents(...components)
+          ]
         });
       }
 
