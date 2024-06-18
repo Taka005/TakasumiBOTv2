@@ -763,7 +763,7 @@ module.exports = {
     type: "money",
     name: "/gift",
     description: "ギフトを作成、受け取りします",
-    example: "`/gif create 100コイン`",
+    example: "`/gift create 100コイン`",
     userPermission:[
       "必要なし"
     ],
