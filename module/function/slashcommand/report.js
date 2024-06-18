@@ -12,6 +12,7 @@ module.exports = async(interaction)=>{
       .setLabel("用件")
       .setPlaceholder("通報する用件を簡潔に入力してください")
       .setMaxLength(100)
+      .setMinLength(10)
       .setRequired(true)
       .setStyle(TextInputStyle.Short);
 
@@ -20,6 +21,7 @@ module.exports = async(interaction)=>{
       .setLabel("対象のID")
       .setPlaceholder("ユーザーID又はサーバーIDを入力してください")
       .setMaxLength(20)
+      .setMinLength(15)
       .setRequired(true)
       .setStyle(TextInputStyle.Short);
 
@@ -28,6 +30,7 @@ module.exports = async(interaction)=>{
       .setLabel("理由")
       .setPlaceholder("可能な限り詳しく入力してください")
       .setMaxLength(800)
+      .setMinLength(30)
       .setRequired(true)
       .setStyle(TextInputStyle.Paragraph);
 

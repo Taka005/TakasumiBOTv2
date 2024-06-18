@@ -12,27 +12,6 @@ module.exports = async(interaction)=>{
     const id = interaction.fields.getTextInputValue("id");
     const reason = interaction.fields.getTextInputValue("reason");
 
-    const reports = await db(`SELECT * FROM report WHERE target = "${id}";`);
-    if(reports[0]) return await interaction.reply({
-      embeds:[{
-        color: Colors.Red,
-        author:{
-          name: "通報できませんでした",
-          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
-        },
-        description: "このIDは既に通報されています"
-      }],
-      components:[
-        new ActionRowBuilder()
-          .addComponents(
-            new ButtonBuilder()
-              .setLabel("サポートサーバー")
-              .setURL(config.inviteUrl)
-              .setStyle(ButtonStyle.Link))
-      ],
-      ephemeral: true
-    });
-
     const user = await fetchUser(interaction.client,id);
     const guild = await fetchGuild(interaction.client,id);
 
@@ -62,6 +41,10 @@ module.exports = async(interaction)=>{
 
       const reportId = createId(10);
       const components = [
+        new ButtonBuilder()
+          .setCustomId(`report_delete_${reportId}`)
+          .setStyle(ButtonStyle.Success)
+          .setLabel("棄却"),
         new ButtonBuilder()
           .setCustomId(`report_warn_${reportId}`)
           .setStyle(ButtonStyle.Danger)
@@ -101,7 +84,7 @@ module.exports = async(interaction)=>{
         }else{
           components.push(
             new ButtonBuilder()
-              .setCustomId(`report_unMuteUser_${reportId}`)
+              .setCustomId(`report_muteUser_${reportId}`)
               .setStyle(ButtonStyle.Danger)
               .setLabel("ミュート")
           )
@@ -154,7 +137,7 @@ module.exports = async(interaction)=>{
         }else{
           components.push(
             new ButtonBuilder()
-              .setCustomId(`report_unMuteServer_${reportId}`)
+              .setCustomId(`report_muteServer_${reportId}`)
               .setStyle(ButtonStyle.Danger)
               .setLabel("ミュート")
           )
