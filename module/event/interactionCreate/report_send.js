@@ -96,6 +96,11 @@ module.exports = async(interaction)=>{
         await db(`DELETE FROM report WHERE id = "${report.id}"`);
       }
 
+      await interaction.message.edit({
+        embeds: interaction.message.embeds,
+        components: []
+      });
+
       await interaction.reply({
         embeds:[{
           color: Colors.Green,

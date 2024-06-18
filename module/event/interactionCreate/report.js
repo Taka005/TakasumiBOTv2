@@ -92,7 +92,7 @@ module.exports = async(interaction)=>{
 
         const account = await db(`SELECT * FROM account WHERE id = "${user.id}";`);
         if(account[0]){
-          if(mute.getIp(account[0].ip)){
+          if(await mute.getIp(account[0].ip)){
             components.push(
               new ButtonBuilder()
                 .setCustomId(`report_unMuteIp_${reportId}`)
