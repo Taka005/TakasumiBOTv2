@@ -66,11 +66,31 @@ module.exports = async(interaction)=>{
          .addComponents(
             new ButtonBuilder()
               .setCustomId(`report_warn_${reportId}`)
-              .setStyle(ButtonStyle.Warn)
+              .setStyle(ButtonStyle.Danger)
               .setLabel("警告"))
       ]
 
       if(user){
+        if(user.bot) return await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "通報できませんでした",
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+            },
+            description: "BOTは通報できません"
+          }],
+          components:[
+            new ActionRowBuilder()
+              .addComponents(
+                new ButtonBuilder()
+                  .setLabel("サポートサーバー")
+                  .setURL(config.inviteUrl)
+                  .setStyle(ButtonStyle.Link))
+          ],
+          ephemeral: true
+        });
+
         await db(`INSERT INTO report (id, type, target, title, reason, reporter, time) VALUES("${reportId}","user",${user.id},"${title}","${reason}","${interaction.user.id}",NOW());`);
 
         if(await mute.getUser(user.id)){
