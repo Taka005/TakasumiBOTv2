@@ -42,9 +42,9 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      const guild = await interaction.client.guilds.fetch(config.announce.server);
+      const guild = await interaction.client.guilds.fetch(config.server);
       if(type === "notice"){
-        await guild.channels.addFollower(config.announce.notice,interaction.channel);
+        await guild.channels.addFollower(config.channels.notice,interaction.channel);
 
         await interaction.reply({
           embeds:[{
@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
           }]
         });
       }else if(type === "update"){
-        await guild.channels.addFollower(config.announce.update,interaction.channel);
+        await guild.channels.addFollower(config.channels.update,interaction.channel);
 
         await interaction.reply({
           embeds:[{

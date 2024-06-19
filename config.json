@@ -2,10 +2,11 @@
     "admin": "790489873957781536",
     "prefix": ">",
     "inviteUrl": "https://discord.gg/NEesRdGQwD",
-    "announce":{
-        "server": "987698915820335124",
+    "server": "987698915820335124",
+    "channels":{
         "notice": "1049155527214628954",
-        "update": "1106533820498452500"
+        "update": "1106533820498452500",
+        "report": "1251803129041653760"
     },
     "api":{
         "miq": "http://localhost:3000",

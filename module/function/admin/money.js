@@ -52,7 +52,7 @@ module.exports = async(interaction)=>{
         embeds:[{
           color: Colors.Green,
           author:{
-            name: `${user.displayName}(${user.id}) に${count}コイン剥奪しました`,
+            name: `${user.displayName}(${user.id}) から${count}コイン剥奪しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           }
         }]

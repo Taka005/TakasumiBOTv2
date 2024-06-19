@@ -267,6 +267,24 @@ module.exports = {
               )))
       .addSubcommand(subcommand=>
         subcommand
+          .setName("member")
+          .setDescription("管理者の管理をします")
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("種類")
+              .setRequired(true)
+              .addChoices(
+                { name: "追加", value: "add" },
+                { name: "削除", value: "delete" }
+              ))
+          .addStringOption(option=>
+            option
+              .setName("id")
+              .setDescription("ユーザーID")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
           .setName("reload")
           .setDescription("BOTのリロードをします"))
   },
@@ -745,7 +763,7 @@ module.exports = {
     type: "money",
     name: "/gift",
     description: "ギフトを作成、受け取りします",
-    example: "`/gif create 100コイン`",
+    example: "`/gift create 100コイン`",
     userPermission:[
       "必要なし"
     ],
@@ -1692,6 +1710,22 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("register")
       .setDescription("サーバー掲示板に登録、削除を行います"),
+  },
+  report:{
+    type: "bot",
+    name: "/report",
+    description: "サポートに通報します",
+    example: "`/report`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "偽の通報を繰り返し行うと処罰される可能性があります",
+    data: new SlashCommandBuilder()
+      .setName("report")
+      .setDescription("サポートに通報します")
   },
   reset:{
     type: "manage",
