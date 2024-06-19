@@ -125,7 +125,7 @@ module.exports = async(interaction)=>{
           ]
         });
       }else{
-        await db(`INSERT INTO report (id, type, target, title, reason, reporter, time) VALUES("${reportId}","user","${guild.id}","${title}","${reason}","${interaction.user.id}",NOW());`);
+        await db(`INSERT INTO report (id, type, target, title, reason, reporter, time) VALUES("${reportId}","server","${guild.id}","${title}","${reason}","${interaction.user.id}",NOW());`);
 
         if(await mute.getServer(guild.id)){
           components.push(
