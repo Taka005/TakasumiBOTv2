@@ -66,6 +66,17 @@ module.exports = async(interaction)=>{
       }else if(data[1] === "warn"){
         if(report.type === "user"){
           const user = await fetchUser(interaction.client,report.target);
+          if(!user) return await interaction.reply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: "通報を処理できませんでした",
+                icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+              },
+              description: "対象のユーザーが存在しません"
+            }],
+            ephemeral: true
+          });
 
           await user.send({
             embeds:[{
@@ -79,6 +90,18 @@ module.exports = async(interaction)=>{
           });
         }else{
           const guild = await fetchGuild(interaction.client,report.target);
+          if(!guild) return await interaction.reply({
+            embeds:[{
+              color: Colors.Red,
+              author:{
+                name: "通報を処理できませんでした",
+                icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+              },
+              description: "対象のサーバーが存在しません"
+            }],
+            ephemeral: true
+          });
+
           const owner = await guild.fetchOwner();
 
           await owner.send({
