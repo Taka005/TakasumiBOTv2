@@ -36,8 +36,7 @@ module.exports = async(interaction)=>{
     });
 
     try{
-      const guild = await interaction.client.guilds.fetch(config.server);
-      const channel = await guild.channels.fetch(config.channels.report);
+      const channel = await (await interaction.client.guilds.fetch(config.server)).channels.fetch(config.channels.report);
 
       const reportId = createId(10);
       const components = [
