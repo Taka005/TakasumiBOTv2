@@ -4,16 +4,16 @@ module.exports = async(interaction)=>{
   if(interaction.customId.startsWith("math_")){
     const data = interaction.customId.split("_");
 
-    const count_1 = Math.floor(Math.random()*15) + 1;
-    const count_2 = Math.floor(Math.random()*15) + 1;
+    const count1 = Math.floor(Math.random()*15) + 1;
+    const count2 = Math.floor(Math.random()*15) + 1;
 
     const check = new ModalBuilder()
-      .setCustomId(`mathrole_${data[1]}_${count_1 + count_2}`)
+      .setCustomId(`mathrole_${data[1]}_${count1 + count2}`)
       .setTitle("認証");
 
     const code = new TextInputBuilder()
       .setCustomId("code")
-      .setLabel(`${count_1}+${count_2}の答えを入力してください`)
+      .setLabel(`${count1}+${count2}の答えを入力してください`)
       .setMaxLength(5)
       .setPlaceholder("半角で入力してください")
       .setRequired(true)

@@ -8,6 +8,7 @@ module.exports = async(message)=>{
   const fetchChannel = require("../../lib/fetchChannel");
   const fetchWebhookMessage = require("../../lib/fetchWebhookMessage");
   const money = require("../../lib/money");
+  const isAdmin = require("../../lib/isAdmin");
   const config = require("../../../config.json");
 
   if(message.author.bot) return;
@@ -73,7 +74,7 @@ module.exports = async(message)=>{
   const embed = [{
     color: color,
     author:{
-      name: config.admin === message.author.id?`${message.author.tag}(管理者)`:`${message.author.tag}`,
+      name: await isAdmin(message.author.id) ? `${message.author.tag}(管理者)` : `${message.author.tag}`,
       url: `https://discord.com/users/${message.author.id}`,
       icon_url: message.author.avatarURL()||message.author.defaultAvatarURL,
     },
