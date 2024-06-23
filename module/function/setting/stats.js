@@ -5,7 +5,7 @@ module.exports = async(interaction)=>{
 
     const data = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id};`);
     if(!data[0]){
-      await db(`INSERT INTO stats (id, message, \`join\`, \`leave\`, time) VALUES("${interaction.guild.id}","0","0","0",NOW());`);
+      await db(`INSERT INTO stats (id, message, react, \`join\`, \`leave\`, time) VALUES("${interaction.guild.id}","0","0","0","0",NOW());`);
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
