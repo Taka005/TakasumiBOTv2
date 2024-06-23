@@ -71,7 +71,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "統計情報",
-              value: stats[0] ? `メッセージ数: ${stats[0].message}回\nリアクション回数: ${stats[0].react}\n参加数: ${stats[0].join}人\n脱退数: ${stats[0].leave}人` : "設定されていません"
+              value: stats[0] ? `メッセージ数: ${stats[0].message}回\nリアクション数: ${stats[0].react}\n参加数: ${stats[0].join}人\n脱退数: ${stats[0].leave}人` : "設定されていません"
             }
           ],
           footer:{

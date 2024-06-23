@@ -121,7 +121,7 @@ module.exports = async(interaction)=>{
 
       await interaction.message.edit({
         embeds: interaction.message.embeds,
-        components: interaction.message.components.filter(comp=>comp.customId.split("_")[1] !== data[1])
+        components: data[1] === "delete" ? [] : interaction.message.components.filter(comp=>comp.customId.split("_")[1] !== data[1]||comp.customId.split("_")[0] !== "delete")
       });
 
       await interaction.reply({
