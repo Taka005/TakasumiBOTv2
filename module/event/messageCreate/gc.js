@@ -9,6 +9,7 @@ module.exports = async(message)=>{
   const fetchWebhookMessage = require("../../lib/fetchWebhookMessage");
   const money = require("../../lib/money");
   const isAdmin = require("../../lib/isAdmin");
+  const parseMessage = require("../../lib/parseMessage");
   const config = require("../../../config.json");
 
   if(message.author.bot) return;
@@ -51,9 +52,6 @@ module.exports = async(message)=>{
     ]
   }).catch(()=>{});
 
-  const content = message.content
-    .replace(/(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|(?:discord|discordapp)\.com\/invite)\/(\w+)/g,`[[招待リンク]](${config.inviteUrl})`)
-
   let color = Colors.Green;
   const data = await money.get(message.author.id);
 
@@ -78,7 +76,7 @@ module.exports = async(message)=>{
       url: `https://discord.com/users/${message.author.id}`,
       icon_url: message.author.avatarURL()||message.author.defaultAvatarURL,
     },
-    description: content,
+    description: parseMessage(message.content),
     footer:{
       text: `${message.guild.name}(${message.guild.id})`,
       icon_url: message.guild.iconURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
@@ -93,7 +91,7 @@ module.exports = async(message)=>{
       embed[0].fields = [
         {
           name: "\u200b",
-          value: `**${replyWebhookMessage.embeds[0].author.name}>>** ${replyWebhookMessage.embeds[0].description||"なし"}`
+          value: `**${replyWebhookMessage.embeds[0].author.name}>>** ${parseMessage(replyWebhookMessage.embeds[0].description)||"なし"}`
         }
       ];
     }else{
@@ -102,7 +100,7 @@ module.exports = async(message)=>{
         embed[0].fields = [
           {
             name: "\u200b",
-            value: `**${replyMessage.author.tag}>>** ${replyMessage.content||"なし"}`
+            value: `**${replyMessage.author.tag}>>** ${parseMessage(replyMessage.content)||"なし"}`
           }
         ];
       }
