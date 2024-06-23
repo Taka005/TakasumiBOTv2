@@ -121,7 +121,7 @@ module.exports = async(interaction)=>{
 
       await interaction.message.edit({
         embeds: interaction.message.embeds,
-        components: []
+        components: interaction.message.components.filter(comp=>comp.customId.split("_")[1] !== data[1])
       });
 
       await interaction.reply({

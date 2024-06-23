@@ -30,7 +30,7 @@ module.exports = async(message)=>{
       const afk = await db(`SELECT * FROM afk WHERE id = ${id[0]};`);
       if(afk[0]){
         if(limit(message)) return;
-        await db(`UPDATE afk SET mention = ${afk[0].mention+1}, time = time WHERE id = ${afk[0].id}`);
+        await db(`UPDATE afk SET mention = mention + 1, time = time WHERE id = ${afk[0].id}`);
         await message.channel.send({
           embeds:[{
             color: Colors.Green,
