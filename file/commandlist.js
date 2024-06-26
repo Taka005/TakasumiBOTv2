@@ -980,6 +980,26 @@ module.exports = {
       .setName("hiroyuki")
       .setDescription("ひろゆきを参加・退出させます"),
   },
+  history:{
+    type: "money",
+    name: "/history",
+    description: "ユーザーの取引履歴を確認します",
+    example: "`/history`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("history")
+      .setDescription("ユーザーの取引履歴を確認します")
+      .addStringOption(option=>
+        option
+          .setName("time")
+          .setDescription("取得する時間"))
+  },
   invite:{
     type: "server",
     name: "/invite",
@@ -1287,8 +1307,8 @@ module.exports = {
   money:{
     type: "money",
     name: "/money",
-    description: "ユーザーの所持品や取引履歴を確認します",
-    example: "`/money`",
+    description: "ユーザーの所持品を確認します",
+    example: "`/money`\n`/money @User`",
     userPermission:[
       "必要なし"
     ],
@@ -1298,15 +1318,11 @@ module.exports = {
     note: "なし",
     data: new SlashCommandBuilder()
       .setName("money")
-      .setDescription("所持品の表示")
-      .addSubcommand(subcommand=>
-        subcommand
-          .setName("items")
-          .setDescription("所持品を表示します"))
-      .addSubcommand(subcommand=>
-        subcommand
-          .setName("log")
-          .setDescription("取引履歴を表示します"))
+      .setDescription("ユーザーの所持品を確認します")
+      .addStringOption(option=>
+        option
+          .setName("id")
+          .setDescription("ユーザーID又はメンション"))
   },
   nslookup:{
     type: "tool",
