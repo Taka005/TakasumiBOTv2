@@ -995,10 +995,6 @@ module.exports = {
     data: new SlashCommandBuilder()
       .setName("history")
       .setDescription("ユーザーの取引履歴を確認します")
-      .addStringOption(option=>
-        option
-          .setName("time")
-          .setDescription("取得する時間"))
   },
   invite:{
     type: "server",

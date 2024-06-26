@@ -1,10 +1,9 @@
 module.exports = async(interaction)=>{
-  const { Colors, AttachmentBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+  const { Colors, AttachmentBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
   const db = require("../../lib/db");
   const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "history"){
-    const time = interaction.options.getString("time");
 
     await interaction.deferReply();
     try{
@@ -21,7 +20,7 @@ module.exports = async(interaction)=>{
         }]
       });
 
-      const table =  history.map(his=>([
+      const table = history.map(his=>([
         his.id,
         his.reason,
         `${his.amount}コイン`,
