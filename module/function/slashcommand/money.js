@@ -52,8 +52,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      const user = await fetchUser(interaction.client,userId);
-      console.log(user)
+      const user = await fetchUser(interaction.client,userId[0]);
       if(!user) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
