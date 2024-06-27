@@ -192,7 +192,8 @@ module.exports = async(interaction)=>{
                 .setLabel("サポートサーバー")
                 .setURL(config.inviteUrl)
                 .setStyle(ButtonStyle.Link))
-        ]
+        ],
+        ephemeral: true
       });
     }catch(error){
       await interaction.reply({

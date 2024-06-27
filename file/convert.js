@@ -19,5 +19,6 @@ function parseHTML(str){
   return str
     .replace(/\n/g,"<br>")
     .replace(/`/g,"")
+    .replace(/\*\*/g,"")
     .replace(/\[(.*?)\]\((.*?)\)/g,"$1");
 }

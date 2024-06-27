@@ -24,18 +24,14 @@ module.exports = async(interaction)=>{
       const hiroyuki = await db("SELECT * FROM hiroyuki;");
       const global = await db("SELECT * FROM global;");
 
-      const date = new Date();
-      const time = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-      const prevTime = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1}`;
+      const message = (await db(`SELECT SUM(message) as total FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 1 DAY);`))[0].total;
+      const command = (await db(`SELECT SUM(command) as total FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 1 DAY);`))[0].total;
 
-      const message = await db(`SELECT SUM(message) as total FROM log WHERE DATE(time) = "${time}";`);
-      const command = await db(`SELECT SUM(command) as total FROM log WHERE DATE(time) = "${time}";`);
+      const preMessage = (await db(`SELECT SUM(message) as total FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 2 DAY);`))[0].total;
+      const preCommand = (await db(`SELECT SUM(command) as total FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 2 DAY);`))[0].total;
 
-      const messageSign = (await db(`SELECT SUM(message) as total FROM log WHERE DATE(time) = "${time}";`))[0].total - (await db(`SELECT SUM(CASE WHEN time BETWEEN "${prevTime} 00:00:00" AND "${prevTime} 23:59:59" THEN message ELSE 0 END) AS total FROM log;`))[0].total;
-      const commandSign = (await db(`SELECT SUM(command) as total FROM log WHERE DATE(time) = "${time}";`))[0].total - (await db(`SELECT SUM(CASE WHEN time BETWEEN "${prevTime} 00:00:00" AND "${prevTime} 23:59:59" THEN command ELSE 0 END) AS total FROM log;`))[0].total;
-
-      const guild = await fetchGuildCounts(interaction.client) - (await db(`SELECT guild FROM log WHERE DATE(time) = "${time}" ORDER BY time ASC LIMIT 1;`))[0].guild;
-      const user = await fetchUserCounts(interaction.client) - (await db(`SELECT user FROM log WHERE DATE(time) = "${time}" ORDER BY time ASC LIMIT 1;`))[0].user;
+      const guild = await fetchGuildCounts(interaction.client) - (await db(`SELECT guild FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 1 DAY);`))[0].guild;
+      const user = await fetchUserCounts(interaction.client) - (await db(`SELECT user FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 1 DAY);`))[0].user;
 
       await interaction.editReply({
         embeds:[{
@@ -52,7 +48,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "統計データ",
-              value: `サーバー数: ${await fetchGuildCounts(interaction.client)}サーバー\nユーザー数: ${await fetchUserCounts(interaction.client)}人\nサーバー増減数: ${sign(guild)}サーバー\nユーザー増減数: ${sign(user)}人\n\n今日のメッセージ数: ${message[0].total}回\n今日のコマンド実行数: ${command[0].total}回\n前日とのメッセージ増減数: ${sign(messageSign)}回\n前日とのコマンド増減数: ${sign(commandSign)}回`
+              value: `サーバー数: ${await fetchGuildCounts(interaction.client)}サーバー\nユーザー数: ${await fetchUserCounts(interaction.client)}人\nサーバー増減数: ${sign(guild)}サーバー\nユーザー増減数: ${sign(user)}人\n\n過去24時間のメッセージ数: ${message}回\n過去24時間のコマンド実行数: ${command}回\n過去24時間とのメッセージ増減数: ${sign(message - preMessage)}回\n過去24時間とのコマンド増減数: ${sign(command - preCommand)}回`
             }
           ],
           timestamp: new Date()
