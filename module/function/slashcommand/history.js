@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     try{
-      const history = await db(`SELECT * FROM history WHERE user = ${interaction.user.id} ORDER BY time ASC;`);
+      const history = await db(`SELECT * FROM history WHERE user = ${interaction.user.id} AND time > DATE_SUB(NOW(),INTERVAL 1 DAY) ORDER BY time;`);
 
       if(!history[0]) return await interaction.editReply({
         embeds:[{
