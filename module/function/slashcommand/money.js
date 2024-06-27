@@ -53,6 +53,7 @@ module.exports = async(interaction)=>{
       });
 
       const user = await fetchUser(interaction.client,userId);
+      console.log(user)
       if(!user) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
