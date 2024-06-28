@@ -31,7 +31,7 @@ module.exports = async(client)=>{
   });
 
   cron.schedule("0 0 0 * * *",async()=>{
-    await db(`UPDATE stats SET message = 0, react = 0, \`join\` = 0, \`leave\` = 0;`);
+    await db(`UPDATE stats SET message = 0, \`join\` = 0, \`leave\` = 0;`);
 
     const price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
     (await db("SELECT * FROM money WHERE stock >= 80"))

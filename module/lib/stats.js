@@ -9,8 +9,5 @@ module.exports = {
   },
   "leave":async(guildId)=>{
     await db(`UPDATE stats SET \`leave\` = \`leave\` + 1 WHERE id = ${guildId};`);
-  },
-  "react":async(guildId)=>{
-    await db(`UPDATE stats SET react = react + 1 WHERE id = ${guildId};`);
   }
 }
