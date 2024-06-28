@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await db(`INSERT INTO debt (id, amount, time) VALUES("${interaction.user.id}","${amount*1.05}",NOW());`);
+      await db(`INSERT INTO debt (id, amount, time) VALUES("${interaction.user.id}","${Math.round(amount*1.05)}",NOW());`);
       await money.add(interaction.user.id,amount,"借金");
 
       await interaction.reply({
@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
             name: `${amount}コインを借りました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `返済には${amount*1.05}コイン必要です\n1日1%の利子がつきます`
+          description: `返済には${Math.round(amount*1.05)}コイン必要です\n1日1%の利子がつきます`
         }]
       });
     }else if(interaction.options.getSubcommand() === "repay"){

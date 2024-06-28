@@ -25,7 +25,7 @@ module.exports = async(client)=>{
 
     await db(`INSERT INTO log (time, ping, user, guild, message, command, cpu, ram) VALUES(NOW(),"${ping}","${user}","${guild}","${count[0].message}","${count[0].command}","${cpuUsage}","${ram}");`);
     await db(`UPDATE count SET message = 0, command = 0 WHERE id = ${process.env.ID};`);
-    await db("UPDATE debt SET amount = amount*1.01;");
+    await db("UPDATE debt SET amount = ROUND(amount*1.01);");
 
     log.info("ログを保存しました");
   });
