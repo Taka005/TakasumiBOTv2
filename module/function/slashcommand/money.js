@@ -15,6 +15,8 @@ module.exports = async(interaction)=>{
     if(!id){
       const data = await money.get(interaction.user.id);
 
+      const debt = await db(`SELECT * FROM debt WHERE id = ${interaction.user.id};`);
+
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -26,6 +28,10 @@ module.exports = async(interaction)=>{
             {
               name: "残高",
               value: `${data.amount}コイン`
+            },
+            {
+              name: "借金",
+              value: `${debt[0]?.amount||0}コイン`
             },
             {
               name: "アイテム",
@@ -67,6 +73,8 @@ module.exports = async(interaction)=>{
 
       const data = await money.get(user.id);
 
+      const debt = await db(`SELECT * FROM debt WHERE id = ${user.id};`);
+
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -78,6 +86,10 @@ module.exports = async(interaction)=>{
             {
               name: "残高",
               value: `${data.amount}コイン`
+            },
+            {
+              name: "借金",
+              value: `${debt[0]?.amount||0}コイン`
             },
             {
               name: "アイテム",

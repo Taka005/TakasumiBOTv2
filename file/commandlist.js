@@ -591,6 +591,35 @@ module.exports = {
             { name: "Discord", value: "0x5865F2" }
           ))
   },
+  debt:{
+    type: "money",
+    name: "/debt",
+    description: "借金を借りたり返済します",
+    example: "`/trade borrow 3000`\n`/trade repay`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "借りる金額は所持金の4倍が上限です\n借りると5%の利子が付き、毎日1%の利子が付きます",
+    data: new SlashCommandBuilder()
+      .setName("debt")
+      .setDescription("借金を借りたり返済します")
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("borrow")
+          .setDescription("借金をします")
+          .addIntegerOption(option=>
+            option
+              .setName("amount")
+              .setDescription("借りる金額")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("repay")
+          .setDescription("借金を返済します"))
+  },
   del:{
     type: "manage",
     name: "/del",

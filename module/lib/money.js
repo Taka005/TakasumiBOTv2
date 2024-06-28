@@ -17,8 +17,8 @@ module.exports = {
     const data = await db(`SELECT * FROM money WHERE id = ${id};`);
 
     let amount = (data[0] ? data[0].amount : 0) + number;
-    if(amount > 10000000){
-      amount = 10000000;
+    if(amount > 50000000){
+      amount = 50000000;
     }
 
     await db(`INSERT INTO history (id, amount, reason, user, time) VALUES("${createId(10)}","${number}","${reason}","${id}",NOW());`);
