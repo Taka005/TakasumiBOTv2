@@ -150,7 +150,7 @@ module.exports = async(interaction)=>{
           })
         }).then(res=>res.blob());
       }else if(type === "account"){
-        const members = await interaction.guild.members.fetch()
+        const members = await interaction.guild.members.fetch();
         const accounts = await db(`SELECT * FROM account;`);
 
         const register = members

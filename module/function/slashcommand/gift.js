@@ -24,6 +24,19 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
+      const debt = await db(`SELECT * FROM debt WHERE id = ${interaction.user.id};`);
+      if(debt[0]) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "作成できませんでした",
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+          },
+          description: "借金しているため、作成できません"
+        }],
+        ephemeral: true
+      });
+
       const user = await money.get(interaction.user.id);
 
       if(user.amount<gift.price) return await interaction.reply({

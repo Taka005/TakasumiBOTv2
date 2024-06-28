@@ -108,12 +108,6 @@ module.exports = async(client)=>{
     require("./event/guildMemberRemove/leave")(member);
   });
 
-  client.on(Events.MessageReactionAdd,async(react,user)=>{
-    if(user.bot) return;
-
-    await stats.react(react.message.guild.id);
-  });
-
   if(process.env.DEBUG){
     client.on(Events.Debug,(message)=>{
       log.debug(message);

@@ -175,7 +175,6 @@ CREATE TABLE `server` (
 CREATE TABLE `stats` (
   `id` varchar(20) NOT NULL,
   `message` int(10) NOT NULL,
-  `react` int(10) NOT NULL,
   `join` int(10) NOT NULL,
   `leave` int(10) NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()

@@ -30,8 +30,8 @@ module.exports = async(interaction)=>{
       const preMessage = (await db(`SELECT SUM(message) as total FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 2 DAY);`))[0].total;
       const preCommand = (await db(`SELECT SUM(command) as total FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 2 DAY);`))[0].total;
 
-      const guild = await fetchGuildCounts(interaction.client) - (await db(`SELECT guild FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 1 DAY);`))[0].guild;
-      const user = await fetchUserCounts(interaction.client) - (await db(`SELECT user FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 1 DAY);`))[0].user;
+      const guild = await fetchGuildCounts(interaction.client) - (await db(`SELECT guild FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 1 DAY) ORDER BY time;`))[0].guild;
+      const user = await fetchUserCounts(interaction.client) - (await db(`SELECT user FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 1 DAY) ORDER BY time;`))[0].user;
 
       await interaction.editReply({
         embeds:[{
