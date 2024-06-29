@@ -61,6 +61,7 @@ module.exports = async(interaction)=>{
         }]
       });
     }else if(interaction.options.getSubcommand() === "repay"){
+      const amount = interaction.options.getInteger("amount");
 
       const debt = await db(`SELECT * FROM debt WHERE id = ${interaction.user.id};`);
       if(!debt[0]) return await interaction.reply({
@@ -77,30 +78,73 @@ module.exports = async(interaction)=>{
 
       const data = await money.get(interaction.user.id);
 
-      if(data.amount<debt[0].amount) return await interaction.reply({
-        embeds:[{
-          color: Colors.Red,
-          author:{
-            name: "返済できませんでした",
-            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
-          },
-          description: "返済できる分の所持金がありません"
-        }],
-        ephemeral: true
-      });
+      if(amount){
+        if(amount <= 0||debt[0].amount < amount) return await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "返済できませんでした",
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+            },
+            description: "0コイン以上かつ借りている金額までしか返済することはできません"
+          }],
+          ephemeral: true
+        });
 
-      await db(`DELETE FROM debt WHERE id = ${interaction.user.id};`);
-      await money.delete(interaction.user.id,debt[0].amount,"借金の返済");
+        if(debt[0].amount === amount){
+          await db(`DELETE FROM debt WHERE id = ${interaction.user.id};`);
+          await money.delete(interaction.user.id,debt[0].amount,"借金の返済");
 
-      await interaction.reply({
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: `${debt[0].amount}コインの借金を返済しました`,
-            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
-          }
-        }]
-      });
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${debt[0].amount}コインの借金を返済しました`,
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+              }
+            }]
+          });
+        }else{
+          await db(`UPDATE debt SET amount = amount - ${amount} WHERE id = ${interaction.user.id};`);
+          await money.delete(interaction.user.id,amount,"借金の返済");
+
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${debt[0].amount}コインの借金を返済しました`,
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+              },
+              description: `残り${debt[0].amount - amount}コイン返済する必要があります`
+            }]
+          });
+        }
+      }else{
+        if(data.amount<debt[0].amount) return await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "返済できませんでした",
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+            },
+            description: "返済できる分の所持金がありません"
+          }],
+          ephemeral: true
+        });
+
+        await db(`DELETE FROM debt WHERE id = ${interaction.user.id};`);
+        await money.delete(interaction.user.id,debt[0].amount,"借金の返済");
+
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: `${debt[0].amount}コインの借金を返済しました`,
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+            }
+          }]
+        });
+      }
     }
   }
 }

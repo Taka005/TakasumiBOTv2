@@ -618,7 +618,12 @@ module.exports = {
       .addSubcommand(subcommand=>
         subcommand
           .setName("repay")
-          .setDescription("借金を返済します"))
+          .setDescription("借金を返済します")
+          .addIntegerOption(option=>
+            option
+              .setName("amount")
+              .setDescription("返済する金額")
+              .setRequired(true)))
   },
   del:{
     type: "manage",
