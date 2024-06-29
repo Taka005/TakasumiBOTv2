@@ -595,7 +595,7 @@ module.exports = {
     type: "money",
     name: "/debt",
     description: "借金を借りたり返済します",
-    example: "`/trade borrow 3000`\n`/trade repay`",
+    example: "`/debt borrow 3000`\n`/debt repay`",
     userPermission:[
       "必要なし"
     ],
@@ -618,7 +618,11 @@ module.exports = {
       .addSubcommand(subcommand=>
         subcommand
           .setName("repay")
-          .setDescription("借金を返済します"))
+          .setDescription("借金を返済します")
+          .addIntegerOption(option=>
+            option
+              .setName("amount")
+              .setDescription("返済する金額")))
   },
   del:{
     type: "manage",
