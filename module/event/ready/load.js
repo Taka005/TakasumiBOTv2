@@ -25,13 +25,13 @@ module.exports = async(client)=>{
 
     await db(`INSERT INTO log (time, ping, user, guild, message, command, cpu, ram) VALUES(NOW(),"${ping}","${user}","${guild}","${count[0].message}","${count[0].command}","${cpuUsage}","${ram}");`);
     await db(`UPDATE count SET message = 0, command = 0 WHERE id = ${process.env.ID};`);
-    await db("UPDATE debt SET amount = ROUND(amount*1.01) WHERE amount < 5000000;");
 
     log.info("ログを保存しました");
   });
 
   cron.schedule("0 0 0 * * *",async()=>{
     await db(`UPDATE stats SET message = 0, \`join\` = 0, \`leave\` = 0;`);
+    await db("UPDATE debt SET amount = ROUND(amount*1.01) WHERE amount < 5000000;");
 
     const price = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].stock;
     (await db("SELECT * FROM money WHERE stock >= 80"))
