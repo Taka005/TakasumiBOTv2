@@ -52,17 +52,17 @@ module.exports = [
   {
     id: "20000",
     price: 20000,
-    isBuy: false
+    isBuy: true
   },
   {
     id: "30000",
     price: 30000,
-    isBuy: false
+    isBuy: true
   },
   {
     id: "50000",
     price: 50000,
-    isBuy: false
+    isBuy: true
   },
   {
     id: "80000",
