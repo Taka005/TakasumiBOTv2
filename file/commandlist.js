@@ -622,8 +622,7 @@ module.exports = {
           .addIntegerOption(option=>
             option
               .setName("amount")
-              .setDescription("返済する金額")
-              .setRequired(true)))
+              .setDescription("返済する金額")))
   },
   del:{
     type: "manage",
