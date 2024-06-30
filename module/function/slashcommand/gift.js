@@ -39,7 +39,9 @@ module.exports = async(interaction)=>{
 
       const user = await money.get(interaction.user.id);
 
-      if(user.amount<gift.price) return await interaction.reply({
+      const comission = Math.round(gift.price*0.05);
+
+      if(user.amount<gift.price+comission) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -68,6 +70,7 @@ module.exports = async(interaction)=>{
 
       await db(`INSERT INTO gift (id, type, user, time) VALUES("${code}","${gift.id}","${interaction.user.id}",NOW());`);
       await money.delete(interaction.user.id,gift.price,"ギフトの作成");
+      await money.delete(interaction.user.id,comission,"ギフトの作成手数料");
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
