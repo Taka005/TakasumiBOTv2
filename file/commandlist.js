@@ -796,14 +796,14 @@ module.exports = {
     type: "money",
     name: "/gift",
     description: "ギフトを作成、受け取りします",
-    example: "`/gift create 100コイン`",
+    example: "`/gift create 100コイン`\n`/gift get DsA3FaV`",
     userPermission:[
       "必要なし"
     ],
     botPermission:[
       "必要なし"
     ],
-    note: "なし",
+    note: "ギフトの作成には作成する金額の5%の手数料が必要です",
     data: new SlashCommandBuilder()
       .setName("gift")
       .setDescription("ギフトの操作をします")
