@@ -24,7 +24,8 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     if(answer === number){
-      await money.add(interaction.user.id,Math.round(amount*3),"賭けの賞金");
+      await money.add(interaction.user.id,Math.round(amount*2.8),"賭けの賞金");
+
       await interaction.editReply({
         embeds:[{
           color: Colors.Green,
@@ -32,12 +33,11 @@ module.exports = async(interaction)=>{
             name: "勝利",
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `${Math.round(amount*3)}コインゲットしました\n所持金: ${data.amount + Math.round(amount*3)}コイン`
+          description: `${Math.round(amount*2.8)}コインゲットしました\n所持金: ${data.amount + Math.round(amount*2.8)}コイン`
         }]
       });
     }else{
       await money.delete(interaction.user.id,Math.round(amount*1.5),"賭けの罰金");
-      let total = data.amount - Math.round(amount*1.5);
 
       await interaction.editReply({
         embeds:[{
@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
             name: "敗北",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: `${Math.round(amount*1.5)}コイン失いました\n所持金: ${total}コイン`
+          description: `${Math.round(amount*1.5)}コイン失いました\n所持金: ${data.amount - Math.round(amount*1.5)}コイン`
         }]
       });
     }
