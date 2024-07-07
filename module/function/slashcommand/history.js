@@ -52,7 +52,7 @@ module.exports = async(interaction)=>{
             name: "取引履歴",
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: "過去1日分を表示しています",
+          description: `過去1日分を表示しています\n[TakasumiBOT History](https://history.takasumibot.com/?user=${interaction.user.id})からも確認できます`,
           image:{
             url: "attachment://history.png"
           }
