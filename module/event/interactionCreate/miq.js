@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const { AttachmentBuilder, Colors, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-  const fetchMessage = require("../lib/fetchMessage");
+  const fetchMessage = require("../../lib/fetchMessage");
   const config = require("../../../config.json");
   if(!interaction.isButton()) return;
   if(interaction.customId.startsWith("change_")){
