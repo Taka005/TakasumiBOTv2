@@ -35,10 +35,6 @@ module.exports = async(interaction)=>{
         new ActionRowBuilder()
           .addComponents(
             new ButtonBuilder()
-              .setCustomId(`miq_normal_${interaction.user.id}_${message.id}`)
-              .setStyle(ButtonStyle.Secondary)
-              .setEmoji("1074996848839884862"),
-            new ButtonBuilder()
               .setCustomId(`miq_color_${interaction.user.id}_${message.id}`)
               .setStyle(ButtonStyle.Secondary)
               .setEmoji("1131187775937458216"),
