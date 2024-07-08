@@ -3,7 +3,7 @@ module.exports = async(interaction)=>{
   const fetchMessage = require("../../lib/fetchMessage");
   const config = require("../../../config.json");
   if(!interaction.isButton()) return;
-  if(interaction.customId.startsWith("change_")){
+  if(interaction.customId.startsWith("miq_")){
     const data = interaction.customId.split("_");
 
     if(interaction.user.id !== data[2]) return await interaction.reply({
