@@ -15,7 +15,7 @@ module.exports = async(interaction)=>{
             name: "借金できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: "0コイン以上100万コインまでしか借りることはできません"
+          description: "1コイン以上100万コインまでしか借りることはできません"
         }],
         ephemeral: true
       });
@@ -86,7 +86,19 @@ module.exports = async(interaction)=>{
               name: "返済できませんでした",
               icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
-            description: "0コイン以上かつ借りている金額までしか返済することはできません"
+            description: "1コイン以上かつ借りている金額までしか返済することはできません"
+          }],
+          ephemeral: true
+        });
+
+        if(data.amount < amount) return await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "返済できませんでした",
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+            },
+            description: "返済できる分の所持金がありません"
           }],
           ephemeral: true
         });
