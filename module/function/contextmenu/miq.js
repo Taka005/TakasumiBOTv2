@@ -1,6 +1,6 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
-  const { AttachmentBuilder, Colors } = require("discord.js");
+  const { AttachmentBuilder, Colors, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
   const config = require("../../../config.json");
   if(!interaction.isContextMenuCommand()) return;
   if(interaction.commandName === "Make it a Quote"){
@@ -30,6 +30,30 @@ module.exports = async(interaction)=>{
         new AttachmentBuilder()
           .setFile(image.stream())
           .setName("TakasumiBOT_Quote.png")
+      ],
+      components:[
+        new ActionRowBuilder()
+          .addComponents(
+            new ButtonBuilder()
+              .setCustomId(`miq_color_${interaction.user.id}_${message.id}`)
+              .setStyle(ButtonStyle.Secondary)
+              .setEmoji("1131187775937458216"),
+            new ButtonBuilder()
+              .setCustomId(`miq_reverse_${interaction.user.id}_${message.id}`)
+              .setStyle(ButtonStyle.Secondary)
+              .setEmoji("1131189335379689482"),
+            new ButtonBuilder()
+              .setCustomId(`miq_white_${interaction.user.id}_${message.id}`)
+              .setStyle(ButtonStyle.Secondary)
+              .setEmoji("1131189576841560115"),
+            new ButtonBuilder()
+              .setCustomId(`miq_reverseColor_${interaction.user.id}_${message.id}`)
+              .setStyle(ButtonStyle.Secondary)
+              .setEmoji("1131191439666196531"),
+            new ButtonBuilder()
+              .setCustomId(`miq_reverseWhite_${interaction.user.id}_${message.id}`)
+              .setStyle(ButtonStyle.Secondary)
+              .setEmoji("1131190834843353158"))
       ]
     });
   }
