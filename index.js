@@ -8,8 +8,7 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.GuildPresences,
-    GatewayIntentBits.GuildMessageReactions
+    GatewayIntentBits.GuildPresences
   ],
   sweepers:{
     messages:{
