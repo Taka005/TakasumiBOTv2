@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node index.js",
     "debug": "node --inspect=0.0.0.0:9229 index.js",
-    "lint": "./node_modules/.bin/eslint ./"
+    "lint": "eslint './**/*.js'"
   },
   "engines": {
-    "node": ">=16.x"
+    "node": ">=18.x"
   },
   "repository": {
     "type": "git",

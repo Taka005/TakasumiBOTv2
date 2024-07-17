@@ -1,5 +1,4 @@
 module.exports = async(client)=>{
-  require("dotenv").config();
   const { Routes } = require("discord.js");
   const log = require("../../lib/log");
   const commands = require("../../../file/commandlist");

@@ -14,6 +14,7 @@
 - **クソコード**は書かない
 - プルリクエストを送る前に"npm run lint"を実行する(BOTは起動させなくてよい)
 - 必ず**dev**ブランチにプルリクエストを送る
+- 日本語のみの使用
 - 必ず[開発ルール](https://github.com/Taka005/TakasumiBOTv2/tree/main#開発ルール)に従う
 # 開発・貢献者
 - 開発: @taka005
@@ -28,6 +29,8 @@
 - feat 新機能
 - fix 修正
 - style コードの形の変更
+- chore コード以外の変更
+- docs ドキュメント
 - test テスト
 - build ビルドシステム等の変更
 - change その他の変更

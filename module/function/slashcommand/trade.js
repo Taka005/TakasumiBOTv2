@@ -100,7 +100,7 @@ module.exports = async(interaction)=>{
             name: "売却できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: `次に取引できるまであと${Math.floor((180000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
+          description: `次に取引できるまであと${Math.floor((300000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
         }],
         ephemeral: true
       });
