@@ -39,7 +39,7 @@ module.exports = async(interaction)=>{
 
       const user = await money.get(interaction.user.id);
 
-      const comission = Math.round(gift.price*0.05);
+      const comission = Math.round(gift.price*0.1);
 
       if(user.amount<gift.price+comission) return await interaction.reply({
         embeds:[{
