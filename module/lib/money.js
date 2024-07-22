@@ -6,6 +6,7 @@ module.exports = {
     const data = await db(`SELECT * FROM money WHERE id = ${id};`);
     return data[0]||{
       amount: 0,
+      roll: 0,
       yellow: 0,
       red: 0,
       blue: 0,
