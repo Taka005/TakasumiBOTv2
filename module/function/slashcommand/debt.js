@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
       });
 
       await db(`INSERT INTO debt (id, amount, time) VALUES("${interaction.user.id}","${Math.round(amount*1.03)}",NOW());`);
-      await money.add(interaction.user.id,amount,"借金");
+      await money.add(interaction.user.id,amount,"借金の借入");
 
       await interaction.reply({
         embeds:[{

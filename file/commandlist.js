@@ -1818,6 +1818,32 @@ module.exports = {
       .setName("rolecount")
       .setDescription("それぞれのロールを持っている人数と割合を表示します")
   },
+  roll:{
+    type: "money",
+    name: "/roll",
+    description: "ガチャを回します",
+    example: "`/roll 10`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+        "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("roll")
+      .setDescription("ガチャを回します")
+      .addStringOption(option=>
+        option
+          .setName("count")
+          .setDescription("回す回数")
+          .setRequired(true)
+          .addChoices(
+            { name: "1回", value: "1" },
+            { name: "5回", value: "5" },
+            { name: "10回", value: "10" }
+          ))
+  },
   safeweb:{
     type: "tool",
     name: "/safeweb",
