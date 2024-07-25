@@ -6,7 +6,7 @@ module.exports = async(interaction)=>{
   const isAdmin = require("../../lib/isAdmin");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "roll"){
-    const count = interaction.options.getInteger("count");
+    const count = interaction.options.getString("count");
 
     if(!await isAdmin(interaction.user.id)) return await interaction.reply({
       embeds:[{

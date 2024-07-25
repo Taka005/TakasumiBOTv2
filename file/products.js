@@ -2,7 +2,7 @@ module.exports = [
   {
     id: "roll",
     name: "ガチャ",
-    description: "ガチャガチャ一回分",
+    description: "ガチャガチャ",
     price: 8000,
     limit: 50
   },
