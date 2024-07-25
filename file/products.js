@@ -1,5 +1,12 @@
 module.exports = [
   {
+    id: "roll",
+    name: "ガチャ",
+    description: "ガチャガチャ一回分",
+    price: 8000,
+    limit: 50
+  },
+  {
     id: "yellow",
     name: "GC黄色",
     description: "グローバルチャットの表示色(黄色)",

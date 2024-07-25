@@ -25,7 +25,7 @@ module.exports = async(message)=>{
     mute_server.find(g=>g.id === message.guild.id)||
     message.content.length > 300||
     spam.count(message.guild.id)
-  ) return await message.react("❌").catch(()=>{});
+  ) return;
 
   const account = await db(`SELECT * FROM account WHERE id = ${message.author.id};`)
   if(!account[0]) return await message.reply({
