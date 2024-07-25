@@ -23,7 +23,7 @@ module.exports = {
     }
 
     await db(`INSERT INTO history (id, amount, reason, user, time) VALUES("${createId(10)}","${number}","${reason}","${id}",NOW());`);
-    await db(`INSERT INTO money (id, amount, yellow, red, blue, random, stock, time) VALUES("${id}","${amount}","0","0","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
+    await db(`INSERT INTO money (id, amount, roll, yellow, red, blue, random, stock, time) VALUES("${id}","${amount}","0","0","0","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
   },
   "delete":async(id,number,reason)=>{
     const data = await db(`SELECT * FROM money WHERE id = ${id};`);
@@ -34,6 +34,6 @@ module.exports = {
     }
 
     await db(`INSERT INTO history (id, amount, reason, user, time) VALUES("${createId(10)}","${-number}","${reason}","${id}",NOW());`);
-    await db(`INSERT INTO money (id, amount, yellow, red, blue, random, stock, time) VALUES("${id}","${amount}","0","0","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
+    await db(`INSERT INTO money (id, amount, roll, yellow, red, blue, random, stock, time) VALUES("${id}","${amount}","0","0","0","0","0","0",NOW()) ON DUPLICATE KEY UPDATE amount = VALUES (amount),time = VALUES (time);`);
   }
 }
