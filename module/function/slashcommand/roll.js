@@ -2,10 +2,23 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const db = require("../../lib/db");
   const money = require("../../lib/money");
-  const rolls = require("../../../file/rolls")
+  const rolls = require("../../../file/rolls");
+  const isAdmin = require("../../lib/isAdmin");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "roll"){
     const count = interaction.options.getInteger("count");
+
+    if(!await isAdmin(interaction.user.id)) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "回せませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "この機能は調整中です"
+      }],
+      ephemeral: true
+    });
 
     const data = await money.get(interaction.user.id);
 
