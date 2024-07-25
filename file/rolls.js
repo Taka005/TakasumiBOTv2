@@ -1,15 +1,15 @@
 module.exports = [
   {
     price: 1000,
-    rate: 0.5
+    rate: 0.6
   },
   {
     price: 12000,
-    rate: 0.25
+    rate: 0.17
   },
   {
     price: 20000,
-    rate: 0.12
+    rate: 0.10
   },
   {
     price: 30000,
