@@ -44,6 +44,7 @@ module.exports = async(interaction)=>{
         sumRate += roll.rate;
         if(random < sumRate){
           result = roll;
+          break;
         }
       }
 
