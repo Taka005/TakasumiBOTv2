@@ -36,8 +36,9 @@ module.exports = async(interaction)=>{
       }
 
       results.push(result);
-      await money.add(interaction.user.id,result.price,"ガチャの景品");
     }
+
+    await money.add(interaction.user.id,results.reduce((total,result)=>total+result,0),`${count}回のガチャの景品`);
 
     await db(`UPDATE money SET roll = roll - ${count} WHERE id = ${interaction.user.id}`);
 
