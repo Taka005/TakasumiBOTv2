@@ -40,7 +40,7 @@ module.exports = async(interaction)=>{
       results.push(result);
     }
 
-    await money.add(interaction.user.id,results.reduce((total,result)=>total+result,0),`${count}回のガチャの景品`);
+    await money.add(interaction.user.id,results.reduce((total,result)=>total+result.price,0),`${count}回のガチャの景品`);
 
     await interaction.reply({
       embeds:[{
