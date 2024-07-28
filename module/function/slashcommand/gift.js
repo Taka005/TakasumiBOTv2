@@ -48,7 +48,7 @@ module.exports = async(interaction)=>{
             name: "作成できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: "ギフトを送るための所持金が不足しています"
+          description: "ギフトを送るための所持金が不足しています\n作成には作成する金額の10%の手数料が必要です"
         }],
         ephemeral: true
       });
