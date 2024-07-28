@@ -21,6 +21,8 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    await db(`UPDATE money SET roll = roll - ${count} WHERE id = ${interaction.user.id}`);
+
     const results = [];
     for(let i = 0;i < count;i++){
       const random = Math.random();
@@ -39,8 +41,6 @@ module.exports = async(interaction)=>{
     }
 
     await money.add(interaction.user.id,results.reduce((total,result)=>total+result,0),`${count}回のガチャの景品`);
-
-    await db(`UPDATE money SET roll = roll - ${count} WHERE id = ${interaction.user.id}`);
 
     await interaction.reply({
       embeds:[{
