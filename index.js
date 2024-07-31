@@ -12,67 +12,67 @@ const client = new Client({
   ],
   sweepers:{
     messages:{
-      interval: 3600,
-      lifetime: 3600
+      interval: 1800,
+      lifetime: 1800
     },
     users:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>user=>user.id !== client.user.id
     },
     guildMembers:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>member=>member.id !== client.user.id
     },
     reactions:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>()=>true
     },
     presences:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>()=>true
     },
     invites:{
-      interval: 3600,
-      lifetime: 3600
+      interval: 1800,
+      lifetime: 1800
     },
     emojis:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>()=>true
     },
     threads:{
-      interval: 3600,
-      lifetime: 3600
+      interval: 1800,
+      lifetime: 1800
     },
     threadMembers:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>()=>true
     },
     stickers:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>()=>true
     },
     bans:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>()=>true
     },
     voiceStates:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>()=>true
     },
     stageInstances:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>()=>true
     },
     applicationCommands:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>()=>true
     },
     autoModerationRules:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>()=>true
     },
     entitlements:{
-      interval: 3600,
+      interval: 1800,
       filter: ()=>()=>true
     }
   }
