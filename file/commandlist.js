@@ -364,7 +364,7 @@ module.exports = {
     description: "メンバー認証を設定します\n4種類の認証方式を選択できます",
     example: "`/auth 標準`",
     userPermission:[
-      "ロールの管理"
+      "管理者"
     ],
     botPermission:[
       "ロールの管理",
