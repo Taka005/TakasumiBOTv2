@@ -46,6 +46,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    await interaction.deferReply({});
     try{
       if(data[1] === "muteUser"){
         await mute.addUser(report.target,report.title);
@@ -66,7 +67,7 @@ module.exports = async(interaction)=>{
       }else if(data[1] === "warn"){
         if(report.type === "user"){
           const user = await fetchUser(interaction.client,report.target);
-          if(!user) return await interaction.reply({
+          if(!user) return await interaction.editReply({
             embeds:[{
               color: Colors.Red,
               author:{
@@ -74,8 +75,7 @@ module.exports = async(interaction)=>{
                 icon_url: "https://cdn.takasumibot.com/images/system/error.png"
               },
               description: "対象のユーザーが存在しません"
-            }],
-            ephemeral: true
+            }]
           });
 
           await user.send({
@@ -90,7 +90,7 @@ module.exports = async(interaction)=>{
           });
         }else{
           const guild = await fetchGuild(interaction.client,report.target);
-          if(!guild) return await interaction.reply({
+          if(!guild) return await interaction.editReply({
             embeds:[{
               color: Colors.Red,
               author:{
@@ -98,8 +98,7 @@ module.exports = async(interaction)=>{
                 icon_url: "https://cdn.takasumibot.com/images/system/error.png"
               },
               description: "対象のサーバーが存在しません"
-            }],
-            ephemeral: true
+            }]
           });
 
           const owner = await guild.fetchOwner();
@@ -124,18 +123,22 @@ module.exports = async(interaction)=>{
         components: []
       });
 
-      await interaction.reply({
+      await interaction.editReply({
         embeds:[{
           color: Colors.Green,
           author:{
             name: "通報を処理しました",
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `${type[data[1]]}しました`
+          description: `${type[data[1]]}しました`,
+          footer:{
+            text: `${interaction.user.displayName}(${interaction.user.id})`,
+            icon_url: interaction.user.avatarURL()||"https://cdn.discordapp.com/embed/avatars/0.png"
+          }
         }]
       });
     }catch(error){
-      await interaction.reply({
+      await interaction.editReply({
         embeds:[{
           color: Colors.Red,
           author:{
@@ -148,8 +151,7 @@ module.exports = async(interaction)=>{
               value: `\`\`\`${error}\`\`\``
             }
           ]
-        }],
-        ephemeral: true
+        }]
       });
     }
   }
