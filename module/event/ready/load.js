@@ -39,7 +39,7 @@ module.exports = async(client)=>{
         await money.add(data.id,Math.floor(data.stock*price*0.03),"株の配当金");
       });
 
-    (await db("SELECT * FROM debt WHERE time < DATE_SUB(NOW(),INTERVAL 3 DAY);"))
+    (await db("SELECT * FROM debt WHERE time < DATE_SUB(NOW(),INTERVAL 5 DAY);"))
       .forEach(async(debt)=>{
         const data = await money.get(data.id);
 

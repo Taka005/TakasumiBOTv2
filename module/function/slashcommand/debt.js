@@ -57,7 +57,7 @@ module.exports = async(interaction)=>{
             name: `${amount}コインを借りました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `返済には${Math.round(amount*1.03)}コイン必要です\n1日1%の利子がつきます`
+          description: `返済には${Math.round(amount*1.03)}コイン必要です\n1日1%の利子がつきます\n5日以内に1コインでも返済されない場合強制的に返済されます`
         }]
       });
     }else if(interaction.options.getSubcommand() === "repay"){
