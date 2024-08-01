@@ -34,6 +34,8 @@ module.exports = async(client)=>{
           await db(`DELETE FROM debt WHERE id = ${debt.id};`);
           await money.delete(debt.id,debt.amount,"借金の取り立て");
         }else{
+          if(data.amount === 0) return;
+
           await db(`UPDATE debt SET amount = amount - ${data.amount}, time = time WHERE id = ${debt.id};`);
           await money.delete(debt.id,data.amount,"借金の取り立て");
         }
