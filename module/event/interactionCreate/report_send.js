@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.deferReply({});
+    await interaction.deferReply();
     try{
       if(data[1] === "muteUser"){
         await mute.addUser(report.target,report.title);
