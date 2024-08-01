@@ -28,7 +28,7 @@ module.exports = async(client)=>{
 
     (await db("SELECT * FROM debt WHERE time < DATE_SUB(NOW(),INTERVAL 5 DAY);"))
       .forEach(async(debt)=>{
-        const data = await money.get(data.id);
+        const data = await money.get(debt.id);
 
         if(data.amount >= debt.amount){
           await db(`DELETE FROM debt WHERE id = ${debt.id};`);
