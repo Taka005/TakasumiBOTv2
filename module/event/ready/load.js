@@ -39,6 +39,19 @@ module.exports = async(client)=>{
         await money.add(data.id,Math.floor(data.stock*price*0.03),"株の配当金");
       });
 
+    (await db("SELECT * FROM debt WHERE time < DATE_SUB(NOW(),INTERVAL 5 DAY);"))
+      .forEach(async(debt)=>{
+        const data = await money.get(data.id);
+
+        if(data.amount >= debt.amount){
+          await db(`DELETE FROM debt WHERE id = ${debt.id};`);
+          await money.delete(debt.id,debt.amount,"借金の取り立て");
+        }else{
+          await db(`UPDATE debt SET amount = amount - ${data.amount}, time = time WHERE id = ${debt.id};`);
+          await money.delete(debt.id,data.amount,"借金の取り立て");
+        }
+      });
+
     log.info("統計データリセットしました");
   });
 

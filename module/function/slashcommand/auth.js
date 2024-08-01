@@ -13,7 +13,7 @@ module.exports = async(interaction)=>{
       "web": Colors.Yellow
     };
 
-    if(!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) return await interaction.reply({
+    if(!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
         fields:[
           {
             name: "必要な権限",
-            value: "```ロールの管理```"
+            value: "```管理者```"
           }
         ]
       }],
