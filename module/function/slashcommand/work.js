@@ -5,6 +5,7 @@ module.exports = async(interaction)=>{
   const money = require("../../lib/money");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "work"){
+
     const history = await db(`SELECT * FROM history WHERE user = ${interaction.user.id} and reason = "給料" ORDER BY time DESC;`);
     if(history[0]&&new Date() - history[0].time <= 1200000) return await interaction.reply({
       embeds:[{
