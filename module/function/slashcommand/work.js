@@ -1,20 +1,19 @@
-const Spam = require("../../lib/spam");
-const spam = new Spam(1200000,true);
+const db = require("../../lib/db");
 
 module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const money = require("../../lib/money");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "work"){
-
-    if(spam.count(interaction.user.id)) return await interaction.reply({
+    const history = await db(`SELECT * FROM history WHERE user = ${interaction.user.id} and reason = "給料" ORDER BY time DESC;`);
+    if(history[0]&&new Date() - history[0].time <= 1200000) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
           name: "まだお金は貰えません",
           icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
-        description: `次に実行できるまであと${Math.floor((1200000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
+        description: `次に実行できるまであと${Math.floor((1200000 - (new Date() - history[0].time))/60000)}分です`
       }],
       ephemeral: true
     });
