@@ -2512,7 +2512,7 @@ module.exports = {
     ],
     note: "なし",
     data: new SlashCommandBuilder()
-      .setName("work")
+      .setName("word")
       .setDescription("英単語ゲームをします")
   },
   work:{
