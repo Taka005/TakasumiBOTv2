@@ -1,6 +1,3 @@
-const Spam = require("../../lib/spam");
-const spam = new Spam(300000,true);
-
 module.exports = async(interaction)=>{
   const { ButtonBuilder, ButtonStyle, ActionRowBuilder, AttachmentBuilder, Colors } = require("discord.js");
   const fetch = require("node-fetch");
@@ -44,14 +41,15 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      if(spam.count(interaction.user.id)) return await interaction.reply({
+      const history = await db(`SELECT * FROM history WHERE user = ${interaction.user.id} and ( reason = "株の購入" OR reason = "株の売却" ) ORDER BY time DESC;`);
+      if(history[0]&&new Date() - history[0].time <= 300000) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
             name: "購入できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: `次に取引できるまであと${Math.floor((300000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
+          description: `次に取引できるまであと${Math.floor((300000 - (new Date() - history[0].time))/60000)}分です`
         }],
         ephemeral: true
       });
@@ -93,14 +91,15 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      if(spam.count(interaction.user.id)) return await interaction.reply({
+      const history = await db(`SELECT * FROM history WHERE user = ${interaction.user.id} and ( reason = "株の購入" OR reason = "株の売却" ) ORDER BY time DESC;`);
+      if(history[0]&&new Date() - history[0].time <= 300000) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
             name: "売却できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: `次に取引できるまであと${Math.floor((300000 - (new Date() - spam.get(interaction.user.id)))/60000)}分です`
+          description: `次に取引できるまであと${Math.floor((300000 - (new Date() - history[0].time))/60000)}分です`
         }],
         ephemeral: true
       });
