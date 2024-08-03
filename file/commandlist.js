@@ -2499,6 +2499,22 @@ module.exports = {
           .setDescription("検索ワード")
           .setRequired(true))
   },
+  word:{
+    type: "money",
+    name: "/word",
+    description: "英単語ゲームをします",
+    example: "`/word`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("word")
+      .setDescription("英単語ゲームをします")
+  },
   work:{
     type: "money",
     name: "/work",

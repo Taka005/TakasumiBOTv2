@@ -20,7 +20,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await interaction.deferReply({ephemeral: true});
+    await interaction.deferReply({ ephemeral: true });
     try{
       const add = interaction.values.filter(role=>!interaction.member.roles.cache.has(role))
       const remove = interaction.values.filter(role=>!add.includes(role));
