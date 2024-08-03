@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
     const data = interaction.customId.split("_");
     const text = interaction.fields.getTextInputValue("text");
 
-    const target = words.find(word=>word.index === data[2]);
+    const target = words.find(word=>word.index === Number(data[2]));
 
     let result;
     if(data[1] === "en"){
