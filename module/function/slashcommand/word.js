@@ -14,7 +14,7 @@ module.exports = async(interaction)=>{
 
     const text = new TextInputBuilder()
       .setCustomId("text")
-      .setLabel(`${target[type]}を${type === "en" ? "英語" : "日本語"}に直せ`)
+      .setLabel(`${target[type]}を${type === "en" ? "日本語" : "英語"}に直せ`)
       .setMaxLength(30)
       .setRequired(true)
       .setStyle(TextInputStyle.Short);
