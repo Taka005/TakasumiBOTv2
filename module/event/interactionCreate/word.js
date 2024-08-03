@@ -29,7 +29,15 @@ module.exports = async(interaction)=>{
           description: "100コイン取得しました",
           fields:[
             {
-              name: target.en,
+              name: "あなたの回答",
+              value: text
+            },
+            {
+              name: "英語",
+              value: target.en
+            },
+            {
+              name: "日本語",
               value: target.ja.join("\n")
             }
           ]
@@ -45,7 +53,15 @@ module.exports = async(interaction)=>{
           },
           fields:[
             {
-              name: target.en,
+              name: "あなたの回答",
+              value: text
+            },
+            {
+              name: "英語",
+              value: target.en
+            },
+            {
+              name: "日本語",
               value: target.ja.join("\n")
             }
           ]
