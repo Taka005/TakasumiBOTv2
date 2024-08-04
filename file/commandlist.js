@@ -1140,7 +1140,7 @@ module.exports = {
   leaderboard:{
     type: "money",
     name: "/leaderboard",
-    description: "お金持ちランキングを表示します",
+    description: "ランキングを表示します",
     example: "`/leaderboard`",
     userPermission:[
       "必要なし"
@@ -1151,7 +1151,16 @@ module.exports = {
     note: "なし",
     data: new SlashCommandBuilder()
       .setName("leaderboard")
-      .setDescription("お金持ちランキングを表示します")
+      .setDescription("ランキングを表示します")
+      .addStringOption(option=>
+        option
+          .setName("type")
+          .setDescription("ランキングの種類")
+          .setRequired(true)
+          .addChoices(
+            { name: "お金", value: "money" },
+            { name: "借金", value: "debt" }
+          ))
       .addIntegerOption(option=>
         option
           .setName("range")
