@@ -4,10 +4,17 @@ module.exports = async(interaction)=>{
   const fetchUser = require("../../lib/fetchUser");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "leaderboard"){
+    const type = interaction.options.getString("type");
     const range = interaction.options.getInteger("range");
 
-    let data = (await db("SELECT * FROM money;"))
-      .sort((m1,m2)=>m2.amount - m1.amount);
+    let data;
+    if(type === "money"){
+      data = (await db("SELECT * FROM money;"))
+        .sort((m1,m2)=>m2.amount - m1.amount);
+    }else if(type === "debt"){
+      data = (await db("SELECT * FROM debt;"))
+        .sort((m1,m2)=>m2.amount - m1.amount);
+    }
 
     if(range){
       if(range <= 0) return await interaction.reply({
@@ -51,7 +58,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Green,
         author:{
-          name: "お金持ちランキング",
+          name: type === "money" ? "お金持ちランキング" : "借金ランキング",
           icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
         description: rank.join("\n")
