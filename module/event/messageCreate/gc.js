@@ -91,7 +91,7 @@ module.exports = async(message)=>{
       embed[0].fields = [
         {
           name: "\u200b",
-          value: `**${replyWebhookMessage.embeds[0].author.name}>>** ${replyWebhookMessage.embeds[0].description||"なし"}`
+          value: `**${replyWebhookMessage.embeds[0].author?.name||"不明"}>>** ${replyWebhookMessage.embeds[0].description||"なし"}`
         }
       ];
     }else{
