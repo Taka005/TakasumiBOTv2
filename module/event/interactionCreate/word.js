@@ -9,15 +9,10 @@ module.exports = async(interaction)=>{
 
     const target = words.find(word=>word.index === Number(data[2]));
 
-    let result;
-    if(data[1] === "en"){
-      result = target.ja.includes(text);
-    }else{
-      result = target.en === text;
-    }
+    const result = data[1] === "en" ? target.ja.includes(text) : target.en === text;
 
     if(result){
-      await money.add(interaction.user.id,100,"ゲームの賞金");
+      await money.add(interaction.user.id,150,"ゲームの賞金");
 
       await interaction.reply({
         embeds:[{
@@ -26,7 +21,7 @@ module.exports = async(interaction)=>{
             name: "正解しました",
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: "100コイン取得しました",
+          description: "150コイン取得しました",
           fields:[
             {
               name: "あなたの回答",
@@ -44,6 +39,8 @@ module.exports = async(interaction)=>{
         }]
       });
     }else{
+      await money.add(interaction.user.id,10,"ゲームの参加賞");
+
       await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -51,6 +48,7 @@ module.exports = async(interaction)=>{
             name: "正解しませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
+          description: "10コイン獲得しました",
           fields:[
             {
               name: "あなたの回答",
