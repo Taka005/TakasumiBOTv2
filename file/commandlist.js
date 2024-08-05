@@ -973,6 +973,41 @@ module.exports = {
             { name: "SHA512", value: "sha512" }
           ))
   },
+  hedge:{
+    type: "money",
+    name: "/hedge",
+    description: "保険を契約、受け取りをします",
+    example: "`/hedge contract 1000`\n`/hedge receive`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "なし",
+    data: new SlashCommandBuilder()
+      .setName("hedge")
+      .setDescription("保険を契約、受け取りをします")
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("contract")
+          .setDescription("保険を契約します")
+          .addStringOption(option=>
+            option
+              .setName("plan")
+              .setDescription("契約するプラン")
+              .setRequired(true)
+              .addChoices(
+                { name: "100", value: "100" },
+                { name: "1000", value: "1000" },
+                { name: "5000", value: "5000" },
+                { name: "10000", value: "10000" }
+              )))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("contract")
+          .setDescription("保険を契約します"))
+  },
   help:{
     type: "othor",
     name: "/help",
