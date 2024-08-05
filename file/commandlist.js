@@ -1005,8 +1005,8 @@ module.exports = {
               )))
       .addSubcommand(subcommand=>
         subcommand
-          .setName("contract")
-          .setDescription("保険を契約します"))
+          .setName("receive")
+          .setDescription("保険金を受け取ります"))
   },
   help:{
     type: "othor",
