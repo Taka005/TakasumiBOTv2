@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
       .setLabel("理由")
       .setPlaceholder("可能な限り詳しく入力してください")
       .setMaxLength(800)
-      .setMinLength(30)
+      .setMinLength(15)
       .setRequired(true)
       .setStyle(TextInputStyle.Paragraph);
 
