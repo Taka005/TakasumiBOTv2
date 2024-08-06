@@ -1,5 +1,5 @@
 const Spam = require("../../lib/spam");
-const spam = new Spam(800);
+const spam = new Spam(1000);
 
 module.exports = async(message)=>{
   const { WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
@@ -24,7 +24,7 @@ module.exports = async(message)=>{
     mute_user.find(m=>m.id === message.author.id)||
     mute_server.find(g=>g.id === message.guild.id)||
     message.content.length > 300||
-    spam.count(message.guild.id)
+    spam.count(message.author.id)
   ) return;
 
   const account = await db(`SELECT * FROM account WHERE id = ${message.author.id};`)

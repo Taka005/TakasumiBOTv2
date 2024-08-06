@@ -7,12 +7,21 @@ module.exports = async(interaction)=>{
     const type = interaction.options.getString("type");
     const range = interaction.options.getInteger("range");
 
+    const types = {
+      "money": "お金",
+      "debt": "借金",
+      "hedge": "保険"
+    }
+
     let data;
     if(type === "money"){
       data = (await db("SELECT * FROM money;"))
         .sort((m1,m2)=>m2.amount - m1.amount);
     }else if(type === "debt"){
       data = (await db("SELECT * FROM debt;"))
+        .sort((m1,m2)=>m2.amount - m1.amount);
+    }else if(type === "hedge"){
+      data = (await db("SELECT * FROM hedge;"))
         .sort((m1,m2)=>m2.amount - m1.amount);
     }
 
@@ -58,7 +67,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Green,
         author:{
-          name: type === "money" ? "お金持ちランキング" : "借金ランキング",
+          name: `${types[type]}ランキング`,
           icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
         description: rank.join("\n")

@@ -54,6 +54,20 @@ module.exports = async(client)=>{
         await money.add(data.id,Math.floor(data.stock*price*0.03),"株の配当金");
       });
 
+    (await db(`SELECT * FROM hedge;`))
+      .forEach(async(hedge)=>{
+        const data = await money.get(hedge.id);
+
+        if(data.amount <= hedge.plan){
+          await money.add(data.id,hedge.amount,"保険金の受け取り");
+          await db(`DELETE FROM hedge WHERE id = ${data.id};`);
+        }else{
+          await money.delete(data.id,hedge.plan,"保険金の支払い");
+        }
+      });
+
+    await db("UPDATE hedge SET amount = ROUND(amount*1.01) + plan, time = time;");
+
     log.info("統計データリセットしました");
   });
 
