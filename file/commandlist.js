@@ -1194,7 +1194,8 @@ module.exports = {
           .setRequired(true)
           .addChoices(
             { name: "お金", value: "money" },
-            { name: "借金", value: "debt" }
+            { name: "借金", value: "debt" },
+            { name: "保険", value: "hedge" }
           ))
       .addIntegerOption(option=>
         option
