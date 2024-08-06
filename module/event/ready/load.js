@@ -62,11 +62,13 @@ module.exports = async(client)=>{
           await money.add(data.id,hedge.amount,"保険金の受け取り");
           await db(`DELETE FROM hedge WHERE id = ${data.id};`);
         }else{
+          if(hedge.amount >= 5000000) return;
+
           await money.delete(data.id,hedge.plan,"保険金の支払い");
         }
       });
 
-    await db("UPDATE hedge SET amount = ROUND(amount*1.01) + plan, time = time;");
+    await db("UPDATE hedge SET amount = ROUND(amount*1.01) + plan, time = time WHERE amount < 5000000;");
 
     log.info("統計データリセットしました");
   });
