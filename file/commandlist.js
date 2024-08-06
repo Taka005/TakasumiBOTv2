@@ -998,10 +998,10 @@ module.exports = {
               .setDescription("契約するプラン")
               .setRequired(true)
               .addChoices(
-                { name: "100", value: "100" },
-                { name: "1000", value: "1000" },
-                { name: "5000", value: "5000" },
-                { name: "10000", value: "10000" }
+                { name: "100コイン/日", value: "100" },
+                { name: "1000コイン/日", value: "1000" },
+                { name: "5000コイン/日", value: "5000" },
+                { name: "10000コイン/日", value: "10000" }
               )))
       .addSubcommand(subcommand=>
         subcommand
