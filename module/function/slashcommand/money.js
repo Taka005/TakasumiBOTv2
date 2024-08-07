@@ -16,6 +16,7 @@ module.exports = async(interaction)=>{
       const data = await money.get(interaction.user.id);
 
       const debt = await db(`SELECT * FROM debt WHERE id = ${interaction.user.id};`);
+      const hedge = await db(`SELECT * FROM hedge WHERE id = ${interaction.user.id};`);
 
       await interaction.reply({
         embeds:[{
@@ -32,6 +33,10 @@ module.exports = async(interaction)=>{
             {
               name: "借金",
               value: `${debt[0]?.amount||0}コイン`
+            },
+            {
+              name: "保険金",
+              value: `${hedge[0]?.amount||0}コイン`
             },
             {
               name: "アイテム",
@@ -74,6 +79,7 @@ module.exports = async(interaction)=>{
       const data = await money.get(user.id);
 
       const debt = await db(`SELECT * FROM debt WHERE id = ${user.id};`);
+      const hedge = await db(`SELECT * FROM hedge WHERE id = ${user.id};`);
 
       await interaction.reply({
         embeds:[{
@@ -90,6 +96,10 @@ module.exports = async(interaction)=>{
             {
               name: "借金",
               value: `${debt[0]?.amount||0}コイン`
+            },
+            {
+              name: "保険金",
+              value: `${hedge[0]?.amount||0}コイン`
             },
             {
               name: "アイテム",

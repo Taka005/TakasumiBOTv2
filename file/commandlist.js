@@ -1006,7 +1006,11 @@ module.exports = {
       .addSubcommand(subcommand=>
         subcommand
           .setName("receive")
-          .setDescription("保険金を受け取ります"))
+          .setDescription("保険金を受け取ります")
+          .addIntegerOption(option=>
+            option
+              .setName("amount")
+              .setDescription("受け取る金額")))
   },
   help:{
     type: "othor",

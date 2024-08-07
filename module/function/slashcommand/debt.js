@@ -124,7 +124,7 @@ module.exports = async(interaction)=>{
             embeds:[{
               color: Colors.Green,
               author:{
-                name: `${debt[0].amount}コインの借金を返済しました`,
+                name: `${amount}コインの借金を返済しました`,
                 icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               },
               description: `残り${debt[0].amount - amount}コイン返済する必要があります`

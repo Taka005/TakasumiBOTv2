@@ -68,7 +68,7 @@ module.exports = async(client)=>{
         }
       });
 
-    await db("UPDATE hedge SET amount = ROUND(amount*1.01) + plan, time = time WHERE amount < 5000000;");
+    await db("UPDATE hedge SET amount = ROUND(amount*1.02) + plan, time = time WHERE amount < 5000000;");
 
     log.info("統計データリセットしました");
   });
