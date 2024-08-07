@@ -49,6 +49,8 @@ module.exports = async(interaction)=>{
         }]
       });
     }else if(interaction.options.getSubcommand() === "receive"){
+      const amount = interaction.options.getInteger("amount");
+
       const hedge = await db(`SELECT * FROM hedge WHERE id = ${interaction.user.id};`);
       if(!hedge[0]) return await interaction.reply({
         embeds:[{
@@ -62,18 +64,60 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await db(`DELETE FROM hedge WHERE id = ${interaction.user.id};`);
-      await money.add(interaction.user.id,hedge[0].amount,"保険金の受け取り");
+      if(amount){
+        if(amount <= 0||hedge[0].amount < amount) return await interaction.reply({
+          embeds:[{
+            color: Colors.Red,
+            author:{
+              name: "保険金を受け取りできませんでした",
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+            },
+            description: "保険金以上の金額を支払うことはできません"
+          }],
+          ephemeral: true
+        });
 
-      await interaction.reply({
-        embeds:[{
-          color: Colors.Green,
-          author:{
-            name: `${hedge[0].amount}コインの保険金を受け取りました`,
-            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
-          }
-        }]
-      });
+        if(hedge[0].amount === amount){
+          await db(`DELETE FROM hedge WHERE id = ${interaction.user.id};`);
+          await money.add(interaction.user.id,hedge[0].amount,"保険金の受け取り");
+
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${hedge[0].amount}コインの保険金を受け取りました`,
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+              }
+            }]
+          });
+        }else{
+          await db(`UPDATE hedge SET amount = amount - ${amount} WHERE id = ${interaction.user.id};`);
+          await money.add(interaction.user.id,amount,"保険金の受け取り");
+
+          await interaction.reply({
+            embeds:[{
+              color: Colors.Green,
+              author:{
+                name: `${amount}コインの保険金を受け取りました`,
+                icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+              }
+            }]
+          });
+        }
+      }else{
+        await db(`DELETE FROM hedge WHERE id = ${interaction.user.id};`);
+        await money.add(interaction.user.id,hedge[0].amount,"保険金の受け取り");
+
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: `${hedge[0].amount}コインの保険金を受け取りました`,
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+            }
+          }]
+        });
+      }
     }
   }
 }
