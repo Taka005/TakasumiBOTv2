@@ -6,18 +6,6 @@ module.exports = async(interaction)=>{
     const target = interaction.options.getString("target");
     const number = interaction.options.getString("number");
 
-    if(isNaN(number)) return await interaction.reply({
-      embeds:[{
-        color: Colors.Red,
-        author:{
-          name: "変換できませんでした",
-          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
-        },
-        description: "変換する値は数字を指定してください"
-      }],
-      ephemeral: true
-    });
-
     const data = parseInt(number,Number(source)).toString(Number(target));
 
     await interaction.reply({
