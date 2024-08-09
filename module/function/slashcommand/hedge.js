@@ -37,6 +37,7 @@ module.exports = async(interaction)=>{
 
       await db(`INSERT INTO hedge (id, plan, amount, time) VALUES("${interaction.user.id}","${plan}","${plan}",NOW());`);
       await money.delete(interaction.user.id,plan,"保険の契約");
+      await money.delete(interaction.user.id,Math.round(plan*0.15),"保険の契約手数料");
 
       await interaction.reply({
         embeds:[{
@@ -45,7 +46,7 @@ module.exports = async(interaction)=>{
             name: `保険を${plan}コインで契約しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `毎日${plan}コインを支払う必要があります`
+          description: `契約手数料: ${Math.round(plan*0.15)}コイン\n毎日${plan}コインを支払う必要があります`
         }]
       });
     }else if(interaction.options.getSubcommand() === "receive"){
