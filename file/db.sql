@@ -40,6 +40,12 @@ CREATE TABLE `count` (
   `sell` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `debt` (
+  `id` varchar(20) NOT NULL,
+  `amount` int(10) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE `dissoku` (
   `id` varchar(20) NOT NULL,
   `role` varchar(20) NOT NULL,
@@ -58,6 +64,13 @@ CREATE TABLE `global` (
   `server` varchar(20) NOT NULL,
   `id` varchar(20) NOT NULL,
   `token` text NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `hedge` (
+  `id` varchar(20) NOT NULL,
+  `amount` int(100) NOT NULL,
+  `plan` int(10) NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -118,6 +131,7 @@ CREATE TABLE `log` (
 CREATE TABLE `money` (
   `id` varchar(20) NOT NULL,
   `amount` int(10) NOT NULL,
+  `roll` int(10) NOT NULL,
   `yellow` int(10) NOT NULL,
   `red` int(10) NOT NULL,
   `blue` int(10) NOT NULL,
@@ -212,6 +226,9 @@ ALTER TABLE `bump`
 ALTER TABLE `count`
   ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `debt`
+  ADD PRIMARY KEY (`id`);
+
 ALTER TABLE `dissoku`
   ADD PRIMARY KEY (`id`);
 
@@ -220,6 +237,9 @@ ALTER TABLE `gift`
 
 ALTER TABLE `global`
   ADD PRIMARY KEY (`channel`);
+
+ALTER TABLE `hedge`
+  ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `hiroyuki`
   ADD PRIMARY KEY (`channel`);
