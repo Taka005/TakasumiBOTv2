@@ -69,7 +69,7 @@ module.exports = async(interaction)=>{
             name: `チケットを作成しました`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `<#${ch.id}>`,
+          description: `<#${ch.id}>`
         }],
         ephemeral: true
       });

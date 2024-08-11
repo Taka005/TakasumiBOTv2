@@ -95,7 +95,7 @@ module.exports = async(interaction)=>{
             name: "取得できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: `不明なギフトコードです`
+          description: "不明なギフトコードです"
         }],
         ephemeral: true
       });
