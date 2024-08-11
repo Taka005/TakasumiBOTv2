@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { AttachmentBuilder } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   const { execSync } = require("child_process");
   if(interaction.options.getSubcommand() === "cmd"){
     const code = interaction.options.getString("code");

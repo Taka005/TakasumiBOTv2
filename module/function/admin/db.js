@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { AttachmentBuilder } = require("discord.js");
+  const { AttachmentBuilder, Colors } = require("discord.js");
   const db = require("../../lib/db");
   if(interaction.options.getSubcommand() === "db"){
     const query = interaction.options.getString("query");
