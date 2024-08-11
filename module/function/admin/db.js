@@ -6,12 +6,25 @@ module.exports = async(interaction)=>{
 
     const data = JSON.stringify(await db(query),null,"  ");
 
-    await interaction.reply({
-      files:[
-        new AttachmentBuilder()
-          .setFile(Buffer.from(data,"UTF-8"))
-          .setName("DB.json")
-      ]
-    });
+    try{
+      await interaction.reply({
+        embeds:[{
+          color: Colors.Green,
+          author:{
+            name: "実行しました",
+            icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+          },
+          description: `\`\`\`json\n${data}\`\`\``
+        }]
+      });
+    }catch{
+      await interaction.reply({
+        files:[
+          new AttachmentBuilder()
+            .setFile(Buffer.from(data,"UTF-8"))
+            .setName("DB.json")
+        ]
+      });
+    }
   }
 }

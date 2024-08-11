@@ -10,21 +10,47 @@ module.exports = async(interaction)=>{
         timeout: 10000
       });
 
-      await interaction.editReply({
-        files:[
-          new AttachmentBuilder()
-            .setFile(Buffer.from(data.toString(),"UTF-8"))
-            .setName("cmd.txt")
-        ]
-      });
+      try{
+        await interaction.reply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "実行しました",
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+            },
+            description: `\`\`\`${data.toString()}\`\`\``
+          }]
+        });
+      }catch{
+        await interaction.editReply({
+          files:[
+            new AttachmentBuilder()
+              .setFile(Buffer.from(data.toString(),"UTF-8"))
+              .setName("cmd.txt")
+          ]
+        });
+      }
     }catch(error){
-      await interaction.editReply({
-        files:[
-          new AttachmentBuilder()
-            .setFile(Buffer.from(error.toString(),"UTF-8"))
-            .setName("cmd.txt")
-        ]
-      });
+      try{
+        await interaction.editReply({
+          embeds:[{
+            color: Colors.Green,
+            author:{
+              name: "実行しました",
+              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+            },
+            description: `\`\`\`${error.toString()}\`\`\``
+          }]
+        });
+      }catch{
+        await interaction.editReply({
+          files:[
+            new AttachmentBuilder()
+              .setFile(Buffer.from(error.toString(),"UTF-8"))
+              .setName("cmd.txt")
+          ]
+        });
+      }
     }
   }
 }
