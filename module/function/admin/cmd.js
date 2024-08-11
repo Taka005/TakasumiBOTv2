@@ -34,10 +34,10 @@ module.exports = async(interaction)=>{
       try{
         await interaction.editReply({
           embeds:[{
-            color: Colors.Green,
+            color: Colors.Red,
             author:{
-              name: "実行しました",
-              icon_url: "https://cdn.takasumibot.com/images/system/success.png"
+              name: "実行できませんでした",
+              icon_url: "https://cdn.takasumibot.com/images/system/error.png"
             },
             description: `\`\`\`${error.toString()}\`\`\``
           }]
@@ -47,7 +47,7 @@ module.exports = async(interaction)=>{
           files:[
             new AttachmentBuilder()
               .setFile(Buffer.from(error.toString(),"UTF-8"))
-              .setName("cmd.txt")
+              .setName("error.txt")
           ]
         });
       }
