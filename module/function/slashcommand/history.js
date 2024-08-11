@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     try{
-      const history = await db(`SELECT * FROM history WHERE user = ${interaction.user.id} AND time > DATE_SUB(NOW(),INTERVAL 1 DAY) ORDER BY time;`);
+      const history = await db(`SELECT * FROM history WHERE user = ${interaction.user.id} AND time > DATE_SUB(NOW(),INTERVAL 1 DAY) ORDER BY time LIMIT 30;`);
 
       if(!history[0]) return await interaction.editReply({
         embeds:[{
@@ -52,7 +52,7 @@ module.exports = async(interaction)=>{
             name: "取引履歴",
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `過去1日分を表示しています\n[TakasumiBOT History](https://history.takasumibot.com/?user=${interaction.user.id})からも確認できます`,
+          description: `過去30件分を表示しています\n[TakasumiBOT History](https://history.takasumibot.com/?user=${interaction.user.id})からも確認できます`,
           image:{
             url: "attachment://history.png"
           }
