@@ -46,7 +46,7 @@ module.exports = async(client)=>{
   });
 
   client.on(Events.InteractionCreate,async(interaction)=>{
-    if(!interaction.guild) return await interaction.reply({
+    if(!interaction.inGuild()) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
