@@ -26,8 +26,8 @@ module.exports = {
     fs.appendFileSync("./tmp/app.log",`[${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}] [DEBUG] ${message}\n`,"utf8");
   },
   "reset":()=>{
-    fs.copyFileSync("./tmp/app.log",`./tmp/app_${new Date()}.log`);
-    fs.copyFileSync("./tmp/db.log",`./tmp/db_${new Date()}.log`);
+    fs.copyFileSync("./tmp/app.log",`./tmp/app_${new Date().toLocaleString()}.log`);
+    fs.copyFileSync("./tmp/db.log",`./tmp/db_${new Date().toLocaleString()}.log`);
 
     fs.writeFileSync("./tmp/app.log","","utf-8");
     fs.writeFileSync("./tmp/db.log","","utf-8");
