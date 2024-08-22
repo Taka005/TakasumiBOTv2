@@ -4,6 +4,7 @@ module.exports = async(interaction)=>{
   const money = require("../../lib/money");
   const db = require("../../lib/db");
   const sign = require("../../lib/sign");
+  const time = require("../../lib/time");
   require("dotenv").config();
   const config = require("../../../config.json");
   if(!interaction.isChatInputCommand()) return;
@@ -49,7 +50,7 @@ module.exports = async(interaction)=>{
             name: "購入できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: `次に取引できるまであと${Math.floor((300000 - (new Date() - history[0].time))/60000)}分です`
+          description: `次に取引できるまであと${time((300000 - (new Date() - history[0].time))/60000)}です`
         }],
         ephemeral: true
       });
@@ -99,7 +100,7 @@ module.exports = async(interaction)=>{
             name: "売却できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: `次に取引できるまであと${Math.floor((300000 - (new Date() - history[0].time))/60000)}分です`
+          description: `次に取引できるまであと${time((300000 - (new Date() - history[0].time))/60000)}です`
         }],
         ephemeral: true
       });

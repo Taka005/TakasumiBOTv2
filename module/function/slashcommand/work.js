@@ -3,6 +3,7 @@ const db = require("../../lib/db");
 module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const money = require("../../lib/money");
+  const time = require("../../lib/time");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "work"){
 
@@ -14,7 +15,7 @@ module.exports = async(interaction)=>{
           name: "まだお金は貰えません",
           icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
-        description: `次に実行できるまであと${Math.floor((1200000 - (new Date() - history[0].time))/60000)}分です`
+        description: `次に実行できるまであと${time((1200000 - (new Date() - history[0].time))/60000)}です`
       }],
       ephemeral: true
     });
