@@ -50,7 +50,7 @@ module.exports = async(interaction)=>{
             name: "購入できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: `次に取引できるまであと${time((300000 - (new Date() - history[0].time))/60000)}です`
+          description: `次に取引できるまであと${time(300000 - (new Date() - history[0].time))}です`
         }],
         ephemeral: true
       });
@@ -100,7 +100,7 @@ module.exports = async(interaction)=>{
             name: "売却できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: `次に取引できるまであと${time((300000 - (new Date() - history[0].time))/60000)}です`
+          description: `次に取引できるまであと${time(300000 - (new Date() - history[0].time))}です`
         }],
         ephemeral: true
       });
