@@ -91,8 +91,10 @@ module.exports = async(client)=>{
     });
 
     if(interaction.isChatInputCommand()){
-      const name = `${interaction.commandName}${this.options[0]?.type === ApplicationCommandOptionType.Subcommand ? ` ${interaction.options.getSubcommand()}` : ""}`;
-      const option = interaction.options.data.map(data=>`${data.name}:${data.value||"なし"}`).join(" ");
+      const name = `${interaction.commandName}${interaction.options.getSubcommand(false) ? ` ${interaction.options.getSubcommand(false)}` : ""}`;
+      const option = interaction.options.data
+        .filter(data=>data.type !== ApplicationCommandOptionType.Subcommand||data.type !== ApplicationCommandOptionType.SubcommandGroup)
+        .map(data=>`${data.name}:${data.value||"なし"}`).join(" ");
 
       await db(`INSERT INTO command (id, name, \`option\`, user, server, channel, time) VALUES("${createId(10)}","${name}","${option}","${interaction.user.id}","${interaction.guild.id}","${interaction.channel.id}",NOW());`);
     }
