@@ -5,6 +5,8 @@ module.exports = async(client)=>{
   const count = require("./lib/count");
   const stats = require("./lib/stats");
   const log = require("./lib/log");
+  const createId = require("./lib/createId");
+  const db = require("./lib/db");
   const fileLoader = require("./lib/fileLoader");
   const config = require("../config.json");
 
@@ -87,6 +89,13 @@ module.exports = async(client)=>{
       ],
       ephemeral: true
     });
+
+    if(interaction.isChatInputCommand()){
+      const name = `${interaction.commandName}${interaction.option.getSubcommand() ? ` ${interaction.option.getSubcommand()}` : ""}`;
+      const option = interaction.option.data.map(data=>`${data.name}:${data.value||"なし"}`).join(" ");
+
+      await db(`INSERT INTO command (id, name, \`option\`, user, server, channel, time) VALUES("${createId(10)}","${name}","${option}","${interaction.user.id}","${interaction.guild.id}","${interaction.channel.id}",NOW());`);
+    }
 
     await count.command();
 
