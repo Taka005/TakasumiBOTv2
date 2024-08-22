@@ -1,5 +1,5 @@
 module.exports = async(client)=>{
-  const { Events, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js");
+  const { Events, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors, ApplicationCommandOptionType } = require("discord.js");
   require("dotenv").config();
   const mute = require("./lib/mute");
   const count = require("./lib/count");
@@ -91,7 +91,7 @@ module.exports = async(client)=>{
     });
 
     if(interaction.isChatInputCommand()){
-      const name = `${interaction.commandName}${interaction.options.getSubcommand() ? ` ${interaction.options.getSubcommand()}` : ""}`;
+      const name = `${interaction.commandName}${this.options[0]?.type === ApplicationCommandOptionType.Subcommand ? ` ${interaction.options.getSubcommand()}` : ""}`;
       const option = interaction.options.data.map(data=>`${data.name}:${data.value||"なし"}`).join(" ");
 
       await db(`INSERT INTO command (id, name, \`option\`, user, server, channel, time) VALUES("${createId(10)}","${name}","${option}","${interaction.user.id}","${interaction.guild.id}","${interaction.channel.id}",NOW());`);
