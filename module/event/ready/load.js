@@ -20,6 +20,7 @@ module.exports = async(client)=>{
     const ram = 100 - Math.floor((os.freemem()/os.totalmem())*100);
 
     await db("DELETE FROM log WHERE time < DATE_SUB(NOW(),INTERVAL 1 WEEK);");
+    await db("DELETE FROM command WHERE time < DATE_SUB(NOW(),INTERVAL 1 WEEK);");
     await db("DELETE FROM gift WHERE time < DATE_SUB(NOW(),INTERVAL 1 MONTH);");
     await db("DELETE FROM history WHERE time < DATE_SUB(NOW(),INTERVAL 3 DAY);");
 
