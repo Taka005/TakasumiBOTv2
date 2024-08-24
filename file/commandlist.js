@@ -2580,27 +2580,6 @@ module.exports = {
       .setName("work")
       .setDescription("20分に1回お金をもらえます")
   },
-  yahoo:{
-    type: "search",
-    name: "/yahoo",
-    description: "Yahooで検索します",
-    example: "`/yahoo discord.js`",
-    userPermission:[
-      "必要なし"
-    ],
-    botPermission:[
-      "必要なし"
-    ],
-    note: "なし",
-    data: new SlashCommandBuilder()
-      .setName("yahoo")
-      .setDescription("Yahooで検索し表示します")
-      .addStringOption(option=>
-        option
-          .setName("word")
-          .setDescription("検索ワード")
-          .setRequired(true))
-  },
   youtube:{
     type: "tool",
     name: "/youtube",
