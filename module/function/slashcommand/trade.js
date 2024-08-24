@@ -107,7 +107,7 @@ module.exports = async(interaction)=>{
 
       const debt = await db(`SELECT * FROM debt WHERE id = ${interaction.user.id};`);
       if(!debt[0]){
-        await db(`UPDATE count SET stock = stock - ${Math.floor(count*0.02)} WHERE id = ${process.env.ID}`);
+        await db(`UPDATE count SET stock = stock - ${Math.floor(count*0.03)} WHERE id = ${process.env.ID}`);
       }
 
       await db(`UPDATE count SET sell = sell + 1 WHERE id = ${process.env.ID}`);
