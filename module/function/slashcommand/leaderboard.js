@@ -29,7 +29,7 @@ module.exports = async(interaction)=>{
     if(filter === "local"){
       const members = await interaction.guild.members.fetch();
 
-      data = data.map(d=>members.find(member=>member.id === d.id));
+      data = data.filter(d=>members.find(member=>member.id === d.id));
     }
 
     if(range){
