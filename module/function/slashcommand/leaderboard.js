@@ -29,7 +29,8 @@ module.exports = async(interaction)=>{
     if(filter === "local"){
       data = (await interaction.guild.members.fetch())
         .filter(member=>!member.user.bot)
-        .filter(member=>data.find(d=>d.id === member.id));
+        .filter(member=>data.find(d=>d.id === member.id))
+        .toJSON();
     }
 
     if(range){
