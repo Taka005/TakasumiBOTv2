@@ -5,6 +5,7 @@ module.exports = async(interaction)=>{
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "leaderboard"){
     const type = interaction.options.getString("type");
+    const filter = interaction.options.getString("filter");
     const range = interaction.options.getInteger("range");
 
     const types = {
@@ -23,6 +24,12 @@ module.exports = async(interaction)=>{
     }else if(type === "hedge"){
       data = (await db("SELECT * FROM hedge;"))
         .sort((m1,m2)=>m2.amount - m1.amount);
+    }
+
+    if(filter === "local"){
+      data = (await interaction.guild.members.fetch())
+        .filter(member=>!member.user.bot)
+        .filter(member=>data.find(d=>d.id === member.id));
     }
 
     if(range){
@@ -67,7 +74,7 @@ module.exports = async(interaction)=>{
       embeds:[{
         color: Colors.Green,
         author:{
-          name: `${types[type]}ランキング`,
+          name: `${filter === "local" ? "このサーバーの" : ""}${types[type]}ランキング`,
           icon_url: "https://cdn.takasumibot.com/images/system/success.png"
         },
         description: rank.join("\n")

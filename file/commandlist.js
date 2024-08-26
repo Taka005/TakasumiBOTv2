@@ -1201,6 +1201,15 @@ module.exports = {
             { name: "借金", value: "debt" },
             { name: "保険", value: "hedge" }
           ))
+        .addStringOption(option=>
+          option
+            .setName("filter")
+            .setDescription("ランキングのフィルター")
+            .setRequired(true)
+            .addChoices(
+              { name: "グローバル", value: "global" },
+              { name: "ローカル", value: "local" }
+            ))
       .addIntegerOption(option=>
         option
           .setName("range")
