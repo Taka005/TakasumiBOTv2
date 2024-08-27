@@ -13,17 +13,16 @@ module.exports = async(message)=>{
   ) return;
 
   const link = message.content.match(/\d{17,19}/g);
-  console.log(link)
   if(link){
     if(await ignore.check(message.guild.id,"expand")||limit(message)) return;
 
-    const guild = await fetchGuild(message.client,link[1]);
+    const guild = await fetchGuild(message.client,link[0]);
     if(!guild) return;
 
-    const channel = await fetchChannel(guild,link[2]);
+    const channel = await fetchChannel(guild,link[1]);
     if(!channel) return;
 
-    const msg = await fetchMessage(channel,link[3]);
+    const msg = await fetchMessage(channel,link[2]);
     if(!msg) return;
 
     const embed = [{
