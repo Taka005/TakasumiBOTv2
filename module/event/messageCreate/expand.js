@@ -13,6 +13,7 @@ module.exports = async(message)=>{
   ) return;
 
   const link = message.content.match(/\d{17,19}/g);
+  console.log(link)
   if(link){
     if(await ignore.check(message.guild.id,"expand")||limit(message)) return;
 
