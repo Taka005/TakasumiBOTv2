@@ -12,7 +12,7 @@ module.exports = async(message)=>{
     !message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.SendMessages)
   ) return;
 
-  const link = message.content.match(/^https?:\/\/(?:ptb\.|canary\.)?(?:discord|discordapp)\.com\/channels\/(\d+)\/(\d+)\/(\d+)$/);
+  const link = message.content.match(/^https?:\/\/(?:ptb\.|canary\.)?(?:discord|discordapp)\.com\/channels\/\d{17,19}\/\d{17,19}\/\d{17,19}/);
   if(link){
     if(await ignore.check(message.guild.id,"expand")||limit(message)) return;
 
