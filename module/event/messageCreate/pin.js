@@ -10,6 +10,7 @@ module.exports = async(message)=>{
   const data = await db(`SELECT * FROM pin WHERE channel = ${message.channel.id};`);
   if(data[0]){
     if(spam.count(message.channel.id)) return;
+
     await sleep(5000);
 
     try{

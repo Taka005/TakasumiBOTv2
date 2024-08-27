@@ -1,3 +1,6 @@
+const Spam = require("../../lib/spam");
+const spam = new Spam(10000,true);
+
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { Colors } = require("discord.js");
@@ -14,6 +17,18 @@ module.exports = async(interaction)=>{
           icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "URLを指定する必要があります"
+      }],
+      ephemeral: true
+    });
+
+    if(spam.count(interaction.user.id)) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "短縮URLにできませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "10秒間に1回しか実行できません"
       }],
       ephemeral: true
     });
