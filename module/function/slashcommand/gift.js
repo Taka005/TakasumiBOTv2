@@ -4,6 +4,7 @@ module.exports = async(interaction)=>{
   const money = require("../../lib/money");
   const createId = require("../../lib/createId");
   const escape = require("../../lib/escape");
+  const time = require("../../lib/time");
   const gifts = require("../../../file/gifts");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "gift"){
@@ -37,9 +38,22 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
+      const history = await db(`SELECT * FROM history WHERE user = ${interaction.user.id} and reason = "ギフトの作成" ORDER BY time DESC;`);
+      if(history[0]&&new Date() - history[0].time <= 60000) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "作成できませんでした",
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+          },
+          description: `次に実行できるまであと${time(60000 - (new Date() - history[0].time))}です`
+        }],
+        ephemeral: true
+      });
+
       const user = await money.get(interaction.user.id);
 
-      const comission = Math.round(gift.price*0.1);
+      const comission = Math.round(gift.price*0.15);
 
       if(user.amount<gift.price+comission) return await interaction.reply({
         embeds:[{
@@ -48,7 +62,7 @@ module.exports = async(interaction)=>{
             name: "作成できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: "ギフトを送るための所持金が不足しています\n作成には作成する金額の10%の手数料が必要です"
+          description: "ギフトを送るための所持金が不足しています\n作成には作成する金額の15%の手数料が必要です"
         }],
         ephemeral: true
       });

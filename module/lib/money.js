@@ -1,5 +1,6 @@
 const db = require("./db");
 const createId = require("./createId");
+require("dotenv").config();
 
 module.exports = {
   "get":async(id)=>{
@@ -31,6 +32,10 @@ module.exports = {
     let amount = (data[0] ? data[0].amount : 0) - number;
     if(amount < 0){
       amount = 0;
+    }
+
+    if(reason.includes("手数料")){
+      await db(`UPDATE count SET treasury = treasury + ${number}, WHERE id = ${process.env.ID};`);
     }
 
     await db(`INSERT INTO history (id, amount, reason, user, time) VALUES("${createId(10)}","${-number}","${reason}","${id}",NOW());`);
