@@ -803,7 +803,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "ギフトの作成には作成する金額の5%の手数料が必要です",
+    note: "ギフトの作成には作成する金額の15%の手数料が必要です",
     data: new SlashCommandBuilder()
       .setName("gift")
       .setDescription("ギフトの操作をします")
