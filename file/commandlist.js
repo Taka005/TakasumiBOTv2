@@ -984,7 +984,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし",
+    note: "契約には手数料が必要です",
     data: new SlashCommandBuilder()
       .setName("hedge")
       .setDescription("保険を契約、受け取りをします")
@@ -2348,7 +2348,7 @@ module.exports = {
     botPermission:[
       "必要なし"
     ],
-    note: "なし",
+    note: "株の購入には手数料がかかります",
     data: new SlashCommandBuilder()
       .setName("trade")
       .setDescription("株の情報や取引をします")
