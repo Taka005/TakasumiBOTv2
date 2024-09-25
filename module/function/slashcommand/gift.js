@@ -4,6 +4,7 @@ module.exports = async(interaction)=>{
   const money = require("../../lib/money");
   const createId = require("../../lib/createId");
   const escape = require("../../lib/escape");
+  const time = require("../../lib/time");
   const gifts = require("../../../file/gifts");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "gift"){
