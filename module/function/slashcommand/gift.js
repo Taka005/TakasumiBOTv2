@@ -37,6 +37,19 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
+      const history = await db(`SELECT * FROM history WHERE user = ${interaction.user.id} and reason = "ギフトの作成" ORDER BY time DESC;`);
+      if(history[0]&&new Date() - history[0].time <= 60000) return await interaction.reply({
+        embeds:[{
+          color: Colors.Red,
+          author:{
+            name: "作成できませんでした",
+            icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+          },
+          description: `次に実行できるまであと${time(60000 - (new Date() - history[0].time))}です`
+        }],
+        ephemeral: true
+      });
+
       const user = await money.get(interaction.user.id);
 
       const comission = Math.round(gift.price*0.1);
