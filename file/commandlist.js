@@ -999,6 +999,7 @@ module.exports = {
               .setRequired(true)
               .addChoices(
                 { name: "100コイン/日", value: "100" },
+                { name: "500コイン/日", value: "500" },
                 { name: "1000コイン/日", value: "1000" },
                 { name: "5000コイン/日", value: "5000" },
                 { name: "10000コイン/日", value: "10000" }
