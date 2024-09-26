@@ -7,6 +7,7 @@ module.exports = async(interaction)=>{
   const fetchGuildCounts = require("../../lib/fetchGuildCounts");
   const fetchUserCounts = require("../../lib/fetchUserCounts");
   const config = require("../../../config.json");
+  require("dotenv").config();
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "status"){
 
@@ -33,6 +34,11 @@ module.exports = async(interaction)=>{
       const guild = await fetchGuildCounts(interaction.client) - (await db(`SELECT guild FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 1 DAY) ORDER BY time;`))[0].guild;
       const user = await fetchUserCounts(interaction.client) - (await db(`SELECT user FROM log WHERE time > DATE_SUB(NOW(),INTERVAL 1 DAY) ORDER BY time;`))[0].user;
 
+      const totalAmount = (await db(`SELECT SUM(amount) as total FROM money;`))[0].total;
+      const totalStock = (await db(`SELECT SUM(stock) as total FROM money;`))[0].total;
+      const treasury = (await db(`SELECT * FROM count WHERE id = ${process.env.ID};`))[0].treasury;
+      const historyAmount = (await db(`SELECT SUM(amount) as total FROM history WHERE time > DATE_SUB(NOW(),INTERVAL 1 DAY);`))[0].total;
+
       await interaction.editReply({
         embeds:[{
           color: Colors.Blue,
@@ -49,6 +55,10 @@ module.exports = async(interaction)=>{
             {
               name: "統計データ",
               value: `サーバー数: ${await fetchGuildCounts(interaction.client)}サーバー\nユーザー数: ${await fetchUserCounts(interaction.client)}人\nサーバー増減数: ${sign(guild)}サーバー\nユーザー増減数: ${sign(user)}人\n\n過去24時間のメッセージ数: ${message}回\n過去24時間のコマンド実行数: ${command}回\n過去24時間とのメッセージ増減数: ${sign(message - preMessage)}回\n過去24時間とのコマンド増減数: ${sign(command - preCommand)}回`
+            },
+            {
+              name: "経済",
+              value: `財産合計: ${totalAmount}コイン\n株合計: ${totalStock}株\n国庫: ${treasury}コイン\n動いた金額: ${historyAmount}コイン`
             }
           ],
           timestamp: new Date()

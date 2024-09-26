@@ -22,7 +22,7 @@ module.exports = async(client)=>{
     await db("DELETE FROM log WHERE time < DATE_SUB(NOW(),INTERVAL 1 WEEK);");
     await db("DELETE FROM command WHERE time < DATE_SUB(NOW(),INTERVAL 1 WEEK);");
     await db("DELETE FROM gift WHERE time < DATE_SUB(NOW(),INTERVAL 1 MONTH);");
-    await db("DELETE FROM history WHERE time < DATE_SUB(NOW(),INTERVAL 3 DAY);");
+    await db("DELETE FROM history WHERE time < DATE_SUB(NOW(),INTERVAL 1 WEEK);");
 
     await db(`INSERT INTO log (time, ping, user, guild, message, command, cpu, ram) VALUES(NOW(),"${ping}","${user}","${guild}","${count[0].message}","${count[0].command}","${cpuUsage}","${ram}");`);
     await db(`UPDATE count SET message = 0, command = 0 WHERE id = ${process.env.ID};`);
