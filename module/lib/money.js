@@ -35,7 +35,7 @@ module.exports = {
     }
 
     if(reason.includes("手数料")){
-      await db(`UPDATE count SET treasury = treasury + ${number}, WHERE id = ${process.env.ID};`);
+      await db(`UPDATE count SET treasury = treasury + ${number} WHERE id = ${process.env.ID};`);
     }
 
     await db(`INSERT INTO history (id, amount, reason, user, time) VALUES("${createId(10)}","${-number}","${reason}","${id}",NOW());`);
