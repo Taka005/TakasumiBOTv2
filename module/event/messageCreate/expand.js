@@ -28,7 +28,7 @@ module.exports = async(message)=>{
     const embed = [{
       color: Colors.Green,
       author:{
-        name: msg.author.tag,
+        name: `${message.author.displayName}(${message.author.username})`,
         icon_url: msg.author.avatarURL()||msg.author.defaultAvatarURL,
       },
       description: msg.content||"",
