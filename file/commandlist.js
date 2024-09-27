@@ -2342,7 +2342,7 @@ module.exports = {
     type: "money",
     name: "/trade",
     description: "株の情報や取引をします",
-    example: "`/trade buy 3`\n`/trade info`",
+    example: "`/trade buy 3`\n`/trade graph`",
     userPermission:[
       "必要なし"
     ],
