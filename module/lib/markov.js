@@ -66,7 +66,7 @@ module.exports = class Markov{
 
     output += firstWord;
     
-    while(true){
+    for(;;){
       const currentWord = firstWord;
       const followWord = nextWord;
       
