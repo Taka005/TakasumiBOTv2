@@ -51,7 +51,7 @@ module.exports = class Markov{
         this.tree[currentWord][nextWord].push(followWord);
       }
     }
-    console.log("LOAD")
+
     this.isLoad = true;
   }
 
