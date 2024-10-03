@@ -4,6 +4,7 @@ module.exports = class Markov{
   constructor(maxChar){
     this.tree = {};
     this.maxChar = maxChar;
+    this.isLoad = false;
   }
 
   analyze(text){
@@ -50,6 +51,8 @@ module.exports = class Markov{
         this.tree[currentWord][nextWord].push(followWord);
       }
     }
+
+    this.isLoad = true;
   }
 
   async make(){

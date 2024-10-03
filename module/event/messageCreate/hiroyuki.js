@@ -141,7 +141,7 @@ module.exports = async(message)=>{
     if(Object.keys(reply_1).find(key=>message.content.match(key))){
       content = reply_1[Object.keys(reply_1).find(key=>message.content.match(key))];
     }else{
-      content = markov.make();
+      content = markov.isLoad ? markov.make() : "なんかそういうデータあるんですか？";
     }
 
     msg = {
