@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
       const res = await fetch(`https://safeweb.norton.com/safeweb/sites/v1/details?url=${encodeURI(url)}&insert=0`)
         .then(res=>res.json());
         
-      if(res.rating==="w"){
+      if(res.rating === "w"){
         await interaction.editReply({
           embeds:[{
             color: Colors.Yellow,
@@ -38,7 +38,7 @@ module.exports = async(interaction)=>{
             }
           }]
         });
-      }else if(res.rating==="b"){
+      }else if(res.rating === "b"){
         await interaction.editReply({
           embeds:[{
             color: Colors.Red,
@@ -53,7 +53,7 @@ module.exports = async(interaction)=>{
             }
           }]
         });
-      }else if(res.rating==="u"){
+      }else if(res.rating === "u"){
         await interaction.editReply({
           embeds:[{
             color: Colors.Gray,
