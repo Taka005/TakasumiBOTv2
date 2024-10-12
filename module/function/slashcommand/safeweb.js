@@ -20,10 +20,10 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     try{
-      const res = await fetch(`https://safeweb.norton.com/report/show?url=${encodeURI(url)}&ulang=jpn`)
-        .then(res=>res.text());
-
-      if(res.indexOf("［注意］") !== -1){
+      const res = await fetch(`https://safeweb.norton.com/safeweb/sites/v1/details?url=${encodeURI(url)}&insert=0`)
+        .then(res=>res.json());
+        
+      if(res.rating==="w"){
         await interaction.editReply({
           embeds:[{
             color: Colors.Yellow,
@@ -38,7 +38,7 @@ module.exports = async(interaction)=>{
             }
           }]
         });
-      }else if(res.indexOf("警告") !== -1){
+      }else if(res.rating==="b"){
         await interaction.editReply({
           embeds:[{
             color: Colors.Red,
@@ -53,7 +53,7 @@ module.exports = async(interaction)=>{
             }
           }]
         });
-      }else if(res.indexOf("未評価") !== -1){
+      }else if(res.rating==="u"){
         await interaction.editReply({
           embeds:[{
             color: Colors.Gray,
