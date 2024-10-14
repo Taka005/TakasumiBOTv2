@@ -1700,7 +1700,7 @@ module.exports = {
         subcommand
           .setName("pay")
           .setDescription("商品を購入します")
-          .addIntegerOption(option=>
+          .addStringOption(option=>
             option
               .setName("id")
               .setDescription("購入する商品のID")
@@ -1709,7 +1709,7 @@ module.exports = {
         subcommand
           .setName("list")
           .setDescription("商品の一覧を表示します")
-          .addIntegerOption(option=>
+          .addStringOption(option=>
             option
               .setName("type")
               .setDescription("表示する種類")
