@@ -6,6 +6,7 @@ module.exports = async(interaction)=>{
     const id = interaction.options.getString("id");
 
     const product = await db(`SELECT * FROM product WHERE id = ${id};`);
+    console.log(product,id);
     if(!product[0]) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
