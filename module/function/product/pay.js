@@ -35,7 +35,7 @@ module.exports = async(interaction)=>{
 
     await money.add(product.seller,product.price,`${product.name}の売り上げ`);
     await money.delete(interaction.user.id,product.price,`${product.name}の購入`);
-    await db(`DELETE FROM product WHERE id = ${product.id};`);
+    await db(`DELETE FROM product WHERE id = "${product.id}";`);
     await interaction.reply({
       embeds:[{
         color: Colors.Green,
