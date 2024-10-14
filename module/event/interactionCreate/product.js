@@ -9,6 +9,19 @@ module.exports = async(interaction)=>{
     const price = interaction.fields.getTextInputValue("price");
     const content = interaction.fields.getTextInputValue("content");
 
+    const product = await db(`SELECT * FROM product WHERE seller = ${interaction.user.id};`);
+    if(product.length>7) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "商品を作成できませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "商品は8個までしか作成できません"
+      }],
+      ephemeral: true
+    });
+
     const data = await money.get(interaction.user.id);
 
     if(isNaN(price)&&price>data.amount) return await interaction.reply({
