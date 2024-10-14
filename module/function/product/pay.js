@@ -5,9 +5,9 @@ module.exports = async(interaction)=>{
   if(interaction.options.getSubcommand() === "pay"){
     const id = interaction.options.getString("id");
 
-    const product = await db(`SELECT * FROM product WHERE id = "${id}";`);
-    console.log(product,id);
-    if(!product[0]) return await interaction.reply({
+    const product = (await db(`SELECT * FROM product WHERE id = "${id}";`))[0];
+
+    if(!product) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
