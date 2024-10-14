@@ -1713,11 +1713,11 @@ module.exports = {
             option
               .setName("type")
               .setDescription("表示する種類")
-              .setRequired(true))
+              .setRequired(true)
               .addChoices(
                 { name: "全ての商品", value: "all" },
                 { name: "作成した商品", value: "create" }
-              ) )
+              )))
       .addSubcommand(subcommand=>
         subcommand
           .setName("create")
