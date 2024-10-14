@@ -34,7 +34,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
     }else{
-      const data = await db(`SELECT * FROM product WHERE seller = ${interaction.user.id};`);
+      const data = await db(`SELECT * FROM product WHERE seller = "${interaction.user.id}";`);
       if(!data[0]) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
