@@ -2,6 +2,7 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const money = require("../../lib/money");
   const createId = require("../../lib/createId");
+  const db = require("../../lib/db");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("create")){
     const name = interaction.fields.getTextInputValue("name");
