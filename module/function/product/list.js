@@ -20,7 +20,7 @@ module.exports = async(interaction)=>{
       });
 
       const list = await Promise.all(data.map(async(pro)=>{
-        const user = await fetchUser(interaction.client,pro.id);
+        const user = await fetchUser(interaction.client,pro.seller);
   
         return {
           name: `${pro.name} ${pro.price}コイン`,
