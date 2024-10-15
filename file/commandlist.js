@@ -1681,6 +1681,48 @@ module.exports = {
           .setDescription("選択8")
           .setMaxLength(50))
   },
+  product:{
+    type: "money",
+    name: "/product",
+    description: "商品の作成や購入をします",
+    example: "`/product create`\n`/product list 全て`",
+    userPermission:[
+      "必要なし"
+    ],
+    botPermission:[
+      "必要なし"
+    ],
+    note: "商品の作成には手数料がかかります",
+    data: new SlashCommandBuilder()
+      .setName("product")
+      .setDescription("商品の作成や購入をします")
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("pay")
+          .setDescription("商品を購入します")
+          .addStringOption(option=>
+            option
+              .setName("id")
+              .setDescription("購入する商品のID")
+              .setRequired(true)))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("list")
+          .setDescription("商品の一覧を表示します")
+          .addStringOption(option=>
+            option
+              .setName("type")
+              .setDescription("表示する種類")
+              .setRequired(true)
+              .addChoices(
+                { name: "全ての商品", value: "all" },
+                { name: "作成した商品", value: "create" }
+              )))
+      .addSubcommand(subcommand=>
+        subcommand
+          .setName("create")
+          .setDescription("商品を作成します"))
+  },
   qr:{
     type: "tool",
     name: "/qr",
@@ -2342,7 +2384,7 @@ module.exports = {
     type: "money",
     name: "/trade",
     description: "株の情報や取引をします",
-    example: "`/trade buy 3`\n`/trade info`",
+    example: "`/trade buy 3`\n`/trade graph`",
     userPermission:[
       "必要なし"
     ],

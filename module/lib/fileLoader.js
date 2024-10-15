@@ -18,7 +18,9 @@ module.exports = async()=>{
     fs.readdirSync("./module/function/admin")
       .map(file=>require(`../function/admin/${file}`)),
     fs.readdirSync("./module/function/setting")
-      .map(file=>require(`../function/setting/${file}`))
+      .map(file=>require(`../function/setting/${file}`)),
+    fs.readdirSync("./module/function/product")
+      .map(file=>require(`../function/product/${file}`))
   ]);
 
   global.messageCreate = files[0];
@@ -29,6 +31,7 @@ module.exports = async()=>{
   global.contextmenu = files[5];
   global.admin = files[6];
   global.setting = files[7];
+  global.product = files[8]
 
   log.info("ファイルをロードしました");
 }
