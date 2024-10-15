@@ -3,6 +3,7 @@ module.exports = async(interaction)=>{
   const money = require("../../lib/money");
   const createId = require("../../lib/createId");
   const db = require("../../lib/db");
+  const escape = require("../../lib/escape");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("create")){
     const name = interaction.fields.getTextInputValue("name");
@@ -36,7 +37,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await db(`INSERT INTO product (id, name, content, price, seller, time) VALUES("${createId(10)}","${name}","${content}","${price}","${interaction.user.id}",NOW());`);
+    await db(`INSERT INTO product (id, name, content, price, seller, time) VALUES("${createId(10)}","${escape(name)}","${escape(content)}","${escape(price)}","${interaction.user.id}",NOW());`);
     await money.delete(interaction.user.id,Math.floor(price*0.1),"商品の作成手数料");
 
     await interaction.reply({
