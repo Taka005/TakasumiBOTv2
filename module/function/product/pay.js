@@ -34,9 +34,9 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await money.add(product.seller,product.price,`${product.name}の売り上げ`);
     await money.delete(product.seller,Math.floor(product.price*0.3),"売り上げ手数料")
     await money.delete(interaction.user.id,product.price,`${product.name}の購入`);
+    await money.add(product.seller,product.price,`${product.name}の売り上げ`);
     await db(`DELETE FROM product WHERE id = "${product.id}";`);
     await interaction.reply({
       embeds:[{
