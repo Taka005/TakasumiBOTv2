@@ -37,6 +37,7 @@ module.exports = async(interaction)=>{
     });
 
     await db(`INSERT INTO product (id, name, content, price, seller, time) VALUES("${createId(10)}","${name}","${content}","${price}","${interaction.user.id}",NOW());`);
+    await money.delete(interaction.user.id,Math.floor(price*0.1),"商品の作成手数料");
 
     await interaction.reply({
       embeds:[{
