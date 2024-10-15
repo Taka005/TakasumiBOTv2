@@ -1,6 +1,7 @@
 module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const db = require("../../lib/db");
+  const fetchUser = require("../../lib/fetchUser");
   if(interaction.options.getSubcommand() === "list"){
     const type = interaction.options.getString("type");
 
@@ -18,6 +19,15 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
+      const list = await Promise.all(data.map(async(pro,i)=>{
+        const user = await fetchUser(interaction.client,pro.id);
+  
+        return {
+          name: `${pro.name} ${pro.price}コイン`,
+          value: `商品ID: ${pro.id}\n出品者: ${user ? `${user.username}` : "不明"}(${pro.seller})`
+        };
+      }));
+
       await interaction.reply({
         embeds:[{
           color: Colors.Green,
@@ -26,10 +36,7 @@ module.exports = async(interaction)=>{
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
           description: "ランダムな商品が表示されています",
-          fields: data.map(pro=>({
-            name: `${pro.name} ${pro.price}コイン`,
-            value: `商品ID: ${pro.id}`
-          }))
+          fields: list
         }]
       });
     }else{
