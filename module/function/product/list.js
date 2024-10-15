@@ -19,7 +19,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      const list = await Promise.all(data.map(async(pro,i)=>{
+      const list = await Promise.all(data.map(async(pro)=>{
         const user = await fetchUser(interaction.client,pro.id);
   
         return {
