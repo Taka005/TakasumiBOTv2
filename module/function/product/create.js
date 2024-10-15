@@ -10,7 +10,7 @@ module.exports = async(interaction)=>{
     const name = new TextInputBuilder()
       .setCustomId("name")
       .setLabel("商品名")
-      .setPlaceholder("商品を名前")
+      .setPlaceholder("商品の名前")
       .setMaxLength(20)
       .setStyle(TextInputStyle.Short);
 

@@ -30,8 +30,7 @@ module.exports = async(interaction)=>{
             name: `${pro.name} ${pro.price}コイン`,
             value: `商品ID: ${pro.id}`
           }))
-        }],
-        ephemeral: true
+        }]
       });
     }else{
       const data = await db(`SELECT * FROM product WHERE seller = "${interaction.user.id}";`);
