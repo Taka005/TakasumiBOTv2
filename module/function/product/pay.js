@@ -2,10 +2,11 @@ module.exports = async(interaction)=>{
   const { Colors } = require("discord.js");
   const db = require("../../lib/db");
   const money = require("../../lib/money");
+  const escape = require("../../lib/escape");
   if(interaction.options.getSubcommand() === "pay"){
     const id = interaction.options.getString("id");
 
-    const product = (await db(`SELECT * FROM product WHERE id = "${id}";`))[0];
+    const product = (await db(`SELECT * FROM product WHERE id = "${escape(id)}";`))[0];
 
     if(!product) return await interaction.reply({
       embeds:[{
@@ -34,6 +35,7 @@ module.exports = async(interaction)=>{
     });
 
     await money.add(product.seller,product.price,`${product.name}の売り上げ`);
+    await money.delete(product.seller,Math.floor(product.price*0.3),"売り上げ手数料")
     await money.delete(interaction.user.id,product.price,`${product.name}の購入`);
     await db(`DELETE FROM product WHERE id = "${product.id}";`);
     await interaction.reply({
