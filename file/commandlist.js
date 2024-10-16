@@ -1704,7 +1704,11 @@ module.exports = {
             option
               .setName("id")
               .setDescription("購入する商品のID")
-              .setRequired(true)))
+              .setRequired(true))
+          .addIntegerOption(option=>
+            option
+              .setName("page")
+              .setDescription("表示するページ")))
       .addSubcommand(subcommand=>
         subcommand
           .setName("list")
