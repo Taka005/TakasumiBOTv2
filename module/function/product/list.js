@@ -7,7 +7,7 @@ module.exports = async(interaction)=>{
     const page = interaction.options.getInteger("page");
 
     if(type === "all"){
-      const data = await db(`SELECT * FROM product ORDER BY RAND() LIMIT 25;`);
+      const data = await db(`SELECT * FROM product ORDER BY id LIMIT 15 OFFSET (${page} - 1)*15;`);
       if(!data[0]) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
