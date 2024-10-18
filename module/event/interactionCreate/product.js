@@ -37,6 +37,18 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    if(price < 10) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "商品を作成できませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "値段を10コイン以上にしてください"
+      }],
+      ephemeral: true
+    });
+
     await db(`INSERT INTO product (id, name, content, price, seller, time) VALUES("${createId(10)}","${escape(name)}","${escape(content)}","${escape(price)}","${interaction.user.id}",NOW());`);
     await money.delete(interaction.user.id,Math.floor(price*0.1),"商品の作成手数料");
 
