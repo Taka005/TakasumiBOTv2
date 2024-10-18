@@ -25,19 +25,7 @@ module.exports = async(interaction)=>{
 
     const data = await money.get(interaction.user.id);
 
-    if(isNaN(price)&&price>data.amount) return await interaction.reply({
-      embeds:[{
-        color: Colors.Red,
-        author:{
-          name: "商品を作成できませんでした",
-          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
-        },
-        description: "値段を数字かつ所持金以下の値にしてください"
-      }],
-      ephemeral: true
-    });
-
-    if(price < 10) return await interaction.reply({
+    if(isNaN(price)||price < 10) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
@@ -45,6 +33,18 @@ module.exports = async(interaction)=>{
           icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "値段を10コイン以上にしてください"
+      }],
+      ephemeral: true
+    });
+
+    if(price>data.amount) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "商品を作成できませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "値段を所持金以下の値にしてください"
       }],
       ephemeral: true
     });
