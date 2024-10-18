@@ -4,10 +4,9 @@ module.exports = async(interaction)=>{
   const fetchUser = require("../../lib/fetchUser");
   if(interaction.options.getSubcommand() === "list"){
     const type = interaction.options.getString("type");
-    const page = interaction.options.getInteger("page");
 
     if(type === "all"){
-      const data = await db(`SELECT * FROM product ORDER BY id LIMIT 15 OFFSET (${page} - 1)*15;`);
+      const data = await db(`SELECT * FROM product ORDER BY RAND() LIMIT 25;`);
       if(!data[0]) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
@@ -36,6 +35,7 @@ module.exports = async(interaction)=>{
             name: "商品一覧",
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
+          description: "ランダムな商品が表示されています",
           fields: list
         }]
       });
