@@ -1717,11 +1717,7 @@ module.exports = {
               .addChoices(
                 { name: "全ての商品", value: "all" },
                 { name: "作成した商品", value: "create" }
-              ))
-          .addIntegerOption(option=>
-            option
-              .setName("page")
-              .setDescription("表示するページ")))
+              )))
       .addSubcommand(subcommand=>
         subcommand
           .setName("create")
