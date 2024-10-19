@@ -25,7 +25,7 @@ module.exports = async(interaction)=>{
 
     const data = await money.get(interaction.user.id);
 
-    if(isNaN(price)||!Number.isInteger(price)||price < 10) return await interaction.reply({
+    if(isNaN(price)||!Number.isInteger(Number(price))||price < 10) return await interaction.reply({
       embeds:[{
         color: Colors.Red,
         author:{
