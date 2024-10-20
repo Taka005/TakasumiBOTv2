@@ -1,25 +1,24 @@
 module.exports = async(interaction)=>{
   const fetch = require("node-fetch");
   const { AttachmentBuilder, Colors } = require("discord.js");
+  const langs = require("../../../file/langs.json");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("script_")){
     const data = interaction.customId.split("_");
     const code = interaction.fields.getTextInputValue("code");
 
-    const lang = {
-      "JavaScript":{
-        "type": "js",
-        "compiler": "nodejs-16.14.0"
-      },
-      "Python":{
-        "type": "py",
-        "compiler": "cpython-3.10.2"
-      },
-      "Bash":{
-        "type": "bash",
-        "compiler": "bash"
-      }
-    }
+    const lang = langs.find(lang=>lang.compiler === data[1]);
+    if(!lang) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "実行できませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "存在しない言語です"
+      }],
+      ephemeral: true
+    });
 
     const controller = new AbortController();
     setTimeout(()=>{
@@ -36,7 +35,7 @@ module.exports = async(interaction)=>{
         signal: controller.signal,
         body: JSON.stringify({
           "code": code,
-          "compiler": lang[data[1]].compiler
+          "compiler": lang.compiler
         })
       }).then(res=>res.json());
 
@@ -49,9 +48,9 @@ module.exports = async(interaction)=>{
                 name: "実行しました",
                 icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               },
-              description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n\`\`\`${res.program_output||"なし"}\`\`\``,
+              description: `**コード**\n\`\`\`${code}\`\`\`\n**結果**\n\`\`\`${res.program_output||"なし"}\`\`\``,
               footer:{
-                text: `${data[1]} || TakasumiBOT`
+                text: `${lang.name} || TakasumiBOT`
               }
             }]
           });
@@ -63,9 +62,9 @@ module.exports = async(interaction)=>{
                 name: "実行しました",
                 icon_url: "https://cdn.takasumibot.com/images/system/success.png"
               },
-              description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
+              description: `**コード**\n\`\`\`${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
               footer:{
-                text: `${data[1]} || TakasumiBOT`
+                text: `${lang.name} || TakasumiBOT`
               }
             }],
             files:[
@@ -84,9 +83,9 @@ module.exports = async(interaction)=>{
                 name: "実行できませんでした",
                 icon_url: "https://cdn.takasumibot.com/images/system/error.png"
               },
-              description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\n\`\`\`${res.program_error}\`\`\``,
+              description: `**コード**\n\`\`\`${code}\`\`\`\n**エラー**\n\`\`\`${res.compiler_error||res.program_error}\`\`\``,
               footer:{
-                text: `${data[1]} || TakasumiBOT`
+                text: `${lang.name} || TakasumiBOT`
               }
             }]
           });
@@ -98,14 +97,14 @@ module.exports = async(interaction)=>{
                 name: "実行できませんでした",
                 icon_url: "https://cdn.takasumibot.com/images/system/error.png"
               },
-              description: `**コード**\n\`\`\`${lang[data[1]].type}\n${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,
+              description: `**コード**\n\`\`\`${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,
               footer:{
-                text: `${data[1]} || TakasumiBOT`
+                text: `${lang.name} || TakasumiBOT`
               }
             }],
             files:[
               new AttachmentBuilder()
-                .setFile(Buffer.from(res.program_error,"UTF-8"))
+                .setFile(Buffer.from(res.compiler_error||res.program_error,"UTF-8"))
                 .setName("error.txt")
             ]
           });
@@ -121,7 +120,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           description: "実行がタイムアウトしました",
           footer:{
-            text: `${data[1]} || TakasumiBOT`
+            text: `${lang.name} || TakasumiBOT`
           }
         }]
       });

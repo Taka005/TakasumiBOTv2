@@ -1986,11 +1986,7 @@ module.exports = {
           .setName("lang")
           .setDescription("実行する言語")
           .setRequired(true)
-          .addChoices(
-            { name: "JavaScript", value: "JavaScript" },
-            { name: "Python", value: "Python" },
-            { name: "Bash", value: "Bash" }
-          ))
+          .setAutocomplete(true))
   },
   server:{
     type: "info",
