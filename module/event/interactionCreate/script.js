@@ -50,7 +50,7 @@ module.exports = async(interaction)=>{
               },
               description: `**コード**\n\`\`\`${code}\`\`\`\n**結果**\n\`\`\`${res.program_output||"なし"}\`\`\``,
               footer:{
-                text: `${lang.name} || TakasumiBOT`
+                text: `${lang.name}(${lang.compiler}) || TakasumiBOT`
               }
             }]
           });
@@ -64,7 +64,7 @@ module.exports = async(interaction)=>{
               },
               description: `**コード**\n\`\`\`${code}\`\`\`\n**結果**\n結果が長すぎた為添付ファイルに出力しました`,
               footer:{
-                text: `${lang.name} || TakasumiBOT`
+                text: `${lang.name}(${lang.compiler}) || TakasumiBOT`
               }
             }],
             files:[
@@ -85,7 +85,7 @@ module.exports = async(interaction)=>{
               },
               description: `**コード**\n\`\`\`${code}\`\`\`\n**エラー**\n\`\`\`${res.compiler_error||res.program_error}\`\`\``,
               footer:{
-                text: `${lang.name} || TakasumiBOT`
+                text: `${lang.name}(${lang.compiler}) || TakasumiBOT`
               }
             }]
           });
@@ -99,7 +99,7 @@ module.exports = async(interaction)=>{
               },
               description: `**コード**\n\`\`\`${code}\`\`\`\n**エラー**\nエラーが長すぎる為添付ファイルに出力しました`,
               footer:{
-                text: `${lang.name} || TakasumiBOT`
+                text: `${lang.name}(${lang.compiler}) || TakasumiBOT`
               }
             }],
             files:[
@@ -120,7 +120,7 @@ module.exports = async(interaction)=>{
           color: Colors.Red,
           description: "実行がタイムアウトしました",
           footer:{
-            text: `${lang.name} || TakasumiBOT`
+            text: `${lang.name}(${lang.compiler}) || TakasumiBOT`
           }
         }]
       });
