@@ -1,5 +1,6 @@
 module.exports = async(interaction)=>{
   const commnads = require("../../../file/commandlist");
+  const langs = require("../../../file/langs.json");
   if(!interaction.isAutocomplete()) return;
   const focus = interaction.options.getFocused();
 
@@ -22,6 +23,14 @@ module.exports = async(interaction)=>{
 
 		await interaction.respond(
 			filter.map(name=>({ name: name, value: name }))
+		);
+  }else if(interaction.commandName === "script"){
+    const filter = langs.filter(lang=>lang.name.startsWith(focus));
+
+    if(filter.length > 25) filter.length = 25;
+
+		await interaction.respond(
+			filter.map(lang=>({ name: `${lang.name}(${lang.compiler})`, value: lang.compiler }))
 		);
   }
 }
