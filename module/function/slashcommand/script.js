@@ -1,5 +1,5 @@
 module.exports = async(interaction)=>{
-  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require("discord.js");
+  const { Colors, ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require("discord.js");
   const langs = require("../../../file/langs.json");
   if(!interaction.isChatInputCommand()) return;
   if(interaction.commandName === "script"){
