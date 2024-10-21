@@ -5,14 +5,14 @@
     "version": "13.2.0"
   },
   {
-    "name": "C++",
-    "compiler": "gcc-13.2.0",
-    "version": "13.2.0"
-  },
-  {
     "name": "C",
     "compiler": "clang-17.0.1-c",
     "version": "17.0.1"
+  },
+  {
+    "name": "C++",
+    "compiler": "gcc-13.2.0",
+    "version": "13.2.0"
   },
   {
     "name": "C++",
@@ -23,6 +23,11 @@
     "name": "C#",
     "compiler": "mono-6.12.0.122",
     "version": "6.12.0.122"
+  },
+  {
+    "name": "C#",
+    "compiler": "dotnetcore-5.0.201",
+    "version": "5.0.201"
   },
   {
     "name": "Erlang",
@@ -68,6 +73,16 @@
     "name": "Python",
     "compiler": "cpython-2.7.18",
     "version": "2.7.18"
+  },
+  {
+    "name": "Python",
+    "compiler": "pypy-3.10-v7.3.15",
+    "version": "7.3.15 cpython-3.10.13"
+  },
+  {
+    "name": "Python",
+    "compiler": "pypy-2.7-v7.3.15",
+    "version": "7.3.15 cpython-2.7.18"
   },
   {
     "name": "Ruby",
@@ -155,16 +170,6 @@
     "version": "8.2.2811"
   },
   {
-    "name": "Python",
-    "compiler": "pypy-3.10-v7.3.15",
-    "version": "7.3.15 cpython-3.10.13"
-  },
-  {
-    "name": "Python",
-    "compiler": "pypy-2.7-v7.3.15",
-    "version": "7.3.15 cpython-2.7.18"
-  },
-  {
     "name": "OCaml",
     "compiler": "ocaml-4.12.0",
     "version": "4.12.0"
@@ -208,11 +213,6 @@
     "name": "OpenSSL",
     "compiler": "openssl-1.1.1k",
     "version": "1.1.1k"
-  },
-  {
-    "name": "C#",
-    "compiler": "dotnetcore-5.0.201",
-    "version": "5.0.201"
   },
   {
     "name": "R",

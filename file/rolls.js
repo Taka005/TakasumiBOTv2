@@ -17,10 +17,6 @@ module.exports = [
   },
   {
     price: 50000,
-    rate: 0.04
-  },
-  {
-    price: 50000,
-    rate: 0.01
+    rate: 0.05
   }
 ]
