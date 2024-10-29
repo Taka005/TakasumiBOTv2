@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
 
     await interaction.deferReply();
     try{
-      const res = await fetch("https://wandbox.org/api/compile.json",{
+      const respo = await fetch("https://wandbox.org/api/compile.json",{
         method: "POST",
         header:{
           "content-type": "application/json"
@@ -37,7 +37,10 @@ module.exports = async(interaction)=>{
           "code": code,
           "compiler": lang.compiler
         })
-      }).then(res=>res.json());
+      });
+      //}).then(res=>res.json());
+      console.log(await respo.text());
+      const res = await respo.json();
 
       if(res.status === "0"){
         try{
