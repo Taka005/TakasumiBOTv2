@@ -14,6 +14,8 @@ const connection = mysql.createConnection({
 });
 
 module.exports = async(query)=>{
+  if(process.env.NO_DB) return [];
+
   connection.query = util.promisify(connection.query);
 
   try{
