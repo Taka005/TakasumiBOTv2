@@ -26,4 +26,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}
+            ghcr.io/taka005/takasumibotv2
