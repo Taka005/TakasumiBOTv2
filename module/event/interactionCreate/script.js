@@ -110,15 +110,20 @@ module.exports = async(interaction)=>{
           });
         }
       }
-    }catch{
+    }catch(error){
       await interaction.editReply({
         embeds:[{
+          color: Colors.Red,
           author:{
             name: "正常に実行できませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          color: Colors.Red,
-          description: "実行がタイムアウトしました",
+          fields:[
+            {
+              name: "エラーコード",
+              value: `\`\`\`${error}\`\`\``
+            }
+          ],
           footer:{
             text: `${lang.name}(${lang.compiler}) || TakasumiBOT`
           }
