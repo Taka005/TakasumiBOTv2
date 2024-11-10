@@ -49,7 +49,7 @@ module.exports = async(interaction)=>{
             },
             {
               name: "作成日時",
-              value: `${emoji.createdAt.toLocaleString()}\n(${Math.floor((Date.now() - emoji.createdAt) / 86400000)}日前)`
+              value: `${emoji.createdAt.toLocaleString("ja-JP")}\n(${Math.floor((Date.now() - emoji.createdAt) / 86400000)}日前)`
             }
           ],
           footer:{

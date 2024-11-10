@@ -27,7 +27,7 @@ module.exports = async(interaction)=>{
             name: "解析しました",
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: `Date: ${new Date(Number(snowflake.timestamp)).toLocaleString()}\nWorkerID: ${snowflake.workerId}\nProcessID: ${snowflake.processId}\nIncrement: ${snowflake.increment}`
+          description: `Date: ${new Date(Number(snowflake.timestamp)).toLocaleString("ja-JP")}\nWorkerID: ${snowflake.workerId}\nProcessID: ${snowflake.processId}\nIncrement: ${snowflake.increment}`
         }]
       });
     }catch(error){

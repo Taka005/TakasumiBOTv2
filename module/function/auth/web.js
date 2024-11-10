@@ -46,7 +46,7 @@ module.exports = async(interaction)=>{
           name: "認証してください",
           icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
-        description: `前回の認証から3分以上が経過しているため再度認証を行なってください\n前回の認証日時: ${new Date(account[0].time).toLocaleString()}`
+        description: `前回の認証から3分以上が経過しているため再度認証を行なってください\n前回の認証日時: ${new Date(account[0].time).toLocaleString("ja-JP")}`
       }],
       components:[
         new ActionRowBuilder()

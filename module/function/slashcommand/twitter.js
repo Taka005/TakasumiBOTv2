@@ -30,7 +30,7 @@ module.exports = async(interaction)=>{
             name: `${word}の検索結果`,
             icon_url: "https://cdn.takasumibot.com/images/system/success.png"
           },
-          description: data.timeline.entry.map(data=>`[**${data.name}(@${data.screenName})**](${data.url}) - ${new Date(data.createdAt*1000).toLocaleString()}\n${data.displayText.replace(/\tSTART\t/g,"").replace(/\tEND\t/g,"")}`).join("\n\n"),
+          description: data.timeline.entry.map(data=>`[**${data.name}(@${data.screenName})**](${data.url}) - ${new Date(data.createdAt*1000).toLocaleString("ja-JP")}\n${data.displayText.replace(/\tSTART\t/g,"").replace(/\tEND\t/g,"")}`).join("\n\n"),
           footer:{
             text: "TakasumiBOT"
           }

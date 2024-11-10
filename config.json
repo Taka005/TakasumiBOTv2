@@ -9,8 +9,8 @@
         "report": "1251803129041653760"
     },
     "api":{
-        "miq": "http://localhost:3000",
-        "graph": "http://localhost:4000"
+        "miq": "https://miq.takasumibot.com",
+        "graph": "https://graph.takasumibot.com"
     },
     "database": {
         "host": "public.bfv4d.tky1.mdbs.jp",
