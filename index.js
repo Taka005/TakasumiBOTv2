@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits } = require("discord.js");
 require("dotenv").config();
 const log = require("./module/lib/log");
+const config = require("./config.json");
 
 const client = new Client({
   intents:[
@@ -12,67 +13,67 @@ const client = new Client({
   ],
   sweepers:{
     messages:{
-      interval: 1800,
-      lifetime: 1800
+      interval: config.cacheLimit,
+      lifetime: config.cacheLimit
     },
     users:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>user=>user.id !== client.user.id
     },
     guildMembers:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>member=>member.id !== client.user.id
     },
     reactions:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>()=>true
     },
     presences:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>()=>true
     },
     invites:{
-      interval: 1800,
-      lifetime: 1800
+      interval: config.cacheLimit,
+      lifetime: config.cacheLimit
     },
     emojis:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>()=>true
     },
     threads:{
-      interval: 1800,
-      lifetime: 1800
+      interval: config.cacheLimit,
+      lifetime: config.cacheLimit
     },
     threadMembers:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>()=>true
     },
     stickers:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>()=>true
     },
     bans:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>()=>true
     },
     voiceStates:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>()=>true
     },
     stageInstances:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>()=>true
     },
     applicationCommands:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>()=>true
     },
     autoModerationRules:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>()=>true
     },
     entitlements:{
-      interval: 1800,
+      interval: config.cacheLimit,
       filter: ()=>()=>true
     }
   }
