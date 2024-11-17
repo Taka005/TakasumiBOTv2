@@ -13,28 +13,56 @@ let connection = mysql.createConnection({
   charset: "utf8mb4"
 });
 
+connection.on("error",error => {
+  reconnect(error)
+})
+
+function reconnect(error) {
+  if (error?.fetal || error?.code === "PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR") {
+    connection = mysql.createConnection({
+      host: config.database.host,
+      database: config.database.name,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      charset: "utf8mb4"
+    });
+    connection.on("error", (error) => {
+      setTimeout(() => reconnect(error),750)
+    })
+    connection.connect(function (error) {
+      if (error) {
+        log.error("Failed to reconnect to the SQL server.\n"+error);
+      } else {
+        log.info("Succeeded in reconnecting to the SQL server.");
+      }
+    })
+  }
+}
+
 module.exports = async(query)=>{
-  //connection.query = util.promisify(connection.query);
   const now = new Date();
   fs.appendFileSync("./tmp/db.log",`[${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}] ${query}\n`,"utf8");
   return await new Promise((resolve,reject) => {
     connection.query(query, function(error,results) {
-    	if (error?.fatal) { //fatal errorが発生したときに自動的に再接続をする。fetal errorのほとんどが再接続で直る
-      	const reconnectInterval = setInterval(() => {
-      		connection = mysql.createConnection({
-      		  host: config.database.host,
-      		  database: config.database.name,
-        		user: process.env.DB_USER,
-        	  password: process.env.DB_PASSWORD,
-        	  charset: "utf8mb4"
-      		});
-      		connection.connect(function (error) {
-      		  if (error) {
-          		log.error("Failed to reconnect to the SQL server.\n"+error);
+      if (error?.fatal || error?.code === "PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR") {
+        const reconnectInterval = setInterval(() => {
+          connection = mysql.createConnection({
+            host: config.database.host,
+            database: config.database.name,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            charset: "utf8mb4"
+          });
+          connection.on("error", (error) => {
+            setTimeout(() => reconnect(error),750)
+          })
+          connection.connect(function (error) {
+            if (error) {
+              log.error("Failed to reconnect to the SQL server.\n"+error);
               reject([])
-        	  } else {
-        			log.info("Succeeded in reconnecting to the SQL server.");
-              connection.query(query, function(error,results) { //再接続したらもう一度実行する
+            } else {
+              log.info("Succeeded in reconnecting to the SQL server.");
+              connection.query(query, function(error,results) {
                 if (error) {
                   log.error(error);
                   reject([])
@@ -43,14 +71,14 @@ module.exports = async(query)=>{
                 }
                 clearInterval(reconnectInterval);
               })
-      		  }
-        	})
-      	}, 750)
+            }
+          })
+        }, 750)
       } else if (error) {
-    	  log.error(error); //fatalではないエラー
+        log.error(error);
         reject([])
-    	} else {
-        resolve(results); //正常
+      } else {
+        resolve(results);
       }
     });
   })
