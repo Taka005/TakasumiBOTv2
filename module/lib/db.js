@@ -30,7 +30,6 @@ function reconnect(error){
       setTimeout(()=>reconnect(error),750);
     });
 
-
     connection.connect((error)=>{
       if(error){
         log.error(`データベースに接続できません\n${error}`);
