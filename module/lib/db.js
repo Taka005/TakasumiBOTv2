@@ -1,5 +1,4 @@
 const mysql = require("mysql");
-const util = require("util");
 const fs = require("fs");
 require("dotenv").config();
 const log = require("./log");
