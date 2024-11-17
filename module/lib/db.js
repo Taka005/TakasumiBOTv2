@@ -12,12 +12,12 @@ let connection = mysql.createConnection({
   charset: "utf8mb4"
 });
 
-connection.on("error",error => {
-  reconnect(error)
+connection.on("error",(error)=>{
+  reconnect(error);
 })
 
-function reconnect(error) {
-  if (error?.fetal || error?.code === "PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR") {
+function reconnect(error){
+  if(error?.fetal||error?.code === "PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR"){
     connection = mysql.createConnection({
       host: config.database.host,
       database: config.database.name,
@@ -25,14 +25,17 @@ function reconnect(error) {
       password: process.env.DB_PASSWORD,
       charset: "utf8mb4"
     });
-    connection.on("error", (error) => {
-      setTimeout(() => reconnect(error),750)
-    })
-    connection.connect(function (error) {
-      if (error) {
-        log.error("Failed to reconnect to the SQL server.\n"+error);
-      } else {
-        log.info("Succeeded in reconnecting to the SQL server.");
+
+    connection.on("error",(error)=>{
+      setTimeout(()=>reconnect(error),750);
+    });
+
+
+    connection.connect((error)=>{
+      if(error){
+        log.error(`データベースに接続できません\n${error}`);
+      }else{
+        log.info("データベースに接続しました");
       }
     })
   }
@@ -41,10 +44,11 @@ function reconnect(error) {
 module.exports = async(query)=>{
   const now = new Date();
   fs.appendFileSync("./tmp/db.log",`[${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}] ${query}\n`,"utf8");
-  return await new Promise((resolve,reject) => {
-    connection.query(query, function(error,results) {
-      if (error?.fatal || error?.code === "PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR") {
-        const reconnectInterval = setInterval(() => {
+
+  return await new Promise((resolve,reject)=>{
+    connection.query(query,(error,results)=>{
+      if(error?.fatal||error?.code === "PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR"){
+        const reconnectInterval = setInterval(()=>{
           connection = mysql.createConnection({
             host: config.database.host,
             database: config.database.name,
@@ -52,31 +56,34 @@ module.exports = async(query)=>{
             password: process.env.DB_PASSWORD,
             charset: "utf8mb4"
           });
-          connection.on("error", (error) => {
-            setTimeout(() => reconnect(error),750)
-          })
-          connection.connect(function (error) {
-            if (error) {
-              log.error("Failed to reconnect to the SQL server.\n"+error);
-              reject([])
-            } else {
-              log.info("Succeeded in reconnecting to the SQL server.");
-              connection.query(query, function(error,results) {
-                if (error) {
+
+          connection.on("error",(error)=>{
+            setTimeout(()=>reconnect(error),750);
+          });
+
+          connection.connect((error)=>{
+            if(error){
+              log.error(`データベースに接続できません\n${error}`);
+              reject([]);
+            }else{
+              log.info("データベースに接続しました");
+
+              connection.query(query,(error,results)=>{
+                if(error){
                   log.error(error);
-                  reject([])
-                } else {
+                  reject([]);
+                }else{
                   resolve(results);
                 }
                 clearInterval(reconnectInterval);
-              })
+              });
             }
-          })
-        }, 750)
-      } else if (error) {
+          });
+        },750);
+      }else if(error){
         log.error(error);
-        reject([])
-      } else {
+        reject([]);
+      }else{
         resolve(results);
       }
     });
