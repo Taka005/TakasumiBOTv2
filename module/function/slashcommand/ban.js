@@ -44,6 +44,18 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
+    if(days > 7) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "BANできませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "メッセージを削除する日数の設定は7までしかできません"
+      }],
+      ephemeral: true
+    });
+
     const userId = id.match(/\d{17,19}/g);
     if(!userId) return await interaction.reply({
       embeds:[{
