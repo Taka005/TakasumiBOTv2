@@ -24,7 +24,7 @@ module.exports = async(interaction)=>{
         his.id,
         his.reason,
         `${his.amount}コイン`,
-        new Date(his.time).toLocaleString()
+        new Date(his.time).toLocaleString("ja-JP")
       ]));
 
       table.push([

@@ -7,4 +7,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["node", "shard.js"]
+CMD ["node","shard.js"]

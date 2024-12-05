@@ -23,7 +23,7 @@ module.exports = async(interaction)=>{
     const controller = new AbortController();
     setTimeout(()=>{
       controller.abort();
-    },3000);
+    },5000);
 
     await interaction.deferReply();
     try{

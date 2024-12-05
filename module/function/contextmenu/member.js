@@ -58,12 +58,12 @@ module.exports = async(interaction)=>{
             },
             {
               name: "作成日時",
-              value: `${member.user.createdAt.toLocaleString()}\n(${Math.floor((Date.now() - member.user.createdAt) / 86400000)}日前)`,
+              value: `${member.user.createdAt.toLocaleString("ja-JP")}\n(${Math.floor((Date.now() - member.user.createdAt) / 86400000)}日前)`,
               inline: true
             },
             {
               name: "参加日時",
-              value: `${member.joinedAt.toLocaleString()}\n(${Math.floor((Date.now() - member.joinedAt) / 86400000)}日前)`,
+              value: `${member.joinedAt.toLocaleString("ja-JP")}\n(${Math.floor((Date.now() - member.joinedAt) / 86400000)}日前)`,
               inline: true
             },
             {
