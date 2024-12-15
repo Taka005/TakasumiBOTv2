@@ -128,7 +128,7 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      await money.add(interaction.user.id,gift.price,"ユーザーからのギフト");
+      await money.add(interaction.user.id,gift.price,`ユーザーからのギフト(${data.user})`);
       await db(`DELETE FROM gift WHERE id = "${data.id}";`);
 
       await interaction.reply({
