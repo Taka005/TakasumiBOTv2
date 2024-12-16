@@ -10,6 +10,7 @@ module.exports = async(interaction)=>{
     const join = await db(`SELECT * FROM \`join\` WHERE server = ${interaction.guild.id};`);
     const leave = await db(`SELECT * FROM \`leave\` WHERE server = ${interaction.guild.id};`);
     const pin = await db(`SELECT * FROM pin WHERE server = ${interaction.guild.id};`);
+    const announce = await db(`SELECT * FROM announce WHERE server = ${interaction.guild.id};`);
     const server = await db(`SELECT * FROM server WHERE id = ${interaction.guild.id};`);
     const stats = await db(`SELECT * FROM stats WHERE id = ${interaction.guild.id};`);
     const up = await db(`SELECT * FROM up WHERE id = ${interaction.guild.id};`);
@@ -65,6 +66,10 @@ module.exports = async(interaction)=>{
           {
             name: "ピン",
             value: `${pin.length}個設定済み`
+          },
+          {
+            name: "アナウンス自動公開",
+            value: `${announce.length}個設定済み`
           }
         ]
       }]
