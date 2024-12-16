@@ -2,9 +2,6 @@ module.exports = async(client)=>{
   const { ActivityType } = require("discord.js");
   const fetchGuildCounts = require("../../lib/fetchGuildCounts");
   const fetchUserCounts = require("../../lib/fetchUserCounts");
-  require("dotenv").config();
-
-  if(client.shard&&process.env.SHARDS !== "0") return;
 
   client.user.setStatus("online");
 
