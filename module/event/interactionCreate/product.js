@@ -4,6 +4,7 @@ module.exports = async(interaction)=>{
   const createId = require("../../lib/createId");
   const db = require("../../lib/db");
   const escape = require("../../lib/escape");
+  const time = require("../../lib/time");
   if(!interaction.isModalSubmit()) return;
   if(interaction.customId.startsWith("create")){
     const name = interaction.fields.getTextInputValue("name");
@@ -19,6 +20,32 @@ module.exports = async(interaction)=>{
           icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
         description: "商品は8個までしか作成できません"
+      }],
+      ephemeral: true
+    });
+
+    const debt = await db(`SELECT * FROM debt WHERE id = ${interaction.user.id};`);
+    if(debt[0]) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "作成できませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "借金しているため、作成できません"
+      }],
+      ephemeral: true
+    });
+
+    const history = await db(`SELECT * FROM history WHERE user = ${interaction.user.id} and reason = "借金の返済" ORDER BY time DESC;`);
+    if(history[0]&&new Date() - history[0].time <= 86400000) return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "作成できませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: `借金を返済してから1日経過しないと作成できません\n次に実行できるまであと${time(86400000 - (new Date() - history[0].time))}です`
       }],
       ephemeral: true
     });
