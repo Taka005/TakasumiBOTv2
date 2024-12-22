@@ -12,7 +12,8 @@ module.exports = async(interaction)=>{
       .replace(/[x×]/gu,"*")
       .replace(/÷/gu,"/")
       .replace(/（/gu,"(")
-      .replace(/）/gu,")");
+      .replace(/）/gu,")")
+      .replace(/:/g,"/");
 
     try{
       const math = mathjs.create(mathjs.all);
