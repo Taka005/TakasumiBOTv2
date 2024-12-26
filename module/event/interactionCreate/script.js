@@ -29,7 +29,7 @@ module.exports = async(interaction)=>{
     try{
       const res = await fetch("https://wandbox.org/api/compile.json",{
         method: "POST",
-        header:{
+        headers:{
           "content-type": "application/json"
         },
         signal: controller.signal,

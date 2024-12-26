@@ -5,6 +5,18 @@ module.exports = async(interaction)=>{
   if(interaction.commandName === "math"){
     const code = interaction.options.getString("code");
 
+    return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "計算できませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "この機能はメンテナンス中です"
+      }],
+      ephemeral: true
+    });
+
     const format = code
       .replace(/[０-９]/gu,(str)=>String.fromCharCode(str.charCodeAt(0) - 65248))
       .replace(/＋/gu,"+")
@@ -12,7 +24,8 @@ module.exports = async(interaction)=>{
       .replace(/[x×]/gu,"*")
       .replace(/÷/gu,"/")
       .replace(/（/gu,"(")
-      .replace(/）/gu,")");
+      .replace(/）/gu,")")
+      .replace(/:/g,"/");
 
     try{
       const math = mathjs.create(mathjs.all);
