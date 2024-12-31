@@ -10,6 +10,17 @@ module.exports = async(interaction)=>{
       interaction.options.getString("formula_3")
     ].filter(f=>f!==null).join(",");
 
+    return await interaction.reply({
+      embeds:[{
+        color: Colors.Red,
+        author:{
+          name: "生成できませんでした",
+          icon_url: "https://cdn.takasumibot.com/images/system/error.png"
+        },
+        description: "この機能はメンテナンス中です"
+      }]
+    });
+
     await interaction.deferReply();
     try{
       const image = await fetch(`${config.api.graph}/?formula=${formula}`)
