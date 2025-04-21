@@ -39,7 +39,7 @@ module.exports = async(message)=>{
             description: "DISSOKUの時間です\n</dissoku up:828002256690610256>でサーバーの表示順位を上げよう！"
           }]
         }).catch(()=>{});
-      },3600000);
+      },7200000);
     }
   }
 }

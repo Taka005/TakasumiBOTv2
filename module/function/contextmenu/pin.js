@@ -65,14 +65,14 @@ module.exports = async(interaction)=>{
         ephemeral: true
       });
 
-      if(server.length > 5) return await interaction.reply({
+      if(server.length > 7) return await interaction.reply({
         embeds:[{
           color: Colors.Red,
           author:{
             name: "メッセージをピン留めできませんでした",
             icon_url: "https://cdn.takasumibot.com/images/system/error.png"
           },
-          description: "サーバーには最大6個までしかPINは使えません"
+          description: "サーバーには最大8個までしかPINは使えません"
         }],
         ephemeral: true
       });
