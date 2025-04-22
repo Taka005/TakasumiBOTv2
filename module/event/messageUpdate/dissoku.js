@@ -26,7 +26,7 @@ module.exports = async(message)=>{
         embeds:[{
           color: Colors.Blue,
           title: "UP通知",
-          description: "UPを受信しました\n1時間後に通知します"
+          description: "UPを受信しました\n2時間後に通知します"
         }]
       }).catch(()=>{});
 
