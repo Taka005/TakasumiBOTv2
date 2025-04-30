@@ -1,3 +1,5 @@
+const { escape } = require("mysql");
+
 module.exports = async(interaction)=>{
   const { PermissionFlagsBits, Colors } = require("discord.js");
   const db = require("../../lib/db");
@@ -47,7 +49,7 @@ module.exports = async(interaction)=>{
       ephemeral: true
     });
 
-    await db(`UPDATE server SET name = "${interaction.guild.name}", count = "${interaction.guild.memberCount}", icon = "${interaction.guild.iconURL({extension:"png",size:1024})||"https://cdn.discordapp.com/embed/avatars/0.png"}", time = NOW() WHERE id = ${interaction.guild.id}`);
+    await db(`UPDATE server SET name = "${escape(interaction.guild.name)}", count = "${interaction.guild.memberCount}", icon = "${interaction.guild.iconURL({extension:"png",size:1024})||"https://cdn.discordapp.com/embed/avatars/0.png"}", time = NOW() WHERE id = ${interaction.guild.id}`);
 
     await interaction.reply({
       embeds:[{
