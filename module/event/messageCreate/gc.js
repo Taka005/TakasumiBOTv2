@@ -139,6 +139,8 @@ module.exports = async(message)=>{
         avatarURL: "https://cdn.takasumibot.com/images/icon.png"
       }).catch(()=>{});
     }catch(error){
+      console.error(Date(),", グローバルチャット送信失敗, ",`${error}`);
+      /*
       await db(`DELETE FROM global WHERE channel = ${data.channel};`);
       const channel = await fetchChannel(message.guild,data.channel);
       if(!channel) return;
@@ -167,6 +169,7 @@ module.exports = async(message)=>{
                 .setStyle(ButtonStyle.Link))
         ]
       }).catch(()=>{});
+      */
     }
   });
 
