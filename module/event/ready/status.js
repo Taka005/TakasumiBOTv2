@@ -8,13 +8,15 @@ module.exports = async(client)=>{
   let stats = 0;
   setInterval(async()=>{
     if(stats === 0){
-      client.user.setActivity(`/help || ping:${client.ws.ping}ms`,{
+      client.user.setActivity(`[メンテ予定] 8日 10時～12時`,{
+        // `/help || ping:${client.ws.ping}ms`
         type: ActivityType.Playing
       });
 
       stats = 1;
     }else if(stats === 1){
-      client.user.setActivity(`${await fetchGuildCounts(client)}server || ${await fetchUserCounts(client)}user${client.shard ? ` || ${client.shard.count}shard` : ""}`,{
+      client.user.setActivity(`[予定] v3リリース メンテナンス`,{
+        // `${await fetchGuildCounts(client)}server || ${await fetchUserCounts(client)}user${client.shard ? ` || ${client.shard.count}shard` : ""}`
         type: ActivityType.Playing
       });
 
