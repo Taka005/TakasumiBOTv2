@@ -11,7 +11,7 @@ module.exports = async(interaction)=>{
           name: "権限がありません",
           icon_url: "https://cdn.takasumibot.com/images/system/error.png"
         },
-        description: "このコマンドは関係者以外実行できません"
+        description: "このコマンドはTakasumiBOTv2の管理者専用です"
       }],
       ephemeral: true
     });
